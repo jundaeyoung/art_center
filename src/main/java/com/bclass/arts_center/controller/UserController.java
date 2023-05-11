@@ -11,6 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 
+
+
+/**
+ * 
+ * @author 편용림
+ *
+ * 유저 Controller 
+ *
+ */
+
 @Controller
 @RequestMapping("/")
 public class UserController {
@@ -23,14 +33,21 @@ public class UserController {
 	
 	@GetMapping("/login")
 	public String login() {
-		return "/login";
+		return "/user/login";
 	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		return "redirect:/dummy";
+	}
+	
 	@PostMapping("/loginProc")
 	public String loginProc(User user) {
-		userService.login(user);
+		userService.readUser(user);
 		session.setAttribute("username", user.getUserName());
 		session.setAttribute("password", user.getPassword());
 		System.out.println(session);
 		return "redirect:/";
 	}
+	
 }

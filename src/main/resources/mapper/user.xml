@@ -4,10 +4,35 @@
 
 
 <mapper namespace="com.bclass.arts_center.repository.interfaces.UserRepository">
-
-	<select id="login" resultType="com.bclass.arts_center.repository.model.User">
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser">
+		INSERT INTO user_tb
+		(user_name, password, nickname, email, birth_date, tel)
+		VALUES
+		(#{userName}, #{password}, #{nickname}, #{email}, #{birthDate}, #{tel})
+	</insert>
+	
+	
+	<!-- 로그인 -->
+	<select id="selectUserByUsernameAndPassword" resultType="com.bclass.arts_center.repository.model.User">
 		select * from user_tb
 		where user_name = #{userName}
 		and password=#{password}
 	</select>
+	
+	<!-- 수정 -->	
+	<update id="updateUserByUsername">
+		UPDATE user_tb SET user_name = #{username}, password = #{password}, 
+		nickname = #{nickname}, email = #{email}, birth_date = #{birth_date},
+		tel = #{tel} WHERE user_name = #{username}
+	</update>
+
+	<delete id="deleteUserById">
+		DELETE FROM user_tb WHERE user_name = #{username}
+	</delete>
+	
+	
+	
+	
 </mapper>
