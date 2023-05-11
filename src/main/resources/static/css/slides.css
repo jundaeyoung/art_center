@@ -1,0 +1,39 @@
+/*
+전대영
+이미지 흘러가게 기능 구현 css
+ */
+@charset "UTF-8";
+
+.slide_wrapper {
+	position: relative;
+	width: 600px;
+	margin: 0 auto;
+	height: 200px;
+	overflow: hidden;
+}
+
+.slides {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.slides.animated {
+	transition: 0.5s ease-out;
+}
+
+.slides li {
+	width: 200px;
+	height: 200px;
+	background: #ccc;
+	float: left;
+}
+
+.slides li:not(:last-child) {
+	margin-right: 30px;
+}
+
+.controls {
+	text-align: center;
+	margin-top: 50px;
+}
