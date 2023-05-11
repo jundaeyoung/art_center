@@ -27,10 +27,11 @@ public class UserController {
 	}
 	@PostMapping("/loginProc")
 	public String loginProc(User user) {
-		userService.login(user);
+		User principal = userService.login(user);
+		session.setAttribute("id", user.getId());
 		session.setAttribute("username", user.getUserName());
 		session.setAttribute("password", user.getPassword());
-		System.out.println(session);
+		System.out.println(principal.getId());
 		return "redirect:/";
 	}
 }
