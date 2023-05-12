@@ -12,7 +12,7 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
