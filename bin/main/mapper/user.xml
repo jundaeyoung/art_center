@@ -13,26 +13,29 @@
 		(#{userName}, #{password}, #{nickname}, #{email}, #{birthDate}, #{tel})
 	</insert>
 	
+	<!-- 비밀번호 암호화 -->
+	<select id="selectUserByUsername" resultType="com.bclass.arts_center.repository.model.User">
+		SELECT * FROM user_tb
+		WHERE user_name = #{userName}
+	</select>
 	
 	<!-- 로그인 -->
 	<select id="selectUserByUsernameAndPassword" resultType="com.bclass.arts_center.repository.model.User">
-		select * from user_tb
-		where user_name = #{userName}
-		and password=#{password}
+		SELECT * FROM user_tb
+		WHERE user_name = #{userName}
+		AND password=#{password}
 	</select>
 	
 	<!-- 수정 -->	
 	<update id="updateUserByUsername">
-		UPDATE user_tb SET user_name = #{username}, password = #{password}, 
-		nickname = #{nickname}, email = #{email}, birth_date = #{birth_date},
-		tel = #{tel} WHERE user_name = #{username}
+		UPDATE user_tb SET password = #{password}, 
+		nickname = #{nickname}, email = #{email}, birth_date = #{birthDate},
+		tel = #{tel} WHERE user_name = #{userName}
 	</update>
-
+	
+	<!-- 회원 탈퇴 -->
 	<delete id="deleteUserById">
-		DELETE FROM user_tb WHERE user_name = #{username}
+		DELETE FROM user_tb WHERE user_name = #{userName}
 	</delete>
-	
-	
-	
 	
 </mapper>
