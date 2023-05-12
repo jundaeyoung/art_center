@@ -25,7 +25,7 @@
 		<span class="material-symbols-outlined"> home </span>
 	</div>
 	<div class="newest">
-		<a href="/review/newestReview?currentPage=1&begin=1&range=3">최신순</a>
+		<a href="/review/newestReview?currentPage=1&begin=0&range=3">최신순</a>
 	</div>
 	<div class="highes__rated">
 		<a href="">평점 높은순</a>
