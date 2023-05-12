@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/loginProc" method="POST">
+	<form action="/user/loginProc" method="POST">
 		<div>
 			<label for="userName"> <input type="text" name="userName" id="userName" value="1">
 			</label>

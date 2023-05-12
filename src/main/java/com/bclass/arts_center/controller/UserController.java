@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
+import com.bclass.arts_center.utils.Define;
 
 @Controller
 @RequestMapping("/user")
@@ -29,9 +30,7 @@ public class UserController {
 	@PostMapping("/loginProc")
 	public String loginProc(User user) {
 		User principal = userService.login(user);
-		session.setAttribute("id", user.getId());
-		session.setAttribute("username", user.getUserName());
-		session.setAttribute("password", user.getPassword());
+		session.setAttribute(Define.PRINCIPAL, principal);
 		System.out.println(principal.getId());
 		return "redirect:/";
 	}

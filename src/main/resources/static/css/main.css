@@ -38,6 +38,7 @@
 	text-align: center;
 	margin-top: 50px;
 }
+
 body {
 	width: 1500px;
 	margin: 0 auto;
@@ -120,6 +121,8 @@ li {
 
 .user--btn {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .user--btn button {
@@ -139,6 +142,12 @@ li {
 	background-color: #3EC151;
 	border-style: none;
 	color: white;
+}
+
+.logout--btn {
+	background-color: white;
+	border-style: none;
+	color: black;
 }
 
 button {
@@ -203,10 +212,16 @@ content ul {
 	text-align: left;
 }
 
-.right img {
+.info h1 {
+	width: 550px;
+}
+
+.right div a img {
 	display: flex;
-	padding-top: 10px;
 	text-align: center;
+	margin-top: 200px;
+	margin-left: -100px;
+	z-index: 0;
 }
 
 .right {
@@ -240,15 +255,14 @@ content ul {
 }
 
 .btn {
-	position: ab;
 	z-index: 1;
-	margin-left: 194px;
+	margin-left: 230px;
 	text-align: center;
 	width: 200px;
 }
 
 .btn button {
-	margin: 10px 20px 0 20px;
+	margin: 20px 20px 0 20px;
 	border: 1px solid #fff;
 	border-radius: 10px;
 	color: #666;
@@ -264,18 +278,41 @@ content ul {
 }
 
 .content--box {
-	width: 900px;
-	height: 500px;
+	width: 1200px;
+	height: 700px;
 	border: 1px solid #ccc;
 	margin: 100px auto;
 	background-color: #E8E8E8;
 }
 
 .slide_wrapper {
-	margin-left: 70px;
+	margin-left: 100px;
+	margin-top: 200px;
 }
 
 .slide_wrapper_box {
-	margin: 30px 200px 0 0;
+	margin: 120px 200px 0 0;
 	width: 300px;
+}
+
+.footer {
+	background-color: #ECECEC;
+	display: flex;
+	width: 1500px;
+	justify-content: center;
+}
+
+.footer div {
+	display: flex;
+	margin: 20px auto;
+}
+
+.footer div div {
+	display: flex;
+	margin-left: 20px;
+	justify-content: space-around;
+	text-align: center;
+	flex-direction: column;
+	width: 400px;
+	flex-direction: column;
 }
