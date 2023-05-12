@@ -17,8 +17,8 @@ margin-left: 50px;
 <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<form action="/update" method="post">
 			<div class="container">
+			<form action="/update" method="post">
 			${user.userName}님 정보 수정
 			<div class="form-group">
 				<input type="hidden" class="form-control" id="userName" name="userName" value="${user.userName}">
@@ -41,5 +41,7 @@ margin-left: 50px;
 			
 			<button type="submit" class="btn btn-primary">개인정보 수정</button>
 		</form>
+		</div>
+		
 </body>
 </html>

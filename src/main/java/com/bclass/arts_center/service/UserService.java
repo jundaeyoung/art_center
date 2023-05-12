@@ -86,7 +86,7 @@ public class UserService {
 		boolean isPwdMatched = passwordEncoder.matches(signInFormDto.getPassword(), userEntity.getPassword());
 		
 		if (isPwdMatched == false) {
-			throw new CustomRestfullException("비번이 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("비밀번호가 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}else {
 			int result = userRepository.deleteUserById(signInFormDto);
 			System.out.println(result);
