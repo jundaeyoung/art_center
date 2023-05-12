@@ -19,7 +19,7 @@
 	<div class="container">
 		<h2>회원탈퇴</h2>
 		<p>비밀번호를 입력해주세요.</p>
-		<form action="/deleteProc" method="POST">
+		<form action="/user/deleteProc" method="POST">
 			<div class="form-group">
 				<label for="password">Password : <input type="password" class="form-control" id="password" name="password"></label>
 			</div>

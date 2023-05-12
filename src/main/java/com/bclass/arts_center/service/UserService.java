@@ -28,6 +28,7 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 
 	// 회원가입
+
 	@Transactional
 	public int createUser(SignUpFormDto signUpFormDto) {
 
@@ -43,6 +44,15 @@ public class UserService {
 		return result;
 	}
 
+	//로그인 (테스트) 다 만들고 지울 예정
+	@Transactional
+	public User readUserTest(SignInFormDto signInFormDto) {
+		
+		User user = userRepository.selectUserByUsernameAndPassword(signInFormDto);
+		return user;
+	}
+	
+	
 	// 로그인
 	@Transactional
 	public User readUser(SignInFormDto signInFormDto) {

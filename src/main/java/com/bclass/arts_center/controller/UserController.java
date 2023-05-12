@@ -18,6 +18,7 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
 
+
 /**
  * 
  * @author 편용림
@@ -27,7 +28,7 @@ import com.bclass.arts_center.utils.Define;
  */
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -36,11 +37,21 @@ public class UserController {
 	@Autowired
 	private HttpSession session;
 
+	
+	
+	
+	// 임의 로그인 페이지
+	@GetMapping("/loginTest")
+	public String Test() {
+		return "/login";
+	}
+	
 	// 로그인 페이지
 	@GetMapping("/login")
 	public String login() {
 		return "/user/signIn";
 	}
+
 
 	// 회원가입 페이지
 	@GetMapping("/signUp")
@@ -72,6 +83,15 @@ public class UserController {
 		return "/user/delete";
 	}
 
+	@PostMapping("/loginProcTest")
+	public String loginTest(SignInFormDto signInFormDto) {
+		User principal = userService.readUserTest(signInFormDto);
+		
+		session.setAttribute(Define.PRINCIPAL, principal);
+		
+		return "redirect:/";
+	}
+	
 	// 로그인 처리
 	@PostMapping("/loginProc")
 	public String loginProc(SignInFormDto signInFormDto) {
@@ -102,7 +122,6 @@ public class UserController {
 	// 회원가입 처리
 	@PostMapping("/signUp")
 	public String signUpProc(SignUpFormDto signUpFormDto) {
-
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("signUpFormDtoname을 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {

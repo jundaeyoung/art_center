@@ -18,7 +18,7 @@ margin-left: 50px;
 </head>
 <body>
 			<div class="container">
-			<form action="/update" method="post">
+			<form action="/user/update" method="post">
 			${user.userName}님 정보 수정
 			<div class="form-group">
 				<input type="hidden" class="form-control" id="userName" name="userName" value="${user.userName}">

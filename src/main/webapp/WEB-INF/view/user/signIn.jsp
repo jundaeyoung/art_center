@@ -19,7 +19,7 @@ margin-left: 30px;
 <body>
 	<div class="container">
 	<h2>로그인</h2>
-		<form action="/loginProc" method="POST">
+		<form action="/user/loginProc" method="POST">
 		<div class="text">
 			<div class="form-group">
 				<label for="username">User name :<input type="text" class="form-control"  id="userName" name="userName"></label> 

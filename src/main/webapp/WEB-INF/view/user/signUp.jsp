@@ -18,7 +18,7 @@ margin-left: 50px;
 </head>
 <body>
 <div class="container">
-<form action="/signUp" method="post">
+<form action="/user/signUp" method="post">
 			<div class="form-group">
 				<label for="username">User name :</label> <input type="text" class="form-control" id="userName" name="userName" value="qwer1234">
 			</div>
