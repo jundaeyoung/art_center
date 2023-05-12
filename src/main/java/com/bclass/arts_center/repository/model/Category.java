@@ -3,9 +3,8 @@ package com.bclass.arts_center.repository.model;
 import lombok.Data;
 
 @Data
-public class Location {
+public class Category {
 
 	private Integer id;
-	private String location;
-	private String locationInfo;
+	private String showType;
 }

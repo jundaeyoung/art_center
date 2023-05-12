@@ -95,15 +95,15 @@ body {
 			<tr>
 				<td class="category-list">
 					<button type="submit" class="show-type-btn" name="category" value="오페라하우스"
-						onclick="location.href='#'">오페라하우스</button>
+						onclick="location.href='/category?type=오페라하우스'">오페라하우스</button>
 				</td>
 				<td class="category-list">
 					<button type="submit" class="show-type-btn" name="category" value="디자인미술관"
-						onclick="location.href='#'">디자인미술관</button>
+						onclick="location.href='/category?type=디자인미술관'">디자인미술관</button>
 				</td>
 				<td class="category-list">
 					<button type="submit"  class="show-type-btn" name="category" value="아카데미"
-						onclick="location.href='#'">아카데미</button>
+						onclick="location.href='/category?type=아카데미'">아카데미</button>
 				</td>
 			</tr>
 		</table>

@@ -4,5 +4,7 @@
 
 <mapper namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
 
-	
+	<select id="findCategory" resultType="com.bclass.arts_center.repository.model.Category">
+		select * from category_tb where show_type like #{showType}
+	</select>
 </mapper>
