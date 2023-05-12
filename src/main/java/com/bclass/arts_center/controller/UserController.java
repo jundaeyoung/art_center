@@ -12,7 +12,7 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -20,11 +20,12 @@ public class UserController {
 
 	@Autowired
 	private HttpSession session;
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "/login";
 	}
+
 	@PostMapping("/loginProc")
 	public String loginProc(User user) {
 		User principal = userService.login(user);
