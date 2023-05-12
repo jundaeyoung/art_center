@@ -1,5 +1,5 @@
 /*
-전대영
+작성자 : 전대영
 이미지 흘러가게 기능 구현 css
  */
 @charset "UTF-8";
@@ -133,15 +133,15 @@ li {
 }
 
 .signUp--btn {
-	background-color: #909090;
+	background-color: white;
 	border-style: none;
-	color: white;
+	color: black;
 }
 
 .login--btn {
-	background-color: #3EC151;
+	background-color: white;
 	border-style: none;
-	color: white;
+	color: black;
 }
 
 .logout--btn {

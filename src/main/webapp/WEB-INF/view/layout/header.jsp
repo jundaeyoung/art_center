@@ -17,13 +17,13 @@
 
 	<div class="title">
 		<div>
-			<img alt="" src="/images/mark.png" width="100" height="50">
+			<a href="/"><img alt="" src="/images/mark.png" width="100" height="50"></a>
 		</div>
 
 		<c:choose>
 			<c:when test="${userInfo == null}">
 				<div class="user--btn">
-					<form action="user/loginTest" method="get">
+					<form action="/user/loginTest" method="get">
 						<button type="submit" class="login--btn">로그인</button>
 					</form>
 					<form action="#" method="get">

@@ -26,7 +26,6 @@ import com.bclass.arts_center.utils.Define;
  *         유저 Controller
  *
  */
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -37,8 +36,6 @@ public class UserController {
 	@Autowired
 	private HttpSession session;
 
-	
-	
 	
 	// 임의 로그인 페이지
 	@GetMapping("/loginTest")

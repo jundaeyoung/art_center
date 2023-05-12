@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.ReviewRepository">
+
+	<select id="selectReviewByNewest"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		select s.id, r.rating, s.title, s.content,
+		r.review_creation_date,s.img_route, u.user_name from
+		review_tb as r
+		join show_tb as s
+		on r.show_id = s.id
+		join user_tb as u
+		on r.user_id =
+		u.id
+		group by s.title
+		order by r.review_creation_date desc
+		limit #{begin},
+		#{range};
+	</select>
+
+	<select id="selectReviewByNewestCount" resultType="Integer">
+		select
+		count(*) AS count from(
+		select s.id, r.rating, s.title, s.content,
+		r.review_creation_date,s.img_route, u.user_name from
+		review_tb as r
+		join show_tb as s
+		on r.show_id = s.id
+		join user_tb as u
+		on r.user_id =
+		u.id
+		GROUP BY s.title
+		order by r.review_creation_date desc) as c;
+	</select>
+</mapper>
+
+
