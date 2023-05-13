@@ -12,8 +12,7 @@ import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.interfaces.UserRepository;
 import com.bclass.arts_center.repository.model.User;
 
-/**
- * 
+/** 
  * @author 편용림
  *
  */
@@ -28,7 +27,6 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 
 	// 회원가입
-
 	@Transactional
 	public int createUser(SignUpFormDto signUpFormDto) {
 

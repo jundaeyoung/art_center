@@ -21,7 +21,24 @@ public class ReviewService {
 	@Transactional
 	public List<RequestReviewDto> readReviewByNewest(Integer begin, Integer range) {
 		List<RequestReviewDto> reviewList = reviewRepository.selectReviewByNewest(begin, range);
+		return reviewList;
+	}
 
+	/**
+	 * 작성자 : 전대영 관람평 최신순으로 select
+	 */
+	@Transactional
+	public List<RequestReviewDto> readReviewByHighesRated(Integer begin, Integer range) {
+		List<RequestReviewDto> reviewList = reviewRepository.selectReviewByHighesRated(begin, range);
+		return reviewList;
+	}
+
+	/**
+	 * 작성자 : 전대영 관람평 최신순으로 select
+	 */
+	@Transactional
+	public List<RequestReviewDto> readReviewByRowestRated(Integer begin, Integer range) {
+		List<RequestReviewDto> reviewList = reviewRepository.selectReviewByRowestRated(begin, range);
 		return reviewList;
 	}
 
@@ -30,8 +47,7 @@ public class ReviewService {
 	 */
 	@Transactional
 	public Integer readReviewByNewestCount() {
-		Integer reviewNewestCount = reviewRepository.selectReviewByNewestCount();
-
+		Integer reviewNewestCount = reviewRepository.selectReviewCount();
 		return reviewNewestCount;
 	}
 }

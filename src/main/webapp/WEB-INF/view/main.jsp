@@ -33,7 +33,7 @@
 					<li><a href="#">오시는길·주차안내</a></li>
 					<li><a href="#">편의 서비스</a></li>
 					<li><a href="#">고객센터</a></li>
-					<li><a href="/review/home">관람평</a></li>
+					<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 				</ul></li>
 			<li><a href="#"> 회원 서비스 </a>
 				<ul class="sub">

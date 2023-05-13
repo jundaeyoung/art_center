@@ -13,25 +13,29 @@
 		<c:when test="${message eq '최신순'}">
 			<h1>최&nbsp&nbsp&nbsp&nbsp신&nbsp&nbsp&nbsp&nbsp순</h1>
 		</c:when>
-		<c:when test="">
+		<c:when test="${message eq '평점높은순'}">
+			<h1>평&nbsp&nbsp점&nbsp&nbsp&nbsp&nbsp높&nbsp&nbsp은&nbsp&nbsp순</h1>
 		</c:when>
 		<c:otherwise>
-			<h1>관&nbsp&nbsp&nbsp&nbsp람&nbsp&nbsp&nbsp&nbsp평</h1>
+			<h1>평&nbsp&nbsp점&nbsp&nbsp&nbsp&nbsp낮&nbsp&nbsp은&nbsp&nbsp순</h1>
 		</c:otherwise>
 	</c:choose>
 </div>
 <div class="menu">
 	<div>
-		<span class="material-symbols-outlined"> home </span>
+		<span class="material-symbols-outlined"> <a href="/">home</a>
+		</span>
 	</div>
 	<div class="newest">
 		<a href="/review/newestReview?currentPage=1&begin=0&range=3">최신순</a>
 	</div>
 	<div class="highes__rated">
-		<a href="">평점 높은순</a>
+		<a href="/review/highesRatedReview?currentPage=1&begin=0&range=3">평점
+			높은순</a>
 	</div>
 	<div class="lowest__rated">
-		<a href="">평점 낮은순</a>
+		<a href="/review/rowestRatedReview?currentPage=1&begin=0&range=3">평점
+			낮은순</a>
 	</div>
 </div>
 <div class="review">

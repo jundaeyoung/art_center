@@ -11,9 +11,27 @@ import com.bclass.arts_center.dto.request.RequestReviewDto;
 public interface ReviewRepository {
 
 	/**
-	 * 작성자 : 전대영 리뷰 최신순으로 select
+	 * 작성자 : 전대영 
+	 * 리뷰 최신순으로 select
 	 */
 	public List<RequestReviewDto> selectReviewByNewest(@Param("begin") Integer begin, @Param("range") Integer range);
-
-	public Integer selectReviewByNewestCount();
+	
+	/**
+	 * 작성자 : 전대영 
+	 * 리뷰 평점 높은순으로 select
+	 */
+	public List<RequestReviewDto> selectReviewByHighesRated(@Param("begin") Integer begin, @Param("range") Integer range);
+	
+	/**
+	 * 작성자 : 전대영 
+	 * 리뷰 평점 낮은순으로 select
+	 */
+	public List<RequestReviewDto> selectReviewByRowestRated(@Param("begin") Integer begin, @Param("range") Integer range);
+	
+	
+	/**
+	 * 작성자 : 전대영 
+	 * 리뷰 count 
+	 */
+	public Integer selectReviewCount();
 }

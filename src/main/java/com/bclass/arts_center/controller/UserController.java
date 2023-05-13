@@ -133,8 +133,7 @@ public class UserController {
 			throw new CustomRestfullException("전화번호를 입력주세요", HttpStatus.BAD_REQUEST);
 		}
 
-		int result = userService.createUser(signUpFormDto);
-		System.out.println(result);
+		userService.createUser(signUpFormDto);
 		return "redirect:/";
 	}
 
@@ -142,8 +141,6 @@ public class UserController {
 	@PostMapping("/update")
 	public String update(SignUpFormDto signUpFormDto, Model model) {
 		int result = userService.updateUser(signUpFormDto);
-		System.out.println(signUpFormDto);
-		System.out.println(result);
 		return "redirect:/";
 	}
 	

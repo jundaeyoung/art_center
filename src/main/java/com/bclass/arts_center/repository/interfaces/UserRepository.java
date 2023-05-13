@@ -12,9 +12,9 @@ public interface UserRepository {
 	
 	// 로그인, 로그아웃
 	public User selectUserByUsernameAndPassword(SignInFormDto signInFormDto);
+	
 	// 비밀번호 암호화
 	public User selectUserByUsername(SignInFormDto signInFormDto);
-	
 
 	// 회원가입
 	public int insertUser(SignUpFormDto signUpFormDto);

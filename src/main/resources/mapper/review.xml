@@ -6,25 +6,64 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.ReviewRepository">
 
+	<!-- 작성자 : 전대영 리뷰 최신순 -->
 	<select id="selectReviewByNewest"
 		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
 		select s.id, r.rating, s.title, s.content,
-		r.review_creation_date,s.img_route, u.user_name from
+		max(r.review_creation_date) as review_creation_date,s.img_route,
+		u.user_name from
 		review_tb as r
 		join show_tb as s
 		on r.show_id = s.id
 		join user_tb as u
-		on r.user_id =
-		u.id
-		group by s.title
-		order by r.review_creation_date desc
+		on r.user_id = u.id
+		GROUP BY s.title
+		order by
+		max(r.review_creation_date) desc
 		limit #{begin},
 		#{range};
 	</select>
 
-	<select id="selectReviewByNewestCount" resultType="Integer">
-		select
-		count(*) AS count from(
+	<!-- 작성자 : 전대영 리뷰 높은순 -->
+	<select id="selectReviewByHighesRated"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		select s.id, round(avg(r.rating),1) , s.title, s.content,
+		review_creation_date,s.img_route, u.user_name from
+		review_tb as r
+		join
+		show_tb as s
+		on r.show_id = s.id
+		join user_tb as u
+		on r.user_id = u.id
+		GROUP BY s.title
+		order by round(avg(r.rating),1) desc
+		limit #{begin},
+		#{range};
+	</select>
+
+
+	<!-- 작성자 : 전대영 리뷰 낮은순  -->
+	<select id="selectReviewByRowestRated"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		select s.id, round(avg(r.rating),1) , s.title, s.content,
+		review_creation_date,s.img_route, u.user_name from
+		review_tb as r
+		join
+		show_tb as s
+		on r.show_id = s.id
+		join user_tb as u
+		on r.user_id = u.id
+		GROUP BY s.title
+		order by round(avg(r.rating),1) asc
+		limit #{begin},
+		#{range};
+	</select>
+	
+	
+	<!-- 작성자 : 전대영 리뷰 카운터 -->
+	<select id="selectReviewCount" resultType="Integer">
+		select count(*) AS
+		count from(
 		select s.id, r.rating, s.title, s.content,
 		r.review_creation_date,s.img_route, u.user_name from
 		review_tb as r
@@ -33,9 +72,9 @@
 		join user_tb as u
 		on r.user_id =
 		u.id
-		GROUP BY s.title
-		order by r.review_creation_date desc) as c;
+		GROUP BY s.title) as c;
 	</select>
+	
 </mapper>
 
 

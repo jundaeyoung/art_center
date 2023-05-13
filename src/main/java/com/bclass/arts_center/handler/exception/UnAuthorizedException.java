@@ -1,6 +1,6 @@
 package com.bclass.arts_center.handler.exception;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus; 
 
 import lombok.Getter;
 
