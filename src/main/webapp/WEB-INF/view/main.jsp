@@ -31,7 +31,7 @@
 				<ul class="sub">
 					<li><a href="#">전당 소식</a></li>
 					<li><a href="#">오시는길·주차안내</a></li>
-					<li><a href="#">편의 서비스</a></li>
+					<li><a href="/quest/info?category=안내&currentPage=1&begin=0&range=10">QnA</a></li>
 					<li><a href="#">고객센터</a></li>
 					<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 				</ul></li>
@@ -66,12 +66,12 @@
 						<dl class="right">
 							<div class="info">
 								<h4
-									style="margin-top: 160px; margin-left: 0; background-color: white; font-size: 30px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</h4>
+									style="margin-top: 155px; margin-left: -50px; background-color: #fff; font-size: 30px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</h4>
 								<h3
-									style="margin-top: -10px; margin-left: -70px; font-size: 30px; font-weight: 200;">🟡
+									style="margin-top: -10px; margin-left: -70px; font-size: 30px; font-weight: 200;">🔔️
 									${showList.location}</h3>
 								<h1
-									style="margin-top: 10px; margin-left: -120px; font-size: 57px; font-weight: 400; height: 60px;">${showList.title}</h1>
+									style="margin-top: 10px; margin-left: -120px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
 								<h4
 									style="margin-top: 100px; margin-left: -70px; font-size: 25px; font-weight: 100;">${showList.startDate}일~${showList.endDate}일</h4>
 							</div>

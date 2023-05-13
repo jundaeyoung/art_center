@@ -11,15 +11,15 @@ body {
 	display: flex;
 }
 
-.question__title {
+.review__header {
 	display: flex;
 	justify-content: center;
-	padding: 130px;
-	background-image: url('/images/reviewBackground.png');
+	padding: 300px;
+	background-image: url('/images/background/review.png');
 	background-position: center;
 }
 
-.question__title h1 {
+.review__header h1 {
 	font-size: 70px;
 	color: #fff;
 	font-weight: 400;
@@ -43,6 +43,35 @@ body {
 	align-items: center;
 }
 
+.review__title {
+	margin: 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+.review__title div {
+	display: flex;
+	align-items: center;
+}
+
+.review__title h1 {
+	font-size: 50px;
+	font-weight: 320;
+	margin-top: -20px;
+	margin-left: 70px;
+}
+
+.review__title h2 {
+	font-size: 40px;
+	font-weight: 320;
+	margin-top: -20px;
+	margin-left: 50px;
+}
+
+.review__title span {
+	color: red;
+	background-color: red;
+}
+
 .review {
 	margin-top: 50px;
 }
@@ -58,7 +87,26 @@ body {
 
 .show__content {
 	margin-left: 100px;
-	margin-top: 30px;
+	margin-top: 10px;
+}
+
+.show__content p {
+	height:140px;
+	display: block;
+	color: black;
+	width: 630px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 7;
+	-webkit-box-orient: vertical;
+}
+.show__content h3{
+	font-weight: 300;	
 }
 
 .page {
@@ -71,5 +119,3 @@ body {
 .page a {
 	margin: 30px;
 }
-
-

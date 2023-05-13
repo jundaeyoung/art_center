@@ -8,19 +8,8 @@
 <link rel="stylesheet" href="/css/user/review.css">
 
 
-<div class="question__title">
-	<c:choose>
-		<c:when test="${message eq '최신순'}">
-			<h1>최&nbsp&nbsp&nbsp&nbsp신&nbsp&nbsp&nbsp&nbsp순</h1>
-		</c:when>
-		<c:when test="${message eq '평점높은순'}">
-			<h1>평&nbsp&nbsp점&nbsp&nbsp&nbsp&nbsp높&nbsp&nbsp은&nbsp&nbsp순</h1>
-		</c:when>
-		<c:otherwise>
-			<h1>평&nbsp&nbsp점&nbsp&nbsp&nbsp&nbsp낮&nbsp&nbsp은&nbsp&nbsp순</h1>
-		</c:otherwise>
-	</c:choose>
-</div>
+<div class="review__header"></div>
+
 <div class="menu">
 	<div>
 		<span class="material-symbols-outlined"> <a href="/">home</a>
@@ -38,6 +27,25 @@
 			낮은순</a>
 	</div>
 </div>
+<div class="review__title">
+	<span class="material-symbols-outlined"> square </span>
+	<div>
+		<c:choose>
+			<c:when test="${message eq '최신순'}">
+				<h1>리뷰</h1>
+				<h2>최신순</h2>
+			</c:when>
+			<c:when test="${message eq '평점높은순'}">
+				<h1>리뷰</h1>
+				<h2>평점 높은순</h2>
+			</c:when>
+			<c:otherwise>
+				<h1>리뷰</h1>
+				<h2>평점 낮은순</h2>
+			</c:otherwise>
+		</c:choose>
+	</div>
+</div>
 <div class="review">
 	<c:forEach var="reviewList" items="${reviewList}">
 		<div class="review__content">
@@ -48,6 +56,7 @@
 			<div class="show__content">
 				<h2>${reviewList.title}</h2>
 				<p>${reviewList.content}</p>
+				<h3>평점 : ${reviewList.rating}</h3>
 			</div>
 		</div>
 	</c:forEach>

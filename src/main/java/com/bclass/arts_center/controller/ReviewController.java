@@ -89,6 +89,7 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
+		System.out.println(reviewList);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
