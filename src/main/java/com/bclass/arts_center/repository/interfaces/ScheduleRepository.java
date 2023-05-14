@@ -12,11 +12,13 @@ import com.bclass.arts_center.repository.model.Show;
 public interface ScheduleRepository {
 	
 	/**
-	 * 김미정 : 공연장 위치 카테고리 
+	 * 김미정 : 카테고리 별 데이터 불러오기
 	 */
-	public List<RequestShowDto.selectByCategory> findCategory(Integer showTypeId);
+	public List<RequestShowDto.selectByCategory> selectByCategory(Integer showTypeId);
 	
-	// 공연정보
-	public List<RequestShowDto.selectSchedule> selectByShow();
+	/**
+	 * 김미정 : calendar 전체 데이터 불러오기
+	 */
+	public List<RequestShowDto.selectByShow> selectByShow();
 	
 }

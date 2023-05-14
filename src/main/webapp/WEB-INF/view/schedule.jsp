@@ -133,21 +133,25 @@ body {
 				//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
-				editable : true,
+				//editable : true,
 				nowIndicator : true, // 현재 시간 마크
 				locale : 'ko', // 한국어 설정
 			 	events: [
 			 		<c:forEach items="${lists}" var="list">
 		                {
 		                  title: '${list.holeName} '+'${list.title}',
-		                  start: '${list.startDate}'
+		                  start: '${list.startDate}',
+		                  backgroundColor: '#8DC6ED',
+		                  borderColor: '#8DC6ED'
 		                 },
 		            </c:forEach>
                     
 	                <c:forEach items="${categoryLists}" var="categoryList">
 		                {
 		                  title: '${categoryList.holeName} '+'${categoryList.title}',
-		                  start: '${categoryList.startDate}'
+		                  start: '${categoryList.startDate}',
+		                  backgroundColor: '#8DC6ED',
+		                  borderColor: '#8DC6ED',
 		                 },
 		            </c:forEach>
 	            ],

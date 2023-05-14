@@ -19,19 +19,21 @@ public class ScheduleService {
 	
 	
 	/**
-	 * 김미정 공연장 위치 카테고리 
+	 * 김미정 : 카테고리 별 데이터 불러오기
 	 */
 	@Transactional
-	public List<RequestShowDto.selectByCategory> findCategory(Integer showTypeId) {
-		List<RequestShowDto.selectByCategory> list = scheduleRepository.findCategory(showTypeId);
+	public List<RequestShowDto.selectByCategory> selecctByCategory(Integer showTypeId) {
+		List<RequestShowDto.selectByCategory> list = scheduleRepository.selectByCategory(showTypeId);
 		return list;
 		
 	}
 	
-	// 공연정보 불러오기
+	/**
+	 * 김미정 : 전체 calendar 데이터 불러오기
+	 */
 	@Transactional
-	public List<RequestShowDto.selectSchedule> selectByShow(){
-		List<RequestShowDto.selectSchedule> list = scheduleRepository.selectByShow();
+	public List<RequestShowDto.selectByShow> selectByShow(){
+		List<RequestShowDto.selectByShow> list = scheduleRepository.selectByShow();
 		return list;
 	}
 	

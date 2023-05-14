@@ -5,8 +5,10 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
 
-
-	<select id="findCategory"
+	<!-- 김미정
+		캘린더 카테고리 별 데이터 불러오기  
+	 -->
+	<select id="selectByCategory"
 		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByCategory">
 		select s.title as title, h.name as holeName, s.start_date
 		as startDate
@@ -17,8 +19,11 @@
 		where s.show_type_id = #{showTypeId};
 	</select>
 
+	<!-- 김미정
+		전체 데이터 불러오기  
+	 -->
 	<select id="selectByShow"
-		resultType="com.bclass.arts_center.dto.RequestShowDto$selectSchedule">
+		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByShow">
 		select s.title as title, h.name as holeName, s.start_date
 		as startDate
 		from show_tb as s
