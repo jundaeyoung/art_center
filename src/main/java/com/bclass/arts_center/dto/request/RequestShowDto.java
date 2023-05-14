@@ -1,9 +1,10 @@
 package com.bclass.arts_center.dto.request;
 
 import lombok.Data;
+
 /**
  * 
- * @author 전대영 
+ * @author 전대영
  *
  */
 @Data

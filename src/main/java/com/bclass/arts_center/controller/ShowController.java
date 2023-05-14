@@ -34,7 +34,6 @@ public class ShowController {
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 
 		List<RequestShowDto> showList = showService.readShowByNewest(begin, range);
-		System.out.println(showList);
 		String message = "최신순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Integer showCount = showService.readShowByCount();
@@ -90,7 +89,6 @@ public class ShowController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		System.out.println(showList);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);

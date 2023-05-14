@@ -34,7 +34,6 @@ public class ReviewController {
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 
 		List<RequestReviewDto> reviewList = reviewService.readReviewByNewest(begin, range);
-		System.out.println(reviewList);
 		String message = "최신순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Integer reviewCount = reviewService.readReviewByCount();
@@ -90,7 +89,6 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		System.out.println(reviewList);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
@@ -174,9 +172,6 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		System.out.println(reviewList);
-		System.out.println(message);
-		System.out.println(reviewCount);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
