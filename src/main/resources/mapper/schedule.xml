@@ -2,9 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
 
-	<select id="findCategory" resultType="com.bclass.arts_center.repository.model.Category">
-		select * from category_tb where show_type like #{showType}
+
+	<select id="findCategory"
+		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByCategory">
+		select s.title as title, h.name as holeName, s.start_date
+		as startDate
+		from show_tb as s
+		inner join hole_tb as h
+		on s.hole_id =
+		h.id
+		where s.show_type_id = #{showTypeId};
+	</select>
+
+	<select id="selectByShow"
+		resultType="com.bclass.arts_center.dto.RequestShowDto$selectSchedule">
+		select s.title as title, h.name as holeName, s.start_date
+		as startDate
+		from show_tb as s
+		inner join hole_tb as h
+		on s.hole_id =
+		h.id
 	</select>
 </mapper>
