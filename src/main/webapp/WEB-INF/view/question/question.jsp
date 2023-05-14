@@ -45,7 +45,7 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<h2>${searchText}을검색한결과입니다.</h2>
+						<h2>${searchText}&nbsp을(를)&nbsp검색한&nbsp결과입니다.</h2>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
