@@ -17,6 +17,7 @@ public class RequestShowDto {
 	 */
 	@Data
 	public static class selectByCategory {
+		private Integer id;
 		private String title;
 		private Date startDate;
 		private String holeName;
@@ -27,10 +28,13 @@ public class RequestShowDto {
 	 */
 	@Data
 	public static class selectByShow {
+		private Integer id;
 		private String title;
 		private Date startDate;
 		private String holeName;
 	}
+	
+	
 	
 	
 }

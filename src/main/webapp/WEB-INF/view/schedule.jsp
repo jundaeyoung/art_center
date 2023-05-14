@@ -89,12 +89,52 @@ body {
 #calendar {
 	margin-top: 100px;
 }
+
+.modal {
+  display:none;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 400px;
+  height: 500px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
 </style>
 </head>
 <body>
 	<div class="show-content">
 		<div class="show-title">
-			<h2><a href="/schedule">전체일정</a></h2>
+			<h2>
+				<a href="/schedule">전체일정</a>
+			</h2>
 		</div>
 		<div class="category-list-table">
 			<table class="show-type">
@@ -114,8 +154,23 @@ body {
 				</tr>
 			</table>
 		</div>
+		
+		<div class="modal" id="modal">
+		<div class="modal-content">
+			<span class="close" id="close" onclick="close()">&times;</span>
+			<p id="eventTitle">제목</p>
+			<p id="eventStart">날짜</p>
+			<p id="eventEnd">위치</p>
+			<button>자세히보기</button>
+			<p id="eventEnd">이미지</p>
+		</div>
+	</div>
+		
+		
+		
 		<div id='calendar'></div>
 	</div>
+
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() {
 			var calendarEl = document.getElementById('calendar');
@@ -155,6 +210,13 @@ body {
 		                 },
 		            </c:forEach>
 	            ],
+	            eventClick:function(event) {
+	            	
+	            },
+	            eventClick:function(modal) {
+	            	$("#modal").modal("show");
+	            }
+	           
 			});
 			calendar.render();
 		});
