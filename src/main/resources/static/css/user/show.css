@@ -15,8 +15,8 @@ body {
 	display: flex;
 	justify-content: center;
 	padding: 300px;
-	background-image: url('/images/background/review.png');
-	background-position: center;
+	background-image: url('/images/background/show.png');
+	background-position: bottom;
 }
 
 .review__header h1 {
@@ -78,9 +78,9 @@ body {
 
 .review__content {
 	display: flex;
-	width: 1400px;
+	width: 1000px;
+	margin-left: 200px;
 	margin-bottom: 50px;
-	margin-left:60px;
 	padding-bottom: 30px;
 	border-bottom: 1px solid #ccc;
 }
@@ -89,18 +89,12 @@ body {
 	margin-left: 100px;
 	margin-top: 10px;
 }
-.review__content__info{
-	display: flex;
-	
-}
-.review__content__username{
-	font-weight:300;
-}
+
 .show__content p {
 	height:140px;
 	display: block;
 	color: black;
-	width: 1000px;
+	width: 630px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: normal;

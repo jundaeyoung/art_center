@@ -10,7 +10,7 @@
 			<li><a href="#">공연</a>
 				<ul class="sub">
 					<li><a href="#">전체일정(달력) </a></li>
-					<li><a href="#">오늘의 공연·전시 </a></li>
+					<li><a href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시 </a></li>
 					<li><a href="#">예매·취소안내 </a></li>
 				</ul></li>
 			<li><a href="#">공간·대관 </a>
@@ -31,7 +31,7 @@
 				<ul class="sub">
 					<li><a href="#">전당 소식</a></li>
 					<li><a href="#">오시는길·주차안내</a></li>
-					<li><a href="/quest/info?category=안내&currentPage=1&begin=0&range=10">QnA</a></li>
+					<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
 					<li><a href="#">고객센터</a></li>
 					<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 				</ul></li>

@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.bclass.arts_center.dto.request.RequestReviewDto;
-
 @Mapper
 public interface ReviewRepository {
 
@@ -34,4 +33,17 @@ public interface ReviewRepository {
 	 * 리뷰 count 
 	 */
 	public Integer selectReviewCount();
+	
+	/**
+	 * 작성자 : 전대영 
+	 * 리뷰 카테고리별 select
+	 */
+	public List<RequestReviewDto> selectReviewByCategory(@Param("category") String category, @Param("begin") Integer begin, @Param("range") Integer range);
+	
+	
+	/**
+	 * 작성자 : 전대영 
+	 * 리뷰 카테고리별 count 
+	 */
+	public Integer selectReviewByCategoryCount(String categorty);
 }

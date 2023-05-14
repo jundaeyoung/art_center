@@ -47,6 +47,11 @@ body {
 	margin: 50px 50px 0 50px;
 }
 
+.question__title div {
+	display: flex;
+	align-items: center;
+}
+
 .question__title h1 {
 	font-size: 50px;
 	font-weight: 400;
@@ -65,6 +70,7 @@ body {
 
 .question__title span {
 	color: red;
+	margin-top: -40px;
 	background-color: red;
 }
 
@@ -93,6 +99,40 @@ body {
 	border-bottom: 1px solid #ccc;
 }
 
+#answer__write {
+	margin: 80px 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+.form-group bg-white {
+	width: 1000px;
+}
+
+#answer__write form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#answer__write .textbox {
+	width: 900px;
+	height: 40px;
+	font-size: 25px;
+	border: 2px solid #ccc;
+	font-size: 25px;
+}
+
+.question__type {
+	display: flex;
+	align-items: center;
+}
+
+.question__category__info input {
+	margin-bottom: 10px;
+	margin-left: 20px;
+	font-size: 40px;
+}
+
 .search form {
 	display: flex;
 	justify-content: center;
@@ -104,7 +144,6 @@ body {
 	height: 40px;
 	font-size: 25px;
 	border: 2px solid #ccc;
-	font-size: 25px;
 }
 
 .search .submit {
@@ -115,7 +154,15 @@ body {
 	font-size: 25px;
 }
 
-.question__btn button {
+#show__write button {
+	width: 100px;
+	height: 50px;
+	background-color: #FBFBFB;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+.submit {
 	width: 100px;
 	height: 50px;
 	background-color: #FBFBFB;
@@ -126,8 +173,18 @@ body {
 .answer_status {
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	text-align: center;
 	margin-right: 20px;
+	align-items: center;
+}
+
+.delete button {
+	border-style: none;
+	background-color: #fff;
+	margin-right: -40px;
+	font-size: 17px;
+	text-decoration: underline;
+	font-size: 17px;
 }
 
 .answer__btn button {
@@ -141,7 +198,7 @@ body {
 
 .question__content {
 	display: flex;
-	margin: 0 50px;
+	margin: 0 50px 50px 50px;
 	border-bottom: 1px solid #ccc;
 }
 
@@ -189,14 +246,14 @@ body {
 	align-items: center;
 }
 
-#hide {
+.hide {
 	margin-top: 20px;
 	background-color: #FAFAFA;
 	overflow-y: auto;
 	height: auto;
 }
 
-#hide h4 {
+.hide h4 {
 	width: 800px;
 	font-weight: 500;
 	align-items: center;

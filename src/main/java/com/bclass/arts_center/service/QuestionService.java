@@ -1,5 +1,6 @@
 package com.bclass.arts_center.service;
 
+import java.beans.Transient;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bclass.arts_center.dto.request.RequestQuestionDto;
 import com.bclass.arts_center.repository.interfaces.QuestionRepository;
+import com.bclass.arts_center.repository.model.Question;
 
 @Service
 public class QuestionService {
@@ -52,5 +54,19 @@ public class QuestionService {
 		String search = "%" + searchText + "%";
 		Integer searchCount = questionRepository.selectQuestionBySearchTextCount(search);
 		return searchCount;
+	}
+	
+	@Transactional
+	public Integer createQeustion(Question question) {
+		int createResult = questionRepository.insert(question);
+		return createResult;
+	}
+	
+	@Transactional
+	public Integer deleteQuestion(Integer id) {
+		int deleteResult = questionRepository.deleteById(id);
+		System.out.println(id);
+		System.out.println(deleteResult);
+		return deleteResult;
 	}
 }

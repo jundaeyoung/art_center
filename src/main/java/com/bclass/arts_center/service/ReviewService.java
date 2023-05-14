@@ -12,11 +12,12 @@ import com.bclass.arts_center.repository.interfaces.ReviewRepository;
 @Service
 public class ReviewService {
 
+	
 	@Autowired
 	private ReviewRepository reviewRepository;
 
 	/**
-	 * 작성자 : 전대영 리뷰 최신순으로 select
+	 * 작성자 : 전대영 관람평 최신순으로 select
 	 */
 	@Transactional
 	public List<RequestReviewDto> readReviewByNewest(Integer begin, Integer range) {
@@ -25,7 +26,7 @@ public class ReviewService {
 	}
 
 	/**
-	 * 작성자 : 전대영 관람평 최신순으로 select
+	 * 작성자 : 전대영 관람평 높은순으로 select
 	 */
 	@Transactional
 	public List<RequestReviewDto> readReviewByHighesRated(Integer begin, Integer range) {
@@ -34,7 +35,7 @@ public class ReviewService {
 	}
 
 	/**
-	 * 작성자 : 전대영 관람평 최신순으로 select
+	 * 작성자 : 전대영 관람평 낮은순으로 select
 	 */
 	@Transactional
 	public List<RequestReviewDto> readReviewByRowestRated(Integer begin, Integer range) {
@@ -43,11 +44,29 @@ public class ReviewService {
 	}
 
 	/**
-	 * 작성자 : 전대영 리뷰 최신순 Count
+	 * 작성자 : 전대영 리뷰 Count
 	 */
 	@Transactional
-	public Integer readReviewByNewestCount() {
-		Integer reviewNewestCount = reviewRepository.selectReviewCount();
-		return reviewNewestCount;
+	public Integer readReviewByCount() {
+		Integer reviewCount = reviewRepository.selectReviewCount();
+		return reviewCount;
+	}
+	
+	/**
+	 * 작성자 : 전대영 관람평 카테고리 별 select
+	 */
+	@Transactional
+	public List<RequestReviewDto> readReviewByCategory(String category, Integer begin, Integer range) {
+		List<RequestReviewDto> reviewList = reviewRepository.selectReviewByCategory(category, begin, range);
+		return reviewList;
+	}
+	
+	/**
+	 * 작성자 : 전대영 리뷰 Count
+	 */
+	@Transactional
+	public Integer readReviewByCategoryCount(String category) {
+		Integer reviewCount = reviewRepository.selectReviewByCategoryCount(category);
+		return reviewCount;
 	}
 }
