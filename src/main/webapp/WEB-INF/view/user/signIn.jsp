@@ -10,11 +10,6 @@
 <link rel="stylesheet" href="/css/styles.css">
 <link rel="stylesheet" href="/css/user/signIn.css">
 
-<style>
-input{
-
-}
-</style>
 
 <div class="signInContainer">
 	<div class="loginContainer">
