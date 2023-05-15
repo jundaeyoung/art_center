@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.ReviewRepository">
+
+	<!-- 작성자 : 전대영 리뷰 최신순 -->
+	<select id="selectReviewByNewest"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		select s.id as showId,sc.show_type,u.id as userId,r.review_creation_date
+		,r.id AS reviewId, r.rating, s.title, s.content,s.img_route, r.content
+		as reviewContent,
+		u.user_name from
+		review_tb as r
+		join show_tb as s
+		on
+		r.show_id = s.id
+		join user_tb as u
+		on r.user_id = u.id
+		join category_tb as sc
+		on s.show_type_id = sc.id
+		order by
+		r.id desc
+		limit #{begin},
+		#{range};
+	</select>
+
+	<!-- 작성자 : 전대영 리뷰 높은순 -->
+	<select id="selectReviewByHighesRated"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		select s.id as showId,sc.show_type,u.id as userId ,r.id AS reviewId,
+		r.rating, s.title, s.content,s.img_route,r.review_creation_date
+		,r.content as reviewContent,
+		u.user_name from
+		review_tb as r
+		join show_tb
+		as s
+		on r.show_id = s.id
+		join user_tb as u
+		on r.user_id = u.id
+		join category_tb as sc
+		on s.show_type_id = sc.id
+		order by
+		r.rating desc , r.review_creation_date desc
+		limit #{begin},
+		#{range};
+	</select>
+
+
+	<!-- 작성자 : 전대영 리뷰 낮은순 -->
+	<select id="selectReviewByRowestRated"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		select s.id as showId,u.id as userId ,r.id AS reviewId,
+		r.rating,sc.show_type, s.title, s.content,s.img_route,r.review_creation_date
+		,r.content as reviewContent,
+		u.user_name from
+		review_tb as r
+		join show_tb
+		as s
+		on r.show_id = s.id
+		join user_tb as u
+		on r.user_id = u.id
+		join category_tb as sc
+		on s.show_type_id = sc.id
+		order by
+		r.rating asc , r.review_creation_date desc
+		limit #{begin},
+		#{range};
+	</select>
+
+
+	<!-- 작성자 : 전대영 리뷰 카운터 -->
+	<select id="selectReviewCount" resultType="Integer">
+		select count(*) as
+		count from
+		review_tb as r
+		join show_tb as s
+		on r.show_id = s.id
+		join
+		user_tb as u
+		on r.user_id = u.id
+		order by
+		r.id desc;
+	</select>
+
+	<!-- 작성자 : 전대영 공연 select -->
+	<select id="selectReviewByCategory"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		select s.id as showId,u.id as userId ,r.id AS
+		reviewId,sc.show_type, r.rating, s.title,
+		s.content,s.img_route,r.review_creation_date ,r.content as
+		reviewContent,
+		u.user_name from
+		review_tb as r
+		join show_tb as s
+		on
+		r.show_id = s.id
+		join user_tb as u
+		on r.user_id = u.id
+		join category_tb as sc
+		on s.show_type_id = sc.id
+		where sc.show_type=#{category}
+		order by
+		r.rating asc , r.review_creation_date
+		desc
+		limit #{begin},
+		#{range};
+	</select>
+
+	<select id="selectReviewByCategoryCount" resultType="Integer">
+		select
+		count(*) as count from
+		review_tb as r
+		join show_tb as s
+		on r.show_id =
+		s.id
+		join user_tb as u
+		on r.user_id = u.id
+		join category_tb as sc
+		on s.show_type_id = sc.id
+		where sc.show_type=#{category}
+		order by
+		r.rating asc , r.review_creation_date desc;
+	</select>
+</mapper>
+
+
