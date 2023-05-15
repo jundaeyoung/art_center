@@ -8,7 +8,7 @@
 	<!-- 김미정 캘린더 카테고리 별 데이터 불러오기 -->
 	<select id="selectByCategory"
 		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByCategory">
-		select s.title as title, h.name as holeName, s.start_date
+		select s.id as id,s.title as title, h.name as holeName, s.start_date
 		as startDate , s.end_date as endDate
 		from show_tb as s
 		inner join
@@ -21,13 +21,12 @@
 	<!-- 김미정 전체 데이터 불러오기 -->
 	<select id="selectByShow"
 		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByShow">
-		select s.title as title, h.name as holeName, s.start_date
+		select s.id as id,s.title as title, h.name as holeName, s.start_date
 		as startDate, s.end_date as endDate
 		from show_tb as s
 		inner join hole_tb
 		as h
-		on s.hole_id =
-		h.id
+		on s.hole_id = h.id
 	</select>
 
 	<!-- 김미정 -->

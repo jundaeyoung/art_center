@@ -247,6 +247,7 @@ body {
 			     </c:choose>
 			     
 			     {
+			    	 id: '${list.id}',
 			         title: '${list.holeName} ${list.title}',
 			         start: '${list.startDate}',
 			         end: '${list.endDate}',
@@ -310,6 +311,7 @@ body {
 			     </c:choose>
 			     
 			     {
+			    	 id: '${categoryList.id}',
 			         title: '${categoryList.holeName} ${categoryList.title}',
 			         start: '${categoryList.startDate}',
 			         end: '${categoryList.endDate}',
@@ -323,8 +325,8 @@ body {
 	            	// 모달 창 열기
 	                var modal = document.getElementById('myModal');
 	                modal.style.display = 'block';
-	                let id = event.event._def.publicId;
-	                console.log(id+"jhjjj");
+	                let id = event.event.id;
+	                console.log(id);
 	                $.ajax({
 							url: '/api/scheduleDetail/'+ id,
 							type: "GET",
@@ -335,10 +337,9 @@ body {
 									/* let id = parseInt(event.event._def.publicId);	
                                     console.log('/api/scheduleDetail/'+id) */ 
 									$("#id").val(event.id),
-									$("#title.title").val(event.title);
-									$("#startDate.startDate").val(event.startDate);
-									$("#imgRoute.imgRoute").val(event.imgRoute);
-									$("#modal-content").modal("show");
+									$("#title").text(event.title);
+									$("#startDate.startDate").text(event.startDate);
+									$("#imgRoute.imgRoute").text(event.imgRoute);
 								}
 		                });
 	                // 모달 창 닫기 버튼 클릭 핸들러
