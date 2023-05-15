@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-body {
-	margin: 0 auto;
-}
-
 .menu {
 	display: flex;
 }

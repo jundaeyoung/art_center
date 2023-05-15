@@ -1,60 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="java.util.Arrays"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-
-<nav>
-	<div id="nav">
-		<ul class="main">
-			<li><a href="#">공연</a>
-				<ul class="sub">
-					<li><a href="#">전체일정(달력) </a></li>
-					<li><a href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시 </a></li>
-					<li><a href="#">예매·취소안내 </a></li>
-				</ul></li>
-			<li><a href="#">공간·대관 </a>
-				<ul class="sub">
-					<li><a href="#">공간소개 </a></li>
-					<li><a href="#">공간별 대관안내 </a></li>
-					<li><a href="#">입장권 운영안내 </a></li>
-				</ul></li>
-			<li><a href="#">아카데미 </a>
-				<ul class="sub">
-					<li><a href="#">아카데미 안내 </a></li>
-					<li><a href="#">수강신청 </a></li>
-					<li><a href="#">아카데미 공지사항 </a></li>
-					<li><a href="#">아카데미 FAQ</a></li>
-					<li><a href="#">오디션 신청</a></li>
-				</ul></li>
-			<li><a href="#">소식·이용·참여</a>
-				<ul class="sub">
-					<li><a href="#">전당 소식</a></li>
-					<li><a href="#">오시는길·주차안내</a></li>
-					<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
-					<li><a href="#">고객센터</a></li>
-					<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
-				</ul></li>
-			<li><a href="#"> 회원 서비스 </a>
-				<ul class="sub">
-					<c:choose>
-					<c:when test="${principal == null}">
-					<li><a href="/user/signUp"> 회원가입 </a></li>
-					<li><a href="/user/login">로그인 </a></li>
-					<li><a>아이디 찾기</a></li>
-					<li><a>비밀번호 찾기</a></li>
-					</c:when>
-					<c:otherwise>
-					<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
-					<li><a href="/user/delete?userName=${principal.userName}">회원탈퇴 </a></li>
-					</c:otherwise>
-					</c:choose>
-				</ul></li>
-		</ul>
-	</div>
-</nav>
-
-
 
 
 <div class="content--box">

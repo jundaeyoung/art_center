@@ -3,10 +3,6 @@
 */
 @charset "UTF-8";
 
-body {
-	margin: 0 auto;
-}
-
 .menu {
 	display: flex;
 }
@@ -91,7 +87,7 @@ body {
 }
 
 .show__content p {
-	height:140px;
+	height: 140px;
 	display: block;
 	color: black;
 	width: 630px;
@@ -105,8 +101,9 @@ body {
 	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 }
-.show__content h3{
-	font-weight: 300;	
+
+.show__content h3 {
+	font-weight: 300;
 }
 
 .page {

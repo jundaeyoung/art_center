@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.request.RequestQuestionDto;
+import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.Question;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.QuestionService;
@@ -152,6 +154,16 @@ public class QuestionCotroller {
 	 */
 	@PostMapping("/insert")
 	public String writeQuestion(Question question) {
+		System.out.println(question.getQuestionTypeId());
+		if (question.getTitle() == null || question.getTitle().isEmpty()) {
+			throw new CustomRestfullException("제목을 입력해주세요", HttpStatus.BAD_REQUEST);
+		}
+		if (question.getQuestionTypeId() == null) {
+			throw new CustomRestfullException("카테고리를 선택해주세요", HttpStatus.BAD_REQUEST);
+		}
+		if (question.getContent() == null || question.getContent().isEmpty()) {
+			throw new CustomRestfullException("내용을 입력해주세요", HttpStatus.BAD_REQUEST);
+		}
 		questionService.createQeustion(question);
 		return "redirect:/quest/";
 	}

@@ -56,11 +56,14 @@ li {
 /*BODY*/
 #nav {
 	width: 100%;
+	margin-top: -130px;
+	margin-bottom: 100px;
 }
 
 #nav:after {
 	content: "";
 	display: block;
+	display: flex;
 	clear: both;
 }
 
@@ -79,13 +82,14 @@ li {
 	text-align: center;
 	font-size: 30px;
 	height: 60px;
-	z-index: 1;
+	z-index: 10;
 }
 
-
 .main>li a {
+	display: flex;
 	display: block;
 	transition: all 0.3s;
+	z-index: 2;
 }
 
 .main>li a:hover {
@@ -101,9 +105,11 @@ li {
 	width: 160px;
 	text-align: center;
 	background: #eee;
+	z-index: 1;
 }
 
 .sub li {
+	z-index: 1;
 	margin-left: -40px;
 	font-size: 20px;
 }
@@ -111,8 +117,9 @@ li {
 .title {
 	display: flex;
 	justify-content: space-between;
-	width: 1400px;
+	width: 1900px;
 	margin: 50px auto;
+	margin-left: -100px;
 }
 
 .user--btn {
@@ -124,7 +131,6 @@ li {
 .user--btn button {
 	height: 46px;
 	border-radius: 17px;
-	margin-left: 10px;
 	width: 100px;
 }
 
@@ -217,7 +223,6 @@ content ul {
 	text-align: center;
 	margin-top: 200px;
 	margin-left: -100px;
-	z-index: 0;
 }
 
 .right {
