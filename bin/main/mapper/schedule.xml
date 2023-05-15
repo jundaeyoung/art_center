@@ -10,8 +10,7 @@
 	 -->
 	<select id="selectByCategory"
 		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByCategory">
-		select s.title as title, h.name as holeName, s.start_date
-		as startDate
+		select s.title as title, h.name as holeName, s.start_date as startDate , s.end_date as endDate
 		from show_tb as s
 		inner join hole_tb as h
 		on s.hole_id =
@@ -24,8 +23,7 @@
 	 -->
 	<select id="selectByShow"
 		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByShow">
-		select s.title as title, h.name as holeName, s.start_date
-		as startDate
+		select s.title as title, h.name as holeName, s.start_date as startDate, s.end_date as endDate
 		from show_tb as s
 		inner join hole_tb as h
 		on s.hole_id =

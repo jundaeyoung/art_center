@@ -11,6 +11,7 @@ import lombok.Data;
  */
 @Data
 public class RequestShowDto {
+	
 	/**
 	 * @author 김미정
 	 * 카테고리 별 dto
@@ -20,8 +21,10 @@ public class RequestShowDto {
 		private Integer id;
 		private String title;
 		private Date startDate;
+		private Date endDate;
 		private String holeName;
 	}
+	
 	/**
 	 * @author 김미정
 	 * 전체 calendar dto 
@@ -31,6 +34,7 @@ public class RequestShowDto {
 		private Integer id;
 		private String title;
 		private Date startDate;
+		private Date endDate;
 		private String holeName;
 	}
 	

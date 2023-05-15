@@ -188,26 +188,133 @@ body {
 				//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
-				//editable : true,
+				editable : true,
 				nowIndicator : true, // 현재 시간 마크
 				locale : 'ko', // 한국어 설정
 			 	events: [
 			 		<c:forEach items="${lists}" var="list">
-		                {
-		                  title: '${list.holeName} '+'${list.title}',
-		                  start: '${list.startDate}',
-		                  backgroundColor: '#8DC6ED',
-		                  borderColor: '#8DC6ED'
-		                 },
+			 		 <c:choose>
+			         <c:when test="${list.holeName == '1층'}">
+			             <c:set var="backgroundColor" value="#FFE3D5" />
+			             <c:set var="borderColor" value="#FFE3D5" />
+			         </c:when>
+			         <c:when test="${list.holeName == '2층'}">
+			             <c:set var="backgroundColor" value="#8DC6ED" />
+			             <c:set var="borderColor" value="#8DC6ED" />
+			         </c:when>
+			         <c:when test="${list.holeName == '3층'}">
+			             <c:set var="backgroundColor" value="#EAFCD4" />
+			             <c:set var="borderColor" value="#EAFCD4" />
+			         </c:when>
+			         <c:when test="${list.holeName == '전시실A'}">
+			             <c:set var="backgroundColor" value="#FFF3D9" />
+			             <c:set var="borderColor" value="#FFF3D9" />
+			         </c:when>
+			         <c:when test="${list.holeName == '전시실b'}">
+			             <c:set var="backgroundColor" value="#DAE5FB" />
+			             <c:set var="borderColor" value="#DAE5FB" />
+			         </c:when>
+			         <c:when test="${list.holeName == '전시실c'}">
+			             <c:set var="backgroundColor" value="#895DAE" />
+			             <c:set var="borderColor" value="#895DAE" />
+			         </c:when>
+			         <c:when test="${list.holeName == '전시실d'}">
+			             <c:set var="backgroundColor" value="#FFA17E" />
+			             <c:set var="borderColor" value="#FFA17E" />
+			         </c:when>
+			         <c:when test="${list.holeName == '인문실'}">
+			             <c:set var="backgroundColor" value="#5CE390" />
+			             <c:set var="borderColor" value="#5CE390" />
+			         </c:when>
+			         <c:when test="${list.holeName == '과학실'}">
+			             <c:set var="backgroundColor" value="#94F7ED" />
+			             <c:set var="borderColor" value="#94F7ED" />
+			         </c:when>
+			         <c:when test="${list.holeName == '미술실'}">
+			             <c:set var="backgroundColor" value="#F4F4FE" />
+			             <c:set var="borderColor" value="#F4F4FE" />
+			         </c:when>
+			         <c:when test="${list.holeName == '어린이'}">
+			             <c:set var="backgroundColor" value="#DCF19A" />
+			             <c:set var="borderColor" value="#DCF19A" />
+			         </c:when>
+			         <c:otherwise>
+			             <c:set var="backgroundColor" value="" />
+			             <c:set var="borderColor" value="" />
+			         </c:otherwise>
+			     </c:choose>
+			     
+			     {
+			         title: '${list.holeName} ${list.title}',
+			         start: '${list.startDate}',
+			         end: '${list.endDate}',
+			         backgroundColor: '${backgroundColor}',
+			         borderColor: '${borderColor}',
+			         textColor: 'black'
+			         
+			     },
 		            </c:forEach>
                     
 	                <c:forEach items="${categoryLists}" var="categoryList">
-		                {
-		                  title: '${categoryList.holeName} '+'${categoryList.title}',
-		                  start: '${categoryList.startDate}',
-		                  backgroundColor: '#8DC6ED',
-		                  borderColor: '#8DC6ED',
-		                 },
+	                <c:choose>
+			         <c:when test="${categoryList.holeName == '1층'}">
+			             <c:set var="backgroundColor" value="#FFE3D5" />
+			             <c:set var="borderColor" value="#FFE3D5" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '2층'}">
+			             <c:set var="backgroundColor" value="#8DC6ED" />
+			             <c:set var="borderColor" value="#8DC6ED" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '3층'}">
+			             <c:set var="backgroundColor" value="#EAFCD4" />
+			             <c:set var="borderColor" value="#EAFCD4" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '전시실A'}">
+			             <c:set var="backgroundColor" value="#FFF3D9" />
+			             <c:set var="borderColor" value="#FFF3D9" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '전시실b'}">
+			             <c:set var="backgroundColor" value="#DAE5FB" />
+			             <c:set var="borderColor" value="#DAE5FB" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '전시실c'}">
+			             <c:set var="backgroundColor" value="#895DAE" />
+			             <c:set var="borderColor" value="#895DAE" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '전시실d'}">
+			             <c:set var="backgroundColor" value="#FFA17E" />
+			             <c:set var="borderColor" value="#FFA17E" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '인문실'}">
+			             <c:set var="backgroundColor" value="#5CE390" />
+			             <c:set var="borderColor" value="#5CE390" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '과학실'}">
+			             <c:set var="backgroundColor" value="#94F7ED" />
+			             <c:set var="borderColor" value="#94F7ED" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '미술실'}">
+			             <c:set var="backgroundColor" value="#F4F4FE" />
+			             <c:set var="borderColor" value="#F4F4FE" />
+			         </c:when>
+			         <c:when test="${categoryList.holeName == '어린이'}">
+			             <c:set var="backgroundColor" value="#DCF19A" />
+			             <c:set var="borderColor" value="#DCF19A" />
+			         </c:when>
+			         <c:otherwise>
+			             <c:set var="backgroundColor" value="" />
+			             <c:set var="borderColor" value="" />
+			         </c:otherwise>
+			     </c:choose>
+			     
+			     {
+			         title: '${categoryList.holeName} ${categoryList.title}',
+			         start: '${categoryList.startDate}',
+			         end: '${categoryList.endDate}',
+			         backgroundColor: '${backgroundColor}',
+			         borderColor: '${borderColor}',
+			         textColor: 'black'
+			     },
 		            </c:forEach>
 	            ],
 	            eventClick:function(event) {
