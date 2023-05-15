@@ -6,7 +6,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript" src="/js/main.js"></script>
 
-<div class="review__header"></div>
+<div class="show__header"></div>
 
 <div class="menu">
 	<div>
@@ -38,24 +38,24 @@
 			낮은순</a>
 	</div>
 </div>
-<div class="review__title">
+<div class="show__title">
 	<span class="material-symbols-outlined"> square </span>
 	<div>
 		<h1>Show</h1>
 		<h2>${message}</h2>
 	</div>
 </div>
-<div class="review">
-	<c:forEach var="reviewList" items="${showList}">
+<div class="show">
+	<c:forEach var="showList" items="${showList}">
 		<div class="review__content">
 			<div>
-				<a href="#"><img src="/images/${reviewList.imgRoute}"
+				<a href="#"><img src="/images/${showList.imgRoute}"
 					width="230" height="300"></a>
 			</div>
 			<div class="show__content">
-				<h2>${reviewList.title}&nbsp&nbsp&nbsp&nbsp(${reviewList.showType})</h2>
-				<p>${reviewList.content}</p>
-				<h3>평점 : ${reviewList.rating}</h3>
+				<h2>${showList.title}&nbsp&nbsp&nbsp&nbsp(${showList.showType})</h2>
+				<p>${showList.content}</p>
+				<h3>평점 : ${showList.rating}</h3>
 			</div>
 		</div>
 	</c:forEach>

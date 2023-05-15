@@ -10,6 +10,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
+
+
 <div class="question__header"></div>
 
 <div class="menu">
