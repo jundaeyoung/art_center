@@ -17,9 +17,9 @@
 									style="margin-top: -10px; margin-left: -70px; font-size: 30px; font-weight: 200;">🔔️
 									${showList.location}</h3>
 								<h1
-									style="margin-top: 10px; margin-left: -120px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
+									style="margin-top: 30px; margin-left: -120px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
 								<h4
-									style="margin-top: 100px; margin-left: -70px; font-size: 25px; font-weight: 100;">${showList.startDate}일~${showList.endDate}일</h4>
+									style="margin-top: 60px; margin-left: -70px; font-size: 25px; font-weight: 100;">${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
 							</div>
 							<div>
 								<a href="#"><img src="images/${showList.imgRoute}"
