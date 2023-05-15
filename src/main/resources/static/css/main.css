@@ -82,10 +82,6 @@ li {
 	z-index: 1;
 }
 
-.main>li:hover .sub {
-	/*display: block;*/
-	
-}
 
 .main>li a {
 	display: block;

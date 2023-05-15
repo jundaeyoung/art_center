@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bclass.arts_center.dto.request.RequestReviewDto;
+import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.repository.model.User;
-import com.bclass.arts_center.service.ReviewService;
+import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller
-@RequestMapping("/review")
-public class ReviewController {
+@RequestMapping("/show")
+public class ShowController {
 
 	@Autowired
-	private ReviewService reviewService;
+	private ShowService showService;
 
 	@Autowired
 	private HttpSession session;
 
 	/**
-	 * @author 전대영 관람평 최신순 페이지 들어가기
+	 * @author 전대영 show 최신순 페이지 들어가기
 	 */
-	@GetMapping("/newestReview")
-	public String newestReview(@RequestParam(required = false) Integer currentPage,
+	@GetMapping("/newestShow")
+	public String newestShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 
-		List<RequestReviewDto> reviewList = reviewService.readReviewByNewest(begin, range);
+		List<RequestShowDto> showList = showService.readShowByNewest(begin, range);
 		String message = "최신순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		Integer reviewCount = reviewService.readReviewByCount();
-		Double count = Math.ceil(reviewCount);
+		Integer showCount = showService.readShowByCount();
+		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 3);
 		Integer startPage = currentPage - 2;
 		if (startPage <= 0) {
@@ -58,28 +58,28 @@ public class ReviewController {
 		} else {
 			model.addAttribute("userInfo", principal);
 		}
-		if (reviewList.isEmpty()) {
-			model.addAttribute("reviewList", null);
+		if (showList.isEmpty()) {
+			model.addAttribute("showList", null);
 		} else {
-			model.addAttribute("reviewList", reviewList);
+			model.addAttribute("showList", showList);
 		}
 		model.addAttribute("message", message);
-		return "/user/review";
+		return "/show/show";
 	}
 	
 	
 	/**
-	 * @author 전대영 관람평 평점 높은순 페이지 들어가기
+	 * @author 전대영 show 평점 높은순 페이지 들어가기
 	 */
-	@GetMapping("/highestRatedReview")
-	public String highestRatedReview(@RequestParam(required = false) Integer currentPage,
+	@GetMapping("/highesRatedShow")
+	public String highesRatedShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 		
-		List<RequestReviewDto> reviewList = reviewService.readReviewByHighesRated(begin, range);
+		List<RequestShowDto> showList = showService.readShowByHighesRated(begin, range);
 		String message = "평점높은순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		Integer reviewCount = reviewService.readReviewByCount();
-		Double count = Math.ceil(reviewCount);
+		Integer showCount = showService.readShowByCount();
+		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 3);
 		Integer startPage = currentPage - 2;
 		if (startPage <= 0) {
@@ -100,28 +100,28 @@ public class ReviewController {
 		} else {
 			model.addAttribute("userInfo", principal);
 		}
-		if (reviewList.isEmpty()) {
-			model.addAttribute("reviewList", null);
+		if (showList.isEmpty()) {
+			model.addAttribute("showList", null);
 		} else {
-			model.addAttribute("reviewList", reviewList);
+			model.addAttribute("showList", showList);
 		}
 		model.addAttribute("message", message);
-		return "/user/review";
+		return "/show/show";
 	}
 	
 	
 	/**
-	 * @author 전대영 관람평 평점 낮은순 페이지 들어가기
+	 * @author 전대영 show 평점 낮은순 페이지 들어가기
 	 */
-	@GetMapping("/rowestRatedReview")
-	public String rowestRatedReview(@RequestParam(required = false) Integer currentPage,
+	@GetMapping("/rowestRatedShow")
+	public String rowestRatedShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 		
-		List<RequestReviewDto> reviewList = reviewService.readReviewByRowestRated(begin, range);
+		List<RequestShowDto> showList = showService.readShowByRowestRated(begin, range);
 		String message = "평점낮은순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		Integer reviewCount = reviewService.readReviewByCount();
-		Double count = Math.ceil(reviewCount);
+		Integer showCount = showService.readShowByCount();
+		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 3);
 		Integer startPage = currentPage - 2;
 		if (startPage <= 0) {
@@ -142,27 +142,26 @@ public class ReviewController {
 		} else {
 			model.addAttribute("userInfo", principal);
 		}
-		if (reviewList.isEmpty()) {
-			model.addAttribute("reviewList", null);
+		if (showList.isEmpty()) {
+			model.addAttribute("showList", null);
 		} else {
-			model.addAttribute("reviewList", reviewList);
+			model.addAttribute("showList", showList);
 		}
 		model.addAttribute("message", message);
-		return "/user/review";
+		return "/show/show";
 	}
 	
 	/**
-	 * @author 전대영 리뷰 카테고리별 페이지 들어가기
+	 * @author 전대영 show 카테고리 별 페이지 들어가기
 	 */
-	@GetMapping("/categoryReview")
-	public String categoryReview(@RequestParam(required=false)String category ,@RequestParam(required = false) Integer currentPage,
+	@GetMapping("/categoryShow")
+	public String categoryShow(@RequestParam(required = false) String category, @RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-		
-		List<RequestReviewDto> reviewList = reviewService.readReviewByCategory(category,begin, range);
+		List<RequestShowDto> showList = showService.readShowBycategory(category, begin, range);
 		String message = category;
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		Integer reviewCount = reviewService.readReviewByCategoryCount(category);
-		Double count = Math.ceil(reviewCount);
+		Integer showCount = showService.readShowBycategoryCount(category);
+		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 3);
 		Integer startPage = currentPage - 2;
 		if (startPage <= 0) {
@@ -183,13 +182,13 @@ public class ReviewController {
 		} else {
 			model.addAttribute("userInfo", principal);
 		}
-		if (reviewList.isEmpty()) {
-			model.addAttribute("reviewList", null);
+		if (showList.isEmpty()) {
+			model.addAttribute("showList", null);
 		} else {
-			model.addAttribute("reviewList", reviewList);
+			model.addAttribute("showList", showList);
 		}
 		model.addAttribute("message", message);
-		return "/user/review";
+		return "/show/show";
 	}
-	
+
 }
