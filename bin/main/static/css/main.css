@@ -56,8 +56,9 @@ li {
 /*BODY*/
 #nav {
 	width: 100%;
-	margin-top: -130px;
-	margin-bottom: 100px;
+	margin-top: 0px;
+	margin-bottom: -40px;
+	margin-left: 100px;
 }
 
 #nav:after {
@@ -117,9 +118,9 @@ li {
 .title {
 	display: flex;
 	justify-content: space-between;
-	width: 1900px;
-	margin: 50px auto;
-	margin-left: -100px;
+	width: 1500px;
+	margin: 10px auto;
+	margin-left: 100px;
 }
 
 .user--btn {
