@@ -50,16 +50,16 @@ public class ShowService {
 		Integer showNewestCount = showRepository.selectShowCount();
 		return showNewestCount;
 	}
-	
+
 	/**
 	 * 작성자 : 전대영 show 카테고리별 select
 	 */
 	@Transactional
-	public List<RequestShowDto> readShowBycategory(String category,Integer begin, Integer range) {
-		List<RequestShowDto> showList = showRepository.selectShowByCategory(category,begin, range);
+	public List<RequestShowDto> readShowBycategory(String category, Integer begin, Integer range) {
+		List<RequestShowDto> showList = showRepository.selectShowByCategory(category, begin, range);
 		return showList;
 	}
-	
+
 	/**
 	 * 작성자 : 전대영 show 카테고리별 Count
 	 */
@@ -67,5 +67,15 @@ public class ShowService {
 	public Integer readShowBycategoryCount(String category) {
 		Integer showNewestCount = showRepository.selectShowByCategoryCount(category);
 		return showNewestCount;
+	}
+
+	public RequestShowDto readShowByShowId(Integer id) {
+		RequestShowDto requestShowDto = showRepository.selectShowByShowId(id);
+		return requestShowDto;
+	}
+
+	public List<RequestShowDto> readShowTimesByShowId(Integer id) {
+		List<RequestShowDto> showTimeList = showRepository.selectShowTimesByShowId(id);
+		return showTimeList;
 	}
 }

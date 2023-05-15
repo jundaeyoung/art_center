@@ -48,16 +48,17 @@
 	</div>
 </div>
 <div class="review">
-	<c:forEach var="reviewList" items="${showList}">
+	<c:forEach var="showList" items="${showList}">
 		<div class="review__content">
 			<div>
-				<a href="#"><img src="/images/${reviewList.imgRoute}"
+				<a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}"
 					width="230" height="300"></a>
 			</div>
 			<div class="show__content">
-				<h2>${reviewList.title}&nbsp&nbsp&nbsp&nbsp(${reviewList.showType})</h2>
-				<p>${reviewList.content}</p>
-				<h3>평점 : ${reviewList.rating}</h3>
+				<h2>${showList.title}&nbsp;&nbsp;&nbsp;&nbsp;(${showList.showType})</h2>
+				<p>${showList.content}</p>
+				<h3>평점 : ${showList.rating}</h3>
+				<p>${showList.id}</p>
 			</div>
 		</div>
 	</c:forEach>
