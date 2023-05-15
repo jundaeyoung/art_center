@@ -39,6 +39,19 @@ public class RequestShowDto {
 	}
 	
 	
+	/**
+	 * @author 김미정
+	 * calendar detail dto
+	 */
+	@Data
+	public static class selectByShowDetail {
+		private Integer id;
+		private String title;
+		private Date startDate;
+		private String holeName;
+		private String imgRoute;
+		
+	}
 	
 	
 }

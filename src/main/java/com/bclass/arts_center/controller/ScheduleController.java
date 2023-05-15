@@ -40,5 +40,17 @@ public class ScheduleController {
 		return "/schedule";
 	}
 	
+	/**
+	 * 김미정 : calendar show detail 정보 불러오기
+	 */
+	/*
+	 * @GetMapping("/api/scheduleDetail/{id}") 
+	 * public String selectByShowDetail(@PathVariable Integer id) {
+	 * List<RequestShowDto.selectByShowDetail> detailLists =
+	 * scheduleService.selectByShowDetail(id); return "/schedule";
+	 * 
+	 * }
+	 */
+	
 	
 }

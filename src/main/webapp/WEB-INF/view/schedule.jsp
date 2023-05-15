@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href='/resources/fullcalendar-5.6.0/lib/main.css' rel='stylesheet' />
-<script src='/resources/fullcalendar-5.6.0/lib/main.js'></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
@@ -16,6 +14,8 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
 <script type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <style>
 body {
 	width: 100%;
@@ -90,24 +90,25 @@ body {
 	margin-top: 100px;
 }
 
-.modal {
+ .modal {
   display:none;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
   overflow: auto;
-}
+} 
 
 .modal-content {
   background-color: white;
+  border-radius: 10px;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 400px;
-  height: 500px;
+  width: 300px;
+  height: 400px;
 }
 
 .close {
@@ -155,14 +156,15 @@ body {
 			</table>
 		</div>
 		
-		<div class="modal" id="modal">
+		<div class="modal" id="myModal">
 		<div class="modal-content">
 			<span class="close" id="close" onclick="close()">&times;</span>
-			<p id="eventTitle">제목</p>
-			<p id="eventStart">날짜</p>
-			<p id="eventEnd">위치</p>
+			<input type="hidden" class="id" id="id" name="id">
+			<p class="title" id="title">제목</p>
+			<p class="startDate" id="startDate">날짜</p>
+			<p class="holeName" id="holeName">홀</p>
 			<button>자세히보기</button>
-			<p id="eventEnd">이미지</p>
+			<p id="imgRoute"  id="imgRoute">사진</p>
 		</div>
 	</div>
 		
@@ -188,7 +190,7 @@ body {
 				//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
-				editable : true,
+				// editable : true,
 				nowIndicator : true, // 현재 시간 마크
 				locale : 'ko', // 한국어 설정
 			 	events: [
@@ -316,14 +318,36 @@ body {
 			         textColor: 'black'
 			     },
 		            </c:forEach>
-	            ],
+	            ],	
 	            eventClick:function(event) {
-	            	
+	            	// 모달 창 열기
+	                var modal = document.getElementById('myModal');
+	                modal.style.display = 'block';
+	                let id = event.event._def.publicId;
+	                console.log(id+"jhjjj");
+	                $.ajax({
+							url: '/api/scheduleDetail/'+ id,
+							type: "GET",
+							contentType: 'application/json; charset=utf-8',
+							dataType: 'json',
+							success: function(event) {
+									console.log(event)
+									/* let id = parseInt(event.event._def.publicId);	
+                                    console.log('/api/scheduleDetail/'+id) */ 
+									$("#id").val(event.id),
+									$("#title.title").val(event.title);
+									$("#startDate.startDate").val(event.startDate);
+									$("#imgRoute.imgRoute").val(event.imgRoute);
+									$("#modal-content").modal("show");
+								}
+		                });
+	                // 모달 창 닫기 버튼 클릭 핸들러
+	                var closeBtn = modal.querySelector('.close');
+	                closeBtn.addEventListener('click', function() {
+	                  // 모달 창 닫기
+	                  modal.style.display = 'none';
+	                });
 	            },
-	            eventClick:function(modal) {
-	            	$("#modal").modal("show");
-	            }
-	           
 			});
 			calendar.render();
 		});

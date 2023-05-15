@@ -37,4 +37,13 @@ public class ScheduleService {
 		return list;
 	}
 	
+	/**
+	 * 김미정 : calendar detail 정보 불러오기
+	 */
+	@Transactional
+	public RequestShowDto.selectByShowDetail selectByShowDetail(Integer id){
+		RequestShowDto.selectByShowDetail list = scheduleRepository.selectByShowDetail(id);
+		return list;
+	}
+	
 }

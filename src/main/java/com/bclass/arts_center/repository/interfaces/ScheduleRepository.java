@@ -21,4 +21,8 @@ public interface ScheduleRepository {
 	 */
 	public List<RequestShowDto.selectByShow> selectByShow();
 	
+	/**
+	 * 김미정 : calendar 공연 디테일 정보 불러오기
+	 */
+	public RequestShowDto.selectByShowDetail selectByShowDetail(Integer id);
 }
