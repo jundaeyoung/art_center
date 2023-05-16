@@ -5,11 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.ListeningSecurityContextHolderStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -203,9 +201,11 @@ public class ShowController {
 	@GetMapping("/showView/{id}")
 	public String showView(@PathVariable Integer id, Model model) {
 
-		RequestShowDto showInfo = showService.readShowByShowId(id);
+		RequestShowDto findShowId = showService.readShowByShowId(id);
+		RequestShowDto showInfo = showService.readShowInfoByShowId(id);
 		System.out.println(showInfo.getShowId());
 		System.out.println(showInfo.getId());
+		model.addAttribute("findShowId", findShowId);
 		model.addAttribute("showInfo", showInfo);
 		return "/show/showView";
 	}

@@ -60,6 +60,7 @@ CREATE TABLE show_tb(
     organizer_id INT NOT NULL,
     hole_id INT NOT NULL,
    show_type_id INT NOT NULL,
+   show_status TINYINT NOT NULL DEFAULT 0,
     FOREIGN KEY (organizer_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (show_type_id) REFERENCES category_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -111,6 +112,7 @@ CREATE TABLE question_tb(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     title varchar(100) NOT NULL,
     content TEXT NOT NULL,
+    answer_status TINYINT NOT NULL default 0,
     user_id INT NOT NULL,
     question_type_id INT NOT NULL,
     FOREIGN KEY (question_type_id) REFERENCES question_category_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,

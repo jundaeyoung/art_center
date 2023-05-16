@@ -10,7 +10,7 @@
 <div>
 	<div>찜하기</div>
 	<c:choose>
-		<c:when test="${showList.id==showInfo.id}">
+		<c:when test="${showList.id==findShowId.id}">
 
 
 			<div>${showList.title}</div>

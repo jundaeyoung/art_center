@@ -12,12 +12,10 @@
 
 여기에 공연 아이디 갖고와야함
 
-
-
 -->
 
 <form action="/ticket/ticketing" method="post">
-<c:forEach var="showInfo">
+<c:forEach var="showInfo" >
 	<div>
 		<input type="date" name="showDate">
 	</div>

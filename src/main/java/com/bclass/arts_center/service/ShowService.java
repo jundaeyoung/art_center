@@ -69,11 +69,29 @@ public class ShowService {
 		return showNewestCount;
 	}
 
-	public RequestShowDto readShowByShowId(Integer id) {
-		RequestShowDto requestShowDto = showRepository.selectShowByShowId(id);
+	/*
+	 * 손주이 : show 하나만 select
+	 */
+	@Transactional
+	public RequestShowDto readShowByShowId(Integer showId) {
+		RequestShowDto requestShowDto = showRepository.selectShowByShowId(showId);
 		return requestShowDto;
 	}
+	
+	/*
+	 * 손주이 showId와 일치하는 show 정보
+	 */
+	@Transactional
+	public RequestShowDto readShowInfoByShowId(Integer showId) {
+		RequestShowDto requestShowDto = showRepository.selectShowInfoByShowId(showId);
+		return requestShowDto;
+	}
+	
 
+	/*
+	 * 손주이 : 공연 별 상영시간
+	 */
+	@Transactional
 	public List<RequestShowDto> readShowTimesByShowId(Integer id) {
 		List<RequestShowDto> showTimeList = showRepository.selectShowTimesByShowId(id);
 		return showTimeList;

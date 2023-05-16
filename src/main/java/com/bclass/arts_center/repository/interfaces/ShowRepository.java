@@ -42,17 +42,17 @@ public interface ShowRepository {
 	public Integer selectShowByCategoryCount(String category);
 
 	/*
-	 * 손주이 
+	 * 손주이 : show 하나만 select
 	 */
 	public RequestShowDto selectShowByShowId(Integer showId);
 	
 	/*
-	 * 손주이 
+	 * 손주이 : showId로  show정보 select
 	 */
-	public void selectShowInfoByShowId(Integer showId);
+	public RequestShowDto selectShowInfoByShowId(Integer showId);
 	
 	/*
-	 * 손주이 ticketing 에 필요
+	 * 손주이 ticketing 에 필요한 정보 select
 	 */
 	public List<RequestShowDto> selectShowTimesByShowId(Integer id);
 	
