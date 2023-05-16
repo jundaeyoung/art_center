@@ -4,11 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.bclass.arts_center.handler.exception.UnAuthorizedException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.utils.Define;
 
@@ -21,9 +19,13 @@ public class AuthInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		User principal = (User)session.getAttribute(Define.PRINCIPAL);
 		
-		if (principal == null) {
-		throw new UnAuthorizedException("로그인 먼저 해주세요", HttpStatus.UNAUTHORIZED);
-		}
+		
+		// 카카오 로그인 확인
+//		if (principal == null) {
+//		throw new UnAuthorizedException("로그인 먼저 해주세요", HttpStatus.UNAUTHORIZED);
+//		}
+		
+		
 		return true;
 	}
 	

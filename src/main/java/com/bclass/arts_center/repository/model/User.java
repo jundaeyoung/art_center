@@ -16,4 +16,6 @@ public class User {
 	private String birthDate;
 	private String tel;
 	private Integer roleId;
+	private Long provider; 
+	
 }

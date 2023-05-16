@@ -14,6 +14,7 @@ CREATE TABLE user_tb(
     email VARCHAR(100) NOT NULL,
     birth_date DATE NOT NULL,
     tel VARCHAR(50) NOT NULL,
+    provider VARCHAR(255),
     role_id int DEFAULT 1,
     FOREIGN KEY (role_id) REFERENCES role_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
 );

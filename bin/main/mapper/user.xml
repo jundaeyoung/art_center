@@ -38,4 +38,9 @@
 		DELETE FROM user_tb WHERE user_name = #{userName}
 	</delete>
 	
+	<!-- email과 provider 값을 비교하는 메서드 -->
+	<select id="selectByEmailAndProvider">
+	SELECT * from user_tb WHERE email = #{email} And provider = #{provider};
+	</select>
+	
 </mapper>

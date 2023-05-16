@@ -41,6 +41,19 @@ public class UserService {
 		}
 		return result;
 	}
+	
+	// 소셜 회원가입
+	@Transactional
+	public void createKakao(SignUpFormDto signUpFormDto) {
+		
+		User userEntity = userRepository.selectByEmailAndProvider(signUpFormDto);
+		
+		if (userEntity == null || userEntity.getEmail().equals(signUpFormDto.getEmail()) == false) {
+			
+			int result = userRepository.insertUser(signUpFormDto);
+			System.out.println(result);
+		}
+	}
 
 	//로그인 (테스트) 다 만들고 지울 예정
 	@Transactional

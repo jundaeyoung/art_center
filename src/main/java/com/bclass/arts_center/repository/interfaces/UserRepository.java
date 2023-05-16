@@ -24,4 +24,7 @@ public interface UserRepository {
 	
 	//회원탈퇴
 	public int deleteUserById(SignInFormDto signInFormDto);
+	
+	//소셜 회원가입 확인
+	public User selectByEmailAndProvider(SignUpFormDto signUpFormDto);
 }

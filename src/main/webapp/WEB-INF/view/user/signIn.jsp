@@ -35,5 +35,13 @@
 			<a>비밀번호 찾기</a>
 		</div>
 	</div>
+	<div class="line"></div>
+	<div>
+	<a href="https://kauth.kakao.com/oauth/authorize?client_id=2b8daa8c6238674fc9d677d8c51dd08f&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code">
+	<img alt="" src="/images/kakao_login_medium_wide.png" class="kakaoLogo">
+	</a>
+	
 	</div>
 	<!-- 오픈 api 자리 -->
+	</div>
+	
