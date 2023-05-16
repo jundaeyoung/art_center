@@ -1,134 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
 <script type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<style>
-body {
-	width: 100%;
-}
+<link rel="stylesheet" href="/css/schedule.css">
 
-.show-content {
-	max-width: 1280px;
-	margin: 0 auto;
-}
-
-.show-title {
-	position: relative;
-	font-size: 30px;
-	line-height: 35px;
-	padding: 5px 0 20px 20px;
-	margin-bottom: 30px;
-	border-bottom: 1px solid black;
-}
-
-.show-title a {
-	text-decoration: none;
-	color: black;
-}
-
-.show-type {
-	border-spacing: 0;
-}
-
-.category-list-table {
-	display: flex;
-	justify-content: center;
-	margin: 10px 0 10px 0;
-	width: 100%;
-}
-
-.category-list:nth-of-type(1) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.category-list:nth-of-type(2) {
-	border-top: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.category-list:nth-of-type(3) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.show-type-btn {
-	border: 0;
-	outline: 0;
-	background: none;
-	font-size: 16px;
-	color: gray;
-}
-
-.show-type-btn:hover {
-	color: black;
-	font-weight: bold;
-}
-
-#calendar {
-	margin-top: 100px;
-}
-
- .modal {
-  display:none;
-  position: fixed;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  overflow: auto;
-} 
-
-.modal-content {
-  background-color: white;
-  border-radius: 10px;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 300px;
-  height: 400px;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-
-
-</style>
 </head>
 <body>
 	<div class="show-content">
@@ -160,11 +43,12 @@ body {
 		<div class="modal-content">
 			<span class="close" id="close" onclick="close()">&times;</span>
 			<input type="hidden" class="id" id="id" name="id">
-			<p class="title" id="title">제목</p>
-			<p class="startDate" id="startDate">날짜</p>
-			<p class="holeName" id="holeName">홀</p>
-			<button>자세히보기</button>
-			<p id="imgRoute"  id="imgRoute">사진</p>
+			<h3 class="modal-title" id="title"></h3>
+			<span class="startDate" id="startDate"></span> ~ 
+			<span class="endDate" id="endDate"></span> 
+			<p class="holeName" id="holeName"></p>
+			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="210", height="280" ></p>
+			<button class="btn" onclick = "location.href='#'">자세히보기</button>
 		</div>
 	</div>
 		
@@ -175,8 +59,8 @@ body {
 
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() {
-			var calendarEl = document.getElementById('calendar');
-			var calendar = new FullCalendar.Calendar(calendarEl, {
+			let calendarEl = document.getElementById('calendar');
+			let calendar = new FullCalendar.Calendar(calendarEl, {
 				initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 				headerToolbar : { // 헤더에 표시할 툴 바
 					start : 'prev next today',
@@ -192,6 +76,7 @@ body {
 				droppable : true,
 				// editable : true,
 				nowIndicator : true, // 현재 시간 마크
+				allDay: true,
 				locale : 'ko', // 한국어 설정
 			 	events: [
 			 		<c:forEach items="${lists}" var="list">
@@ -251,6 +136,7 @@ body {
 			         title: '${list.holeName} ${list.title}',
 			         start: '${list.startDate}',
 			         end: '${list.endDate}',
+			         imageurl: '${list.imgRoute}',
 			         backgroundColor: '${backgroundColor}',
 			         borderColor: '${borderColor}',
 			         textColor: 'black'
@@ -334,12 +220,12 @@ body {
 							dataType: 'json',
 							success: function(event) {
 									console.log(event)
-									/* let id = parseInt(event.event._def.publicId);	
-                                    console.log('/api/scheduleDetail/'+id) */ 
 									$("#id").val(event.id),
 									$("#title").text(event.title);
 									$("#startDate.startDate").text(event.startDate);
-									$("#imgRoute.imgRoute").text(event.imgRoute);
+									$("#endDate.endDate").text(event.endDate);
+									$("#holeName.holeName").text(event.holeName);
+									$("#images").attr("src", "/images/" + event.imgRoute);	
 								}
 		                });
 	                // 모달 창 닫기 버튼 클릭 핸들러
@@ -349,9 +235,14 @@ body {
 	                  modal.style.display = 'none';
 	                });
 	            },
+				eventDataTransform: function(eventData) {
+				  if (eventData.end) {
+				    eventData.end = moment(eventData.end).subtract(-1, 'day').format('YYYY-MM-DD');
+				  }
+				  return eventData;
+				}
 			});
 			calendar.render();
 		});
-	</script>
-</body>
-</html>
+</script>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

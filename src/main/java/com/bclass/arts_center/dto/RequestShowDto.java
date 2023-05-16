@@ -23,6 +23,7 @@ public class RequestShowDto {
 		private Date startDate;
 		private Date endDate;
 		private String holeName;
+		private String imgRoute;
 	}
 	
 	/**
@@ -36,6 +37,7 @@ public class RequestShowDto {
 		private Date startDate;
 		private Date endDate;
 		private String holeName;
+		private String imgRoute;
 	}
 	
 	
@@ -48,6 +50,7 @@ public class RequestShowDto {
 		private Integer id;
 		private String title;
 		private Date startDate;
+		private Date endDate;
 		private String holeName;
 		private String imgRoute;
 		
