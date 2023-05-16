@@ -47,8 +47,8 @@
 			<span class="startDate" id="startDate"></span> ~ 
 			<span class="endDate" id="endDate"></span> 
 			<p class="holeName" id="holeName"></p>
+			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="210", height="280" ></p>
 			<button class="btn" onclick = "location.href='#'">자세히보기</button>
-			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="200", height="250" ></p>
 		</div>
 	</div>
 		
@@ -59,8 +59,8 @@
 
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() {
-			var calendarEl = document.getElementById('calendar');
-			var calendar = new FullCalendar.Calendar(calendarEl, {
+			let calendarEl = document.getElementById('calendar');
+			let calendar = new FullCalendar.Calendar(calendarEl, {
 				initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 				headerToolbar : { // 헤더에 표시할 툴 바
 					start : 'prev next today',
@@ -235,7 +235,7 @@
 	                  modal.style.display = 'none';
 	                });
 	            },
-			eventDataTransform: function(eventData) {
+				eventDataTransform: function(eventData) {
 				  if (eventData.end) {
 				    eventData.end = moment(eventData.end).subtract(-1, 'day').format('YYYY-MM-DD');
 				  }
