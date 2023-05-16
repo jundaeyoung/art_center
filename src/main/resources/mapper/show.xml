@@ -29,20 +29,6 @@
 	<!-- 작성자 : 전대영 show 높은순 -->
 	<select id="selectShowByHighesRated"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-<<<<<<< HEAD
-		select s.id, s.title,r.rating, s.content, sc.show_type,
-		s.img_route from
-		review_tb as r
-		join show_tb as s
-		on r.show_id = s.id
-		join category_tb as sc
-		on s.show_type_id = sc.id
-		join user_tb as u
-		on r.user_id = u.id
-		GROUP BY
-		s.title
-		order by round(avg(r.rating),1) desc
-=======
 			 select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type,
 			s.img_route from
 			review_tb as r
@@ -54,7 +40,6 @@
 			on r.user_id = u.id
 			GROUP BY s.title
 			order by round(avg(r.rating),1) desc
->>>>>>> ba26c5ddbaa870570ed93a856ec9bb41bcd86bff
 		limit #{begin},
 		#{range}
 	</select>
@@ -83,14 +68,8 @@
 	<!-- 작성자 : 전대영 show 카운터 -->
 	<select id="selectShowCount" resultType="Integer">
 		select count(*) AS
-<<<<<<< HEAD
-		count
-		from(
-		select s.id, r.rating, s.title, s.content,
-=======
 		count from(
 		select s.id, s.title, s.content,
->>>>>>> ba26c5ddbaa870570ed93a856ec9bb41bcd86bff
 		s.img_route from
 		review_tb as r
 		join show_tb as s
@@ -144,14 +123,14 @@
 		as c
 	</select>
 
-	<!-- 작성자 : 손주이 공연 -->
+	<!-- 작성자 : 손주이 공연 아이디검색 -->
 	<select id="selectShowByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT *
 		FROM show_tb
 		WHERE id = #{id}
 	</select>
 	
-	<!-- 작성자 손주이 : 공연 시간 상세-->
+	<!-- 작성자 손주이 : 공연 정보 상세-->
 	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT *
 		FROM show_tb AS s
