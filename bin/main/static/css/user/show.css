@@ -3,42 +3,19 @@
 */
 @charset "UTF-8";
 
-<<<<<<< HEAD
-body {
-	margin: 0 auto;
-}
-
-=======
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 .menu {
 	display: flex;
 }
 
-<<<<<<< HEAD
-.review__header {
-	display: flex;
-	justify-content: center;
-	padding: 300px;
-=======
 .show__header {
 	display: flex;
 	justify-content: center;
 	padding: 300px;
 	margin-top: 100px;
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	background-image: url('/images/background/show.png');
 	background-position: bottom;
 }
 
-<<<<<<< HEAD
-.review__header h1 {
-	font-size: 70px;
-	color: #fff;
-	font-weight: 400;
-	margin-top: 70px;
-}
-=======
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 
 .menu {
 	height: 100px;
@@ -57,60 +34,36 @@ body {
 	align-items: center;
 }
 
-<<<<<<< HEAD
-.review__title {
-=======
 .show__title {
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	margin: 50px;
 	border-bottom: 1px solid #ccc;
 }
 
-<<<<<<< HEAD
-.review__title div {
-=======
 .show__title div {
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	display: flex;
 	align-items: center;
 }
 
-<<<<<<< HEAD
-.review__title h1 {
-=======
 .show__title h1 {
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	font-size: 50px;
 	font-weight: 320;
 	margin-top: -20px;
 	margin-left: 70px;
 }
 
-<<<<<<< HEAD
-.review__title h2 {
-=======
 .show__title h2 {
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	font-size: 40px;
 	font-weight: 320;
 	margin-top: -20px;
 	margin-left: 50px;
 }
 
-<<<<<<< HEAD
-.review__title span {
-=======
 .show__title span {
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	color: red;
 	background-color: red;
 }
 
-<<<<<<< HEAD
-.review {
-=======
 .show {
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	margin-top: 50px;
 }
 
@@ -129,11 +82,7 @@ body {
 }
 
 .show__content p {
-<<<<<<< HEAD
-	height:140px;
-=======
 	height: 140px;
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	display: block;
 	color: black;
 	width: 630px;
@@ -147,14 +96,9 @@ body {
 	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 }
-<<<<<<< HEAD
-.show__content h3{
-	font-weight: 300;	
-=======
 
 .show__content h3 {
 	font-weight: 300;
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 }
 
 .page {

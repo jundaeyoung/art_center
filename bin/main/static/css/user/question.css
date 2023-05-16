@@ -1,12 +1,5 @@
 @charset "UTF-8";
 
-<<<<<<< HEAD
-body {
-	margin: 0 auto;
-}
-
-=======
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 .menu {
 	display: flex;
 }
@@ -14,10 +7,7 @@ body {
 .question__header {
 	display: flex;
 	justify-content: center;
-<<<<<<< HEAD
-=======
 	margin-top:100px;
->>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	padding: 300px;
 	background-image: url('/images/background/question.png');
 	background-position: 50% 20%;
