@@ -75,14 +75,7 @@
 	<select id="selectReviewCount" resultType="Integer">
 		select count(*) as
 		count from
-		review_tb as r
-		join show_tb as s
-		on r.show_id = s.id
-		join
-		user_tb as u
-		on r.user_id = u.id
-		order by
-		r.id desc;
+		review_tb
 	</select>
 
 	<!-- 작성자 : 전대영 공연 select -->
