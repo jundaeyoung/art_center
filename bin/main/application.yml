@@ -8,6 +8,9 @@ server:
 
 spring:
   mvc:
+#    throw-exception-if-no-handler-found: true
+#    dispatch-options-request: false
+#    static-path-pattern: /static/**
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp
@@ -26,6 +29,12 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+#  datasource:
+#    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+#    url: jdbc:log4jdbc:mysql://localhost:8080/h2-console?serverTimezone=Asia/Seoul
+#    username: sa
+#    password:
+  
   sql: 
     init:
       schema-locations:
@@ -46,3 +55,26 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     
+#logging:
+#  level:
+#    com:
+#      zaxxer:
+#        hikari: INFO
+#    javax:
+#      sql:
+#        DataSource: OFF
+#    jdbc:
+#      audit: OFF
+#      resultset: OFF
+#      resultsettable: INFO  #SQL 결과 데이터 Table을 로그로 남긴다.
+#      sqlonly: OFF     #SQL만 로그로 남긴다.
+#      sqltiming: INFO    #SQL과 소요시간을 표기한다.
+#      connection : OFF  # 커넥션 확인가능
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type:
+#          descriptor:
+#            sql:
+#              BasicBinder: TRACE
+      

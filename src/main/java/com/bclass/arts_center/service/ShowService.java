@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.repository.interfaces.ShowRepository;
 
@@ -69,13 +70,19 @@ public class ShowService {
 		return showNewestCount;
 	}
 
-	public RequestShowDto readShowByShowId(Integer id) {
-		RequestShowDto requestShowDto = showRepository.selectShowByShowId(id);
-		return requestShowDto;
+	/*
+	 * 손주이 : showId와 일치하는 공연정보
+	 */
+	public List<ShowViewDto> readShowInfoByShowId(Integer id) {
+		List<ShowViewDto> ShowInfoList = showRepository.selectShowInfoByShowId(id);
+		return ShowInfoList;
 	}
 
-	public List<RequestShowDto> readShowTimesByShowId(Integer id) {
-		List<RequestShowDto> showTimeList = showRepository.selectShowTimesByShowId(id);
+	/*
+	 * 작성자 : 손주이 showId와 일치하는 show 상연날짜 select
+	 */
+	public List<ShowViewDto> readShowDateByShowId(Integer showId) {
+		List<ShowViewDto> showTimeList = showRepository.selectShowDateByShowId(showId);
 		return showTimeList;
 	}
 }

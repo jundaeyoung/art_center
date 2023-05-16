@@ -12,7 +12,7 @@ import lombok.Data;
  */
 @Data
 public class RequestShowDto {
-	private Integer id;
+	private Integer id; 
 	private String title;
 	private String content;
 	private String imgRoute;

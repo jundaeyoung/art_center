@@ -12,33 +12,29 @@
 
 여기에 공연 아이디 갖고와야함
 
-
-
 -->
 
+
+<div>
+	<img alt="" src="/images/심청.png">
+</div>
+
+
+
 <form action="/ticket/ticketing" method="post">
-<c:forEach var="showInfo">
-	<div>
-		<input type="date" name="showDate">
-	</div>
 
 
-
-
-
-
-</c:forEach>
 	<div>
 		<select>
-			<option></option>		
+			<c:forEach var="showTimesInfo" items="${showTimesInfo}">
+				<option>${showTimesInfo.showDate}</option>
+			</c:forEach>
+
 		</select>
 
 	</div>
 	<div>
-		좌석 정보
-		
-		<span>인원수 선택 : </span>
-		<select id="person">
+		좌석 정보 <span>인원수 선택 : </span> <select id="person">
 			<option value="1">1명</option>
 			<option value="2">2명</option>
 			<option value="3">3명</option>

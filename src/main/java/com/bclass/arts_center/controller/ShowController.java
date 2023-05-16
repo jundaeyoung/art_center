@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ShowService;
@@ -196,17 +197,25 @@ public class ShowController {
 	}
 
 	/**
-	 * @author 솢위
+	 * @author 손주이
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/showView/{id}")
-	public String showView(@PathVariable Integer id, Model model) {
+	@GetMapping("/showView/{showId}")
+	public String showView(@PathVariable Integer showId, Model model) {
 
-		RequestShowDto showInfo = showService.readShowByShowId(id);
-		System.out.println(showInfo.getShowId());
-		System.out.println(showInfo.getId());
+		System.out.println("제발" + showId);
+
+		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
+
+//		System.out.println("s" + showInfo);
 		model.addAttribute("showInfo", showInfo);
+		model.addAttribute("title", showInfo.get(0).getTitle());
+		model.addAttribute("content", showInfo.get(0).getContent());
+		model.addAttribute("imgRoute", showInfo.get(0).getImgRoute());
+		model.addAttribute("startDate", showInfo.get(0).getStartDate());
+		model.addAttribute("endDate", showInfo.get(0).getEndDate());
+
 		return "/show/showView";
 	}
 

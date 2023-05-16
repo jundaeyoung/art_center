@@ -122,16 +122,9 @@
 		GROUP BY s.title)
 		as c
 	</select>
-
-	<!-- 작성자 : 손주이 공연 -->
-	<select id="selectShowByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		SELECT *
-		FROM show_tb
-		WHERE id = #{id}
-	</select>
 	
-	<!-- 작성자 손주이 : 공연 시간 상세-->
-	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+	<!-- 작성자 손주이 : show 정보 상세-->
+	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
 		SELECT *
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sdt
@@ -139,13 +132,25 @@
 		WHERE sdt.show_id = #{showId}
 	</select>
 		
-	<!-- 작성자 : 손주이 예매에 필요한 정보 -->
-	<select id="selectShowTimesByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		SELECT s.id, s.title, sdt.date, TIME_FORMAT(sdt.time,'%h:%m')
+	<!-- 작성자 손주이 : show별 날짜 검색 -->
+	<select id="selectShowDateByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
+		SELECT s.id, sdt.show_date
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sdt
 		ON s.id = sdt.show_id
 		WHERE sdt.show_id = #{showId}
+		GRUOP BY show_date;
+	</select>
+	
+	<!-- 작성자 손주이 : show별 공연 시간 검색 -->
+	<select id="selectShowTimeByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
+		SELECT s.id, sdt.show_time
+		FROM show_tb AS s
+		JOIN show_datetime_tb AS sdt
+		ON s.id = sdt.show_id
+		WHERE sdt.show_id = #{showId}
+		GRUOP BY show_time
+		ORDER BY show_time asc;
 	</select>
 
 </mapper>

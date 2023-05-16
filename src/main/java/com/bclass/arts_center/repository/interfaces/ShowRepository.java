@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 
 @Mapper
@@ -42,19 +43,13 @@ public interface ShowRepository {
 	public Integer selectShowByCategoryCount(String category);
 
 	/*
-	 * 손주이 
+	 * 손주이 : showId와 일치하는 공연 정보 select
 	 */
-	public RequestShowDto selectShowByShowId(Integer showId);
-	
+	public List<ShowViewDto> selectShowInfoByShowId(Integer showId);
+
 	/*
-	 * 손주이 
+	 * 손주이 ticketing 에 필요한 공연 날짜 정보 select
 	 */
-	public void selectShowInfoByShowId(Integer showId);
-	
-	/*
-	 * 손주이 ticketing 에 필요
-	 */
-	public List<RequestShowDto> selectShowTimesByShowId(Integer id);
-	
+	public List<ShowViewDto> selectShowDateByShowId(Integer showId);
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.service.ShowService;
@@ -25,16 +26,17 @@ public class TicketController {
 	@Autowired
 	private ShowService showService;
 
-	@GetMapping("/ticketing/{id}")
-	public String ticketingPage(Model model, @PathVariable Integer id) {
+	@GetMapping("/ticketing/{showId}")
+	public String ticketingPage(Model model, @PathVariable Integer showId) {
 
-//		공연 정보 불러와서 공연 제목 날짜 뿌리기
-		List<RequestShowDto> showTimeInfo = showService.readShowTimesByShowId(id);
-		if (showTimeInfo.isEmpty()) {
-			model.addAttribute("showList", null);
+		// 공연 정보 불러와서 공연 제목 날짜 뿌리기
+		List<ShowViewDto> showDateList = showService.readShowDateByShowId(showId);
+		if (showDateList.isEmpty()) {
+			model.addAttribute("showDateList", null);
 		} else {
-			model.addAttribute("showList", showTimeInfo);
+			model.addAttribute("showDateList", showDateList);
 		}
+		System.out.println(showDateList.get(0).getShowId());
 
 		return "/ticket/ticketing";
 	}
