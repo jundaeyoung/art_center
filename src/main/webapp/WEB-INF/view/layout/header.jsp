@@ -48,7 +48,7 @@
 							</button>
 						</form>
 						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-						<p>반갑습니다. ${principal.nickname} 님</p>
+						<p>반갑습니다. ${principal.nickname} 매니저 님</p>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -75,22 +75,22 @@
 						<ul class="main">
 							<li><a href="#">공연</a>
 								<ul class="sub">
-									<li><a href="#">전체 공연 일정(달력)</a></li>
-									<li><a href="#">나의 공연 일정(달력)</a></li>
-									<li><a href="#">나의 공연 매출</a></li>
-									<li><a href="#">공연 등록</a></li>
+									<li><a href="#">전체 공연 일정</a></li>
+									<li><a href="#">내 공연 일정</a></li>
+									<li><a href="#">내 공연 매출</a></li>
+									<li><a href="/manager/signUpShow">공연 등록</a></li>
 								</ul></li>
 							<li><a href="#">전시회</a>
 								<ul class="sub">
-									<li><a href="#">전시회 전체 일정(달력)</a></li>
-									<li><a href="#">나의 전시회 일정(달력)</a></li>
-									<li><a href="#">나의 전시회 매출</a></li>
+									<li><a href="#">전시회 전체 일정</a></li>
+									<li><a href="#">내 전시회 일정</a></li>
+									<li><a href="#">내 전시회 매출</a></li>
 									<li><a href="#">전시회 등록</a></li>
 								</ul></li>
 							<li><a href="#">아카데미 </a>
 								<ul class="sub">
-									<li><a href="#">아카데미 전체 일정(달력)</a></li>
-									<li><a href="#">나의 아카데미 일정(달력)</a></li>
+									<li><a href="#">아카데미 전체 일정</a></li>
+									<li><a href="#">내 아카데미 일정</a></li>
 									<li><a href="#">수강 신청 관리</a></li>
 									<li><a href="#">아카데미 등록</a></li>
 								</ul></li>

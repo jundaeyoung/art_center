@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.bclass.arts_center.dto.request.RequestShowDto;
+import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 
 @Mapper
 public interface ShowRepository {
@@ -14,6 +15,7 @@ public interface ShowRepository {
 	 * 작성자 : 전대영 
 	 * show 최신순으로 select
 	 */
+	
 	public List<RequestShowDto> selectShowByNewest(@Param("begin") Integer begin, @Param("range") Integer range);
 	
 	/**
@@ -47,4 +49,10 @@ public interface ShowRepository {
 	 * show 카테고리별 count 
 	 */
 	public Integer selectShowByCategoryCount(String category);
+	
+	/**
+	 * 작성자 : 전대영 
+	 * show insert
+	 */
+	public Integer insertShow(RequestSignUpShowDto requestSignUpShowDto);
 }

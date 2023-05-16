@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bclass.arts_center.dto.request.RequestShowDto;
+import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 import com.bclass.arts_center.repository.interfaces.ShowRepository;
 
 @Service
@@ -66,6 +67,16 @@ public class ShowService {
 	@Transactional
 	public Integer readShowBycategoryCount(String category) {
 		Integer showNewestCount = showRepository.selectShowByCategoryCount(category);
+		return showNewestCount;
+	}
+	
+	/**
+	 * 작성자 : 전대영 manager 계정에서 show insert
+	 */
+	@Transactional
+	public Integer createShow(RequestSignUpShowDto requestSignUpShowDto) {
+		Integer showNewestCount = showRepository.insertShow(requestSignUpShowDto);
+		System.out.println(requestSignUpShowDto);
 		return showNewestCount;
 	}
 }

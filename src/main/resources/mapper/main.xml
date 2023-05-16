@@ -17,7 +17,8 @@
 		ON l.id = h.location_id
 		join category_tb AS c
 		on
-		c.id=s.show_type_id;
+		c.id=s.show_type_id
+		where s.show_status=1
 	</select>
 </mapper>
 
