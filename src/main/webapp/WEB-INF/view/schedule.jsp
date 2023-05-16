@@ -3,155 +3,15 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
 <script type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<style>
+<link rel="stylesheet" href="/css/schedule.css">
 
-.show-content {
-	max-width: 1280px;
-	margin: 0 auto;
-}
-
-.show-title {
-	position: relative;
-	font-size: 30px;
-	line-height: 35px;
-	padding: 5px 0 20px 20px;
-	margin-bottom: 30px;
-	border-bottom: 1px solid black;
-	margin-top: 50px;
-}
-
-.show-title a {
-	text-decoration: none;
-	color: black;
-}
-
-.show-type {
-	border-spacing: 0;
-}
-
-.category-list-table {
-	display: flex;
-	justify-content: center;
-	margin: 10px 0 10px 0;
-	width: 100%;
-}
-
-.category-list:nth-of-type(1) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.category-list:nth-of-type(2) {
-	border-top: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.category-list:nth-of-type(3) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.show-type-btn {
-	border: 0;
-	outline: 0;
-	background: none;
-	font-size: 16px;
-	color: gray;
-}
-
-.show-type-btn:hover {
-	color: black;
-	font-weight: bold;
-}
-
-#calendar {
-	margin-top: 100px;
-}
-
-.fc-event-title-container {
-	cursor: pointer;
-}
-
- .modal {
-  display:none;
-  position: fixed;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-} 
-
-.modal-content {
-  background-color: white;
-  border-radius: 10px;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 300px;
-  height: 430px;
-}
-
-.modal-content < button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.imgRoute {
-	text-align: center;
-}
-.title {
-	margin-left: 0;
-	width: 250px;
-}
-.btn {
-	margin-left: 0;
-	border: none;
-	width: 300px;
-	height: 40px;
-	background-color: #f84c3c;
-	cursor: pointer;
-}
-button:hover {
-	transform:none;
-}
-p {
-	margin: 10px 0;
-}
-</style>
 </head>
 <body>
 	<div class="show-content">
@@ -183,7 +43,7 @@ p {
 		<div class="modal-content">
 			<span class="close" id="close" onclick="close()">&times;</span>
 			<input type="hidden" class="id" id="id" name="id">
-			<h3 class="title" id="title"></h3>
+			<h3 class="modal-title" id="title"></h3>
 			<span class="startDate" id="startDate"></span> ~ 
 			<span class="endDate" id="endDate"></span> 
 			<p class="holeName" id="holeName"></p>
@@ -216,6 +76,7 @@ p {
 				droppable : true,
 				// editable : true,
 				nowIndicator : true, // 현재 시간 마크
+				allDay: true,
 				locale : 'ko', // 한국어 설정
 			 	events: [
 			 		<c:forEach items="${lists}" var="list">
@@ -374,9 +235,14 @@ p {
 	                  modal.style.display = 'none';
 	                });
 	            },
+			eventDataTransform: function(eventData) {
+				  if (eventData.end) {
+				    eventData.end = moment(eventData.end).subtract(-1, 'day').format('YYYY-MM-DD');
+				  }
+				  return eventData;
+				}
 			});
 			calendar.render();
 		});
-	</script>
-</body>
-</html>
+</script>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
