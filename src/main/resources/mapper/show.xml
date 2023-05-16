@@ -9,7 +9,7 @@
 	<!-- 작성자 : 전대영 show 최신순 -->
 	<select id="selectShowByNewest"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title,r.rating, s.content, sc.show_type,
+		  select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type,
 		s.img_route from
 		review_tb as r
 		join show_tb as s
@@ -28,17 +28,17 @@
 	<!-- 작성자 : 전대영 show 높은순 -->
 	<select id="selectShowByHighesRated"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title,r.rating, s.content, sc.show_type,
-		s.img_route from
-		review_tb as r
-		join show_tb as s
-		on r.show_id = s.id
-         join category_tb as sc
-        on s.show_type_id = sc.id
-		join user_tb as u
-		on r.user_id = u.id
-		GROUP BY s.title
-		order by round(avg(r.rating),1) desc
+			 select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type,
+			s.img_route from
+			review_tb as r
+			join show_tb as s
+			on r.show_id = s.id
+	         join category_tb as sc
+	        on s.show_type_id = sc.id
+			join user_tb as u
+			on r.user_id = u.id
+			GROUP BY s.title
+			order by round(avg(r.rating),1) desc
 		limit #{begin},
 		#{range};
 	</select>
@@ -47,7 +47,7 @@
 	<!-- 작성자 : 전대영 show 낮은순  -->
 	<select id="selectShowByRowestRated"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title,r.rating, s.content, sc.show_type,
+		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type,
 		s.img_route from
 		review_tb as r
 		join show_tb as s
@@ -67,7 +67,7 @@
 	<select id="selectShowCount" resultType="Integer">
 		select count(*) AS
 		count from(
-		select s.id, r.rating, s.title, s.content,
+		select s.id, s.title, s.content,
 		s.img_route from
 		review_tb as r
 		join show_tb as s
@@ -81,7 +81,7 @@
 	<!-- 작성자 : 전대영 show 낮은순  -->
 	<select id="selectShowByCategory"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title,r.rating, s.content, sc.show_type,
+		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type,
 		s.img_route from
 		review_tb as r
 		join show_tb as s
@@ -102,7 +102,7 @@
 	<select id="selectShowByCategoryCount" resultType="Integer">
 		select count(*) AS
 		count from(
-		select s.id, r.rating, s.title, s.content,
+		select s.id, s.title, s.content,
 		s.img_route from
 		review_tb as r
 		join show_tb as s
