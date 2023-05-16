@@ -13,7 +13,8 @@
 								<h4 style="margin-top: 155px; margin-left: -50px; background-color: #fff; font-size: 30px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</h4>
 								<h3 style="margin-top: -10px; margin-left: -70px; font-size: 30px; font-weight: 200;">🔔️ ${showList.location}</h3>
 								<h1 style="margin-top: 30px; margin-left: -120px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
-								<h4 style="margin-top: 60px; margin-left: -70px; font-size: 25px; font-weight: 100;">${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
+								<h3 style="margin-top: 30px; margin-left: -50px; font-size: 27px; font-weight: 100; height: 60px;">평점 : ${showList.rating}</h3>
+								<h4 style="margin-top: 0; margin-left: -70px; font-size: 25px; font-weight: 100;">기간 : ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
 							</div>
 							<c:choose>
 								<c:when test="${showList.imgRoute.length()>=30}">

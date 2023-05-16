@@ -8,17 +8,22 @@
 
 	<select id="selectShowDto"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select
-		s.id,s.img_route,s.title,s.start_date,s.end_date,l.location
-		,c.show_type from show_Tb as s
-		JOIN hole_tb AS h
+		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location from
+		review_tb as r
+		join show_tb as s
+		on r.show_id = s.id
+		join category_tb as sc
+		on s.show_type_id = sc.id
+                JOIN hole_tb AS h
 		ON h.id = s.hole_id
 		JOIN location_tb as l
 		ON l.id = h.location_id
-		join category_tb AS c
-		on
-		c.id=s.show_type_id
-		where s.show_status=1
+		join user_tb as u
+		on r.user_id = u.id
+		GROUP BY s.title
+		having s.show_status=1
+		order by
+		round(avg(r.rating),1) desc
 	</select>
 </mapper>
 
