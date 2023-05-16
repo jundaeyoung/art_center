@@ -11,5 +11,6 @@ public class SignInFormDto {
 	
 	private String userName;
 	private String password;
+	private Integer id;
 
 }
