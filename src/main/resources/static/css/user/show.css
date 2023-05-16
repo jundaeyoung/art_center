@@ -3,28 +3,19 @@
 */
 @charset "UTF-8";
 
-body {
-	margin: 0 auto;
-}
-
 .menu {
 	display: flex;
 }
 
-.review__header {
+.show__header {
 	display: flex;
 	justify-content: center;
 	padding: 300px;
+	margin-top: 100px;
 	background-image: url('/images/background/show.png');
 	background-position: bottom;
 }
 
-.review__header h1 {
-	font-size: 70px;
-	color: #fff;
-	font-weight: 400;
-	margin-top: 70px;
-}
 
 .menu {
 	height: 100px;
@@ -43,36 +34,36 @@ body {
 	align-items: center;
 }
 
-.review__title {
+.show__title {
 	margin: 50px;
 	border-bottom: 1px solid #ccc;
 }
 
-.review__title div {
+.show__title div {
 	display: flex;
 	align-items: center;
 }
 
-.review__title h1 {
+.show__title h1 {
 	font-size: 50px;
 	font-weight: 320;
 	margin-top: -20px;
 	margin-left: 70px;
 }
 
-.review__title h2 {
+.show__title h2 {
 	font-size: 40px;
 	font-weight: 320;
 	margin-top: -20px;
 	margin-left: 50px;
 }
 
-.review__title span {
+.show__title span {
 	color: red;
 	background-color: red;
 }
 
-.review {
+.show {
 	margin-top: 50px;
 }
 
@@ -91,7 +82,7 @@ body {
 }
 
 .show__content p {
-	height:140px;
+	height: 140px;
 	display: block;
 	color: black;
 	width: 630px;
@@ -105,8 +96,9 @@ body {
 	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 }
-.show__content h3{
-	font-weight: 300;	
+
+.show__content h3 {
+	font-weight: 300;
 }
 
 .page {

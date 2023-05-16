@@ -32,9 +32,9 @@ public class MainController {
 		List<Show> showsList = mainService.readShowDto();
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
-			model.addAttribute("userInfo", null);
+			model.addAttribute("principal", null);
 		} else {
-			model.addAttribute("userInfo", principal);
+			model.addAttribute("principal", principal);
 		}
 		if (showsList.isEmpty()) {
 			model.addAttribute("showsList", null);

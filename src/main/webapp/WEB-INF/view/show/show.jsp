@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="java.util.Arrays"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<link rel="stylesheet" href="/css/user/show.css">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet" href="/css/user/show.css">
+<script type="text/javascript" src="/js/main.js"></script>
 
-
-<div class="review__header"></div>
+<div class="show__header"></div>
 
 <div class="menu">
 	<div>
@@ -40,14 +38,14 @@
 			낮은순</a>
 	</div>
 </div>
-<div class="review__title">
+<div class="show__title">
 	<span class="material-symbols-outlined"> square </span>
 	<div>
 		<h1>Show</h1>
 		<h2>${message}</h2>
 	</div>
 </div>
-<div class="review">
+<div class="show">
 	<c:forEach var="showList" items="${showList}">
 		<div class="review__content">
 			<div>

@@ -14,6 +14,7 @@
 		review_tb as r
 		join show_tb as s
 		on r.show_id = s.id
+<<<<<<< HEAD
 		join category_tb as sc
 		on s.show_type_id = sc.id
 		join user_tb as u
@@ -24,6 +25,17 @@
 		s.id desc
 		limit #{begin},
 		#{range}
+=======
+         join category_tb as sc
+        on s.show_type_id = sc.id
+		join user_tb as u
+		on r.user_id = u.id
+		GROUP BY s.title
+		order by
+		s.id desc
+		limit #{begin},
+		#{range};
+>>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	</select>
 
 	<!-- 작성자 : 전대영 show 높은순 -->
@@ -34,6 +46,7 @@
 		review_tb as r
 		join show_tb as s
 		on r.show_id = s.id
+<<<<<<< HEAD
 		join category_tb as sc
 		on s.show_type_id = sc.id
 		join user_tb as u
@@ -47,6 +60,20 @@
 
 
 	<!-- 작성자 : 전대영 show 낮은순 -->
+=======
+         join category_tb as sc
+        on s.show_type_id = sc.id
+		join user_tb as u
+		on r.user_id = u.id
+		GROUP BY s.title
+		order by round(avg(r.rating),1) desc
+		limit #{begin},
+		#{range};
+	</select>
+
+
+	<!-- 작성자 : 전대영 show 낮은순  -->
+>>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	<select id="selectShowByRowestRated"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select s.id, s.title,r.rating, s.content, sc.show_type,
@@ -54,6 +81,7 @@
 		review_tb as r
 		join show_tb as s
 		on r.show_id = s.id
+<<<<<<< HEAD
 		join category_tb as sc
 		on s.show_type_id = sc.id
 		join user_tb as u
@@ -71,12 +99,30 @@
 		select count(*) AS
 		count
 		from(
+=======
+         join category_tb as sc
+        on s.show_type_id = sc.id
+		join user_tb as u
+		on r.user_id = u.id
+		GROUP BY s.title
+		order by round(avg(r.rating),1) asc
+		limit #{begin},
+		#{range};
+	</select>
+	
+	
+	<!-- 작성자 : 전대영 show 카운터 -->
+	<select id="selectShowCount" resultType="Integer">
+		select count(*) AS
+		count from(
+>>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 		select s.id, r.rating, s.title, s.content,
 		s.img_route from
 		review_tb as r
 		join show_tb as s
 		on r.show_id = s.id
 		join user_tb as u
+<<<<<<< HEAD
 		on
 		r.user_id =
 		u.id
@@ -84,6 +130,14 @@
 	</select>
 
 	<!-- 작성자 : 전대영 show 낮은순 -->
+=======
+		on r.user_id =
+		u.id
+		GROUP BY s.title) as c;
+	</select>
+	
+	<!-- 작성자 : 전대영 show 낮은순  -->
+>>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 	<select id="selectShowByCategory"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select s.id, s.title,r.rating, s.content, sc.show_type,
@@ -91,6 +145,7 @@
 		review_tb as r
 		join show_tb as s
 		on r.show_id = s.id
+<<<<<<< HEAD
 		join category_tb as sc
 		on s.show_type_id = sc.id
 		join user_tb as u
@@ -109,6 +164,23 @@
 	<select id="selectShowByCategoryCount" resultType="Integer">
 		select
 		count(*) AS
+=======
+         join category_tb as sc
+        on s.show_type_id = sc.id
+		join user_tb as u
+		on r.user_id = u.id
+		where sc.show_type=#{category}
+		GROUP BY s.title
+		order by round(avg(r.rating),1) asc
+		limit #{begin},
+		#{range};
+	</select>
+	
+	
+	<!-- 작성자 : 전대영 show 카운터 -->
+	<select id="selectShowByCategoryCount" resultType="Integer">
+		select count(*) AS
+>>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 		count from(
 		select s.id, r.rating, s.title, s.content,
 		s.img_route from
@@ -119,6 +191,7 @@
 		on r.user_id =
 		u.id
 		join category_tb as sc
+<<<<<<< HEAD
 		on s.show_type_id = sc.id
 		where sc.show_type=#{category}
 		GROUP BY s.title)
@@ -150,6 +223,13 @@
 		WHERE sdt.show_id = #{showId}
 	</select>
 
+=======
+        on s.show_type_id = sc.id
+		where sc.show_type=#{category}
+		GROUP BY s.title) as c;
+	</select>
+	
+>>>>>>> 6efe8bfd03f2fceedd8338d99e7968d9837aad5a
 </mapper>
 
 

@@ -14,6 +14,7 @@ body {
 .review__header {
 	display: flex;
 	justify-content: center;
+	margin-top: 100px;
 	padding: 300px;
 	background-image: url('/images/background/review.png');
 	background-position: center;
@@ -80,7 +81,7 @@ body {
 	display: flex;
 	width: 1400px;
 	margin-bottom: 50px;
-	margin-left:60px;
+	margin-left: 60px;
 	padding-bottom: 30px;
 	border-bottom: 1px solid #ccc;
 }
@@ -89,15 +90,17 @@ body {
 	margin-left: 100px;
 	margin-top: 10px;
 }
-.review__content__info{
+
+.review__content__info {
 	display: flex;
-	
 }
-.review__content__username{
-	font-weight:300;
+
+.review__content__username {
+	font-weight: 300;
 }
+
 .show__content p {
-	height:140px;
+	height: 140px;
 	display: block;
 	color: black;
 	width: 1000px;
@@ -111,8 +114,9 @@ body {
 	-webkit-line-clamp: 7;
 	-webkit-box-orient: vertical;
 }
-.show__content h3{
-	font-weight: 300;	
+
+.show__content h3 {
+	font-weight: 300;
 }
 
 .page {

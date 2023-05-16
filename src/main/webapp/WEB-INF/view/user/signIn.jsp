@@ -1,36 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-.container{
-margin-left: 30px;
-}
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
 <link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>
-	<div class="container">
-	<h2>로그인</h2>
-		<form action="/user/loginProc" method="POST">
-		<div class="text">
-			<div class="form-group">
-				<label for="username">User name :<input type="text" class="form-control"  id="userName" name="userName"></label> 
-			</div>
-			<div class="form-group">
-				<label for="password">Password :<input type="password" class="form-control" id="password" name="password"></label> 
-			</div>
+<link rel="stylesheet" href="/css/user/signIn.css">
+
+
+<div class="signInContainer">
+	<div class="loginContainer">
+		<div class="login--title">
+		<img alt="" src="/images/background/logo.png" class="loginLogo">
+		<h3>Amadeus Login</h3>
 		</div>
-			<button type="submit" class="btn btn-primary">로그인</button>
+		<br>
+		<form action="/user/loginProc" method="post">
+			<div id="imail">
+				<i class="material-icons">person_outline</i> <input type="text" placeholder="아이디를 입력하세요" name="userName" id="userName" class="info"><br>
+			</div>
+			<div id="ipw">
+				<i class="material-icons">lock_outline</i> <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password" class="info"><br>
+			</div>
+			<input type="submit" value="로그인" class="login">
 		</form>
-	<br>
-</div>
-</body>
-</html>
+		<div class="selectIdAndPw">
+			<a href="/user/signUp">회원가입</a>
+			<p>|</p>
+			<a>아이디 찾기</a>
+			<p>|</p>
+			<a>비밀번호 찾기</a>
+		</div>
+	</div>
+	</div>
+	<!-- 오픈 api 자리 -->
