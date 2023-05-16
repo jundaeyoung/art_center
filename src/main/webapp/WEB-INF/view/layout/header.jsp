@@ -75,7 +75,7 @@
 						<ul class="main">
 							<li><a href="#">공연</a>
 								<ul class="sub">
-									<li><a href="#">전체 공연 일정(달력)</a></li>
+									<li><a href="/schedule">전체 공연 일정(달력)</a></li>
 									<li><a href="#">나의 공연 일정(달력)</a></li>
 									<li><a href="#">나의 공연 매출</a></li>
 									<li><a href="#">공연 등록</a></li>
@@ -124,7 +124,7 @@
 						<ul class="main">
 							<li><a href="#">공연</a>
 								<ul class="sub">
-									<li><a href="#">전체 일정(달력) </a></li>
+									<li><a href="/schedule">전체 일정(달력) </a></li>
 									<li><a
 										href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시
 									</a></li>

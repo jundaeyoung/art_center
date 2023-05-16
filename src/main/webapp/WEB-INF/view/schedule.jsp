@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
@@ -17,9 +14,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <style>
-body {
-	width: 100%;
-}
 
 .show-content {
 	max-width: 1280px;
@@ -33,6 +27,7 @@ body {
 	padding: 5px 0 20px 20px;
 	margin-bottom: 30px;
 	border-bottom: 1px solid black;
+	margin-top: 50px;
 }
 
 .show-title a {
@@ -90,6 +85,10 @@ body {
 	margin-top: 100px;
 }
 
+.fc-event-title-container {
+	cursor: pointer;
+}
+
  .modal {
   display:none;
   position: fixed;
@@ -98,7 +97,6 @@ body {
   height: 100%;
   left: 0;
   top: 0;
-  overflow: auto;
 } 
 
 .modal-content {
@@ -108,7 +106,13 @@ body {
   padding: 20px;
   border: 1px solid #888;
   width: 300px;
-  height: 400px;
+  height: 430px;
+}
+
+.modal-content < button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .close {
@@ -118,6 +122,7 @@ body {
   font-weight: bold;
 }
 
+
 .close:hover,
 .close:focus {
   color: black;
@@ -125,9 +130,27 @@ body {
   cursor: pointer;
 }
 
-
-
-
+.imgRoute {
+	text-align: center;
+}
+.title {
+	margin-left: 0;
+	width: 250px;
+}
+.btn {
+	margin-left: 0;
+	border: none;
+	width: 300px;
+	height: 40px;
+	background-color: #f84c3c;
+	cursor: pointer;
+}
+button:hover {
+	transform:none;
+}
+p {
+	margin: 10px 0;
+}
 </style>
 </head>
 <body>
@@ -160,11 +183,12 @@ body {
 		<div class="modal-content">
 			<span class="close" id="close" onclick="close()">&times;</span>
 			<input type="hidden" class="id" id="id" name="id">
-			<p class="title" id="title">제목</p>
-			<p class="startDate" id="startDate">날짜</p>
-			<p class="holeName" id="holeName">홀</p>
-			<button>자세히보기</button>
-			<p id="imgRoute"  id="imgRoute">사진</p>
+			<h3 class="title" id="title"></h3>
+			<span class="startDate" id="startDate"></span> ~ 
+			<span class="endDate" id="endDate"></span> 
+			<p class="holeName" id="holeName"></p>
+			<button class="btn" onclick = "location.href='#'">자세히보기</button>
+			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="200", height="250" ></p>
 		</div>
 	</div>
 		
@@ -251,6 +275,7 @@ body {
 			         title: '${list.holeName} ${list.title}',
 			         start: '${list.startDate}',
 			         end: '${list.endDate}',
+			         imageurl: '${list.imgRoute}',
 			         backgroundColor: '${backgroundColor}',
 			         borderColor: '${borderColor}',
 			         textColor: 'black'
@@ -334,12 +359,12 @@ body {
 							dataType: 'json',
 							success: function(event) {
 									console.log(event)
-									/* let id = parseInt(event.event._def.publicId);	
-                                    console.log('/api/scheduleDetail/'+id) */ 
 									$("#id").val(event.id),
 									$("#title").text(event.title);
 									$("#startDate.startDate").text(event.startDate);
-									$("#imgRoute.imgRoute").text(event.imgRoute);
+									$("#endDate.endDate").text(event.endDate);
+									$("#holeName.holeName").text(event.holeName);
+									$("#images").attr("src", "/images/" + event.imgRoute);	
 								}
 		                });
 	                // 모달 창 닫기 버튼 클릭 핸들러
