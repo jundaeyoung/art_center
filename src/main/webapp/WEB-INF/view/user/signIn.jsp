@@ -35,5 +35,19 @@
 			<a>비밀번호 찾기</a>
 		</div>
 	</div>
+	<div class="line"></div>
+	<div>
+	<a href="https://kauth.kakao.com/oauth/authorize?client_id=2b8daa8c6238674fc9d677d8c51dd08f&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code">
+	<img alt="" src="/images/kakao_login_medium_wide.png" class="kakaoLogo">
+	</a>
+	<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=q3WIWBEaLw_SUTxgY8kb&redirect_uri=https://localhost:8080/auth/naver/callback&state=state_parameter_passthrough_value">네이버</a>
+	<a href="https://accounts.google.com/o/oauth2/v2/auth
+?client_id=101775853902-vpcpe0bdhvfndednj00mn5bsvij135m5.apps.googleusercontent.com
+&redirect_uri=http://localhost:8080/google/callback
+&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email">구글</a>
+	
 	</div>
 	<!-- 오픈 api 자리 -->
+	</div>
+	
+	

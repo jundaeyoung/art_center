@@ -114,6 +114,7 @@ a:hover {
 height: 60px;
 width: 60px;
 }
+
 .login--title{
 display: flex;
 justify-content: center;
@@ -121,5 +122,23 @@ align-items: center;
 flex-direction: column;
 margin-left: 130px;
 }
+
+.line{
+	margin: 20px;
+	border-left: 1px solid #ccc;
+	height: 660px;
+}
+.kakaoLogo{
+	margin-top: 250px;
+	margin-left: 150px;
+	width: 400px;
+}
+.naverLogo{
+	margin-top : 50px;
+	margin-left: 150px;
+	height: 60px;
+	width: 400px;
+}
+
 
 
