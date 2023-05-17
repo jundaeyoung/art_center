@@ -135,6 +135,12 @@
 							+ label + ')');
 				});
 	});
+	
+	// 파일 업로드 시 이름 나오도록 
+	$("#file").on('change',function(){
+		  var fileName = $("#file").val();
+		  $(".upload-name").val(fileName);
+		});
 </script>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
