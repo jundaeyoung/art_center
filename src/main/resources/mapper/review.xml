@@ -96,7 +96,7 @@
 		on s.show_type_id = sc.id
 		where sc.show_type=#{category}
 		order by
-		r.rating asc , r.review_creation_date
+		r.rating desc , r.review_creation_date
 		desc
 		limit #{begin},
 		#{range};
@@ -106,16 +106,11 @@
 		select
 		count(*) as count from
 		review_tb as r
-		join show_tb as s
-		on r.show_id =
-		s.id
-		join user_tb as u
-		on r.user_id = u.id
-		join category_tb as sc
-		on s.show_type_id = sc.id
-		where sc.show_type=#{category}
-		order by
-		r.rating asc , r.review_creation_date desc;
+        join show_tb as s
+        on s.id = r.show_id
+		join category_tb as c
+		on s.show_type_id= c.id
+		where c.show_type= #{category}
 	</select>
 </mapper>
 

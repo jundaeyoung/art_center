@@ -123,6 +123,7 @@
 		) as c
 	</select>
 
+	<!-- 전대영 : show insert -->
 	<insert id="insertShow">
 		INSERT INTO show_tb(img_route ,title, content, start_date, end_date, admission_age, adult_rate, youth_rate, infant_rate, organizer_id,show_type_id, hole_id)
 		VALUES

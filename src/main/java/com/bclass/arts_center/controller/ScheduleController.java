@@ -17,7 +17,7 @@ import com.bclass.arts_center.service.ScheduleService;
 public class ScheduleController {
 	
 	@Autowired
-	ScheduleService scheduleService;
+	private ScheduleService scheduleService;
 	
 	/**
 	 * 김미정 : schedule 페이지 데이터 불러오기 
