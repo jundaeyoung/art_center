@@ -64,7 +64,7 @@
 		<c:choose>
 			<c:when test="${principal != null && principal.getRoleId()==2}">
 				<nav>
-					<div id="nav" style="margin-left: 280px;">
+					<div id="nav" >
 						<ul class="main">
 							<li><a href="#">공연</a>
 								<ul class="sub">
@@ -72,6 +72,13 @@
 									<li><a href="#">나의 공연 일정(달력)</a></li>
 									<li><a href="#">나의 공연 매출</a></li>
 									<li><a href="/manager/signUpShow">공연 등록</a></li>
+								</ul></li>
+							<li><a href="#">공간·대관 </a>
+								<ul class="sub">
+									<li><a href="#">공간 소개 </a></li>
+									<li><a href="/rental">대관 신청 </a></li>
+									<li><a href="#">공간별 대관 안내 </a></li>
+									<li><a href="#">입장권 운영 안내 </a></li>
 								</ul></li>
 							<li><a href="#">전시회</a>
 								<ul class="sub">

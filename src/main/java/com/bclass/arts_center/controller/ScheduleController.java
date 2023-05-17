@@ -17,7 +17,7 @@ import com.bclass.arts_center.service.ScheduleService;
 public class ScheduleController {
 	
 	@Autowired
-	ScheduleService scheduleService;
+	private ScheduleService scheduleService;
 	
 	/**
 	 * 김미정 : schedule 페이지 데이터 불러오기 
@@ -40,17 +40,6 @@ public class ScheduleController {
 		return "/schedule";
 	}
 	
-	/**
-	 * 김미정 : calendar show detail 정보 불러오기
-	 */
-	/*
-	 * @GetMapping("/api/scheduleDetail/{id}") 
-	 * public String selectByShowDetail(@PathVariable Integer id) {
-	 * List<RequestShowDto.selectByShowDetail> detailLists =
-	 * scheduleService.selectByShowDetail(id); return "/schedule";
-	 * 
-	 * }
-	 */
 	
 	
 }
