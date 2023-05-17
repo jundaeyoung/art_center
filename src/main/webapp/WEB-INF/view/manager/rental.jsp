@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/css/manager/rental.css">
 <style type="text/css">
 </style>
@@ -16,7 +17,7 @@
 			<div class="link--text">
 			<h2>오페라하우스</h2>
 			</div>
-			<a href="#" class="link--btn">바로가기</a>
+			<a href="/rental/location/1" class="link--btn">바로가기</a>
 		</div>
 		<div class="link--box">
 			<div class="link--title">
@@ -25,7 +26,7 @@
 			<div class="link--text">
 			<h2>미술관</h2>
 			</div>
-			<a href="#" class="link--btn">바로가기</a>
+			<a href="/rental/location/2" class="link--btn">바로가기</a>
 		</div>
 		<div class="link--box">
 			<div class="link--title">
@@ -34,9 +35,8 @@
 			<div class="link--text">
 			<h2>아카데미</h2>
 			</div>
-			<a href="#" class="link--btn">바로가기</a>
+			<a href="/rental/location/3" class="link--btn">바로가기</a>
 		</div>
-
 	</div>
 </div>
 <script type="text/javascript" src="/js/manager/rental.js"></script>
