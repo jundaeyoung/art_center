@@ -19,6 +19,10 @@ public class ShowViewDto {
 	private Time showTime;
 	private Date startDate;
 	private Date endDate;
-	private String hole;
+	private String holeId;
+	private String admissionAge;
+	private Integer showTypeId;
+	private String name;
+	private String location;
 
 }

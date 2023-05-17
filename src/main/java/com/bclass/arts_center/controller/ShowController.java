@@ -215,6 +215,10 @@ public class ShowController {
 		model.addAttribute("imgRoute", showInfo.get(0).getImgRoute());
 		model.addAttribute("startDate", showInfo.get(0).getStartDate());
 		model.addAttribute("endDate", showInfo.get(0).getEndDate());
+		model.addAttribute("admissionAge", showInfo.get(0).getAdmissionAge());
+		model.addAttribute("location", showInfo.get(0).getLocation());
+		model.addAttribute("name", showInfo.get(0).getName());
+		model.addAttribute("content", showInfo.get(0).getContent());
 
 		return "/show/showView";
 	}

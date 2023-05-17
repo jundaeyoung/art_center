@@ -129,6 +129,10 @@
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sdt
 		ON s.id = sdt.show_id
+        JOIN hole_tb AS h
+        ON s.hole_id = h.id
+        JOIN location_tb AS l
+        ON l.id = h.location_id
 		WHERE sdt.show_id = #{showId}
 	</select>
 		
