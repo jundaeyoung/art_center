@@ -24,7 +24,7 @@
 				<img alt="미술관" src="/images/rental/gallary.png">
 			</div>
 			<div class="link--text">
-			<h2>미술관</h2>
+			<h2>아트홀</h2>
 			</div>
 			<a href="/rental/location/2" class="link--btn">바로가기</a>
 		</div>

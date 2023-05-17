@@ -2,10 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bclass.arts_center.repository.interfaces.RentalRepository">
-	
-	<select id="selectByLocation" resultType="com.bclass.arts_center.dto.request.RequestLocationDto">
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.RentalRepository">
+
+	<select id="selectByLocation"
+		resultType="com.bclass.arts_center.dto.request.RequestLocationDto">
 		select * from location_tb where id = #{id};
 	</select>
-	
+
+	<insert id="insertRental">
+		INSERT INTO rent_place_reservation_tb(start_date,end_date,start_time,end_time,hole_id,location_id)
+		VALUES
+		(#{startDate},#{endDate},#{startTime},#{endTime},#{holeId},#{locationId})
+	</insert>
 </mapper>

@@ -156,11 +156,15 @@ CREATE TABLE rent_place_reservation_tb(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     start_date DATE DEFAULT (current_date),
     end_date DATE DEFAULT (current_date),
-    reservation_date DATETIME DEFAULT now(),
-	user_id INT NOT NULL,
+    start_time time,
+    end_time time,
+    reservation_date TIMESTAMP DEFAULT now(),
+	user_id INT NOT NULL DEFAULT 2,
     hole_id INT NOT NULL,
+    location_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (location_id) REFERENCES location_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 
