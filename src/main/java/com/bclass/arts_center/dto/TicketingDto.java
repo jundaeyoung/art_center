@@ -16,6 +16,7 @@ public class TicketingDto {
 
 	private Integer id;
 	private Integer showId;
+	private String title;
 	private Date showDate;
 	private Time showTime;
 
