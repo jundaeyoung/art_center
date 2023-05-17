@@ -1,16 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
 <script type="text/javascript"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/manager/managerSchedule.css">
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-
 
 
 
@@ -22,10 +27,11 @@
 	</div>
 	<div class="modal" id="myModal">
 		<div class="modal-content">
-			<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="showId" id="showId" name="showId">
+			<span class="close" id="close" onclick="close()">&times;</span> <input
+				type="hidden" class="showId" id="showId" name="showId">
 			<h3 class="modal-title" id="title"></h3>
-			<span class="showDate" id="showDate"></span> 
-			<span class="showTime" id="showTime"></span>
+			<span class="showDate" id="showDate"></span> <span class="showTime"
+				id="showTime"></span>
 			<p class="holeName" id="holeName"></p>
 			<p class="imgRoute" id="imgRoute">
 				<img alt="" id="images" width="210" , height="280">
@@ -34,9 +40,9 @@
 		</div>
 	</div>
 
-
-
+	<div id='calendar-container'>
 	<div id='calendar'></div>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -46,17 +52,21 @@
 			let calendar = new FullCalendar.Calendar(calendarEl, {
 				 locale : 'ko',    
 				 timezone : "local", 
-				initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
+				 slotMinTime: '08:00', // Day 캘린더에서 시작 시간
+			     slotMaxTime: '25:00', // Day 캘린더에서 종료 시간
+				initialView : 'timeGridWeek', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 				headerToolbar : { // 헤더에 표시할 툴 바
 					start : 'prev next today',
 					center : 'title',
-					end : 'dayGridMonth,dayGridWeek,dayGridDay'
+					end : 'dayGridMonth,timeGridWeek,timeGridDay'
 				},
+				
 				titleFormat : function(date) {
 					return date.date.year + '년 '
 							+ (parseInt(date.date.month) + 1) + '월';
 				},
 				//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+				navLinks: true,
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
 				// editable : true,
@@ -119,8 +129,7 @@
 			     {
 			    	 id: '${list.showId}',
 			         title: '${list.name} ${list.title}',
-			         start: '${list.showDate}',
-			         time: '${list.showTime}',
+			         start: '${list.showDate}T${list.showTime}',
 			         imageurl: '${list.imgRoute}',
 			         backgroundColor: '${backgroundColor}',
 			         borderColor: '${borderColor}',

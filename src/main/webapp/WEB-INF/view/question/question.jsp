@@ -16,22 +16,77 @@
 
 <div class="menu">
 	<div>
-		<span class="material-symbols-outlined"> <a href="/">home</a>
+		<span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
 		</span>
 	</div>
-	<div class="newest">
-		<a href="/quest/info?category=안내&currentPage=1&begin=0&range=5">안내</a>
+	<div>
+		<button id="info">안내</button>
 	</div>
-	<div class="newest">
-		<a href="/quest/info?category=대관&currentPage=1&begin=0&range=5">대관</a>
+	<div>
+		<button id="rent__place">대관</button>
 	</div>
-	<div class="newest">
-		<a href="/quest/info?category=아카데미&currentPage=1&begin=0&range=5">아카데미</a>
+	<div>
+		<button id="academy">아카데미</button>
 	</div>
-	<div class="newest">
-		<a href="/quest/info?category=모집&currentPage=1&begin=0&range=5">모집</a>
+	<div>
+		<button id="recruitment">모집</button>
 	</div>
 </div>
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#info").on("click", () => {
+				$.ajax({
+					type: 'get', 
+					url : '/quest/info?category=안내&currentPage=1&begin=0&range=5',
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'html'
+				}).done(function(response) {
+					location.href = "/quest/info?category=안내&currentPage=1&begin=0&range=5";
+				}).fail(function(error) {
+					alert("서버오류");
+				}); 
+			});
+			$("#rent__place").on("click", () => {
+				$.ajax({
+					type: 'get', 
+					url : '/quest/info?category=대관&currentPage=1&begin=0&range=5',
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'html'
+				}).done(function(response) {
+					location.href = "/quest/info?category=대관&currentPage=1&begin=0&range=5";
+				}).fail(function(error) {
+					alert("서버오류");
+				}); 
+			});
+			$("#academy").on("click", () => {
+				$.ajax({
+					type: 'get', 
+					url : '/quest/info?category=아카데미&currentPage=1&begin=0&range=5',
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'html'
+				}).done(function(response) {
+					location.href = "/quest/info?category=아카데미&currentPage=1&begin=0&range=5";
+				}).fail(function(error) {
+					alert("서버오류");
+				}); 
+			});
+			$("#recruitment").on("click", () => {
+				$.ajax({
+					type: 'get', 
+					url : '/quest/info?category=모집&currentPage=1&begin=0&range=5',
+					contentType: 'application/json; charset=utf-8',
+					dataType: 'html'
+				}).done(function(response) {
+					location.href = "/quest/info?category=모집&currentPage=1&begin=0&range=5";
+				}).fail(function(error) {
+					alert("서버오류");
+				}); 
+			});
+		});
+</script>
+
+
 <div class="question__title">
 	<div>
 		<span class="material-symbols-outlined"> square </span>
@@ -142,8 +197,8 @@
 										<c:choose>
 											<c:when test="${questionList.userId==principal.getId()}">
 												<form action="/quest/delete" method="get">
-												<input type="hidden"name="id" value="${questionList.id}">
-													<button type="submit" >삭제</button>
+													<input type="hidden" name="id" value="${questionList.id}">
+													<button type="submit">삭제</button>
 												</form>
 											</c:when>
 											<c:otherwise>

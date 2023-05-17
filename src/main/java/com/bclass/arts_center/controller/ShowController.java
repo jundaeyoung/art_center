@@ -26,6 +26,7 @@ public class ShowController {
 
 	@Autowired
 	private ShowService showService;
+	
 
 	@Autowired
 	private HttpSession session;

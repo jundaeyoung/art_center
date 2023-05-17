@@ -3,7 +3,16 @@
 .menu {
 	display: flex;
 }
-
+.menu button{
+	width: 280px;
+	height: 95px;
+	font-size: 20px;
+	background-color: #fff;
+	border-style: none;
+}
+.menu button:hover{
+	background-color: #F6F6F6;
+}
 .question__header {
 	display: flex;
 	justify-content: center;
