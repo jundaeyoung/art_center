@@ -12,7 +12,7 @@
 <style>
 </style>
 <body>
-	<div style="margin-left: -120px;">
+	<div id="body__header"style="margin-left: -120px;">
 		<div class="title">
 			<div>
 				<a href="/"><img alt="" src="/images/background/logo.png" width="140" height="120"></a>
@@ -159,5 +159,4 @@
 				</nav>
 			</c:otherwise>
 		</c:choose>
-
 	</div>
