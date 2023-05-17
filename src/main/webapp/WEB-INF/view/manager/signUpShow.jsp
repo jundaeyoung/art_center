@@ -23,14 +23,14 @@
 			<div
 				style="display: flex; width: 1400px; flex-direction: row; justify-content: space-between;">
 				<div style="height: 500px; display: flex; flex-direction: column">
-					<div style="margin-bottom: -10px; margin-left: -10px;">
+					<div style="margin-bottom: -10px; margin-left: -25px;">
 						<label for="file"
-							style="width: 140px; margin-right: 80px; margin-top: -10px;">이미지
+							style="width: 200px; margin-right: 80px; margin-top: -10px;">이미지
 							: </label>
 						<div class="filebox">
 							<input class="upload-name" value="첨부파일" placeholder="첨부파일">
 							<label for="file">이미지 </label> <input type="file" name="file"
-								id="file" accept=".jpg,.jpeg,.png" style="width: 420px;">
+								id="file" accept=".jpg,.jpeg,.png" style="width: 300px;">
 						</div>
 					</div>
 					<div class="date">
