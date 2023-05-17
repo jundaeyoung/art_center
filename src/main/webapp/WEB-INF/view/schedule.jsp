@@ -45,7 +45,7 @@
 			<span class="endDate" id="endDate"></span> 
 			<p class="holeName" id="holeName"></p>
 			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="210", height="280" ></p>
-			<button class="btn" onclick = "location.href='#'">자세히보기</button>
+			<button class="modal__btn" onclick = "location.href='#'"style="text-align: center;">자세히보기</button>
 		</div>
 	</div>
 		

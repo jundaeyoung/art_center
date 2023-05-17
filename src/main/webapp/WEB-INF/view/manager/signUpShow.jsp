@@ -34,8 +34,8 @@
 						</div>
 					</div>
 					<div class="date">
-						<label for="content">날짜 : </label> <input type="text" id="demo"
-							name="demo" value="" style="width: 300px;" />
+						<label for="content">날짜 : </label> <input type="text" id="startDate"
+							name="startDate" style="width: 300px;" />
 					</div>
 					<div>
 						<label for="title">제목 : </label><input type="text" id="title"
@@ -108,7 +108,7 @@
 
 <script type="text/javascript">
 	$(function() {
-		$('#demo').daterangepicker(
+		$('#startDate').daterangepicker(
 				{
 					"locale" : {
 						"format" : "YYYY-MM-DD",
@@ -135,6 +135,12 @@
 							+ label + ')');
 				});
 	});
+	
+	// 파일 업로드 시 이름 나오도록 
+	$("#file").on('change',function(){
+		  var fileName = $("#file").val();
+		  $(".upload-name").val(fileName);
+		});
 </script>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

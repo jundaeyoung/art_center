@@ -6,9 +6,7 @@ import java.sql.Time;
 import lombok.Data;
 
 /**
- * 
  * @author 전대영
- *
  */
 @Data
 public class RequestShowDto {
@@ -27,7 +25,8 @@ public class RequestShowDto {
 	private String reviewContent;
 	private String userName;
 	private String reviewCreationDate;
-
+	private String showRating;
+	private String name;
 	private Date showDate;
 	private Time showTime;
 }

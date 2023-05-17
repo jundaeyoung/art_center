@@ -92,10 +92,13 @@ public class SignUpShowController {
 				requestSignUpShowDto.setOriginFileName(file.getOriginalFilename());
 				requestSignUpShowDto.setUploadFileName(fileName);
 				requestSignUpShowDto.setImgRoute(fileName);
-				System.out.println(fileName.length());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			String str = requestSignUpShowDto.getStartDate();
+			String[] split = str.split("~");
+			requestSignUpShowDto.setStartDate(split[0]);
+			requestSignUpShowDto.setEndDate(split[1]);
 			showService.createShow(requestSignUpShowDto);
 		}
 		return "redirect:/manager/signUpShow";

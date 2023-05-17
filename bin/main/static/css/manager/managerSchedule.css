@@ -29,34 +29,6 @@
 	border-spacing: 0;
 }
 
-.category-list-table {
-	display: flex;
-	justify-content: center;
-	margin: 10px 0 10px 0;
-	width: 100%;
-}
-
-.category-list:nth-of-type(1) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.category-list:nth-of-type(2) {
-	border-top: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.category-list:nth-of-type(3) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
 
 .show-type-btn {
 	border: 0;
