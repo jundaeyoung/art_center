@@ -125,7 +125,7 @@
 	
 	<!-- 작성자 손주이 : show 정보 상세-->
 	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
-		SELECT *
+     		SELECT *
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sdt
 		ON s.id = sdt.show_id
@@ -133,6 +133,8 @@
         ON s.hole_id = h.id
         JOIN location_tb AS l
         ON l.id = h.location_id
+        JOIN user_tb AS u
+        ON u.id = s.organizer_id
 		WHERE sdt.show_id = #{showId}
 	</select>
 		

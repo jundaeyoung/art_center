@@ -70,6 +70,18 @@
 				<p>${admissionAge}</p>
 
 			</div>
+			
+			<div>
+				<div>
+					<p>주최</p>
+					<p>${nickname}</p>
+				</div>
+				<div>
+					<p>문의</p>
+					<p>${tel}</p>
+				</div>
+			
+			</div>
 
 		</div>
 

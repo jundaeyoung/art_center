@@ -219,6 +219,8 @@ public class ShowController {
 		model.addAttribute("location", showInfo.get(0).getLocation());
 		model.addAttribute("name", showInfo.get(0).getName());
 		model.addAttribute("content", showInfo.get(0).getContent());
+		model.addAttribute("nickname", showInfo.get(0).getNickname());
+		model.addAttribute("tel", showInfo.get(0).getTel());
 
 		return "/show/showView";
 	}

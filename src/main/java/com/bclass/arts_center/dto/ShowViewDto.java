@@ -21,8 +21,13 @@ public class ShowViewDto {
 	private Date endDate;
 	private String holeId;
 	private String admissionAge;
-	private Integer showTypeId;
+
+//	위치
 	private String name;
 	private String location;
+
+//	주최자
+	private String nickname;
+	private String tel;
 
 }
