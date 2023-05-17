@@ -28,12 +28,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 @Controller
-@ResponseBody
 public class AuthController {
 	
 	
 	
-	
+	// 편용림
 	// 카카오 엑세스 토큰 들고오기
 	@GetMapping("/auth/kakao/callback")
 	public String kakaoCallbackCode(@RequestParam String code) {
@@ -60,9 +59,9 @@ public class AuthController {
 		System.out.println(userInfo);
 		
 		
-		return userInfo;
+		return "redirect:/user/signUp";
 	}
-	
+	// 편용림
 	// 카카오 엑세스토큰으로 바디값 받기
 	private String requestKakaoUserInfo(String OAuthTokenKakao) {
 		
@@ -82,23 +81,13 @@ public class AuthController {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-//		try {
-//			JsonNode jsonNode = objectMapper.readTree(responsBody);
-//			Long id = jsonNode.get("id").asLong();
-//			String nickname = jsonNode.get("properties")
-//							  .get("nickname").asText();
-//			
-//			System.out.println(id);
-//			System.out.println(nickname);
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		}
+
 		
 		return response.getBody().toString();
 	};
 	
 	
-	
+	// 편용림
 	// 구글 엑세스 토큰 들고오기
 	@GetMapping("/google/callback")
 	public String GoogleCallbackCode(@RequestParam String code) {
@@ -124,10 +113,12 @@ public class AuthController {
 		
 		String userInfo = RequestGoogleUserInfo(responseToken.getBody().getAccess_token());
 		
-		return userInfo;
+		return "redirect:/user/signUp";
 		
 		
 	}
+	// 편용림
+	// 구글 바디 값 들고오기
 	private String RequestGoogleUserInfo(String oAuthTokenGoogle) {
 		
 		RestTemplate restTemplate = new RestTemplate();
@@ -138,6 +129,7 @@ public class AuthController {
 
 		
 		HttpEntity<String> profileReqEntity = new HttpEntity<>(headers);
+		
 		// https://kapi.kakao.com/v2/user/me
 		ResponseEntity<GoogleDto> response = restTemplate.exchange("https://www.googleapis.com/oauth2/v2/userinfo",
 				HttpMethod.GET,
@@ -150,23 +142,14 @@ public class AuthController {
 		
 		
 		
-//		try {
-//			JsonNode jsonNode = objectMapper.readTree(responsBody);
-//			String id = jsonNode.get("id").asText();
-//			String email = jsonNode.get("email").asText();
-//			
-//			System.out.println(id);
-//			System.out.println(email);
-//			
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		}
+
 		
 		return response.getBody().toString();
 	}
 	
 	
-	
+	// 편용림
+	// 
 	@GetMapping("auth/naver/callback")
 	public String NaverCallbackCode(@RequestParam String code) {
 		
@@ -190,7 +173,7 @@ public class AuthController {
 		
 		String userInfo = RequestNaverUserInfo(responseToken.getBody().getAccessToken());
 		
-		return userInfo;
+		return "redirect:/user/signUp";
 	}
 	
 	
@@ -208,20 +191,8 @@ public class AuthController {
 				HttpMethod.GET,
 				profileReqEntity,
 				NaverDto.class);
-		System.out.println(response.getBody().getResponse().getEmail());
 		
-//		String responsBody = response.getBody();
-//		ObjectMapper objectMapper = new ObjectMapper();
-//		try {
-//			JsonNode jsonNode = objectMapper.readTree(responsBody);
-//			String id = jsonNode.get("response").get("id").asText();
-//			String nickname = jsonNode.get("response").get("nickname").asText();
-//			System.out.println(id);
-//			System.out.println(nickname);
-//
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		}
+
 		
 		return response.getBody().toString();
 	}

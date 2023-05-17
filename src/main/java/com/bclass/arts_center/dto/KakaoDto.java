@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class KakaoDto {
 	
-	private int id;
+	private Long id;
 	private Properties properties;
 	
 	@Data
