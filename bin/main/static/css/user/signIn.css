@@ -128,16 +128,28 @@ margin-left: 130px;
 	border-left: 1px solid #ccc;
 	height: 660px;
 }
-.kakaoLogo{
-	margin-top: 250px;
-	margin-left: 150px;
-	width: 400px;
+.kakaoLogo img{
+	height: 50px;
+	border-radius:5px;
+	}
+.naverLogo img{
+	width: 50px;
+	border-radius: 5px;
 }
-.naverLogo{
-	margin-top : 50px;
-	margin-left: 150px;
-	height: 60px;
-	width: 400px;
+.googleLogo img{
+	width: 50px;
+}
+
+.logobox{
+	margin-left: 210px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 20px;
+}
+.logobox img{
+	margin: 7px;
 }
 
 

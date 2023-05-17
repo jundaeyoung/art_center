@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class OAuthToken {
+public class OAuthTokenKakao {
 	
 	private String tokenType;
 	private String accessToken;
