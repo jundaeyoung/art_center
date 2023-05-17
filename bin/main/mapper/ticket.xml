@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.TicketRepository">
+
+	
+	<select id="selectShowInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
+		select title, start_date, end_date
+		from show_tb		
+	</select>
+	
+	
+	
+	
+	<insert id="insert">
+		INSERT INTO ticketing_tb (ticketing_date, user_id, show_id, age_group_id)
+		VALUES (now(), #{userId}, #{showId}, #{ageGroupId})
+	</insert>
+	
+	<delete id="delete">
+	 	DELETE FROM ticketing_tb WHERE id = #{id}
+	</delete>
+
+
+</mapper>

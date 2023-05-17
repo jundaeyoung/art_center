@@ -1,5 +1,8 @@
 package com.bclass.arts_center.dto.request;
 
+import java.sql.Date;
+import java.sql.Time;
+
 import lombok.Data;
 
 /**
@@ -9,7 +12,7 @@ import lombok.Data;
  */
 @Data
 public class RequestShowDto {
-	private Integer id;
+	private Integer id; 
 	private String title;
 	private String content;
 	private String imgRoute;
@@ -24,4 +27,7 @@ public class RequestShowDto {
 	private String reviewContent;
 	private String userName;
 	private String reviewCreationDate;
+
+	private Date showDate;
+	private Time showTime;
 }
