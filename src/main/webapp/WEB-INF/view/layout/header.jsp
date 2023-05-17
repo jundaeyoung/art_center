@@ -37,12 +37,12 @@
 							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 						</form>
 						<form action="#" method="get">
-							<button type="submit" onclick="#" class="logout--btn">
+							<button type="submit" class="logout--btn">
 								<a href="/user/logout" style="font-size: 20px;">로그아웃</a>
 							</button>
 						</form>
 						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-						<p>반갑습니다. ${principal.nickname} 매니저 님</p>
+						<p style="font-size: 20px;">반갑습니다. ${principal.nickname} 매니저 님</p>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -51,12 +51,12 @@
 							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 						</form>
 						<form action="#" method="get">
-							<button type="submit" onclick="#" class="logout--btn">
+							<button type="submit" class="logout--btn">
 								<a href="/user/logout" style="font-size: 20px;">로그아웃</a>
 							</button>
 						</form>
 						&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-						<p>반갑습니다. ${principal.nickname} 님</p>
+						<p style="font-size: 20px;">반갑습니다. ${principal.nickname} 님</p>
 					</div>
 				</c:otherwise>
 			</c:choose>

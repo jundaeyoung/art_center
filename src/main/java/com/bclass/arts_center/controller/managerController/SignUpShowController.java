@@ -38,6 +38,11 @@ public class SignUpShowController {
 	@Autowired
 	private HttpSession session;
 
+	
+	/*
+	 * 작성자 : 전대영
+	 * show 등록 화면 들어가기
+	 */
 	@GetMapping("/signUpShow")
 	public String signUpShow(Model model) {
 		List<Hole> holeList = holeService.readHoleAll();
@@ -61,6 +66,10 @@ public class SignUpShowController {
 		return "/manager/signUpShow";
 	}
 
+	/*
+	 * 작성자 : 전대영
+	 * show 등록
+	 */
 	@PostMapping("/sign-up")
 	public String signUpShowProc(RequestSignUpShowDto requestSignUpShowDto) {
 		MultipartFile file = requestSignUpShowDto.getFile();
@@ -68,14 +77,11 @@ public class SignUpShowController {
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
 				throw new CustomRestfullException("파일 크기는 20MB 이상 클 수 없습니다", HttpStatus.BAD_REQUEST);
 			}
-			// 확장자 검사 가능
 			try {
-				// 파일 저장 기능 구현 - 업로드 파일은 호스트 컴퓨터 다른 폴더로 관리
 				String saceDirectory = Define.UPLOAD_DIRECTORY;
-				// 폴더가 없다면 오류 발생(파일 생성 시)
 				File dir = new File(saceDirectory);
 				if (dir.exists() == false) {
-					dir.mkdirs(); // 폴더가 없으면 폴더 생성
+					dir.mkdirs();
 				}
 				UUID uuid = UUID.randomUUID();
 				String fileName = uuid + "_" + file.getOriginalFilename();
