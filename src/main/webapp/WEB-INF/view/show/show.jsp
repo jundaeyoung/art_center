@@ -16,44 +16,71 @@
 <div class="show__header"></div>
 
 <div class="menu">
-   <div>
-      <span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
-      </span>
-   </div>
-   <div class="newest">
-      <a href="/show/categoryShow?category=공연&currentPage=1&begin=0&range=3"><button id="show">공연</button></a>
-   </div>
-   <div class="highes__rated">
-      <a href="/show/categoryShow?category=전시회&currentPage=1&begin=0&range=3"><button id="exhibition">전시회</button> </a>
-   </div>
-   <div class="lowest__rated">
-      <a href="/show/categoryShow?category=아카데미&currentPage=1&begin=0&range=3"><button id="academy">아카데미</button> </a>
-   </div>
-   <div class="newest">
-      <a href="/show/newestShow?currentPage=1&begin=0&range=3"><button id="newest">최신순</button></a>
-   </div>
-   <div class="highes__rated">
-      <a href="/show/highesRatedShow?currentPage=1&begin=0&range=3"><button id="highes__rated">평점 높은순</button></a>
-   </div>
-   <div class="lowest__rated">
-      <a href="/show/rowestRatedShow?currentPage=1&begin=0&range=3"><button id="lowest__rated">평점 낮은순</button></a>
-   </div>
+	<div>
+		<span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
+		</span>
+	</div>
+	<div class="newest">
+		<a><button
+				id="show">공연</button></a>
+	</div>
+	<div class="highes__rated">
+		<a><button
+				id="exhibition">전시회</button> </a>
+	</div>
+	<div class="lowest__rated">
+		<a
+			href="/show/categoryShow?category=아카데미&currentPage=1&begin=0&range=3"><button
+				id="academy">아카데미</button> </a>
+	</div>
+	<div class="newest">
+		<a href="/show/newestShow?currentPage=1&begin=0&range=3"><button
+				id="newest">최신순</button></a>
+	</div>
+	<div class="highes__rated">
+		<a href="/show/highesRatedShow?currentPage=1&begin=0&range=3"><button
+				id="highes__rated">평점 높은순</button></a>
+	</div>
+	<div class="lowest__rated">
+		<a href="/show/rowestRatedShow?currentPage=1&begin=0&range=3"><button
+				id="lowest__rated">평점 낮은순</button></a>
+	</div>
 </div>
 
-<!-- <script type="text/javascript">
-		$(document).ready(function() {
-			$("#show").on("click", () => {
-				$.ajax({
-					type: 'get', 
-					url : '/apiShow/categoryShow?category=공연&currentPage=1&begin=0&range=3',
-					contentType: 'application/json; charset=utf-8',
-					dataType: 'json'
-				}).done(function(response) {
-					alert("tjdrhd");
-				}).fail(function(error) {
-					alert("서버오류");
-				}); 
-			});
+
+<script type="text/javascript">
+$(document).ready(function() {
+	  var isRequestInProgress = false; // 요청이 진행 중인지를 나타내는 변수
+
+	  $("#show").on("click", function() {
+	      $.ajax({
+	        	type: 'get',
+	        	url: '/apiShow/categoryShow?category=공연&currentPage=1&begin=0&range=3',
+	      	    contentType: 'application/json; charset=utf-8',
+	      }).done(function(response) {
+				$(".show").empty(); 
+					console.log("dd")
+		            var showContent = `
+		            <c:forEach var="showList" items="${showList}">
+		              <div class="review__content">
+		                <div>
+		                  <a href="/show/showView/${showList.id}">
+		                    <img src="/images/${showList.imgRoute}" width="230" height="300">
+		                  </a>
+		                </div>
+		                <div class="show__content">
+		                  <h2>${showList.title}&nbsp;&nbsp;&nbsp;&nbsp;(${showList.showType})</h2>
+		                  <p>${showList.content}</p>
+		                  <h3>평점: ${showList.rating}</h3>
+		                </div>
+		              </div>
+		          	</c:forEach>
+		            `;
+		          $(".show").append(showContent); // 콘텐츠를 showContainer에 추가
+			}).fail(function(error) {
+				alert("서버오류");
+			}); 
+		});
 			$("#exhibition").on("click", () => {
 				$.ajax({
 					type: 'get', 
@@ -61,6 +88,9 @@
 					contentType: 'application/json; charset=utf-8',
 					dataType: 'html'
 				}).done(function(response) {
+					$(".show").empty(); 
+	                 var content=dd;
+	                 $(".show").append(content);
 				}).fail(function(error) {
 					alert("서버오류");
 				}); 
@@ -72,6 +102,7 @@
 					contentType: 'application/json; charset=utf-8',
 					dataType: 'html'
 				}).done(function(response) {
+
 				}).fail(function(error) {
 					alert("서버오류");
 				}); 
@@ -110,7 +141,7 @@
 				}); 
 			});
 		});
-	</script> -->
+	</script>
 
 <div class="show__title">
 	<span class="material-symbols-outlined"> square </span>
