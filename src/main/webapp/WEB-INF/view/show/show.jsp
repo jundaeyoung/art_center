@@ -16,31 +16,31 @@
 <div class="show__header"></div>
 
 <div class="menu">
-	<div>
-		<span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
-		</span>
-	</div>
-	<div class="newest">
-		<button id="show">공연</button>
-	</div>
-	<div class="highes__rated">
-		<button id="exhibition">전시회</button>
-	</div>
-	<div class="lowest__rated">
-		<button id="academy">아카데미</button>
-	</div>
-	<div class="newest">
-		<button id="newest">최신순</button>
-	</div>
-	<div class="highes__rated">
-		<button id="highes__rated">평점 높은순</button>
-	</div>
-	<div class="lowest__rated">
-		<button id="lowest__rated">평점 낮은순</button>
-	</div>
+   <div>
+      <span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
+      </span>
+   </div>
+   <div class="newest">
+      <a href="/show/categoryShow?category=공연&currentPage=1&begin=0&range=3"><button id="show">공연</button></a>
+   </div>
+   <div class="highes__rated">
+      <a href="/show/categoryShow?category=전시회&currentPage=1&begin=0&range=3"><button id="exhibition">전시회</button> </a>
+   </div>
+   <div class="lowest__rated">
+      <a href="/show/categoryShow?category=아카데미&currentPage=1&begin=0&range=3"><button id="academy">아카데미</button> </a>
+   </div>
+   <div class="newest">
+      <a href="/show/newestShow?currentPage=1&begin=0&range=3"><button id="newest">최신순</button></a>
+   </div>
+   <div class="highes__rated">
+      <a href="/show/highesRatedShow?currentPage=1&begin=0&range=3"><button id="highes__rated">평점 높은순</button></a>
+   </div>
+   <div class="lowest__rated">
+      <a href="/show/rowestRatedShow?currentPage=1&begin=0&range=3"><button id="lowest__rated">평점 낮은순</button></a>
+   </div>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 		$(document).ready(function() {
 			$("#show").on("click", () => {
 				$.ajax({
@@ -110,7 +110,7 @@
 				}); 
 			});
 		});
-	</script>
+	</script> -->
 
 <div class="show__title">
 	<span class="material-symbols-outlined"> square </span>

@@ -1,19 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
 <script type="text/javascript"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/manager/managerSchedule.css">
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
@@ -27,11 +21,9 @@
 	</div>
 	<div class="modal" id="myModal">
 		<div class="modal-content">
-			<span class="close" id="close" onclick="close()">&times;</span> <input
-				type="hidden" class="showId" id="showId" name="showId">
+			<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="showId" id="showId" name="showId">
 			<h3 class="modal-title" id="title"></h3>
-			<span class="showDate" id="showDate"></span> <span class="showTime"
-				id="showTime"></span>
+			<span class="showDate" id="showDate"></span> <span class="showTime" id="showTime"></span>
 			<p class="holeName" id="holeName"></p>
 			<p class="imgRoute" id="imgRoute">
 				<img alt="" id="images" width="210" , height="280">
@@ -41,7 +33,7 @@
 	</div>
 
 	<div id='calendar-container'>
-	<div id='calendar'></div>
+		<div id='calendar'></div>
 	</div>
 </div>
 
@@ -65,7 +57,7 @@
 					return date.date.year + '년 '
 							+ (parseInt(date.date.month) + 1) + '월';
 				},
-				//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+				initialDate: '2023-05-04', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.) 나중엔 해제해야함
 				navLinks: true,
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
