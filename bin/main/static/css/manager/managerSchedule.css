@@ -1,7 +1,15 @@
 /*
-작성자 : 김미정
+작성자 : 전대영
  */
 @charset "UTF-8";
+
+
+#nav .main{
+	margin-top: 35px;
+}
+.title .user--btn{
+	margin-top: 23px;
+}
 .show-content {
 	position:relative;
 	max-width: 1280px;
@@ -17,9 +25,10 @@
 	padding: 5px 0 20px 20px;
 	margin-bottom: 30px;
 	border-bottom: 1px solid black;
-	margin-top: 50px;
 }
-
+.user--btn p{
+	margin-top: 2px;
+}
 .show-title a {
 	text-decoration: none;
 	color: black;
@@ -115,9 +124,6 @@ button:hover {
 	transform: none;
 }
 
-p {
-	margin: 10px 0;
-}
 
 .fc .fc-button-primary {
 	background-color: #FAEBD7;

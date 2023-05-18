@@ -13,7 +13,6 @@
 
 
 
-
 <div class="show-content">
 	<div class="show-title">
 		<h2>
@@ -24,8 +23,7 @@
 		<div class="modal-content">
 			<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="showId" id="showId" name="showId">
 			<h3 class="modal-title" id="title"></h3>
-			<span class="showDate" id="showDate"></span> 
-			<span class="showTime" id="showTime"></span>
+			<span class="showDate" id="showDate"></span> <span class="showTime" id="showTime"></span>
 			<p class="holeName" id="holeName"></p>
 			<p class="imgRoute" id="imgRoute">
 				<img alt="" id="images" width="210" , height="280">
@@ -34,9 +32,9 @@
 		</div>
 	</div>
 
-
-
-	<div id='calendar'></div>
+	<div id='calendar-container'>
+		<div id='calendar'></div>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -46,17 +44,21 @@
 			let calendar = new FullCalendar.Calendar(calendarEl, {
 				 locale : 'ko',    
 				 timezone : "local", 
-				initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
+				 slotMinTime: '08:00', // Day 캘린더에서 시작 시간
+			     slotMaxTime: '25:00', // Day 캘린더에서 종료 시간
+				initialView : 'timeGridWeek', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 				headerToolbar : { // 헤더에 표시할 툴 바
 					start : 'prev next today',
 					center : 'title',
-					end : 'dayGridMonth,dayGridWeek,dayGridDay'
+					end : 'dayGridMonth,timeGridWeek,timeGridDay'
 				},
+				
 				titleFormat : function(date) {
 					return date.date.year + '년 '
 							+ (parseInt(date.date.month) + 1) + '월';
 				},
-				//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
+				initialDate: '2023-05-04', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.) 나중엔 해제해야함
+				navLinks: true,
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
 				// editable : true,
@@ -119,8 +121,7 @@
 			     {
 			    	 id: '${list.showId}',
 			         title: '${list.name} ${list.title}',
-			         start: '${list.showDate}',
-			         time: '${list.showTime}',
+			         start: '${list.showDate}T${list.showTime}',
 			         imageurl: '${list.imgRoute}',
 			         backgroundColor: '${backgroundColor}',
 			         borderColor: '${borderColor}',
