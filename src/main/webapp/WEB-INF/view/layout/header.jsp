@@ -6,13 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<title>AMADEUS - 당신의 꿈을 펼쳐라</title>
+<link rel="shortcut icon" sizes="90x90" type="image/x-icon" href="/images/background/logo_mini.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/main.css">
 </head>
 <style>
 </style>
 <body>
-	<div style="margin-left: -120px;">
+	<div id="body__header"style="margin-left: -120px;">
 		<div class="title">
 			<div>
 				<a href="/"><img alt="" src="/images/background/logo.png" width="140" height="120"></a>
@@ -69,7 +71,7 @@
 							<li><a href="#">공연</a>
 								<ul class="sub">
 									<li><a href="/schedule">전체 공연 일정(달력)</a></li>
-									<li><a href="#">나의 공연 일정(달력)</a></li>
+									<li><a href="/manager/schedule/${principal.id}">나의 공연 일정(달력)</a></li>
 									<li><a href="#">나의 공연 매출</a></li>
 									<li><a href="/manager/signUpShow">공연 등록</a></li>
 								</ul></li>
@@ -159,5 +161,4 @@
 				</nav>
 			</c:otherwise>
 		</c:choose>
-
 	</div>

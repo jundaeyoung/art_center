@@ -14,7 +14,7 @@
 		on r.show_id = s.id
 		join category_tb as sc
 		on s.show_type_id = sc.id
-                JOIN hole_tb AS h
+        JOIN hole_tb AS h
 		ON h.id = s.hole_id
 		JOIN location_tb as l
 		ON l.id = h.location_id

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
@@ -11,9 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/schedule.css">
-
-</head>
-<body>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 	<div class="show-content">
 		<div class="show-title">
 			<h2>
@@ -48,7 +45,7 @@
 			<span class="endDate" id="endDate"></span> 
 			<p class="holeName" id="holeName"></p>
 			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="210", height="280" ></p>
-			<button class="btn" onclick = "location.href='#'">자세히보기</button>
+			<button class="modal__btn" onclick = "location.href='#'"style="text-align: center;">자세히보기</button>
 		</div>
 	</div>
 		
@@ -243,6 +240,16 @@
 				}
 			});
 			calendar.render();
+		});
+		
+		// 상단 메뉴바 드롭다운
+		$(document).ready(function() {
+			$(".main>li").mouseover(function() {
+				$(this).children(".sub").stop().slideDown(200);
+			});
+			$(".main>li").mouseleave(function() {
+				$(this).children(".sub").stop().slideUp(200);
+			});
 		});
 </script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

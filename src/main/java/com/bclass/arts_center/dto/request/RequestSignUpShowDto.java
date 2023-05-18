@@ -1,7 +1,5 @@
 package com.bclass.arts_center.dto.request;
 
-import java.sql.Date;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -13,8 +11,8 @@ public class RequestSignUpShowDto {
 	private String imgRoute;
 	private String title;
 	private String content;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private String admissionAge;
 	private String adultRate;
 	private String youthRate;
@@ -22,6 +20,7 @@ public class RequestSignUpShowDto {
 	private Integer organizerId;
 	private Integer holeId;
 	private Integer showTypeId;
+
 
 	private MultipartFile file;
 

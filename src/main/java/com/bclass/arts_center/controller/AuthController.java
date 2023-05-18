@@ -148,7 +148,7 @@ public class AuthController {
 	
 	
 	// 편용림
-	// 
+	// 네이버 엑세스 토큰 들고오기
 	@GetMapping("auth/naver/callback")
 	public String NaverCallbackCode(@RequestParam String code) {
 		
@@ -175,7 +175,8 @@ public class AuthController {
 		return "redirect:/user/signUp";
 	}
 	
-	
+	//편용림
+	// 네이버 바디 값 들고오기
 	private String RequestNaverUserInfo(String OAuthTokenKakao) {
 		
 		RestTemplate restTemplate = new RestTemplate();

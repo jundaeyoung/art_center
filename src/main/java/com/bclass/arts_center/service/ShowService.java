@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 import com.bclass.arts_center.repository.interfaces.ShowRepository;
@@ -51,16 +52,16 @@ public class ShowService {
 		Integer showNewestCount = showRepository.selectShowCount();
 		return showNewestCount;
 	}
-	
+
 	/**
 	 * 작성자 : 전대영 show 카테고리별 select
 	 */
 	@Transactional
-	public List<RequestShowDto> readShowBycategory(String category,Integer begin, Integer range) {
-		List<RequestShowDto> showList = showRepository.selectShowByCategory(category,begin, range);
+	public List<RequestShowDto> readShowBycategory(String category, Integer begin, Integer range) {
+		List<RequestShowDto> showList = showRepository.selectShowByCategory(category, begin, range);
 		return showList;
 	}
-	
+
 	/**
 	 * 작성자 : 전대영 show 카테고리별 Count
 	 */
@@ -69,7 +70,7 @@ public class ShowService {
 		Integer showNewestCount = showRepository.selectShowByCategoryCount(category);
 		return showNewestCount;
 	}
-	
+
 	/**
 	 * 작성자 : 전대영 manager 계정에서 show insert
 	 */
@@ -78,5 +79,23 @@ public class ShowService {
 		Integer showNewestCount = showRepository.insertShow(requestSignUpShowDto);
 		System.out.println(requestSignUpShowDto);
 		return showNewestCount;
+	}
+
+	/*
+	 * 손주이 : showId와 일치하는 공연정보
+	 */
+	@Transactional
+	public List<ShowViewDto> readShowInfoByShowId(Integer id) {
+		List<ShowViewDto> ShowInfoList = showRepository.selectShowInfoByShowId(id);
+		return ShowInfoList;
+	}
+
+	/*
+	 * 작성자 : 손주이 showId와 일치하는 show 상연날짜 select
+	 */
+	@Transactional
+	public List<ShowViewDto> readShowDateByShowId(Integer showId) {
+		List<ShowViewDto> showTimeList = showRepository.selectShowDateByShowId(showId);
+		return showTimeList;
 	}
 }

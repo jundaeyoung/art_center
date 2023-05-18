@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 
@@ -12,47 +13,50 @@ import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 public interface ShowRepository {
 
 	/**
-	 * 작성자 : 전대영 
-	 * show 최신순으로 select
+	 * 작성자 : 전대영 show 최신순으로 select
 	 */
-	
+
 	public List<RequestShowDto> selectShowByNewest(@Param("begin") Integer begin, @Param("range") Integer range);
-	
+
 	/**
-	 * 작성자 : 전대영 
-	 * show 평점 높은순으로 select
+	 * 작성자 : 전대영 show 평점 높은순으로 select
 	 */
 	public List<RequestShowDto> selectShowByHighesRated(@Param("begin") Integer begin, @Param("range") Integer range);
-	
+
 	/**
-	 * 작성자 : 전대영 
-	 * show 평점 낮은순으로 select
+	 * 작성자 : 전대영 show 평점 낮은순으로 select
 	 */
 	public List<RequestShowDto> selectShowByRowestRated(@Param("begin") Integer begin, @Param("range") Integer range);
-	
-	
+
 	/**
-	 * 작성자 : 전대영 
-	 * show count 
+	 * 작성자 : 전대영 show count
 	 */
 	public Integer selectShowCount();
-	
+
 	/**
-	 * 작성자 : 전대영 
-	 * show 카테고리별 select
+	 * 작성자 : 전대영 show 카테고리별 select
 	 */
-	public List<RequestShowDto> selectShowByCategory(@Param("category") String category,@Param("begin") Integer begin, @Param("range") Integer range);
-	
-	
+	public List<RequestShowDto> selectShowByCategory(@Param("category") String category, @Param("begin") Integer begin,
+			@Param("range") Integer range);
+
 	/**
-	 * 작성자 : 전대영 
-	 * show 카테고리별 count 
+	 * 작성자 : 전대영 show 카테고리별 count
 	 */
 	public Integer selectShowByCategoryCount(String category);
-	
+
 	/**
-	 * 작성자 : 전대영 
-	 * show insert
+	 * 작성자 : 전대영 show insert
 	 */
 	public Integer insertShow(RequestSignUpShowDto requestSignUpShowDto);
+
+	/*
+	 * 손주이 : showId와 일치하는 공연 정보 select
+	 */
+	public List<ShowViewDto> selectShowInfoByShowId(Integer showId);
+
+	/*
+	 * 손주이 ticketing 에 필요한 공연 날짜 정보 select
+	 */
+	public List<ShowViewDto> selectShowDateByShowId(Integer showId);
+
 }
