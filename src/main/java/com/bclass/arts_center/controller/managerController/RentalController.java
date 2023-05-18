@@ -33,19 +33,13 @@ public class RentalController {
 	@GetMapping("/location/{id}")
 	@Transactional
 	public String rentalLocation(Model model, @PathVariable("id") Integer id) {
-		
-		
 		List<RequestHoleDto> locationLists = rentalService.selectByLocation(id);
 		List<RequestHoleDto> timeList = rentalService.selectByTime(id);
-		/*
-		 * for(int i = 0; i < locationLists.size(); i++) {
-		 * locationLists.get(i).setPrice(locationLists.get(i).getPrice() );
-		 * 
-		 * }
-		 */
+		System.out.println(locationLists);
 		model.addAttribute("locationLists", locationLists);
 		model.addAttribute("timeList", timeList);
 		model.addAttribute("location", locationLists.get(0).getLocation());
+		model.addAttribute("locationId",id);
 		model.addAttribute("price", locationLists.get(0).getPrice());
 		model.addAttribute("name", locationLists.get(0).getName());
 		return "/manager/rentalLocation";
@@ -65,7 +59,9 @@ public class RentalController {
 	// 대관 신청 insert
 	@PostMapping("/reservation")
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto) {
-		rentalService.insertRental(requestRentPlaceDto);
+		System.out.println(requestRentPlaceDto+"DDDD");
+		int result = rentalService.insertRental(requestRentPlaceDto);
+		System.out.println("여기 값이 들어오나요?" +result);
 		return "/manager/rental";
 	}
 }

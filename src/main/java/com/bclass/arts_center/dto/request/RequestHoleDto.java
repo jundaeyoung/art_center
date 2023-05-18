@@ -22,4 +22,5 @@ public class RequestHoleDto {
 	private Integer timeId;
 	private Time startTime;
 	private Time endTime;
+	private Integer holeId;
 }

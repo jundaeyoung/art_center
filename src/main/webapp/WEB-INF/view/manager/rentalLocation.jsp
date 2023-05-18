@@ -23,7 +23,8 @@
 .rental__title {
 	display: flex;
 	justify-content: center;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
+	margin-left: 200px;
 }
 
 .rental__title h1 {
@@ -39,13 +40,14 @@
 
 .content {
 	width: 100%;
-	height: 800px;
-	margin-top: 100px;
+	height: 1000px;
+	margin-top: 50px;
 }
 
 .rental__info_content {
 	margin-top: 50px;
 	height: 500px;
+	font-size: 25px;
 }
 
 .daterangepicker .drp-calendar.right .calendar-table {
@@ -60,71 +62,115 @@
 	font-size: 17px !important;
 }
 
-.rental__btn {
+.rental__ok {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end; 
-	margin: 10px;
-	padding: 10px;
+	padding: 0;
+	width: 250px;
 }
 
-.ok {
-	margin-left: 0;
+.rental__btn {
 	border: none;
 	width: 200px;
 	height: 40px;
 	background-color: #DBE4EB;
 	cursor: pointer;
-	margin: 0 10px;
 }
 
 .back {
-	margin-left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end; 
+	width: 250px;
+}
+
+.back__btn {
 	border: none;
 	width: 200px;
 	height: 40px;
 	background-color: #FFA883;
 	cursor: pointer;
 }
+
+#dateTime {
+	padding: 10px;
+	font-size: 20px;
+	width: 250px;
+	border: 1px solid black;
+	border-radius: 5px; 
+}
+
+#locationSelect {
+	padding: 10px;
+	font-size: 20px;
+	border: 1px solid black;
+	border-radius: 5px; 
+}
+
+#timeSelect {
+	padding: 10px;
+	font-size: 20px;
+	border: 1px solid black;
+	border-radius: 5px; 
+}
+.rental__info_content div {
+	padding: 20px;
+}
 </style>
 <div class="rental__img"></div>
 
 <div class="content">
+
 	<div class="rental__title">
 		<h1>${location}대관</h1>
 	</div>
+	
 	<div class="rental__info">
 		<h1>신청 정보</h1>
 	</div>
-	<form action="/rental/reservation" method="post">
+	
 	<div class="rental__info_content">
-	<div class="location">
-	<label>대관 장소 : ${location}</label></div>
-	<label>대관 신청 기간 : </label>
-	<input type="text" id="dateTime" name="dateTime" value="" style="width: 160px;" onchange="calculatePrice()"/>
-	<div>
+	<form action="/rental/reservation" method="post">
+	
+	<div class="rental__location" >
+	<label>대관 장소 : ${location}</label>
+	</div>
+	
+	<div class="rental__date">
+	<label>대관 기간 : </label>
+	<input type="text" id="dateTime" name="dateTime" value="" onchange="calculatePrice()"/>
+	</div>
+	
+	<div class="rental__hole">
 	<label>대관 홀 : </label>
-	<select id="locationSelect" onchange="calculatePrice()">
+	<select id="locationSelect" onchange="calculatePrice()" name="holeId">
 		<c:forEach var="locationLists" items="${locationLists}">
-			<option value="${locationLists.id}" data-price="${locationLists.price}">${locationLists.name}</option>
+			<option value="${locationLists.holeId}" data-price="${locationLists.price}">${locationLists.name}</option>
 		</c:forEach>
 	</select>
 	</div>
-	<div>
-	<p id="totalPrice"></p>
-	<label>대관 시간 : </label>
-	<select>
-		<c:forEach var="timeList" items="${timeList}">
-			<option value="${timeLists.id}">${timeList.startTime} ~ ${timeList.endTime}</option>
-		</c:forEach>
-	</select>
+	<div class="rental__price">
+		<p id="totalPrice"></p>
+	</div>	
+	<div class="rental__time">
+		<label>대관 시간 : </label> 
+		<select id="timeSelect">
+			<c:forEach var="timeList" items="${timeList}">
+	<input type="hidden" name= "locationId" value="${locationId}">
+	
+				<option value="${timeLists.id}">${timeList.startTime} ~ ${timeList.endTime}</option>
+			</c:forEach>
+		</select>
 	</div>
-	<div class="rental__btn">
-		<input type="submit" class="ok" value="신청하기">
-	</div>
+	<div class="rental__ok">
+		<input type="submit" class="rental__btn" value="신청하기">
 	</div>
 	</form>
-		<button class="back" onclick="location.href='/rental'">취소하기</button>
+	<div class="back">
+		<button class="back__btn" onclick="location.href='/rental'">취소하기</button>
+	</div>
+	</div>
 	<script type="text/javascript">
 	$(function() {
 		$('#dateTime').daterangepicker(
