@@ -27,15 +27,26 @@ CREATE TABLE location_tb(
 );
 
 
+-- time 시간
+CREATE TABLE time_tb(
+	id INT PRIMARY KEY auto_increment,
+    start_time time NOT NULL,
+    end_time time NOT NULL
+);
+
 -- 홀 ex) a,b,c,d,e
 CREATE TABLE hole_tb(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
-    price VARCHAR(100),
+    price int,
     tel VARCHAR(30) NOT NULL,
     location_id INT NOT NULL,
-    FOREIGN KEY (location_id) REFERENCES location_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
+    time_id INT NOT NULL,
+    FOREIGN KEY (location_id) REFERENCES location_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (time_id) REFERENCES time_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+
 
 
 -- show 종류

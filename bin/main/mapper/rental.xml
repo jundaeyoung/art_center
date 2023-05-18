@@ -6,12 +6,30 @@
 	namespace="com.bclass.arts_center.repository.interfaces.RentalRepository">
 
 	<select id="selectByLocation"
-		resultType="com.bclass.arts_center.dto.request.RequestLocationDto">
-		select * from location_tb where id = #{id};
+		resultType="com.bclass.arts_center.dto.request.RequestHoleDto">
+		SELECT l.id, l.location, h.name, h.price
+		FROM location_tb AS l
+		JOIN hole_tb AS h
+		ON h.location_id = l.id
+		WHERE l.id = #{id}
+		group by
+		name;
 	</select>
 
+	<select id="selectByTime"
+		resultType="com.bclass.arts_center.dto.request.RequestHoleDto">
+		select t.id, t.start_time, t.end_time
+		from time_tb as t
+		join hole_tb as h
+		on h.time_id = t.id
+		where h.location_id = #{locationId}
+		group by time_id;
+	</select>
+
+
 	<insert id="insertRental">
-		INSERT INTO rent_place_reservation_tb(start_date,end_date,start_time,end_time,hole_id,location_id)
+		INSERT INTO
+		rent_place_reservation_tb(start_date,end_date,start_time,end_time,hole_id,location_id)
 		VALUES
 		(#{startDate},#{endDate},#{startTime},#{endTime},#{holeId},#{locationId})
 	</insert>

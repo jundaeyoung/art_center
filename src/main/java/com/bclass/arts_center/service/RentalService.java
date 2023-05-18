@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bclass.arts_center.dto.request.RequestLocationDto;
+import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 import com.bclass.arts_center.repository.interfaces.RentalRepository;
 
@@ -17,11 +17,16 @@ public class RentalService {
 	private RentalRepository rentalRepository;
 	
 	@Transactional
-	public List<RequestLocationDto> selectByLocation(Integer id) {
-		List<RequestLocationDto> list = rentalRepository.selectByLocation(id);
+	public List<RequestHoleDto> selectByLocation(Integer id) {
+		List<RequestHoleDto> list = rentalRepository.selectByLocation(id);
 		return list;
 	}
 	
+	@Transactional
+	public List<RequestHoleDto> selectByTime(Integer id) {
+		List<RequestHoleDto> list = rentalRepository.selectByTime(id);
+		return list;
+	}
 	/**
 	 * 김미정 : manager 계정에서 rental insert
 	 */

@@ -96,14 +96,35 @@
 	<div class="rental__info">
 		<h1>신청 정보</h1>
 	</div>
+	<form action="/rental/reservation" method="post">
 	<div class="rental__info_content">
-	<div class="location">${location}</div>
-	<input type="text" id="dateTime" name="dateTime" value="" style="width: 300px;"/>
+	<div class="location">
+	<label>대관 장소 : ${location}</label></div>
+	<label>대관 신청 기간 : </label>
+	<input type="text" id="dateTime" name="dateTime" value="" style="width: 160px;" onchange="calculatePrice()"/>
+	<div>
+	<label>대관 홀 : </label>
+	<select id="locationSelect" onchange="calculatePrice()">
+		<c:forEach var="locationLists" items="${locationLists}">
+			<option value="${locationLists.id}" data-price="${locationLists.price}">${locationLists.name}</option>
+		</c:forEach>
+	</select>
+	</div>
+	<div>
+	<p id="totalPrice"></p>
+	<label>대관 시간 : </label>
+	<select>
+		<c:forEach var="timeList" items="${timeList}">
+			<option value="${timeLists.id}">${timeList.startTime} ~ ${timeList.endTime}</option>
+		</c:forEach>
+	</select>
+	</div>
 	<div class="rental__btn">
-		<button class="ok" onclick="location.href='#'">신청하기</button>
-		<button class="back" onclick="location.href='#'">취소하기</button>
+		<input type="submit" class="ok" value="신청하기">
 	</div>
 	</div>
+	</form>
+		<button class="back" onclick="location.href='/rental'">취소하기</button>
 	<script type="text/javascript">
 	$(function() {
 		$('#dateTime').daterangepicker(
@@ -122,8 +143,6 @@
 								"7월", "8월", "9월", "10월", "11월", "12월" ],
 						"firstDay" : 0
 					},
-					"startDate" : "2023-5-16",
-					"endDate" : "2023-5-23",
 					"drops" : "down"
 				},
 				function(start, end, label) {
@@ -133,6 +152,33 @@
 							+ label + ')');
 				});
 	});
+    function calculatePrice() {
+        var dateTime = document.getElementById("dateTime").value;
+        let test = dateTime;
+        test = test.split(" ~ "); 
+
+        var re1 = test[0]
+        	re1 = re1.replaceAll("-", ""); 
+        var re2 = test[1]
+        	re2 = re2.replaceAll("-", ""); 
+
+        	let result = parseFloat(re2)-parseFloat(re1) + 1
+        	console.log(result);
+        var locationSelect = document.getElementById("locationSelect");
+        var selectedOption = locationSelect.options[locationSelect.selectedIndex];
+
+        var price = selectedOption.getAttribute("data-price");
+        var totalPrice;
+
+        if (price === price) {
+            totalPrice =  result * parseInt(price);
+        } else {
+            totalPrice = parseInt(price); 
+        }
+        var totalPriceElement = document.getElementById("totalPrice");
+        totalPriceElement.innerText = "대관료: " + totalPrice + "원";
+    }
+	
 	</script>
 
 </div>
