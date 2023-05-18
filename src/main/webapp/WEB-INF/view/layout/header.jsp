@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <title>AMADEUS - 당신의 꿈을 펼쳐라</title>
 <link rel="shortcut icon" sizes="90x90" type="image/x-icon" href="/images/background/logo_mini.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

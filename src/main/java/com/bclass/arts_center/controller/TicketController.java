@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.TicketingDto;
-import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.service.TicketService;
 
@@ -27,19 +26,19 @@ public class TicketController {
 	private ShowService showService;
 
 	@GetMapping("/ticketing/{showId}")
-	public String ticketingPage(Model model, @PathVariable Integer showId) {
+	public String ticketingPage(@PathVariable Integer showId, Model model) {
 
-		// 공연 정보 불러와서 공연 제목 날짜 뿌리기
-		List<ShowViewDto> showDateList = showService.readShowDateByShowId(showId);
-		if (showDateList.isEmpty()) {
-			model.addAttribute("showDateList", null);
-		} else {
-			model.addAttribute("showDateList", showDateList);
-		}
-		System.out.println(showDateList.get(0).getShowId());
+		List<ShowViewDto> showInfoForTicketing = showService.readShowInfoByShowId(showId);
+		model.addAttribute("showInfoForTicketing", showInfoForTicketing);
+		model.addAttribute("title", showInfoForTicketing.get(0).getTitle());
+		model.addAttribute("imgRoute", showInfoForTicketing.get(0).getImgRoute());
 
+		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
+		model.addAttribute("showDateList", showDateList);
+		model.addAttribute("showId", showId);
 		return "/ticket/ticketing";
 	}
+	
 
 	@PostMapping("/ticketing")
 	public String ticketProc(TicketingDto ticketingDto) {
