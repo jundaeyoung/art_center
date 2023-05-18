@@ -37,11 +37,6 @@ public class UserController {
 	private HttpSession session;
 
 	
-	// 임의 로그인 페이지
-	@GetMapping("/loginTest")
-	public String Test() {
-		return "/login";
-	}
 	
 	// 로그인 페이지
 	@GetMapping("/login")
@@ -80,14 +75,6 @@ public class UserController {
 		return "/user/delete";
 	}
 
-	@PostMapping("/loginProcTest")
-	public String loginTest(SignInFormDto signInFormDto) {
-		User principal = userService.readUserTest(signInFormDto);
-		
-		session.setAttribute(Define.PRINCIPAL, principal);
-		
-		return "redirect:/";
-	}
 	
 	// 로그인 처리
 	@PostMapping("/loginProc")

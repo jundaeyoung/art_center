@@ -8,10 +8,10 @@ VALUES
 	
 INSERT INTO user_tb(user_name, password, nickname, email, birth_date, tel, role_id)
 VALUES
-	('1', '1234', '김미정', 'kmj@naver.com' ,'19971217', '01011111111', 1),
-	('2', '1234', '손주이', 'sji@naver.com' ,'19950119', '01022222222', 2),
-	('3', '1234', '전대영', 'jdy@naver.com' ,'19971117', '01033333333', 3),
-	('4', '1234', '편용림', 'pyr@naver.com' ,'19920208', '01044444444', 4);
+	('1', '$2a$10$Xbpckp1apx/cbwLjne5gw.Bj1mNFCf5dcFbYe9uEoiRfmw7DDMTt2', '김미정', 'kmj@naver.com' ,'19971217', '01011111111', 1),
+	('2', '$2a$10$Xbpckp1apx/cbwLjne5gw.Bj1mNFCf5dcFbYe9uEoiRfmw7DDMTt2', '손주이', 'sji@naver.com' ,'19950119', '01022222222', 2),
+	('3', '$2a$10$Xbpckp1apx/cbwLjne5gw.Bj1mNFCf5dcFbYe9uEoiRfmw7DDMTt2', '전대영', 'jdy@naver.com' ,'19971117', '01033333333', 3),
+	('4', '$2a$10$Xbpckp1apx/cbwLjne5gw.Bj1mNFCf5dcFbYe9uEoiRfmw7DDMTt2', '편용림', 'pyr@naver.com' ,'19920208', '01044444444', 4);
 	
 	
 INSERT INTO location_tb(location, location_info)

@@ -55,7 +55,6 @@ public class AuthController {
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		String userInfo = requestKakaoUserInfo(responseToken.getBody().getAccessToken());
-		
 		System.out.println(userInfo);
 		
 		

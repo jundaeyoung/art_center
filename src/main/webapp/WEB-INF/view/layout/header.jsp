@@ -20,7 +20,7 @@
 			<c:choose>
 				<c:when test="${principal == null}">
 					<div class="user--btn">
-						<form action="/user/loginTest" method="get">
+						<form action="/user/login" method="get">
 							<button type="submit" class="login--btn" style="font-size: 20px;">로그인</button>
 						</form>
 						<form action="#" method="get">
