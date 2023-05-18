@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>회원 가입 페이지</title>
 <style type="text/css">
+
 .container {
 	margin-left: 50px;
 }
