@@ -28,34 +28,33 @@ public class UserService {
 
 	// 회원가입
 	@Transactional
-	public int createUser(SignUpFormDto signUpFormDto) {
+	public void createUser(SignUpFormDto signUpFormDto) {
 
 		String rawPwd = signUpFormDto.getPassword();
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		signUpFormDto.setPassword(hashPwd);
-
-		int result = userRepository.insertUser(signUpFormDto);
-
-		if (result != 1) {
-			throw new CustomRestfullException("회원 가입 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return result;
-	}
-
-	//로그인 (테스트) 다 만들고 지울 예정
-	@Transactional
-	public User readUserTest(SignInFormDto signInFormDto) {
 		
-		User user = userRepository.selectUserByUsernameAndPassword(signInFormDto);
-		return user;
+		User selectUser = userRepository.selectUserByUsername(signUpFormDto.getUserName());
+		
+		User selectNickName = userRepository.selectUserBynickname(signUpFormDto.getNickname());
+		
+		if (selectUser != null) {
+			throw new CustomRestfullException("중복된 아이디가 있습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		if (selectNickName != null) {
+			throw new CustomRestfullException("중복된 닉네임이 있습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		int result = userRepository.insertUser(signUpFormDto);
+		
 	}
-	
-	
+
+
+
 	// 로그인
 	@Transactional
 	public User readUser(SignInFormDto signInFormDto) {
 
-		User userEntity = userRepository.selectUserByUsername(signInFormDto);
+		User userEntity = userRepository.selectUserByUsername(signInFormDto.getUserName());
 		
 		if (userEntity == null || userEntity.getUserName().equals(signInFormDto.getUserName()) == false) {
 			throw new CustomRestfullException("존재하지 않는 계정입니다", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -69,11 +68,18 @@ public class UserService {
 		
 		return userEntity;
 	}
+
+	// api id로 유저정보 조회
+	public User readUserByApiId(String apiId) {
+		User userEntity = userRepository.selectUserByApiId(apiId);
+		return userEntity;
+	}
+	
 	
 	//내 정보
 	@Transactional
-	public User readUserByUserName(SignInFormDto signInFormDto) {
-		User user = userRepository.selectUserByUsername(signInFormDto);
+	public User readUserByUserName(String userName) {
+		User user = userRepository.selectUserByUsername(userName);
 		return user;
 	}
 	
@@ -89,7 +95,7 @@ public class UserService {
 	@Transactional
 	public int deleteUser(SignInFormDto signInFormDto) {
 		
-		User userEntity = userRepository.selectUserByUsername(signInFormDto);
+		User userEntity = userRepository.selectUserByUsername(signInFormDto.getUserName());
 		
 		boolean isPwdMatched = passwordEncoder.matches(signInFormDto.getPassword(), userEntity.getPassword());
 		

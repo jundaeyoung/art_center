@@ -3,39 +3,59 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.bclass.arts_center.repository.interfaces.UserRepository">
-	
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.UserRepository">
+
 	<!-- 회원가입 -->
 	<insert id="insertUser">
 		INSERT INTO user_tb
-		(user_name, password, nickname, email, birth_date, tel)
+		(user_name, password, nickname,
+		email, birth_date, tel)
 		VALUES
-		(#{userName}, #{password}, #{nickname}, #{email}, #{birthDate}, #{tel})
+		(#{userName}, #{password},
+		#{nickname}, #{email}, #{birthDate}, #{tel})
 	</insert>
-	
-	<!-- 비밀번호 암호화 -->
-	<select id="selectUserByUsername" resultType="com.bclass.arts_center.repository.model.User">
+
+	<!-- 비밀번호 암호화, 중복 아이디 확인 -->
+	<select id="selectUserByUsername"
+		resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_tb
 		WHERE user_name = #{userName}
 	</select>
-	
+
+	<select id="selectUserBynickname"
+		resultType="com.bclass.arts_center.repository.model.User">
+		SELECT * FROM user_tb
+		WHERE nickname = #{nickname}
+	</select>
+
+	<!-- api 아이디 있는지 확인 -->
+	<select id="selectUserByApiId"
+		resultType="com.bclass.arts_center.repository.model.User">
+		SELECT * FROM user_TB WHERE api_id = #{apiId};
+	</select>
+
+
 	<!-- 로그인 -->
-	<select id="selectUserByUsernameAndPassword" resultType="com.bclass.arts_center.repository.model.User">
+	<select id="selectUserByUsernameAndPassword"
+		resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_tb
 		WHERE user_name = #{userName}
-		AND password=#{password}
+		AND
+		password=#{password}
 	</select>
-	
-	<!-- 수정 -->	
+
+	<!-- 수정 -->
 	<update id="updateUserByUsername">
-		UPDATE user_tb SET password = #{password}, 
+		UPDATE user_tb SET password = #{password},
 		nickname = #{nickname}, email = #{email}, birth_date = #{birthDate},
-		tel = #{tel} WHERE user_name = #{userName}
+		tel =
+		#{tel} WHERE user_name = #{userName}
 	</update>
-	
+
 	<!-- 회원 탈퇴 -->
 	<delete id="deleteUserById">
 		DELETE FROM user_tb WHERE user_name = #{userName}
 	</delete>
-	
+
 </mapper>

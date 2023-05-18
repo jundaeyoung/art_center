@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -48,7 +47,6 @@ public class UserController {
 	// 회원가입 페이지
 	@GetMapping("/signUp")
 	public String singUp() {
-
 		return "/user/signUp";
 	}
 
@@ -57,8 +55,9 @@ public class UserController {
 	public String update(Model model, String userName) {
 		SignInFormDto dto = new SignInFormDto();
 		dto.setUserName(userName);
-		User user = userService.readUserByUserName(dto);
+		User user = userService.readUserByUserName(dto.getUserName());
 		model.addAttribute("user", user);
+		System.out.println(user);
 
 		return "/user/update";
 
@@ -69,7 +68,7 @@ public class UserController {
 	public String delete(Model model, String userName) {
 		SignInFormDto dto = new SignInFormDto();
 		dto.setUserName(userName);
-		User user = userService.readUserByUserName(dto);
+		User user = userService.readUserByUserName(dto.getUserName());
 		model.addAttribute("user", user);
 
 		return "/user/delete";
@@ -86,9 +85,8 @@ public class UserController {
 		if (signInFormDto.getPassword() == null || signInFormDto.getPassword().isEmpty()) {
 			throw new CustomRestfullException("password를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
-
 		User principal = userService.readUser(signInFormDto);
-
+			
 		session.setAttribute(Define.PRINCIPAL, principal);
 
 		return "redirect:/";
@@ -102,10 +100,12 @@ public class UserController {
 
 		return "redirect:/";
 	}
+	
 
 	// 회원가입 처리
 	@PostMapping("/signUp")
 	public String signUpProc(SignUpFormDto signUpFormDto) {
+		
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("signUpFormDtoname을 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {
@@ -119,8 +119,14 @@ public class UserController {
 		} else if (signUpFormDto.getTel() == null || signUpFormDto.getTel().isEmpty()) {
 			throw new CustomRestfullException("전화번호를 입력주세요", HttpStatus.BAD_REQUEST);
 		}
-
-		userService.createUser(signUpFormDto);
+		
+		
+		// 만약 signUpFormDto에 apiId 값이 없으면 다른 회원가입
+		if (signUpFormDto.getApiId() != null) {
+			userService.createUser(signUpFormDto);
+		}else {
+			
+		}
 		return "redirect:/";
 	}
 

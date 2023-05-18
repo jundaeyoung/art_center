@@ -16,4 +16,5 @@ public class SignUpFormDto {
 	private String email;
 	private String birthDate;
 	private String tel;
+	private String apiId;
 }

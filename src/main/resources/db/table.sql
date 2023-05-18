@@ -10,13 +10,14 @@ CREATE TABLE role_tb
 CREATE TABLE user_tb
 (
    id INT PRIMARY KEY AUTO_INCREMENT,
-   user_name VARCHAR (30) NOT NULL UNIQUE,
+   user_name VARCHAR (255) NOT NULL UNIQUE,
    password VARCHAR (200) NOT NULL,
    nickname VARCHAR (30) NOT NULL UNIQUE,
    email VARCHAR (100) NOT NULL,
    birth_date DATE NOT NULL,
    tel VARCHAR (50) NOT NULL,
    role_id int DEFAULT 1,
+   api_id VARCHAR(255) UNIQUE,
    FOREIGN KEY (role_id) REFERENCES role_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
