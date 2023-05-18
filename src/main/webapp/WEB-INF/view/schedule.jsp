@@ -11,6 +11,8 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/schedule.css">
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+
+
 	<div class="show-content">
 		<div class="show-title">
 			<h2>
@@ -242,14 +244,5 @@
 			calendar.render();
 		});
 		
-		// 상단 메뉴바 드롭다운
-		$(document).ready(function() {
-			$(".main>li").mouseover(function() {
-				$(this).children(".sub").stop().slideDown(200);
-			});
-			$(".main>li").mouseleave(function() {
-				$(this).children(".sub").stop().slideUp(200);
-			});
-		});
 </script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

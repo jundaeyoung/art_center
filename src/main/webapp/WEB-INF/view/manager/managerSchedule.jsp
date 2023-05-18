@@ -16,7 +16,7 @@
 <div class="show-content">
 	<div class="show-title">
 		<h2>
-			<a href="/schedule">일정</a>
+			<a href="">일정</a>
 		</h2>
 	</div>
 	<div class="modal" id="myModal">
