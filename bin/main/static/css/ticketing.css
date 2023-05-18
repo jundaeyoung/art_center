@@ -2,11 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 
-body {
+/* body {
 	background-color: skyblue;
-}
+} */
 
-div {
+.Calendar {
 	background-color: white;
 	height: auto;
 	width: 400px;

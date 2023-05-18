@@ -47,22 +47,23 @@
 				</thead>
 
 				<tbody>
-				
-					
+
+
 					<c:forEach var="showDateList" items="${showDateList}">
-						<input type="hidden" class="listDate" value="${showDateList.showDate}">					
+						<input type="hidden" class="listDate" value="${showDateList.showDate}">
 					</c:forEach>
-				
+
 				</tbody>
 			</table>
 		</div>
 
-		<div>
-		
-		
-		
-		
-		
+		<div class="watchTime">
+			<h3 class="title">관람 시간</h3>
+			<div class="watchTime--content">
+				<span class="TagPlay">
+					
+				</span>
+			</div>
 		</div>
 
 
@@ -73,8 +74,7 @@
 
 
 
-
-		<div>
+	<div>
 			좌석 정보 <span>인원수 선택 : </span> <select id="person">
 				<option value="1">1명</option>
 				<option value="2">2명</option>
@@ -102,9 +102,9 @@
 				</tr>
 			</table>
 		</div>
-		<div>
+		<!-- <div>
 			<button type="submit">예매하기</button>
-		</div>
+		</div> -->
 	</form>
 
 

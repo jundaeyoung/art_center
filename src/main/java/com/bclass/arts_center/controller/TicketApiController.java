@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,11 +18,11 @@ public class TicketApiController {
 	private TicketService ticketService;
 
 	@GetMapping("/api/selectDate/{showId}/{showDate}")
-	public List<TicketingDto> selectDate(@PathVariable("showId") Integer showId, @PathVariable("showDate") Date date,
-			Model model) {
+	public List<TicketingDto> selectDate(@PathVariable("showId") Integer showId, @PathVariable("showDate") Date date) {
+		
 		List<TicketingDto> showTimeList = ticketService.readShowTime(showId, date);
-		model.addAttribute("showTimeList", showTimeList);
 
+		System.out.println(showTimeList);
 		return showTimeList;
 	}
 

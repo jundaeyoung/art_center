@@ -83,10 +83,10 @@ function matchDate(selectDateList) {
 	for (let i = 0; i < selectDateList.length; i++) {
 		for (let j = 0; j < arrayDateList.length; j++) {
 			//   값 ===                     값
-			console.log("1 " + selectDateList[i]);
-			console.log("2 " + arrayDateList[j]);
+			//console.log("1 " + selectDateList[i]);
+			//console.log("2 " + arrayDateList[j]);
 			if (selectDateList[i] === arrayDateList[j]) {
-				console.log("맞음 ㅣ " + i);
+				//console.log("맞음 ㅣ " + i);
 				choiceDateIndex.push(i);
 				continue;
 			}
@@ -130,7 +130,7 @@ function nextCalendar() {
 	buildCalendar(); // 달력 다시 생성
 }
 
-// input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
+// input값이 한자리 숫자인 경우 앞에 '0' 붙여주는 함수
 function leftPad(value) {
 	if (value < 10) {
 		value = "0" + value;
@@ -141,21 +141,36 @@ function leftPad(value) {
 
 function selectDateForTime(showId, date) {
 	console.log(showId);
-	console.log(date);
+	//console.log(date);
 
-	$("choiceDay").on("click", () => {
-		/*	$.ajax({
-				type: "get",
-				url: "/api/selectDate/" + showId + "/" + date,
-				conttentType: "application/json; charset=utf-8",
-				data: JSON.stringify(data),
-				dataType: "json"*/
-	}).done(function(res) {
-		console.log(res);
+	$.ajax({
+		type: "get",
+		url: "/api/selectDate/" + showId + "/" + date,
+		conttentType: "application/json; charset=utf-8",
+		dataType: "json"
+	}).done(function(showTimeList) {
+		$(".watch--time").remove()
+		console.log(showTimeList);
+		$(".TagPlay").append(`<ul class="watch--time"></ul>`);
+		console.log(showTimeList[1])
+		showTimeList.forEach((showTime) => {
+			
+			let	addTime = `<li><a id="cellPlay" name="cellPlay" class="select" href="#">${showTime.showTime}</a></li>`
+			$(".watch--time").append(addTime);
+		})
+		/*
+		console.log(addTime);
+		for (let i; i < addTime.length; i++) {
+			$("ul").append(addTime[i]);
+		}
+		*/
+		console.log('된겨?')
 	}).fail(function(error) {
 		console.log(error);
+		console.log('안된겨!')
 	});
-});
+
+
 
 }
 

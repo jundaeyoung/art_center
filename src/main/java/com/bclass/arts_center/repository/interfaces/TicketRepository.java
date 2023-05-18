@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.bclass.arts_center.dto.TicketingDto;
 
@@ -14,7 +15,7 @@ public interface TicketRepository {
 
 	public List<TicketingDto> selectShowDateByShowId(Integer showId);
 
-	public List<TicketingDto> selectShowTimeByShowId(Integer showId, Date showDate);
+	public List<TicketingDto> selectShowTimeByShowId(@Param("showId") Integer showId, @Param("showDate") Date showDate);
 
 //	public int insert(Ticket ticket);
 //
