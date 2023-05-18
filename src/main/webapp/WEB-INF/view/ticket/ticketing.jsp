@@ -50,7 +50,7 @@
 				
 					
 					<c:forEach var="showDateList" items="${showDateList}">
-						<input type="hidden" id="hiddenDate${showDateList.id}" value="${showDateList.showDate}">					
+						<input type="hidden" class="listDate" value="${showDateList.showDate}">					
 					</c:forEach>
 				
 				</tbody>
