@@ -10,9 +10,9 @@ public class RequestManagerShowSaleDto {
 	private String title;
 	private String startDate;
 	private String endDate;
-	private Integer adultRate;
-	private Integer youthRate;
-	private Integer infantRate;
+	private String adultRate;
+	private String youthRate;
+	private String infantRate;
 	private Integer adultCount;
 	private Integer youthCount;
 	private Integer infantCount;

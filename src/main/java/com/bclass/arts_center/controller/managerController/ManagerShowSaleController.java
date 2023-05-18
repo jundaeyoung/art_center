@@ -1,6 +1,5 @@
 package com.bclass.arts_center.controller.managerController;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,11 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
-import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.dto.response.ResponseManagerShowSaleDto;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ManagerShowSaleService;
-import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller

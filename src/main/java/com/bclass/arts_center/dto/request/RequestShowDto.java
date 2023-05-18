@@ -30,7 +30,7 @@ public class RequestShowDto {
 	private Date showDate;
 	private Time showTime;
 	private Integer count;
-	private Integer admissionAge;
+	private String admissionAge;
 	private String adultRate;
 	private String youthRate;
 	private String infantRate;

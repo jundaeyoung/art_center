@@ -1,0 +1,320 @@
+/*
+작성자 : 전대영
+이미지 흘러가게 기능 구현 css
+ */
+@charset "UTF-8";
+
+.slide_wrapper {
+	position: relative;
+	width: 450px;
+	margin: 0 auto;
+	height: 200px;
+	overflow: hidden;
+}
+
+.slides {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin-left: 112px;
+}
+
+.slides.animated {
+	transition: 0.5s ease-out;
+}
+
+.slides li {
+	width: 150px;
+	height: 200px;
+	background: #ccc;
+	float: left;
+}
+
+.slides li:not(:last-child) {
+	margin-right: 30px;
+}
+
+.controls {
+	text-align: center;
+	margin-top: 50px;
+}
+
+body {
+	width: 1500px;
+	margin: 0 auto;
+}
+
+a {
+	text-decoration: none;
+	color: #404040;
+}
+
+li {
+	list-style: none;
+}
+
+/*BODY*/
+#nav {
+	width: 100%;
+	margin-top: 0px;
+	margin-bottom: -40px;
+	margin-left: 100px;
+}
+
+#nav:after {
+	content: "";
+	display: block;
+	display: flex;
+	clear: both;
+}
+
+.main {
+	margin: 30px;
+}
+
+.main>li {
+	position: relative;
+	float: left;
+	width: 200px;
+	margin: -10px 30px;
+	height: 60px;
+	box-sizing: border-box;
+	line-height: 60px;
+	text-align: center;
+	font-size: 30px;
+	height: 60px;
+	z-index: 10;
+}
+
+.main>li a {
+	display: flex;
+	display: block;
+	transition: all 0.3s;
+	z-index: 2;
+}
+
+.main>li a:hover {
+	background: #909090;
+	color: #fff;
+}
+
+.sub {
+	display: none;
+	position: absolute;
+	top: 60px;
+	left: 0px;
+	width: 160px;
+	text-align: center;
+	background: #eee;
+	z-index: 1;
+}
+
+.sub li {
+	z-index: 1;
+	margin-left: -40px;
+	font-size: 20px;
+}
+
+.title {
+	display: flex;
+	justify-content: space-between;
+	width: 1500px;
+	margin: 10px auto;
+	margin-left: 100px;
+}
+
+.user--btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user--btn button {
+	height: 46px;
+	border-radius: 17px;
+	width: 100px;
+}
+
+.signUp--btn {
+	background-color: white;
+	border-style: none;
+	color: black;
+}
+
+.login--btn {
+	background-color: white;
+	border-style: none;
+	color: black;
+}
+
+.logout--btn {
+	background-color: white;
+	border-style: none;
+	color: black;
+}
+
+button {
+	transition: all 0.2s linear;
+}
+
+button:hover {
+	cursor: pointer;
+	transform: scale(1.05);
+}
+
+content ul {
+	list-style: none;
+	height: 600px;
+	overflow: hidden;
+}
+
+.slider:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.slider {
+	position: relative;
+}
+
+.slider li {
+	position: absolute;
+	top: 0;
+	left: -50px;
+	width: 100%;
+	height: 200px;
+	z-index: 0;
+	opacity: 0;
+}
+
+.slider li div {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+}
+
+.slider li div dl {
+	position: relative;
+	left: 200px;
+	top: 230px;
+}
+
+.right div {
+	display: flex;
+	flex-direction: flex-start;
+	align-items: flex-start;
+	text-align: left;
+	margin-left: 150px;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	text-align: left;
+}
+
+.info h1 {
+	width: 550px;
+}
+
+.right div a img {
+	display: flex;
+	text-align: center;
+	margin-top: 200px;
+	margin-left: -100px;
+}
+
+.right {
+	width: 1000px;
+	display: flex;
+	margin: 0 auto;
+}
+
+.slider li dl {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 80px;
+}
+
+.slider li .right {
+	left: auto;
+	right: 20px;
+	text-align: right;
+}
+
+.slider li dt {
+	color: #fff;
+	font-size: 3rem;
+	text-shadow: 1px 1px 10px #444;
+}
+
+.slider li dd {
+	color: #fff;
+	text-shadow: 1px 1px 10px #444;
+}
+
+.btn {
+	z-index: 1;
+	margin-left: 230px;
+	text-align: center;
+	width: 200px;
+}
+
+.btn button {
+	margin: 20px 20px 0 20px;
+	border: 1px solid #fff;
+	border-radius: 10px;
+	color: #666;
+	font-size: 1.5rem;
+	cursor: pointer;
+	background-color: #fff;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+.slider {
+	height: 200px;
+}
+
+.content--box {
+	width: 1200px;
+	height: 700px;
+	border: 1px solid #ccc;
+	margin: 100px auto;
+	background-color: #E8E8E8;
+}
+
+.slide_wrapper {
+	margin-left: 100px;
+	margin-top: 200px;
+}
+
+.slide_wrapper_box {
+	margin: 120px 200px 0 0;
+	width: 300px;
+}
+
+.footer {
+	background-color: #ECECEC;
+	display: flex;
+	width: 1500px;
+	justify-content: center;
+}
+
+.footer div {
+	display: flex;
+	margin: 20px auto;
+}
+
+.footer div div {
+	display: flex;
+	margin-left: 20px;
+	justify-content: space-around;
+	text-align: center;
+	flex-direction: column;
+	width: 400px;
+	flex-direction: column;
+}
