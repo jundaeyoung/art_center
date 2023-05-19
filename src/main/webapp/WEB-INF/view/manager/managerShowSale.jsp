@@ -14,10 +14,13 @@
 
 
 <div class="show__header"></div>
-<div class="signUpShow__content">
+<div class="signUpShow__content" style="margin-left: -60px;">
+	<div class="btn__sub" style="margin-top: -30px;" >
+		<a href="/manager/showSale"><button style="width: 150px; height: 50px;">전체 검색</button></a>
+	</div>
 	<div class="signUpShow__info">
 		<form action="/manager/showSaleByDate" method="post">
-			<div style="display: flex; width: 700px; flex-direction: row; justify-content: center;">
+			<div style="display: flex; width: 600px; flex-direction: row; justify-content: center;">
 				<div style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
 					<div class="date">
 						<label for="content">기간선택 : </label> <input type="text" id="startDate" name="startDate" style="width: 300px;" />
@@ -51,11 +54,13 @@
 	</div>
 </div>
 <div class="sumdiv">
-			<div class="sum">
-				<h3>매 출 :</h3>
-				<h3>${sum}원</h3>
-			</div>
-		</div>
+	<div class="sum">
+		<h3></h3>
+		<h3>매 출 :</h3>
+		<h3>${sum}원</h3>
+		<h3></h3>
+	</div>
+</div>
 <div>
 	<div class="show">
 		<c:forEach var="showList" items="${showList}">
@@ -106,7 +111,7 @@
 								<p>청소년 요금 : ${formattedYouthRate}</p>
 								<p>유아 요금 : ${formattedInfantRate}</p>
 							</div>
-							<div>
+							<div style="border: none; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">
 								<p>인원 : ${showList.adultCount}</p>
 								<p>인원 : ${showList.youthCount}</p>
 								<p>인원 : ${showList.infantCount}</p>

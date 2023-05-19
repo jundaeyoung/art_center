@@ -240,7 +240,12 @@
 	});
 	$('.summernote').summernote({
 		tabsize : 2,
-		height : 400
+		height : 400,
+		callbacks: {
+	        onInit: function (c) {
+	            c.editable.html('');
+	        }
+	    }
 	});
 
 	$(document)

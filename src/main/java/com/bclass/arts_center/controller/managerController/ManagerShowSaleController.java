@@ -35,7 +35,7 @@ public class ManagerShowSaleController {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> selectCount = managerShowSaleService.readAndCount(requestManagerShowSaleDto);
-		DecimalFormat df = new DecimalFormat("###,###"); 
+		DecimalFormat df = new DecimalFormat("###,###");
 		if (selectCount == null) {
 			model.addAttribute("showList", null);
 		} else {
@@ -48,7 +48,6 @@ public class ManagerShowSaleController {
 				}
 			}
 			df.format(sum);
-			System.out.println(df.format(sum));
 			model.addAttribute("showList", selectCount);
 			model.addAttribute("sum", df.format(sum));
 		}
@@ -65,10 +64,22 @@ public class ManagerShowSaleController {
 		requestManagerShowSaleDto.setEndDate(split[1] + " 00:00:00");
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
 				.readManagerShowSaleByDate(requestManagerShowSaleDto);
+		System.out.println(showSaleList);
+		DecimalFormat df = new DecimalFormat("###,###");
 		if (showSaleList == null) {
 			model.addAttribute("showList", null);
 		} else {
+			int sum = 0;
+			for (int i = 0; i < showSaleList.size(); i++) {
+				if (showSaleList.get(i).getAdultCount() != 0) {
+					String string = showSaleList.get(i).getAdultRate();
+					String newStr = string.replaceAll(",", "");
+					sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
+				}
+			}
+			df.format(sum);
 			model.addAttribute("showList", showSaleList);
+			model.addAttribute("sum", df.format(sum));
 		}
 		return "/manager/managerShowSale";
 	}
@@ -79,10 +90,21 @@ public class ManagerShowSaleController {
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
 				.readManagerShowBySearch(requestManagerShowSaleDto);
+		DecimalFormat df = new DecimalFormat("###,###");
 		if (showSaleList == null) {
 			model.addAttribute("showList", null);
 		} else {
+			int sum = 0;
+			for (int i = 0; i < showSaleList.size(); i++) {
+				if (showSaleList.get(i).getAdultCount() != 0) {
+					String string = showSaleList.get(i).getAdultRate();
+					String newStr = string.replaceAll(",", "");
+					sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
+				}
+			}
+			df.format(sum);
 			model.addAttribute("showList", showSaleList);
+			model.addAttribute("sum", df.format(sum));
 		}
 		return "/manager/managerShowSale";
 	}
@@ -92,7 +114,20 @@ public class ManagerShowSaleController {
 			Model model) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService.readManagerShowDetailByShowId(showId,
 				userId);
-
+		DecimalFormat df = new DecimalFormat("###,###");
+		if (showSaleList == null) {
+			model.addAttribute("showList", null);
+		} else {
+			int sum = 0;
+			for (int i = 0; i < showSaleList.size(); i++) {
+				if (showSaleList.get(i).getAdultCount() != 0) {
+					String string = showSaleList.get(i).getAdultRate();
+					String newStr = string.replaceAll(",", "");
+					sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
+				}
+			}
+			df.format(sum);
+		}
 		if (showSaleList == null || showSaleList.isEmpty()) {
 			model.addAttribute("showList", null);
 		} else {

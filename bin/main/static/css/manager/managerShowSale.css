@@ -127,6 +127,7 @@
 .money__content {
 	display: flex;
 	flex-direction: column;
+	margin-left: -20px;
 }
 
 .show__content {
@@ -142,8 +143,9 @@
 .show__content div p {
 	display: flex;
 	justify-content: space-between;
-	margin: 30px 30px;
+	margin: 30px 20px;
 	align-items: center;
+	font-size: 22px;
 }
 
 .show__content h1 {
@@ -166,20 +168,19 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
-	height: 200px;
-	width: 600px;
+	margin-left: 100px;
 }
 
 #money div {
-	display: felx;
 	border: 1px solid #ccc;
 }
 
 #money div p {
 	display: flex;
 	justify-content: space-between;
-	margin: 30px 40px;
+	margin: 30px 20px;
 	align-items: center;
+	font-size: 22px;
 }
 
 .sum {
@@ -193,9 +194,9 @@
 	align-items: center;
 	text-align: center;
 	padding: 1rem;
-	height: 350px;
+	height: 150px;
 }
 
 .sum h3 {
-	font-weight: 300;
+	font-weight: 400;
 }

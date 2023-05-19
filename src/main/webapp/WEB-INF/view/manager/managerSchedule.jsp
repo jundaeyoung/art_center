@@ -57,8 +57,8 @@
 					return date.date.year + '년 '
 							+ (parseInt(date.date.month) + 1) + '월';
 				},
-				initialDate: '2023-05-04', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.) 나중엔 해제해야함
-				navLinks: true,
+/* 				initialDate: '2023-05-04', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.) 나중엔 해제해야함
+ */				navLinks: true,
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
 				// editable : true,
