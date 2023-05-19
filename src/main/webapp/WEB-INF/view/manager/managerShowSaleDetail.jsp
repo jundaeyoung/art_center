@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet" href="/css/manager/managerShowSale.css">
+<link rel="stylesheet" href="/css/manager/managerShowSaleDetail.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript" src="/js/main.js"></script>
 
@@ -50,77 +50,65 @@
 		</form>
 	</div>
 </div>
-<div class="sumdiv">
-			<div class="sum">
-				<h3>매 출 :</h3>
-				<h3>${sum}원</h3>
-			</div>
-		</div>
 <div>
 	<div class="show">
-		<c:forEach var="showList" items="${showList}">
-			<a href="/manager/showSaleDetailByShowId/${showList.showId}/${principal.getId()}">
-				<div class="review__content">
+		<div class="review__content">
+			<c:choose>
+				<c:when test="${imgRoute==null}">
+					<h1>주문 목록이 없습니다.</h1>
+				</c:when>
+				<c:otherwise>
 					<div>
-						<img src="/images/${showList.imgRoute}" width="230" height="300">
+						<img src="/images/${imgRoute}" width="230" height="300">
 					</div>
 					<div class="show__content">
 						<h1>공연 정보</h1>
 						<div>
-							<p>제 목 : ${showList.title}</p>
-							<p>기간 : ${showList.startDate}&nbsp&nbsp~&nbsp&nbsp${showList.endDate}</p>
-							<c:choose>
-								<c:when test="${showList.showStatus==1}">
-									<p>공연 상태 : 공연중</p>
-								</c:when>
-								<c:otherwise>
-									<p>공연 상태 : 공연 종료</p>
-								</c:otherwise>
-							</c:choose>
-
+							<p>제 목 : ${title}</p>
+							<p>기간 :</p>
 						</div>
 					</div>
-					<fmt:parseNumber var="adultRate" type="number" value="${showList.adultRate}" />
-					<fmt:formatNumber value="${adultRate}" pattern="#,##0" var="formattedAdultRate" />
-					<fmt:parseNumber var="youthRate" type="number" value="${showList.youthRate}" />
-					<fmt:formatNumber value="${youthRate}" pattern="#,##0" var="formattedYouthRate" />
-					<fmt:parseNumber var="infantRate" type="number" value="${showList.infantRate}" />
-					<fmt:formatNumber value="${infantRate}" pattern="#,##0" var="formattedInfantRate" />
-					<c:set var="totalAdultPrice" value="${adultRate * showList.adultCount}" />
-					<c:set var="totalYouthPrice" value="${adultRate * showList.youthCount}" />
-					<c:set var="totalInfantPrice" value="${adultRate * showList.infantCount}" />
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<h1>주문 목록</h1>
+		<c:forEach var="showList" items="${showList}">
+			<fmt:parseNumber var="adultRate" type="number" value="${showList.adultRate}" />
+			<fmt:formatNumber value="${adultRate}" pattern="#,##0" var="formattedAdultRate" />
+			<fmt:parseNumber var="youthRate" type="number" value="${showList.youthRate}" />
+			<fmt:formatNumber value="${youthRate}" pattern="#,##0" var="formattedYouthRate" />
+			<fmt:parseNumber var="infantRate" type="number" value="${showList.infantRate}" />
+			<fmt:formatNumber value="${infantRate}" pattern="#,##0" var="formattedInfantRate" />
+			<c:set var="totalAdultPrice" value="${adultRate * showList.adultCount}" />
+			<c:set var="totalYouthPrice" value="${adultRate * showList.youthCount}" />
+			<c:set var="totalInfantPrice" value="${adultRate * showList.infantCount}" />
 
-					<fmt:formatNumber value="${totalAdultPrice}" pattern="#,##0" var="A__price" />
-					<fmt:formatNumber value="${totalYouthPrice}" pattern="#,##0" var="Y__price" />
-					<fmt:formatNumber value="${totalInfantPrice}" pattern="#,##0" var="I__price" />
+			<fmt:formatNumber value="${totalAdultPrice}" pattern="#,##0" var="A__price" />
+			<fmt:formatNumber value="${totalYouthPrice}" pattern="#,##0" var="Y__price" />
+			<fmt:formatNumber value="${totalInfantPrice}" pattern="#,##0" var="I__price" />
 
-					<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice+totalInfantPrice}" />
-					<fmt:formatNumber value="${totalPrice}" pattern="#,##0" var="T__price" />
+			<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice+totalInfantPrice}" />
+			<fmt:formatNumber value="${totalPrice}" pattern="#,##0" var="T__price" />
 
 
-					<div class="money__content">
-						<h1>매출</h1>
-						<div id="money">
-							<div>
-								<p>성인요금 : ${formattedAdultRate}</p>
-								<p>청소년 요금 : ${formattedYouthRate}</p>
-								<p>유아 요금 : ${formattedInfantRate}</p>
-							</div>
-							<div>
-								<p>인원 : ${showList.adultCount}</p>
-								<p>인원 : ${showList.youthCount}</p>
-								<p>인원 : ${showList.infantCount}</p>
-							</div>
-							<div>
-								<p>합계 : ${A__price}</p>
-								<p>합계 : ${Y__price}</p>
-								<p>합계 : ${I__price}</p>
-							</div>
-						</div>
-						<h3>총 합계 : ${T__price}</h3>
+			<div class="money__content">
+				<div id="money">
+					<div>
+						<c:choose>
+							<c:when test="${showList.adultCount!=0}">
+								<p>성인 : ${formattedAdultRate}</p>
+							</c:when>
+							<c:when test="${showList.youthCount!=0}">
+								<p>청소년 : ${formattedYouthRate}</p>
+							</c:when>
+							<c:otherwise>
+								<p>유아 : ${formattedInfantRate!=0}</p>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
-			</a>
+				<h3>총 합계 : ${T__price}</h3>
+			</div>
 		</c:forEach>
 	</div>
 </div>

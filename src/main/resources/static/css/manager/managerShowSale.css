@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 .show__header {
 	display: flex;
 	justify-content: center;
@@ -20,10 +19,11 @@
 .signUpShow__content {
 	height: 100px;
 	display: flex;
+	flex-direction: row;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
-	margin: 20px 0;
+	margin: 60px 0;
 }
 
 .signUpShow__content div {
@@ -43,14 +43,13 @@
 	font-size: 30px;
 }
 
-.signUpShow__info label{
+.signUpShow__info label {
 	width: 200px;
 }
 
-
 .btn__sub button {
 	border: 1px solid #ccc;
-	margin-left: 460px;
+	margin-left: 60px;
 	background-color: white;
 	width: 150px;
 	height: 80px;
@@ -58,7 +57,7 @@
 	font-size: 25px;
 }
 
-.signUpShow__info input{
+.signUpShow__info input {
 	height: 30px;
 	width: 200px;
 	font-size: 25px;
@@ -72,8 +71,9 @@
 	width: 800px;
 	height: 800px;
 }
-.calendar-table table{
-	height: 750px!important;
+
+.calendar-table table {
+	height: 750px !important;
 }
 
 .in-range available {
@@ -84,11 +84,13 @@
 	width: 400px;
 	height: 850px;
 }
-.opensright{
-	top: 550px!important;
-	left:auto!important;
-	margin-left: -100px!important;
+
+.opensright {
+	top: 550px !important;
+	left: auto !important;
+	margin-left: -100px !important;
 }
+
 .daterangepicker .calendar-table {
 	border: 1px solid black;
 }
@@ -109,14 +111,91 @@
 	font-size: 17px !important;
 }
 
-
-
-.review__content{
+.review__content {
 	display: flex;
+	justify-content: flex-start;
 	margin: 50px;
-	padding-bottom:50px;
+	padding-bottom: 50px;
 	border-bottom: 1px solid #ccc;
 }
-.show__content{
+
+.show__content {
 	margin-left: 100px;
+	width: 300px;
+}
+
+.money__content {
+	display: flex;
+	flex-direction: column;
+}
+
+.show__content {
+	height: 200px;
+	width: 400px;
+}
+
+.show__content div {
+	display: felx;
+	border: 1px solid #ccc;
+}
+
+.show__content div p {
+	display: flex;
+	justify-content: space-between;
+	margin: 30px 30px;
+	align-items: center;
+}
+
+.show__content h1 {
+	font-weight: 500;
+}
+
+.money__content h1 {
+	font-weight: 500;
+	margin-left: 100px;
+}
+
+.money__content h3 {
+	display: flex;
+	justify-content: flex-end;
+	font-weight: 400;
+	font-size: 30px;
+}
+
+#money {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	height: 200px;
+	width: 600px;
+}
+
+#money div {
+	display: felx;
+	border: 1px solid #ccc;
+}
+
+#money div p {
+	display: flex;
+	justify-content: space-between;
+	margin: 30px 40px;
+	align-items: center;
+}
+
+.sum {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	width: 1400px;
+	color: black;
+	font-size: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	padding: 1rem;
+	height: 350px;
+}
+
+.sum h3 {
+	font-weight: 300;
 }

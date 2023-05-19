@@ -7,6 +7,7 @@ public class RequestManagerShowSaleDto {
 	private Integer userId;
 	private Integer showId;
 	private String imgRoute;
+	private String showStatus;
 	private String title;
 	private String startDate;
 	private String endDate;

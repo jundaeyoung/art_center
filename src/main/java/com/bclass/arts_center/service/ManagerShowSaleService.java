@@ -18,43 +18,46 @@ public class ManagerShowSaleService {
 	private ManagerShowSaleRepository managerShowSaleRepository;
 
 	/*
-	 * 전대영 : 공연 매니저 id로 select
+	 * 전대영 : 매니저 공연 매출 보기 
 	 */
 	@Transactional
-	public List<RequestShowDto> readShowById(Integer userId) {
-		List<RequestShowDto> showSaleList = managerShowSaleRepository.selectManagerShowSaleByUserId(userId);
-		return showSaleList;
-	}
-
-	/*
-	 * 전대영 : 공연 title 검색
-	 */
-	@Transactional
-	public List<RequestManagerShowSaleDto> readShowByTitle(String title) {
-		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository.selectManagerShowBySearch(title);
-
-		return showSaleList;
-	}
-
-	/*
-	 * 전대영 : 공연 검색
-	 */
-	@Transactional
-	public List<RequestManagerShowSaleDto> readShowSale(ResponseManagerShowSaleDto managerShowSaleDto) {
+	public List<RequestManagerShowSaleDto> readAndCount(RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
-				.selectManagerShowSaleByDate(managerShowSaleDto);
+				.selectAndCount(requestManagerShowSaleDto);
 
 		return showSaleList;
 	}
-
 	/*
-	 * 전대영 : 공연 검색
+	 * 전대영 : 매니저 공연 매출 날짜별로 보기 
 	 */
 	@Transactional
-	public List<RequestManagerShowSaleDto> selectInfantCount(RequestManagerShowSaleDto requestManagerShowSaleDto) {
+	public List<RequestManagerShowSaleDto> readManagerShowSaleByDate(RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
-				.selectCount(requestManagerShowSaleDto);
-
+				.selectManagerShowSaleByDate(requestManagerShowSaleDto);
+		
+		return showSaleList;
+	}
+	
+	/*
+	 * 전대영 : 매니저 공연 매출 검색하여 보기 
+	 */
+	@Transactional
+	public List<RequestManagerShowSaleDto> readManagerShowBySearch(RequestManagerShowSaleDto requestManagerShowSaleDto) {
+		requestManagerShowSaleDto.setTitle("%"+requestManagerShowSaleDto.getTitle()+"%");
+		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
+				.selectManagerShowBySearch(requestManagerShowSaleDto);
+		
+		return showSaleList;
+	}
+	
+	/*
+	 * 전대영 : 매니저 공연 detail 매출 보기 
+	 */
+	@Transactional
+	public List<RequestManagerShowSaleDto> readManagerShowDetailByShowId(Integer showId,Integer userId) {
+		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
+				.selectManagerShowDetailByShowId(showId,userId);
+		
 		return showSaleList;
 	}
 }

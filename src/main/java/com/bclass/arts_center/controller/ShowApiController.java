@@ -22,7 +22,7 @@ public class ShowApiController {
 
 	@Autowired
 	private ShowService showService;
-	
+
 	@Autowired
 	private HttpSession session;
 
@@ -32,8 +32,11 @@ public class ShowApiController {
 	@GetMapping("/newestShow")
 	public List<RequestShowDto> newestShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range) {
-
+		Integer showCount = showService.readShowByCount();
 		List<RequestShowDto> showList = showService.readShowByNewest(begin, range);
+		Double count = Math.ceil(showCount);
+		Integer page = (int) Math.ceil(count / 3);
+		showList.get(0).setCount(page);
 		return showList;
 	}
 
@@ -43,8 +46,11 @@ public class ShowApiController {
 	@GetMapping("/highesRatedShow")
 	public List<RequestShowDto> highesRatedShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-
+		Integer showCount = showService.readShowByCount();
 		List<RequestShowDto> showList = showService.readShowByHighesRated(begin, range);
+		Double count = Math.ceil(showCount);
+		Integer page = (int) Math.ceil(count / 3);
+		showList.get(0).setCount(page);
 		return showList;
 	}
 
@@ -54,8 +60,11 @@ public class ShowApiController {
 	@GetMapping("/rowestRatedShow")
 	public List<RequestShowDto> rowestRatedShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-
+		Integer showCount = showService.readShowByCount();
 		List<RequestShowDto> showList = showService.readShowByRowestRated(begin, range);
+		Double count = Math.ceil(showCount);
+		Integer page = (int) Math.ceil(count / 3);
+		showList.get(0).setCount(page);
 		return showList;
 	}
 
@@ -66,36 +75,12 @@ public class ShowApiController {
 	public List<RequestShowDto> categoryShow(@RequestParam(required = false) String category,
 			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
 			@RequestParam(required = false) Integer range) {
+		Integer showCount = showService.readShowBycategoryCount(category);
 		List<RequestShowDto> showList = showService.readShowBycategory(category, begin, range);
-		System.out.println(showList);
+		Double count = Math.ceil(showCount);
+		Integer page = (int) Math.ceil(count / 3);
+		showList.get(0).setCount(page);
 		return showList;
-	}
-
-	/**
-	 * @author 손주이
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/showView/{showId}")
-	public String showView(@PathVariable Integer showId, Model model) {
-
-		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
-
-//		System.out.println("s" + showInfo);
-		model.addAttribute("showInfo", showInfo);
-		model.addAttribute("title", showInfo.get(0).getTitle());
-		model.addAttribute("content", showInfo.get(0).getContent());
-		model.addAttribute("imgRoute", showInfo.get(0).getImgRoute());
-		model.addAttribute("startDate", showInfo.get(0).getStartDate());
-		model.addAttribute("endDate", showInfo.get(0).getEndDate());
-		model.addAttribute("admissionAge", showInfo.get(0).getAdmissionAge());
-		model.addAttribute("location", showInfo.get(0).getLocation());
-		model.addAttribute("name", showInfo.get(0).getName());
-		model.addAttribute("content", showInfo.get(0).getContent());
-		model.addAttribute("nickname", showInfo.get(0).getNickname());
-		model.addAttribute("tel", showInfo.get(0).getTel());
-
-		return "/show/showView";
 	}
 
 }

@@ -19,7 +19,7 @@
 .signUpShow__content {
 	height: 100px;
 	display: flex;
-	flex-direction: row;
+	flex-direction:row;
 	text-align: center;
 	align-items: center;
 	justify-content: center;
@@ -145,11 +145,9 @@
 	margin: 30px 30px;
 	align-items: center;
 }
-
-.show__content h1 {
+.show__content h1{
 	font-weight: 500;
 }
-
 .money__content h1 {
 	font-weight: 500;
 	margin-left: 100px;
@@ -165,14 +163,13 @@
 #money {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-end;
+	justify-content:flex-end;
 	height: 200px;
 	width: 600px;
 }
 
 #money div {
 	display: felx;
-	border: 1px solid #ccc;
 }
 
 #money div p {
@@ -180,22 +177,4 @@
 	justify-content: space-between;
 	margin: 30px 40px;
 	align-items: center;
-}
-
-.sum {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	width: 1400px;
-	color: black;
-	font-size: 40px;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	text-align: center;
-	padding: 1rem;
-	height: 350px;
-}
-
-.sum h3 {
-	font-weight: 300;
 }
