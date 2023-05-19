@@ -137,11 +137,9 @@
 	<label>대관 장소 : ${location}</label>
 	</div>
 	
-	<div class="rental__date">
+	<div class="rental__date" >
 	<label>대관 기간 : </label>
 	<input type="text" id="dateTime" name="startDate" value="" onchange="calculatePrice()"/>
-	<%-- <input type="hidden" id="dateTime" name= "startDate" value="${startDate}">
-	<input type="hidden" id="dateTime" name= "endDate" value="${endDate}"> --%>
 </div>
 	
 	<div class="rental__hole">

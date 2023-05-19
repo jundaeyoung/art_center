@@ -77,19 +77,17 @@ public class RentalController {
 	@PostMapping("/reservation")
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto) {
 		int result = rentalService.insertRental(requestRentPlaceDto);
-		String startDate = requestRentPlaceDto.getStartDate();
-		String endDate = requestRentPlaceDto.getEndDate();
-		requestRentPlaceDto.setStartDate(startDate);
-		requestRentPlaceDto.setEndDate(endDate);
 		
 		
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
 		
 		
-		 String str = requestRentPlaceDto.getStartDate(); 
-		 String[] split = str.split("~"); requestRentPlaceDto.setStartDate(split[0]);
-		 requestRentPlaceDto.setEndDate(split[1]);
+		String str = requestRentPlaceDto.getStartDate();
+		String[] split = str.split("~");
+		requestRentPlaceDto.setStartDate(split[0]);
+		requestRentPlaceDto.setEndDate(split[1]);
+		rentalService.insertRental(requestRentPlaceDto);
 		 
 		
 		
