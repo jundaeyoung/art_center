@@ -165,8 +165,8 @@ CREATE TABLE ticketing_tb(
 -- 대관 예약
 CREATE TABLE rent_place_reservation_tb(
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    start_date DATE DEFAULT (current_date),
-    end_date DATE DEFAULT (current_date),
+    start_date varchar(100),
+    end_date varchar(100),
     start_time time,
     end_time time,
     reservation_date TIMESTAMP DEFAULT now(),

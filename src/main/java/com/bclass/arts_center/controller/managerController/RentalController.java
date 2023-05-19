@@ -1,5 +1,6 @@
 package com.bclass.arts_center.controller.managerController;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
@@ -40,7 +41,8 @@ public class RentalController {
 	public String rentalPage(Model model) {
 		User principal = (User)session.getAttribute(Define.PRINCIPAL);
 		if(principal.getRoleId() != 2) {
-			throw new UnAuthorizedException("매니저 계정으로 로그인 해주세요",  HttpStatus.BAD_REQUEST);
+			
+			 throw new UnAuthorizedException("매니저 계정으로 로그인 해주세요", HttpStatus.BAD_REQUEST);
 		}
 		return "/manager/rental";
 	}
@@ -75,9 +77,22 @@ public class RentalController {
 	@PostMapping("/reservation")
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto) {
 		int result = rentalService.insertRental(requestRentPlaceDto);
+		String startDate = requestRentPlaceDto.getStartDate();
+		String endDate = requestRentPlaceDto.getEndDate();
+		requestRentPlaceDto.setStartDate(startDate);
+		requestRentPlaceDto.setEndDate(endDate);
+		
 		
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
+		
+		
+		 String str = requestRentPlaceDto.getStartDate(); 
+		 String[] split = str.split("~"); requestRentPlaceDto.setStartDate(split[0]);
+		 requestRentPlaceDto.setEndDate(split[1]);
+		 
+		
+		
 		if(startTime.equals(endTime)) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		} else {

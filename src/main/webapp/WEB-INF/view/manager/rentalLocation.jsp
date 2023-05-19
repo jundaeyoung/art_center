@@ -127,7 +127,7 @@
 	</div>
 	
 	<div class="rental__info">
-		<h1>신청 정보</h1>
+		<h1>예약 정보</h1>
 	</div>
 	
 	<div class="rental__info_content">
@@ -139,8 +139,10 @@
 	
 	<div class="rental__date">
 	<label>대관 기간 : </label>
-	<input type="text" id="dateTime" name="dateTime" value="" onchange="calculatePrice()"/>
-	</div>
+	<input type="text" id="dateTime" name="startDate" value="" onchange="calculatePrice()"/>
+	<%-- <input type="hidden" id="dateTime" name= "startDate" value="${startDate}">
+	<input type="hidden" id="dateTime" name= "endDate" value="${endDate}"> --%>
+</div>
 	
 	<div class="rental__hole">
 	<label>대관 홀 : </label>
@@ -196,12 +198,12 @@
 					"drops" : "down"
 				},
 				function(start, end, label) {
-					  let startDate = start.format('YYYY-MM-DD').split(' ')[0];
-			          let endDate = end.format('YYYY-MM-DD').split(' ')[0];
+					 let startDate = start.format('YYYY-MM-DD').replaceAll(/-/g, ""); 
+					    let endDate = end.format('YYYY-MM-DD').replaceAll(/-/g, ""); 
 					console.log('New date range selected: '
-							+ start.format('YYYY-MM-DD') + ' to '
-							+ end.format('YYYY-MM-DD') + ' (predefined range: '
-							+ label + ')');
+							+ startDate + ' to '
+							+ endDate + ' (predefined range: '
+							+ start + ')');
 				});
 	});
     function calculatePrice() {
