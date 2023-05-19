@@ -155,13 +155,17 @@
 	</div>	
 	<div class="rental__time">
 		<label>대관 시간 : </label> 
-		<select id="timeSelect">
+		<select id="timeSelect" name="startTime">
 			<c:forEach var="timeList" items="${timeList}">
-	<input type="hidden" name= "locationId" value="${locationId}">
-	
-				<option value="${timeLists.id}">${timeList.startTime} ~ ${timeList.endTime}</option>
+				<option value="${timeList.startTime}" >${timeList.startTime}</option>
 			</c:forEach>
 		</select>
+		<select id="timeSelect" name="endTime">
+			<c:forEach var="timeList" items="${timeList}">
+				<option value="${timeList.endTime}" >${timeList.endTime}</option>
+			</c:forEach>
+		</select>
+				<input type="hidden" name= "locationId" value="${locationId}">
 	</div>
 	<div class="rental__ok">
 		<input type="submit" class="rental__btn" value="신청하기">
@@ -192,6 +196,8 @@
 					"drops" : "down"
 				},
 				function(start, end, label) {
+					  let startDate = start.format('YYYY-MM-DD').split(' ')[0];
+			          let endDate = end.format('YYYY-MM-DD').split(' ')[0];
 					console.log('New date range selected: '
 							+ start.format('YYYY-MM-DD') + ' to '
 							+ end.format('YYYY-MM-DD') + ' (predefined range: '
