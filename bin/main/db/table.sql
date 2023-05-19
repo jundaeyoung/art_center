@@ -152,6 +152,7 @@ CREATE TABLE ticketing_tb
    FOREIGN KEY (show_time_id) REFERENCES show_datetime_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
    FOREIGN KEY (age_group_id) REFERENCES age_group_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 -- 대관 예약
 CREATE TABLE rent_place_reservation_tb
 (

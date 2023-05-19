@@ -12,8 +12,8 @@ today.setHours(0, 0, 0, 0); // 비교 편의를 위해 today의 시간을 초기
 
 // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
 function buildCalendar() {
-	let selectDateList = [];
-	let selectDate;
+	let createDateList = [];
+	let createDate;
 	let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1); // 이번달 1일
 	let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0); // 이번달 마지막날
 
@@ -48,29 +48,30 @@ function buildCalendar() {
 		}
 
 		if (nowDay < today) { // 지난날인 경우
-			newDIV.className = "pastDay";
+			newDIV.className = "pastDay date";
 		} else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
-			newDIV.className = "today";
+			newDIV.className = "today date";
 			newDIV.onclick = function() {
 				choiceDate(this);
 			}
 		} else { // 미래인 경우
-			newDIV.className = "futureDay";
+			newDIV.className = "futureDay date";
 			newDIV.onclick = function() {
 				choiceDate(this);
 			}
 		}
 
-		selectDate = document.getElementById("calYear").textContent + "-" + document.getElementById("calMonth").textContent + "-" + newDIV.textContent;
-		selectDateList.push(selectDate);
+		createDate = document.getElementById("calYear").textContent + "-" + document.getElementById("calMonth").textContent + "-" + newDIV.textContent;
+		createDateList.push(createDate);
+
 
 	}
-	matchDate(selectDateList);
+	matchDate(createDateList);
 }
 
 
 
-function matchDate(selectDateList) {
+function matchDate(createDateList) {
 
 	let arrayDateList = [];
 	let hiddenDateValue = document.getElementsByClassName('listDate');
@@ -79,23 +80,23 @@ function matchDate(selectDateList) {
 		arrayDateList.push(hiddenDateValue[i].value);
 	}
 
-	let choiceDateIndex = [];
-	for (let i = 0; i < selectDateList.length; i++) {
+	let matchDateIndex = [];
+	for (let i = 0; i < createDateList.length; i++) {
 		for (let j = 0; j < arrayDateList.length; j++) {
 			//   값 ===                     값
 			//console.log("1 " + selectDateList[i]);
 			//console.log("2 " + arrayDateList[j]);
-			if (selectDateList[i] === arrayDateList[j]) {
+			if (createDateList[i] === arrayDateList[j]) {
 				//console.log("맞음 ㅣ " + i);
-				choiceDateIndex.push(i);
+				matchDateIndex.push(i);
 				continue;
 			}
 		}
 	}
 
-	let paragraphs = $("p");
-	for (let i = 0; i < choiceDateIndex.length; i++) {
-		let index = choiceDateIndex[i];
+	let paragraphs = $(".date");
+	for (let i = 0; i < matchDateIndex.length; i++) {
+		let index = matchDateIndex[i];
 		if (index >= 0 && index < paragraphs.length) {
 			paragraphs[index].style.backgroundColor = '#F5A9BC';
 		}
@@ -149,22 +150,24 @@ function selectDateForTime(showId, date) {
 		conttentType: "application/json; charset=utf-8",
 		dataType: "json"
 	}).done(function(showTimeList) {
-		$(".watch--time").remove()
+		let timeTableList = [];
+		$(".watch--time").remove();
 		console.log(showTimeList);
 		$(".TagPlay").append(`<ul class="watch--time"></ul>`);
-		console.log(showTimeList[1])
-		showTimeList.forEach((showTime) => {
-			
-			let	addTime = `<li><a id="cellPlay" name="cellPlay" class="select" href="#">${showTime.showTime}</a></li>`
+		/*console.log(showTimeList[1])*/
+		showTimeList.forEach((showTime, index) => {
+			let count = index + 1;
+			let timeTableItem = {
+				count: count
+			}
+
+
+
+
+			addTime = `<li><a class="timeTableLabel" data-tabtoggle="timeTableList" role="button" data-seq="008" data-text="${showTime.showTime}"></li>`
 			$(".watch--time").append(addTime);
 		})
-		/*
-		console.log(addTime);
-		for (let i; i < addTime.length; i++) {
-			$("ul").append(addTime[i]);
-		}
-		*/
-		console.log('된겨?')
+		console.log('된겨?');
 	}).fail(function(error) {
 		console.log(error);
 		console.log('안된겨!')
@@ -172,5 +175,7 @@ function selectDateForTime(showId, date) {
 
 
 
+
 }
+
 

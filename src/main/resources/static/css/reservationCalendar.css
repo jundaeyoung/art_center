@@ -5,7 +5,6 @@
 /* body {
 	background-color: skyblue;
 } */
-
 .Calendar {
 	background-color: white;
 	height: auto;
@@ -57,12 +56,10 @@ td {
 	background-color: #F5D042;
 	color: #fff;
 	font-weight: 600;
-	cursor: pointer;
 }
 
 .futureDay {
 	background-color: #FFFFFF;
-	cursor: pointer;
 }
 
 .futureDay:hover {
@@ -70,8 +67,17 @@ td {
 }
 
 .futureDay.choiceDay, .today.choiceDay {
+	color: #fff;
+	font-weight: 600;
+}
+
+.performDay {
 	background: #0A174E;
 	color: #fff;
 	font-weight: 600;
+	cursor: pointer;
+}
+
+#cellPlay {
 	cursor: pointer;
 }
