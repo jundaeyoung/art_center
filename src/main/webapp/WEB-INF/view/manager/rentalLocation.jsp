@@ -208,9 +208,10 @@
 						"daysOfWeek" : [ "월", "화", "수", "목", "금", "토", "일" ],
 						"monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월",
 								"7월", "8월", "9월", "10월", "11월", "12월" ],
-						"firstDay" : 0
+						"firstDay" : 0,
 					},
-					"drops" : "down"
+					"drops" : "down",
+					"minDate": moment().startOf('day')
 				},
 				function(start, end, label) {
 					 let startDate = start.format('YYYY-MM-DD').replaceAll(/-/g, ""); 

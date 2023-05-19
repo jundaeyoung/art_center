@@ -96,13 +96,15 @@ public class RentalController {
 		requestRentPlaceDto.setStartDate(split[0]);
 		requestRentPlaceDto.setEndDate(split[1]);
 		rentalService.insertRental(requestRentPlaceDto);
-		if (startTime.equals(endTime)) {
+		
+		if(startTime.equals(endTime)) {
+			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST); 
+		} else if (endTime.compareTo(startTime) < 0) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		} else {
-			System.out.println("insert 됬어용? : " + requestRentPlaceDto + "DDDD");
-			System.out.println("여기 값이 들어오나요?" + result);
-			return "/manager/rental";
+			 System.out.println("insert 됬어용? : " + requestRentPlaceDto + "DDDD");
+			 System.out.println("여기 값이 들어오나요?" + result); };
+			 return "/manager/rental";
 		}
-
-	}
+		
 }
