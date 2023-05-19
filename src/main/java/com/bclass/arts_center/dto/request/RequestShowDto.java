@@ -29,4 +29,10 @@ public class RequestShowDto {
 	private String name;
 	private Date showDate;
 	private Time showTime;
+	private Integer count;
+	private String admissionAge;
+	private String adultRate;
+	private String youthRate;
+	private String infantRate;
+	
 }

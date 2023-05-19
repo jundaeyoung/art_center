@@ -71,7 +71,7 @@
 								<ul class="sub">
 									<li><a href="/schedule">전체 공연 일정(달력)</a></li>
 									<li><a href="/manager/schedule/${principal.id}">나의 공연 일정(달력)</a></li>
-									<li><a href="#">나의 공연 매출</a></li>
+									<li><a href="/manager/showSale?currentPage=1&begin=0&range=5">나의 공연 매출</a></li>
 									<li><a href="/manager/signUpShow">공연 등록</a></li>
 								</ul></li>
 							<li><a href="#">전시회</a>
@@ -161,3 +161,15 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+	
+	<script type="text/javascript">
+	// 상단 메뉴바 드롭다운
+	$(document).ready(function() {
+		$(".main>li").mouseover(function() {
+			$(this).children(".sub").stop().slideDown(200);
+		});
+		$(".main>li").mouseleave(function() {
+			$(this).children(".sub").stop().slideUp(200);
+		});
+	});
+	</script>

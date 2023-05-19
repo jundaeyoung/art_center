@@ -17,6 +17,7 @@ public class ShowService {
 	@Autowired
 	private ShowRepository showRepository;
 
+	
 	/**
 	 * 작성자 : 전대영 show 최신순으로 select
 	 */

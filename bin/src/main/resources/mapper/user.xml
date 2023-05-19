@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.UserRepository">
+	
+	<!-- 회원가입 -->
+	<insert id="insertUser">
+		INSERT INTO user_tb
+		(user_name, password, nickname, email, birth_date, tel)
+		VALUES
+		(#{userName}, #{password}, #{nickname}, #{email}, #{birthDate}, #{tel})
+	</insert>
+	
+	<!-- 비밀번호 암호화 -->
+	<select id="selectUserByUsername" resultType="com.bclass.arts_center.repository.model.User">
+		SELECT * FROM user_tb
+		WHERE user_name = #{userName}
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="selectUserByUsernameAndPassword" resultType="com.bclass.arts_center.repository.model.User">
+		SELECT * FROM user_tb
+		WHERE user_name = #{userName}
+		AND password=#{password}
+	</select>
+	
+	<!-- 수정 -->	
+	<update id="updateUserByUsername">
+		UPDATE user_tb SET password = #{password}, 
+		nickname = #{nickname}, email = #{email}, birth_date = #{birthDate},
+		tel = #{tel} WHERE user_name = #{userName}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteUserById">
+		DELETE FROM user_tb WHERE user_name = #{userName}
+	</delete>
+	
+</mapper>
