@@ -11,6 +11,9 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <style>
+.dddd {
+	display: flex;
+}
 .rental__img {
 	display: flex;
 	justify-content: center;
@@ -39,9 +42,10 @@
 }
 
 .content {
-	width: 100%;
-	height: 1000px;
+	width: 600px;;
+	height: 600px;
 	margin-top: 50px;
+	margin-left: 50px;
 }
 
 .rental__info_content {
@@ -117,11 +121,15 @@
 .rental__info_content div {
 	padding: 20px;
 }
+
+.hole__img {
+	width: 400px;
+	height: 600px;
+	margin-top: 100px;
+}
+
 </style>
 <div class="rental__img"></div>
-
-<div class="content">
-
 	<div class="rental__title">
 		<h1>${location}대관</h1>
 	</div>
@@ -130,6 +138,8 @@
 		<h1>예약 정보</h1>
 	</div>
 	
+<div class="dddd">
+<div class="content">
 	<div class="rental__info_content">
 	<form action="/rental/reservation" method="post">
 	
@@ -151,7 +161,7 @@
 	</select>
 	</div>
 	<div class="rental__price">
-		<p id="totalPrice"></p>
+		<p id="totalPrice" style="margin: 0;"></p>
 	</div>	
 	<div class="rental__time">
 		<label>대관 시간 : </label> 
@@ -160,6 +170,7 @@
 				<option value="${timeList.startTime}" >${timeList.startTime}</option>
 			</c:forEach>
 		</select>
+		<label> ~ </label>
 		<select id="timeSelect" name="endTime">
 			<c:forEach var="timeList" items="${timeList}">
 				<option value="${timeList.endTime}" >${timeList.endTime}</option>
@@ -167,12 +178,17 @@
 		</select>
 				<input type="hidden" name= "locationId" value="${locationId}">
 	</div>
-	<div class="rental__ok">
-		<input type="submit" class="rental__btn" value="신청하기">
+	<div class="rental__ok" >
+		<input type="submit" class="rental__btn" value="신청하기" style="font-size: 20px; margin-right: 50px;">
 	</div>
 	</form>
-	<div class="back">
-		<button class="back__btn" onclick="location.href='/rental'">취소하기</button>
+	<div class="back" style="margin-left: 200px; margin-top: -80px;">
+		<button class="back__btn" onclick="location.href='/rental'" style="font-size: 20px;">취소하기</button>
+	</div>
+	</div>
+	</div>
+	<div class="hole__img">
+		<img alt="" src="/images/rental/hole.png">
 	</div>
 	</div>
 	<script type="text/javascript">
@@ -233,6 +249,6 @@
 	
 	</script>
 
-</div>
+
 <script type="text/javascript" src="/js/manager/rental.js"></script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

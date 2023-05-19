@@ -30,9 +30,9 @@
 
 	<insert id="insertRental">
 		INSERT INTO
-		rent_place_reservation_tb(start_date,end_date,start_time,end_time,hole_id,location_id)
+		rent_place_reservation_tb(start_date,end_date,start_time,end_time,user_id,hole_id,location_id)
 		VALUES(
-		#{startDate},#{endDate},#{startTime},#{endTime},#{holeId},#{locationId}
+		#{startDate},#{endDate},#{startTime},#{endTime},#{userId},#{holeId},#{locationId}
 		);
 	</insert>
 </mapper>

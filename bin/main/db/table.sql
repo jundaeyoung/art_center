@@ -170,7 +170,7 @@ CREATE TABLE rent_place_reservation_tb(
     start_time time,
     end_time time,
     reservation_date TIMESTAMP DEFAULT now(),
-	user_id INT NOT NULL DEFAULT 2,
+	user_id INT,
     hole_id INT NOT NULL,
     location_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
