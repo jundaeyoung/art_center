@@ -41,6 +41,12 @@
 	</div>
 
 </div>
+<div class="search" id="hide__search__box">
+	<form action="/review/search" method="get">
+		<input type="text" class="textbox" name="showName"> <input type="hidden" name="currentPage" value="1"> <input type="hidden" name="begin" value="0"> <input type="hidden"
+			name="range" value="5"> <input type="submit" class="submit" value="검&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp색">
+	</form>
+</div>
 <div class="review">
 	<c:forEach var="reviewList" items="${reviewList}">
 		<div class="review__content">

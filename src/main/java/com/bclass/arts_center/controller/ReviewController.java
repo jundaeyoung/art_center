@@ -192,4 +192,43 @@ public class ReviewController {
 		return "/user/review";
 	}
 	
+	/*
+	 * 전대영 : review에서 show검색해서show별로 리뷰 보기
+	 */
+	@GetMapping("/search")
+	public String searchReview(@RequestParam(required=false)String showName ,@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		
+		List<RequestReviewDto> reviewList = reviewService.readReviewByShow(showName, begin, range);
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		Integer reviewCount = reviewService.readReviewCountByShow(showName);
+		Double count = Math.ceil(reviewCount);
+		Integer page = (int) Math.ceil(count / 5);
+		Integer startPage = currentPage - 2;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 4;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
+		model.addAttribute("showName", showName);
+		if (principal == null) {
+			model.addAttribute("userInfo", null);
+		} else {
+			model.addAttribute("userInfo", principal);
+		}
+		if (reviewList.isEmpty()) {
+			model.addAttribute("reviewList", null);
+		} else {
+			model.addAttribute("reviewList", reviewList);
+		}
+		return "/user/review";
+	}
 }

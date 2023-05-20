@@ -37,7 +37,7 @@
 	</div>
 	<div class="signUpShow__info">
 		<form action="/manager/showSaleBySearch" method="post">
-			<div style="display: flex; width: 700px; flex-direction: row; justify-content: center;">
+			<div style="display: flex; width: 500px; flex-direction: row; justify-content: center;">
 				<div style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
 					<div class="date">
 						<label for="title">제 목 : </label> <input type="text" id="title" name="title" style="width: 300px;" />

@@ -46,4 +46,16 @@ public interface ReviewRepository {
 	 * 리뷰 카테고리별 count 
 	 */
 	public Integer selectReviewByCategoryCount(String categorty);
+	
+	/**
+	 * 작성자 : 전대영 
+	 * review에서 show검색해서show별로 리뷰 보기 
+	 */
+	public List<RequestReviewDto> selectReviewByShow(@Param("showName") String showName, @Param("begin") Integer begin, @Param("range") Integer range);
+	
+	/**
+	 * 작성자 : 전대영 
+	 * review에서 show검색해서show별로 카운터하기
+	 */
+	public Integer selectReviewCountByShow(String showName);
 }

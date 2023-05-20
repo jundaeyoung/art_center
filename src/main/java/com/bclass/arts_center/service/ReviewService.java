@@ -69,4 +69,23 @@ public class ReviewService {
 		Integer reviewCount = reviewRepository.selectReviewByCategoryCount(category);
 		return reviewCount;
 	}
+	
+	/**
+	 * 작성자 : 전대영 review에서 show검색해서show별로 리뷰 보기
+	 */
+	@Transactional
+	public List<RequestReviewDto> readReviewByShow(String showName, Integer begin, Integer range) {
+		showName = "%"+showName+"%";
+		List<RequestReviewDto> reviewList = reviewRepository.selectReviewByShow(showName, begin, range);
+		return reviewList;
+	}
+	
+	/**
+	 * 작성자 : 전대영 review에서 show검색해서show별로 카운터
+	 */
+	@Transactional
+	public Integer readReviewCountByShow(String showName) {
+		Integer reviewCount = reviewRepository.selectReviewCountByShow(showName);
+		return reviewCount;
+	}
 }

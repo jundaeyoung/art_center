@@ -65,7 +65,7 @@
 						<h1>공연 정보</h1>
 						<div>
 							<p>제 목 : ${title}</p>
-							<p>기간 :</p>
+							<p>상영상태 : ${showStatus}</p>
 						</div>
 					</div>
 				</c:otherwise>

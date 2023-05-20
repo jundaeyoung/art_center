@@ -7,19 +7,47 @@ body {
 	margin: 0 auto;
 }
 
-.menu button{
+.menu button {
 	width: 200px;
 	height: 95px;
 	font-size: 20px;
 	background-color: #fff;
 	border-style: none;
 }
-.menu button:hover{
+
+.menu button:hover {
 	background-color: #F6F6F6;
 }
 
 .menu {
 	display: flex;
+}
+
+.search {
+	height: 100px;
+	margin: 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+.search form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search .textbox {
+	width: 900px;
+	height: 40px;
+	font-size: 25px;
+	border: 2px solid #ccc;
+}
+
+.search .submit {
+	width: 250px;
+	height: 44px;
+	margin-left: 10px;
+	border: 2px solid #ccc;
+	font-size: 25px;
 }
 
 .review__header {
@@ -56,8 +84,7 @@ body {
 }
 
 .review__title {
-	margin: 50px;
-	border-bottom: 1px solid #ccc;
+	margin: 50px 50px 0 50px;
 }
 
 .review__title div {
@@ -70,6 +97,7 @@ body {
 	font-weight: 320;
 	margin-top: -20px;
 	margin-left: 70px;
+	margin-bottom: -20px;
 }
 
 .review__title h2 {
@@ -77,6 +105,7 @@ body {
 	font-weight: 320;
 	margin-top: -20px;
 	margin-left: 50px;
+	margin-bottom: -20px;
 }
 
 .review__title span {

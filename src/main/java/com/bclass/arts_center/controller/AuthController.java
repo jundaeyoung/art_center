@@ -62,7 +62,6 @@ public class AuthController {
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		ResponseEntity<KakaoDto> userInfo = requestKakaoUserInfo(responseToken.getBody().getAccessToken());
-		
 		model.addAttribute("userInfo", userInfo.getBody());
 
 		

@@ -28,6 +28,9 @@ public class ManagerShowSaleController {
 	@Autowired
 	private HttpSession session;
 
+	/*
+	 * 전대영 : 판매 매출 보기
+	 */
 	@GetMapping("/manager/showSale")
 	public String managerShowSale(RequestManagerShowSaleDto requestManagerShowSaleDto,
 			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
@@ -53,7 +56,9 @@ public class ManagerShowSaleController {
 		}
 		return "/manager/managerShowSale";
 	}
-
+	/*
+	 * 전대영 : 날짜별로 매출 보기 
+	 */
 	@PostMapping("/manager/showSaleByDate")
 	public String selectShowSaleByDate(RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -83,7 +88,9 @@ public class ManagerShowSaleController {
 		}
 		return "/manager/managerShowSale";
 	}
-
+	/*
+	 * 전대영 : 판매 상품 검색하기
+	 */
 	@PostMapping("/manager/showSaleBySearch")
 	public String selectShowSaleBySearch(RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -109,11 +116,16 @@ public class ManagerShowSaleController {
 		return "/manager/managerShowSale";
 	}
 
+	/*
+	 * 전대영 : 공연 detail보기
+	 */
 	@GetMapping("/manager/showSaleDetailByShowId/{showId}/{userId}")
 	public String selectShowSaleDetailByShowId(@PathVariable Integer showId, @PathVariable Integer userId,
 			Model model) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService.readManagerShowDetailByShowId(showId,
 				userId);
+		
+		System.out.println(showSaleList);
 		DecimalFormat df = new DecimalFormat("###,###");
 		if (showSaleList == null) {
 			model.addAttribute("showList", null);

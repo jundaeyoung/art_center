@@ -56,7 +56,10 @@
 	border-radius: 10px;
 	font-size: 25px;
 }
-
+.signUpShow__info{
+	margin-right: 150px;
+	
+}
 .signUpShow__info input {
 	height: 30px;
 	width: 200px;
