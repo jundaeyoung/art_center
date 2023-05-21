@@ -22,6 +22,7 @@ import com.bclass.arts_center.repository.model.Hole;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.CategoryService;
 import com.bclass.arts_center.service.HoleService;
+import com.bclass.arts_center.service.NoticeService;
 import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.utils.Define;
 
@@ -37,7 +38,8 @@ public class SignUpShowController {
 	private ShowService showService;
 	@Autowired
 	private HttpSession session;
-
+	@Autowired
+	private NoticeService noticeService;
 	
 	/*
 	 * 작성자 : 전대영
@@ -73,6 +75,9 @@ public class SignUpShowController {
 	@PostMapping("/sign-up")
 	public String signUpShowProc(RequestSignUpShowDto requestSignUpShowDto) {
 		MultipartFile file = requestSignUpShowDto.getFile();
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		Integer adminId = 3;
+		String notice = "님이 공연등록을 신청하였습니다.";
 		if (file.isEmpty() == false) {
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
 				throw new CustomRestfullException("파일 크기는 20MB 이상 클 수 없습니다", HttpStatus.BAD_REQUEST);
@@ -99,6 +104,7 @@ public class SignUpShowController {
 			String[] split = str.split("~");
 			requestSignUpShowDto.setStartDate(split[0]);
 			requestSignUpShowDto.setEndDate(split[1]);
+			noticeService.createNotice(notice,principal.getId(),adminId);
 			showService.createShow(requestSignUpShowDto);
 		}
 		return "redirect:/manager/signUpShow";

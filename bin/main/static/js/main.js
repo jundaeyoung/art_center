@@ -1,3 +1,14 @@
+//모달창
+	const modal = document.querySelector(".modal-overlay")
+	function init() {
+		$(".close-area").click(function() {
+			modal.classList.add("hidden");
+		});
+		$(".open-area").click(function() {
+			modal.classList.remove("hidden");
+		});
+	}
+	init();
 // 전대영
 // 중복 클릭 방지
 $(".button").on("click", function() {

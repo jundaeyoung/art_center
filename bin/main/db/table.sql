@@ -21,6 +21,31 @@ CREATE TABLE user_tb
    FOREIGN KEY (role_id) REFERENCES role_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- admin이 받을 알림
+CREATE TABLE amdinNotice_tb
+(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    notice text NOT NULL,
+    user_id INT NOT NULL,
+    admin_id INT NOT NULL,
+    status TINYINT default 0,
+	FOREIGN KEY (user_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (admin_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- 매니저가 받을 알림
+CREATE TABLE managerNotice_tb
+(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    notice text NOT NULL,
+    user_id INT NOT NULL,
+    admin_id INT NOT NULL,
+	status TINYINT default 0,
+	FOREIGN KEY (user_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (admin_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
 -- 장소 ex) 오페라하우스
 CREATE TABLE location_tb
 (
@@ -84,7 +109,7 @@ CREATE TABLE review_tb
 (
    id INT PRIMARY KEY AUTO_INCREMENT,
    content TEXT NOT NULL,
-   review_creation_date TIMESTAMP DEFAULT now (),
+   review_creation_date TIMESTAMP DEFAULT now(),
    rating INT NOT NULL,
    user_id INT NOT NULL,
    show_id INT NOT NULL,
@@ -144,7 +169,7 @@ CREATE TABLE age_group_tb
 CREATE TABLE ticketing_tb
 (
    id INT PRIMARY KEY AUTO_INCREMENT,
-   ticketing_date TIMESTAMP DEFAULT now (),
+   ticketing_date TIMESTAMP DEFAULT now(),
    user_id INT NOT NULL,
    show_time_id INT NOT NULL,
    age_group_id INT NOT NULL,
@@ -158,7 +183,7 @@ CREATE TABLE rent_place_reservation_tb
    id INT PRIMARY KEY AUTO_INCREMENT,
    start_date DATE DEFAULT (current_date),
    end_date DATE DEFAULT (current_date),
-   reservation_date DATETIME DEFAULT now (),
+   reservation_date DATETIME DEFAULT now(),
    user_id INT NOT NULL,
    hole_id INT NOT NULL,
    FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
@@ -168,7 +193,7 @@ CREATE TABLE rent_place_reservation_tb
 CREATE TABLE class_registration_tb
 (
    id INT PRIMARY KEY AUTO_INCREMENT,
-   class_registration_date DATETIME DEFAULT now (),
+   class_registration_date DATETIME DEFAULT now(),
    user_id INT NOT NULL,
    academy_id INT NOT NULL,
    FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,

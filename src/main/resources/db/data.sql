@@ -13,6 +13,14 @@ VALUES
 	('3', '$2a$10$Xbpckp1apx/cbwLjne5gw.Bj1mNFCf5dcFbYe9uEoiRfmw7DDMTt2', '전대영', 'jdy@naver.com' ,'19971117', '01033333333', 3),
 	('4', '$2a$10$Xbpckp1apx/cbwLjne5gw.Bj1mNFCf5dcFbYe9uEoiRfmw7DDMTt2', '편용림', 'pyr@naver.com' ,'19920208', '01044444444', 4);
 	
+
+INSERT INTO amdinNotice_tb(notice,user_id, admin_id)
+values('님이 공연등록을 신청하였습니다.',2,3);
+
+
+INSERT INTO managerNotice_tb(notice,user_id, admin_id)
+values('신청 하신 공연등록이 승인 되었습니다.',2,3);
+
 	
 INSERT INTO location_tb(location, location_info)
 VALUES

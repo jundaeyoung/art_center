@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.Arrays"%>
 <!DOCTYPE html>
@@ -6,17 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>AMADEUS - 당신의 꿈을 펼쳐라</title>
-<link rel="shortcut icon" sizes="90x90" type="image/x-icon" href="/images/background/logo_mini.png">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="shortcut icon" sizes="90x90" type="image/x-icon"
+	href="/images/background/logo_mini.png">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/main.css">
 </head>
 <style>
 </style>
 <body>
-	<div id="body__header"style="margin-left: -120px;">
+	<div id="body__header" style="margin-left: -120px;">
 		<div class="title">
 			<div>
-				<a href="/"><img alt="" src="/images/background/logo.png" width="140" height="120"></a>
+				<a href="/"><img alt="" src="/images/background/logo.png"
+					width="140" height="120"></a>
 			</div>
 			<c:choose>
 				<c:when test="${principal == null}">
@@ -25,17 +29,19 @@
 							<button type="submit" class="login--btn" style="font-size: 20px;">로그인</button>
 						</form>
 						<form action="#" method="get">
-							<button type="submit" onclick="#" class="signUp--btn" style="font-size: 20px;">회원가입</button>
+							<button type="submit" onclick="#" class="signUp--btn"
+								style="font-size: 20px;">회원가입</button>
 						</form>
 					</div>
 				</c:when>
 				<c:when test="${principal != null && principal.getRoleId()==2}">
 					<div class="user--btn">
-						<form action="/manager/notice" method="get">
-							<button type="submit" class="logout--btn" style="font-size: 20px;">알림</button>
+						<form>
+							<button class="open-area" style="font-size: 20px;">알림</button>
 						</form>
 						<form action="#" method="get">
-							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
+							<button type="submit" class="logout--btn"
+								style="font-size: 20px;">내정보</button>
 						</form>
 						<form action="#" method="get">
 							<button type="submit" class="logout--btn">
@@ -49,7 +55,8 @@
 				<c:otherwise>
 					<div class="user--btn">
 						<form action="#" method="get">
-							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
+							<button type="submit" class="logout--btn"
+								style="font-size: 20px;">내정보</button>
 						</form>
 						<form action="#" method="get">
 							<button type="submit" class="logout--btn">
@@ -70,8 +77,11 @@
 							<li><a href="#">공연</a>
 								<ul class="sub">
 									<li><a href="/schedule">전체 공연 일정(달력)</a></li>
-									<li><a href="/manager/schedule/${principal.id}">나의 공연 일정(달력)</a></li>
-									<li><a href="/manager/showSale?currentPage=1&begin=0&range=5">나의 공연 매출</a></li>
+									<li><a href="/manager/schedule/${principal.id}">나의 공연
+											일정(달력)</a></li>
+									<li><a
+										href="/manager/showSale?currentPage=1&begin=0&range=5">나의
+											공연 매출</a></li>
 									<li><a href="/manager/signUpShow">공연 등록</a></li>
 								</ul></li>
 							<li><a href="#">전시회</a>
@@ -98,8 +108,12 @@
 											<li><a>비밀번호 찾기</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
-											<li><a href="/user/delete?userName=${principal.userName}">회원탈퇴 </a></li>
+											<li><a
+												href="/user/update?userName=${principal.userName}">회원정보
+													수정 </a></li>
+											<li><a
+												href="/user/delete?userName=${principal.userName}">회원탈퇴
+											</a></li>
 											<li><a>공지사항 작성</a></li>
 										</c:otherwise>
 									</c:choose>
@@ -115,7 +129,9 @@
 							<li><a href="#">공연</a>
 								<ul class="sub">
 									<li><a href="/schedule">전체 일정(달력) </a></li>
-									<li><a href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시 </a></li>
+									<li><a
+										href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시
+									</a></li>
 									<li><a href="#">예매·취소안내 </a></li>
 								</ul></li>
 							<li><a href="#">공간·대관 </a>
@@ -136,9 +152,11 @@
 								<ul class="sub">
 									<li><a href="#">전당 소식</a></li>
 									<li><a href="#">오시는길·주차 안내</a></li>
-									<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
+									<li><a
+										href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
 									<li><a href="#">고객센터</a></li>
-									<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
+									<li><a
+										href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 								</ul></li>
 							<li><a href="#"> 회원 서비스 </a>
 								<ul class="sub">
@@ -150,8 +168,12 @@
 											<li><a>비밀번호 찾기</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
-											<li><a href="/user/delete?userName=${principal.userName}">회원탈퇴 </a></li>
+											<li><a
+												href="/user/update?userName=${principal.userName}">회원정보
+													수정 </a></li>
+											<li><a
+												href="/user/delete?userName=${principal.userName}">회원탈퇴
+											</a></li>
 										</c:otherwise>
 									</c:choose>
 								</ul></li>
@@ -161,7 +183,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	
+
 	<script type="text/javascript">
 	// 상단 메뉴바 드롭다운
 	$(document).ready(function() {

@@ -81,7 +81,7 @@ public class ShowService {
 		System.out.println(requestSignUpShowDto);
 		return showNewestCount;
 	}
-
+	
 	/*
 	 * 손주이 : showId와 일치하는 공연정보
 	 */
