@@ -48,14 +48,14 @@ function buildCalendar() {
 		}
 
 		if (nowDay < today) { // 지난날인 경우
-			newDIV.className = "pastDay date";
+			newDIV.className = "pastDay";
 		} else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
-			newDIV.className = "today date";
+			newDIV.className = "today";
 			newDIV.onclick = function() {
 				choiceDate(this);
 			}
 		} else { // 미래인 경우
-			newDIV.className = "futureDay date";
+			newDIV.className = "futureDay";
 			newDIV.onclick = function() {
 				choiceDate(this);
 			}
@@ -63,8 +63,6 @@ function buildCalendar() {
 
 		createDate = document.getElementById("calYear").textContent + "-" + document.getElementById("calMonth").textContent + "-" + newDIV.textContent;
 		createDateList.push(createDate);
-
-
 	}
 	matchDate(createDateList);
 }
@@ -94,14 +92,13 @@ function matchDate(createDateList) {
 		}
 	}
 
-	let paragraphs = $(".date");
+	let paragraphs = $("p");
 	for (let i = 0; i < matchDateIndex.length; i++) {
 		let index = matchDateIndex[i];
 		if (index >= 0 && index < paragraphs.length) {
 			paragraphs[index].style.backgroundColor = '#F5A9BC';
 		}
 	}
-
 }
 
 
@@ -141,40 +138,58 @@ function leftPad(value) {
 }
 
 function selectDateForTime(showId, date) {
-	console.log(showId);
+	//console.log(showId);
 	//console.log(date);
 
 	$.ajax({
 		type: "get",
 		url: "/api/selectDate/" + showId + "/" + date,
-		conttentType: "application/json; charset=utf-8",
+		contentType: "application/json; charset=utf-8",
 		dataType: "json"
 	}).done(function(showTimeList) {
-		let timeTableList = [];
-		$(".watch--time").remove();
+
+		//$(".watch--time").empty();
+		$(".timeTableList").remove();
 		console.log(showTimeList);
-		$(".TagPlay").append(`<ul class="watch--time"></ul>`);
-		/*console.log(showTimeList[1])*/
-		showTimeList.forEach((showTime, index) => {
-			let count = index + 1;
-			let timeTableItem = {
-				count: count
-			}
+		$(".TagPlay").append(`<ul class="timeTableList"></ul>`);
+		showTimeList.forEach((showTime) => {
+			let addTime = `<li class="timeTableItem"><a class="timeTableLabel" data-tabtoggle="timeTableList" role="button" data-seq="${showTime.id}">${showTime.showTime}</li>`
+			$(".timeTableList").append(addTime);
+
+			$(document).on("click", `.timeTableLabel[data-seq="${showTime.id}"]`, function() {
+				let selectedSeq = $(this).data("seq");
+				let selectedShowTime = $(this).text();
+				//console.log("선택된 시퀀스:", selectedSeq);
+				//console.log("선택된 상영 시간:", selectedShowTime);
+
+				$(".timeTableLabel").removeClass("is-toggled");
+				$(this).addClass("is-toggled");
 
 
 
+				$.ajax({
+					type: "get",
+					url: "/api/selectSeats/" + selectedSeq,  // 선택된 시퀀스에 맞는 API 엔드포인트 설정
+					contentType: "application/json; charset=utf-8",
+					dataType: "json"
+				}).done(function(seatList) {
+					console.log("좌석 정보:", seatList);
 
-			addTime = `<li><a class="timeTableLabel" data-tabtoggle="timeTableList" role="button" data-seq="008" data-text="${showTime.showTime}"></li>`
-			$(".watch--time").append(addTime);
-		})
+					// 여기에서 좌석 정보를 사용하여 원하는 작업을 수행합니다.
+					// 예를 들어, 좌석 정보를 화면에 표시하거나 다음 페이지로 넘기는 등의 작업을 수행할 수 있습니다.
+				}).fail(function(error) {
+					console.log(error);
+					console.log("좌석 정보를 가져오는 데 실패했습니다.");
+				});
+			});
+		});
+
+
 		console.log('된겨?');
 	}).fail(function(error) {
 		console.log(error);
 		console.log('안된겨!')
 	});
-
-
-
 
 }
 

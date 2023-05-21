@@ -32,8 +32,8 @@ public class TicketService {
 	}
 
 	@Transactional
-	public List<TicketingDto> readShowTime(Integer showTimeId, Date showDate) {
-		List<TicketingDto> timeList = ticketRepository.selectShowTimeByShowId(showTimeId, showDate);
+	public List<TicketingDto> readShowTime(Integer showId, Date showDate) {
+		List<TicketingDto> timeList = ticketRepository.selectShowTimeByShowId(showId, showDate);
 		return timeList;
 	}
 

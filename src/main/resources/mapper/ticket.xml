@@ -30,7 +30,7 @@
 	<!-- 작성자 손주이 : show별 공연 시간 검색 -->
 	<select id="selectShowTimeByShowId"
 		resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT s.id, sd.show_time
+		SELECT sd.id, sd.show_time
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sd
 		ON s.id = sd.show_id
@@ -38,6 +38,15 @@
 		GROUP BY show_time
 		ORDER BY show_time asc
 	</select>
+	
+<!-- 	<select id="">
+		SELECT *
+		FROM seat_tb AS st
+		JOIN show_tb AS sw
+		ON 
+	
+	
+	</select> -->
 
 
 	<!-- <insert id="insert"> INSERT INTO ticketing_tb (ticketing_date, user_id, 

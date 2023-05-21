@@ -29,14 +29,13 @@ public class ShowController {
 
 	@Autowired
 	private ShowService showService;
-	
+
 	@Autowired
 	private TicketService ticketService;
-	
 
 	@Autowired
 	private HttpSession session;
-	
+
 	/*
 	 * @PostMapping("/a/a/")
 	 * 
@@ -49,7 +48,7 @@ public class ShowController {
 	 * 
 	 * // 응답 적절하게 내려주기 return "{'a' : a}"; }
 	 */
-	
+
 	/**
 	 * @author 전대영 show 최신순 페이지 들어가기
 	 */
@@ -241,10 +240,6 @@ public class ShowController {
 		model.addAttribute("content", showInfo.get(0).getContent());
 		model.addAttribute("nickname", showInfo.get(0).getNickname());
 		model.addAttribute("tel", showInfo.get(0).getTel());
-		
-		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
-		model.addAttribute("showDateList", showDateList);
-		model.addAttribute("showId", showId);
 
 		return "/show/showView";
 	}

@@ -2,9 +2,6 @@
  * 
  */
 
-
-
-
 let index = {
 	
 	init: function() {
@@ -15,9 +12,11 @@ let index = {
 			let selectYear = $("#calYear").html();
 			let selectMonth = $("#calMonth").html();
 			let selectDay= $(".choiceDay").html();
-			console.log(selectYear+selectMonth+selectDay);
+			
+			let selectDate = selectYear+"-"+selectMonth+"-"+selectDay
+			console.log(selectDate);
 			let selectTime = $(".select").val();
-			console.log(selectTime); 
+			//console.log(selectTime); 
 			// 날짜, 시간, showId  	
 			this.move();
 		})

@@ -1,7 +1,6 @@
 package com.bclass.arts_center.controller;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,11 +24,13 @@ public class TicketController {
 	@Autowired
 	private ShowService showService;
 
-	@GetMapping("/ticketing/{showId}/{showDate}/{showTime}")
-	public String ticketingPage(@PathVariable Integer showId, @PathVariable Date showDate, @PathVariable Time showTime,
-			Model model) {
+	@GetMapping("/ticketing/{showId}")
+	public String ticketingPage(@PathVariable("showId") Integer showId, Model model) {
 
 //		로그인 인증 필요
+		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
+		model.addAttribute("showDateList", showDateList);
+		model.addAttribute("showId", showId);
 
 		return "/ticket/ticketing";
 	}

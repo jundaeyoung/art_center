@@ -4,8 +4,7 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/css/user/show.css">
-<link rel="stylesheet" href="/css/reservationCalendar.css">
-<script type="text/javascript" src="/js/reservationCalendar.js"></script>
+
 <style>
 .main {
 	display: inline-block;
@@ -54,10 +53,6 @@
 				<div class="show--title">
 					<h1>${title}</h1>
 				</div>
-				<div class="show--img">
-					<img alt="" src="/images/${imgRoute}">
-
-				</div>
 
 				<div class="show--period">
 					<p>기간</p>
@@ -92,51 +87,25 @@
 
 
 		</div>
-			<div class="reservation">
-			<form action="/ticket/ticketing/${showId}" method="get">
-				<div class="reservation--calendar">
-					<input type="hidden" id="hiddenShowId" value="${showId}">
-					<table class="Calendar">
-						<thead>
-							<tr>
-								<td onClick="prevCalendar();" style="cursor: pointer;">&#60;</td>
-								<td colspan="5"><span id="calYear"></span>년 <span id="calMonth"></span>월</td>
-								<td onClick="nextCalendar();" style="cursor: pointer;">&#62;</td>
-							</tr>
-							<tr>
-								<td>일</td>
-								<td>월</td>
-								<td>화</td>
-								<td>수</td>
-								<td>목</td>
-								<td>금</td>
-								<td>토</td>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="showDateList" items="${showDateList}">
-								<input type="hidden" class="listDate" value="${showDateList.showDate}">
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-				<div class="reservation--Time">
-					<h3 class="title">관람 시간</h3>
-					<div class="watchTime--content">
-						<span class="TagPlay"> </span>
-					</div>
-				</div>
-			</form>
-			<button type="button" class="btn--ticketing">예매하기</button>
-		</div>
-</div>
-<div class="show--introduction">
-	<div>
-		<p>작품소개</p>
 
 	</div>
-	<div class="show--introContent">${content}</div>
-</div>
+
+	<div class="side--container">
+		<div class="show--img">
+			<img alt="" src="/images/${imgRoute}">
+		</div>
+		<form action="/ticket/ticketing/${showId}" method="get">
+			<button type="button" onclick="goTicketing(${showId})">예매하기</button>
+		</form>
+
+	</div>
+	<div class="show--introduction">
+		<div>
+			<p>작품소개</p>
+
+		</div>
+		<div class="show--introContent">${content}</div>
+	</div>
 
 </div>
 
@@ -144,11 +113,10 @@
 
 
 
-<script type="text/javascript" src="/js/reservationCalendar2.js">
+
+<script type="text/javascript" src="/js/movePage.js">
 
 </script>
-
-
 
 
 

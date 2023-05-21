@@ -25,5 +25,10 @@ public class TicketApiController {
 		System.out.println(showTimeList);
 		return showTimeList;
 	}
+	
+	@GetMapping("/api/selectSeats/{selectedSeq}")
+	public List<TicketingDto> selectSeats(){
+		return null;
+	}
 
 }

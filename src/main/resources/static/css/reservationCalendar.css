@@ -11,7 +11,7 @@
 	width: 400px;
 	margin: 0px;
 	padding: 20px;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	border-radius: 5px;
 	box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
 }
@@ -76,6 +76,14 @@ td {
 	color: #fff;
 	font-weight: 600;
 	cursor: pointer;
+}
+
+.timeTableLabel{
+	cursor: pointer;
+}
+
+.timeTableLabel.is-toggled{
+	font-weight: bold;
 }
 
 #cellPlay {
