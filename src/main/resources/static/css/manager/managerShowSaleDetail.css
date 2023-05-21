@@ -178,3 +178,13 @@
 	margin: 30px 40px;
 	align-items: center;
 }
+.page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.page a {
+	margin: 30px;
+}

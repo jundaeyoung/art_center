@@ -56,8 +56,9 @@ public class ManagerShowSaleController {
 		}
 		return "/manager/managerShowSale";
 	}
+
 	/*
-	 * 전대영 : 날짜별로 매출 보기 
+	 * 전대영 : 날짜별로 매출 보기
 	 */
 	@PostMapping("/manager/showSaleByDate")
 	public String selectShowSaleByDate(RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
@@ -69,7 +70,6 @@ public class ManagerShowSaleController {
 		requestManagerShowSaleDto.setEndDate(split[1] + " 00:00:00");
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
 				.readManagerShowSaleByDate(requestManagerShowSaleDto);
-		System.out.println(showSaleList);
 		DecimalFormat df = new DecimalFormat("###,###");
 		if (showSaleList == null) {
 			model.addAttribute("showList", null);
@@ -88,6 +88,7 @@ public class ManagerShowSaleController {
 		}
 		return "/manager/managerShowSale";
 	}
+
 	/*
 	 * 전대영 : 판매 상품 검색하기
 	 */
@@ -119,27 +120,44 @@ public class ManagerShowSaleController {
 	/*
 	 * 전대영 : 공연 detail보기
 	 */
-	@GetMapping("/manager/showSaleDetailByShowId/{showId}/{userId}")
-	public String selectShowSaleDetailByShowId(@PathVariable Integer showId, @PathVariable Integer userId,
-			Model model) {
+	@GetMapping("/manager/showSaleDetailByShowId/{showId}/{userId}/{currentPage}/{begin}/{range}")
+	public String selectShowSaleDetailByShowId(@PathVariable(value = "showId", required = false) Integer showId,
+			@PathVariable(value = "userId", required = false) Integer userId,
+			@PathVariable(value = "currentPage", required = false) Integer currentPage,
+			@PathVariable(value = "begin", required = false) Integer begin,
+			@PathVariable(value = "range", required = false) Integer range, Model model) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService.readManagerShowDetailByShowId(showId,
-				userId);
-		
+				userId, begin, range);
 		System.out.println(showSaleList);
-		DecimalFormat df = new DecimalFormat("###,###");
-		if (showSaleList == null) {
-			model.addAttribute("showList", null);
-		} else {
-			int sum = 0;
-			for (int i = 0; i < showSaleList.size(); i++) {
-				if (showSaleList.get(i).getAdultCount() != 0) {
-					String string = showSaleList.get(i).getAdultRate();
-					String newStr = string.replaceAll(",", "");
-					sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
-				}
-			}
-			df.format(sum);
+		Integer showSaleCount = managerShowSaleService.readManagerShowDetailCountByShowId(showId, userId);
+		Double count = Math.ceil(showSaleCount);
+		Integer page = (int) Math.ceil(count / 5);
+		Integer startPage = currentPage - 2;
+		if (startPage <= 0) {
+			startPage = 1;
 		}
+		Integer endPage = startPage + 4;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("showId", showId);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		System.out.println(page+"DDD");
+		DecimalFormat df = new DecimalFormat("###,###");
+		model.addAttribute("showList", null);
+		int sum = 0;
+		for (int i = 0; i < showSaleList.size(); i++) {
+			if (showSaleList.get(i).getAdultCount() != 0) {
+				String string = showSaleList.get(i).getAdultRate();
+				String newStr = string.replaceAll(",", "");
+				sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
+			}
+		}
+		df.format(sum);
 		if (showSaleList == null || showSaleList.isEmpty()) {
 			model.addAttribute("showList", null);
 		} else {
