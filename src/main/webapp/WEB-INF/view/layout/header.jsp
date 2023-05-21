@@ -100,7 +100,7 @@
 										<c:otherwise>
 											<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
 											<li><a href="/user/delete?userName=${principal.userName}">회원탈퇴 </a></li>
-											<li><a>공지사항 작성</a></li>
+											<li><a href="/announcement">공지사항 작성</a></li>
 										</c:otherwise>
 									</c:choose>
 								</ul></li>
