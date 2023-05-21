@@ -1,21 +1,28 @@
 package com.bclass.arts_center.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
+import com.bclass.arts_center.dto.UpdateUserDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
+
+import lombok.AllArgsConstructor;
 
 
 /**
@@ -26,6 +33,7 @@ import com.bclass.arts_center.utils.Define;
  *
  */
 @Controller
+@AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
@@ -56,8 +64,8 @@ public class UserController {
 		SignInFormDto dto = new SignInFormDto();
 		dto.setUserName(userName);
 		User user = userService.readUserByUserName(dto.getUserName());
+		
 		model.addAttribute("user", user);
-		System.out.println(user);
 
 		return "/user/update";
 
@@ -104,43 +112,63 @@ public class UserController {
 
 	// 회원가입 처리
 	@PostMapping("/signUp")
-	public String signUpProc(SignUpFormDto signUpFormDto) {
+	public String signUpProc(@Valid SignUpFormDto signUpFormDto, BindingResult errors, Model model) {
 		
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
-			throw new CustomRestfullException("signUpFormDtoname을 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {
-			throw new CustomRestfullException("password를 입력해주세요", HttpStatus.BAD_REQUEST);
-		} else if (signUpFormDto.getNickname() == null || signUpFormDto.getNickname().isEmpty()) {
-			throw new CustomRestfullException("nickName을 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("패스워드 입력해주세요", HttpStatus.BAD_REQUEST);
+		}else if (signUpFormDto.getNickname() == null || signUpFormDto.getNickname().isEmpty()) {
+			throw new CustomRestfullException("닉네임을 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getEmail() == null || signUpFormDto.getEmail().isEmpty()) {
 			throw new CustomRestfullException("이메일을 입력해주세요", HttpStatus.BAD_REQUEST);
-		} else if (signUpFormDto.getBirthDate() == null || signUpFormDto.getBirthDate().isEmpty()) {
+		} else if (signUpFormDto.getBirthDate() == null) {
 			throw new CustomRestfullException("생년월일을 입력해주세요.", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getTel() == null || signUpFormDto.getTel().isEmpty()) {
 			throw new CustomRestfullException("전화번호를 입력주세요", HttpStatus.BAD_REQUEST);
+		} else if (signUpFormDto.getBirthDate() == null) {
+			throw new CustomRestfullException("생년월일을 입력해주세요", HttpStatus.BAD_REQUEST); 
 		}
-		
-		
-		// 만약 signUpFormDto에 apiId 값이 없으면 다른 회원가입
-		if (signUpFormDto.getApiId() != null) {
-			userService.createUser(signUpFormDto);
-		}else {
 			
-		}
+		if (errors.hasErrors()) {
+			
+			Map<String, String> validatorResult = userService.validateHandling(errors);
+			for (String key : validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
+			}
+			
+		return "/user/signUp";
+	}
+		System.out.println(signUpFormDto.getApiId());
+		userService.createUser(signUpFormDto);
 		return "redirect:/";
 	}
 
 	// 개인정보 수정
 	@PostMapping("/update")
-	public String update(SignUpFormDto signUpFormDto, Model model) {
-		int result = userService.updateUser(signUpFormDto);
+	public String update(@Valid UpdateUserDto updateUserDto , BindingResult errors, Model model) {
+		
+		
+		if (errors.hasErrors()) {
+			
+			model.addAttribute("user", updateUserDto);
+			
+			Map<String, String> validatorResult = userService.validateHandling(errors);
+			for (String key : validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
+			}
+			return "/user/update";
+		
+	}
+		int result = userService.updateUser(updateUserDto);
+		
 		return "redirect:/";
 	}
 	
 	// 회원탈퇴
 	@PostMapping("/deleteProc")
 	public String delete(SignInFormDto signInFormDto) {
-		
+		System.out.println(signInFormDto);
 		int result = userService.deleteUser(signInFormDto);
 		
 		if (signInFormDto.getPassword() == null || signInFormDto.getPassword().isEmpty()) {

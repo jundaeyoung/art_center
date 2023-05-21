@@ -15,7 +15,7 @@
 	<div class="loginContainer">
 		<div class="login--title">
 			<img alt="" src="/images/background/logo.png" class="loginLogo">
-			<h3>Amadeus Login</h3>
+			<h2>Amadeus Login</h2>
 		</div>
 		<br>
 		<form action="/user/loginProc" method="post">
@@ -55,11 +55,9 @@
 		
 			</div>
 			</div>
-			<div class="line"></div>
 
 
 
 
 
 </div>
-

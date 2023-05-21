@@ -10,15 +10,14 @@ body{
 }
 
 .signInContainer{
-	margin-top: 100px;
-	margin-left: 50px;
-	position: fixed;
+	margin-top: 150px;
+	margin-left: 350px;
 	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid #ccc;
 	height: 700px;
-	width: 1400px;
+	width: 800px;
 }
 
 .loginContainer {
@@ -28,7 +27,7 @@ body{
 	align-items: flex-start;
 	flex-direction: column;
 	margin: 100px;
-	margin-left: 200px;
+	margin-left: 100px;
 }
 
 .login {
@@ -111,8 +110,8 @@ a:hover {
 	text-decoration: underline;
 }
 .loginLogo{
-height: 60px;
-width: 60px;
+height: 80px;
+width: 80px;
 }
 
 .login--title{
@@ -120,7 +119,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-margin-left: 130px;
+margin-left: 110px;
 }
 
 .line{
@@ -151,6 +150,3 @@ margin-left: 130px;
 .logobox img{
 	margin: 7px;
 }
-
-
-

@@ -1,51 +1,66 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>개인정보 수정 페이지</title>
-<style type="text/css">
-.container{
-margin-left: 50px;
-}
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="/css/styles.css">
-</head>
-<body>		
-			<div class="container">
-			<form action="/user/update" method="post">
-			${user.userName}님 정보 수정
-			${user.apiId}
-			<h1>소셜 로그인</h1>
-			<div class="form-group">
-				<input type="hidden" class="form-control" id="userName" name="userName" value="${user.userName}">
-			</div>
-			<div class="form-group">
-				<label for="password">Password :</label> <input type="password" class="form-control" id="password" name="password" value="${user.password}">
-			</div>
-			
-			<div class="form-group">
-				<label for="nickname">nickname :</label> <input type="text" class="form-control" id="nickname" name="nickname" value="${user.nickname}">
-			</div>
-			<div class="form-group">
-				<label for="email">email :</label> <input type="text" class="form-control" id="email" name="email" value="${user.email}">
-			</div>
-			
-			<div class="form-group">
-				<label for="birthDate">birthDate :</label> <input type="text" class="form-control" id="birthDate" name="birthDate" value="${user.birthDate}">
-			</div>
-			<div class="form-group">
-				<label for="tel">tel :</label> <input type="text" class="form-control" id="tel" name="tel"  value="${user.tel}">
-			</div>
-			<button type="submit" class="btn btn-primary">개인정보 수정</button>
-		</form>
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org"></html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" href="/css/user/signUp.css">
+<body>
+<div class="container">
+	<div class="signInContainer">
+	<div class="loginContainer">
+		<div class="login--title">
+			<img alt="" src="/images/background/logo.png" class="loginLogo">
+			<h2>Amadeus Login</h2>
 		</div>
-		
+		<br>
+		<form action="/user/update" method="post">
+			<br>
+			<input type="hidden" class="form-control" id="userName" name="userName" value="${user.userName}">
+			<c:choose>
+				<c:when test="${user.apiId != null}">
+				<input type="hidden"  name="password" id="password" value="${user.password}">
+				</c:when>
+				<c:otherwise>
+				<div id="ipw">
+				<p>비밀번호 :</p>
+				<i class="material-icons">lock_outline</i> <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password" class="infoPw">
+				<br>
+				</div>
+				</c:otherwise>
+			</c:choose>
+			<span class="error--messege" th:if="${valid_password}">${valid_password}</span>
+			<br>
+			<div id="ipw">
+			<p>닉네임 : </p>
+				<i class="material-icons">insert_emoticon</i> <input type="text" placeholder="닉네임을 입력하세요" name="nickname" id="nickname" class="info" value="${user.nickname}"><br>
+			</div>
+			<span class="error--messege" th:if="${valid_nickname}">${valid_nickname}</span>
+			<br>
+			<div id="ipw">
+			<p>이메일 :</p>
+				<i class="material-icons">mail_outline</i> <input type="email" placeholder="이메일을 입력하세요" name="email" id="email" class="info" value="${user.email}" ><br>
+			</div>
+			<span class="error--messege" th:if="${valid_email}">${valid_email}</span>
+			<br>
+			<input type="hidden" name="birthDate" id="birthDate">
+			<div id="ipw">
+				<p>전화번호 : </p>&nbsp;
+				<i class="material-icons">phone_android</i> <input type="text" placeholder="전화번호를 입력하세요" name="tel" id="tel" class="info" value="${user.tel}"><br>
+			</div>
+			<span class="error--messege" th:if="${valid_tel}">${valid_tel}</span>
+			<br>
+			
+			<input type="hidden" value="${userInfo.id}" id="apiId" name="apiId">
+			<input type="submit" value="정보수정" class="login">
+		</form>
+			</div>
+			</div>
+			</div>
 </body>
+
 </html>

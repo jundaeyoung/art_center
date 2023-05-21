@@ -10,10 +10,10 @@
 	<insert id="insertUser">
 		INSERT INTO user_tb
 		(user_name, password, nickname,
-		email, birth_date, tel)
+		email, birth_date, tel, api_id)
 		VALUES
 		(#{userName}, #{password},
-		#{nickname}, #{email}, #{birthDate}, #{tel})
+		#{nickname}, #{email}, #{birthDate}, #{tel}, #{apiId})
 	</insert>
 
 	<!-- 비밀번호 암호화, 중복 아이디 확인 -->
@@ -48,7 +48,7 @@
 	<!-- 수정 -->
 	<update id="updateUserByUsername">
 		UPDATE user_tb SET password = #{password},
-		nickname = #{nickname}, email = #{email}, birth_date = #{birthDate},
+		nickname = #{nickname}, email = #{email},
 		tel =
 		#{tel} WHERE user_name = #{userName}
 	</update>

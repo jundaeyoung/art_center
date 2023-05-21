@@ -1,16 +1,24 @@
 package com.bclass.arts_center.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
+import com.bclass.arts_center.dto.UpdateUserDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.interfaces.UserRepository;
 import com.bclass.arts_center.repository.model.User;
+
+import lombok.AllArgsConstructor;
 
 /** 
  * @author 편용림
@@ -18,6 +26,7 @@ import com.bclass.arts_center.repository.model.User;
  */
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
 	@Autowired
@@ -26,6 +35,7 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	
 	// 회원가입
 	@Transactional
 	public void createUser(SignUpFormDto signUpFormDto) {
@@ -86,8 +96,11 @@ public class UserService {
 
 	// 회원정보 수정
 	@Transactional
-	public int updateUser(SignUpFormDto signUpFormDto) {
-		int result = userRepository.updateUserByUsername(signUpFormDto);
+	public int updateUser(UpdateUserDto updateUserDto) {
+		String rawPwd = updateUserDto.getPassword();
+		String hashPwd = passwordEncoder.encode(rawPwd);
+		updateUserDto.setPassword(hashPwd);
+		int result = userRepository.updateUserByUsername(updateUserDto);
 		return result;
 	}
 
@@ -97,14 +110,30 @@ public class UserService {
 		
 		User userEntity = userRepository.selectUserByUsername(signInFormDto.getUserName());
 		
-		boolean isPwdMatched = passwordEncoder.matches(signInFormDto.getPassword(), userEntity.getPassword());
-		
-		if (isPwdMatched == false) {
-			throw new CustomRestfullException("비밀번호가 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
-		}else {
+		if (userEntity.getApiId() != null) {
 			int result = userRepository.deleteUserById(signInFormDto);
-			System.out.println(result);
 			return result;
+		}else {
+			boolean isPwdMatched = passwordEncoder.matches(signInFormDto.getPassword(), userEntity.getPassword());
+			
+			if (isPwdMatched == false) {
+				throw new CustomRestfullException("비밀번호가 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+			}else {
+				int result = userRepository.deleteUserById(signInFormDto);
+				return result;
+			}		
 		}
 	}
+	
+	
+	@Transactional(readOnly = true)
+	public Map<String, String> validateHandling(Errors errors) {
+        Map<String, String> validatorResult = new HashMap<>();
+
+        for (FieldError error : errors.getFieldErrors()) {
+            String validKeyName = String.format("valid_%s", error.getField());
+            validatorResult.put(validKeyName, error.getDefaultMessage());
+        }
+        return validatorResult;
+    }
 }

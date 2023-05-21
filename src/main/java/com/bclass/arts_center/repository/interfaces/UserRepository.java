@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
+import com.bclass.arts_center.dto.UpdateUserDto;
 import com.bclass.arts_center.repository.model.User;
 
 
@@ -36,7 +37,7 @@ public interface UserRepository {
 	public int insertUserByApiid(SignUpFormDto signUpFormDto);
 	
 	//회원정보 수정
-	public int updateUserByUsername(SignUpFormDto signUpFormDto);
+	public int updateUserByUsername(UpdateUserDto updateUserDto);
 	
 	//회원탈퇴
 	public int deleteUserById(SignInFormDto signInFormDto);

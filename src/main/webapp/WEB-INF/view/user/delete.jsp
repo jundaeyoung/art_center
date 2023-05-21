@@ -1,35 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-.container {
-	margin-left: 50px;
-}
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="/css/styles.css">
-</head>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org"></html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" href="/css/user/signUp.css">
 <body>
-	<div class="container">
-		<h2>회원탈퇴</h2>
-		<p>비밀번호를 입력해주세요.</p>
-		<form action="/user/deleteProc" method="POST">
-			<div class="form-group">
-				<label for="password">Password : <input type="password" class="form-control" id="password" name="password"></label>
-			</div>
-			<button type="submit" class="btn btn-primary">삭제하기</button>
-			<a href="/" class="btn btn-primary">돌아가기</a>
-			<div class="form-group">
-				<label for="username"><input type="hidden" class="form-control" id="userName" name="userName" value="${user.userName}"></label>
-			</div>
-		</form>
+<div class="container">
+	<div class="signInContainer">
+	<div class="loginContainer">
+		<div class="login--title">
+			<img alt="" src="/images/background/logo.png" class="loginLogo">
+			<h2>Amadeus Login</h2>
+		</div>
 		<br>
-	</div>
+		<form action="/user/deleteProc" method="post">
+			<br>
+			<input type="hidden" class="form-control" id="userName" name="userName" value="${user.userName}">
+			<c:choose>
+				<c:when test="${user.apiId != null}">
+				<input type="hidden"  name="password" id="password" value="${user.password}">
+				</c:when>
+				<c:otherwise>
+				<div id="ipw">
+				<p>비밀번호 :</p>
+				<i class="material-icons">lock_outline</i> <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password" class="infoPw">
+				<br>
+				</div>
+				<span class="error--messege" th:if="${valid_password}">${valid_password}</span>
+				</c:otherwise>
+			</c:choose>
+			<input type="submit" value="회원탈퇴" class="login">
+		</form>
+			</div>
+			</div>
+			</div>
 </body>
+
 </html>

@@ -5,24 +5,37 @@
 
 @charset "UTF-8";
 
-body{
-	width: 1500px;
-}
 
-.signInContainer{
-	margin-top: 150px;
-	margin-left: 350px;
+body{
+	height: 1400px;
+}
+.container{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid #ccc;
-	height: 700px;
-	width: 800px;
 }
 
-.loginContainer {
-	line-height: 20px;
+input.info {
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+}
+input.infoPw{
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  width: 390px;
+	margin: 5px;
+}
+
+.signInContainer{
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+}
+
+.loginContainer {	display: flex;
 	justify-content: start;
 	align-items: flex-start;
 	flex-direction: column;
@@ -35,9 +48,12 @@ body{
 	color: white;
 	border-radius: 5px;
 	border: 0;
-	padding: 15px 175px;
+	padding: 30px 175px;
+	padding-bottom: 50px;
 	margin-top: 30px;
-	margin-left: 5px;
+	margin-left: 35px;
+	font-size: large;
+	text-align: center;
 }
 
 
@@ -55,7 +71,7 @@ p {
 i {
 	color: lightgray;
 	position: absolute;
-	margin-left: 330px;
+	margin-left: 400px;
 }
 
 #imail {
@@ -70,29 +86,26 @@ i {
 	align-items: center;
 }
 
+#email{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#nickname{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 input {
-	border: 1px solid lightgray;
-	border-radius: 3px;
+	border-bottom:1 solid #FF0000;
 	height: 50px;
 	
 }
 
 .info {
-	width: 380px;
+	width: 400px;
 	margin: 5px;
-}
-
-.selectIdAndPw {
-	margin-top: 10px;
-	display: flex;
-	flex-direction: row;
-	margin-left: 95px;
-}
-
-.selectIdAndPw p {
-	display: flex;
-	margin: 0px 10px;
-
 }
 
 a:link {
@@ -119,7 +132,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-margin-left: 110px;
+margin-left: 150px;
 }
 
 .line{
@@ -127,17 +140,7 @@ margin-left: 110px;
 	border-left: 1px solid #ccc;
 	height: 660px;
 }
-.kakaoLogo img{
-	height: 50px;
-	border-radius:5px;
-	}
-.naverLogo img{
-	width: 50px;
-	border-radius: 5px;
-}
-.googleLogo img{
-	width: 50px;
-}
+
 
 .logobox{
 	margin-left: 210px;
@@ -150,3 +153,19 @@ margin-left: 110px;
 .logobox img{
 	margin: 7px;
 }
+
+.field.birth div{ 
+    display: flex;
+    gap:20px; 
+}
+.field.birth input{
+width: 130px;	
+}
+
+.error--messege{
+	color: red; 
+	font-size:15px;
+}
+.birthDate{
+	margin-left: -50px;
+	}
