@@ -42,10 +42,8 @@ public class MainController {
 				if (noticeList == null || noticeList.size()==0) {
 					model.addAttribute("noticeList", null);
 					model.addAttribute("message", 0);
-					System.out.println(noticeList.size());
 				} else {
 					model.addAttribute("noticeList", noticeList);
-					System.out.println(noticeList);
 				}
 				model.addAttribute("principal", principal);
 		}
