@@ -23,5 +23,6 @@ public interface RentalRepository {
 	 */
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto);
 	
+	public List<RequestHoleDto> selectByLocation2(RequestHoleDto requestHoleDto);
 	
 }

@@ -32,6 +32,13 @@ public class RentalService {
 	 */
 	
 	@Transactional
+	public List<RequestHoleDto> selectByLocation2(RequestHoleDto requestHoleDto) {
+	    List<RequestHoleDto> changeRentalTime = rentalRepository.selectByLocation2(requestHoleDto);
+	    return changeRentalTime;
+	}
+	
+	
+	@Transactional
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto) {
 		int count = rentalRepository.insertRental(requestRentPlaceDto);
 		System.out.println(requestRentPlaceDto);

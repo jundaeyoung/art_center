@@ -1,7 +1,5 @@
 package com.bclass.arts_center.dto.request;
 
-import java.sql.Time;
-
 import lombok.Data;
 
 /**
@@ -15,10 +13,12 @@ public class RequestHoleDto {
 	private Integer id;
 	private String name;
 	private String price;
+	private String startDate;
+	private String endDate;
 	private Integer locationId;
 	private String location;
 	private Integer timeId;
-	private Time startTime;
-	private Time endTime;
+	private String startTime;
+	private String endTime;
 	private Integer holeId;
 }

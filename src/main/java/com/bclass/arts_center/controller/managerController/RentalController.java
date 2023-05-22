@@ -41,14 +41,15 @@ public class RentalController {
 	// 대관신청 바로가기 페이지
 	@GetMapping("")
 	public String rentalPage(Model model) {
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		if (principal.getRoleId() != 2) {
-
-			throw new UnAuthorizedException("매니저 계정으로 로그인 해주세요", HttpStatus.BAD_REQUEST);
-		}
-		return "/manager/rental";
+	    User principal = (User) session.getAttribute(Define.PRINCIPAL);
+	    if (principal == null) {
+	    	 throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+	    }
+	    if (principal.getRoleId() != 2) {
+	    	 throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+	    }
+	    return "/manager/rental";
 	}
-
 	/**
 	 * 김미정
 	 */
@@ -58,7 +59,6 @@ public class RentalController {
 	public String rentalLocation(Model model, @PathVariable("id") Integer id) {
 		List<RequestHoleDto> locationLists = rentalService.selectByLocation(id);
 		List<RequestHoleDto> timeList = rentalService.selectByTime(id);
-		System.out.println(locationLists);
 		model.addAttribute("locationLists", locationLists);
 		model.addAttribute("timeList", timeList);
 		model.addAttribute("location", locationLists.get(0).getLocation());

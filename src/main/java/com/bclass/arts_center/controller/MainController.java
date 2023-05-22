@@ -31,7 +31,6 @@ public class MainController {
 	public String main(Model model) {
 		List<Show> showsList = mainService.readShowDto();
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		System.out.println(showsList);
 		if (principal == null) {
 			model.addAttribute("principal", null);
 		} else {
