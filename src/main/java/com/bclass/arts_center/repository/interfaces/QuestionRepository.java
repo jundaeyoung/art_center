@@ -46,4 +46,21 @@ public interface QuestionRepository {
 	 * insert Qusetion
 	 */
 	public Integer deleteById(Integer id);
+	
+	
+	/*
+	 * 작성자 : 전대영 question select All
+	 */
+	public List<RequestQuestionDto> selectQuestionAll();
+	
+	/*
+	 * 작성자 : 전대영 question select By id
+	 */
+	public RequestQuestionDto selectQuestionByQuestionId(Integer questionId);
+	
+	/*
+	 * 작성자 : 전대영 question delete By id
+	 */
+	public Integer deleteQuestionByQuestionId(Integer questionId);
+
 }
