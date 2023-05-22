@@ -1,0 +1,118 @@
+@charset "UTF-8";
+.content_all {
+	display: flex;
+}
+.rental__img {
+	display: flex;
+	justify-content: center;
+	padding: 300px;
+	margin-top: 100px;
+	background-image: url('/images/rental/rental.png');
+	background-position: bottom;
+}
+
+.rental__title {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	margin-left: 200px;
+}
+
+.rental__title h1 {
+	text-align: center;
+	margin-right: 200px;
+	width: 280px;
+	border-bottom: 3px solid black;
+}
+
+.rental__info {
+	border-bottom: 3px solid #ccc;
+}
+
+.content {
+	width: 600px;;
+	height: 600px;
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+.rental__info_content {
+	margin-top: 50px;
+	height: 500px;
+	font-size: 25px;
+}
+
+.daterangepicker .drp-calendar.right .calendar-table {
+	margin-left: 30px !important;
+}
+/* Month 글자 크기 */
+.month {
+	font-size: 20px !important;
+}
+
+.table-condensed td {
+	font-size: 17px !important;
+}
+
+.rental__ok {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end; 
+	padding: 0;
+	width: 250px;
+}
+
+.rental__btn {
+	border: none;
+	width: 200px;
+	height: 40px;
+	background-color: #DBE4EB;
+	cursor: pointer;
+}
+
+.back {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end; 
+	width: 250px;
+}
+
+.back__btn {
+	border: none;
+	width: 200px;
+	height: 40px;
+	background-color: #FFA883;
+	cursor: pointer;
+}
+
+#dateTime {
+	padding: 10px;
+	font-size: 20px;
+	width: 250px;
+	border: 1px solid black;
+	border-radius: 5px;
+	text-align: center; 
+}
+
+#locationSelect {
+	padding: 10px;
+	font-size: 20px;
+	border: 1px solid black;
+	border-radius: 5px; 
+}
+
+#timeSelect, #endTime {
+	padding: 10px;
+	font-size: 20px;
+	border: 1px solid black;
+	border-radius: 5px; 
+}
+.rental__info_content div {
+	padding: 20px;
+}
+
+.hole__img {
+	width: 400px;
+	height: 600px;
+	margin-top: 100px;
+}

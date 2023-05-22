@@ -51,15 +51,27 @@ CREATE TABLE location_tb(
    location_info VARCHAR (200) NOT NULL
 );
 
+
+-- time 시간
+CREATE TABLE time_tb(
+	id INT PRIMARY KEY auto_increment,
+    start_time time NOT NULL,
+    end_time time NOT NULL
+);
+
 -- 홀 ex) a,b,c,d,e
 CREATE TABLE hole_tb(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   name VARCHAR (100) NOT NULL,
-   price VARCHAR (100),
-   tel VARCHAR (30) NOT NULL,
-   location_id INT NOT NULL,
-   FOREIGN KEY (location_id) REFERENCES location_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    price int,
+    tel VARCHAR(30) NOT NULL,
+    location_id INT NOT NULL,
+    time_id INT NOT NULL,
+    FOREIGN KEY (location_id) REFERENCES location_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (time_id) REFERENCES time_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+
 
 -- show 종류
 CREATE TABLE category_tb(
@@ -197,14 +209,18 @@ CREATE TABLE answer_tb(
 
 -- 대관 예약
 CREATE TABLE rent_place_reservation_tb(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   start_date DATE DEFAULT (current_date),
-   end_date DATE DEFAULT (current_date),
-   reservation_date DATETIME DEFAULT now(),
-   user_id INT NOT NULL,
-   hole_id INT NOT NULL,
-   FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   FOREIGN KEY (hole_id) REFERENCES hole_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    start_date varchar(100),
+    end_date varchar(100),
+    start_time time,
+    end_time time,
+    reservation_date TIMESTAMP DEFAULT now(),
+	user_id INT,
+    hole_id INT NOT NULL,
+    location_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (location_id) REFERENCES location_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- 아카데미 신청

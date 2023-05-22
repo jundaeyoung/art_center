@@ -1,6 +1,8 @@
 package com.bclass.arts_center.repository.model;
 
+import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -10,13 +12,16 @@ import lombok.Data;
  *
  */
 @Data
-public class Hole {
+public class RentPlaceReservation {
+
 	private Integer id;
-	private String name;
-	private String price;
-	private String tel;
+	private Date startDate;
+	private Date endDate;
 	private Time startTime;
 	private Time endTime;
+	private Timestamp reservationDate;
+	private Integer userId;
+	private Integer holeId;
 	private Integer locationId;
-	private Integer timeId;
+	
 }

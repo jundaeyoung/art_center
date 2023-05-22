@@ -1,4 +1,4 @@
-package com.bclass.arts_center.repository.model;
+package com.bclass.arts_center.dto.request;
 
 import java.sql.Time;
 
@@ -10,13 +10,15 @@ import lombok.Data;
  *
  */
 @Data
-public class Hole {
+public class RequestRentPlaceDto {
+
 	private Integer id;
-	private String name;
-	private String price;
-	private String tel;
+	private String startDate;
+	private String endDate;
 	private Time startTime;
 	private Time endTime;
+	private Integer userId;
+	private Integer holeId;
 	private Integer locationId;
-	private Integer timeId;
+	
 }
