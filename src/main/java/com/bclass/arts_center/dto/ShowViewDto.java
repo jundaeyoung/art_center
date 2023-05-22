@@ -12,6 +12,7 @@ import lombok.Data;
 public class ShowViewDto {
 
 	private Integer showId;
+	private Integer showTimeId;
 	private String title;
 	private String content;
 	private String imgRoute;
@@ -21,6 +22,7 @@ public class ShowViewDto {
 	private Date endDate;
 	private String holeId;
 	private String admissionAge;
+	private String userTel;
 
 //	위치
 	private String name;

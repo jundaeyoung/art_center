@@ -30,13 +30,26 @@
 	<!-- 작성자 손주이 : show별 공연 시간 검색 -->
 	<select id="selectShowTimeByShowId"
 		resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT s.id, sd.show_time
+		SELECT sd.id, sd.show_time
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sd
 		ON s.id = sd.show_id
 		WHERE sd.show_id = #{showId} AND sd.show_date = #{showDate}
 		GROUP BY show_time
 		ORDER BY show_time asc
+	</select>
+	
+	<!-- 작성자 손주이 : show 공연 시간 별 좌석 검색 -->
+ 	<select id="selectSeatInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
+		SELECT *
+		FROM seat_tb AS st
+		JOIN hole_tb AS h
+		ON h.id = st.hole_id
+		JOIN show_tb AS sw
+		ON sw.hole_id = h.id
+		JOIN show_datetime_tb AS sd
+		ON sd.show_id = sw.id
+		WHERE sw.id = #{showId} AND sd.id= #{showDateTimeId}
 	</select>
 
 	<!-- 작성자 전대영 : admin 예매 목록 검색 -->

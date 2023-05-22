@@ -25,12 +25,18 @@ public class TicketService {
 		return showList;
 	}
 
+	/*
+	 * 손주이 : 공연 일정 정보
+	 */
 	@Transactional
 	public List<TicketingDto> readShowDate(Integer showId) {
 		List<TicketingDto> dateList = ticketRepository.selectShowDateByShowId(showId);
 		return dateList;
 	}
 
+	/*
+	 * 손주이 : 공연 일정 해당 시간 정보
+	 */
 	@Transactional
 	public List<TicketingDto> readShowTime(Integer showId, Date showDate) {
 		List<TicketingDto> timeList = ticketRepository.selectShowTimeByShowId(showId, showDate);
@@ -44,6 +50,15 @@ public class TicketService {
 	public List<TicketingDto> readTicketingAll() {
 		List<TicketingDto> timeList = ticketRepository.selectTicketingAll();
 		return timeList;
+	}
+
+	/*
+	 * 손주이 : 해당 공연 일정의 좌석 정보
+	 */
+	@Transactional
+	public List<TicketingDto> readSeatInfo(Integer showId, Integer showDateTimeId) {
+		List<TicketingDto> seatList = ticketRepository.selectSeatInfo(showId, showDateTimeId);
+		return seatList;
 	}
 
 //	/**

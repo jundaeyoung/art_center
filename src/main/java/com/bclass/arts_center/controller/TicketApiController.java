@@ -19,11 +19,19 @@ public class TicketApiController {
 
 	@GetMapping("/api/selectDate/{showId}/{showDate}")
 	public List<TicketingDto> selectDate(@PathVariable("showId") Integer showId, @PathVariable("showDate") Date date) {
-		
+
 		List<TicketingDto> showTimeList = ticketService.readShowTime(showId, date);
 
 		System.out.println(showTimeList);
 		return showTimeList;
+	}
+
+	@GetMapping("/api/selectSeats/{showId}/{showDateTimeId}")
+	public List<TicketingDto> selectSeats(@PathVariable("showId") Integer showId,
+			@PathVariable("showDateTimeId") Integer showDateTimeId) {
+		List<TicketingDto> seatList = ticketService.readSeatInfo(showId, showDateTimeId);
+
+		return seatList;
 	}
 
 }

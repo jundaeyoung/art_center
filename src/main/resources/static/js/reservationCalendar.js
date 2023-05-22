@@ -12,8 +12,8 @@ today.setHours(0, 0, 0, 0); // 비교 편의를 위해 today의 시간을 초기
 
 // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
 function buildCalendar() {
-	let selectDateList = [];
-	let selectDate;
+	let createDateList = [];
+	let createDate;
 	let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1); // 이번달 1일
 	let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0); // 이번달 마지막날
 
@@ -61,16 +61,15 @@ function buildCalendar() {
 			}
 		}
 
-		selectDate = document.getElementById("calYear").textContent + "-" + document.getElementById("calMonth").textContent + "-" + newDIV.textContent;
-		selectDateList.push(selectDate);
-
+		createDate = document.getElementById("calYear").textContent + "-" + document.getElementById("calMonth").textContent + "-" + newDIV.textContent;
+		createDateList.push(createDate);
 	}
-	matchDate(selectDateList);
+	matchDate(createDateList);
 }
 
 
 
-function matchDate(selectDateList) {
+function matchDate(createDateList) {
 
 	let arrayDateList = [];
 	let hiddenDateValue = document.getElementsByClassName('listDate');
@@ -79,28 +78,27 @@ function matchDate(selectDateList) {
 		arrayDateList.push(hiddenDateValue[i].value);
 	}
 
-	let choiceDateIndex = [];
-	for (let i = 0; i < selectDateList.length; i++) {
+	let matchDateIndex = [];
+	for (let i = 0; i < createDateList.length; i++) {
 		for (let j = 0; j < arrayDateList.length; j++) {
 			//   값 ===                     값
 			//console.log("1 " + selectDateList[i]);
 			//console.log("2 " + arrayDateList[j]);
-			if (selectDateList[i] === arrayDateList[j]) {
+			if (createDateList[i] === arrayDateList[j]) {
 				//console.log("맞음 ㅣ " + i);
-				choiceDateIndex.push(i);
+				matchDateIndex.push(i);
 				continue;
 			}
 		}
 	}
 
 	let paragraphs = $("p");
-	for (let i = 0; i < choiceDateIndex.length; i++) {
-		let index = choiceDateIndex[i];
+	for (let i = 0; i < matchDateIndex.length; i++) {
+		let index = matchDateIndex[i];
 		if (index >= 0 && index < paragraphs.length) {
 			paragraphs[index].style.backgroundColor = '#F5A9BC';
 		}
 	}
-
 }
 
 
@@ -140,37 +138,87 @@ function leftPad(value) {
 }
 
 function selectDateForTime(showId, date) {
-	console.log(showId);
+	//console.log(showId);
 	//console.log(date);
 
+	//해당 공연일에 공연시간을 갖고오기 위함
 	$.ajax({
 		type: "get",
 		url: "/api/selectDate/" + showId + "/" + date,
-		conttentType: "application/json; charset=utf-8",
+		contentType: "application/json; charset=utf-8",
 		dataType: "json"
 	}).done(function(showTimeList) {
-		$(".watch--time").remove()
+
+		//$(".watch--time").empty();
+		$(".timeTableList").remove();
 		console.log(showTimeList);
-		$(".TagPlay").append(`<ul class="watch--time"></ul>`);
-		console.log(showTimeList[1])
+		$(".TagPlay").append(`<ul class="timeTableList"></ul>`);
 		showTimeList.forEach((showTime) => {
-			
-			let	addTime = `<li><a id="cellPlay" name="cellPlay" class="select" href="#">${showTime.showTime}</a></li>`
-			$(".watch--time").append(addTime);
-		})
-		/*
-		console.log(addTime);
-		for (let i; i < addTime.length; i++) {
-			$("ul").append(addTime[i]);
-		}
-		*/
-		console.log('된겨?')
+			let addTime = `<li class="timeTableItem"><a class="timeTableLabel" data-tabtoggle="timeTableList" role="button" data-seq="${showTime.id}">${showTime.showTime}</li>`
+			$(".timeTableList").append(addTime);
+
+			$(document).on("click", `.timeTableLabel[data-seq="${showTime.id}"]`, function() {
+				//let selectedSeq = $(this).data("seq");
+				//let selectedShowTime = $(this).text();
+				//console.log("선택된 시퀀스:", selectedSeq);
+				//console.log("선택된 상영 시간:", selectedShowTime);
+
+				$(".timeTableLabel").removeClass("is-toggled");
+				$(this).addClass("is-toggled");
+
+
+				//좌석정보를 갖고 오기 위함
+				$.ajax({
+					type: "get",
+					url: "/api/selectSeats/" + showId + "/" + showTime.id,
+					contentType: "application/json; charset=utf-8",
+					dataType: "json"
+				}).done(function(seatList) {
+					console.log(showTime.id);
+					$(".row").remove();
+					console.log("좌석 정보:", seatList);
+					$(".seat--info").append(`<div class="row"></div>`);
+					let seatsPerRow = 5;
+					console.log(typeof seatList);
+					console.log(seatList[0].seatId);
+
+					let currentRow = $(".row");
+
+					seatList.forEach((seat, index) => {
+						if (index % seatsPerRow === 0 && index !== 0) {
+							currentRow = $("<div class='row'></div>");
+							$(".seat--info").append(currentRow);
+						}
+
+						let addSeat = `<div class="seat" data-seq="${seat.seatId}">${seat.seatName}</div>`;
+						currentRow.append(addSeat);
+						console.log(seat.seatId);
+
+
+						$(document).on('click', `.seat[data-seq="${seat.seatId}"]`, function() {
+							$(".seat").removeClass("selected");
+							$(this).addClass("selected");
+						});
+					});
+
+					// 여기에서 좌석 정보를 사용하여 원하는 작업을 수행합니다.
+					// 예를 들어, 좌석 정보를 화면에 표시하거나 다음 페이지로 넘기는 등의 작업을 수행할 수 있습니다.
+				}).fail(function(error) {
+					console.log(error);
+					console.log("좌석 정보를 가져오는 데 실패했습니다.");
+				});
+
+				console.log("id" + showTime.id);
+			});
+		});
+
+
+		console.log('된겨?');
 	}).fail(function(error) {
 		console.log(error);
 		console.log('안된겨!')
 	});
 
-
-
 }
+
 

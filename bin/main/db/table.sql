@@ -1,14 +1,12 @@
 
 -- user, manager, admin, teacher
-CREATE TABLE role_tb
-(
+CREATE TABLE role_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
-   role VARCHAR (10) NOT NULL
+   role VARCHAR(10) NOT NULL
 );
 
 -- 유저
-CREATE TABLE user_tb
-(
+CREATE TABLE user_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    user_name VARCHAR (255) NOT NULL UNIQUE,
    password VARCHAR (200) NOT NULL,
@@ -47,16 +45,14 @@ CREATE TABLE managerNotice_tb
 
 
 -- 장소 ex) 오페라하우스
-CREATE TABLE location_tb
-(
+CREATE TABLE location_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    location VARCHAR (100) NOT NULL,
    location_info VARCHAR (200) NOT NULL
 );
 
 -- 홀 ex) a,b,c,d,e
-CREATE TABLE hole_tb
-(
+CREATE TABLE hole_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    name VARCHAR (100) NOT NULL,
    price VARCHAR (100),
@@ -66,15 +62,13 @@ CREATE TABLE hole_tb
 );
 
 -- show 종류
-CREATE TABLE category_tb
-(
+CREATE TABLE category_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    show_type VARCHAR (50) NOT NULL
 );
 
 -- 공연
-CREATE TABLE show_tb
-(
+CREATE TABLE show_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    img_route VARCHAR (200) NOT NULL,
    title VARCHAR (100) NOT NULL,
@@ -94,19 +88,65 @@ CREATE TABLE show_tb
    FOREIGN KEY (hole_id) REFERENCES hole_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- 상영시간
-CREATE TABLE show_datetime_tb
-(
+-- 좌석 정보
+create table if not exists seat_tb(
+	seat_id int primary key AUTO_INCREMENT,
+	hole_id int not null,
+	seat_name varchar(20),
+    reserv_state tinyint(1) default 0,
+    FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- 유아, 청소년, 성인
+CREATE TABLE age_group_tb(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   age_group VARCHAR (20) NOT NULL
+);
+
+-- 공연일정
+CREATE TABLE show_datetime_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    show_date DATE NOT NULL,
    show_time TIME NOT NULL,
    show_id INT NOT NULL,
-   foreign key (show_id) references show_tb (id)
+   hole_id INT NOT NULL,
+   foreign key (show_id) references show_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- 예매
+CREATE TABLE ticketing_tb(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   ticketing_date TIMESTAMP DEFAULT now(),
+   user_id INT NOT NULL,
+   seat_id INT ,
+   show_time_id INT NOT NULL,
+   age_group_id INT NOT NULL,
+   FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (show_time_id) REFERENCES show_datetime_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (show_time_id) REFERENCES show_datetime_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (age_group_id) REFERENCES age_group_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- 결제
+CREATE TABLE payment_tb(
+	payment_id INT PRIMARY KEY AUTO_INCREMENT,
+	user_id INT NOT NULL,
+	payment_option VARCHAR(20) NOT NULL,
+	payment_date TIMESTAMP NOT NULL DEFAULT now(),
+	ticketing1_id INT NOT NULL,
+	ticketing2_id INT,
+	ticketing3_id INT,
+	ticketing4_id INT,
+	FOREIGN KEY (user_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing1_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing2_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing3_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing4_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- 관람평
-CREATE TABLE review_tb
-(
+CREATE TABLE review_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    content TEXT NOT NULL,
    review_creation_date TIMESTAMP DEFAULT now(),
@@ -118,8 +158,7 @@ CREATE TABLE review_tb
 );
 
 -- 찜목록
-CREATE TABLE wish_list_tb
-(
+CREATE TABLE wish_list_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    user_id INT NOT NULL,
    show_id INT NOT NULL,
@@ -128,15 +167,13 @@ CREATE TABLE wish_list_tb
 );
 
 -- 질문 카테고리
-CREATE TABLE question_category_tb
-(
+CREATE TABLE question_category_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    question_type VARCHAR (30) NOT NULL
 );
 
 -- 질문
-CREATE TABLE question_tb
-(
+CREATE TABLE question_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    title varchar (100) NOT NULL,
    content TEXT NOT NULL,
@@ -148,8 +185,7 @@ CREATE TABLE question_tb
 );
 
 -- 답글
-CREATE TABLE answer_tb
-(
+CREATE TABLE answer_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    content TEXT NOT NULL,
    user_id INT NOT NULL,
@@ -158,28 +194,9 @@ CREATE TABLE answer_tb
    FOREIGN KEY (question_id) REFERENCES question_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- 유아, 청소년, 성인
-CREATE TABLE age_group_tb
-(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   age_group VARCHAR (20) NOT NULL
-);
 
--- 전시회 예매
-CREATE TABLE ticketing_tb
-(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   ticketing_date TIMESTAMP DEFAULT now(),
-   user_id INT NOT NULL,
-   show_time_id INT NOT NULL,
-   age_group_id INT NOT NULL,
-   FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   FOREIGN KEY (show_time_id) REFERENCES show_datetime_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   FOREIGN KEY (age_group_id) REFERENCES age_group_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
-);
 -- 대관 예약
-CREATE TABLE rent_place_reservation_tb
-(
+CREATE TABLE rent_place_reservation_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    start_date DATE DEFAULT (current_date),
    end_date DATE DEFAULT (current_date),
@@ -189,9 +206,9 @@ CREATE TABLE rent_place_reservation_tb
    FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
    FOREIGN KEY (hole_id) REFERENCES hole_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 -- 아카데미 신청
-CREATE TABLE class_registration_tb
-(
+CREATE TABLE class_registration_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    class_registration_date DATETIME DEFAULT now(),
    user_id INT NOT NULL,
@@ -199,9 +216,9 @@ CREATE TABLE class_registration_tb
    FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
    FOREIGN KEY (academy_id) REFERENCES show_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 -- 공지사항
-CREATE TABLE announcement
-(
+CREATE TABLE announcement(
    id INT PRIMARY KEY AUTO_INCREMENT,
    title VARCHAR (100) NOT NULL,
    content TEXT NOT NULL,
