@@ -1,6 +1,5 @@
 package com.bclass.arts_center.service;
 
-import java.beans.Transient;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,17 +55,50 @@ public class QuestionService {
 		return searchCount;
 	}
 	
+	/*
+	 * 전대영 : 질문 적기
+	 */
 	@Transactional
 	public Integer createQeustion(Question question) {
 		int createResult = questionRepository.insert(question);
 		return createResult;
 	}
-	
+	/*
+	 * 전대영 : 질문 삭제하기
+	 */
 	@Transactional
 	public Integer deleteQuestion(Integer id) {
 		int deleteResult = questionRepository.deleteById(id);
 		System.out.println(id);
 		System.out.println(deleteResult);
 		return deleteResult;
+	}
+	
+	
+	/**
+	 * 작성자 : 전대영 quetion All select
+	 */
+	@Transactional
+	public List<RequestQuestionDto> readQuestionAll() {
+		List<RequestQuestionDto> questionList = questionRepository.selectQuestionAll();
+		return questionList;
+	}
+	
+	/**
+	 * 작성자 : 전대영 quetion 하나씩 select
+	 */
+	@Transactional
+	public RequestQuestionDto readQuestionByQuestionId(Integer questionId) {
+		RequestQuestionDto question = questionRepository.selectQuestionByQuestionId(questionId);
+		return question;
+	}
+	
+	/**
+	 * 작성자 : 전대영 quetion 하나씩 delete
+	 */
+	@Transactional
+	public Integer deleteQuestionByQuestionId(Integer questionId) {
+		Integer result = questionRepository.deleteQuestionByQuestionId(questionId);
+		return result;
 	}
 }

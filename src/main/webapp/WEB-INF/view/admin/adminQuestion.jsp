@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
 <meta name="author" content="" />
 <title>Tables - SB Admin</title>
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-<link href="css/styles.css" rel="stylesheet" />
+<link href="/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -46,7 +48,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">유저</div>
-						<a class="nav-link" href="index.html"> 유저목록보기 </a>
+						<a class="nav-link" href=""> 유저목록보기 </a>
 						<div class="sb-sidenav-menu-heading">Question</div>
 						<a class="nav-link" href="/admin/questionAll"> Question 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">Interface</div>
@@ -135,22 +137,40 @@
 							<table id="datatablesSimple">
 								<thead>
 									<tr>
-										<th>user_name</th>
-										<th>nickname</th>
-										<th>email</th>
-										<th>birth_date</th>
-										<th>tel</th>
+										<th>id</th>
+										<th>제목</th>
+										<th>내용</th>
+										<th>카테고리</th>
+										<th>답변상태</th>
+										<th>답변달기</th>
+										<th>삭제</th>
 									</tr>
 								</thead>
+								<tbody>
+									<c:forEach var="questionList" items="${questionList}">
+										<tr>
+											<th>${questionList.id}</th>
+											<th>${questionList.title}</th>
+											<th>${questionList.content}</th>
+											<th>${questionList.questionType}</th>
+											<c:choose>
+												<c:when test="${questionList.answerStatus==1}">
+													<th>답변완료</th>
+												</c:when>
+												<c:otherwise>
+													<th>답변 미완료</th>
+												</c:otherwise>
+											</c:choose>
+											<th><form action="/answer/select/${questionList.id}">
+													<button type="submit" class="btn">답변달기</button>
+												</form></th>
+											<th><form action="/admin/deleteQuestion/${questionList.id}">
+													<button class="btn">삭제</button>
+												</form></th>
+										</tr>
+									</c:forEach>
+								</tbody>
 								<tfoot>
-									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Salary</th>
-									</tr>
 								</tfoot>
 							</table>
 						</div>
@@ -170,8 +190,8 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-	<script src="js/scripts.js"></script>
+	<script src="/js/scripts.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-	<script src="js/datatables-simple-demo.js"></script>
+	<script src="/js/datatables-simple-demo.js"></script>
 </body>
 </html>

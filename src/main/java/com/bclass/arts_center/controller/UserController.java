@@ -24,7 +24,6 @@ import com.bclass.arts_center.utils.Define;
 
 import lombok.AllArgsConstructor;
 
-
 /**
  * 
  * @author 편용림
@@ -43,14 +42,11 @@ public class UserController {
 	@Autowired
 	private HttpSession session;
 
-	
-	
 	// 로그인 페이지
 	@GetMapping("/login")
 	public String login() {
 		return "/user/signIn";
 	}
-
 
 	// 회원가입 페이지
 	@GetMapping("/signUp")
@@ -64,7 +60,7 @@ public class UserController {
 		SignInFormDto dto = new SignInFormDto();
 		dto.setUserName(userName);
 		User user = userService.readUserByUserName(dto.getUserName());
-		
+
 		model.addAttribute("user", user);
 
 		return "/user/update";
@@ -82,7 +78,6 @@ public class UserController {
 		return "/user/delete";
 	}
 
-	
 	// 로그인 처리
 	@PostMapping("/loginProc")
 	public String loginProc(SignInFormDto signInFormDto) {
@@ -94,10 +89,13 @@ public class UserController {
 			throw new CustomRestfullException("password를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		User principal = userService.readUser(signInFormDto);
-			
-		session.setAttribute(Define.PRINCIPAL, principal);
 
-		return "redirect:/";
+		session.setAttribute(Define.PRINCIPAL, principal);
+		if (principal.getRoleId() == 3) {
+			return "redirect:/admin";
+		} else {
+			return "redirect:/";
+		}
 	}
 
 	// 로그아웃 처리
@@ -108,17 +106,16 @@ public class UserController {
 
 		return "redirect:/";
 	}
-	
 
 	// 회원가입 처리
 	@PostMapping("/signUp")
 	public String signUpProc(@Valid SignUpFormDto signUpFormDto, BindingResult errors, Model model) {
-		
+
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {
 			throw new CustomRestfullException("패스워드 입력해주세요", HttpStatus.BAD_REQUEST);
-		}else if (signUpFormDto.getNickname() == null || signUpFormDto.getNickname().isEmpty()) {
+		} else if (signUpFormDto.getNickname() == null || signUpFormDto.getNickname().isEmpty()) {
 			throw new CustomRestfullException("닉네임을 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getEmail() == null || signUpFormDto.getEmail().isEmpty()) {
 			throw new CustomRestfullException("이메일을 입력해주세요", HttpStatus.BAD_REQUEST);
@@ -127,18 +124,18 @@ public class UserController {
 		} else if (signUpFormDto.getTel() == null || signUpFormDto.getTel().isEmpty()) {
 			throw new CustomRestfullException("전화번호를 입력주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getBirthDate() == null) {
-			throw new CustomRestfullException("생년월일을 입력해주세요", HttpStatus.BAD_REQUEST); 
+			throw new CustomRestfullException("생년월일을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
-			
+
 		if (errors.hasErrors()) {
-			
+
 			Map<String, String> validatorResult = userService.validateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
-			
-		return "/user/signUp";
-	}
+
+			return "/user/signUp";
+		}
 		System.out.println(signUpFormDto.getApiId());
 		userService.createUser(signUpFormDto);
 		return "redirect:/";
@@ -146,37 +143,36 @@ public class UserController {
 
 	// 개인정보 수정
 	@PostMapping("/update")
-	public String update(@Valid UpdateUserDto updateUserDto , BindingResult errors, Model model) {
-		
-		
+	public String update(@Valid UpdateUserDto updateUserDto, BindingResult errors, Model model) {
+
 		if (errors.hasErrors()) {
-			
+
 			model.addAttribute("user", updateUserDto);
-			
+
 			Map<String, String> validatorResult = userService.validateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
 			return "/user/update";
-		
-	}
+
+		}
 		int result = userService.updateUser(updateUserDto);
-		
+
 		return "redirect:/";
 	}
-	
+
 	// 회원탈퇴
 	@PostMapping("/deleteProc")
 	public String delete(SignInFormDto signInFormDto) {
 		System.out.println(signInFormDto);
 		int result = userService.deleteUser(signInFormDto);
-		
+
 		if (signInFormDto.getPassword() == null || signInFormDto.getPassword().isEmpty()) {
 			throw new CustomRestfullException("password를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
-		
+
 		session.invalidate();
-		
+
 		return "redirect:/";
 	}
 
