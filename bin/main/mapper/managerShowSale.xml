@@ -58,17 +58,7 @@
 		sd.show_id = s.id
 		right Join ticketing_tb AS t ON t.show_time_id = sd.id
 		left JOIN age_group_tb AS a ON t.age_group_id = a.id
-		where  s.id=#{showId} AND s.organizer_id =#{userId} group by t.id limit #{begin} , #{range};
-	</select>
-	<select id="selectManagerShowDetaiCountlByShowId" resultType="Integer">
-		SELECT count(*) AS count
-		FROM show_tb AS s
-		Join user_tb AS u ON u.id = s.organizer_id
-		join show_datetime_tb AS sd ON
-		sd.show_id = s.id
-		right Join ticketing_tb AS t ON t.show_time_id = sd.id
-		left JOIN age_group_tb AS a ON t.age_group_id = a.id
-		where  s.id=#{showId} AND s.organizer_id =#{userId}
+		where  s.id=#{showId} AND s.organizer_id =#{userId} group by t.id;
 	</select>
 </mapper>
 

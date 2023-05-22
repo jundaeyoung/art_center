@@ -1,19 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/manager/managerShowSaleDetail.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript" src="/js/main.js"></script>
 
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
@@ -23,17 +17,13 @@
 <div class="signUpShow__content">
 	<div class="signUpShow__info">
 		<form action="/manager/showSaleByDate" method="post">
-			<div
-				style="display: flex; width: 700px; flex-direction: row; justify-content: center;">
-				<div
-					style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
+			<div style="display: flex; width: 700px; flex-direction: row; justify-content: center;">
+				<div style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
 					<div class="date">
-						<label for="content">기간선택 : </label> <input type="text"
-							id="startDate" name="startDate" style="width: 300px;" />
+						<label for="content">기간선택 : </label> <input type="text" id="startDate" name="startDate" style="width: 300px;" />
 					</div>
 					<div>
-						<input type="hidden" id="infant_rate" value="${principal.getId()}"
-							name="organizerId">
+						<input type="hidden" id="infant_rate" value="${principal.getId()}" name="organizerId">
 					</div>
 					<div class="btn__sub">
 						<button type="submit" style="width: 100px; height: 50px;">검색</button>
@@ -44,17 +34,13 @@
 	</div>
 	<div class="signUpShow__info">
 		<form action="/manager/showSaleBySearch" method="post">
-			<div
-				style="display: flex; width: 700px; flex-direction: row; justify-content: center;">
-				<div
-					style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
+			<div style="display: flex; width: 700px; flex-direction: row; justify-content: center;">
+				<div style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
 					<div class="date">
-						<label for="title">제 목 : </label> <input type="text" id="title"
-							name="title" style="width: 300px;" />
+						<label for="title">제 목 : </label> <input type="text" id="title" name="title" style="width: 300px;" />
 					</div>
 					<div>
-						<input type="hidden" id="infant_rate" value="${principal.getId()}"
-							name="organizerId">
+						<input type="hidden" id="infant_rate" value="${principal.getId()}" name="organizerId">
 					</div>
 					<div class="btn__sub">
 						<button type="submit" style="width: 100px; height: 50px;">검색</button>
@@ -64,7 +50,27 @@
 		</form>
 	</div>
 </div>
+<c:forEach var="showList" items="${showList}">
+	<fmt:parseNumber var="adultRate" type="number" value="${showList.adultRate}" />
+	<fmt:formatNumber value="${adultRate}" pattern="#,##0" var="formattedAdultRate" />
+	<fmt:parseNumber var="youthRate" type="number" value="${showList.youthRate}" />
+	<fmt:formatNumber value="${youthRate}" pattern="#,##0" var="formattedYouthRate" />
+	<fmt:parseNumber var="infantRate" type="number" value="${showList.infantRate}" />
+	<fmt:formatNumber value="${infantRate}" pattern="#,##0" var="formattedInfantRate" />
+	<c:set var="totalAdultPrice" value="${adultRate * showList.adultCount}" />
+	<c:set var="totalYouthPrice" value="${adultRate * showList.youthCount}" />
+	<c:set var="totalInfantPrice" value="${adultRate * showList.infantCount}" />
+
+	<fmt:formatNumber value="${totalAdultPrice}" pattern="#,##0" var="A__price" />
+	<fmt:formatNumber value="${totalYouthPrice}" pattern="#,##0" var="Y__price" />
+	<fmt:formatNumber value="${totalInfantPrice}" pattern="#,##0" var="I__price" />
+
+	<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice+totalInfantPrice}" />
+	<fmt:formatNumber value="${totalPrice}" pattern="#,##0" var="T__price" />
+
+</c:forEach>
 <div>
+	<h1 style="padding-bottom: 30px;">상세 매출</h1>
 	<div class="show">
 		<div class="review__content">
 			<c:choose>
@@ -78,99 +84,41 @@
 					<div class="show__content">
 						<h1>${title}</h1>
 						<div>
-							<p>제 목 :</p>
-							<p>상영상태 : ${showStatus}</p>
+							<p>기간 : ${startDate}&nbsp&nbsp~&nbsp&nbsp${endDate}</p>
+							<p>성인 요금 : ${adultRate}원</p>
+							<p>청소년 요금 : ${youthRate}원</p>
+							<p>유아 요금 : ${infantRate}원</p>
 						</div>
 					</div>
+					<div class="total" style="display: flex; justify-content: center;">
+						<h3>매출 : ${sum}</h3>
+					</div>
+
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<h1>상세 매출</h1>
 		<c:forEach var="showList" items="${showList}">
-			<fmt:parseNumber var="adultRate" type="number"
-				value="${showList.adultRate}" />
-			<fmt:formatNumber value="${adultRate}" pattern="#,##0"
-				var="formattedAdultRate" />
-			<fmt:parseNumber var="youthRate" type="number"
-				value="${showList.youthRate}" />
-			<fmt:formatNumber value="${youthRate}" pattern="#,##0"
-				var="formattedYouthRate" />
-			<fmt:parseNumber var="infantRate" type="number"
-				value="${showList.infantRate}" />
-			<fmt:formatNumber value="${infantRate}" pattern="#,##0"
-				var="formattedInfantRate" />
-			<c:set var="totalAdultPrice"
-				value="${adultRate * showList.adultCount}" />
-			<c:set var="totalYouthPrice"
-				value="${adultRate * showList.youthCount}" />
-			<c:set var="totalInfantPrice"
-				value="${adultRate * showList.infantCount}" />
-
-			<fmt:formatNumber value="${totalAdultPrice}" pattern="#,##0"
-				var="A__price" />
-			<fmt:formatNumber value="${totalYouthPrice}" pattern="#,##0"
-				var="Y__price" />
-			<fmt:formatNumber value="${totalInfantPrice}" pattern="#,##0"
-				var="I__price" />
-
-			<c:set var="totalPrice"
-				value="${totalAdultPrice+totalYouthPrice+totalInfantPrice}" />
-			<fmt:formatNumber value="${totalPrice}" pattern="#,##0"
-				var="T__price" />
-
 
 			<div class="money__content">
+				<div></div>
 				<div id="money">
 					<div>
-						<c:choose>
-							<c:when test="${showList.adultCount!=0}">
-								<p>성인 : ${formattedAdultRate}</p>
-							</c:when>
-							<c:when test="${showList.youthCount!=0}">
-								<p>청소년 : ${formattedYouthRate}</p>
-							</c:when>
-							<c:otherwise>
-								<p>유아 : ${formattedInfantRate!=0}</p>
-							</c:otherwise>
-						</c:choose>
+						<p>성인 : ${showList.adultCount}명</p>
+					</div>
+					<div>
+						<p>청소년 : ${showList.youthCount}명</p>
+					</div>
+					<div>
+						<p>유아 : ${showList.infantCount}명</p>
 					</div>
 				</div>
-				<h3>총 합계 : ${T__price}</h3>
+				<h3>매출 : ${T__price}</h3>
 			</div>
 		</c:forEach>
+
 	</div>
 </div>
-<div class="page">
-	<c:choose>
-		<c:when test="${currentPage==1 || currentPage==null}">
-		</c:when>
-		<c:otherwise>
-			<a
-				href="/manager/showSaleDetailByShowId/${showId}/${principal.getId()}/1/0/5"><p><</p></a>
-		</c:otherwise>
-	</c:choose>
-	<c:choose>
-		<c:when test="${currentPage==null}">
-		</c:when>
-		<c:otherwise>
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a
-					href="/manager/showSaleDetailByShowId/${showId}/${principal.getId()}/${i}/${5*(i-1)}/5"><p>${i}</p></a>
-			</c:forEach>
-		</c:otherwise>
-	</c:choose>
-	<c:choose>
-		<c:when test="${currentPage==page || currentPage==null || page<=0}">
-		</c:when>
-		<c:otherwise>
-			<a
-				href="/manager/showSaleDetailByShowId/${showId}/${principal.getId()}/${page}/${5*(page-1)}/5"><p>></p></a>
-		</c:otherwise>
-	</c:choose>
 
-
-</div>
- 
 <script type="text/javascript">
 	$(function() {
 		$('#startDate').daterangepicker(

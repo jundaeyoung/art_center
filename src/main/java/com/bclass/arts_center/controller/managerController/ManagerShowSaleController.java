@@ -120,33 +120,13 @@ public class ManagerShowSaleController {
 	/*
 	 * 전대영 : 공연 detail보기
 	 */
-	@GetMapping("/manager/showSaleDetailByShowId/{showId}/{userId}/{currentPage}/{begin}/{range}")
+	@GetMapping("/manager/showSaleDetailByShowId/{showId}/{userId}")
 	public String selectShowSaleDetailByShowId(@PathVariable(value = "showId", required = false) Integer showId,
-			@PathVariable(value = "userId", required = false) Integer userId,
-			@PathVariable(value = "currentPage", required = false) Integer currentPage,
-			@PathVariable(value = "begin", required = false) Integer begin,
-			@PathVariable(value = "range", required = false) Integer range, Model model) {
+			@PathVariable(value = "userId", required = false) Integer userId, Model model) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService.readManagerShowDetailByShowId(showId,
-				userId, begin, range);
-		System.out.println(showSaleList);
-		Integer showSaleCount = managerShowSaleService.readManagerShowDetailCountByShowId(showId, userId);
-		Double count = Math.ceil(showSaleCount);
-		Integer page = (int) Math.ceil(count / 5);
-		Integer startPage = currentPage - 2;
-		if (startPage <= 0) {
-			startPage = 1;
-		}
-		Integer endPage = startPage + 4;
-		if (endPage >= page) {
-			endPage = page;
-		}
+				userId);
+		System.out.println(showSaleList.size()+"매출");
 		model.addAttribute("showId", showId);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		System.out.println(page+"DDD");
 		DecimalFormat df = new DecimalFormat("###,###");
 		model.addAttribute("showList", null);
 		int sum = 0;
@@ -163,9 +143,26 @@ public class ManagerShowSaleController {
 		} else {
 			String imgRoute = showSaleList.get(0).getImgRoute();
 			String title = showSaleList.get(0).getTitle();
+			String startDate = showSaleList.get(0).getStartDate();
+			String endDate = showSaleList.get(0).getEndDate();
+			String adultRate = showSaleList.get(0).getAdultRate();
+			String youthRate = showSaleList.get(0).getYouthRate();
+			String infantRate = showSaleList.get(0).getInfantRate();
+			Integer adultCount = showSaleList.get(0).getAdultCount();
+			Integer youthCount = showSaleList.get(0).getYouthCount();
+			Integer infantCount = showSaleList.get(0).getInfantCount();
 			model.addAttribute("showList", showSaleList);
 			model.addAttribute("imgRoute", imgRoute);
+			model.addAttribute("startDate", startDate);
+			model.addAttribute("endDate", endDate);
 			model.addAttribute("title", title);
+			model.addAttribute("adultRate", adultRate);
+			model.addAttribute("youthRate", youthRate);
+			model.addAttribute("infantRate", infantRate);
+			model.addAttribute("adultCount", adultCount);
+			model.addAttribute("youthCount", youthCount);
+			model.addAttribute("infantCount", infantCount);
+			model.addAttribute("sum", df.format(sum));
 		}
 		return "/manager/managerShowSaleDetail";
 	}

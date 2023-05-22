@@ -30,12 +30,7 @@ public interface ManagerShowSaleRepository {
 	/*
 	 * 전대영 : 매니저 공연 검색하여 매출 보기
 	 */
-	public List<RequestManagerShowSaleDto> selectManagerShowDetailByShowId(@Param("showId") Integer showId, @Param("userId")Integer userId , @Param("begin")Integer begin,
-			@Param("range")Integer range);
+	public List<RequestManagerShowSaleDto> selectManagerShowDetailByShowId(@Param("showId") Integer showId, @Param("userId")Integer userId);
 	
-	/*
-	 * 전대영 : 매니저 공연 검색하여 매출 카운트
-	 */
-	public Integer selectManagerShowDetaiCountlByShowId(@Param("showId") Integer showId, @Param("userId")Integer userId );
 
 }

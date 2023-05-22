@@ -54,21 +54,11 @@ public class ManagerShowSaleService {
 	 * 전대영 : 매니저 공연 detail 매출 보기 
 	 */
 	@Transactional
-	public List<RequestManagerShowSaleDto> readManagerShowDetailByShowId(Integer showId,Integer userId,Integer begin, Integer range) {
+	public List<RequestManagerShowSaleDto> readManagerShowDetailByShowId(Integer showId,Integer userId) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
-				.selectManagerShowDetailByShowId(showId,userId,begin,range);
+				.selectManagerShowDetailByShowId(showId,userId);
 		return showSaleList;
 	}
 	
 	
-	/*
-	 * 전대영 : 매니저 공연 detail 매출 카운터
-	 */
-	@Transactional
-	public Integer readManagerShowDetailCountByShowId(Integer showId,Integer userId) {
-		Integer showSaleList = managerShowSaleRepository
-				.selectManagerShowDetaiCountlByShowId(showId,userId);
-		
-		return showSaleList;
-	}
 }

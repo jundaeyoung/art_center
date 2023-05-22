@@ -9,7 +9,6 @@ public class ManagerShowInfoController {
 	
 	@GetMapping("/manager/showInfo")
 	public String managerShowInfo() {
-		
 		return "/manager/managerShowInfo";
 	}
 }

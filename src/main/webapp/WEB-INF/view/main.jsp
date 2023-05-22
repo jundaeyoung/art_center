@@ -60,12 +60,12 @@
 						<div class="title">
 							<h2>모달</h2>
 						</div>
-						<div class="close-area">X${message}</div>
+						<div class="close-area">X</div>
 						<c:forEach var="noticeList" items="${noticeList}">
 							<div class="content">${noticeList.notice}
 								<form action="/managerNotice/update">
-									<div class="close--area">
-										<button type="submit" style="border-style: none; background-color: rgba(69, 139, 197, 0.90);">X${message}</button>
+									<div class="close-area">
+										<button type="submit" class="close-area" style="border-style: none; background-color: rgba(69, 139, 197, 0.90);">확인</button>
 									</div>
 								</form>
 							</div>
