@@ -32,7 +32,6 @@ public class AnnouncementCotroller {
 	@Autowired
 	private HttpSession session;
 	
-	
 	@GetMapping("")
 	public String notice(Model model, @RequestParam(defaultValue = "select") String crud) {
 		String searchText = "";
