@@ -9,13 +9,17 @@
 		insert into adminNotice_tb(notice,user_id,admin_id)
 		values(#{notice},#{userId},#{adminId});
 	</insert>
-	
+
 	<!-- 작성자: 전대영 admin 알림 select -->
 	<select id="selectManagerNotice" resultType="com.bclass.arts_center.repository.model.Notice">
 		select * from managerNotice_tb
 		where user_id=#{userId} AND status=0;
 	</select>
-	
+
+	<update id="updateManagerNotice">
+		update managerNotice_tb set
+		status=1 where id =#{id};
+	</update>
 </mapper>
 
 

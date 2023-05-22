@@ -38,7 +38,7 @@ public class MainController {
 		if (principal == null) {
 			model.addAttribute("principal", null);
 		} else {
-			List<Notice> noticeList = noticeService.readNoticeDto(principal.getId());
+			List<Notice> noticeList = noticeService.readNotice(principal.getId());
 				if (noticeList == null || noticeList.size()==0) {
 					model.addAttribute("noticeList", null);
 					model.addAttribute("message", 0);

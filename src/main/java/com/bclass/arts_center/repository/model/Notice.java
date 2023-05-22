@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Notice {
 
+	private Integer id;
 	private String notice;
 	private Integer adminId;
 	private Integer userId;

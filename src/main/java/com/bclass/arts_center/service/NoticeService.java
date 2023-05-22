@@ -27,9 +27,20 @@ public class NoticeService {
 	 * 전대영 : notice select
 	 */
 	@Transactional
-	public List<Notice> readNoticeDto(Integer userId){
+	public List<Notice> readNotice(Integer userId){
 		List<Notice> noticeList = noticeRepository.selectManagerNotice(userId);
 		return noticeList;
+		
+	}
+	
+	/*
+	 * 전대영 : notice delete
+	 */
+	@Transactional
+	public Integer updateNotice(Integer id){
+		Integer updateNotice = noticeRepository.updateManagerNotice(id);
+		System.out.println(updateNotice);
+		return updateNotice;
 		
 	}
 }
