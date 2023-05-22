@@ -1,6 +1,7 @@
 package com.bclass.arts_center.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,8 +125,17 @@ public class UserService {
 			}		
 		}
 	}
+
+	// 편용림
+	// 회원 목록
 	
+	@Transactional
+	public  List<User> readUser() {
+		List<User> users = userRepository.selectUser();
+		return users;
+	}
 	
+	// valid 검사
 	@Transactional(readOnly = true)
 	public Map<String, String> validateHandling(Errors errors) {
         Map<String, String> validatorResult = new HashMap<>();

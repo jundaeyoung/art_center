@@ -1,5 +1,7 @@
 package com.bclass.arts_center.repository.interfaces;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bclass.arts_center.dto.SignInFormDto;
@@ -41,4 +43,9 @@ public interface UserRepository {
 	
 	//회원탈퇴
 	public int deleteUserById(SignInFormDto signInFormDto);
+	
+	//유저정보
+	public List<User> selectUser();
+	
+
 }
