@@ -17,6 +17,9 @@
 
 <div class="main">
 
+	<div>
+		<p>${title}</p>
+	</div>
 	<div class="reservation">
 		<form action="/ticket/ticketing/${showId}" method="post">
 			<div class="reservation--calendar">
@@ -57,39 +60,16 @@
 			<div>
 
 				<div>좌석 선택</div>
-				<p>${title}</p>
-				<div></div>
-			</div>
 
-			<div class="side--middle">
 
-				<div>좌석 정보</div>
-				<span>인원수 선택 : </span> <select id="person">
-					<option value="1">1명</option>
-					<option value="2">2명</option>
-					<option value="3">3명</option>
-					<option value="4">4명</option>
-					<option value="5">5명</option>
-				</select>
+				<div class="side--middle">
+					<div class="seat--info">
+						<div class="screen"></div>
 
-				<table border="1">
-					<tr>
-						<td><label><input type="checkbox" />1</label></td>
-						<td><label><input type="checkbox" />2</label></td>
-						<td><label><input type="checkbox" />3</label></td>
-						<td><label><input type="checkbox" />4</label></td>
-						<td><label><input type="checkbox" />5</label></td>
-						<td><label><input type="checkbox" />6</label></td>
-					</tr>
-					<tr>
-						<td><label><input type="checkbox" />7</label></td>
-						<td><label><input type="checkbox" />8</label></td>
-						<td><label><input type="checkbox" />9</label></td>
-						<td><label><input type="checkbox" />10</label></td>
-						<td><label><input type="checkbox" />11</label></td>
-						<td><label><input type="checkbox" />12</label></td>
-					</tr>
-				</table>
+
+
+					</div>
+				</div>
 			</div>
 
 			<button type="button" class="btn--ticketing">예매하기</button>
@@ -98,7 +78,7 @@
 </div>
 
 
-<script type="text/javascript" src="/js/reservationCalendar2.js"></script>
+<!-- <script type="text/javascript" src="/js/reservationCalendar2.js"></script> -->
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 

@@ -141,6 +141,7 @@ function selectDateForTime(showId, date) {
 	//console.log(showId);
 	//console.log(date);
 
+	//해당 공연일에 공연시간을 갖고오기 위함
 	$.ajax({
 		type: "get",
 		url: "/api/selectDate/" + showId + "/" + date,
@@ -157,8 +158,8 @@ function selectDateForTime(showId, date) {
 			$(".timeTableList").append(addTime);
 
 			$(document).on("click", `.timeTableLabel[data-seq="${showTime.id}"]`, function() {
-				let selectedSeq = $(this).data("seq");
-				let selectedShowTime = $(this).text();
+				//let selectedSeq = $(this).data("seq");
+				//let selectedShowTime = $(this).text();
 				//console.log("선택된 시퀀스:", selectedSeq);
 				//console.log("선택된 상영 시간:", selectedShowTime);
 
@@ -166,14 +167,39 @@ function selectDateForTime(showId, date) {
 				$(this).addClass("is-toggled");
 
 
-
+				//좌석정보를 갖고 오기 위함
 				$.ajax({
 					type: "get",
-					url: "/api/selectSeats/" + selectedSeq,  // 선택된 시퀀스에 맞는 API 엔드포인트 설정
+					url: "/api/selectSeats/" + showId + "/" + showTime.id,
 					contentType: "application/json; charset=utf-8",
 					dataType: "json"
 				}).done(function(seatList) {
+					console.log(showTime.id);
+					$(".row").remove();
 					console.log("좌석 정보:", seatList);
+					$(".seat--info").append(`<div class="row"></div>`);
+					let seatsPerRow = 5;
+					console.log(typeof seatList);
+					console.log(seatList[0].seatId);
+
+					let currentRow = $(".row");
+
+					seatList.forEach((seat, index) => {
+						if (index % seatsPerRow === 0 && index !== 0) {
+							currentRow = $("<div class='row'></div>");
+							$(".seat--info").append(currentRow);
+						}
+
+						let addSeat = `<div class="seat" data-seq="${seat.seatId}">${seat.seatName}</div>`;
+						currentRow.append(addSeat);
+						console.log(seat.seatId);
+
+
+						$(document).on('click', `.seat[data-seq="${seat.seatId}"]`, function() {
+							$(".seat").removeClass("selected");
+							$(this).addClass("selected");
+						});
+					});
 
 					// 여기에서 좌석 정보를 사용하여 원하는 작업을 수행합니다.
 					// 예를 들어, 좌석 정보를 화면에 표시하거나 다음 페이지로 넘기는 등의 작업을 수행할 수 있습니다.
@@ -181,6 +207,8 @@ function selectDateForTime(showId, date) {
 					console.log(error);
 					console.log("좌석 정보를 가져오는 데 실패했습니다.");
 				});
+
+				console.log("id" + showTime.id);
 			});
 		});
 

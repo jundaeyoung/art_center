@@ -63,22 +63,61 @@ CREATE TABLE show_tb(
    FOREIGN KEY (hole_id) REFERENCES hole_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
 -- 좌석 정보
 create table if not exists seat_tb(
-	seat_id int primary key auto_increment,
-    level varchar(20) not null,
-    seat_num int not null,
-    reserv_state tinyint(1) default 0
+	seat_id int primary key AUTO_INCREMENT,
+	hole_id int not null,
+	seat_name varchar(20),
+    reserv_state tinyint(1) default 0,
+    FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- 상영시간
+-- 유아, 청소년, 성인
+CREATE TABLE age_group_tb(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   age_group VARCHAR (20) NOT NULL
+);
+
+-- 공연일정
 CREATE TABLE show_datetime_tb(
    id INT PRIMARY KEY AUTO_INCREMENT,
    show_date DATE NOT NULL,
    show_time TIME NOT NULL,
    show_id INT NOT NULL,
-   foreign key (show_id) references show_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
+   hole_id INT NOT NULL,
+   foreign key (show_id) references show_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (hole_id) REFERENCES hole_tb(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- 예매
+CREATE TABLE ticketing_tb(
+   id INT PRIMARY KEY AUTO_INCREMENT,
+   ticketing_date TIMESTAMP DEFAULT now(),
+   user_id INT NOT NULL,
+   seat_id INT ,
+   show_time_id INT NOT NULL,
+   age_group_id INT NOT NULL,
+   FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (show_time_id) REFERENCES show_datetime_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (show_time_id) REFERENCES show_datetime_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+   FOREIGN KEY (age_group_id) REFERENCES age_group_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- 결제
+CREATE TABLE payment_tb(
+	payment_id INT PRIMARY KEY AUTO_INCREMENT,
+	user_id INT NOT NULL,
+	payment_option VARCHAR(20) NOT NULL,
+	payment_date TIMESTAMP NOT NULL DEFAULT now(),
+	ticketing1_id INT NOT NULL,
+	ticketing2_id INT,
+	ticketing3_id INT,
+	ticketing4_id INT,
+	FOREIGN KEY (user_id) REFERENCES user_tb(id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing1_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing2_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing3_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (ticketing4_id) REFERENCES ticketing_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- 관람평
@@ -130,23 +169,7 @@ CREATE TABLE answer_tb(
    FOREIGN KEY (question_id) REFERENCES question_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- 유아, 청소년, 성인
-CREATE TABLE age_group_tb(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   age_group VARCHAR (20) NOT NULL
-);
 
--- 전시회 예매
-CREATE TABLE ticketing_tb(
-   id INT PRIMARY KEY AUTO_INCREMENT,
-   ticketing_date TIMESTAMP DEFAULT now(),
-   user_id INT NOT NULL,
-   show_time_id INT NOT NULL,
-   age_group_id INT NOT NULL,
-   FOREIGN KEY (user_id) REFERENCES user_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   FOREIGN KEY (show_time_id) REFERENCES show_datetime_tb (id) ON UPDATE CASCADE ON DELETE CASCADE,
-   FOREIGN KEY (age_group_id) REFERENCES age_group_tb (id) ON UPDATE CASCADE ON DELETE CASCADE
-);
 
 -- 대관 예약
 CREATE TABLE rent_place_reservation_tb(

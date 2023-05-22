@@ -21,9 +21,6 @@ public class TicketController {
 	@Autowired
 	private TicketService ticketService;
 
-	@Autowired
-	private ShowService showService;
-
 	@GetMapping("/ticketing/{showId}")
 	public String ticketingPage(@PathVariable("showId") Integer showId, Model model) {
 
@@ -31,6 +28,9 @@ public class TicketController {
 		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
 		model.addAttribute("showDateList", showDateList);
 		model.addAttribute("showId", showId);
+		
+		List<TicketingDto> showInfo = ticketService.readShowInfoForTicketing(showId);
+		model.addAttribute("title",showInfo.get(0).getTitle());
 
 		return "/ticket/ticketing";
 	}

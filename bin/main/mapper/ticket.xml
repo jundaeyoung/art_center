@@ -39,14 +39,18 @@
 		ORDER BY show_time asc
 	</select>
 	
-<!-- 	<select id="">
+	<!-- 작성자 손주이 : show 공연 시간 별 좌석 검색 -->
+ 	<select id="selectSeatInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT *
 		FROM seat_tb AS st
+		JOIN hole_tb AS h
+		ON h.id = st.hole_id
 		JOIN show_tb AS sw
-		ON 
-	
-	
-	</select> -->
+		ON sw.hole_id = h.id
+		JOIN show_datetime_tb AS sd
+		ON sd.show_id = sw.id
+		WHERE sw.id = #{showId} AND sd.id= #{showDateTimeId}
+	</select>
 
 
 	<!-- <insert id="insert"> INSERT INTO ticketing_tb (ticketing_date, user_id, 

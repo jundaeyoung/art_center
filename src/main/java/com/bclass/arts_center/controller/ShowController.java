@@ -2,7 +2,6 @@ package com.bclass.arts_center.controller;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.ShowViewDto;
-import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ShowService;
-import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller
@@ -31,12 +26,10 @@ public class ShowController {
 	private ShowService showService;
 
 	@Autowired
-	private TicketService ticketService;
-
-	@Autowired
 	private HttpSession session;
 
 	/*
+	 * 선생님,,저는 잘 모르겠어요,,
 	 * @PostMapping("/a/a/")
 	 * 
 	 * @Resource // 주이양 !! 이거는 데이터를 리턴하겠다는 표시 입니다 !!!! public String
