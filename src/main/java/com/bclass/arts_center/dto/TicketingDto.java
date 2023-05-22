@@ -8,7 +8,7 @@ import lombok.Data;
 
 /**
  * 
- * @author 손주이
+ * @author 손주이, 전대영
  *
  */
 @Data
@@ -22,4 +22,16 @@ public class TicketingDto {
 
 	private Timestamp ticketingDate;
 
+	
+	
+	
+	private String nickname;
+	private String tel;
+	private String email;
+	private String adultRate;
+	private String youthRate;
+	private String infantRate;
+	private Integer infantCount;
+	private Integer youthCount;
+	private Integer adultCount;
 }

@@ -39,6 +39,21 @@
 		ORDER BY show_time asc
 	</select>
 
+	<!-- 작성자 전대영 : admin 예매 목록 검색 -->
+	<select id="selectTicketingAll"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
+		SELECT  t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,s.infant_rate, count(case when t.age_group_id=1 then 1 end) as
+		infantCount ,
+		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
+		FROM show_tb AS s
+		Join user_tb AS u ON u.id = t.user_id
+		join show_datetime_tb AS sd ON
+		sd.show_id = s.id
+		left Join ticketing_tb AS t ON t.show_time_id = sd.id
+		left JOIN age_group_tb AS a ON t.age_group_id = a.id
+		group by s.id, sd.show_date,sd.show_time,u.nickname;
+	</select>
+
 
 	<!-- <insert id="insert"> INSERT INTO ticketing_tb (ticketing_date, user_id, 
 		show_id, age_group_id) VALUES (now(), #{userId}, #{showId}, #{ageGroupId}) 

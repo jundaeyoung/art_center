@@ -36,6 +36,15 @@ public class TicketService {
 		List<TicketingDto> timeList = ticketRepository.selectShowTimeByShowId(showId, showDate);
 		return timeList;
 	}
+	
+	/*
+	 * 전대영 : admin 예매 목록 검색
+	 */
+	@Transactional
+	public List<TicketingDto> readTicketingAll() {
+		List<TicketingDto> timeList = ticketRepository.selectTicketingAll();
+		return timeList;
+	}
 
 //	/**
 //	 * 예매

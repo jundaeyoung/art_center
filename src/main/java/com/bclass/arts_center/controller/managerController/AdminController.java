@@ -79,4 +79,5 @@ public class AdminController {
 		questionService.deleteQuestionByQuestionId(questionId);
 		return "redirect:/admin/questionAll";
 	}
+	
 }

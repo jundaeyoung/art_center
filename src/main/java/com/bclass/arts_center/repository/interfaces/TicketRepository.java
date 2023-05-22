@@ -16,6 +16,8 @@ public interface TicketRepository {
 	public List<TicketingDto> selectShowDateByShowId(Integer showId);
 
 	public List<TicketingDto> selectShowTimeByShowId(@Param("showId") Integer showId, @Param("showDate") Date showDate);
+	
+	public List<TicketingDto> selectTicketingAll();
 
 //	public int insert(Ticket ticket);
 //

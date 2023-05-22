@@ -207,7 +207,7 @@ VALUES
    (3,2,3),
    (3,3,3),
    (3,4,3),
-   (3,5,3);
+   (3,20,3);
    
    
   INSERT INTO rent_place_reservation_tb(start_date,end_date,user_id, hole_id)
