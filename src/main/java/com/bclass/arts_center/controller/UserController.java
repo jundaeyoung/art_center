@@ -168,7 +168,7 @@ public class UserController {
 	// 회원탈퇴
 	@PostMapping("/deleteProc")
 	public String delete(SignInFormDto signInFormDto) {
-		System.out.println(signInFormDto);
+
 		int result = userService.deleteUser(signInFormDto);
 		
 		if (signInFormDto.getPassword() == null || signInFormDto.getPassword().isEmpty()) {

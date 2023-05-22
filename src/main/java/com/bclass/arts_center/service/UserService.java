@@ -79,7 +79,7 @@ public class UserService {
 		
 		return userEntity;
 	}
-
+	
 	// api id로 유저정보 조회
 	public User readUserByApiId(String apiId) {
 		User userEntity = userRepository.selectUserByApiId(apiId);
@@ -115,6 +115,7 @@ public class UserService {
 			int result = userRepository.deleteUserById(signInFormDto);
 			return result;
 		}else {
+			
 			boolean isPwdMatched = passwordEncoder.matches(signInFormDto.getPassword(), userEntity.getPassword());
 			
 			if (isPwdMatched == false) {
@@ -127,13 +128,44 @@ public class UserService {
 	}
 
 	// 편용림
-	// 회원 목록
-	
+	// 유저 목록
 	@Transactional
 	public  List<User> readUser() {
-		List<User> users = userRepository.selectUser();
+		List<User> users = userRepository.selectUserList();
 		return users;
 	}
+	
+	// 매니저 목록
+	@Transactional
+	public List<User> readManager(){
+		List<User> managers = userRepository.selectManagerList();
+		return managers;
+	}
+	
+	// 강사 목록
+	public List<User> readTeacher(){
+		List<User> teachers = userRepository.selectTeacherList();
+		return teachers;
+	}
+	
+	
+	//관리자 유저 수정
+	@Transactional
+	public int updateUserById(User user) {
+		
+		int result = userRepository.updateUserById(user);
+		return result;
+	}
+	
+	// 삭제
+	@Transactional
+	public int deleteUserById(String id) {
+		
+		int result = userRepository.deleteById(id);
+		return result;
+	}
+	
+	
 	
 	// valid 검사
 	@Transactional(readOnly = true)
@@ -146,4 +178,5 @@ public class UserService {
         }
         return validatorResult;
     }
+	
 }

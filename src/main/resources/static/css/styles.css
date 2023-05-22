@@ -11241,3 +11241,19 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
+a{
+	color: black;
+}
+
+a:link{
+	text-decoration: none;
+}
+a:visited{
+	text-decoration: none;
+}
+a:active{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: none;
+}

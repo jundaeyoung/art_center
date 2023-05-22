@@ -137,34 +137,33 @@
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
-                                        <tr>
-                                            <th>user_name</th>
-                                            <th>nickname</th>
-                                            <th>email</th>
-                                            <th>birth_date</th>
-                                            <th>tel</th>
-                                            <th></th>
-                                            <th></th>
+                                          <tr>
+                                            <th>제목</th>
+                                            <th>평점</th>
+                                            <th>내용</th>
+                                            <th>타입</th>
+                                            <th>승낙여부</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="userList" items="${userList}">
-                                        <tr>
-                                        <td>${userList.userName}</td>
-                                        <td>${userList.nickname}</td>
-                                        <td>${userList.email}</td>
-                                        <td>${userList.birthDate}</td>
-                                        <td>${userList.tel}</td>
+                                    	<c:forEach var="showList" items="${showList}">
+                                    	<tr>
+                                        <td>${showList.title}</td>
+                                        <td>${showList.rating}</td>
+                                        <td>${showList.content}</td>
+                                        <td>${showList.showType}</td>
+                                        <c:choose>
+                                        <c:when test="${showList.showStatus == 1}">
+                                        <td>완료</td>
+                                        </c:when>
+                                        <c:otherwise>
                                         <td>
-                                        <form action="/admin/updateUser?username=${userList.userName}" method="get">
-                                         <a href="/admin/updateUser?userName=${userList.id}">수정</a> 
+                                        <form action="/admin/updateShow?id=${showList.id}" method="post">
+                                         <a href="/admin/updateShow?id=${showList.id}">승인</a> 
                                         </form>
                                         </td>
-                                        <td>
-                                        <form action="/admin/deleteUser?id=${userList.id}" method="get">
-                                        <a href="/admin/deleteUser?id=${userList.id}">삭제</a>
-                                        </form>
-                                        </td>
+                                        </c:otherwise>
+                                        </c:choose>
                                         </tr>
                                         </c:forEach>
                                     </tbody>

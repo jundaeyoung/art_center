@@ -144,7 +144,28 @@
         ON u.id = s.organizer_id
 		WHERE sdt.show_id = #{showId}
 	</select>
-		
+	
+	
+	<!-- 작성자 편용림 : admin 쪽 정보 상세 -->
+	<select id="selectShowInfoAdmin" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+	select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type,
+      s.img_route,s.show_status from
+      review_tb as r
+      join show_tb as s
+      on r.show_id = s.id
+      join category_tb as sc
+      on s.show_type_id = sc.id
+      join user_tb as u
+      on r.user_id = u.id
+      GROUP BY s.title
+      order by s.show_status asc, s.id desc
+	</select>
+	
+	<!-- 작성자 편용림 : 공연 예약 승인 여부 -->
+	<update id="updateShowById">
+	UPDATE show_tb SET show_status = 1 WHERE id = #{id};
+	</update>
+
 </mapper>
 
 

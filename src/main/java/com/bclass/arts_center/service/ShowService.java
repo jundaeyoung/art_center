@@ -19,6 +19,27 @@ public class ShowService {
 
 	
 	/**
+	 * 
+	 * 작성자 : 편용림 admin 예약 승낙한 순서대로 조회
+	 */
+	
+	@Transactional
+	public List<RequestShowDto> readShow(){
+		List<RequestShowDto> showList = showRepository.selectShowInfoAdmin();
+		return showList;
+	}
+	
+	/*
+	 *  작성자 : 편용림 admin status 업데이트
+	 */
+	@Transactional
+	public int updateShow(String id) {
+		int result = showRepository.updateShowById(id);
+		return result;
+	}
+	
+	
+	/**
 	 * 작성자 : 전대영 show 최신순으로 select
 	 */
 	@Transactional
