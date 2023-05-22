@@ -20,10 +20,10 @@
 		ON l.id = h.location_id
 		join user_tb as u
 		on r.user_id = u.id
+        where s.show_status=1
 		GROUP BY s.title
-		having s.show_status=1
 		order by
-		round(avg(r.rating),1) desc
+		round(avg(r.rating),1) desc;
 	</select>
 </mapper>
 

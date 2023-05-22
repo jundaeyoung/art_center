@@ -77,7 +77,7 @@ public class SignUpShowController {
 		MultipartFile file = requestSignUpShowDto.getFile();
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Integer adminId = 3;
-		String notice = "님이 공연등록을 신청하였습니다.";
+		String notice = principal.getNickname()+"님이 공연등록을 신청하였습니다.";
 		if (file.isEmpty() == false) {
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
 				throw new CustomRestfullException("파일 크기는 20MB 이상 클 수 없습니다", HttpStatus.BAD_REQUEST);

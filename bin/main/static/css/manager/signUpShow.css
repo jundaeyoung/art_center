@@ -1,10 +1,7 @@
 @charset "UTF-8";
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> feature/rental
 .show__header {
 	display: flex;
 	justify-content: center;
@@ -88,11 +85,7 @@
 	cursor: pointer;
 	height: 25px;
 	margin-left: 10px;
-<<<<<<< HEAD
 	font-size: 19px;
-=======
-	font-size: 25px;
->>>>>>> feature/rental
 }
 
 .filebox input[type="file"] {

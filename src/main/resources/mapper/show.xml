@@ -16,8 +16,8 @@
       on s.show_type_id = sc.id
       join user_tb as u
       on r.user_id = u.id
+      where s.show_status=1
       GROUP BY s.title
-      having s.show_status=1
       order by
       s.id desc
       limit #{begin},
@@ -35,8 +35,8 @@
       on s.show_type_id = sc.id
       join user_tb as u
       on r.user_id = u.id
+      where s.show_status=1
       GROUP BY s.title
-      having s.show_status=1
       order by round(avg(r.rating),1) desc
       limit #{begin},
       #{range}
@@ -55,8 +55,8 @@
       on s.show_type_id = sc.id
       join user_tb as u
       on r.user_id = u.id
+      where s.show_status=1
       GROUP BY s.title
-      having s.show_status=1
       order by round(avg(r.rating),1) asc
       limit #{begin},
       #{range}
@@ -76,8 +76,8 @@
       on
       r.user_id =
       u.id
+      where s.show_status=1
       GROUP BY s.title
-      having s.show_status=1
       ) as c
       
    </select>
@@ -93,9 +93,8 @@
       on s.show_type_id = sc.id
       join user_tb as u
       on r.user_id = u.id
-      where sc.show_type=#{category}
+      where sc.show_type=#{category} AND s.show_status=1
       GROUP BY s.title
-      having s.show_status=1
       order by round(avg(r.rating),1) asc
       limit #{begin},
       #{range}
@@ -117,9 +116,8 @@
       u.id
       join category_tb as sc
       on s.show_type_id = sc.id
-      where sc.show_type=#{category}
+      where sc.show_type=#{category} AND s.show_status=1
       GROUP BY s.title
-      having s.show_status=1
       ) as c
    </select>
 
