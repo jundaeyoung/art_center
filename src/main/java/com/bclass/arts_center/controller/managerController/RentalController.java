@@ -22,6 +22,7 @@ import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.handler.exception.UnAuthorizedException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.RentalService;
+import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller
@@ -85,26 +86,31 @@ public class RentalController {
 	// 대관 신청 insert
 	@PostMapping("/reservation")
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto) {
-		
-		int result = rentalService.insertRental(requestRentPlaceDto);
 
-		Time startTime = requestRentPlaceDto.getStartTime();
-		Time endTime = requestRentPlaceDto.getEndTime();
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new CustomRestfullException("사용자 인증이 필요합니다.", HttpStatus.UNAUTHORIZED);
+		}
 
+		requestRentPlaceDto.setUserId(principal.getId());
 		String str = requestRentPlaceDto.getStartDate();
 		String[] split = str.split("~");
 		requestRentPlaceDto.setStartDate(split[0]);
 		requestRentPlaceDto.setEndDate(split[1]);
-		rentalService.insertRental(requestRentPlaceDto);
-		
-		if(startTime.equals(endTime)) {
-			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST); 
+
+		Time startTime = requestRentPlaceDto.getStartTime();
+		Time endTime = requestRentPlaceDto.getEndTime();
+
+		int result = rentalService.insertRental(requestRentPlaceDto);
+
+		if (startTime.equals(endTime)) {
+			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		} else if (endTime.compareTo(startTime) < 0) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		} else {
-			 System.out.println("insert 됬어용? : " + requestRentPlaceDto + "DDDD");
-			 System.out.println("여기 값이 들어오나요?" + result); };
-			 return "/manager/rental";
-		}
-		
+			System.out.println("여기 값이 들어오나요?" + result);
+		};
+		return "/manager/rental";
+	}
+
 }

@@ -35,4 +35,6 @@
 		#{startDate},#{endDate},#{startTime},#{endTime},#{userId},#{holeId},#{locationId}
 		);
 	</insert>
+	
+	
 </mapper>

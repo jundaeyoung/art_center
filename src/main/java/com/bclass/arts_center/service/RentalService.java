@@ -37,4 +37,7 @@ public class RentalService {
 		System.out.println(requestRentPlaceDto);
 		return count;
 	}
+	
+	
+	
 }

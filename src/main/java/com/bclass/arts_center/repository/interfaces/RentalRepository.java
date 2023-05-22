@@ -22,4 +22,6 @@ public interface RentalRepository {
 	 * 대관 예약 insert
 	 */
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto);
+	
+	
 }
