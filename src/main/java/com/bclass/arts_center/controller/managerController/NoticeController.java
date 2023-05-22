@@ -3,6 +3,7 @@ package com.bclass.arts_center.controller.managerController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,11 +23,9 @@ public class NoticeController {
 		return "/manager/managerNotice";
 	}
 	
-	@GetMapping("/update")
-	public String updateNotice(Integer id) {
-		System.out.println("DD");
+	@GetMapping("/update/{id}")
+	public String updateNotice(@PathVariable Integer id) {
 		noticeService.updateNotice(id);
-		
 		return "redirect:/";
 	}
 }

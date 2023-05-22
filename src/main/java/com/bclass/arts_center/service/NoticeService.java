@@ -39,7 +39,6 @@ public class NoticeService {
 	@Transactional
 	public Integer updateNotice(Integer id){
 		Integer updateNotice = noticeRepository.updateManagerNotice(id);
-		System.out.println(updateNotice);
 		return updateNotice;
 		
 	}
