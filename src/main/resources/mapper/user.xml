@@ -28,6 +28,11 @@
 		SELECT * FROM user_tb
 		WHERE nickname = #{nickname}
 	</select>
+	
+	
+	<select id="selectUser" resultType="com.bclass.arts_center.repository.model.User">
+	select id, user_name, nickname, email, birth_date, tel, role_id, api_id  from user_tb WHERE api_id = null;
+	</select>
 
 	<!-- api 아이디 있는지 확인 -->
 	<select id="selectUserByApiId"
@@ -57,5 +62,7 @@
 	<delete id="deleteUserById">
 		DELETE FROM user_tb WHERE user_name = #{userName}
 	</delete>
+	
+	
 
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -44,7 +45,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">유저</div>
-                            <a class="nav-link" href="/admin/userList">
+                            <a class="nav-link" href="index.html">
                                 유저목록보기
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
@@ -139,13 +140,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                   
                                     
+                                    
+                                
                                         <tr>
+                                         <c:forEach var = "userList" items="${userList}">
+                                        <td>${userList.user_name}</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td></td>
+                                        </c:forEach>
                                         </tr>
                                     </tbody>
                                 </table>
