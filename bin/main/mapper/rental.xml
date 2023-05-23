@@ -29,7 +29,7 @@
 	</select>
 
 	<select id="selectByLocation2"
-		resultType="com.bclass.arts_center.dto.request.RequestHoleDto">
+		resultType="com.bclass.arts_center.dto.request.RequestRentPlaceDto">
 
 		SELECT h.name, t.id, t.start_time, t.end_time
 		FROM hole_tb AS h
@@ -53,6 +53,16 @@
 		#{startDate},#{endDate},#{startTime},#{endTime},#{userId},#{holeId},#{locationId}
 		);
 	</insert>
+	
+	<select id="selectByDateAndLocation"
+		resultType="com.bclass.arts_center.dto.request.RequestRentPlaceDto">
+		SELECT *
+		FROM rent_place_reservation_tb AS r
+		WHERE (r.start_date BETWEEN #{startDate} AND #{endDate}
+		OR r.end_date BETWEEN #{startDate} AND #{endDate})
+        AND hole_id=#{holeId};
+	</select>
+
 
 
 </mapper>

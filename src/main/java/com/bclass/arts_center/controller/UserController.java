@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,7 +37,16 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-
+	
+//	@Autowired
+//	private final JavaMailSender javaMailSender;
+//
+//	/*
+//	 * 전대영 : email 임시비밀번호 발급
+//	 */
+//	@Value("${spring.mail.username}")
+//	private String from;
+	
 	@Autowired
 	private UserService userService;
 
@@ -175,5 +186,7 @@ public class UserController {
 
 		return "redirect:/";
 	}
+	
+		
 
 }

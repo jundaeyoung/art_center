@@ -44,13 +44,13 @@
 	</div>	
 	<div class="rental__time">
 		<label>대관 시간 : </label> 
-		<select id="timeSelect" name="startTime">
+		<select id="timeSelect" name="startTime" onchange="calculatePrice()">
 			<c:forEach var="timeList" items="${timeList}">
-				<option value="${timeList.startTime}" >${timeList.startTime}</option>
+				<option value="${timeList.startTime}" id="${timeList.startTime}">${timeList.startTime}</option>
 			</c:forEach>
 		</select>
 		<label> ~ </label>
-		<select id="endTime" name="endTime">
+		<select id="endTime" name="endTime" onchange="calculatePrice()">
 			<c:forEach var="timeList" items="${timeList}">
 				<option value="${timeList.endTime}" >${timeList.endTime}</option>
 			</c:forEach>

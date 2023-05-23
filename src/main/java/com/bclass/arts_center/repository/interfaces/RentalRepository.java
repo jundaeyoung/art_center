@@ -23,6 +23,11 @@ public interface RentalRepository {
 	 */
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto);
 	
-	public List<RequestHoleDto> selectByLocation2(RequestHoleDto requestHoleDto);
+	public List<RequestRentPlaceDto> selectByLocation2(RequestRentPlaceDto requestHoleDto);
+	
+	/*
+	 * 전대영 : 대관예약 시간 구하기
+	 */
+	public List<RequestRentPlaceDto> selectByDateAndLocation(RequestRentPlaceDto requestRentPlaceDto);
 	
 }
