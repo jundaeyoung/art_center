@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/css/user/signIn.css">
 
 
-<div class="signInContainer">
+<div class="signInContainer" style="margin-bottom: 200px;">
 	<div class="loginContainer">
 		<div class="login--title">
 			<img alt="" src="/images/background/logo.png" class="loginLogo">
@@ -58,8 +58,6 @@
 			<div class="line"></div>
 
 
-
-
-
 </div>
 
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

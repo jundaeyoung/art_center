@@ -42,6 +42,4 @@ margin-left: 50px;
 			<button type="submit" class="btn btn-primary">개인정보 수정</button>
 		</form>
 		</div>
-		
-</body>
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

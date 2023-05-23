@@ -1,11 +1,13 @@
 package com.bclass.arts_center.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +15,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
 import com.bclass.arts_center.dto.UpdateUserDto;
+import com.bclass.arts_center.dto.request.MailDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
+import com.bclass.arts_center.service.SendEmailService;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
 import com.mysql.cj.Session;
-
-import lombok.AllArgsConstructor;
 
 /**
  * 
@@ -33,23 +36,23 @@ import lombok.AllArgsConstructor;
  *
  */
 @Controller
-@AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 	
-//	@Autowired
-//	private final JavaMailSender javaMailSender;
-//
-//	/*
-//	 * 전대영 : email 임시비밀번호 발급
-//	 */
-//	@Value("${spring.mail.username}")
-//	private String from;
+	/*
+	 * 전대영 : email 임시비밀번호 발급
+	 */
+	
+	@Autowired
+	private SendEmailService sendEmailService;
+	
+	@Value("${spring.mail.username}")
+	private String from;
 	
 	
 	@Autowired
 	private UserService userService;
-
+	
 	@Autowired
 	private HttpSession session;
 
@@ -188,13 +191,26 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/myPage")
-	public String mypage() {
-		
-		
-		return "/user/myPage";
+	@GetMapping("/findPw")
+	public String findPw() {
+		return "/user/findPw";
 	}
 	
-		
+	 //Email과 name의 일치여부를 check하는 컨트롤러
+	 @GetMapping("/check/findPw")
+	    public @ResponseBody Map<String, Boolean> findPassword(String userEmail, String userName){
+	        Map<String,Boolean> json = new HashMap<>();
+	        boolean findPasswordCheck = userService.userEmailCheck(userEmail,userName);
+	        json.put("check", findPasswordCheck);
+	        return json;
+	    }
 
+	//등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
+	    @PostMapping("/check/findPw/sendEmail")
+	    public @ResponseBody void sendEmail(String userEmail, String userName){
+	        MailDto dto = sendEmailService.createMailAndChangePassword(userEmail, userName);
+	        sendEmailService.mailSend(dto);
+
+	    }
+	   
 }

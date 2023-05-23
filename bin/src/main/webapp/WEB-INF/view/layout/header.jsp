@@ -93,10 +93,8 @@
 								<ul class="sub">
 									<c:choose>
 										<c:when test="${principal == null}">
-											<li><a href="/user/signUp"> 회원가입 </a></li>
-											<li><a href="/user/login">로그인 </a></li>
-											<li><a>아이디 찾기</a></li>
-											<li><a>비밀번호 찾기</a></li>
+											<li><a href="#">아이디 찾기 </a></li>
+											<li><a href="/user/login">비밀번호 찾기</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>

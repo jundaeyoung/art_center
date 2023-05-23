@@ -37,12 +37,6 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 
 	
-	// 마이 페이지
-	public User readUserById(Integer id) {
-		User user = userRepository.selectUserById(id);
-		return user;
-	}
-	
 	
 	// 회원가입
 	@Transactional
@@ -174,7 +168,7 @@ public class UserService {
 	
 	
 	
-	// valid 검사
+	// 편용림 : valid 검사
 	@Transactional(readOnly = true)
 	public Map<String, String> validateHandling(Errors errors) {
         Map<String, String> validatorResult = new HashMap<>();
@@ -186,4 +180,17 @@ public class UserService {
         return validatorResult;
     }
 	
+	/*
+	 * 전대영 : email 비번 찾기 
+	 */
+	public boolean userEmailCheck(String userEmail, String userName) {
+
+        User user = userRepository.findUserByUserId(userEmail);
+        if(user!=null && user.getUserName().equals(userName)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
