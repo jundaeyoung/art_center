@@ -98,8 +98,13 @@ public class RentalController {
 		requestRentPlaceDto.setStartDate(split[0]);
 		requestRentPlaceDto.setEndDate(split[1]);
 
+		requestRentPlaceDto.setStartDate(split[0].replaceAll("-",""));
+		requestRentPlaceDto.setEndDate(split[1].replaceAll("-",""));
+		
+		
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
+		
 
 		int result = rentalService.insertRental(requestRentPlaceDto);
 
