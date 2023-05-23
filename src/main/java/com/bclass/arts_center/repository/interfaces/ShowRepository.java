@@ -66,6 +66,6 @@ public interface ShowRepository {
 	 */
 	public List<RequestShowDto> selectShowInfoAdmin();
 	
-	public int updateShowById(String id);
+	public int updateShowById(Integer id);
 	
 }

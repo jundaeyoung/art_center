@@ -33,7 +33,7 @@ public class ShowService {
 	 *  작성자 : 편용림 admin status 업데이트
 	 */
 	@Transactional
-	public int updateShow(String id) {
+	public int updateShow(Integer id) {
 		int result = showRepository.updateShowById(id);
 		return result;
 	}

@@ -19,8 +19,17 @@ public class NoticeService {
 	 * 전대영 : notice insert
 	 */
 	@Transactional
-	public Integer createNotice(String notice,Integer userId, Integer adminId) {
-		Integer insertnotice = noticeRepository.insertNotice(notice,userId, adminId);
+	public Integer createAdminNotice(String notice,Integer userId, Integer adminId) {
+		Integer insertnotice = noticeRepository.insertAdminNotice(notice,userId, adminId);
+		return insertnotice;
+	}
+	
+	/*
+	 * 전대영 : notice insert
+	 */
+	@Transactional
+	public Integer createManagerNotice(String notice,Integer userId, Integer adminId) {
+		Integer insertnotice = noticeRepository.insertManaegerNotice(notice,userId, adminId);
 		return insertnotice;
 	}
 	/*

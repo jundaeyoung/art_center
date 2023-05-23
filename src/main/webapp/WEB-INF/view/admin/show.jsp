@@ -46,7 +46,7 @@
                                         </c:when>
                                         <c:otherwise>
                                         <td>
-                                         <a href="/admin/updateShow?id=${showList.id}">승인</a> 
+                                         <a href="/admin/updateShow/${showList.id}/${showList.userId}">승인</a> 
                                         </td>
                                         </c:otherwise>
                                         </c:choose>

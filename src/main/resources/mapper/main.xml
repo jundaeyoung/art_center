@@ -8,20 +8,20 @@
 
 	<select id="selectShowDto"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location from
-		review_tb as r
-		join show_tb as s
-		on r.show_id = s.id
-		join category_tb as sc
-		on s.show_type_id = sc.id
+		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location 
+        from show_tb as s
+        LEFT JOIN review_tb as r
+        on r.show_id = s.id
+        left JOIN category_tb as sc
+        on s.show_type_id = sc.id
+        LEFT JOIN user_tb AS u
+        ON r.user_id = u.id
         JOIN hole_tb AS h
-		ON h.id = s.hole_id
-		JOIN location_tb as l
-		ON l.id = h.location_id
-		join user_tb as u
-		on r.user_id = u.id
+        ON h.id = s.hole_id
+        JOIN location_tb as l
+      ON l.id = h.location_id
         where s.show_status=1
-		GROUP BY s.title
+        GROUP BY s.title
 		order by
 		round(avg(r.rating),1) desc;
 	</select>

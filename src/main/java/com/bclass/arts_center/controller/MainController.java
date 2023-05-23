@@ -39,6 +39,7 @@ public class MainController {
 			model.addAttribute("principal", null);
 		} else {
 			List<Notice> noticeList = noticeService.readNotice(principal.getId());
+			System.out.println(noticeList);
 				if (noticeList == null || noticeList.size()==0) {
 					model.addAttribute("noticeList", null);
 					model.addAttribute("message", 0);

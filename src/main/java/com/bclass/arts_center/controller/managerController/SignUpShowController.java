@@ -76,6 +76,7 @@ public class SignUpShowController {
 	public String signUpShowProc(RequestSignUpShowDto requestSignUpShowDto) {
 		MultipartFile file = requestSignUpShowDto.getFile();
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		// adminId 계속 변경해줘야함
 		Integer adminId = 3;
 		String notice = principal.getNickname()+"님이 공연등록을 신청하였습니다.";
 		if (file.isEmpty() == false) {
@@ -104,7 +105,7 @@ public class SignUpShowController {
 			String[] split = str.split("~");
 			requestSignUpShowDto.setStartDate(split[0]);
 			requestSignUpShowDto.setEndDate(split[1]);
-			noticeService.createNotice(notice,principal.getId(),adminId);
+			noticeService.createAdminNotice(notice,principal.getId(),adminId);
 			showService.createShow(requestSignUpShowDto);
 		}
 		return "redirect:/manager/signUpShow";

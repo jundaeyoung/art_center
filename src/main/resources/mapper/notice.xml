@@ -5,8 +5,14 @@
 <mapper namespace="com.bclass.arts_center.repository.interfaces.NoticeRepository">
 
 	<!-- 작성자 : 전대영 amdin 알림 insert -->
-	<insert id="insertNotice">
+	<insert id="insertAdminNotice">
 		insert into adminNotice_tb(notice,user_id,admin_id)
+		values(#{notice},#{userId},#{adminId});
+	</insert>
+	
+	<!-- 작성자 : 전대영 manager 알림 insert -->
+	<insert id="insertManaegerNotice">
+		insert into managerNotice_tb(notice,user_id,admin_id)
 		values(#{notice},#{userId},#{adminId});
 	</insert>
 
