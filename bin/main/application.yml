@@ -20,6 +20,15 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver 
     username: b
     password: asd1234!
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: jdy1787@naver.com
+    password: 3609acac!
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      
 #  datasource:
 #    url: jdbc:h2:mem:testdb;MODE=MySQL
 #    driver-class-name: org.h2.Driver

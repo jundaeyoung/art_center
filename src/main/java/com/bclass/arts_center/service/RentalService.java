@@ -32,8 +32,8 @@ public class RentalService {
 	 */
 	
 	@Transactional
-	public List<RequestHoleDto> selectByLocation2(RequestHoleDto requestHoleDto) {
-	    List<RequestHoleDto> changeRentalTime = rentalRepository.selectByLocation2(requestHoleDto);
+	public List<RequestRentPlaceDto> selectByLocation2(RequestRentPlaceDto requestHoleDto) {
+	    List<RequestRentPlaceDto> changeRentalTime = rentalRepository.selectByLocation2(requestHoleDto);
 	    return changeRentalTime;
 	}
 	
@@ -41,8 +41,15 @@ public class RentalService {
 	@Transactional
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto) {
 		int count = rentalRepository.insertRental(requestRentPlaceDto);
-		System.out.println(requestRentPlaceDto);
 		return count;
+	}
+	/*
+	 * 전대영 : 대관 예약 가능 시간 구하기
+	 */
+	@Transactional
+	public List<RequestRentPlaceDto> selectByDateAndLocation(RequestRentPlaceDto requestRentPlaceDto) {
+		List<RequestRentPlaceDto> rendPlaceList = rentalRepository.selectByDateAndLocation(requestRentPlaceDto);
+		return rendPlaceList;
 	}
 	
 	

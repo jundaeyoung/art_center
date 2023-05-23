@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bclass.arts_center.dto.request.RequestHoleDto;
+import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 import com.bclass.arts_center.service.RentalService;
 
 @RestController
@@ -18,21 +19,17 @@ public class RentalApiController {
 	
 	@PostMapping("/api/rentalLocation")
 	//@RequestBody http메세지 body에서 데이터를 읽어라 그 중에 json형식의 문자열
-	public RequestHoleDto changeRentalTime(@RequestBody RequestHoleDto requestHoleDto) {
-		System.out.println(requestHoleDto.getHoleId()+"holeId");
-		System.out.println(requestHoleDto.getStartDate()+"start");
+	public  List<RequestRentPlaceDto> changeRentalTime(@RequestBody RequestRentPlaceDto requestHoleDto) {
 		String str = requestHoleDto.getStartDate();
-		String[] split = str.split("~");
+		String[] split = str.split(" ~ ");
 		
-		requestHoleDto.setStartDate(split[0]);
-		requestHoleDto.setEndDate(split[1]);
+		requestHoleDto.setStartDate(split[0].replaceAll("-",""));
+		requestHoleDto.setEndDate(split[1].replaceAll("-",""));
 		
-	    List<RequestHoleDto> holeList = rentalService.selectByLocation2(requestHoleDto);
-		
-	    System.out.println(requestHoleDto.toString());
-	    System.out.println(holeList+"dddddddddddd");
-	    
-	    return requestHoleDto;
+		System.out.println(requestHoleDto.getStartDate());
+		System.out.println(requestHoleDto.getEndDate());
+	    List<RequestRentPlaceDto> holeList = rentalService.selectByDateAndLocation(requestHoleDto);
+	    return holeList;
 	}
 	
 }

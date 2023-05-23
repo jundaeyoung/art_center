@@ -35,7 +35,16 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-
+	
+//	@Autowired
+//	private final JavaMailSender javaMailSender;
+//
+//	/*
+//	 * 전대영 : email 임시비밀번호 발급
+//	 */
+//	@Value("${spring.mail.username}")
+//	private String from;
+	
 	@Autowired
 	private UserService userService;
 
@@ -175,5 +184,7 @@ public class UserController {
 
 		return "redirect:/";
 	}
+	
+		
 
 }
