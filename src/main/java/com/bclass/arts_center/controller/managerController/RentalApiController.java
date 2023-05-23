@@ -3,8 +3,13 @@ package com.bclass.arts_center.controller.managerController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bclass.arts_center.dto.request.RequestHoleDto;
@@ -21,6 +26,7 @@ public class RentalApiController {
 	@Autowired
 	RentalService rentalService;
 	
+	
 	@PostMapping("/api/rentalLocation")
 	//@RequestBody http메세지 body에서 데이터를 읽어라 그 중에 json형식의 문자열
 	public  List<RequestRentPlaceDto> changeRentalTime(@RequestBody RequestRentPlaceDto requestHoleDto) {
@@ -35,5 +41,6 @@ public class RentalApiController {
 	    List<RequestRentPlaceDto> holeList = rentalService.selectByDateAndLocation(requestHoleDto);
 	    return holeList;
 	}
+	
 	
 }

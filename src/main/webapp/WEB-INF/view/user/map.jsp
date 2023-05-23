@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +6,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-여기는 지도자리에요 
+여기는 지도자리에요 dd
 
 <div id="map" style="width:500px;height:400px;"></div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=385ebb74324290c6b52493ffa1cd9956"></script>
-<script>
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=66a490fb84d5c8cb6c3fd0e7f1765d51"></script>
+	<script>
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
+			center: new kakao.maps.LatLng(35.164157, 129.059295), 
 			level: 3
 		};
 
