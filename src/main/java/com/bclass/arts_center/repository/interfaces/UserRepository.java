@@ -44,8 +44,18 @@ public interface UserRepository {
 	//회원탈퇴
 	public int deleteUserById(SignInFormDto signInFormDto);
 	
-	//유저정보
-	public List<User> selectUser();
+	//유저 리스트 정보
+	public List<User> selectUserList();
 	
+	//매니저 리스트 정보
+	public List<User> selectManagerList();
+	
+	//강사 리스트 정보
+	public List<User> selectTeacherList();
+	
+	//관리자 유저 수정
+	public int updateUserById(User user);
+
+	public int deleteById(String userName);
 
 }

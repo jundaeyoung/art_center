@@ -48,12 +48,6 @@
                             <a class="nav-link" href="/admin/userList">
                                 유저목록보기
                             </a>
-                              <a class="nav-link" href="/admin/managerList">
-                                매니저목록보기
-                            </a>
-                              <a class="nav-link" href="/admin/teacherList">
-                                강사목록보기
-                            </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -148,43 +142,40 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="userList" items="${userList}">
                                         <tr>
-                                        <td>${userList.userName}</td>
-                                        <td>${userList.nickname}</td>
-                                        <td>${userList.email}</td>
-                                        <td>${userList.birthDate}</td>
-                                        <td>${userList.tel}</td>
                                         <td>
-                                        <form action="/admin/updateUser?username=${userList.userName}" method="get">
-                                         <a href="/admin/updateUser?userName=${userList.id}">수정</a> 
-                                        </form>
+                                        <form action="/admin/update" method="post">
+                                        <input type="hidden" value="${userList.roleId}" name="roleId" id="roleId">
+                                        <input type="hidden" value="${userList.id}" name= "id">
+                                        <input type="text" value="${userList.userName}" name="userName" id="userName">
                                         </td>
+                                         <td>
+                                        <input type="text" value="${userList.nickname}" name="nickname" id ="nickname">
+                                        </td>
+                                         <td>
+                                        <input type="text" value="${userList.email}" name="email" id ="email">
+                                        </td>
+                                         <td>
+                                        <input type="text" value="${userList.birthDate}" name="birthDate" id="birthDate">
+                                        </td>
+                                         <td>
+                                        <input type="text" value="${userList.tel}" name ="tel" id="tel">
+                                        </td>
+                                        <td><button class="userBtn">수정</button></td>
                                         <td>
-                                        <form action="/admin/deleteUser?id=${userList.id}" method="get">
-                                        <a href="/admin/deleteUser?id=${userList.id}">삭제</a>
+                                        </form>
+                                        <form action="/admin/deleteUser?userName=${userList.userName}" method="post">
+                                        <button class="userBtn">삭제</button>
                                         </form>
                                         </td>
                                         </tr>
-                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
+            
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

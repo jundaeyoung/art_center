@@ -58,5 +58,14 @@ public interface ShowRepository {
 	 * 손주이 ticketing 에 필요한 공연 날짜 정보 select
 	 */
 	public List<ShowViewDto> selectShowDateByShowId(Integer showId);
-
+	
+	
+	/**
+	 * 
+	 * 편용림 admin에 공연 예약 전체조회
+	 */
+	public List<RequestShowDto> selectShowInfoAdmin();
+	
+	public int updateShowById(String id);
+	
 }

@@ -34,5 +34,6 @@ public class RequestShowDto {
 	private String adultRate;
 	private String youthRate;
 	private String infantRate;
+	private String showStatus;
 	
 }

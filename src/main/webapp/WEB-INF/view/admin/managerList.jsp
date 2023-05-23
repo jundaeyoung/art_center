@@ -148,21 +148,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="userList" items="${userList}">
+                                        <c:forEach var="managerList" items="${managerList}">
                                         <tr>
-                                        <td>${userList.userName}</td>
-                                        <td>${userList.nickname}</td>
-                                        <td>${userList.email}</td>
-                                        <td>${userList.birthDate}</td>
-                                        <td>${userList.tel}</td>
+                                        <td>${managerList.userName}</td>
+                                        <td>${managerList.nickname}</td>
+                                        <td>${managerList.email}</td>
+                                        <td>${managerList.birthDate}</td>
+                                        <td>${managerList.tel}</td>
                                         <td>
-                                        <form action="/admin/updateUser?username=${userList.userName}" method="get">
-                                         <a href="/admin/updateUser?userName=${userList.id}">수정</a> 
+                                        <form action="/admin/updateUser?username=${managerList.userName}" method="get">
+                                         <a href="/admin/updateUser?userName=${managerList.id}">수정</a> 
                                         </form>
                                         </td>
                                         <td>
-                                        <form action="/admin/deleteUser?id=${userList.id}" method="get">
-                                        <a href="/admin/deleteUser?id=${userList.id}">삭제</a>
+                                        <form action="/admin/deleteUser?id=${managerList.id}" method="get">
+                                        <a href="/admin/deleteUser?id=${managerList.id}">삭제</a> 
                                         </form>
                                         </td>
                                         </tr>
