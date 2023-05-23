@@ -7,6 +7,11 @@ import org.apache.ibatis.annotations.Mapper;
 import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 
+/**
+ * 
+ * @author 김미정
+ *
+ */
 @Mapper
 public interface RentalRepository {
 
@@ -22,8 +27,6 @@ public interface RentalRepository {
 	 * 대관 예약 insert
 	 */
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto);
-	
-	public List<RequestRentPlaceDto> selectByLocation2(RequestRentPlaceDto requestHoleDto);
 	
 	/*
 	 * 전대영 : 대관예약 시간 구하기

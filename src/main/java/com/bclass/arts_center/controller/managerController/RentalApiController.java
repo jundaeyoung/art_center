@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 import com.bclass.arts_center.service.RentalService;
-
+/**
+ * 
+ * @author 김미정
+ *
+ */
 @RestController
 public class RentalApiController {
 

@@ -43,9 +43,7 @@ function calculatePrice() {
 		data: JSON.stringify(data),
 		contentType: 'application/json; charset=utf-8',
 	}).done(function(response) {
-		console.log('들어옴:', response);
-
-
+			
 		for (var i = 0; i < response.length; i++) {
 			console.log(response[i].startTime);
 			console.log(response[i].endTime);
@@ -72,29 +70,27 @@ function calculatePrice() {
 		endTime = endTime.replaceAll(":00", "");
 
 		let resultTime = (parseFloat(endTime) - parseFloat(startTime)) / 3;
-		console.log(resultTime + "DDD");
+		console.log(resultTime);
 
 		let result = parseFloat(re2) - parseFloat(re1) + 1
 		console.log(result);
 		var locationSelect = document.getElementById("locationSelect");
 		var selectedOption = locationSelect.options[locationSelect.selectedIndex];
 
+
 		var price = selectedOption.getAttribute("data-price");
 		var totalPrice;
-
 		if (price === price) {
 			totalPrice = result * parseInt(price) * resultTime;
 		} else {
 			totalPrice = parseInt(price);
 		}
+		var formattedPrice = totalPrice.toLocaleString(); 
 		var totalPriceElement = document.getElementById("totalPrice");
-		totalPriceElement.innerText = "대관료: " + totalPrice + "원";
-
-
-
-
+		totalPriceElement.innerText = "대관료: " + formattedPrice + "원";
+		
 		$("#dateTime").on("click", function() {
-			console.log("fffff");
+			console.log("예약 가능한 날짜입니다.");
 			for (var i = 0; i < response.length; i++) {
 				console.log(response[i].startTime);
 				console.log(response[i].endTime);
@@ -102,16 +98,12 @@ function calculatePrice() {
 				$("#endTime option[value*='" + response[i].endTime + "']").attr("disabled", false);
 			}
 		});
-
-
 	}).fail(function(error) {
-		console.error('Error 났어?:', error);
+		console.error('Error 났습니다:', error);
 	});
 
 
 
 
-	// js 오브젝트 만들기 
-	// js 오브젝트를 json 문자열로 변환해서 던지기 
 
 }

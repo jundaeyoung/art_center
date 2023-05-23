@@ -10,6 +10,11 @@ import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 import com.bclass.arts_center.repository.interfaces.RentalRepository;
 
+/**
+ * 
+ * @author 김미정
+ *
+ */
 @Service
 public class RentalService {
 
@@ -30,12 +35,6 @@ public class RentalService {
 	/**
 	 * 김미정 : manager 계정에서 rental insert
 	 */
-	
-	@Transactional
-	public List<RequestRentPlaceDto> selectByLocation2(RequestRentPlaceDto requestHoleDto) {
-	    List<RequestRentPlaceDto> changeRentalTime = rentalRepository.selectByLocation2(requestHoleDto);
-	    return changeRentalTime;
-	}
 	
 	
 	@Transactional
