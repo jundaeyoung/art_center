@@ -22,14 +22,20 @@
 		SELECT * FROM user_tb
 		WHERE user_name = #{userName}
 	</select>
-
+	
+	
+	<!-- 닉네임으로 유저정보 조회  -->
 	<select id="selectUserBynickname"
 		resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_tb
 		WHERE nickname = #{nickname}
 	</select>
 	
+	<select id="selectUserById" resultType="com.bclass.arts_center.repository.model.User">
+	SELECT * from user_tb where id = #{id}
+	</select>
 	
+	<!-- admin 찾는거 -->
 	<select id="selectUserList" resultType="com.bclass.arts_center.repository.model.User">
 	select id, user_name, nickname, email, birth_date, tel, role_id, api_id  from user_tb where role_id = 1;
 	</select>

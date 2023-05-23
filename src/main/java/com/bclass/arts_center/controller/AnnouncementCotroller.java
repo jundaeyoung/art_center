@@ -83,7 +83,6 @@ public class AnnouncementCotroller {
 	//삭제
 	@GetMapping("/delete")
 	public String deleteAnnouncement(Integer id) {
-		System.out.println(id);
 		int result = announcementService.deleteAnnouncementByUserId(id);
 		
 		return "redirect:/announcement";

@@ -37,6 +37,13 @@ public class UserService {
 	private PasswordEncoder passwordEncoder;
 
 	
+	// 마이 페이지
+	public User readUserById(Integer id) {
+		User user = userRepository.selectUserById(id);
+		return user;
+	}
+	
+	
 	// 회원가입
 	@Transactional
 	public void createUser(SignUpFormDto signUpFormDto) {

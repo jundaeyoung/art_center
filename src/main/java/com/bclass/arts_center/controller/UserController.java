@@ -21,6 +21,7 @@ import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
+import com.mysql.cj.Session;
 
 import lombok.AllArgsConstructor;
 
@@ -44,6 +45,7 @@ public class UserController {
 //	 */
 //	@Value("${spring.mail.username}")
 //	private String from;
+	
 	
 	@Autowired
 	private UserService userService;
@@ -100,6 +102,7 @@ public class UserController {
 		User principal = userService.readUser(signInFormDto);
 
 		session.setAttribute(Define.PRINCIPAL, principal);
+		
 		if (principal.getRoleId() == 3) {
 			return "redirect:/admin";
 		} else {
@@ -183,6 +186,13 @@ public class UserController {
 		session.invalidate();
 
 		return "redirect:/";
+	}
+	
+	@GetMapping("/myPage")
+	public String mypage() {
+		
+		
+		return "/user/myPage";
 	}
 	
 		
