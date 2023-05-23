@@ -54,6 +54,8 @@
 						<div class="sb-sidenav-menu-heading">예매</div>
 						<a class="nav-link" href="/admin/show"> 예매 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">Interface</div>
+						<div class="sb-sidenav-menu-heading">대관</div>
+						<a class="nav-link" href="/rentPlace"> 대관 목록 보기 </a>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>

@@ -125,9 +125,8 @@ public class AdminController {
 	
 	@GetMapping("/show")
 	public String show(Model model) {
-		
 		List<RequestShowDto> showList = showService.readShow();
-		
+		System.out.println(showList);
 		model.addAttribute("showList", showList);
 		
 		
@@ -174,4 +173,6 @@ public class AdminController {
 		int result = userService.deleteUserById(id);
 		return "redirect:/admin/userList";
 	}
+	
+	
 }

@@ -142,26 +142,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach var="showList" items="${showList}">
                                     	<tr>
-                                        <td>${showList.title}</td>
-                                        <td>${showList.admissionAge}</td>
-                                        <td>${showList.content}</td>
-                                        <td>${showList.showType}</td>
-                                        <c:choose>
-                                        <c:when test="${showList.showStatus == 1}">
-                                        <td>완료</td>
-                                        </c:when>
-                                        <c:otherwise>
-                                        <td>
-                                        <form action="/admin/updateShow?id=${showList.id}" method="post">
-                                         <a href="/admin/updateShow?id=${showList.id}">승인</a> 
-                                        </form>
-                                        </td>
-                                        </c:otherwise>
-                                        </c:choose>
-                                        </tr>
-                                        </c:forEach>
+                                    	<td></td>
+                                    	<td></td>
+                                    	<td></td>
+                                    	<td></td>
+                                    	<td></td>
+                                    	</tr>
                                     </tbody>
                                 </table>
                             </div>
