@@ -159,9 +159,7 @@ public class AdminController {
 	 */
 	@GetMapping("updateShow")
 	public String updateShow(String id){
-		System.out.println("id" + id);
 		int result = showService.updateShow(id);
-		System.out.println(result);
 		return "redirect:/admin/show";
 	}
 	

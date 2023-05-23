@@ -28,7 +28,7 @@
 						<form action="/user/login" method="get">
 							<button type="submit" class="login--btn" style="font-size: 20px;">로그인</button>
 						</form>
-						<form action="#" method="get">
+						<form action="/user/signUp" method="get">
 							<button type="submit" onclick="#" class="signUp--btn"
 								style="font-size: 20px;">회원가입</button>
 						</form>
@@ -39,11 +39,11 @@
 						<form>
 							<button class="open-area" style="font-size: 20px;">알림</button>
 						</form>
-						<form action="#" method="get">
+						<form action="/user/myPage" method="get">
 							<button type="submit" class="logout--btn"
 								style="font-size: 20px;">내정보</button>
 						</form>
-						<form action="#" method="get">
+						<form action="/user/myPage" method="get">
 							<button type="submit" class="logout--btn">
 								<a href="/user/logout" style="font-size: 20px;">로그아웃</a>
 							</button>
@@ -54,7 +54,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="user--btn">
-						<form action="#" method="get">
+						<form action="/user/myPage" method="get">
 							<button type="submit" class="logout--btn"
 								style="font-size: 20px;">내정보</button>
 						</form>

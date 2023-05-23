@@ -55,7 +55,11 @@ public interface UserRepository {
 	
 	//관리자 유저 수정
 	public int updateUserById(User user);
-
+	
+	// 관리자 유저 삭제
 	public int deleteById(String userName);
+	
+	// 마이 페이지
+	public User selectUserById(Integer id);
 
 }
