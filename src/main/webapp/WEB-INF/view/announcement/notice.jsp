@@ -32,9 +32,7 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
-			<div id=show__write>
-					<button type="submit">등록하기</button>
-				</div>
+		
 	</div>
 	<div></div>
 </div>
@@ -69,18 +67,6 @@
 						<div class="question__content_show">
 							<div class="show">
 								<h2>${announcements.content}</h2>
-							</div>
-							<div class="update">
-								<form action="/announcement/detail?id=${announcements.id}">
-									<input type="hidden" name="id" value="${announcements.id}">
-									<button type="submit">수정</button>
-								</form>
-							</div>
-							<div class="delete">
-								<form action="/announcement/delete" method="get">
-									<input type="hidden" name="id" value="${announcements.id}">
-									<button type="submit">삭제</button>
-								</form>
 							</div>
 						</div>
 					</div>

@@ -47,6 +47,8 @@
 						<a class="nav-link" href="/admin/show">공연 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">대관</div>
 						<a class="nav-link" href="/rentPlace"> 대관 목록 보기 </a>
+						<div class="sb-sidenav-menu-heading">공지사항</div>
+						<a class="nav-link" href="/Announcement"> 공지사항 보기 </a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">Static Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
