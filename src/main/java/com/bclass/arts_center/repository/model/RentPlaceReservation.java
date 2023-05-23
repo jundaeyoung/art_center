@@ -15,8 +15,8 @@ import lombok.Data;
 public class RentPlaceReservation {
 
 	private Integer id;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private Time startTime;
 	private Time endTime;
 	private Timestamp reservationDate;
