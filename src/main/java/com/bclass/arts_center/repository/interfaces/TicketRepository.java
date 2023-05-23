@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.TicketingDto;
 
 @Mapper
@@ -21,8 +22,10 @@ public interface TicketRepository {
 
 	public List<TicketingDto> selectSeatInfo(@Param("showId") Integer showId, @Param("showDateTimeId") Integer showDateTimeId);
 
-//	public int insert(Ticket ticket);
-//
+	public int insertTicket(TicketingDto ticketingDto);
+	
+	public List<TicketCheckDto> selectTicket(Integer userId);
+
 //	public int delete(int id);
 
 }

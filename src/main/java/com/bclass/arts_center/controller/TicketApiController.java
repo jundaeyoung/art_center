@@ -33,5 +33,13 @@ public class TicketApiController {
 
 		return seatList;
 	}
+	
+//	@PostMapping("/api/ticketCheck")
+//	@ResponseBody
+//	public String ticketCheck () {
+//		
+//		System.out.println("111111111111");
+//		return "string";
+//	}
 
 }

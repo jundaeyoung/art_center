@@ -4,10 +4,13 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.TicketingDto;
+import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.interfaces.TicketRepository;
 
 @Service
@@ -42,7 +45,7 @@ public class TicketService {
 		List<TicketingDto> timeList = ticketRepository.selectShowTimeByShowId(showId, showDate);
 		return timeList;
 	}
-	
+
 	/*
 	 * 전대영 : admin 예매 목록 검색
 	 */
@@ -61,26 +64,36 @@ public class TicketService {
 		return seatList;
 	}
 
-//	/**
-//	 * 예매
-//	 * 
-//	 * @param ticket
-//	 */
-//	@Transactional
-//	public void insertTicket(Ticket ticket) {
-//
-//		int result = ticketRepository.insert(ticket);
-//		if (result != 1) {
-//			throw new CustomRestfullException("예매 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-//		}
-//
-//	}
-//
-//	/**
-//	 * 예매 취소
-//	 * 
-//	 * @param id
-//	 */
+	/**
+	 * 예매 확인
+	 * 
+	 * @param ticket
+	 */
+	@Transactional
+	public void waitTicket(TicketingDto ticketingDto) {
+
+		int result = ticketRepository.insertTicket(ticketingDto);
+		if (result != 1) {
+			throw new CustomRestfullException("예매 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@Transactional
+	public List<TicketCheckDto> checkTicket(Integer userId) {
+		List<TicketCheckDto> ticketEntityList = ticketRepository.selectTicket(userId);
+		if (ticketEntityList == null) {
+			throw new CustomRestfullException("티켓 정보를 찾을 수 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		return ticketEntityList;
+
+	}
+
+	/**
+	 * 예매 취소
+	 * 
+	 * @param id
+	 */
 //	@Transactional
 //	public void deleteTicket(int id) {
 //
