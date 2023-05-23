@@ -1,7 +1,6 @@
 package com.bclass.arts_center.controller.managerController;
 
 import java.sql.Time;
-import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +20,6 @@ import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
-import com.bclass.arts_center.service.NoticeService;
 import com.bclass.arts_center.service.RentalService;
 import com.bclass.arts_center.utils.Define;
 
@@ -35,9 +33,6 @@ public class RentalController {
 	@Autowired
 	private HttpSession session;
 	
-	@Autowired
-	private NoticeService noticeService;
-
 	/**
 	 * 김미정
 	 */
@@ -95,12 +90,6 @@ public class RentalController {
 			throw new CustomRestfullException("사용자 인증이 필요합니다.", HttpStatus.UNAUTHORIZED);
 		}
 		
-<<<<<<< Updated upstream
-		Integer adminId = 3;
-		String notice = principal.getNickname() +"님이 대관등록을 신청하였습니다.";
-		System.out.println(notice);
-=======
->>>>>>> Stashed changes
 		
 		requestRentPlaceDto.setUserId(principal.getId());
 		String str = requestRentPlaceDto.getStartDate();
@@ -126,10 +115,7 @@ public class RentalController {
 			System.out.println("여기 값이 들어오나요?" + result);
 		};
 		 
-<<<<<<< Updated upstream
-		noticeService.createNotice(notice, principal.getId(), adminId);
-=======
->>>>>>> Stashed changes
+		
 		return "/manager/rental";
 	}
 

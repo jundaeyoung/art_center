@@ -43,13 +43,9 @@ function calculatePrice() {
 		data: JSON.stringify(data),
 		contentType: 'application/json; charset=utf-8',
 	}).done(function(response) {
-<<<<<<< Updated upstream
-			
-=======
 		console.log('들어옴:', response);
 		$('option').removeAttr('disabled');
 				
->>>>>>> Stashed changes
 		for (var i = 0; i < response.length; i++) {
 			console.log(response[i].startTime);
 			console.log(response[i].endTime);
@@ -74,19 +70,6 @@ function calculatePrice() {
 		let endTime2 = endTime
 		endTime2 = endTime2.replaceAll(":00", "");
 
-<<<<<<< Updated upstream
-		let resultTime = (parseFloat(endTime) - parseFloat(startTime)) / 3;
-		console.log(resultTime);
-
-		let result = parseFloat(re2) - parseFloat(re1) + 1
-		console.log(result);
-		var locationSelect = document.getElementById("locationSelect");
-		var selectedOption = locationSelect.options[locationSelect.selectedIndex];
-
-
-		var price = selectedOption.getAttribute("data-price");
-		var totalPrice;
-=======
 		let resultTime = (parseFloat(endTime2) - parseFloat(startTime2)) / 3;
 		console.log(resultTime + "DDD");
 
@@ -97,21 +80,11 @@ function calculatePrice() {
 
 		let price = selectedOption.getAttribute("data-price");
 		let totalPrice;
->>>>>>> Stashed changes
 		if (price === price) {
 			totalPrice = result * parseInt(price) * resultTime;
 		} else {
 			totalPrice = parseInt(price);
 		}
-<<<<<<< Updated upstream
-		var formattedPrice = totalPrice.toLocaleString(); 
-		var totalPriceElement = document.getElementById("totalPrice");
-		totalPriceElement.innerText = "대관료: " + formattedPrice + "원";
-		
-		$("#dateTime").on("click", function() {
-			console.log("예약 가능한 날짜입니다.");
-			for (var i = 0; i < response.length; i++) {
-=======
 		let formattedPrice = totalPrice.toLocaleString(); 
 		let totalPriceElement = document.getElementById("totalPrice");
 		totalPriceElement.innerText = "대관료: " + formattedPrice + "원";
@@ -119,22 +92,16 @@ function calculatePrice() {
 		$("#dateTime").on("click", function() {
 			console.log("fffff");
 			for (let i = 0; i < response.length; i++) {
->>>>>>> Stashed changes
 				console.log(response[i].startTime);
 				console.log(response[i].endTime);
 				$("#timeSelect option[value*='" + response[i] .startTime + "']").attr("disabled", false);
 				$("#endTime option[value*='" + response[i].endTime + "']").attr("disabled", false);
 			}
 		});
+
+
 	}).fail(function(error) {
-		console.error('Error 났습니다:', error);
+		console.error('Error 났어?:', error);
 	});
 
-<<<<<<< Updated upstream
-
-
-
-
-=======
->>>>>>> Stashed changes
 }
