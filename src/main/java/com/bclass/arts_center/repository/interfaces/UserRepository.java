@@ -3,6 +3,7 @@ package com.bclass.arts_center.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
@@ -57,5 +58,19 @@ public interface UserRepository {
 	public int updateUserById(User user);
 
 	public int deleteById(String userName);
+	
+	
+	/*
+	 * email 찾기 전대영
+	 */
 
+	public User findUserByUserId(String userEmail);
+
+	
+	public int updateUserPassword(@Param("id") String id,@Param("pw") String pw);
+	
 }
+	
+	
+	
+	

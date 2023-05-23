@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/css/user/signIn.css">
 
 
-<div class="signInContainer">
+<div class="signInContainer" style="margin-bottom: 200px;">
 	<div class="loginContainer">
 		<div class="login--title">
 			<img alt="" src="/images/background/logo.png" class="loginLogo">
@@ -31,7 +31,7 @@
 			<p>|</p>
 			<a>아이디 찾기</a>
 			<p>|</p>
-			<a>비밀번호 찾기</a>
+			<a href="/user/findPw">비밀번호 찾기</a>
 		</div>
 			<div class="logobox">
 		
@@ -55,3 +55,5 @@
 			</div>
 			</div>
 </div>
+
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -1,41 +1,42 @@
 /*
 작성자 편용림
 */
-
-
 @charset "UTF-8";
 
-
-body{
+body {
 	height: 1400px;
+	margin: 0 auto;
 }
-.container{
+
+.container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 input.info {
-  border: none;
-  border-bottom: 1px solid black;
-  outline: none;
+	border: none;
+	border-bottom: 1px solid black;
+	outline: none;
 }
-input.infoPw{
-  border: none;
-  border-bottom: 1px solid black;
-  outline: none;
-  width: 390px;
+
+input.infoPw {
+	border: none;
+	border-bottom: 1px solid black;
+	outline: none;
+	width: 390px;
 	margin: 5px;
 }
 
-.signInContainer{
+.signInContainer {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
 }
 
-.loginContainer {	display: flex;
+.loginContainer {
+	display: flex;
 	justify-content: start;
 	align-items: flex-start;
 	flex-direction: column;
@@ -55,7 +56,6 @@ input.infoPw{
 	font-size: large;
 	text-align: center;
 }
-
 
 #signup {
 	background-color: white;
@@ -86,21 +86,21 @@ i {
 	align-items: center;
 }
 
-#email{
+#email {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-#nickname{
+
+#nickname {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 input {
-	border-bottom:1 solid #FF0000;
+	border-bottom: 1 solid #FF0000;
 	height: 50px;
-	
 }
 
 .info {
@@ -122,27 +122,27 @@ a:hover {
 	color: black;
 	text-decoration: underline;
 }
-.loginLogo{
-height: 80px;
-width: 80px;
+
+.loginLogo {
+	height: 80px;
+	width: 80px;
 }
 
-.login--title{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-margin-left: 150px;
+.login--title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-left: 150px;
 }
 
-.line{
+.line {
 	margin: 20px;
 	border-left: 1px solid #ccc;
 	height: 660px;
 }
 
-
-.logobox{
+.logobox {
 	margin-left: 210px;
 	display: flex;
 	justify-content: center;
@@ -150,22 +150,25 @@ margin-left: 150px;
 	flex-direction: row;
 	margin-top: 20px;
 }
-.logobox img{
+
+.logobox img {
 	margin: 7px;
 }
 
-.field.birth div{ 
-    display: flex;
-    gap:20px; 
-}
-.field.birth input{
-width: 130px;	
+.field.birth div {
+	display: flex;
+	gap: 20px;
 }
 
-.error--messege{
-	color: red; 
-	font-size:15px;
+.field.birth input {
+	width: 130px;
 }
-.birthDate{
+
+.error--messege {
+	color: red;
+	font-size: 15px;
+}
+
+.birthDate {
 	margin-left: -50px;
-	}
+}
