@@ -21,9 +21,9 @@
 		<p>${title}</p>
 	</div>
 	<div class="reservation">
-		<form action="/ticket/ticketing/${showId}" method="post">
+		<form action="/ticket/ticketing" method="post">
 			<div class="reservation--calendar">
-				<input type="hidden" id="hiddenShowId" value="${showId}">
+				<input type="hidden" id="hiddenShowId" name="showId" value="${showId}">
 				<div>
 					<table class="Calendar">
 						<thead>
@@ -72,7 +72,7 @@
 				</div>
 			</div>
 
-			<button type="button" class="btn--ticketing">예매하기</button>
+			<button type="submit" class="btn--ticketing">예매하기</button>
 		</form>
 	</div>
 </div>

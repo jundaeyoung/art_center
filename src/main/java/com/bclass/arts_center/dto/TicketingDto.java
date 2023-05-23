@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+import com.bclass.arts_center.repository.model.Ticket;
+
 import lombok.Data;
 
 /**
@@ -26,9 +28,8 @@ public class TicketingDto {
 
 	private Timestamp ticketingDate;
 
-	
-	
-	
+	private Integer userId;
+
 	private String nickname;
 	private String tel;
 	private String email;
@@ -38,4 +39,5 @@ public class TicketingDto {
 	private Integer infantCount;
 	private Integer youthCount;
 	private Integer adultCount;
+
 }

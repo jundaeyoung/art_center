@@ -94,7 +94,7 @@ function matchDate(createDateList) {
 
 	let paragraphs = $("p");
 	for (let i = 0; i < matchDateIndex.length; i++) {
-		let index = matchDateIndex[i];
+		let index = matchDateIndex[i] + 1;
 		if (index >= 0 && index < paragraphs.length) {
 			paragraphs[index].style.backgroundColor = '#F5A9BC';
 		}
@@ -165,7 +165,7 @@ function selectDateForTime(showId, date) {
 
 				$(".timeTableLabel").removeClass("is-toggled");
 				$(this).addClass("is-toggled");
-
+				$(".seat--info").append(`<input type="hidden" id="hiddenshowDateTimeId" name="showDateTimeId" value="${showTime.id}">`);
 
 				//좌석정보를 갖고 오기 위함
 				$.ajax({
@@ -179,8 +179,8 @@ function selectDateForTime(showId, date) {
 					console.log("좌석 정보:", seatList);
 					$(".seat--info").append(`<div class="row"></div>`);
 					let seatsPerRow = 5;
-					console.log(typeof seatList);
-					console.log(seatList[0].seatId);
+					//console.log(typeof seatList);
+					//console.log(seatList[0].seatId);
 
 					let currentRow = $(".row");
 
@@ -190,25 +190,25 @@ function selectDateForTime(showId, date) {
 							$(".seat--info").append(currentRow);
 						}
 
-						let addSeat = `<div class="seat" data-seq="${seat.seatId}">${seat.seatName}</div>`;
+						let addSeat = `<div class="seat" data-seq="${seat.seatId}" value="${seat.seatId}">${seat.seatName}</div>`;
 						currentRow.append(addSeat);
-						console.log(seat.seatId);
+						//console.log(seat.seatId);
 
 
 						$(document).on('click', `.seat[data-seq="${seat.seatId}"]`, function() {
 							$(".seat").removeClass("selected");
 							$(this).addClass("selected");
+							$(".seat--info").append(`<input type="hidden" id="hiddenSeatId" name="seatId" value="${seat.seatId}">`);
+
 						});
 					});
 
-					// 여기에서 좌석 정보를 사용하여 원하는 작업을 수행합니다.
-					// 예를 들어, 좌석 정보를 화면에 표시하거나 다음 페이지로 넘기는 등의 작업을 수행할 수 있습니다.
 				}).fail(function(error) {
 					console.log(error);
 					console.log("좌석 정보를 가져오는 데 실패했습니다.");
 				});
 
-				console.log("id" + showTime.id);
+				//console.log("id" + showTime.id);
 			});
 		});
 
