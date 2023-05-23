@@ -13,6 +13,8 @@ import lombok.Data;
  */
 @Data
 public class SignUpFormDto {
+	
+	
 	private Integer id;
 	@Min(5)
 	private String userName;
