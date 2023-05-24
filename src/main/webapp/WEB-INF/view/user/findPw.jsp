@@ -103,7 +103,7 @@
 
 					$('#checkMsg').html('<p style="color:darkblue"></p>');
 				} else {
-					alert("발송 실패!", "입력하신 이메일로 임시비밀번호가 발송되었습니다.", "success")
+					alert("발송 실패!", "", "success")
 				}
 			}
 		})

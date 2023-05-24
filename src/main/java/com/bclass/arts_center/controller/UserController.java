@@ -231,7 +231,7 @@ public class UserController {
 	}
 	
 	/*
-	 *  전대영 : 
+	 *  전대영 : 이메일 중복검사 인증코드 날림
 	 */
 	@PostMapping("/check/email/sendEmail")
 	public @ResponseBody String sendEmailCheckEmail(String userEmail) {
