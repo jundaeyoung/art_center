@@ -19,7 +19,8 @@ $(function() {
 				"firstDay": 0,
 			},
 			"drops": "down",
-			"minDate": moment().startOf('day')
+			"minDate": $("#startDate").val(),
+			"maxDate": $("#endDate").val()
 		},
 		function(start, end, label) {
 			let startDate = start.format('YYYY-MM-DD').replaceAll(/-/g, "");

@@ -23,6 +23,8 @@
 
 				<div class="rental__location">
 					<label>공연 이름 : ${show.title}</label>
+					<input type="hidden" name="startDate" id="startDate"value="${show.startDate}">
+					<input type="hidden" name="endDate" id="endDate"value="${show.endDate}">
 				</div>
 				
 				<div class="rental__location">

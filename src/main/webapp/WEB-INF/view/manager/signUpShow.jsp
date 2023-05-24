@@ -102,9 +102,10 @@
 								"7월", "8월", "9월", "10월", "11월", "12월" ],
 						"firstDay" : 0
 					},
-					"startDate" : "2020-5-16",
-					"endDate" : "2020-10-23",
-					"drops" : "down"
+					"startDate" : "2023-5-16",
+					"endDate" : "2023-10-23",
+					"drops" : "down",
+					"minDate": moment().startOf('day')
 				},
 				function(start, end, label) {
 					console.log('New date range selected: '
