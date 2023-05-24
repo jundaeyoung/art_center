@@ -13,7 +13,7 @@
 		Join user_tb AS u ON u.id = s.organizer_id
 		join show_datetime_tb AS sd ON
 		sd.show_id = s.id
-		left Join ticketing_tb AS t ON t.show_time_id = sd.id
+		left Join ticketing_tb AS t ON t.show_datetime_id = sd.id
 		left JOIN age_group_tb AS a ON t.age_group_id = a.id
 		where s.organizer_id = #{userId}
 		group by s.id;
@@ -27,7 +27,7 @@
 		Join user_tb AS u ON u.id = s.organizer_id
 		join show_datetime_tb AS sd ON
 		sd.show_id = s.id
-		left Join ticketing_tb AS t ON t.show_time_id = sd.id
+		left Join ticketing_tb AS t ON t.show_datetime_id = sd.id
 		left JOIN age_group_tb AS a ON t.age_group_id = a.id
 		where s.organizer_id = 2
 		group by s.id;
@@ -42,7 +42,7 @@
 		Join user_tb AS u ON u.id = s.organizer_id
 		join show_datetime_tb AS sd ON
 		sd.show_id = s.id
-		left Join ticketing_tb AS t ON t.show_time_id = sd.id
+		left Join ticketing_tb AS t ON t.show_datetime_id = sd.id
 		left JOIN age_group_tb AS a ON t.age_group_id = a.id
 		where s.organizer_id =#{userId} AND s.title like #{title} group by s.id;
 	</select>
@@ -56,7 +56,7 @@
 		Join user_tb AS u ON u.id = s.organizer_id
 		join show_datetime_tb AS sd ON
 		sd.show_id = s.id
-		right Join ticketing_tb AS t ON t.show_time_id = sd.id
+		right Join ticketing_tb AS t ON t.show_datetime_id = sd.id
 		left JOIN age_group_tb AS a ON t.age_group_id = a.id
 		where  s.id=#{showId} AND s.organizer_id =#{userId} group by t.id;
 	</select>

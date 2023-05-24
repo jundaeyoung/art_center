@@ -62,7 +62,8 @@
 						</div>
 						<div class="close-area">X</div>
 						<c:forEach var="noticeList" items="${noticeList}">
-							<div class="content">${noticeList.notice}
+							<div class="content" style="display: flex; justify-content:space-between;">
+								<div>${noticeList.notice}</div>
 								<form action="/managerNotice/update/${noticeList.id}" method="get">
 									<div class="close-area">
 										<button type="submit" class="close-area" style="border-style: none; background-color: rgba(69, 139, 197, 0.90);">확인</button>

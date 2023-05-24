@@ -49,6 +49,16 @@ public interface ShowRepository {
 	 */
 	public Integer insertShow(RequestSignUpShowDto requestSignUpShowDto);
 
+	/**
+	 * 작성자 : 전대영 show insert된거 최근 하나만 가져오기
+	 */
+	public RequestShowDto selectShowByNewestOne(Integer userId);
+	
+	/**
+	 * 작성자 : 전대영 show 아이디로 찾기
+	 */
+	public RequestShowDto selectShowByShowId(Integer showId);
+	
 	/*
 	 * 손주이 : showId와 일치하는 공연 정보 select
 	 */
@@ -67,5 +77,10 @@ public interface ShowRepository {
 	public List<RequestShowDto> selectShowInfoAdmin();
 	
 	public int updateShowById(Integer id);
+	
+	/*
+	 * 전대영 manager 공연 hole 업데이트
+	 */
+	public int updateShowHole(@Param("id")Integer id ,@Param("holeId") Integer holeId);
 	
 }

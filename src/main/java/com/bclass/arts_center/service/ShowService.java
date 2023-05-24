@@ -38,6 +38,15 @@ public class ShowService {
 		return result;
 	}
 	
+	/*
+	 *  작성자 : 전대영 show hole update
+	 */
+	@Transactional
+	public int updateShowHole(Integer id,Integer holeId) {
+		int result = showRepository.updateShowHole(id,holeId);
+		return result;
+	}
+	
 	
 	/**
 	 * 작성자 : 전대영 show 최신순으로 select
@@ -99,8 +108,25 @@ public class ShowService {
 	@Transactional
 	public Integer createShow(RequestSignUpShowDto requestSignUpShowDto) {
 		Integer showNewestCount = showRepository.insertShow(requestSignUpShowDto);
-		System.out.println(requestSignUpShowDto);
 		return showNewestCount;
+	}
+	
+	/**
+	 * 작성자 : 전대영 show insert된거 최근 하나만 가져오기
+	 */
+	@Transactional
+	public RequestShowDto readShowByNewestOne(Integer userId) {
+		RequestShowDto show = showRepository.selectShowByNewestOne(userId);
+		return show;
+	}
+	
+	/**
+	 * 작성자 : 전대영 show id 로 하나만 찾기
+	 */
+	@Transactional
+	public RequestShowDto readShowByShowId(Integer userId) {
+		RequestShowDto show = showRepository.selectShowByShowId(userId);
+		return show;
 	}
 	
 	/*

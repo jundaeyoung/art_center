@@ -15,6 +15,7 @@ public class RequestShowDto {
 	private String content;
 	private String imgRoute;
 	private String startDate;
+	private Integer showTypeId;
 	private String endDate;
 	private String location;
 	private String showType;

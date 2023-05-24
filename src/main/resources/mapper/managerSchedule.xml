@@ -16,7 +16,7 @@
 		SELECT DISTINCT show_id, show_date, show_time
 		FROM show_datetime_tb
 		) AS sd ON sd.show_id = s.id
-		JOIN ticketing_tb AS t ON t.show_time_id = sd.show_id
+		JOIN ticketing_tb AS t ON t.show_datetime_id = sd.show_id
 		where u.id=#{id} AND s.show_status=1
 		GROUP BY u.id, r.id, s.id, c.id, sd.show_date, sd.show_time;
 	</select>
