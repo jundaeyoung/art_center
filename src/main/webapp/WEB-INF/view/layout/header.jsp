@@ -52,6 +52,12 @@
 						<p style="font-size: 20px;">반갑습니다. ${principal.nickname} 매니저 님</p>
 					</div>
 				</c:when>
+				<c:when test="${principal.apiId != null}">
+					<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://localhost:8080/kakaologout&response_type=code" style="font-size: 20px;"> 카카오 로그아웃</a>
+					<form action="/naverlogout" method="get">
+					<a href= http://nid.naver.com/nidlogin.logout?returl=http://www.google.com>네이버 로그아웃</a>
+					</form>
+				</c:when>
 				<c:otherwise>
 					<div class="user--btn">
 						<form action="/user/myPage" method="get">
@@ -121,7 +127,7 @@
 											<li><a
 												href="/user/delete?userName=${principal.userName}">회원탈퇴
 											</a></li>
-											<li><a href="/announcement">공지사항 작성</a></li>
+											<li><a href="/announcement">공지사항</a></li>
 										</c:otherwise>
 									</c:choose>
 								</ul></li>

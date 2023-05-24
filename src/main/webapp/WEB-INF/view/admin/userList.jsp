@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
+<%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
@@ -23,7 +20,7 @@
 							<i class="fas fa-table me-1"></i> DataTable Example
 						</div>
 						<div class="card-body">
-							 <table id="datatablesSimple">
+							 <table id="datatablesSimple" >
                                     <thead>
                                         <tr>
                                             <th>user_name</th>

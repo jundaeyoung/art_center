@@ -1,5 +1,10 @@
 package com.bclass.arts_center.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +63,13 @@ public class UserService {
 		}
 		int result = userRepository.insertUser(signUpFormDto);
 		
+	}
+
+	// 아이디 중복
+	@Transactional
+	public User readUserByUsername(SignUpFormDto signUpFormDto) {
+		User user = userRepository.selectUserByUsername(signUpFormDto.getUserName());
+		return user;
 	}
 
 
@@ -193,4 +205,6 @@ public class UserService {
             return false;
         }
     }
+	
+	
 }

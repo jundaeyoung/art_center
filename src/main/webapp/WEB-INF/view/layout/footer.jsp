@@ -15,5 +15,8 @@
 		</div>
 	</div>
 </div>
+	<script>
+    document.getElementById("fouc").style.display="block";
+    </script>
 </body>
 </html>

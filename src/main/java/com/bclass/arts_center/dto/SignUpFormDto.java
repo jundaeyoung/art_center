@@ -1,6 +1,5 @@
 package com.bclass.arts_center.dto;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -16,7 +15,6 @@ public class SignUpFormDto {
 	
 	
 	private Integer id;
-	@Min(5)
 	private String userName;
 	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")
 	private String password;

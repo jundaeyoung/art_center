@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="/css/user/signUp.css">
 
-<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <html lang="utf-8" xmlns:th="http://www.thymeleaf.org"></html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,10 +26,10 @@
 			<c:choose>
 				<c:when test="${userInfo.id != null}">
 					<div class="form-group">
-						<input type="hidden" class="form-control" id="userName" name="userName" value="${userInfo.id}">
+						<input type="text" class="form-control" id="userName" name="userName" value="${userInfo.id}">
 					</div>
 					<div class="form-group">
-						<input type="hidden" class="form-control" id="password" name="password" value="${userInfo.id}">
+						<input type="text" class="form-control" id="password" name="password" value="${userInfo.id}">
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -97,7 +96,7 @@
 			<br>
 			<c:choose>
 			<c:when test="${userInfo.id != null}">
-			<input type="hidden" value="${userInfo.id}" id="apiId" name="apiId">
+			<input type="hidden" value="${apiId}" id="apiId" name="apiId">
 			</c:when>
 			<c:otherwise>
 			</c:otherwise>
@@ -113,12 +112,7 @@
 				    var year = document.getElementById("year").value;
 				    var month = document.getElementById("month").value;
 				    var day = document.getElementById("day").value;
-				    
-				    
 				    var date = new Date(year, month - 1, day); 
-					
-				   
-				   
 				    var birthDate = date.toISOString().slice(0, 10);
 				    document.getElementById("birthDate").value = birthDate;
 				}
