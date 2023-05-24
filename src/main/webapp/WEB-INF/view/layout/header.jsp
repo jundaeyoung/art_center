@@ -158,7 +158,7 @@
 							<li><a href="#">소식·이용·참여</a>
 								<ul class="sub">
 									<li><a href="#">전당 소식</a></li>
-									<li><a href="#">오시는길·주차 안내</a></li>
+									<li><a href="/map">오시는길·주차 안내</a></li>
 									<li><a
 										href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
 									<li><a href="#">고객센터</a></li>
