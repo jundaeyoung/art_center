@@ -46,12 +46,12 @@ function calculatePrice() {
 	}).done(function(response) {
 		console.log('들어옴:', response);
 		$('option').removeAttr('disabled');
-				
+
 		for (var i = 0; i < response.length; i++) {
-			console.log(response[i].startTime);
-			console.log(response[i].endTime);
-			$("#timeSelect option[value*='" + response[i].startTime + "']").attr("disabled", true);
-			$("#endTime option[value*='" + response[i].endTime + "']").attr("disabled", true);
+			for (var j = response[i].startTime; j < response[i].endTime; j++) {
+				$("#timeSelect option[value*='" + response[i].startTime + "']").attr("disabled", true);
+				$("#endTime option[value*='" + response[i].endTime + "']").attr("disabled", true);
+			}
 		}
 
 		let dateTime = document.getElementById("dateTime").value;
@@ -72,7 +72,6 @@ function calculatePrice() {
 		endTime2 = endTime2.replaceAll(":00", "");
 
 		let resultTime = (parseFloat(endTime2) - parseFloat(startTime2)) / 3;
-		console.log(resultTime + "DDD");
 
 		let result = parseFloat(re2) - parseFloat(re1) + 1
 		console.log(result);
@@ -86,20 +85,35 @@ function calculatePrice() {
 		} else {
 			totalPrice = parseInt(price);
 		}
-		let formattedPrice = totalPrice.toLocaleString(); 
+		let formattedPrice = totalPrice.toLocaleString();
 		let totalPriceElement = document.getElementById("totalPrice");
-		totalPriceElement.innerText = "대관료: " + formattedPrice + "원";
+		if (totalPrice <= 0) {
+			totalPriceElement.innerText = "시간 선택이 잘못되었습니다.";
+		} else {
+			totalPriceElement.innerText = "대관료: " + formattedPrice + "원";
+		}
 
 		$("#dateTime").on("click", function() {
-			console.log("fffff");
 			for (let i = 0; i < response.length; i++) {
-				console.log(response[i].startTime);
-				console.log(response[i].endTime);
-				$("#timeSelect option[value*='" + response[i] .startTime + "']").attr("disabled", false);
+				$("#timeSelect option[value*='" + response[i].startTime + "']").attr("disabled", false);
 				$("#endTime option[value*='" + response[i].endTime + "']").attr("disabled", false);
 			}
 		});
+		for (let i = 0; i < response.length; i++) {
+			for (let j = parseInt(response[i].startTime); j <= parseInt(response[i].endTime); j++) {
+				$("#timeSelect option[value*='" + j + ":00:00" + "']").attr("disabled", true);
+				$("#endTime option[value*='" + j + ":00:00" + "']").attr("disabled", true);
+			}
+		}
 
+		$("#endTime").on("click", function() {
+			let startDate = $("#timeSelect option:selected").val();
+			for (let i = 9; i <= parseInt(startDate); i++) {
+				console.log(i);
+				$("#endTime option[value*='" + i + ":00:00" + "']").attr("disabled", true);
+			}
+
+		});
 
 	}).fail(function(error) {
 		console.error('Error 났어?:', error);

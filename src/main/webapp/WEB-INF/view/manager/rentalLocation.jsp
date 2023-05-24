@@ -19,14 +19,13 @@
 <div class="content_all">
 	<div class="content">
 		<div class="rental__info_content">
+			<input type="hidden" name="startDate" id="startDate" value="${show.startDate}"> <input type="hidden" name="endDate" id="endDate" value="${show.endDate}">
 			<form action="/rental/reservation" method="post">
 
 				<div class="rental__location">
 					<label>공연 이름 : ${show.title}</label>
-					<input type="hidden" name="startDate" id="startDate"value="${show.startDate}">
-					<input type="hidden" name="endDate" id="endDate"value="${show.endDate}">
 				</div>
-				
+
 				<div class="rental__location">
 					<label>대관 장소 : ${location}</label>
 				</div>
@@ -48,14 +47,13 @@
 				<div class="rental__time">
 					<label>대관 시간 : </label> <select id="timeSelect" name="startTime" onchange="calculatePrice()">
 						<c:forEach var="timeList" items="${timeList}">
-							<option value="${timeList.startTime}" id="${timeList.startTime}">${timeList.startTime}</option>
+							<option value="${timeList.startTime}" id="${timeList.startTime}" class="startTime">${timeList.startTime}</option>
 						</c:forEach>
 					</select> <label> ~ </label> <select id="endTime" name="endTime" onchange="calculatePrice()">
 						<c:forEach var="timeList" items="${timeList}">
 							<option value="${timeList.endTime}">${timeList.endTime}</option>
 						</c:forEach>
-					</select> <input type="hidden" id="locationId" name="locationId" value="${locationId}">
-					<input type="hidden" id="locationId" name="showId" value="${show.id}">
+					</select> <input type="hidden" id="locationId" name="locationId" value="${locationId}"> <input type="hidden" id="locationId" name="showId" value="${show.id}">
 				</div>
 				<div class="rental__ok">
 					<input type="submit" class="rental__btn" value="신청하기" style="font-size: 20px; margin-right: 50px;">

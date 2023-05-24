@@ -16,7 +16,7 @@
 			on r.hole_id=h.id
 			join show_Tb as s
 			on s.id = r.show_id
-			where s.show_type_id = #{showTypeId};
+			where s.show_type_id = #{showTypeId} AND s.show_status=1;;
 	</select>
 
 	<!-- 김미정 전체 데이터 불러오기 -->
@@ -29,7 +29,8 @@
 			as h
 			on r.hole_id=h.id
 			join show_Tb as s
-			on s.id = r.show_id;
+			on s.id = r.show_id
+			where s.show_status=1;
 	</select>
 
 	<!-- 김미정 -->
