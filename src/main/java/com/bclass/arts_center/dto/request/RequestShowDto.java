@@ -35,5 +35,7 @@ public class RequestShowDto {
 	private String youthRate;
 	private String infantRate;
 	private String showStatus;
+	private String organizerId;
+	private String nickname;
 	
 }

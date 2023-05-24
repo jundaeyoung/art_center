@@ -23,28 +23,15 @@
 					<i class="fas fa-table me-1"></i> DataTable Example
 				</div>
 				<div class="card-body">
-					<table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                         <th>제목</th>
-										<th>내용</th>
-											<th></th>
-											<th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <form action="/Announcement/update" method="post">
-                                        <td><input type="text" value="${announcement.title}" name="title"></td>
-										<td><input type="text" value="${announcement.content}" name="content"></td>
-                                        <td><input type="hidden" value="${announcement.id}" name="id" id="id"></td>
-                                        </tr>
-										<button class="userBtn">수정</button>
-										  </form>
-                                    </tbody>
-                                </table>
-					
-					
+					<form action="/Announcement/update" method="post">
+						<p>제목</p>
+						<input type="hidden" value="${announcement.id}" name="id" id="id">
+						<textarea class="form-control summernote" rows="1" id="title" name="title" >${announcement.title}</textarea>
+						<br>
+						<p>내용</p>
+						<textarea class="form-control summernote" rows="5" id="content" name="content">${announcement.content}</textarea>
+						<button type="submit" class="btn" style="margin-left: 2160px; margin-top: 10px; border: 1px solid #ccc;">수정</button>
+					</form>
 				</div>
 			</div>
 		</div>

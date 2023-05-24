@@ -146,18 +146,25 @@
 	
 	<!-- 작성자 편용림 : admin 쪽 정보 상세 -->
 	<select id="selectShowInfoAdmin" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		SELECT s.id, s.title, s.content, s.admission_age, c.show_type, s.show_status
+		SELECT u.nickname, s.organizer_id, s.id, s.title, s.content, s.admission_age, c.show_type, s.show_status
 		FROM show_tb AS s
 		JOIN category_tb AS c
 		ON s.show_type_id = c.id
-		order by s.show_status asc, s.id desc;
+        JOIN user_tb AS u
+        ON s.organizer_id = u.id
+		order by s.show_status asc, s.id desc
 	</select>
 	
 	<!-- 작성자 편용림 : 공연 예약 승인 여부 -->
 	<update id="updateShowById">
-	UPDATE show_tb SET show_status = 1 WHERE id = #{id};
+	UPDATE show_tb SET show_status = 1 WHERE id = #{id}
 	</update>
-
+	
+	<!-- 작성자 편용림 : 공연 예약 승인 거절 -->
+	<delete id="deleteShowById">
+	DELETE FROM show_tb WHERE id = #{id} 
+	</delete>
+	
 </mapper>
 
 

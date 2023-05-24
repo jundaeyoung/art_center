@@ -23,29 +23,12 @@
 					<i class="fas fa-table me-1"></i> DataTable Example
 				</div>
 				<div class="card-body">
-					<table id="datatablesSimple">
-						<thead>
-							<tr>
-								<th>제목</th>
-								<th>내용</th>
-								<th>작성날짜</th>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="announcements" items="${announcements}">
-								<tr>
-									<td>${announcements.title}</td>
-									<td>${announcements.content}</td>
-									<td>${announcements.createdDate}</td>
-									<td><a href="/Announcement/detail?id=${announcements.id}">수정</a></td>
-									<td><a href="/Announcement/delete?id=${announcements.id}">삭제</a></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<form action="/Announcement/board" method="get">
+					
+					<form action="/Announcement/write" method="post">
+					<p>제목</p>
+					<textarea class="form-control summernote" rows="1" id="title" name="title"></textarea><br>
+					<p>내용</p>
+					<textarea class="form-control summernote" rows="5" id="content" name="content"></textarea>
 					<button type="submit" class="btn" style="margin-left: 2160px; margin-top: 10px; border: 1px solid #ccc;">글쓰기</button>
 					</form>
 				</div>
