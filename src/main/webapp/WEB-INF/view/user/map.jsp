@@ -1,106 +1,109 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<style>
-h1 {
-	text-align: center;
-}
+<link rel="stylesheet" href="/css/map.css">
 
-.map__all {
-	border-bottom: 2px solid black;
-	margin-bottom: 10px;
-}
-.container {
-	margin-top: 100px;
-	height: 800px;
-}
-
-.map__btn {
-	display: flex;
-    justify-content: center;
-    align-items: center;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	margin: 30px;
-	width: 200px;
-}
-
-.map__info {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-}
-
-.address, .building {
-	margin: 10px;
-
-}
-
-.info {
-	margin: 20px;
-}
-</style>
 <div class="container">
 	<h1>찾아오시는 길</h1>
 	<div class="map__all">
-	<div class="map__info">
-		<div class="info">
-			<div class="address">
-				<strong>주소</strong> <span>부산광역시 부산진구 중앙대로 751</span>
-			</div>
+		<div class="map__info">
+			<div class="info">
+				<div class="address">
+					<strong>주소</strong> <span>부산광역시 부산진구 중앙대로 751</span>
+				</div>
 
-			<div class="building">
-				<strong>건물명</strong> <span>아마데우스 - Art Center</span>
+				<div class="building">
+					<strong>건물명</strong> <span>아마데우스 - Art Center</span>
+				</div>
+			</div>
+			<div class="map__btn">
+				<a href="https://map.kakao.com/link/to/아마데우스, 35.159573, 129.060249">아마데우스
+					찾아오기</a>
 			</div>
 		</div>
-		<div class="map__btn" >
-			<a  href="https://map.kakao.com/link/to/아마데우스, 35.159573, 129.060249">아마데우스 찾아오기</a>
-	</div>
-	</div>
 	</div>
 	<div id="map" style="width: 100%; height: 500px;"></div>
-	<script type="text/javascript"
-		src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=?"></script>
-	<script>
-		let container = document.getElementById('map');
-		let options = {
-			center : new kakao.maps.LatLng(35.159573, 129.060249),
-			level : 3
-		};
 
-		let map = new kakao.maps.Map(container, options);
+	<div>
+		<div class="sb__1">
+			<div class="sb__2">
+				<h2>지하철</h2>
+			</div>
+			<div class="sb">
+				<div class="sb__location" style="border-bottom: 1px solid #ccc">
+					<div class="sb__line" style="background-color: #FEE8E8">
+						<div class="station">
+							<p>서면역</p>
+							<p class="station__1">1</p>
+							<p class="station__2">2</p>
+						</div>
+					</div>
 
-/* 		map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW);
- */
-		let zoomControl = new kakao.maps.ZoomControl();
-		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+					<div class="sb__exit">
+						<p>서면역 15번출구</p>
+					</div>
+				</div>
 
-		kakao.maps.event.addListener(map, 'zoom_changed', function() {
-			let level = map.getLevel();
+				<div class="sb__location" style="border-bottom: 1px solid black">
+					<div class="sb__line" style="background-color: #FEE8E8">
+						<div class="station">
+							<p>부전역</p>
+							<p class="station__1">1</p>
+						</div>
+					</div>
 
-		});
+					<div class="sb__exit">
+						<p>부전역 2번출구</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		let marker = new kakao.maps.Marker({
-			position : map.getCenter()
+		<div class="sb__1">
+			<div class="sb__2">
+				<h2>버스</h2>
+			</div>
+			<div class="sb">
+				<div class="sb__location">
+					<div class="sb__line" style="background-color: #FFFCD3">
+						<p>부전시장</p>
+					</div>
 
-		});
+					<div class="sb__exit">
+						<p>101-1</p>
+						<p>124</p>
+						<p>129-1</p>
+						<p>141</p>
+						<p>20</p>
+					</div>
+				</div>
+				<div class="sb__location">
+					<div class="sb__line" style="background-color: #FFFCD3">
+						<p>서면역 12번출구</p>
+					</div>
 
-		marker.setMap(map);
+					<div class="sb__exit">
+						<p>부산진구 12-1</p>
+					</div>
+				</div>
 
-		let iwContent = '<div style="padding:5px;">아마데우스</div>';
-		let infowindow = new kakao.maps.InfoWindow({
-			content : iwContent
-		});
+				<div class="sb__location">
+					<div class="sb__line" style="background-color: #FFFCD3">
+						<p>전포초등학교</p>
+					</div>
 
-		kakao.maps.event.addListener(marker, 'mouseover', function() {
-			infowindow.open(map, marker);
-		});
+					<div class="sb__exit">
+						<p>20</p>
+						<p>24</p>
+						<p>66</p>
+						<p>83</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey="></script>
+	</div>
 
-		kakao.maps.event.addListener(marker, 'mouseout', function() {
-			infowindow.close();
-		});
-	</script>
-</div>
+<script type="text/javascript" src="/js/map.js"></script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
