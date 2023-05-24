@@ -17,7 +17,11 @@ import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
-
+/**
+ * 
+ * @author 손주이
+ *
+ */
 @Controller
 @RequestMapping("/ticket")
 public class TicketController {
@@ -74,7 +78,7 @@ public class TicketController {
 	@GetMapping("/payment")
 	public String payTicket() {
 
-		return "/pay/payment";
+		return "/payment/payment";
 	}
 
 }

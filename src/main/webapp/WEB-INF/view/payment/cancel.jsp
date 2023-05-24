@@ -3,18 +3,15 @@
 
 <div class="main">
 
-	<div class=""></div>
+	<div class="">
+
+		<h1>결제취소</h1>
 
 
-	<form action="/payment/ready" method="post">
-
-		<button type="submit">
-			<img alt="" src="/images/kakao/payment_icon_yellow_medium.png">
-		</button>
+	</div>
 
 
 
-	</form>
 
 </div>
 

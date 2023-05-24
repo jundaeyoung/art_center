@@ -7,11 +7,13 @@
 	namespace="com.bclass.arts_center.repository.interfaces.TicketRepository">
 
 	<!-- 손주이 : 공연 예매 시 필요한 정보 -->
-	<select id="selectShowInfoForTicketingByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectShowInfoForTicketingByShowId"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT *
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sd
-		ON s.id = sd.show_id
+		ON s.id
+		= sd.show_id
 		WHERE sd.show_id = #{showId}
 	</select>
 
@@ -20,7 +22,8 @@
 		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT s.id, sd.show_date
 		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
+		JOIN
+		show_datetime_tb AS sd
 		ON s.id = sd.show_id
 		WHERE sd.show_id = #{showId}
 		GROUP BY show_date
@@ -31,7 +34,8 @@
 		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT sd.id, sd.show_time
 		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
+		JOIN
+		show_datetime_tb AS sd
 		ON s.id = sd.show_id
 		WHERE sd.show_id = #{showId}
 		AND sd.show_date = #{showDate}
@@ -40,30 +44,38 @@
 	</select>
 
 	<!-- 작성자 손주이 : show 공연 시간 별 좌석 검색 -->
-	<select id="selectSeatInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectSeatInfo"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT *
 		FROM seat_tb AS st
 		JOIN hole_tb AS h
-		ON h.id = st.hole_id
+		ON h.id =
+		st.hole_id
 		JOIN show_tb AS sw
 		ON sw.hole_id = h.id
-		JOIN show_datetime_tb AS sd
+		JOIN show_datetime_tb
+		AS sd
 		ON sd.show_id = sw.id
-		WHERE sw.id = #{showId} AND sd.id = #{showDateTimeId}
+		WHERE sw.id = #{showId} AND sd.id =
+		#{showDateTimeId}
 	</select>
 
 	<!-- 작성자 전대영 : admin 예매 목록 검색 -->
-	<select id="selectTicketingAll" resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT  t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,s.infant_rate, count(case when t.age_group_id=1 then 1 end) as
-      infantCount ,
-      count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
-      FROM show_tb AS s
-      join show_datetime_tb AS sd ON
-      sd.show_id = s.id
-      left Join ticketing_tb AS t ON t.show_time_id = sd.id
-      left JOIN age_group_tb AS a ON t.age_group_id = a.id
-        Join user_tb AS u ON u.id = t.user_id
-      group by s.id, sd.show_date,sd.show_time,u.nickname;   
+	<select id="selectTicketingAll"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
+		SELECT
+		t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,s.infant_rate,
+		count(case when t.age_group_id=1 then 1 end) as
+		infantCount ,
+		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when
+		t.age_group_id=3 then 1 end) as adultCount
+		FROM show_tb AS s
+		join show_datetime_tb AS sd ON
+		sd.show_id = s.id
+		left Join ticketing_tb AS t ON t.show_time_id = sd.id
+		left JOIN age_group_tb AS a ON t.age_group_id = a.id
+		Join user_tb AS u ON u.id = t.user_id
+		group by s.id, sd.show_date,sd.show_time,u.nickname;
 	</select>
 
 
@@ -75,16 +87,27 @@
 		#{showDateTimeId})
 	</insert>
 
-	<select id="selectTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+	<!-- 잣겅자 손주이 : 결제대기 중 인 티켓 검색 -->
+	<select id="selectTicket"
+		resultType="com.bclass.arts_center.dto.TicketCheckDto">
 		SELECT * FROM ticketing_tb as t
 		JOIN show_tb as s
-		ON t.show_id = s.id
+		ON
+		t.show_id = s.id
 		JOIN seat_tb as se
 		ON t.seat_id = se.seat_id
-		JOIN show_datetime_tb as sd
+		JOIN
+		show_datetime_tb as sd
 		ON t.show_datetime_id = sd.id
-		WHERE user_id = #{userId} AND payment_status = 0;
+		WHERE user_id =
+		#{userId} AND payment_status = 0;
 	</select>
+
+	<update id="updateTicketing">
+		UPDATE ticketing_tb
+		SET payment_status = 1
+		WHERE user_id = #{userId} AND payment_status = 0 AND id = ${id}
+	</update>
 
 	<!-- <delete id="delete"> DELETE FROM ticketing_tb WHERE id = #{id} </delete> -->
 

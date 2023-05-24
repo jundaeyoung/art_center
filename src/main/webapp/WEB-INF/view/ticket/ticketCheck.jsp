@@ -40,8 +40,8 @@
 
 				</div>
 
-				<form action="/ticket/ticketing/${showId}" method="get">
-					<button type="button" onclick="goTicketing(${showId})">예매하기</button>
+				<form action="/ticket/payment" method="get">
+					<button type="submit">예매하기</button>
 				</form>
 
 			</c:forEach>
