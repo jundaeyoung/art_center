@@ -224,7 +224,7 @@
 									$("#startDate.startDate").text(event.startDate);
 									$("#endDate.endDate").text(event.endDate);
 									$("#holeName.holeName").text(event.holeName);
-									$("#images").attr("src", "/images/" + event.imgRoute);	
+									$("#images").attr("src", "/images/upload/" + event.imgRoute);	
 								}
 		                });
 	                // 모달 창 닫기 버튼 클릭 핸들러

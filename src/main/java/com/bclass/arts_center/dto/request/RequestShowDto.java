@@ -36,5 +36,8 @@ public class RequestShowDto {
 	private String youthRate;
 	private String infantRate;
 	private String showStatus;
+	private String holeName;
+	private String startTime;
+	private String endTime;
 	
 }

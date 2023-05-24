@@ -118,9 +118,9 @@ public class RentalController {
 		String[] split = str.split("~");
 		requestRentPlaceDto.setStartDate(split[0]);
 		requestRentPlaceDto.setEndDate(split[1]);
-
-		requestRentPlaceDto.setStartDate(split[0].replaceAll("-", ""));
-		requestRentPlaceDto.setEndDate(split[1].replaceAll("-", ""));
+		
+		requestRentPlaceDto.setStartDate(split[0].replaceAll(" ", ""));
+		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
 
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
@@ -132,7 +132,7 @@ public class RentalController {
 		} else if (endTime.compareTo(startTime) < 0) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		}
-		return "/schedule";
+		return "redirect:/schedule";
 	}
 
 }

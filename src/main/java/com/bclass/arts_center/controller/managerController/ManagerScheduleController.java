@@ -25,7 +25,7 @@ public class ManagerScheduleController {
 	@GetMapping("/schedule/{id}")
 	public String selectByShow(@PathVariable Integer id,Model model) {
 		List<RequestShowDto> showList = scheduleService.selectByMyShow(id);
-		System.out.println(showList.get(14).getShowTime());
+		System.out.println(showList);
 		model.addAttribute("lists", showList);
 		return "/manager/managerSchedule";
 	}

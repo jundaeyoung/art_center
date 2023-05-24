@@ -20,8 +20,8 @@ public class RequestShowDto {
 	public static class selectByCategory {
 		private Integer id;
 		private String title;
-		private Date startDate;
-		private Date endDate;
+		private String startDate;
+		private String endDate;
 		private String holeName;
 		private String imgRoute;
 	}
@@ -34,8 +34,8 @@ public class RequestShowDto {
 	public static class selectByShow {
 		private Integer id;
 		private String title;
-		private Date startDate;
-		private Date endDate;
+		private String startDate;
+		private String endDate;
 		private String holeName;
 		private String imgRoute;
 	}
@@ -49,8 +49,8 @@ public class RequestShowDto {
 	public static class selectByShowDetail {
 		private Integer id;
 		private String title;
-		private Date startDate;
-		private Date endDate;
+		private String startDate;
+		private String endDate;
 		private String holeName;
 		private String imgRoute;
 		

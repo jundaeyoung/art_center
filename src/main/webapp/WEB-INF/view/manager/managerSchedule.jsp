@@ -119,9 +119,9 @@
 			     </c:choose>
 			     
 			     {
-			    	 id: '${list.showId}',
-			         title: '${list.name} ${list.title}',
-			         start: '${list.showDate}T${list.showTime}',
+			    	 id: '${list.id}',
+			         title: '${list.holeName} ${list.title}',
+			         start: '${list.startDate}T${list.startTime}',
 			         imageurl: '${list.imgRoute}',
 			         backgroundColor: '${backgroundColor}',
 			         borderColor: '${borderColor}',
