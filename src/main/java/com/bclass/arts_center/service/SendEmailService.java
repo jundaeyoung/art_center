@@ -36,6 +36,17 @@ public class SendEmailService {
 		updatePassword(str, userEmail);
 		return dto;
 	}
+	
+	public MailDto createMailCode(String userEmail) {
+		String str = getTempPassword();
+		MailDto dto = new MailDto();
+		System.out.println(str);
+		dto.setAddress(userEmail);
+		dto.setTitle("AMADEUS 인증코드 안내 이메일 입니다.");
+		dto.setMessage(
+				"안녕하세요. AMADEUS 인증코드 안내 관련 이메일 입니다. 인증코드는 " + str + " 입니다.");
+		return dto;
+	}
 
 	public void updatePassword(String str, String userEmail) {
 		String pw = passwordEncoder.encode(str);

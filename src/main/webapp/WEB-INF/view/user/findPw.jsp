@@ -11,11 +11,13 @@
 
 
 
-<div class="signInContainer" style="margin-bottom: 200px;">
+<div class="signInContainer" style="margin-top:270px; margin-bottom: 200px;margin-left: 380px;">
 	<div class="loginContainer">
+		<div style="color: #ac2925; margin-bottom: 50px; font-size: 30px;">
+			<p style="margin-left: 20px;margin-bottom: 50px;">입력된 정보로 임시 비밀번호가 전송됩니다.</p>
+		</div>
 		<div class="login--title">
 			<img alt="" src="/images/background/logo.png" class="loginLogo">
-			<h2>Amadeus Login</h2>
 		</div>
 		<br>
 		<form role="form">
@@ -23,11 +25,11 @@
 				<i class="material-icons">alternate_email</i> <span class="glyphicon glyphicon-user"></span> <input type="text" class="info" id="userEmail" placeholder="가입시 등록한 이메일을 입력하세요.">
 			</div>
 			<div id="ipw">
-				<i class="material-icons">person_outline</i> <span class="glyphicon glyphicon-eye-open"></span> <input type="text" class="info" id="userName" placeholder="가입시 등록한 이름을 입력하세요.">
+				<i class="material-icons">person_outline</i> <span class="glyphicon glyphicon-eye-open"></span> <input type="text" class="info" placeholder="가입시 등록한 이름을 입력하세요.">
 			</div>
 		</form>
-		<button type="button" class="login" id="checkEmail" style="width: 385px;">OK</button>
-		<div class="selectIdAndPw" style="font-size: 15px;margin-left: 140px;">
+		<button type="button" class="login" id="checkEmail" style="width: 605px;">OK</button>
+		<div class="selectIdAndPw" style="font-size: 20px; margin-left: 300px;">
 			<a href="/user/login">로그인</a>
 			<p>|</p>
 			<a href="/user/signUp">회원가입</a>
@@ -56,9 +58,7 @@
 			</div>
 
 		</div>
-		<div style="color: #ac2925; margin-top: 30px; margin-left: -5px;">
-			<p style="font-size: 20px;">입력된 정보로 임시 비밀번호가 전송됩니다.</p>
-		</div>
+
 	</div>
 
 

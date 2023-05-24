@@ -91,7 +91,7 @@
 .modal {
 	display: none;
 	position: relative;
-	z-index: 2;
+	z-index: 9999;
 	width: 100%;
 	left: 500px;
 	bottom: 500px;

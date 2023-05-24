@@ -70,6 +70,12 @@ public interface UserRepository {
 	
 	public int updateUserPassword(@Param("id") String id,@Param("pw") String pw);
 	
+	/*
+	 * email 중복검사 전대영
+	 */
+	
+	
+	
 }
 	
 	

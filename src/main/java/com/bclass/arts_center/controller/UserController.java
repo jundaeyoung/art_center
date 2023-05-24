@@ -38,21 +38,20 @@ import com.mysql.cj.Session;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+
 	/*
 	 * 전대영 : email 임시비밀번호 발급
 	 */
-	
+
 	@Autowired
 	private SendEmailService sendEmailService;
-	
+
 	@Value("${spring.mail.username}")
 	private String from;
-	
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private HttpSession session;
 
@@ -105,7 +104,7 @@ public class UserController {
 		User principal = userService.readUser(signInFormDto);
 
 		session.setAttribute(Define.PRINCIPAL, principal);
-		
+
 		if (principal.getRoleId() == 3) {
 			return "redirect:/admin";
 		} else {
@@ -190,27 +189,62 @@ public class UserController {
 
 		return "redirect:/";
 	}
-	
+
+	/*
+	 * 작성자 : 전대영 비밀번호 찾기
+	 */
 	@GetMapping("/findPw")
 	public String findPw() {
 		return "/user/findPw";
 	}
+
+	/*
+	 * 작성자 : Email과 name의 일치여부를 check하는 컨트롤러
+	 */
+	@GetMapping("/check/findPw")
+	public @ResponseBody Map<String, Boolean> findPassword(String userEmail, String userName) {
+		Map<String, Boolean> json = new HashMap<>();
+		boolean findPasswordCheck = userService.userEmailCheck(userEmail, userName);
+		json.put("check", findPasswordCheck);
+		return json;
+	}
+
+	/*
+	 *  전대영 : 등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
+	 */
+	@PostMapping("/check/findPw/sendEmail")
+	public @ResponseBody void sendEmail(String userEmail, String userName) {
+		MailDto dto = sendEmailService.createMailAndChangePassword(userEmail, userName);
+		sendEmailService.mailSend(dto);
+
+	}
 	
-	 //Email과 name의 일치여부를 check하는 컨트롤러
-	 @GetMapping("/check/findPw")
-	    public @ResponseBody Map<String, Boolean> findPassword(String userEmail, String userName){
-	        Map<String,Boolean> json = new HashMap<>();
-	        boolean findPasswordCheck = userService.userEmailCheck(userEmail,userName);
-	        json.put("check", findPasswordCheck);
-	        return json;
-	    }
+	/*
+	 * 작성자 : email 중복검사
+	 */
+	@GetMapping("/check/findEmail")
+	public @ResponseBody Map<String, Boolean> findEmail(String userEmail) {
+		Map<String, Boolean> json = new HashMap<>();
+		boolean findEmailCheck = userService.emailCheck(userEmail);
+		json.put("check", findEmailCheck);
+		return json;
+	}
+	
+	/*
+	 *  전대영 : 
+	 */
+	@PostMapping("/check/email/sendEmail")
+	public @ResponseBody String sendEmailCheckEmail(String userEmail) {
+		String str = sendEmailService.getTempPassword();
+		MailDto dto = new MailDto();
+		dto.setAddress(userEmail);
+		dto.setTitle("AMADEUS 인증코드 안내 이메일 입니다.");
+		dto.setMessage(
+				"안녕하세요. AMADEUS 인증코드 안내 관련 이메일 입니다. 인증코드는 " + str + " 입니다.");
+		sendEmailService.mailSend(dto);
+		
+		return str;
+		
+	}
 
-	//등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
-	    @PostMapping("/check/findPw/sendEmail")
-	    public @ResponseBody void sendEmail(String userEmail, String userName){
-	        MailDto dto = sendEmailService.createMailAndChangePassword(userEmail, userName);
-	        sendEmailService.mailSend(dto);
-
-	    }
-	   
 }
