@@ -33,4 +33,5 @@ public interface RentalRepository {
 	 */
 	public List<RequestRentPlaceDto> selectByDateAndLocation(RequestRentPlaceDto requestRentPlaceDto);
 	
+	public List<RequestHoleDto> selectByTime2(Integer id);
 }
