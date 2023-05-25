@@ -86,6 +86,7 @@
 	WHERE id = #{id}
 	</update>
 	
+	<!-- email이용해서 비번 초기화 -->
 	<select id="findUserByUserId"
 		resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_tb
@@ -96,5 +97,6 @@
 		update user_tb set password=#{pw}
         where user_name=#{id};
 	</update>
+	
 	
 </mapper>

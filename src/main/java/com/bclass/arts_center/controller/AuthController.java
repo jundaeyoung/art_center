@@ -39,6 +39,8 @@ public class AuthController {
 	@Autowired
 	private HttpSession session;
 	
+	
+	
 	// 편용림
 	// 카카오 엑세스 토큰 들고오기
 	@GetMapping("/auth/kakao/callback")
@@ -62,11 +64,14 @@ public class AuthController {
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		ResponseEntity<KakaoDto> userInfo = requestKakaoUserInfo(responseToken.getBody().getAccessToken());
+		
 		model.addAttribute("userInfo", userInfo.getBody());
 
+		String apiId = userInfo.getBody().getId() + "kakao";
 		
-		User principal = userService.readUserByApiId(userInfo.getBody().getId());
-		System.out.println("데이터베이스 값 있는지 확인 :" + principal);
+		model.addAttribute("apiId", apiId);
+		
+		User principal = userService.readUserByApiId(apiId);
 		
 		if (principal == null) {
 			return "/user/signUp";
@@ -78,8 +83,8 @@ public class AuthController {
 	}
 	// 편용림
 	// 카카오 엑세스토큰으로 바디값 받기
-	private ResponseEntity<KakaoDto> requestKakaoUserInfo(String OAuthTokenKakao) {
-		
+	public ResponseEntity<KakaoDto> requestKakaoUserInfo(String OAuthTokenKakao) {
+
 		RestTemplate restTemplate = new RestTemplate();
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -100,6 +105,29 @@ public class AuthController {
 		
 		return response;
 	};
+	
+	@GetMapping("/kakaologout")
+	public String kakaoLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	
+	
+	@GetMapping("/naverlogout")
+	public String naverLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@GetMapping("/googlelogout")
+	public String googleLogout(HttpSession session) {
+		System.out.println("1111111111111111");
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	
 	
 	
 	// 편용림
@@ -129,10 +157,11 @@ public class AuthController {
 		ResponseEntity<GoogleDto> userInfo = RequestGoogleUserInfo(responseToken.getBody().getAccess_token());
 		
 		model.addAttribute("userInfo", userInfo.getBody());
-				
 		
-		User principal = userService.readUserByApiId(userInfo.getBody().getId());
-		System.out.println("데이터베이스 값 있는지 확인 :" + principal);
+		String apiId = userInfo.getBody().getId() + "google";
+		model.addAttribute("apiId", apiId);
+		
+		User principal = userService.readUserByApiId(apiId);
 		
 		if (principal == null) {
 			return "/user/signUp";
@@ -149,7 +178,7 @@ public class AuthController {
 	
 	// 편용림
 	// 구글 바디 값 들고오기
-	private ResponseEntity<GoogleDto> RequestGoogleUserInfo(String oAuthTokenGoogle) {
+	public ResponseEntity<GoogleDto> RequestGoogleUserInfo(String oAuthTokenGoogle) {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -169,9 +198,6 @@ public class AuthController {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		
-		
-
 		
 		return response;
 	}
@@ -202,18 +228,19 @@ public class AuthController {
 		
 		ResponseEntity<NaverDto> userInfo = RequestNaverUserInfo(responseToken.getBody().getAccessToken());
 		
-		
 		model.addAttribute("userInfo", userInfo.getBody().getResponse());
 		
-		User principal = userService.readUserByApiId(userInfo.getBody().getResponse().getId());
-		System.out.println("데이터베이스 값 있는지 확인 :" + principal);
+		String apiId = userInfo.getBody().getResponse().getId() + "naver";
+		
+		model.addAttribute("apiId", apiId);
+		
+		User principal = userService.readUserByApiId(apiId);
 		
 		if (principal == null) {
 			return "/user/signUp";
 		}
+		
 		session.setAttribute(Define.PRINCIPAL, principal);
-		
-		
 		
 		
 		return "redirect:/";
@@ -222,7 +249,7 @@ public class AuthController {
 	
 	//편용림
 	// 네이버 바디 값 들고오기
-	private ResponseEntity<NaverDto> RequestNaverUserInfo(String OAuthTokenKakao) {
+	public ResponseEntity<NaverDto> RequestNaverUserInfo(String OAuthTokenKakao) {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -236,8 +263,6 @@ public class AuthController {
 				HttpMethod.GET,
 				profileReqEntity,
 				NaverDto.class);
-		
-
 		
 		return response;
 	}

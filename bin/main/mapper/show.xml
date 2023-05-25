@@ -185,7 +185,9 @@
 		FROM show_tb AS s
 		JOIN category_tb AS c
 		ON s.show_type_id = c.id
-		order by s.show_status asc, s.id desc;
+        JOIN user_tb AS u
+        ON s.organizer_id = u.id
+		order by s.show_status asc, s.id desc
 	</select>
 
 	<!-- 작성자 편용림 : 공연 예약 승인 여부 -->
@@ -197,7 +199,12 @@
 	<update id="updateShowHole">
 		UPDATE show_tb SET hole_id = #{holeId} WHERE id = #{id};
 	</update>
-
+	
+	<!-- 작성자 편용림 : 공연 예약 승인 거절 -->
+	<delete id="deleteShowById">
+	DELETE FROM show_tb WHERE id = #{id} 
+	</delete>
+	
 </mapper>
 
 
