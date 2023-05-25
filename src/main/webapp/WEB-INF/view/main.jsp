@@ -19,12 +19,12 @@
 							<c:choose>
 								<c:when test="${showList.imgRoute.length()>=30}">
 									<div>
-										<a href="#"><img src="<c:url value="/images/upload/${showList.imgRoute}"/>" width="480" height="600"></a>
+										<a href="/show/showView/${showList.id}"><img src="<c:url value="/images/upload/${showList.imgRoute}"/>" width="480" height="600"></a>
 									</div>
 								</c:when>
 								<c:otherwise>
 									<div>
-										<a href="#"><img src="images/${showList.imgRoute}" width="480" height="600"></a>
+										<a href="/show/showView/${showList.id}"><img src="images/${showList.imgRoute}" width="480" height="600"></a>
 									</div>
 								</c:otherwise>
 							</c:choose>
@@ -39,10 +39,10 @@
 					<c:forEach var="showList" items="${showsList}">
 						<c:choose>
 							<c:when test="${showList.imgRoute.length()>=30}">
-								<li><img src="<c:url value="/images/upload/${showList.imgRoute}"/>" width="150" height="200"></li>
+								<li><a href="/show/showView/${showList.id}"><img src="<c:url value="/images/upload/${showList.imgRoute}"/>" width="150" height="200"></a></li>
 							</c:when>
 							<c:otherwise>
-								<li><img src="images/${showList.imgRoute}" width="150" height="200"></li>
+								<li><a href="/show/showView/${showList.id}"><img src="images/${showList.imgRoute}" width="150" height="200"></a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
