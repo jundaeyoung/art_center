@@ -50,16 +50,17 @@
 				<c:when test="${principal.apiId != null}">
 					<c:set var="apiType" value="${principal.apiId}" />
 					<c:if test="${fn:contains(apiType, 'kakao')}">
-							<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://localhost:8080/kakaologout&response_type=code"> 카카오 로그아웃</a>
-							<p style="font-size: 20px;">반갑습니다. ${principal.nickname} 님</p>
+						<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://localhost:8080/kakaologout&response_type=code"> 카카오
+							로그아웃</a>
+						<p style="font-size: 20px;">반갑습니다. ${principal.nickname} 님</p>
 					</c:if>
 					<c:if test="${fn:contains(apiType, 'naver')}">
-							<a href="#" onclick="naverLogout(); return false;">네이버 로그아웃</a>
-							
+						<a href="#" onclick="naverLogout(); return false;">네이버 로그아웃</a>
+
 						<p style="font-size: 20px;">반갑습니다. ${principal.nickname} 님</p>
 					</c:if>
 					<c:if test="${fn:contains(apiType, 'google')}">
-							<a href="#" onclick="googleLogout(); return false">구글 로그아웃</a>
+						<a href="#" onclick="googleLogout(); return false">구글 로그아웃</a>
 						<p style="font-size: 20px;">반갑습니다. ${principal.nickname} 님</p>
 					</c:if>
 				</c:when>
@@ -153,8 +154,7 @@
 								<ul class="sub">
 									<li><a href="#">전당 소식</a></li>
 									<li><a href="/map">오시는길·주차 안내</a></li>
-									<li><a
-										href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
+									<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
 									<li><a href="#">고객센터</a></li>
 									<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 								</ul></li>

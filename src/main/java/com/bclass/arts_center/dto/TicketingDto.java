@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-import com.bclass.arts_center.repository.model.Ticket;
-
 import lombok.Data;
 
 /**
