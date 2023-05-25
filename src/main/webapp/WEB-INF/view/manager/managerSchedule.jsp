@@ -119,9 +119,9 @@
 			     </c:choose>
 			     
 			     {
-			    	 id: '${list.showId}',
-			         title: '${list.name} ${list.title}',
-			         start: '${list.showDate}T${list.showTime}',
+			    	 id: '${list.id}',
+			         title: '${list.holeName} ${list.title}',
+			         start: '${list.startDate}T${list.startTime}',
 			         imageurl: '${list.imgRoute}',
 			         backgroundColor: '${backgroundColor}',
 			         borderColor: '${borderColor}',
@@ -147,7 +147,7 @@
 									$("#showDate").text(event.startDate);
 									$("#showTime").text(event.showTime);
 									$("#holeName").text(event.holeName);
-									$("#images").attr("src", "/images/" + event.imgRoute);	
+									$("#images").attr("src", "/images/upload/" + event.imgRoute);	
 								}
 		                });
 	                // 모달 창 닫기 버튼 클릭 핸들러

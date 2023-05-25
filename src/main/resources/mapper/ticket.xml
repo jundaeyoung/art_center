@@ -4,63 +4,55 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="com.bclass.arts_center.repository.interfaces.TicketRepository">
+   namespace="com.bclass.arts_center.repository.interfaces.TicketRepository">
 
-	<!-- 손주이 : 공연 예매 시 필요한 정보 -->
-	<select id="selectShowInfoForTicketingByShowId"
-		resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT *
-		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
-		ON s.id
-		= sd.show_id
-		WHERE sd.show_id = #{showId}
-	</select>
+   <!-- 손주이 : 공연 예매 시 필요한 정보 -->
+   <select id="selectShowInfoForTicketingByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT *
+      FROM show_tb AS s
+      JOIN show_datetime_tb AS sd
+      ON s.id = sd.show_id
+      WHERE sd.show_id = #{showId}
+   </select>
 
-	<!-- 작성자 손주이 : show별 날짜 검색 -->
-	<select id="selectShowDateByShowId"
-		resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT s.id, sd.show_date
-		FROM show_tb AS s
-		JOIN
-		show_datetime_tb AS sd
-		ON s.id = sd.show_id
-		WHERE sd.show_id = #{showId}
-		GROUP BY show_date
-	</select>
+   <!-- 작성자 손주이 : show별 날짜 검색 -->
+   <select id="selectShowDateByShowId"
+      resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT s.id, sd.show_date
+      FROM show_tb AS s
+      JOIN show_datetime_tb AS sd
+      ON s.id = sd.show_id
+      WHERE sd.show_id = #{showId}
+      GROUP BY show_date
+   </select>
 
-	<!-- 작성자 손주이 : show별 공연 시간 검색 -->
-	<select id="selectShowTimeByShowId"
-		resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT sd.id, sd.show_time
-		FROM show_tb AS s
-		JOIN
-		show_datetime_tb AS sd
-		ON s.id = sd.show_id
-		WHERE sd.show_id = #{showId}
-		AND sd.show_date = #{showDate}
-		GROUP BY show_time
-		ORDER BY show_time asc
-	</select>
+   <!-- 작성자 손주이 : show별 공연 시간 검색 -->
+   <select id="selectShowTimeByShowId"
+      resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT sd.id, sd.show_time
+      FROM show_tb AS s
+      JOIN show_datetime_tb AS sd
+      ON s.id = sd.show_id
+      WHERE sd.show_id = #{showId}
+      AND sd.show_date = #{showDate}
+      GROUP BY show_time
+      ORDER BY show_time asc
+   </select>
 
-	<!-- 작성자 손주이 : show 공연 시간 별 좌석 검색 -->
-	<select id="selectSeatInfo"
-		resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT *
-		FROM seat_tb AS st
-		JOIN hole_tb AS h
-		ON h.id =
-		st.hole_id
-		JOIN show_tb AS sw
-		ON sw.hole_id = h.id
-		JOIN show_datetime_tb
-		AS sd
-		ON sd.show_id = sw.id
-		WHERE sw.id = #{showId} AND sd.id =
-		#{showDateTimeId}
-	</select>
+   <!-- 작성자 손주이 : show 공연 시간 별 좌석 검색 -->
+   <select id="selectSeatInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT *
+      FROM seat_tb AS st
+      JOIN hole_tb AS h
+      ON h.id = st.hole_id
+      JOIN show_tb AS sw
+      ON sw.hole_id = h.id
+      JOIN show_datetime_tb AS sd
+      ON sd.show_id = sw.id
+      WHERE sw.id = #{showId} AND sd.id = #{showDateTimeId}
+   </select>
 
-	<!-- 작성자 전대영 : admin 예매 목록 검색 -->
+  <!-- 작성자 전대영 : admin 예매 목록 검색 -->
 	<select id="selectTicketingAll"
 		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT
@@ -79,29 +71,25 @@
 	</select>
 
 
-	<!-- 작성자 손주이 : 티켓 예매 -->
-	<insert id="insertTicket">
-		INSERT INTO ticketing_tb (user_id, show_id, seat_id,
-		show_datetime_id)
-		VALUES (#{userId}, #{showId}, #{seatId},
-		#{showDateTimeId})
-	</insert>
+   <!-- 작성자 손주이 : 티켓 예매 -->
+   <insert id="insertTicket">
+      INSERT INTO ticketing_tb (user_id, show_id, seat_id,
+      show_datetime_id)
+      VALUES (#{userId}, #{showId}, #{seatId},
+      #{showDateTimeId})
+   </insert>
 
 	<!-- 잣겅자 손주이 : 결제대기 중 인 티켓 검색 -->
-	<select id="selectTicket"
-		resultType="com.bclass.arts_center.dto.TicketCheckDto">
-		SELECT * FROM ticketing_tb as t
-		JOIN show_tb as s
-		ON
-		t.show_id = s.id
-		JOIN seat_tb as se
-		ON t.seat_id = se.seat_id
-		JOIN
-		show_datetime_tb as sd
-		ON t.show_datetime_id = sd.id
-		WHERE user_id =
-		#{userId} AND payment_status = 0;
-	</select>
+   <select id="selectTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+      SELECT * FROM ticketing_tb as t
+      JOIN show_tb as s
+      ON t.show_id = s.id
+      JOIN seat_tb as se
+      ON t.seat_id = se.seat_id
+      JOIN show_datetime_tb as sd
+      ON t.show_datetime_id = sd.id
+      WHERE user_id = #{userId} AND payment_status = 0;
+   </select>
 
 	<update id="updateTicketing">
 		UPDATE ticketing_tb

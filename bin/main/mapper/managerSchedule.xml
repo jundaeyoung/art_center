@@ -6,18 +6,14 @@
 
 	<!-- 작성자 : 전대영 내 공연보기 -->
 	<select id="selectByMySchedule" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		SELECT u.*, r.*, s.*, c.*, s.id as showId ,sd.show_date, sd.show_time, ROUND(AVG(re.rating), 1) AS showRating
-		FROM user_tb AS u
-		JOIN role_tb AS r ON u.role_id = r.id
-		JOIN show_tb AS s ON u.id = s.organizer_id
-		JOIN category_tb AS c ON c.id = s.show_type_id
-		JOIN review_tb AS re ON s.id = re.show_id
-		JOIN (
-		SELECT DISTINCT show_id, show_date, show_time
-		FROM show_datetime_tb
-		) AS sd ON sd.show_id = s.id
-		JOIN ticketing_tb AS t ON t.show_time_id = sd.show_id
-		where u.id=#{id} AND s.show_status=1
-		GROUP BY u.id, r.id, s.id, c.id, sd.show_date, sd.show_time;
+			select s.id as id,s.title as title, h.name as holeName, r.start_date
+			as startDate,r.start_time,r.end_time, r.end_date as endDate, img_route as imgRoute
+			from rent_place_reservation_tb as r
+			join hole_tb
+			as h
+			on r.hole_id=h.id
+			join show_Tb as s
+			on s.id = r.show_id
+			where s.organizer_id=#{id} AND s.show_status=1;
 	</select>
 </mapper>

@@ -3,11 +3,13 @@
 	width: 100%;
 	height: 800px;
 	margin-top: 200px;
+	margin-bottom: 200px;
 }
 
 
 .link--content {
 	display: flex;
+	justify-content: center;
 }
 
 .rental-title {
@@ -16,8 +18,8 @@
 }
 
 .link--box {
-	width: 400px;
-	height: 500px;
+	width: 700px;
+	height: 700px;
 	margin: 50px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -33,8 +35,8 @@
 }
 
 .link--title img {
-	width: 400px;
-	height: 300px;
+	width: 700px;
+	height: 500px;
 	opacity: 0.8;
 }
 

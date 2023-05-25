@@ -20,5 +20,6 @@ public class RequestRentPlaceDto {
 	private Integer userId;
 	private Integer holeId;
 	private Integer locationId;
+	private Integer showId;
 	
 }

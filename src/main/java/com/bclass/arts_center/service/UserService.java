@@ -193,4 +193,19 @@ public class UserService {
             return false;
         }
     }
+	
+	/*
+	 * 전대영 : email 중복검사
+	 */
+	public boolean emailCheck(String userEmail) {
+		if(userEmail.length()<5 ||userEmail.isBlank()) {
+			return false;
+		}
+		User user = userRepository.findUserByUserId(userEmail);
+		if(user!=null && user.getEmail().equals(userEmail)) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 }

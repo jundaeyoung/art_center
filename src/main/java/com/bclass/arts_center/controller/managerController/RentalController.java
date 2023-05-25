@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
+import com.bclass.arts_center.dto.request.RequestShowDto;
+import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.RentalService;
+import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller
@@ -31,32 +34,53 @@ public class RentalController {
 	private RentalService rentalService;
 
 	@Autowired
+	private ShowService showService;
+
+	@Autowired
 	private HttpSession session;
-	
+
 	/**
 	 * 김미정
 	 */
 	// 대관신청 바로가기 페이지
 	@GetMapping("")
-	public String rentalPage(Model model) {
-	    User principal = (User) session.getAttribute(Define.PRINCIPAL);
-	    if (principal == null) {
-	    	 throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
-	    }
-	    if (principal.getRoleId() != 2) {
-	    	 throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
-	    }
-	    return "/manager/rental";
+	public String rentalPage(RequestSignUpShowDto requestSignUpShowDto, Model model) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+
+		if (principal == null) {
+			throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if (principal.getRoleId() != 2) {
+			throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		RequestShowDto show = showService.readShowByNewestOne(principal.getId());
+		if (show == null) {
+			model.addAttribute("show", null);
+		} else {
+			model.addAttribute("show", show);
+		}
+		System.out.println(show);
+		return "/manager/rental";
 	}
+
 	/**
 	 * 김미정
 	 */
 	// 대관 신청 페이지
-	@GetMapping("/location/{id}")
+	@GetMapping("/location/{id}/{showId}")
 	@Transactional
-	public String rentalLocation(Model model, @PathVariable("id") Integer id) {
+	public String rentalLocation(Model model, @PathVariable("id") Integer id, @PathVariable("showId") Integer showId) {
+		RequestShowDto show = showService.readShowByShowId(showId);
+		System.out.println(show + "DDDD");
 		List<RequestHoleDto> locationLists = rentalService.selectByLocation(id);
+		System.out.println(locationLists + "location");
 		List<RequestHoleDto> timeList = rentalService.selectByTime(id);
+		System.out.println(timeList + "timeList");
+		if (show == null) {
+			model.addAttribute("show", null);
+		} else {
+			model.addAttribute("show", show);
+		}
 		model.addAttribute("locationLists", locationLists);
 		model.addAttribute("timeList", timeList);
 		model.addAttribute("location", locationLists.get(0).getLocation());
@@ -89,34 +113,26 @@ public class RentalController {
 		if (principal == null) {
 			throw new CustomRestfullException("사용자 인증이 필요합니다.", HttpStatus.UNAUTHORIZED);
 		}
-		
-		
 		requestRentPlaceDto.setUserId(principal.getId());
 		String str = requestRentPlaceDto.getStartDate();
 		String[] split = str.split("~");
 		requestRentPlaceDto.setStartDate(split[0]);
 		requestRentPlaceDto.setEndDate(split[1]);
+		
+		requestRentPlaceDto.setStartDate(split[0].replaceAll(" ", ""));
+		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
 
-		requestRentPlaceDto.setStartDate(split[0].replaceAll("-",""));
-		requestRentPlaceDto.setEndDate(split[1].replaceAll("-",""));
-		
-		
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
-		
 
-		int result = rentalService.insertRental(requestRentPlaceDto);
-
+		rentalService.insertRental(requestRentPlaceDto);
+		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
 		if (startTime.equals(endTime)) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		} else if (endTime.compareTo(startTime) < 0) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
-		} else {
-			System.out.println("여기 값이 들어오나요?" + result);
-		};
-		 
-		
-		return "/manager/rental";
+		}
+		return "redirect:/schedule";
 	}
 
 }

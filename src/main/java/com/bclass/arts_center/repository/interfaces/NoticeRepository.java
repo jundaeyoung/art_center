@@ -11,9 +11,14 @@ import com.bclass.arts_center.repository.model.Notice;
 public interface NoticeRepository {
 
 	/*
-	 * 전대영 : 알림 insert
+	 * 전대영 : 알림 admin insert
 	 */
-	public Integer insertNotice(@Param("notice")String notice, @Param("userId")Integer userId, @Param("adminId") Integer adminId);
+	public Integer insertAdminNotice(@Param("notice")String notice, @Param("userId")Integer userId, @Param("adminId") Integer adminId);
+	
+	/*
+	 * 전대영 : 알림 manager insert
+	 */
+	public Integer insertManaegerNotice(@Param("notice")String notice, @Param("userId")Integer userId, @Param("adminId") Integer adminId);
 	
 	/*
 	 * 전대영 : 알림 select

@@ -3,21 +3,37 @@
  */
 @charset "UTF-8";
 
-
-#nav .main{
+#nav .main {
 	margin-top: 35px;
 }
-.title .user--btn{
+
+.title .user--btn {
 	margin-top: 23px;
 }
+
 .show-content {
-	position:relative;
+	position: relative;
 	max-width: 1280px;
 	margin: 0 auto;
-	margin-top:100px;
+	margin-top: 100px;
 	margin-bottom: 100px;
 }
 
+.fc-event-time {
+	font-size: 20px!important;
+}
+.fc-event-title-container{
+	font-size: 20px!important;
+}
+.modal-content{
+	z-index:1!important;
+}
+#myModal{
+	z-index:9999!important;
+}
+.fc-daygrid-day-frame fc-scrollgrid-sync-inner{
+	z-index:0!important;
+}
 .show-title {
 	position: relative;
 	font-size: 30px;
@@ -26,9 +42,11 @@
 	margin-bottom: 30px;
 	border-bottom: 1px solid black;
 }
-.user--btn p{
+
+.user--btn p {
 	margin-top: 2px;
 }
+
 .show-title a {
 	text-decoration: none;
 	color: black;
@@ -38,7 +56,6 @@
 	border-spacing: 0;
 }
 
-
 .show-type-btn {
 	border: 0;
 	outline: 0;
@@ -46,7 +63,12 @@
 	font-size: 16px;
 	color: gray;
 }
-
+.fc-scrollgrid-section fc-scrollgrid-section-body {
+	z-index:100!important;
+	}
+.fc td{
+	padding: 0!important;
+}
 .show-type-btn:hover {
 	color: black;
 	font-weight: bold;
@@ -124,7 +146,6 @@ button:hover {
 	transform: none;
 }
 
-
 .fc .fc-button-primary {
 	background-color: #FAEBD7;
 	border: 1px solid #ccc;
@@ -137,10 +158,8 @@ button:hover {
 	color: black;
 }
 
-.fc .fc-button-group>.fc-button:focus, .fc .fc-button-group>.fc-button:active,
-	.fc .fc-button-group>.fc-button.fc-button-active {
+.fc .fc-button-group>.fc-button:focus, .fc .fc-button-group>.fc-button:active, .fc .fc-button-group>.fc-button.fc-button-active {
 	background-color: #f5de98;
 	border: 1px solid #ccc;
 	color: black;
 }
-

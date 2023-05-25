@@ -15,6 +15,7 @@ public class RequestShowDto {
 	private String content;
 	private String imgRoute;
 	private String startDate;
+	private Integer showTypeId;
 	private String endDate;
 	private String location;
 	private String showType;
@@ -35,5 +36,8 @@ public class RequestShowDto {
 	private String youthRate;
 	private String infantRate;
 	private String showStatus;
+	private String holeName;
+	private String startTime;
+	private String endTime;
 	
 }

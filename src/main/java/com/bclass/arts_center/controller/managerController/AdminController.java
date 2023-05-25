@@ -2,6 +2,8 @@ package com.bclass.arts_center.controller.managerController;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bclass.arts_center.dto.request.RequestQuestionDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.repository.model.User;
+import com.bclass.arts_center.service.NoticeService;
 import com.bclass.arts_center.service.QuestionService;
 import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.service.UserService;
+import com.bclass.arts_center.utils.Define;
 
 
 /**
@@ -27,6 +31,9 @@ import com.bclass.arts_center.service.UserService;
 @RequestMapping("/admin")
 public class AdminController {
 
+	
+	@Autowired
+	private HttpSession session;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -34,6 +41,8 @@ public class AdminController {
 	
 	@Autowired
 	private ShowService showService;
+	@Autowired
+	private NoticeService noticeService;
 	
 	// 메인화면
 	@GetMapping("")
@@ -125,12 +134,8 @@ public class AdminController {
 	
 	@GetMapping("/show")
 	public String show(Model model) {
-		
 		List<RequestShowDto> showList = showService.readShow();
-		
 		model.addAttribute("showList", showList);
-		
-		
 		return "admin/show";
 	}
 	
@@ -157,9 +162,14 @@ public class AdminController {
 	/*
 	 *  편용림 작성자 : 승인
 	 */
-	@GetMapping("updateShow")
-	public String updateShow(String id){
+	@GetMapping("/updateShow/{id}/{userId}")
+	public String updateShow(@PathVariable Integer id,@PathVariable Integer userId){
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		int result = showService.updateShow(id);
+		String notice = "공연등록이 수락되었습니다.";
+		System.out.println(userId);
+		System.out.println(principal.getId());
+		noticeService.createManagerNotice(notice, userId, principal.getId());
 		return "redirect:/admin/show";
 	}
 	

@@ -10,7 +10,13 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <div class="show__header"></div>
-<div class="signUpShow__content">
+<div class="signUpShow__content" style="display: flex; flex-direction: column;">
+	<div class="show__title">
+		<span class="material-symbols-outlined"> square </span>
+		<div>
+			<h1>공연등록</h1>
+		</div>
+	</div>
 	<div class="signUpShow__info">
 		<form action="/manager/sign-up" method="post" enctype="multipart/form-data">
 			<div style="display: flex; width: 1400px; flex-direction: row; justify-content: space-between;">
@@ -50,20 +56,13 @@
 				</div>
 				<div style="height: 500px; display: flex; flex-direction: column">
 					<div>
-						<label for="adult_rate">성인 요금 : </label><input type="text" id="adult_rate" name="adultRate">
+						<label for="adult_rate">성인요금 : </label><input type="text" id="adult_rate" name="adultRate">
 					</div>
 					<div>
-						<label for="youth_rate">청소년 요금 : </label><input type="text" id="youth_rate" name="youthRate">
+						<label for="youth_rate">청소년요금 : </label><input type="text" id="youth_rate" name="youthRate">
 					</div>
 					<div>
-						<label for="infant_rate">유아 요금 : </label><input type="text" id="infant_rate" name="infantRate">
-					</div>
-					<div>
-						<label for="holeId">장소 : </label><select name="holeId" id="holeId">
-							<c:forEach var="holeList" items="${holeList}">
-								<option value="${holeList.id}">${holeList.name}</option>
-							</c:forEach>
-						</select>
+						<label for="infant_rate">유아요금 : </label><input type="text" id="infant_rate" name="infantRate">
 					</div>
 					<div>
 						<label for="showTypeId">카테고리 : </label><select name="showTypeId" id="showTypeId">
@@ -103,9 +102,10 @@
 								"7월", "8월", "9월", "10월", "11월", "12월" ],
 						"firstDay" : 0
 					},
-					"startDate" : "2020-5-16",
-					"endDate" : "2020-10-23",
-					"drops" : "down"
+					"startDate" : "2023-5-16",
+					"endDate" : "2023-10-23",
+					"drops" : "down",
+					"minDate": moment().startOf('day')
 				},
 				function(start, end, label) {
 					console.log('New date range selected: '

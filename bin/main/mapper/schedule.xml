@@ -8,25 +8,29 @@
 	<!-- 김미정 캘린더 카테고리 별 데이터 불러오기 -->
 	<select id="selectByCategory"
 		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByCategory">
-		select s.id as id,s.title as title, h.name as holeName, s.start_date
-		as startDate , s.end_date as endDate, img_route as imgRoute
-		from show_tb as s
-		inner join
-		hole_tb as h
-		on s.hole_id =
-		h.id
-		where s.show_type_id = #{showTypeId};
+		select s.id as id,s.title as title, h.name as holeName, r.start_date
+			as startDate, r.end_date as endDate, img_route as imgRoute
+			from rent_place_reservation_tb as r
+			join hole_tb
+			as h
+			on r.hole_id=h.id
+			join show_Tb as s
+			on s.id = r.show_id
+			where s.show_type_id = #{showTypeId} AND s.show_status=1;;
 	</select>
 
 	<!-- 김미정 전체 데이터 불러오기 -->
 	<select id="selectByShow"
 		resultType="com.bclass.arts_center.dto.RequestShowDto$selectByShow">
-		select s.id as id,s.title as title, h.name as holeName, s.start_date
-		as startDate, s.end_date as endDate, img_route as imgRoute
-		from show_tb as s
-		inner join hole_tb
-		as h
-		on s.hole_id = h.id
+		select s.id as id,s.title as title, h.name as holeName, r.start_date
+			as startDate, r.end_date as endDate, img_route as imgRoute
+			from rent_place_reservation_tb as r
+			join hole_tb
+			as h
+			on r.hole_id=h.id
+			join show_Tb as s
+			on s.id = r.show_id
+			where s.show_status=1;
 	</select>
 
 	<!-- 김미정 -->

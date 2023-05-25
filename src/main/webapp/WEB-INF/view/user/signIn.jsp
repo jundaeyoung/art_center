@@ -10,11 +10,10 @@
 <link rel="stylesheet" href="/css/user/signIn.css">
 
 
-<div class="signInContainer" style="margin-bottom: 200px;">
+<div class="signInContainer" >
 	<div class="loginContainer">
 		<div class="login--title">
 			<img alt="" src="/images/background/logo.png" class="loginLogo">
-			<h2>Amadeus Login</h2>
 		</div>
 		<br>
 		<form action="/user/loginProc" method="post">

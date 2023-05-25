@@ -75,7 +75,6 @@ $(document).ready(function() {
 	    	  
 	    	  
 				$(".show").empty(); 
-					console.log("dd")
 					console.log(response);
 					for(let i = 0; i < response.length; i++) {
 						let el = $("<div>");
@@ -91,7 +90,7 @@ $(document).ready(function() {
 						
 						let tagImg = $("<img>");
 						tagA.append(tagImg);
-						tagImg.attr("src", "/images/" + response[i].imgRoute);
+						tagImg.attr("src", "/images/upload/" + response[i].imgRoute);
 						tagImg.attr("width", "230");
 						tagImg.attr("height", "300");
 						
@@ -114,7 +113,12 @@ $(document).ready(function() {
 						let tagH3 = $("<h3>");
 						showcontent.append(tagH3);
 						
-						let tagH3Info = ("평점 : " +response[i].rating);
+						let tagH3Info="";
+						if(response[i].rating==null){
+							tagH3Info="평점이 아직 등록되지 않았습니다.";
+						}else{
+							tagH3Info = ("평점 : " +response[i].rating);
+						}
 						tagH3.append(tagH3Info);
 					}
 					$(".page").empty(); 
@@ -193,7 +197,7 @@ $(document).ready(function() {
 						
 						let tagImg = $("<img>");
 						tagA.append(tagImg);
-						tagImg.attr("src", "/images/" + response[i].imgRoute);
+						tagImg.attr("src", "/images/upload/" + response[i].imgRoute);
 						tagImg.attr("width", "230");
 						tagImg.attr("height", "300");
 						
@@ -216,7 +220,12 @@ $(document).ready(function() {
 						let tagH3 = $("<h3>");
 						showcontent.append(tagH3);
 						
-						let tagH3Info = ("평점 : " +response[i].rating);
+						let tagH3Info="";
+						if(response[i].rating==null){
+							tagH3Info="평점이 아직 등록되지 않았습니다.";
+						}else{
+							tagH3Info = ("평점 : " +response[i].rating);
+						}
 						tagH3.append(tagH3Info);
 					}
 					$(".page").empty(); 
@@ -317,7 +326,12 @@ $(document).ready(function() {
 						let tagH3 = $("<h3>");
 						showcontent.append(tagH3);
 						
-						let tagH3Info = ("평점 : " +response[i].rating);
+						let tagH3Info="";
+						if(response[i].rating==null){
+							tagH3Info="평점이 아직 등록되지 않았습니다.";
+						}else{
+							tagH3Info = ("평점 : " +response[i].rating);
+						}
 						tagH3.append(tagH3Info);
 					}
 					$(".page").empty(); 
@@ -400,7 +414,7 @@ $(document).ready(function() {
 						
 						let tagImg = $("<img>");
 						tagA.append(tagImg);
-						tagImg.attr("src", "/images/" + response[i].imgRoute);
+						tagImg.attr("src", "/images/upload/" + response[i].imgRoute);
 						tagImg.attr("width", "230");
 						tagImg.attr("height", "300");
 						
@@ -423,7 +437,12 @@ $(document).ready(function() {
 						let tagH3 = $("<h3>");
 						showcontent.append(tagH3);
 						
-						let tagH3Info = ("평점 : " +response[i].rating);
+						let tagH3Info="";
+						if(response[i].rating==null){
+							tagH3Info="평점이 아직 등록되지 않았습니다.";
+						}else{
+							tagH3Info = ("평점 : " +response[i].rating);
+						}
 						tagH3.append(tagH3Info);
 					}
 					$(".page").empty(); 
@@ -500,7 +519,7 @@ $(document).ready(function() {
 							
 							let tagImg = $("<img>");
 							tagA.append(tagImg);
-							tagImg.attr("src", "/images/" + response[i].imgRoute);
+							tagImg.attr("src", "/images/upload/" + response[i].imgRoute);
 							tagImg.attr("width", "230");
 							tagImg.attr("height", "300");
 							
@@ -603,7 +622,7 @@ $(document).ready(function() {
 								
 								let tagImg = $("<img>");
 								tagA.append(tagImg);
-								tagImg.attr("src", "/images/" + response[i].imgRoute);
+								tagImg.attr("src", "/images/upload/" + response[i].imgRoute);
 								tagImg.attr("width", "230");
 								tagImg.attr("height", "300");
 								
@@ -671,7 +690,7 @@ $(document).ready(function() {
 	<c:forEach var="showList" items="${showList}">
 		<div class="review__content">
 			<div>
-				<a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}" width="230" height="300"></a>
+				<a href="/show/showView/${showList.id}"><img src="/images/upload/${showList.imgRoute}" width="230" height="300"></a>
 			</div>
 			<div class="show__content">
 				<h2>${showList.title}&nbsp;(${showList.showType})</h2>
