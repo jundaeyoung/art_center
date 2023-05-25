@@ -76,7 +76,6 @@
 				</div>
 			</c:when>
 		</c:choose>
-			<a href="/sendMessage">dddd</a>
 	</div>
 </div>
 <script type="text/javascript" src="/js/main.js">
