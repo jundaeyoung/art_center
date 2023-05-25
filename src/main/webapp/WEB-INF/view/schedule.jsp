@@ -47,7 +47,7 @@
 			<span class="endDate" id="endDate"></span> 
 			<p class="holeName" id="holeName"></p>
 			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="210" height="280" ></p>
-   				 <button class="modal__btn" onclick="location.href='#'" style="text-align: center;">자세히보기</button>
+   			<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
 		</div>
 	</div>
 		
@@ -218,7 +218,7 @@
 							contentType: 'application/json; charset=utf-8',
 							dataType: 'json',
 							success: function(event) {
-									console.log(event)
+									console.log(event);
 									$("#id").val(event.id),
 									$("#title").text(event.title);
 									$("#startDate.startDate").text(event.startDate);
@@ -233,7 +233,12 @@
 	                  // 모달 창 닫기
 	                  modal.style.display = 'none';
 	                });
+					let showViewBtn = modal.querySelector('.showView');
+		            showViewBtn.addEventListener('click',function(){
+							location.href="/show/showView/" + id;
+			            });
 	            },
+
 				eventDataTransform: function(eventData) {
 				  if (eventData.end) {
 				    eventData.end = moment(eventData.end).subtract(-1, 'day').format('YYYY-MM-DD');

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.dto.RequestShowDto;
+import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.service.ScheduleService;
+import com.bclass.arts_center.service.ShowService;
 
 @Controller
 @RequestMapping("/")
@@ -39,7 +41,5 @@ public class ScheduleController {
 		model.addAttribute("categoryLists", categoryLists);
 		return "/schedule";
 	}
-	
-	
 	
 }
