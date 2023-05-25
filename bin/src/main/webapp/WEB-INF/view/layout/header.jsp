@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <title>AMADEUS - 당신의 꿈을 펼쳐라</title>
 <link rel="shortcut icon" sizes="90x90" type="image/x-icon" href="/images/background/logo_mini.png">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -14,7 +13,7 @@
 <style>
 </style>
 <body>
-	<div id="body__header"style="margin-left: -120px;">
+	<div id="body__header" style="margin-left: -120px;">
 		<div class="title">
 			<div>
 				<a href="/"><img alt="" src="/images/background/logo.png" width="140" height="120"></a>
@@ -25,20 +24,20 @@
 						<form action="/user/login" method="get">
 							<button type="submit" class="login--btn" style="font-size: 20px;">로그인</button>
 						</form>
-						<form action="#" method="get">
+						<form action="/user/signUp" method="get">
 							<button type="submit" onclick="#" class="signUp--btn" style="font-size: 20px;">회원가입</button>
 						</form>
 					</div>
 				</c:when>
 				<c:when test="${principal != null && principal.getRoleId()==2}">
 					<div class="user--btn">
-						<form action="/manager/notice" method="get">
-							<button type="submit" class="logout--btn" style="font-size: 20px;">알림</button>
+						<form>
+							<button class="open-area" style="font-size: 20px;">알림</button>
 						</form>
-						<form action="#" method="get">
+						<form action="/user/myPage" method="get">
 							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 						</form>
-						<form action="#" method="get">
+						<form action="/user/myPage" method="get">
 							<button type="submit" class="logout--btn">
 								<a href="/user/logout" style="font-size: 20px;">로그아웃</a>
 							</button>
@@ -49,7 +48,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="user--btn">
-						<form action="#" method="get">
+						<form action="/user/myPage" method="get">
 							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 						</form>
 						<form action="#" method="get">
@@ -66,7 +65,7 @@
 		<c:choose>
 			<c:when test="${principal != null && principal.getRoleId()==2}">
 				<nav>
-					<div id="nav" style="margin-left: 280px;">
+					<div id="nav">
 						<ul class="main">
 							<li><a href="#">공연</a>
 								<ul class="sub">
@@ -74,6 +73,13 @@
 									<li><a href="/manager/schedule/${principal.id}">나의 공연 일정(달력)</a></li>
 									<li><a href="/manager/showSale?currentPage=1&begin=0&range=5">나의 공연 매출</a></li>
 									<li><a href="/manager/signUpShow">공연 등록</a></li>
+								</ul></li>
+							<li><a href="#">공간·대관 </a>
+								<ul class="sub">
+									<li><a href="#">공간 소개 </a></li>
+									<li><a href="/rental">대관 신청 </a></li>
+									<li><a href="#">공간별 대관 안내 </a></li>
+									<li><a href="#">입장권 운영 안내 </a></li>
 								</ul></li>
 							<li><a href="#">전시회</a>
 								<ul class="sub">
@@ -93,13 +99,15 @@
 								<ul class="sub">
 									<c:choose>
 										<c:when test="${principal == null}">
-											<li><a href="#">아이디 찾기 </a></li>
-											<li><a href="/user/login">비밀번호 찾기</a></li>
+											<li><a href="/user/signUp"> 회원가입 </a></li>
+											<li><a href="/user/login">로그인 </a></li>
+											<li><a href="#">아이디 찾기</a></li>
+											<li><a href="/user/findPw">비밀번호 찾기</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
 											<li><a href="/user/delete?userName=${principal.userName}">회원탈퇴 </a></li>
-											<li><a>공지사항 작성</a></li>
+											<li><a href="/announcement">공지사항 작성</a></li>
 										</c:otherwise>
 									</c:choose>
 								</ul></li>
@@ -111,31 +119,25 @@
 				<nav>
 					<div id="nav">
 						<ul class="main">
-							<li><a href="#">공연</a>
+							<li><a href="#">일정</a>
 								<ul class="sub">
 									<li><a href="/schedule">전체 일정(달력) </a></li>
+								</ul></li>
+							<li><a href="#">공연</a>
+								<ul class="sub">
 									<li><a href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시 </a></li>
-									<li><a href="#">예매·취소안내 </a></li>
 								</ul></li>
-							<li><a href="#">공간·대관 </a>
+							<li><a href="#">예매</a>
 								<ul class="sub">
-									<li><a href="#">공간 소개 </a></li>
-									<li><a href="#">공간별 대관 안내 </a></li>
-									<li><a href="#">입장권 운영 안내 </a></li>
-								</ul></li>
-							<li><a href="#">아카데미 </a>
-								<ul class="sub">
-									<li><a href="#">아카데미 안내 </a></li>
-									<li><a href="#">수강신청 </a></li>
-									<li><a href="#">아카데미 공지 사항 </a></li>
-									<li><a href="#">아카데미 FAQ</a></li>
-									<li><a href="#">오디션 신청</a></li>
+									<li><a href="#">예매</a></li>
+									<li><a href="#">취소안내 </a></li>
 								</ul></li>
 							<li><a href="#">소식·이용·참여</a>
 								<ul class="sub">
 									<li><a href="#">전당 소식</a></li>
-									<li><a href="#">오시는길·주차 안내</a></li>
-									<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
+									<li><a href="/map">오시는길·주차 안내</a></li>
+									<li><a
+										href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
 									<li><a href="#">고객센터</a></li>
 									<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 								</ul></li>
@@ -146,7 +148,7 @@
 											<li><a href="/user/signUp"> 회원가입 </a></li>
 											<li><a href="/user/login">로그인 </a></li>
 											<li><a>아이디 찾기</a></li>
-											<li><a>비밀번호 찾기</a></li>
+											<li><a href="/user/findPw">비밀번호 찾기</a></li>
 										</c:when>
 										<c:otherwise>
 											<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
@@ -160,7 +162,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
-	
+
 	<script type="text/javascript">
 	// 상단 메뉴바 드롭다운
 	$(document).ready(function() {
