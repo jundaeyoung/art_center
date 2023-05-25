@@ -81,6 +81,15 @@ i {
 	justify-content: center;
 	align-items: center;
 }
+#ipw button{
+	width: 100px;
+	height: 50px;
+	background-color: rgb(255, 80, 90);
+	border-style: none;
+	color:white;
+	font-size: 15px;
+	border-radius: 5px;
+}
 
 .email {
 	margin-left: 70px;

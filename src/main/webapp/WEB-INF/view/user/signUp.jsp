@@ -76,7 +76,7 @@
 						<p>이메일 :</p>
 						<i class="material-icons">mail_outline</i> <input type="email"
 							placeholder="이메일을 입력하세요" name="email" id="email" class="info"><br>
-						<button type="button" id="checkEmail">이메일 인증</button>
+						<button type="button" id="checkEmail" style="margin-left: 80px;">이메일 인증</button>
 					</div>
 					<span class="error--messege" th:if="${valid_email}">${valid_email}</span>
 					<br>
@@ -86,7 +86,7 @@
 							placeholder="이메일 인증번호를 입력하세요" name="text" id="emailCheck"
 							class="info"><br>
 						<button type="button" id="checkEmailNumber"
-							style="margin-left: 28px;">이메일 인증</button>
+							style="margin-left: 60px;">이메일 인증</button>
 					</div>
 					<span class="error--messege" th:if="${valid_email}">${valid_email}</span>
 					<br>
