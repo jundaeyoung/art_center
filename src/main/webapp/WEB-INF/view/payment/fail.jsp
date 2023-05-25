@@ -3,16 +3,19 @@
 
 <div class="main">
 
-	<div class=""></div>
+	<div class="">
 
-	<form action="/kakao/ready" method="post">
+		<h1>결제실패</h1>
 
-		<button type="submit">
-			<img alt="" src="/images/kakao/payment_icon_yellow_medium.png">
-		</button>
 
-	</form>
+	</div>
+
+
+
 
 </div>
+
+
+
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

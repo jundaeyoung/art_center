@@ -145,7 +145,7 @@
 	
 	<!-- 작성자 손주이 : show 정보 상세-->
 	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
-     	SELECT *, sdt.id as show_time_id
+     	SELECT *, sdt.id as show_datetime_id
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sdt
 		ON s.id = sdt.show_id

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.bclass.arts_center.dto.request.MailDto;
 import com.bclass.arts_center.repository.interfaces.UserRepository;
-import com.bclass.arts_center.utils.EncryptionUtils;
 
 import lombok.AllArgsConstructor;
 

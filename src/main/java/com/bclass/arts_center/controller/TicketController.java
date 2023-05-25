@@ -17,7 +17,11 @@ import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
-
+/**
+ * 
+ * @author 손주이
+ *
+ */
 @Controller
 @RequestMapping("/ticket")
 public class TicketController {
@@ -64,6 +68,7 @@ public class TicketController {
 
 	@GetMapping("/ticketCheck")
 	public String ticketCheck(Model model) {
+		
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());
 		model.addAttribute("ticketListInfo", ticketListInfo);
@@ -71,11 +76,6 @@ public class TicketController {
 		return "/ticket/ticketCheck";
 	}
 
-	@GetMapping("/payment")
-	public String payTicket() {
-
-		return "/pay/payment";
-	}
 
 }
 

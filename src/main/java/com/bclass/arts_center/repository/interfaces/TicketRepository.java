@@ -17,15 +17,17 @@ public interface TicketRepository {
 	public List<TicketingDto> selectShowDateByShowId(Integer showId);
 
 	public List<TicketingDto> selectShowTimeByShowId(@Param("showId") Integer showId, @Param("showDate") Date showDate);
-	
+
 	public List<TicketingDto> selectTicketingAll();
 
-	public List<TicketingDto> selectSeatInfo(@Param("showId") Integer showId, @Param("showDateTimeId") Integer showDateTimeId);
+	public List<TicketingDto> selectSeatInfo(@Param("showId") Integer showId,
+			@Param("showDateTimeId") Integer showDateTimeId);
 
 	public int insertTicket(TicketingDto ticketingDto);
-	
+
 	public List<TicketCheckDto> selectTicket(Integer userId);
 
+	public int updateTicketing(@Param("userId") Integer userId, @Param("sessionTicketingId") Integer sessionTicketingId);
 //	public int delete(int id);
 
 }
