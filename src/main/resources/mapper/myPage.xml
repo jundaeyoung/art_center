@@ -2,14 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
 
-	<select id="selectMyShow" resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto"> 
-		select * from show_tb where organizer_id = #{organizerId};
+	<select id="selectMyShow"
+		resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
+		select * from show_tb where organizer_id = #{organizerId}
+		order by start_date desc;
 	</select>
 
-
-
-
-
+	<select id="selectMyShowDetail"
+		resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
+		select * from show_tb where id = #{id};
+	</select>
 </mapper>

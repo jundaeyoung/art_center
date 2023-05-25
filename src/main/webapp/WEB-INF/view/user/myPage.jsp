@@ -4,6 +4,7 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 .container {
+	box-sizing: border-box;
 	margin-top: 10px;
 	margin-bottom: 50px;
 	width: 100%;
@@ -134,9 +135,7 @@ user__type {
 			<table class="user__type">
 				<tr>
 					<td class="user__ticket">
-					<c:forEach var="myShowList" items="${myShowList}">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${myShowList.organizerId}'">공연내역</button>
-						</c:forEach>
+ 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}'">공연내역</button>
 					</td>
 					<td class="user__ticket">
 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='#'">대관내역</button>

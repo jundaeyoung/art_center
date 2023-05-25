@@ -17,4 +17,7 @@ public interface MyPageRepository {
 
 	// 공연예약 불러오기
 	public List<RequestSignUpShowDto> selectMyShow(Integer organizerId);
+	
+	// 공연예약 detail
+	public RequestSignUpShowDto selectMyShowDetail(Integer id);
 }

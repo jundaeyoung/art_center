@@ -20,6 +20,7 @@ public class RequestSignUpShowDto {
 	private Integer organizerId;
 	private Integer holeId;
 	private Integer showTypeId;
+	private Integer showStatus;
 
 
 	private MultipartFile file;
