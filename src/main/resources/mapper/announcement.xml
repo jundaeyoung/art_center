@@ -7,33 +7,31 @@
 <mapper namespace="com.bclass.arts_center.repository.interfaces.AnnouncementRepository">
 
 <insert id="insertAnnouncement">
-INSERT INTO announcement_tb(title, content ,user_id)
+INSERT INTO announcement(title, content ,user_id)
 VALUES(#{title}, #{content}, #{userId});
 </insert>
 
 <!-- 전체 찾는 부분 -->
 <select id="selectAnnouncement" resultType="com.bclass.arts_center.repository.model.Announcement">
-SELECT id, title, content, user_id, DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date
-FROM announcement_tb
-ORDER BY id DESC;
+SELECT id, title, content, user_id, FORMATDATETIME(created_date, 'yyyy-MM-dd') AS created_date FROM announcement ORDER BY id DESC
 </select>
 
 <select id="selectAnnouncementById" resultType="com.bclass.arts_center.repository.model.Announcement">
-SELECT id, title, content, user_id,  DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date FROM announcement_tb WHERE id = #{id}
+SELECT id, title, content, user_id, FORMATDATETIME(created_date, 'yyyy-MM-dd') AS created_date FROM announcement WHERE id = #{id}
 </select>
 
 <select id="selectAnnouncementBySearchText" resultType="com.bclass.arts_center.repository.model.Announcement">
-select * from announcement_tb
+select * from announcement
 where title
 like #{searchText} or content like #{searchText};
 </select>
 
 <update id="updateByIdAndUserId">
-UPDATE announcement_tb SET title = #{title}, content = #{content} WHERE id = #{id}
+UPDATE announcement SET title = #{title}, content = #{content} WHERE id = #{id}
 </update>
 
 <delete id="deleteAnnouncementByUserId">
-DELETE FROM announcement_tb WHERE id = #{id}
+DELETE FROM announcement WHERE id = #{id}
 </delete>
 
 	

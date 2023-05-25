@@ -31,7 +31,7 @@ public class ShowService {
 	}
 	
 	/*
-	 *  작성자 : 편용림 admin 공연 승인
+	 *  작성자 : 편용림 admin status 업데이트
 	 */
 	@Transactional
 	public int updateShow(Integer id) {
@@ -48,14 +48,6 @@ public class ShowService {
 		return result;
 	}
 	
-	/**
-	 *  작성자 : 편용림 admin 공연 승인거절
-	 */
-	
-	public int deleteShow(String id) {
-		int result = showRepository.deleteShowById(id);
-		return result;
-	}
 	
 	/**
 	 * 작성자 : 전대영 show 최신순으로 select

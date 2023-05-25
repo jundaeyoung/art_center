@@ -119,8 +119,6 @@ public class UserController {
 
 		return "redirect:/";
 	}
-	
-	
 
 	// 회원가입 처리
 	@PostMapping("/signUp")
@@ -142,11 +140,6 @@ public class UserController {
 			throw new CustomRestfullException("생년월일을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 
-		User username = new User();
-		
-		username = userService.readUserByUsername(signUpFormDto);
-		
-		
 		if (errors.hasErrors()) {
 
 			Map<String, String> validatorResult = userService.validateHandling(errors);
@@ -156,6 +149,7 @@ public class UserController {
 
 			return "/user/signUp";
 		}
+		System.out.println(signUpFormDto.getApiId());
 		userService.createUser(signUpFormDto);
 		return "redirect:/";
 	}

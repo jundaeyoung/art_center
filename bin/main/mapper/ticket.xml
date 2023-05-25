@@ -84,7 +84,7 @@
       SELECT * FROM ticketing_tb as t
       JOIN show_tb as s
       ON t.show_id = s.id
-      LEFT JOIN seat_tb as se
+      JOIN seat_tb as se
       ON t.seat_id = se.seat_id
       JOIN show_datetime_tb as sd
       ON t.show_datetime_id = sd.id

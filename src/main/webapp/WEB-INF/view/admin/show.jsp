@@ -27,16 +27,17 @@
                                     <thead>
                                           <tr>
                                             <th>제목</th>
+                                            <th>평점</th>
                                             <th>내용</th>
                                             <th>타입</th>
-                                            <th>승인</th>
-                                            <th>승인거절</th>
+                                            <th>승낙여부</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     	<c:forEach var="showList" items="${showList}">
                                     	<tr>
                                         <td>${showList.title}</td>
+                                        <td>${showList.rating}</td>
                                         <td>${showList.content}</td>
                                         <td>${showList.showType}</td>
                                         <c:choose>
@@ -49,7 +50,6 @@
                                         </td>
                                         </c:otherwise>
                                         </c:choose>
-                                        <td><a href="/admin/deleteShow?id=${showList.id}&userId=${showList.organizerId}&nickname=${showList.nickname}">거절</a></td>
                                         </tr>
                                         </c:forEach>
                                     </tbody>

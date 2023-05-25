@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
- <style>
-      .js #fouc {display: none}
-    </style>
-    <script>
-    (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
-    </script>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -53,8 +47,6 @@
 						<a class="nav-link" href="/admin/show">공연 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">대관</div>
 						<a class="nav-link" href="/rentPlace"> 대관 목록 보기 </a>
-						<div class="sb-sidenav-menu-heading">공지사항</div>
-						<a class="nav-link" href="/Announcement"> 공지사항 보기 </a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">Static Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
