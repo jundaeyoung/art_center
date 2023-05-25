@@ -1,8 +1,13 @@
 package com.bclass.arts_center.controller.managerController;
 
+import java.io.PrintWriter;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +64,6 @@ public class RentalController {
 		} else {
 			model.addAttribute("show", show);
 		}
-		System.out.println(show);
 		return "/manager/rental";
 	}
 
@@ -71,11 +75,8 @@ public class RentalController {
 	@Transactional
 	public String rentalLocation(Model model, @PathVariable("id") Integer id, @PathVariable("showId") Integer showId) {
 		RequestShowDto show = showService.readShowByShowId(showId);
-		System.out.println(show + "DDDD");
 		List<RequestHoleDto> locationLists = rentalService.selectByLocation(id);
-		System.out.println(locationLists + "location");
 		List<RequestHoleDto> timeList = rentalService.selectByTime(id);
-		System.out.println(timeList + "timeList");
 		if (show == null) {
 			model.addAttribute("show", null);
 		} else {
@@ -107,32 +108,81 @@ public class RentalController {
 	 */
 	// 대관 신청 insert
 	@PostMapping("/reservation")
-	public String insertRental(RequestRentPlaceDto requestRentPlaceDto) {
+	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, HttpServletResponse response) {
 
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("사용자 인증이 필요합니다.", HttpStatus.UNAUTHORIZED);
+		}
+		if (requestRentPlaceDto.getStartTime() == null || requestRentPlaceDto.getEndTime() == null) {
+			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
+		}
+		Time startTime = requestRentPlaceDto.getStartTime();
+		Time endTime = requestRentPlaceDto.getEndTime();
+
+		if (startTime.equals(endTime)) {
+			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
+		} else if (endTime.compareTo(startTime) < 0) {
+			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		}
 		requestRentPlaceDto.setUserId(principal.getId());
 		String str = requestRentPlaceDto.getStartDate();
 		String[] split = str.split("~");
 		requestRentPlaceDto.setStartDate(split[0]);
 		requestRentPlaceDto.setEndDate(split[1]);
-		
+
 		requestRentPlaceDto.setStartDate(split[0].replaceAll(" ", ""));
 		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
 
-		Time startTime = requestRentPlaceDto.getStartTime();
-		Time endTime = requestRentPlaceDto.getEndTime();
-
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
-		if (startTime.equals(endTime)) {
-			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
-		} else if (endTime.compareTo(startTime) < 0) {
-			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
+		try {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter w = response.getWriter();
+			String msg = "공연신청이 완료되었습니다.";
+			w.write("<script>alert('" + msg + "');location.href='/';</script>");
+			w.flush();
+			w.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return "redirect:/schedule";
+
+		String dtoStartDate = requestRentPlaceDto.getStartDate().replaceAll("-", "");
+		String startDate = dtoStartDate.replaceAll(" ", "");
+		int startYear = Integer.parseInt(startDate.substring(0, 4));
+		int startMonth = Integer.parseInt(startDate.substring(4, 6));
+		int startDay = Integer.parseInt(startDate.substring(6, 8));
+		String dtoEndDate = requestRentPlaceDto.getEndDate().replaceAll("-", "");
+		String endDate = dtoEndDate.replaceAll(" ", "");
+		int endYear = Integer.parseInt(endDate.substring(0, 4));
+		int endMonth = Integer.parseInt(endDate.substring(4, 6));
+		int endDay = Integer.parseInt(endDate.substring(6, 8));
+
+		Calendar startCal = Calendar.getInstance();
+		startCal.set(startYear, startMonth - 1, startDay);
+		Calendar endCal = Calendar.getInstance();
+		endCal.set(endYear, endMonth - 1, endDay);
+		while (true) {
+			if (getDateByInteger(startCal.getTime()) <= getDateByInteger(endCal.getTime())) {
+				startCal.add(Calendar.DATE, 1);
+				requestRentPlaceDto.setStartDate(getDateByString(startCal.getTime()));
+				requestRentPlaceDto.setEndDate(getDateByString(endCal.getTime()));
+				showService.createShowDateTime(requestRentPlaceDto);
+			} else {
+				break;
+			}
+		}
+		return "/main";
+	}
+
+	public static int getDateByInteger(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		return Integer.parseInt(sdf.format(date));
+	}
+
+	public static String getDateByString(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(date);
 	}
 
 }

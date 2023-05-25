@@ -1,6 +1,9 @@
 package com.bclass.arts_center.controller.managerController;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +28,7 @@ import com.bclass.arts_center.service.HoleService;
 import com.bclass.arts_center.service.NoticeService;
 import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.utils.Define;
+import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/manager")
@@ -40,10 +44,9 @@ public class SignUpShowController {
 	private HttpSession session;
 	@Autowired
 	private NoticeService noticeService;
-	
+
 	/*
-	 * 작성자 : 전대영
-	 * show 등록 화면 들어가기
+	 * 작성자 : 전대영 show 등록 화면 들어가기
 	 */
 	@GetMapping("/signUpShow")
 	public String signUpShow(Model model) {
@@ -69,8 +72,7 @@ public class SignUpShowController {
 	}
 
 	/*
-	 * 작성자 : 전대영
-	 * show 등록
+	 * 작성자 : 전대영 show 등록
 	 */
 	@PostMapping("/sign-up")
 	public String signUpShowProc(RequestSignUpShowDto requestSignUpShowDto) {
@@ -84,7 +86,7 @@ public class SignUpShowController {
 		}
 		// adminId 계속 변경해줘야함
 		Integer adminId = 3;
-		String notice = principal.getNickname()+"님이 공연등록을 신청하였습니다.";
+		String notice = principal.getNickname() + "님이 공연등록을 신청하였습니다.";
 		if (file.isEmpty() == false) {
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
 				throw new CustomRestfullException("파일 크기는 20MB 이상 클 수 없습니다", HttpStatus.BAD_REQUEST);
@@ -111,10 +113,11 @@ public class SignUpShowController {
 			String[] split = str.split("~");
 			requestSignUpShowDto.setStartDate(split[0]);
 			requestSignUpShowDto.setEndDate(split[1]);
-			noticeService.createAdminNotice(notice,principal.getId(),adminId);
+			noticeService.createAdminNotice(notice, principal.getId(), adminId);
 			showService.createShow(requestSignUpShowDto);
 		}
 		return "redirect:/rental";
 	}
 
+	
 }

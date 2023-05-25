@@ -1,6 +1,6 @@
 package com.bclass.arts_center.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.servlet.http.HttpSession;
 
@@ -36,9 +36,10 @@ public class ShowController {
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 
 		List<RequestShowDto> showList = showService.readShowByNewest(begin, range);
+		List<RequestShowDto> showListCount = showService.readShowByNewestCount();
 		String message = "최신순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		Integer showCount = showService.readShowByCount();
+		Integer showCount = showListCount.size();
 		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 3);
 		Integer startPage = currentPage - 2;
@@ -49,7 +50,6 @@ public class ShowController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		System.out.println(showList.get(0).getShowId());
 
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
@@ -203,11 +203,9 @@ public class ShowController {
 	@GetMapping("/showView/{showId}")
 	public String showView(@PathVariable Integer showId, Model model) {
 
-//		System.out.println("제발" + showId);
 
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
 
-//		System.out.println("s" + showInfo);
 		model.addAttribute("showInfo", showInfo);
 		model.addAttribute("title", showInfo.get(0).getTitle());
 		model.addAttribute("content", showInfo.get(0).getContent());

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bclass.arts_center.dto.ShowViewDto;
+import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 import com.bclass.arts_center.repository.interfaces.ShowRepository;
@@ -54,6 +55,14 @@ public class ShowService {
 	@Transactional
 	public List<RequestShowDto> readShowByNewest(Integer begin, Integer range) {
 		List<RequestShowDto> showList = showRepository.selectShowByNewest(begin, range);
+		return showList;
+	}
+	/**
+	 * 작성자 : 전대영 show 최신순으로 count
+	 */
+	@Transactional
+	public List<RequestShowDto> readShowByNewestCount() {
+		List<RequestShowDto> showList = showRepository.selectShowByNewestCount();
 		return showList;
 	}
 
@@ -108,6 +117,16 @@ public class ShowService {
 	@Transactional
 	public Integer createShow(RequestSignUpShowDto requestSignUpShowDto) {
 		Integer showNewestCount = showRepository.insertShow(requestSignUpShowDto);
+		return showNewestCount;
+	}
+	
+	
+	/**
+	 * 작성자 : 전대영 manager 계정에서 showDateTime insert
+	 */
+	@Transactional
+	public Integer createShowDateTime(RequestRentPlaceDto requestRentPlaceDto) {
+		Integer showNewestCount = showRepository.insertShowDateTime(requestRentPlaceDto);
 		return showNewestCount;
 	}
 	

@@ -303,7 +303,7 @@ $(document).ready(function() {
 						
 						let tagImg = $("<img>");
 						tagA.append(tagImg);
-						tagImg.attr("src", "/images/" + response[i].imgRoute);
+						tagImg.attr("src", "/images/upload/" + response[i].imgRoute);
 						tagImg.attr("width", "230");
 						tagImg.attr("height", "300");
 						
@@ -695,7 +695,14 @@ $(document).ready(function() {
 			<div class="show__content">
 				<h2>${showList.title}&nbsp;(${showList.showType})</h2>
 				<p>${showList.content}</p>
-				<h3>평점 : ${showList.rating}</h3>
+				<c:choose>
+					<c:when test="${showList.rating==null}">
+						<h3>평점이 아직 등록되지 않았습니다.</h3>
+					</c:when>
+					<c:otherwise>
+						<h3>평점 : ${showList.rating}</h3>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</c:forEach>

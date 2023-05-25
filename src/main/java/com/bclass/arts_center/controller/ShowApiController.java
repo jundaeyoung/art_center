@@ -32,7 +32,8 @@ public class ShowApiController {
 	@GetMapping("/newestShow")
 	public List<RequestShowDto> newestShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range) {
-		Integer showCount = showService.readShowByCount();
+		List<RequestShowDto> showListCount = showService.readShowByNewestCount();
+		Integer showCount = showListCount.size();
 		List<RequestShowDto> showList = showService.readShowByNewest(begin, range);
 		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 3);

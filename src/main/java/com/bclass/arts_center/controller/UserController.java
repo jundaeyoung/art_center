@@ -26,7 +26,6 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.SendEmailService;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
-import com.mysql.cj.Session;
 
 /**
  * 
