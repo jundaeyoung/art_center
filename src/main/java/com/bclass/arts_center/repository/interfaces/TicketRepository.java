@@ -27,7 +27,7 @@ public interface TicketRepository {
 
 	public List<TicketCheckDto> selectTicket(Integer userId);
 
-	public int updateTicketing(@Param("userId") Integer userId, @Param("id") Integer id);
+	public int updateTicketing(@Param("userId") Integer userId, @Param("sessionTicketingId") Integer sessionTicketingId);
 //	public int delete(int id);
 
 }

@@ -16,6 +16,7 @@ import com.bclass.arts_center.dto.payment.KakaoReadyResponse;
 import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
 import com.bclass.arts_center.repository.interfaces.PaymentRepository;
+
 /**
  * 
  * @author 손주이
@@ -30,7 +31,7 @@ public class KakaoPaymentService {
 	private static final String cid = "TC0ONETIME";
 
 	private AdminKeyDto ADMIN_KEY;
-	
+
 	private String tid;
 
 	public KakaoPaymentService(PaymentRepository paymentRepository) {
@@ -38,6 +39,11 @@ public class KakaoPaymentService {
 		this.ADMIN_KEY = paymentRepository.selectAdminKey();
 	}
 
+	/**
+	 * 결제 대기
+	 * 
+	 * @return response.getBody()
+	 */
 	@Transactional
 	public KakaoReadyResponse kakaoReady() {
 
@@ -55,10 +61,10 @@ public class KakaoPaymentService {
 		params.add("quantity", "1");
 		params.add("total_amount", "50000");
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://localhost:8080/payment/success");
-		params.add("cancel_url", "http://localhost:8080/payment/cancel");
-		params.add("fail_url", "http://localhost:8080/payment/fail");
-		
+		params.add("approval_url", "http://localhost:8080/kakao/success");
+		params.add("cancel_url", "http://localhost:8080/kakao/cancel");
+		params.add("fail_url", "http://localhost:8080/kakao/fail");
+
 		HttpEntity<MultiValueMap<String, String>> kakaoRequestEntity = new HttpEntity<>(params, headers);
 
 		ResponseEntity<KakaoReadyResponse> response = restTemplate.exchange("https://kapi.kakao.com/v1/payment/ready",
@@ -68,9 +74,14 @@ public class KakaoPaymentService {
 		return response.getBody();
 	}
 
+	/**
+	 * 결제 요청
+	 * 
+	 * @param pgToken
+	 * @return response.getBody()
+	 */
 	@Transactional
 	public KakaoApprovalResponse kakaoApprove(String pgToken) {
-
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -94,6 +105,11 @@ public class KakaoPaymentService {
 		return response.getBody();
 	}
 
+	/**
+	 * 환불 요청
+	 * 
+	 * @return response.getBody()
+	 */
 	@Transactional
 	public KakaoRefundResponse kakaoRefund() {
 
@@ -118,6 +134,5 @@ public class KakaoPaymentService {
 
 		return response.getBody();
 	}
-	
 
 }

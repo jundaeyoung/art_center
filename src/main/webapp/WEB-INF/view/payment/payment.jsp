@@ -5,20 +5,14 @@
 
 	<div class=""></div>
 
-
-	<form action="/payment/ready" method="post">
+	<form action="/kakao/ready" method="post">
 
 		<button type="submit">
 			<img alt="" src="/images/kakao/payment_icon_yellow_medium.png">
 		</button>
 
-
-
 	</form>
 
 </div>
-
-
-
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -12,36 +12,39 @@
 
 		<div class="ticket--content">
 
-
-
 			<c:forEach var="ticketListInfo" items="${ticketListInfo}">
 				<div class="ticket--img">
 					<img alt="" src="/images/${ticketListInfo.imgRoute}">
 				</div>
-				<div class="ticket--info">
-					<table>
-						<tr>
-							<th>제목</th>
-							<td>${ticketListInfo.title}</td>
-						</tr>
-						<tr>
-							<th>관람 일자</th>
-							<td>${ticketListInfo.showDate}</td>
-						</tr>
-						<tr>
-							<th>관람 시간</th>
-							<td>${ticketListInfo.showTime}</td>
-						</tr>
-						<tr>
-							<th>좌석</th>
-							<td>${ticketListInfo.seatName}</td>
-						</tr>
-					</table>
+				
+				<form action="/pay/payment/${ticketListInfo.id}" method="get">
+					<div class="ticket--info">
 
-				</div>
+						<div class="ticket--title">
+							<h4>제목</h4>
+							<p>${ticketListInfo.title}</p>
 
-				<form action="/ticket/payment" method="get">
-					<button type="submit">예매하기</button>
+						</div>
+
+						<div class="ticket--date">
+							<h3>관람 일자</h3>
+							<p>${ticketListInfo.showDate}</p>
+						</div>
+
+						<div class="ticket--hour">
+							<h5>관람 시간</h5>
+							<p>${ticketListInfo.showTime}</p>
+						</div>
+
+						<div class="ticket--seat">
+							<h2>좌석</h2>
+							<p>${ticketListInfo.seatName}</p>
+						</div>
+
+					</div>
+					<%-- <input type="hidden" name="ticketingId" value="${ticketListInfo.id}"> --%>
+					<button type="submit">결제하기</button>
+
 				</form>
 
 			</c:forEach>

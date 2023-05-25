@@ -68,6 +68,7 @@ public class TicketController {
 
 	@GetMapping("/ticketCheck")
 	public String ticketCheck(Model model) {
+		
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());
 		model.addAttribute("ticketListInfo", ticketListInfo);
@@ -75,11 +76,6 @@ public class TicketController {
 		return "/ticket/ticketCheck";
 	}
 
-	@GetMapping("/payment")
-	public String payTicket() {
-
-		return "/payment/payment";
-	}
 
 }
 

@@ -94,7 +94,7 @@
 	<update id="updateTicketing">
 		UPDATE ticketing_tb
 		SET payment_status = 1
-		WHERE user_id = #{userId} AND payment_status = 0 AND id = ${id}
+		WHERE user_id = #{userId} AND payment_status = 0 AND id = ${sessionTicketingId}
 	</update>
 
 	<!-- <delete id="delete"> DELETE FROM ticketing_tb WHERE id = #{id} </delete> -->

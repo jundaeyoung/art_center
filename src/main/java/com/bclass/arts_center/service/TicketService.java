@@ -131,9 +131,9 @@ public class TicketService {
 	 * @param id
 	 */
 	@Transactional
-	public void updateTicketStatus(Integer userId, Integer id) {
+	public void updateTicketStatus(Integer userId, Integer sessionTicketingId) {
 
-		int result = ticketRepository.updateTicketing(userId, id);
+		int result = ticketRepository.updateTicketing(userId, sessionTicketingId);
 		if (result != 1) {
 			throw new CustomRestfullException("티켓 정보가 업데이트 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
