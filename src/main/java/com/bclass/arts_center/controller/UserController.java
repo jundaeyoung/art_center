@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +27,6 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.SendEmailService;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
-import com.mysql.cj.Session;
 
 /**
  * 
@@ -54,6 +54,7 @@ public class UserController {
 
 	@Autowired
 	private HttpSession session;
+	
 
 	// 로그인 페이지
 	@GetMapping("/login")
@@ -246,5 +247,7 @@ public class UserController {
 		return str;
 		
 	}
-
+	
+	
+	
 }

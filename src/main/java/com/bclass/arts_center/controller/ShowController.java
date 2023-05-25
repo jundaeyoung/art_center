@@ -203,11 +203,11 @@ public class ShowController {
 	@GetMapping("/showView/{showId}")
 	public String showView(@PathVariable Integer showId, Model model) {
 
-//		System.out.println("제발" + showId);
+		/* System.out.println("제발" + showId); */
 
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
 
-//		System.out.println("s" + showInfo);
+		System.out.println("s" + showInfo);
 		model.addAttribute("showInfo", showInfo);
 		model.addAttribute("title", showInfo.get(0).getTitle());
 		model.addAttribute("content", showInfo.get(0).getContent());
