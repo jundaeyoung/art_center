@@ -251,5 +251,14 @@ public class UserController {
 		return str;
 		
 	}
+	
+	@ResponseBody
+	@GetMapping("idCheck")
+	public int overlappedID(SignUpFormDto dto) {
+		System.out.println("1111111111111");
+		int result = userService.readUserCountByUserName(dto.getUserName());
+		return result;
+	}
+	
 
 }

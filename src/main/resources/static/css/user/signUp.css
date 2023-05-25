@@ -3,6 +3,20 @@
 */
 @charset "UTF-8";
 
+
+.olmessagef {color: red; font-style: Italic;}
+.olmessaget {color: blue; font-style: Italic;}
+
+#overlappedID{
+	width: 100px;
+    height: 50px;
+    background-color: rgb(255, 80, 90);
+    border-style: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
 input.info {
 	border: none;
 	border-bottom: 1px solid black;
