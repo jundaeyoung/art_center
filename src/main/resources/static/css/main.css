@@ -4,6 +4,14 @@
  */
 @charset "UTF-8";
 
+body {
+	background-color: #FAFAFA;
+}
+
+.body--content--main {
+	background-color: #FAFAFA;
+}
+
 .slide_wrapper {
 	position: relative;
 	width: 450px;
@@ -55,10 +63,12 @@ li {
 
 /*BODY*/
 #nav {
-	width: 100%;
+	width: 90%;
 	margin-top: 0px;
 	margin-bottom: -40px;
 	margin-left: 100px;
+	padding-right: -100px;
+	height: 100px;
 }
 
 #nav:after {
@@ -95,7 +105,7 @@ li {
 
 .main>li a:hover {
 	background: #909090;
-	color: #fff;
+	color: #FAFAFA;
 }
 
 .sub {
@@ -122,6 +132,10 @@ li {
 	margin: 10px auto;
 	margin-left: 100px;
 }
+.title img{
+	margin-left: 30px;
+	margin-top: 10px;
+}
 
 .user--btn {
 	display: flex;
@@ -136,25 +150,25 @@ li {
 }
 
 .open-area {
-	background-color: white;
+	background-color: #FAFAFA;
 	border-style: none;
 	color: black;
 }
 
 .signUp--btn {
-	background-color: white;
+	background-color: #FAFAFA;
 	border-style: none;
 	color: black;
 }
 
 .login--btn {
-	background-color: white;
+	background-color: #FAFAFA;
 	border-style: none;
 	color: black;
 }
 
 .logout--btn {
-	background-color: white;
+	background-color: #FAFAFA;
 	border-style: none;
 	color: black;
 }
@@ -193,9 +207,11 @@ content ul {
 	margin-bottom: 500px;
 	opacity: 0;
 }
-.slider li:first-child{
+
+.slider li:first-child {
 	z-index: 50;
 }
+
 .slider li div {
 	width: 100%;
 	height: 100%;
@@ -254,13 +270,13 @@ content ul {
 }
 
 .slider li dt {
-	color: #fff;
+	color: #FAFAFA;
 	font-size: 3rem;
 	text-shadow: 1px 1px 10px #444;
 }
 
 .slider li dd {
-	color: #fff;
+	color: #FAFAFA;
 	text-shadow: 1px 1px 10px #444;
 }
 
@@ -273,14 +289,14 @@ content ul {
 
 .btn button {
 	margin: 20px 20px 0 20px;
-	border: 1px solid #fff;
+	border: 1px solid #FAFAFA;
 	border-radius: 10px;
 	color: #666;
 	font-size: 1.5rem;
 	cursor: pointer;
-	background-color: #fff;
+	background-color: #FAFAFA;
 	border-radius: 10px;
-	background-color: #fff;
+	background-color: #FAFAFA;
 }
 
 .slider {
@@ -298,7 +314,7 @@ content ul {
 .slide_wrapper {
 	margin-left: 100px;
 	margin-top: 200px;
-	z-index:100;
+	z-index: 100;
 }
 
 .slide_wrapper_box {
@@ -309,13 +325,14 @@ content ul {
 .footer {
 	background-color: #ECECEC;
 	display: flex;
-	width: 1500px;
+	width: 3000px;
 	justify-content: center;
+	margin-left: -800px;
 }
 
 .footer div {
 	display: flex;
-	margin: 20px auto;
+	margin: 25px auto;
 }
 
 .footer div div {
@@ -365,7 +382,7 @@ content ul {
 	padding-left: 10px;
 	display: inline;
 	text-shadow: 1px 1px 2px gray;
-	color: white;
+	color: #FAFAFA;
 }
 
 #modal .title h2 {
@@ -378,7 +395,7 @@ content ul {
 	padding-right: 10px;
 	cursor: pointer;
 	text-shadow: 1px 1px 2px gray;
-	color: white;
+	color: #FAFAFA;
 }
 
 .close--area {
@@ -387,14 +404,14 @@ content ul {
 	padding-right: 10px;
 	cursor: pointer;
 	text-shadow: 1px 1px 2px gray;
-	color: white;
+	color: #FAFAFA;
 }
 
 #modal .content {
 	margin-top: 20px;
 	padding: 0px 10px;
 	text-shadow: 1px 1px 2px gray;
-	color: white;
+	color: #FAFAFA;
 }
 
 .hidden {

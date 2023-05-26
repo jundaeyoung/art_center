@@ -13,7 +13,8 @@
 		on r.show_id = s.id
 		left JOIN category_tb as sc
 		on s.show_type_id = sc.id
-		LEFT JOIN user_tb AS u
+		LEFT JOIN user_tb AS
+		u
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
@@ -26,7 +27,8 @@
 	<!-- 작성자 : 전대영 show 최신순 -->
 	<select id="selectShowByNewest" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
-		from show_tb as s
+		from
+		show_tb as s
 		LEFT JOIN review_tb as r
 		on r.show_id = s.id
 		left JOIN category_tb as sc
@@ -35,7 +37,8 @@
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN location_tb as l
+		JOIN
+		location_tb as l
 		ON l.id = h.location_id
 		where s.show_status=1
 		GROUP BY s.title
@@ -56,7 +59,8 @@
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN location_tb as l
+		JOIN
+		location_tb as l
 		ON l.id = h.location_id
 		where s.show_status=1 AND rating != 'NULL'
 		GROUP BY s.title
@@ -78,7 +82,8 @@
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN location_tb as l
+		JOIN
+		location_tb as l
 		ON l.id = h.location_id
 		where s.show_status=1 AND rating != 'NULL'
 		GROUP BY s.title
@@ -93,13 +98,15 @@
 		join review_tb as r
 		on r.show_id = s.id
 		where s.show_status=1 AND r.rating != 'NULL'
-		group by s.title) as c;
+		group by
+		s.title) as c;
 	</select>
 
 	<!-- 작성자 : 전대영 show 카테고리 -->
 	<select id="selectShowByCategory" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
-		from show_tb as s
+		from
+		show_tb as s
 		LEFT JOIN review_tb as r
 		on r.show_id = s.id
 		left JOIN category_tb as sc
@@ -108,7 +115,8 @@
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN location_tb as l
+		JOIN
+		location_tb as l
 		ON l.id = h.location_id
 		where s.show_status=1 AND sc.show_type=#{category}
 		GROUP BY s.title
@@ -129,6 +137,14 @@
 	<select id="selectShowByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select * from show_tb
 		where id = #{showId}
+	</select>
+
+	<!-- 작성자 : 전대영 show 아이디로 리뷰찾기 -->
+	<select id="selectReviewByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		select r.* from show_tb as s
+		join review_tb as r
+		on r.show_id = s.id
+		where s.id = #{showId};
 	</select>
 
 
@@ -165,7 +181,7 @@
 
 	<!-- 작성자 손주이 : show 정보 상세 -->
 	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
-     	SELECT *, sdt.id as show_datetime_id
+		SELECT *, sdt.id as show_datetime_id
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sdt
 		ON s.id = sdt.show_id
@@ -174,7 +190,8 @@
 		JOIN location_tb AS l
 		ON l.id = h.location_id
 		JOIN user_tb AS u
-		ON u.id = s.organizer_id
+		ON
+		u.id = s.organizer_id
 		WHERE sdt.show_id = #{showId}
 	</select>
 
@@ -184,7 +201,8 @@
 		SELECT s.id,s.organizer_id AS user_id ,s.title, s.content, s.admission_age, c.show_type, s.show_status
 		FROM show_tb AS s
 		JOIN category_tb AS c
-		ON s.show_type_id = c.id
+		ON
+		s.show_type_id = c.id
 		order by s.show_status asc, s.id desc;
 	</select>
 

@@ -1,6 +1,6 @@
 package com.bclass.arts_center.controller;
 
-import java.util.List; 
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
+import com.bclass.arts_center.repository.model.Review;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.utils.Define;
@@ -203,10 +204,15 @@ public class ShowController {
 	@GetMapping("/showView/{showId}")
 	public String showView(@PathVariable Integer showId, Model model) {
 
-
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
-
-		System.out.println("s" + showInfo);
+		List<RequestShowDto> reviewList = showService.readReviewByShowId(showId);
+		System.out.println(reviewList);
+		if (reviewList == null || reviewList.isEmpty()) {
+			model.addAttribute("reviewList", null);
+		} else {
+			model.addAttribute("reviewList", reviewList);
+		}
+		model.addAttribute("reviewListSize", reviewList.size());
 		model.addAttribute("showInfo", showInfo);
 		model.addAttribute("title", showInfo.get(0).getTitle());
 		model.addAttribute("content", showInfo.get(0).getContent());
@@ -219,11 +225,11 @@ public class ShowController {
 		model.addAttribute("content", showInfo.get(0).getContent());
 		model.addAttribute("nickname", showInfo.get(0).getNickname());
 		model.addAttribute("tel", showInfo.get(0).getTel());
+		model.addAttribute("adultRate", showInfo.get(0).getAdultRate());
+		model.addAttribute("infantRate", showInfo.get(0).getInfantRate());
+		model.addAttribute("youthRate", showInfo.get(0).getYouthRate());
 
 		return "/show/showView";
 	}
-	
-	
-	
 
 }

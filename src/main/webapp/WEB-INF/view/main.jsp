@@ -13,18 +13,25 @@
 								<h4 style="margin-top: 155px; margin-left: -50px; background-color: #fff; font-size: 30px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</h4>
 								<h3 style="margin-top: -10px; margin-left: -70px; font-size: 30px; font-weight: 200;">🔔️ ${showList.location}</h3>
 								<h1 style="margin-top: 30px; margin-left: -120px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
-								<h3 style="margin-top: 30px; margin-left: -50px; font-size: 27px; font-weight: 100; height: 60px;">평점 : ${showList.rating}</h3>
+								<c:choose>
+									<c:when test="${showList.rating==null}">
+										<h3 style="margin-top: 30px; margin-left: -90px; font-size: 27px; font-weight: 100; height: 60px;">평점이 아직 등록되지 않았습니다.</h3>
+									</c:when>
+									<c:otherwise>
+										<h3 style="margin-top: 30px; margin-left: -50px; font-size: 27px; font-weight: 100; height: 60px;">평점 : ${showList.rating}</h3>
+									</c:otherwise>
+								</c:choose>
 								<h4 style="margin-top: 0; margin-left: -70px; font-size: 25px; font-weight: 100;">기간 : ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
 							</div>
 							<c:choose>
 								<c:when test="${showList.imgRoute.length()>=30}">
 									<div>
-										<a href="/show/showView/${showList.id}"><img src="<c:url value="/images/upload/${showList.imgRoute}"/>" width="480" height="600"></a>
+										<a href="/show/showView/${showList.id}"><img src="/images/upload/${showList.imgRoute}" width="480" height="600"></a>
 									</div>
 								</c:when>
 								<c:otherwise>
 									<div>
-										<a href="/show/showView/${showList.id}"><img src=<c:url value="images/${showList.imgRoute}"/> width="480" height="600"></a>
+										<a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}" width="480" height="600"></a>
 									</div>
 								</c:otherwise>
 							</c:choose>
@@ -39,10 +46,10 @@
 					<c:forEach var="showList" items="${showsList}">
 						<c:choose>
 							<c:when test="${showList.imgRoute.length()>=30}">
-								<li><a href="/show/showView/${showList.id}"><img src="<c:url value="/images/upload/${showList.imgRoute}"/>" width="150" height="200"></a></li>
+								<li><a href="/show/showView/${showList.id}"><img src="/images/upload/${showList.imgRoute}" width="150" height="200"></a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="/show/showView/${showList.id}"><img src="images/${showList.imgRoute}" width="150" height="200"></a></li>
+								<li><a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}" width="150" height="200"></a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -62,7 +69,7 @@
 						</div>
 						<div class="close-area">X</div>
 						<c:forEach var="noticeList" items="${noticeList}">
-							<div class="content" style="display: flex; justify-content:space-between;">
+							<div class="content" style="display: flex; justify-content: space-between;">
 								<div>${noticeList.notice}</div>
 								<form action="/managerNotice/update/${noticeList.id}" method="get">
 									<div class="close-area">
@@ -78,6 +85,7 @@
 		</c:choose>
 	</div>
 </div>
+
 <script type="text/javascript" src="/js/main.js">
 	
 </script>
