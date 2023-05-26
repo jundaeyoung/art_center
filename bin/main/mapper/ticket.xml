@@ -100,6 +100,8 @@
       ON t.seat_id = se.seat_id
       JOIN show_datetime_tb as sd
       ON t.show_datetime_id = sd.id
+      JOIN user_tb as u
+      ON t.user_id = u.id
       WHERE t.id = #{ticketingId}
    </select>
 

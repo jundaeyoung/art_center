@@ -1,5 +1,8 @@
 package com.bclass.arts_center.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -29,7 +32,7 @@ public class KakaoPaymentService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
-	
+
 	@Autowired
 	private TicketRepository ticketRepository;
 
@@ -53,20 +56,35 @@ public class KakaoPaymentService {
 	public KakaoReadyResponse kakaoReady(Integer ticketingId) {
 
 		TicketCheckDto ticketCheckDto = ticketRepository.selectTicketForPay(ticketingId);
+		String userBirth = ticketCheckDto.getBirthDate();
+		String replaceuserBirth = userBirth.replaceAll("-", "");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date now = new Date();
+		String nowDate = sdf.format(now);
+		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
+		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
+		int userAge = startMonth2 - startMonth1;
+
+		System.out.println(ticketCheckDto);
 
 		RestTemplate restTemplate = new RestTemplate();
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "KakaoAK " + ADMIN_KEY.getAdminKey());
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		
+
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", cid);
-		params.add("partner_order_id", "partner_order_id");
+		params.add("partner_order_id", ticketCheckDto.getId().toString());
 		params.add("partner_user_id", "partner_user_id");
+
 		params.add("item_name", ticketCheckDto.getTitle());
 		params.add("quantity", "1");
-	//	params.add("total_amount", ticketCheckDto.get);
+		if (userAge > 19) {
+			params.add("total_amount", ticketCheckDto.getAdultRate());
+		} else if (userAge <= 19) {
+			params.add("total_amount", ticketCheckDto.getYouthRate());
+		}
 		params.add("tax_free_amount", "0");
 		params.add("approval_url", "http://localhost:8080/kakao/success");
 		params.add("cancel_url", "http://localhost:8080/kakao/cancel");

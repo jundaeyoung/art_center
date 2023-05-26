@@ -95,17 +95,3 @@ public class TicketController {
 
 }
 
-/*
- * 선생님,,저는 잘 모르겠어요,,
- * 
- * @PostMapping("/a/a/")
- * 
- * @Resource // 주이양 !! 이거는 데이터를 리턴하겠다는 표시 입니다 !!!! public String
- * test1(@RequestBody String a) {
- * 
- * // 인증검사 // 유효성 검사
- * 
- * // 서비스 호출 -- 데이터 처리 및 트랜잭션 처리
- * 
- * // 응답 적절하게 내려주기 return "{'a' : a}"; }
- */

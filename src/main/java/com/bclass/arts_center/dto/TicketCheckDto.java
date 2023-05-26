@@ -12,6 +12,7 @@ public class TicketCheckDto {
 	private Integer id;
 	private Integer userId;
 	private Timestamp ticketingDate;
+	private String birthDate;
 	
 	private Integer showId;
 	private String title;
