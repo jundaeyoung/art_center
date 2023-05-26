@@ -21,5 +21,6 @@ public class RequestRentPlaceDto {
 	private Integer holeId;
 	private Integer locationId;
 	private Integer showId;
+	private String rentPrice;
 	
 }
