@@ -14,5 +14,11 @@
 		INSERT INTO payment_tb(payment_id, user_id, payment_option, payment_date, ticketing1_id)
 		VALUES (#{paymentId},#{userId}, #{paymentOption}, #{paymentDate}, #{ticketingId});
 	</insert>
+	
+	<!-- 작성자 : 편용림 대관 결제 -->
+	<insert id="insertManagerPayment">
+		INSERT INTO manager_payment_tb(m_payment_id, manager_id, payment_option, payment_date, rent_id)
+		VALUES (#{mPaymentId},#{managerId}, #{paymentOption}, #{paymentDate}, #{rentId});
+	</insert>
 
 </mapper>
