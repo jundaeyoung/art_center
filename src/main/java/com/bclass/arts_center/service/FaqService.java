@@ -17,13 +17,22 @@ public class FaqService {
 
 	@Transactional
 	public List<Faq> selectFaqCategory() {
+		
 		List<Faq> faqCategoryList = faqRepository.selectFaqCategory();
 		return faqCategoryList;
 	}
 
 	@Transactional
 	public List<Faq> selectAll() {
+		
 		List<Faq> faqList = faqRepository.selectFaqAll();
+		return faqList;
+	}
+	
+	@Transactional
+	public List<Faq> selectByCategoryId(Integer categoryId){
+		
+		List<Faq> faqList = faqRepository.selectFaqByCategoryId(categoryId);
 		return faqList;
 	}
 }

@@ -15,5 +15,4 @@
 		VALUES (#{paymentId},#{userId}, #{paymentOption}, #{paymentDate}, #{ticketingId});
 	</insert>
 
-
 </mapper>

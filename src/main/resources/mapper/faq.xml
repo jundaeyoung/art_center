@@ -13,5 +13,11 @@
 	<select id="selectFaqAll" resultType="com.bclass.arts_center.repository.model.Faq">
 		SELECT * FROM faq_tb
 	</select>
+	
+	<select id="selectFaqByCategoryId" resultType="com.bclass.arts_center.repository.model.Faq">
+		SELECT *
+		FROM faq_tb
+		WHERE category_id = #{categoryId}
+	</select>
 
 </mapper>

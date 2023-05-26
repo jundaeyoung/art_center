@@ -13,4 +13,6 @@ public interface FaqRepository {
 
 	public List<Faq> selectFaqAll();
 
+	public List<Faq> selectFaqByCategoryId(Integer categoryId);
+
 }

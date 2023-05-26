@@ -22,7 +22,7 @@ public class TicketApiController {
 
 		List<TicketingDto> showTimeList = ticketService.readShowTime(showId, date);
 
-		System.out.println(showTimeList);
+		//System.out.println(showTimeList);
 		return showTimeList;
 	}
 
