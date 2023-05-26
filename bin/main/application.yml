@@ -16,10 +16,10 @@ spring:
       max-file-size: 20MB 
       max-request-size: 20MB        
   datasource:
-    url: jdbc:mysql://localhost:3306/arts_center?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://192.168.0.85:3306/arts_center?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver 
-    username: root
-    password: 12341234
+    username: b
+    password: asd1234!
   mail:
     host: smtp.naver.com
     port: 465
