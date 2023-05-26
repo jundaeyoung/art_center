@@ -1,5 +1,7 @@
 package com.bclass.arts_center.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,7 @@ import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
+
 /**
  * 
  * @author 손주이
@@ -68,14 +71,27 @@ public class TicketController {
 
 	@GetMapping("/ticketCheck")
 	public String ticketCheck(Model model) {
-		
+
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+
+		String userBirth = principal.getBirthDate();
+		String replaceuserBirth = userBirth.replaceAll("-", "");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date now = new Date();
+		String nowDate = sdf.format(now);
+
+		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
+		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
+
+		int userAge = startMonth2 - startMonth1;
+
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());
 		model.addAttribute("ticketListInfo", ticketListInfo);
+		model.addAttribute("userAge", userAge);
 
+		System.out.println(ticketListInfo);
 		return "/ticket/ticketCheck";
 	}
-
 
 }
 
