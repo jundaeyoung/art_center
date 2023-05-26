@@ -97,6 +97,7 @@ public class TicketController {
 		int userAge = startMonth2 - startMonth1;
 
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());
+		System.out.println(ticketListInfo);
 		model.addAttribute("ticketListInfo", ticketListInfo);
 		model.addAttribute("userAge", userAge);
 

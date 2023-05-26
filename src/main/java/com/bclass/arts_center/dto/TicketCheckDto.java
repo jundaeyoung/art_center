@@ -13,7 +13,7 @@ public class TicketCheckDto {
 	private Integer userId;
 	private Timestamp ticketingDate;
 	private String birthDate;
-	
+	private String name;
 	private Integer showId;
 	private String title;
 	private String imgRoute;

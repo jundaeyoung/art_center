@@ -69,7 +69,7 @@
 
 				</c:when>
 				<c:otherwise>
-					<div class="reservation--Time">
+					<div class="reservation--Time"style="margin-left: -200px;">
 						<p class="title" style="font-size: 30px; width: 300px;">관람 시간</p>
 						<div class="watchTime--content">
 							<div class="TagPlay"></div>
