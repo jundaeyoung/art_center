@@ -21,7 +21,6 @@
 		<div class="rental__info_content">
 			<input type="hidden" name="startDate" id="startDate" value="${show.startDate}"> <input type="hidden" name="endDate" id="endDate" value="${show.endDate}">
 			<form action="/rental/reservation" method="post">
-
 				<div class="rental__location">
 					<label>공연 이름 : ${show.title}</label>
 				</div>
@@ -42,7 +41,8 @@
 					</select>
 				</div>
 				<div class="rental__price">
-					<p id="totalPrice" style="margin: 0;"></p>
+					 <p id="totalPrice" style="margin: 0;"></p> 
+					<input type=hidden id="totalPrice2" name="rentPrice" value="${price}">
 				</div>
 				<div class="rental__time">
 					<label>대관 시간 : </label> <select id="timeSelect" name="startTime" onchange="calculatePrice()">

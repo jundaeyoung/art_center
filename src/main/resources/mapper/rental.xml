@@ -31,9 +31,9 @@
 
 	<insert id="insertRental">
 		INSERT INTO
-		rent_place_reservation_tb(start_date,end_date,start_time,end_time,user_id,hole_id,location_id,show_id)
+		rent_place_reservation_tb(start_date,end_date,start_time,end_time,rent_price,user_id,hole_id,location_id,show_id)
 		VALUES(
-		#{startDate},#{endDate},#{startTime},#{endTime},#{userId},#{holeId},#{locationId},#{showId}
+		#{startDate},#{endDate},#{startTime},#{endTime},#{rentPrice},#{userId},#{holeId},#{locationId},#{showId}
 		);
 	</insert>
 	

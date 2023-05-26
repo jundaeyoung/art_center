@@ -50,6 +50,8 @@
 								<i class="material-icons">person_outline</i> <input type="text"
 									placeholder="아이디를 입력하세요" name="userName" id="userName"
 									class="info"><br>
+								<button id="overlappedID" type="button">중복확인</button><br>
+									<span id="olmessage"></span>
 							</div>
 							<span class="error--messege" th:if="${valid_userName}">${valid_userName}</span>
 							<br>
@@ -214,5 +216,7 @@
 			}
 		})
 	})
+	
+	
 </script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

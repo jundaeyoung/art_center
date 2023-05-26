@@ -206,6 +206,7 @@ public class ShowController {
 
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
 
+		System.out.println("s" + showInfo);
 		model.addAttribute("showInfo", showInfo);
 		model.addAttribute("title", showInfo.get(0).getTitle());
 		model.addAttribute("content", showInfo.get(0).getContent());

@@ -109,7 +109,7 @@ public class RentalController {
 	// 대관 신청 insert
 	@PostMapping("/reservation")
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, HttpServletResponse response) {
-
+		System.out.println(requestRentPlaceDto);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("사용자 인증이 필요합니다.", HttpStatus.UNAUTHORIZED);
@@ -134,6 +134,8 @@ public class RentalController {
 		requestRentPlaceDto.setStartDate(split[0].replaceAll(" ", ""));
 		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
 
+		 
+		
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
 		try {

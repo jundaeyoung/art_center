@@ -95,6 +95,13 @@ public class UserService {
 		return user;
 	}
 	
+	// 아이디 중복체크
+	@Transactional
+	public int readUserCountByUserName(String userName) {
+		int result = userRepository.selectUserCountByUserName(userName);
+		return result;
+	}
+	
 
 	// 회원정보 수정
 	@Transactional
