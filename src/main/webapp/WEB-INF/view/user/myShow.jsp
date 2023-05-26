@@ -63,6 +63,7 @@
 	height: 150px;
 	border-radius: 10px;
 	margin: 0 20px;
+	border: 1px solid #eee;
 }
 
 .show__info__list {
@@ -90,10 +91,22 @@
 	color: gray;
 }
 
+.show__schedule__payment {
+	display: flex;
+	border: 1px solid #568607;
+	width: 180px;
+	height: 30px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	margin-top: 40px;
+	margin-right: 20px;
+}
+
 .show__schedule {
 	display: flex;
 	border: 1px solid #568607;
-	width: 250px;
+	width: 280px;
 	height: 30px;
 	align-items: center;
 	justify-content: center;
@@ -104,6 +117,7 @@
 
 .show__btn {
 	display: flex;
+	margin-top: 10px;
 }
 </style>
 	<div class="container">
@@ -121,7 +135,14 @@
 								<h3 style="color: #ccc; font-weight: bold;">승인대기</h3>
 							</c:when>
 							<c:when test="${myShowList.showStatus == 1}">
-								<h3 style="font-weight: bold;">승인완료</h3>
+								<c:choose>
+								<c:when test="${myShowList.rentPlaceStatus == 1}">
+								<h3 style="font-weight: bold;">승인완료 (결제 완료)</h3>
+								</c:when>
+								<c:when test="${myShowList.rentPlaceStatus == 0}">
+									<h3 style="font-weight: bold;">승인완료 (결제 미완료)</h3>
+								</c:when>
+							</c:choose>
 							</c:when>
 						</c:choose>
 					</div>
@@ -143,15 +164,42 @@
 									<p>${myShowList.admissionAge}</p>
 								</div>
 							</div>
-							<div class="show__btn">
+							<c:choose>
+							<c:when test="${myShowList.showStatus == 0}">
+								<div class="show__btn">
 								<div class="show__schedule">
-									<a href="/manager/schedule/${principal.id}">공연일정
-										보러가기&nbsp;(달력)</a>
+									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
 								</div>
 								<div class="show__schedule">
 									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
 								</div>
 							</div>
+							</c:when>
+							<c:when test="${myShowList.rentPlaceStatus == 0}">
+							<div class="show__btn">
+								<div class="show__schedule__payment">
+									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+								</div>
+								<div class="show__schedule__payment">
+									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
+								</div>
+								<div class="show__schedule__payment">
+									<a href="#">결제 하기</a>
+								</div>
+							</div>
+							</c:when>
+							<c:when test="${myShowList.rentPlaceStatus == 1}">
+							<div class="show__btn">
+								<div class="show__schedule">
+									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+								</div>
+								<div class="show__schedule">
+									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
+								</div>
+							</div>
+							</c:when>
+							
+							</c:choose>
 						</div>
 					</div>
 				</div>

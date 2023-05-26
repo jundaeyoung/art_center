@@ -28,6 +28,7 @@ public class MyRegistrationInfoDto {
 	private String rentPrice;
 	private Integer userId;
 	private Integer locationId;
+	private Integer rentPlaceStatus;
 	private Integer showId;
 	
 	
