@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.interfaces.PaymentRepository;
+import com.bclass.arts_center.repository.model.ManagerPayment;
 import com.bclass.arts_center.repository.model.Payment;
 
 /**
@@ -28,6 +29,19 @@ public class PaymentService {
 		if (result != 1) {
 			throw new CustomRestfullException("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	// 작성자 : 편용림 대관 결제
+	
+	@Transactional
+	public void createManagerPayment(ManagerPayment payment) {
+		
+		int result = paymentRepository.insertManagerPayment(payment);
+		
+		if (result != 1) {
+			throw new CustomRestfullException("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 
 }

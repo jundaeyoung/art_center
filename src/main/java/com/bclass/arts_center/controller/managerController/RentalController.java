@@ -108,7 +108,7 @@ public class RentalController {
 	 */
 	// 대관 신청 insert
 	@PostMapping("/reservation")
-	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, HttpServletResponse response) {
+	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, HttpServletResponse response, Model model) {
 		System.out.println(requestRentPlaceDto);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
@@ -134,7 +134,7 @@ public class RentalController {
 		requestRentPlaceDto.setStartDate(split[0].replaceAll(" ", ""));
 		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
 
-		 
+		model.addAttribute("dto", requestRentPlaceDto);
 		
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
@@ -145,6 +145,7 @@ public class RentalController {
 			w.write("<script>alert('" + msg + "');location.href='/';</script>");
 			w.flush();
 			w.close();
+			return "/payment/payment";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
