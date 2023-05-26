@@ -31,5 +31,9 @@ public class ShowViewDto {
 //	주최자
 	private String nickname;
 	private String tel;
+	
+	private String adultRate;
+	private String youthRate;
+	private String infantRate;
 
 }

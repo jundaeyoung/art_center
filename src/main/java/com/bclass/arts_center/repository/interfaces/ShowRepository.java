@@ -69,6 +69,11 @@ public interface ShowRepository {
 	 */
 	public RequestShowDto selectShowByShowId(Integer showId);
 	
+	/**
+	 * 작성자 : 전대영 show 아이디로 리뷰 찾기
+	 */
+	public List<RequestShowDto> selectReviewByShowId(Integer showId);
+	
 	/*
 	 * 손주이 : showId와 일치하는 공연 정보 select
 	 */

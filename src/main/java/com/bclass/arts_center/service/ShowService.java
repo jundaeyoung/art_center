@@ -18,37 +18,35 @@ public class ShowService {
 	@Autowired
 	private ShowRepository showRepository;
 
-	
 	/**
 	 * 
 	 * 작성자 : 편용림 admin 예약 승낙한 순서대로 조회
 	 */
-	
+
 	@Transactional
-	public List<RequestShowDto> readShow(){
+	public List<RequestShowDto> readShow() {
 		List<RequestShowDto> showList = showRepository.selectShowInfoAdmin();
 		return showList;
 	}
-	
+
 	/*
-	 *  작성자 : 편용림 admin status 업데이트
+	 * 작성자 : 편용림 admin status 업데이트
 	 */
 	@Transactional
 	public int updateShow(Integer id) {
 		int result = showRepository.updateShowById(id);
 		return result;
 	}
-	
+
 	/*
-	 *  작성자 : 전대영 show hole update
+	 * 작성자 : 전대영 show hole update
 	 */
 	@Transactional
-	public int updateShowHole(Integer id,Integer holeId) {
-		int result = showRepository.updateShowHole(id,holeId);
+	public int updateShowHole(Integer id, Integer holeId) {
+		int result = showRepository.updateShowHole(id, holeId);
 		return result;
 	}
-	
-	
+
 	/**
 	 * 작성자 : 전대영 show 최신순으로 select
 	 */
@@ -57,6 +55,7 @@ public class ShowService {
 		List<RequestShowDto> showList = showRepository.selectShowByNewest(begin, range);
 		return showList;
 	}
+
 	/**
 	 * 작성자 : 전대영 show 최신순으로 count
 	 */
@@ -119,8 +118,7 @@ public class ShowService {
 		Integer showNewestCount = showRepository.insertShow(requestSignUpShowDto);
 		return showNewestCount;
 	}
-	
-	
+
 	/**
 	 * 작성자 : 전대영 manager 계정에서 showDateTime insert
 	 */
@@ -129,7 +127,7 @@ public class ShowService {
 		Integer showNewestCount = showRepository.insertShowDateTime(requestRentPlaceDto);
 		return showNewestCount;
 	}
-	
+
 	/**
 	 * 작성자 : 전대영 show insert된거 최근 하나만 가져오기
 	 */
@@ -138,7 +136,7 @@ public class ShowService {
 		RequestShowDto show = showRepository.selectShowByNewestOne(userId);
 		return show;
 	}
-	
+
 	/**
 	 * 작성자 : 전대영 show id 로 하나만 찾기
 	 */
@@ -147,7 +145,16 @@ public class ShowService {
 		RequestShowDto show = showRepository.selectShowByShowId(userId);
 		return show;
 	}
-	
+
+	/**
+	 * 작성자 : 전대영 show id 로 리뷰찾기
+	 */
+	@Transactional
+	public List<RequestShowDto> readReviewByShowId(Integer userId) {
+		List<RequestShowDto> show = showRepository.selectReviewByShowId(userId);
+		return show;
+	}
+
 	/*
 	 * 손주이 : showId와 일치하는 공연정보
 	 */
