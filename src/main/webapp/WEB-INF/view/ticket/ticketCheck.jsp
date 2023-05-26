@@ -42,8 +42,8 @@
 
 .ticket--hole h2 {
 	font-size: 30px;
-	color: #d6644d;
-	font-weight: 300;
+	color: #DB2F1B;
+	font-weight: 400;
 }
 
 .ticket--info {
@@ -61,13 +61,13 @@
 .ticket--date h2 {
 	font-size: 30px;
 	color: #d6644d;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 .ticket--price h2 {
 	font-size: 30px;
 	color: #d6644d;
-	font-weight: 300;
+	font-weight: 400;
 }
 
 .ticket--button {
