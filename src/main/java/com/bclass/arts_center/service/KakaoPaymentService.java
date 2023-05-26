@@ -1,5 +1,8 @@
 package com.bclass.arts_center.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -11,11 +14,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.payment.AdminKeyDto;
 import com.bclass.arts_center.dto.payment.KakaoReadyResponse;
 import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
 import com.bclass.arts_center.repository.interfaces.PaymentRepository;
+import com.bclass.arts_center.repository.interfaces.TicketRepository;
 
 /**
  * 
@@ -27,6 +32,9 @@ public class KakaoPaymentService {
 
 	@Autowired
 	private PaymentRepository paymentRepository;
+
+	@Autowired
+	private TicketRepository ticketRepository;
 
 	private static final String cid = "TC0ONETIME";
 
@@ -45,7 +53,19 @@ public class KakaoPaymentService {
 	 * @return response.getBody()
 	 */
 	@Transactional
-	public KakaoReadyResponse kakaoReady() {
+	public KakaoReadyResponse kakaoReady(Integer ticketingId) {
+
+		TicketCheckDto ticketCheckDto = ticketRepository.selectTicketForPay(ticketingId);
+		String userBirth = ticketCheckDto.getBirthDate();
+		String replaceuserBirth = userBirth.replaceAll("-", "");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date now = new Date();
+		String nowDate = sdf.format(now);
+		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
+		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
+		int userAge = startMonth2 - startMonth1;
+
+		System.out.println(ticketCheckDto);
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -55,11 +75,16 @@ public class KakaoPaymentService {
 
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", cid);
-		params.add("partner_order_id", "partner_order_id");
+		params.add("partner_order_id", ticketCheckDto.getId().toString());
 		params.add("partner_user_id", "partner_user_id");
-		params.add("item_name", "추남, 추녀");
+
+		params.add("item_name", ticketCheckDto.getTitle());
 		params.add("quantity", "1");
-		params.add("total_amount", "50000");
+		if (userAge > 19) {
+			params.add("total_amount", ticketCheckDto.getAdultRate());
+		} else if (userAge <= 19) {
+			params.add("total_amount", ticketCheckDto.getYouthRate());
+		}
 		params.add("tax_free_amount", "0");
 		params.add("approval_url", "http://localhost:8080/kakao/success");
 		params.add("cancel_url", "http://localhost:8080/kakao/cancel");

@@ -84,11 +84,25 @@
       SELECT * FROM ticketing_tb as t
       JOIN show_tb as s
       ON t.show_id = s.id
-      JOIN seat_tb as se
+      LEFT JOIN seat_tb as se
       ON t.seat_id = se.seat_id
       JOIN show_datetime_tb as sd
       ON t.show_datetime_id = sd.id
       WHERE user_id = #{userId} AND payment_status = 0;
+   </select>
+   
+   <!-- 작성자 손주이 : 결제 요청 티켓 값 넘기기 -->
+   <select id="selectTicketForPay" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+      SELECT * FROM ticketing_tb as t
+      JOIN show_tb as s
+      ON t.show_id = s.id
+      LEFT JOIN seat_tb as se
+      ON t.seat_id = se.seat_id
+      JOIN show_datetime_tb as sd
+      ON t.show_datetime_id = sd.id
+      JOIN user_tb as u
+      ON t.user_id = u.id
+      WHERE t.id = #{ticketingId}
    </select>
 
 	<update id="updateTicketing">

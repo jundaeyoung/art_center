@@ -16,7 +16,7 @@
 				<div class="ticket--img">
 					<img alt="" src="/images/${ticketListInfo.imgRoute}">
 				</div>
-				
+
 				<form action="/pay/payment/${ticketListInfo.id}" method="get">
 					<div class="ticket--info">
 
@@ -39,6 +39,20 @@
 						<div class="ticket--seat">
 							<h2>좌석</h2>
 							<p>${ticketListInfo.seatName}</p>
+						</div>
+						<div class="ticket--price">
+							<h2>가격</h2>
+							<c:choose>
+								<c:when test="${userAge>19}">
+									<p>[성인]</p>
+									<p>${ticketListInfo.adultRate}</p>
+								</c:when>
+								<c:otherwise>
+									<p>[청소년]</p>
+									<p>${ticketListInfo.youthRate}</p>
+
+								</c:otherwise>
+							</c:choose>
 						</div>
 
 					</div>

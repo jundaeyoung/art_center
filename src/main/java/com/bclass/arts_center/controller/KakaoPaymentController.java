@@ -48,7 +48,9 @@ public class KakaoPaymentController {
 
 	@PostMapping("/ready")
 	public String readyToKakaoPay() {
-		KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady();
+
+		Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
+		KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
 		return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
 	}
 
@@ -69,7 +71,7 @@ public class KakaoPaymentController {
 		System.out.println(payment);
 		ticketService.updateTicketStatus(principal.getId(), sessionTicketingId);
 		paymentService.createPayment(payment);
-
+		session.invalidate();
 		return "/payment/success";
 	}
 

@@ -12,10 +12,13 @@ public class TicketCheckDto {
 	private Integer id;
 	private Integer userId;
 	private Timestamp ticketingDate;
+	private String birthDate;
 	
 	private Integer showId;
 	private String title;
 	private String imgRoute;
+	private String adultRate;
+	private String youthRate;
 	
 	private Integer showDatetimeId;
 	private Date showDate;
