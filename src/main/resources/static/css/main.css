@@ -325,13 +325,14 @@ content ul {
 .footer {
 	background-color: #ECECEC;
 	display: flex;
-	width: 1500px;
+	width: 3000px;
 	justify-content: center;
+	margin-left: -800px;
 }
 
 .footer div {
 	display: flex;
-	margin: 20px auto;
+	margin: 25px auto;
 }
 
 .footer div div {

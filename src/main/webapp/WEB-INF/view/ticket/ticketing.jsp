@@ -9,20 +9,13 @@
 
 <script type="text/javascript" src="/js/seatSelection.js"></script>
 
-<style>
-.main {
-	display: inline-block;
-}
-</style>
 
 <div class="main">
 
-	<div>
-		<p>${title}</p>
-	</div>
-	<div class="reservation">
-		<form action="/ticket/ticketing" method="post">
+	<form action="/ticket/ticketing" method="post">
+		<div class="reservation">
 			<div class="reservation--calendar">
+				<p style="font-size: 30px; width: 300px;">${title}</p>
 				<input type="hidden" id="hiddenShowId" name="showId" value="${showId}">
 				<div>
 					<table class="Calendar">
@@ -51,30 +44,24 @@
 				</div>
 			</div>
 			<div class="reservation--Time">
-				<h3 class="title">관람 시간</h3>
+				<p class="title" style="font-size: 30px; width: 300px;">관람 시간</p>
 				<div class="watchTime--content">
-					<span class="TagPlay"> </span>
+					<div class="TagPlay"> </div>
 				</div>
 			</div>
 
-			<div>
-
-				<div>좌석 선택</div>
 
 
-				<div class="side--middle">
-					<div class="seat--info">
-						<div class="screen"></div>
-
-
-
-					</div>
+			<div class="side--middle">
+				<p style="font-size: 30px; width: 300px;">좌석 선택</p>
+				<div class="seat--information">
+					<div class="seat--info"></div>
 				</div>
+				<button type="submit" class="btn--ticketing">예 매</button>
 			</div>
 
-			<button type="submit" class="btn--ticketing">예매하기</button>
-		</form>
-	</div>
+		</div>
+	</form>
 </div>
 
 

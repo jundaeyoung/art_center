@@ -174,9 +174,10 @@ function selectDateForTime(showId, date) {
 					contentType: "application/json; charset=utf-8",
 					dataType: "json"
 				}).done(function(seatList) {
-					console.log(showTime.id);
-					$(".row").remove();
+					/*$(".row").remove();*/
+					$(".seat--info").empty();
 					console.log("좌석 정보:", seatList);
+					$(".seat--info").append(`<div class="screen"></div>`);
 					$(".seat--info").append(`<div class="row"></div>`);
 					let seatsPerRow = 5;
 					//console.log(typeof seatList);
