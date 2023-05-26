@@ -32,7 +32,7 @@ function calculatePrice() {
 		holeId: $("#locationSelect").val(),
 		locationId: $("#locationId").val(),
 		startDate: $("#dateTime").val(),
-		price: $("#totalPrice").val(),
+		Sprice: $("#totalPrice").val(),
 		startTime: $("#timeSelect").val(),
 		endTime: $("#endTime").val()
 	};
@@ -87,10 +87,12 @@ function calculatePrice() {
 		}
 		let formattedPrice = totalPrice.toLocaleString();
 		let totalPriceElement = document.getElementById("totalPrice");
+		let totalPriceElement2 = document.getElementById("totalPrice2");
 		if (totalPrice <= 0) {
 			totalPriceElement.innerText = "시간 선택이 잘못되었습니다.";
 		} else {
 			totalPriceElement.innerText = "대관료: " + formattedPrice + "원";
+			totalPriceElement2.value = formattedPrice;
 		}
 
 		$("#dateTime").on("click", function() {

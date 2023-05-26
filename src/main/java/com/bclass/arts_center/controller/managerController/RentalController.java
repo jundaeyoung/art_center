@@ -107,7 +107,7 @@ public class RentalController {
 	 */
 	// 대관 신청 insert
 	@PostMapping("/reservation")
-	public String insertRental(RequestRentPlaceDto requestRentPlaceDto) {
+	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, Model model) {
 
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
@@ -125,6 +125,13 @@ public class RentalController {
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
 
+		
+		  String rentPrice = requestRentPlaceDto.getRentPrice();
+		  model.addAttribute("rentPrice", rentPrice );
+		  
+		  System.out.println(rentPrice);
+		 
+		
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
 		if (startTime.equals(endTime)) {

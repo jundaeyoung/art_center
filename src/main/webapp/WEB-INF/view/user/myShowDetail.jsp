@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.show__img {
+	width: 400px;
+	height: 500px;
+}
+</style>
 </head>
 <body>
 <p>${title}</p>
