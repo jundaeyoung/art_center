@@ -37,6 +37,7 @@ public class TicketController {
 
 //		로그인 인증 필요
 		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
+		System.out.println(showDateList);
 		model.addAttribute("showDateList", showDateList);
 		model.addAttribute("showId", showId);
 
@@ -55,7 +56,8 @@ public class TicketController {
 //		System.out.println(ticketingDto.getShowId() + "showId");
 //		System.out.println(ticketingDto.getSeatId() + "showSEat");
 //		System.out.println(ticketingDto.getShowDateTimeId() + "dateTime");
-
+		
+		System.out.println(ticketingDto);
 		ticketingDto.setUserId(principal.getId());
 
 //		System.out.println(ticketingDto.getUserId());
