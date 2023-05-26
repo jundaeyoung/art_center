@@ -34,10 +34,10 @@
 						<form>
 							<button class="open-area" style="font-size: 20px;">알림</button>
 						</form>
-						<form action="/user/myPage" method="get">
+						<form action="/myPage/info" method="get">
 							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 						</form>
-						<form action="/user/myPage" method="get">
+						<form action="#" method="get">
 							<button type="submit" class="logout--btn">
 								<a href="/user/logout" style="font-size: 20px;">로그아웃</a>
 							</button>
@@ -48,7 +48,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="user--btn">
-						<form action="/user/myPage" method="get">
+						<form action="/myPage/info" method="get">
 							<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 						</form>
 						<form action="#" method="get">

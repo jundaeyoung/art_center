@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,6 +54,7 @@ public class UserController {
 
 	@Autowired
 	private HttpSession session;
+	
 
 	// 로그인 페이지
 	@GetMapping("/login")
@@ -245,5 +247,7 @@ public class UserController {
 		return str;
 		
 	}
-
+	
+	
+	
 }

@@ -17,6 +17,7 @@ public class RequestRentPlaceDto {
 	private String endDate;
 	private Time startTime;
 	private Time endTime;
+	private String rentPrice;
 	private Integer userId;
 	private Integer holeId;
 	private Integer locationId;

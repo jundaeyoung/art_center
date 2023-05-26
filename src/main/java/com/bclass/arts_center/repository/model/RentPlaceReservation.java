@@ -1,6 +1,5 @@
 package com.bclass.arts_center.repository.model;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -19,6 +18,7 @@ public class RentPlaceReservation {
 	private String endDate;
 	private Time startTime;
 	private Time endTime;
+	private String rentPrice;	
 	private Timestamp reservationDate;
 	private Integer userId;
 	private Integer holeId;

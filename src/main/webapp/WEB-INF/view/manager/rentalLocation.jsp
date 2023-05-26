@@ -42,7 +42,9 @@
 					</select>
 				</div>
 				<div class="rental__price">
-					<p id="totalPrice" style="margin: 0;"></p>
+					 <p id="totalPrice" style="margin: 0;"></p> 
+					<input type=hidden id="totalPrice2" name="rentPrice" value="${price}">
+					
 				</div>
 				<div class="rental__time">
 					<label>대관 시간 : </label> <select id="timeSelect" name="startTime" onchange="calculatePrice()">

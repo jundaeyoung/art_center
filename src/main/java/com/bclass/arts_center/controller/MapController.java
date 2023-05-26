@@ -11,7 +11,7 @@ public class MapController {
 	@GetMapping("/map")
 	public String map() {
 		
-		return "user/map";
+		return "map";
 	}
 	
 }

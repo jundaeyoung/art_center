@@ -35,8 +35,6 @@ public class RentalService {
 	/**
 	 * 김미정 : manager 계정에서 rental insert
 	 */
-	
-	
 	@Transactional
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto) {
 		int count = rentalRepository.insertRental(requestRentPlaceDto);

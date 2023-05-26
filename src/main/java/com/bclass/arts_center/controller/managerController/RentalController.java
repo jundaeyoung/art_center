@@ -134,6 +134,8 @@ public class RentalController {
 		requestRentPlaceDto.setStartDate(split[0].replaceAll(" ", ""));
 		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
 
+		 
+		
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
 		try {
