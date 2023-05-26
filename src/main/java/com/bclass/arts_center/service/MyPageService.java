@@ -26,8 +26,8 @@ public class MyPageService {
 	}
 	
 	@Transactional
-	public RequestSignUpShowDto selectMyShowDetail(Integer id) {
-		RequestSignUpShowDto detailList = myPageRepository.selectMyShowDetail(id);
+	public List<RequestSignUpShowDto> selectMyShowDetail(Integer id) {
+		List<RequestSignUpShowDto> detailList = myPageRepository.selectMyShowDetail(id);
 		return detailList;
 	}
 	

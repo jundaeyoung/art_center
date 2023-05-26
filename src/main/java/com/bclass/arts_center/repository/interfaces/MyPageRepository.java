@@ -19,5 +19,5 @@ public interface MyPageRepository {
 	public List<RequestSignUpShowDto> selectMyShow(Integer organizerId);
 	
 	// 공연예약 detail
-	public RequestSignUpShowDto selectMyShowDetail(Integer id);
+	public List<RequestSignUpShowDto> selectMyShowDetail(Integer id);
 }

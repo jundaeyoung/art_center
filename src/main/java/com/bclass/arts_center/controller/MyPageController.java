@@ -55,8 +55,13 @@ public class MyPageController {
 	
 	@GetMapping("/showDetail/{id}")
 	public String selectMyShowDetail(Model model, @PathVariable("id") Integer id) {
-		RequestSignUpShowDto detailList = myPageService.selectMyShowDetail(id);
-		System.out.println(detailList);
+		List<RequestSignUpShowDto> detailList = myPageService.selectMyShowDetail(id);
+		String title = detailList.get(0).getTitle();
+		String content = detailList.get(0).getContent();
+		String imgRoute = detailList.get(0).getImgRoute();
+		model.addAttribute("title",title);
+		model.addAttribute("content", content);
+		model.addAttribute("imgRoute", imgRoute);
 		return "/user/myShowDetail";
 	}
 	
