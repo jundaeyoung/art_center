@@ -15,4 +15,14 @@
 		resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
 		select * from show_tb where id = #{id};
 	</select>
+	
+	<select id="selectMyTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+		SELECT *
+		FROM ticketing_tb AS t
+		JOIN show_tb AS s
+        ON t.show_id = s.id
+		WHERE user_id = ${userId}
+		ORDER BY ticketing_date desc
+	</select>
+	
 </mapper>
