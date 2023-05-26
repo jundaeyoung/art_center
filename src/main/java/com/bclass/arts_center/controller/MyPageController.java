@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
-import com.bclass.arts_center.service.MyPageService;
+import com.bclass.arts_center.service.ManagerMyPageService;
 import com.bclass.arts_center.utils.Define;
 /**
  * 
@@ -31,7 +32,7 @@ public class MyPageController {
 	
 	
 	@Autowired
-	private MyPageService myPageService;
+	private ManagerMyPageService managerMyPageService;
 	
 	@GetMapping("/info")
 	public String myPage(Model model) {
@@ -47,21 +48,17 @@ public class MyPageController {
 	@GetMapping("/myShow/{organizerId}")
 	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
 		
-		List<RequestSignUpShowDto> myShowList = myPageService.selectMyShow(organizerId);
+		List<MyRegistrationInfoDto> myShowList = managerMyPageService.selectMyShow(organizerId);
 		model.addAttribute("myShowList",myShowList);
 		
 		return "/user/myShow";
 	}
 	
 	@GetMapping("/showDetail/{id}")
-	public String selectMyShowDetail(Model model, @PathVariable("id") Integer id) {
-		List<RequestSignUpShowDto> detailList = myPageService.selectMyShowDetail(id);
-		String title = detailList.get(0).getTitle();
-		String content = detailList.get(0).getContent();
-		String imgRoute = detailList.get(0).getImgRoute();
-		model.addAttribute("title",title);
-		model.addAttribute("content", content);
-		model.addAttribute("imgRoute", imgRoute);
+	public String selectMyShowDetail(Model model, @PathVariable Integer id) {
+		List<MyRegistrationInfoDto> detailList = managerMyPageService.selectMyShowDetail(id);
+		System.out.println(detailList);
+		model.addAttribute("detailList",detailList);
 		return "/user/myShowDetail";
 	}
 	

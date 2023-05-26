@@ -14,8 +14,9 @@
 </style>
 </head>
 <body>
-<p>${title}</p>
-<p>${content}</p>
-<img alt="" src="/images/upload/${imgRoute}" class="show__img">
+<p>${detailList.get(0).title}</p>
+<p>${detailList.get(0).content}</p>
+<p>${detailList.get(0).locationId}</p>
+<img alt="" src="/images/upload/${detailList.get(0).imgRoute}" class="show__img">
 </body>
 </html>
