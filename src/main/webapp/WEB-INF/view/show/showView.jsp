@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.Arrays"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 <style>
 .show--main {
@@ -13,7 +15,8 @@
 	display: flex;
 	justify-content: center;
 	background-size: cover;
-	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/background/mainBackground.png');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+		url('/images/background/mainBackground.png');
 	background-position: center;
 }
 
@@ -97,6 +100,7 @@ select option {
 .show--introduction div button:hover {
 	transform: scale(1.0);
 }
+
 .show--review--button:hover {
 	transform: scale(1.0);
 }
@@ -186,7 +190,8 @@ select option {
 .show--introduction--content:last-child {
 	border-bottom: none;
 }
-.show--review--button{
+
+.show--review--button {
 	border-style: none;
 	background-color: #fafafa;
 }
@@ -239,9 +244,14 @@ select option {
 					<div class="show--img">
 						<img alt="" src="/images/${imgRoute}">
 					</div>
-					<form action="/ticket/ticketing/${showId}" method="get">
-						<button type="button" onclick="goTicketing(${showId})">예매하기</button>
-					</form>
+					<c:choose>
+						<c:when test="${locationId==1}">
+							<button type="button" onclick="goTicketing(${showId})">예매하기</button>
+						</c:when>
+						<c:otherwise>
+								<button type="button" onclick="goTicketing(${showId})">예매하기</button>
+						</c:otherwise>
+					</c:choose>
 
 				</div>
 			</div>

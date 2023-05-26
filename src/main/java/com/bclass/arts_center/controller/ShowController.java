@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
+import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.Review;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ShowService;
@@ -206,28 +208,32 @@ public class ShowController {
 
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
 		List<RequestShowDto> reviewList = showService.readReviewByShowId(showId);
-		System.out.println(reviewList);
 		if (reviewList == null || reviewList.isEmpty()) {
 			model.addAttribute("reviewList", null);
 		} else {
 			model.addAttribute("reviewList", reviewList);
 		}
+		if (showInfo == null || showInfo.isEmpty()) {
+			throw new CustomRestfullException("현재 상영중이 아닌 공연입니다", HttpStatus.BAD_REQUEST);
+		} else {
+			model.addAttribute("showInfo", showInfo);
+			model.addAttribute("title", showInfo.get(0).getTitle());
+			model.addAttribute("locationId", showInfo.get(0).getLocationId());
+			model.addAttribute("content", showInfo.get(0).getContent());
+			model.addAttribute("imgRoute", showInfo.get(0).getImgRoute());
+			model.addAttribute("startDate", showInfo.get(0).getStartDate());
+			model.addAttribute("endDate", showInfo.get(0).getEndDate());
+			model.addAttribute("admissionAge", showInfo.get(0).getAdmissionAge());
+			model.addAttribute("location", showInfo.get(0).getLocation());
+			model.addAttribute("name", showInfo.get(0).getName());
+			model.addAttribute("content", showInfo.get(0).getContent());
+			model.addAttribute("nickname", showInfo.get(0).getNickname());
+			model.addAttribute("tel", showInfo.get(0).getTel());
+			model.addAttribute("adultRate", showInfo.get(0).getAdultRate());
+			model.addAttribute("infantRate", showInfo.get(0).getInfantRate());
+			model.addAttribute("youthRate", showInfo.get(0).getYouthRate());
+		}
 		model.addAttribute("reviewListSize", reviewList.size());
-		model.addAttribute("showInfo", showInfo);
-		model.addAttribute("title", showInfo.get(0).getTitle());
-		model.addAttribute("content", showInfo.get(0).getContent());
-		model.addAttribute("imgRoute", showInfo.get(0).getImgRoute());
-		model.addAttribute("startDate", showInfo.get(0).getStartDate());
-		model.addAttribute("endDate", showInfo.get(0).getEndDate());
-		model.addAttribute("admissionAge", showInfo.get(0).getAdmissionAge());
-		model.addAttribute("location", showInfo.get(0).getLocation());
-		model.addAttribute("name", showInfo.get(0).getName());
-		model.addAttribute("content", showInfo.get(0).getContent());
-		model.addAttribute("nickname", showInfo.get(0).getNickname());
-		model.addAttribute("tel", showInfo.get(0).getTel());
-		model.addAttribute("adultRate", showInfo.get(0).getAdultRate());
-		model.addAttribute("infantRate", showInfo.get(0).getInfantRate());
-		model.addAttribute("youthRate", showInfo.get(0).getYouthRate());
 
 		return "/show/showView";
 	}
