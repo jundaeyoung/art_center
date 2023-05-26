@@ -92,7 +92,7 @@
 
 	<div class="side--container">
 		<div class="show--img">
-			<img alt="" src="/images/upload/${imgRoute}">
+			<img alt="" src="/images/${imgRoute}">
 		</div>
 		<form action="/ticket/ticketing/${showId}" method="get">
 			<button type="button" onclick="goTicketing(${showId})">예매하기</button>

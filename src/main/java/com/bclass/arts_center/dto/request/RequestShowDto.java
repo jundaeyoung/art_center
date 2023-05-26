@@ -39,7 +39,5 @@ public class RequestShowDto {
 	private String holeName;
 	private String startTime;
 	private String endTime;
-	private String organizerId;
-	private String nickname;
 	
 }

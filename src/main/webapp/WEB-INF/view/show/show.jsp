@@ -32,7 +32,7 @@
 	<div class="highes__rated">
 		<a><button id="highes__rated" >평점 높은순</button></a>
 	</div>
-	<div class="lowest__rated">
+	<div class="lowest__rated" style="border-style: none;">
 		<a><button id="lowest__rated" >평점 낮은순</button></a>
 	</div>
 </div>

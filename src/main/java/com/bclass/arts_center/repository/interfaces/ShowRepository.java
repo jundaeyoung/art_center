@@ -81,6 +81,7 @@ public interface ShowRepository {
 	
 	
 	/**
+	 * 
 	 * 편용림 admin에 공연 예약 전체조회
 	 */
 	public List<RequestShowDto> selectShowInfoAdmin();
@@ -92,13 +93,4 @@ public interface ShowRepository {
 	 */
 	public int updateShowHole(@Param("id")Integer id ,@Param("holeId") Integer holeId);
 	
-	/*
-	 * 편용림 공연 승인
-	 */
-	public int updateShowById(String id);
-
-	/*
-	 * 편용림 공연 승인 거절
-	 */
-	public int deleteShowById(String id);
 }

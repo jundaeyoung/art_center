@@ -24,7 +24,7 @@
 								</c:when>
 								<c:otherwise>
 									<div>
-										<a href="/show/showView/${showList.id}"><img src="images/${showList.imgRoute}" width="480" height="600"></a>
+										<a href="/show/showView/${showList.id}"><img src=<c:url value="images/${showList.imgRoute}"/> width="480" height="600"></a>
 									</div>
 								</c:otherwise>
 							</c:choose>
