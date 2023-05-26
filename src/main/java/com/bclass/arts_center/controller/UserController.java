@@ -248,6 +248,12 @@ public class UserController {
 		
 	}
 	
+	@ResponseBody
+	@GetMapping("idCheck")
+	public int overlappedID(SignUpFormDto dto) {
+		int result = userService.readUserCountByUserName(dto.getUserName());
+		return result;
+	}
 	
-	
+
 }

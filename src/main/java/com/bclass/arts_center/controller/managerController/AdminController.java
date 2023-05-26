@@ -50,6 +50,15 @@ public class AdminController {
 		return "admin/board";
 	}
 	
+	// 작성자 :  편용림 관리자 페이지 로그아웃
+	@GetMapping("/logout")
+	public String AdminLogout() {
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+
 	/*
 	 * 작성자 편용림 : 유저 목록
 	 */

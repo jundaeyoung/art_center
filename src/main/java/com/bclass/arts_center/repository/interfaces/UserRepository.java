@@ -30,8 +30,11 @@ public interface UserRepository {
 	// 닉네임 중복 확인
 	public User selectUserBynickname(String nickname);
 	
-	// 비밀번호 암호화
+	// 아이디 확인
 	public User selectUserByUsername(String userName);
+	
+	// 아이디 중복체크
+	public int selectUserCountByUserName(String userName);
 
 	// 회원가입
 	public int insertUser(SignUpFormDto signUpFormDto);
