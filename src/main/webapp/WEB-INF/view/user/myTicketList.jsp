@@ -4,13 +4,16 @@
 
 <div class="container">
 	<div class="userName">
-		<h1>${principal.nickname}님공연 예매 내역입니다</h1>
+		<h1>${principal.nickname}님공연예매 내역입니다</h1>
 	</div>
 </div>
 <div class="content">
 	<div class="dd">
 		<c:forEach var="myTicketList" items="${myTicketList}">
 			<div class="myTicket">
+				<div>
+				<p></p>
+				</div>
 				<%-- <div class="ticket__approve">
 						<c:choose>
 							<c:when test="${myTicketList.showStatus == 0}">
@@ -21,22 +24,12 @@
 							</c:when>
 						</c:choose>
 					</div> --%>
-				<div class="ticket__info__list">
-					<div>
-						<a href="/myPage/myTicket/${principal.id}"> <img alt="" src="/images/upload/${myTicketList.imgRoute}" class="show__img"></a>
-					</div>
 
-					<div>
-						<div class="show__date">
-							<%-- <p>${myTicketList.startDate}&nbsp;~&nbsp;${myTicketList.endDate}</p> --%>
-						</div>
 						<div class="show__info__ta">
 							<h2>
-								<a href="/myPage/myTicketDetail/${ticketingId}">${myTicketList.title}</a>
+								<a href="/myPage/myTicketDetail/${myTicketList.id}">${myTicketList.title}</a>
 							</h2>
-						<%-- 	<div class="show__age">
-								<p>${myTicketList.admissionAge}</p>
-							</div> --%>
+
 						</div>
 						<%-- <div class="show__btn">
 							<div class="show__schedule">
@@ -46,8 +39,6 @@
 								<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
 							</div>
 						</div> --%>
-					</div>
-				</div>
 			</div>
 		</c:forEach>
 	</div>

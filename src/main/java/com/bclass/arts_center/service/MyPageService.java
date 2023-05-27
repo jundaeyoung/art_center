@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bclass.arts_center.dto.MyTicketDtailDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 import com.bclass.arts_center.repository.interfaces.MyPageRepository;
@@ -44,10 +45,22 @@ public class MyPageService {
 	 * @return ticketList
 	 */
 	@Transactional
-	public List<TicketCheckDto> selectMyTicketList(Integer userId) {
-		
+	public List<TicketCheckDto> readMyTicketList(Integer userId) {
+
 		List<TicketCheckDto> ticketList = myPageRepository.selectMyTicket(userId);
 		return ticketList;
+	}
+
+	
+	/**
+	 * @author 손주이
+	 * @param id
+	 * @return ticketDetail
+	 */
+	public MyTicketDtailDto readMyTicketDetail(Integer id) {
+
+		MyTicketDtailDto ticketDetail = myPageRepository.selectMyTicketDetail(id);
+		return ticketDetail;
 	}
 
 }

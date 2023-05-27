@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bclass.arts_center.dto.MyTicketDtailDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
@@ -68,20 +69,38 @@ public class MyPageController {
 	/**
 	 * @author 손주이
 	 * @param model
-	 * @return myTicketList 페이지 리턴
+	 * @param userId
+	 * @return
 	 */
 	@GetMapping("/myTicket/{userId}")
 	public String selectMyTicket(Model model, @PathVariable Integer userId) {
 
-		List<TicketCheckDto> myTicketList = myPageService.selectMyTicketList(userId);
+		List<TicketCheckDto> myTicketList = myPageService.readMyTicketList(userId);
 		model.addAttribute("myTicketList", myTicketList);
 		return "/user/myTicketList";
 	}
-	
-	@GetMapping("/myTicketDetail/{ticketingId}")
-	public String ticketDetail(@PathVariable Integer ticketingId) {
+
+	/**
+	 * @author 손주이
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/myTicketDetail/{id}")
+	public String ticketDetail(@PathVariable Integer id, Model model) {
 		
-		return "/user/ticketDetail";
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		model.addAttribute("userName", principal.getNickname());
+
+		MyTicketDtailDto ticketInfo = myPageService.readMyTicketDetail(id);
+		System.out.println(ticketInfo);
+		if (ticketInfo == null) {
+			model.addAttribute("ticketInfo", null);
+		} else {
+			model.addAttribute("ticketInfo", ticketInfo);
+		}
+
+		return "/user/myTicketDetail";
 	}
 
 }

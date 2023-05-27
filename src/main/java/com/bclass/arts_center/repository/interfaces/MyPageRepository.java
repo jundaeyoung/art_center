@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.bclass.arts_center.dto.MyTicketDtailDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 
@@ -24,4 +25,7 @@ public interface MyPageRepository {
 	
 	// user 공연 예매 내역 불러오기
 	public List<TicketCheckDto> selectMyTicket(Integer userId);
+	
+	// user 공연 예매 detail
+	public MyTicketDtailDto selectMyTicketDetail(Integer id);
 }
