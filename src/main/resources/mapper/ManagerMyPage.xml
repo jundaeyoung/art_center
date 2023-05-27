@@ -20,10 +20,17 @@
 
 	<select id="selectMyShowDetail"
 		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
-		select *
-		from show_tb as s
-		left join rent_place_reservation_tb as r
-		on s.id = r.show_id
-		where s.id = #{id};
+		<!-- select * from show_tb as s left join rent_place_reservation_tb as 
+			r on s.id = r.show_id where s.id = #{id}; -->
+		SELECT *
+		FROM show_tb AS s
+		JOIN rent_place_reservation_tb AS r
+		ON s.id = r.show_id
+		JOIN hole_tb AS h
+		ON r.hole_id = h.id
+		JOIN location_tb AS l
+		ON h.location_id = l.id
+		WHERE s.id = #{id}
+
 	</select>
 </mapper>

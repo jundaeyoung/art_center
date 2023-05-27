@@ -1,5 +1,6 @@
 package com.bclass.arts_center.dto;
 
+import java.security.Timestamp;
 import java.sql.Time;
 
 import lombok.Data;
@@ -26,10 +27,18 @@ public class MyRegistrationInfoDto {
 	private Time startTime;
 	private Time endTime;
 	private String rentPrice;
+	private Timestamp reservationDate;
 	private Integer userId;
 	private Integer locationId;
 	private Integer rentPlaceStatus;
 	private Integer showId;
+	
+	private String name;
+	private String tel;
+	
+	private String location;
+	private String locationInfo;
+	
 	
 	
 	

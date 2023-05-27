@@ -102,7 +102,7 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
+	<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey="></script>
 	</div>
 
 <script type="text/javascript" src="/js/map.js"></script>
