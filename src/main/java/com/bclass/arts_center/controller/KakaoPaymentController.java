@@ -53,7 +53,6 @@ public class KakaoPaymentController {
 	@GetMapping("/ready")
 	public String readyToKakaoPay(Integer rentId, RedirectAttributes redirectAttributes) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		System.out.println(rentId);
 		if (principal.getRoleId() == 1) {
 			Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
 			KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
