@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.ManagerMyPageRepository">
+
+	<select id="selectMyShow"
+		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+		select *
+		from show_tb as s
+		left join
+		rent_place_reservation_tb as r
+		on s.id = r.show_id
+		where s.organizer_id
+		= #{organizerId}
+		group by s.id
+		order by s.start_date desc
+	</select>
+
+	<select id="selectMyShowDetail"
+		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+		<!-- select * from show_tb as s left join rent_place_reservation_tb as 
+			r on s.id = r.show_id where s.id = #{id}; -->
+		SELECT *
+		FROM show_tb AS s
+		JOIN rent_place_reservation_tb AS r
+		ON s.id = r.show_id
+		JOIN hole_tb AS h
+		ON r.hole_id = h.id
+		JOIN location_tb AS l
+		ON h.location_id = l.id
+		WHERE s.id = #{id}
+
+	</select>
+</mapper>

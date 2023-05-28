@@ -63,6 +63,7 @@
 	height: 150px;
 	border-radius: 10px;
 	margin: 0 20px;
+	border: 1px solid #eee;
 }
 
 .show__info__list {
@@ -90,10 +91,22 @@
 	color: gray;
 }
 
+.show__schedule__btn {
+	display: flex;
+	border: 1px solid #568607;
+	width: 180px;
+	height: 30px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
+	margin-top: 40px;
+	margin-right: 20px;
+}
+
 .show__schedule {
 	display: flex;
 	border: 1px solid #568607;
-	width: 250px;
+	width: 280px;
 	height: 30px;
 	align-items: center;
 	justify-content: center;
@@ -104,11 +117,23 @@
 
 .show__btn {
 	display: flex;
+	margin-top: 10px;
+}
+
+.kakao__img {
+	width: 50px;
+	height: 20px;
+}
+
+.btn__a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 </style>
 	<div class="container">
 		<div class="userName">
-			<h1>${principal.nickname}님공연 신청 내역입니다</h1>
+			<h1>${principal.nickname}님 공연 대관 신청 내역입니다</h1>
 		</div>
 	</div>
 	<div class="content">
@@ -121,12 +146,14 @@
 								<h3 style="color: #ccc; font-weight: bold;">승인대기</h3>
 							</c:when>
 							<c:when test="${myShowList.showStatus == 1}">
-								<h3 style="font-weight: bold;">승인완료</h3>
-								<form action="/kakao/ready?showId=${myShowList.id}" method="post">
-								<button>
-								<img alt="" src="/images/kakao/payment_icon_yellow_medium.png" height="30px">
-								</button>
-								</form>
+								<c:choose>
+								<c:when test="${myShowList.rentPlaceStatus == 1}">
+								<h3 style="font-weight: bold;">승인완료 (결제 완료)</h3>
+								</c:when>
+								<c:when test="${myShowList.rentPlaceStatus == 0}">
+									<h3 style="font-weight: bold;">승인완료 (결제 미완료)</h3>
+								</c:when>
+							</c:choose>
 							</c:when>
 						</c:choose>
 					</div>
@@ -148,15 +175,42 @@
 									<p>${myShowList.admissionAge}</p>
 								</div>
 							</div>
-							<div class="show__btn">
+							<c:choose>
+							<c:when test="${myShowList.showStatus == 0}">
+								<div class="show__btn">
 								<div class="show__schedule">
-									<a href="/manager/schedule/${principal.id}">공연일정
-										보러가기&nbsp;(달력)</a>
+									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
 								</div>
 								<div class="show__schedule">
 									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
 								</div>
 							</div>
+							</c:when>
+							<c:when test="${myShowList.rentPlaceStatus == 0}">
+							<div class="show__btn">
+								<div class="show__schedule__btn">
+									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+								</div>
+								<div class="show__schedule__btn">
+									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
+								</div>
+								<div class="show__schedule__btn">
+									<a href="#" class="btn__a"><img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;결제 하기</a>
+								</div>
+							</div>
+							</c:when>
+							<c:when test="${myShowList.rentPlaceStatus == 1}">
+							<div class="show__btn">
+								<div class="show__schedule">
+									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+								</div>
+								<div class="show__schedule">
+									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
+								</div>
+							</div>
+							</c:when>
+							
+							</c:choose>
 						</div>
 					</div>
 				</div>
