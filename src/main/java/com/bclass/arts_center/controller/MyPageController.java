@@ -57,6 +57,7 @@ public class MyPageController {
 	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
 		
 		List<MyRegistrationInfoDto> myShowList = managerMyPageService.selectMyShow(organizerId);
+		System.out.println(myShowList);
 		model.addAttribute("myShowList",myShowList);
 		
 		return "/user/myShow";
