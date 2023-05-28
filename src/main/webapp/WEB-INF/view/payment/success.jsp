@@ -12,8 +12,6 @@
 		<h3>상품명 :</h3><p>${kakaoApprove.itemName}</p>
 		<h3>결제 금액 :</h3><p>${kakaoApprove.amount.total}</p>
 		<h3>결제 방법 :</h3><p>${kakaoApprove.paymentMethodType}</p>
-
-
 	</div>
 
 

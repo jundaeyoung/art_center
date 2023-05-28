@@ -5,10 +5,15 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
 
+	<!-- 작성자 : 편용림 rent table join해서 수정 -->
 	<select id="selectMyShow"
 		resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
-		select * from show_tb where organizer_id = #{organizerId}
-		order by start_date desc;
+		select s.*, r.id AS rentId
+		from show_tb AS s
+		JOIN rent_place_reservation_tb AS r
+		ON s.id = r.show_id
+		where s.organizer_id = #{organizerId}
+		order by s.start_date desc;
 	</select>
 
 	<select id="selectMyShowDetail"

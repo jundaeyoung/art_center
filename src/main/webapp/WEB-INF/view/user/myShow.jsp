@@ -122,7 +122,7 @@
 							</c:when>
 							<c:when test="${myShowList.showStatus == 1}">
 								<h3 style="font-weight: bold;">승인완료</h3>
-								<form action="/kakao/ready?showId=${myShowList.id}" method="post">
+								<form action="/kakao/ready?rentId=${myShowList.rentId}" method="post">
 								<button>
 								<img alt="" src="/images/kakao/payment_icon_yellow_medium.png" height="30px">
 								</button>

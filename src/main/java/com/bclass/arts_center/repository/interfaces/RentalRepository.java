@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
+import com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto;
 
 /**
  * 
@@ -34,4 +35,6 @@ public interface RentalRepository {
 	public List<RequestRentPlaceDto> selectByDateAndLocation(RequestRentPlaceDto requestRentPlaceDto);
 	
 	public List<RequestHoleDto> selectByTime2(Integer id);
+	
+	public RequestRentPlaceReservationDto selectRentPlaceReservationById(Integer id);
 }

@@ -21,7 +21,7 @@ public class RequestSignUpShowDto {
 	private Integer holeId;
 	private Integer showTypeId;
 	private Integer showStatus;
-
+	private Integer rentId;
 
 	private MultipartFile file;
 

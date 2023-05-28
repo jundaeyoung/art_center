@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoReadyResponse;
@@ -49,16 +51,25 @@ public class KakaoPaymentController {
 	private RentPlaceReservationService rentPlaceReservationService;
 
 	@PostMapping("/ready")
-	public String readyToKakaoPay() {
-
-		Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
-		KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
-		return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
+	public String readyToKakaoPay(Integer rentId, RedirectAttributes redirectAttributes) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		System.out.println(rentId);
+		if (principal.getRoleId() == 1) {
+			Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
+			KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
+			return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
+			
+		}else if(principal.getRoleId() == 2) {
+			KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady2(rentId);
+			session.setAttribute("rentId", rentId);
+			return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
+		}
+		
+		return null;
 	}
 
 	@GetMapping("/success")
-	public String success(@RequestParam("pg_token") String pgToken, Integer showId, Model model) {
-
+	public String success(@RequestParam("pg_token") String pgToken, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		KakaoApprovalResponse kakaoApprove = kakaoPaymentService.kakaoApprove(pgToken);
 		model.addAttribute("kakaoApprove", kakaoApprove);
@@ -83,14 +94,16 @@ public class KakaoPaymentController {
 			ManagerPayment managerPayment = new ManagerPayment();
 			managerPayment.setManagerId(principal.getId());
 			managerPayment.setMPaymentId(kakaoApprove.getTid());
+			managerPayment.setPaymentOption(kakaoApprove.getPaymentMethodType());
 			managerPayment.setPaymentDate(kakaoApprove.getApprovedAt());
 			// 여기에 렌트 예약한 id 받을 예정
-			managerPayment.setRentId(1);
-
+			Integer rentId = (Integer) session.getAttribute("rentId");
+			managerPayment.setRentId(rentId);
 			// 렌트 아이디 받아가지고 status 업데이트
-			rentPlaceReservationService.updateRentPlaceReservation(1);
+			rentPlaceReservationService.updateRentPlaceReservation(rentId);
 			paymentService.createManagerPayment(managerPayment);
-
+			session.invalidate();
+			return "/payment/success";
 		}
 
 		return "/payment/success";
