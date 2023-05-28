@@ -68,7 +68,7 @@
 		</form>
 	</div>
 </div>
-<div class="sumdiv">
+<div class="sumdiv" style="margin-bottom: 50px;">
 	<div class="sum">
 		<h3></h3>
 		<h3>매 출 :</h3>
@@ -76,7 +76,7 @@
 		<h3></h3>
 	</div>
 </div>
-<div id="chart_div" style="height: 300px;"></div>
+    <div id="columnchart_material" style="width: 1200px; height: 800px;margin-left: 150px;"></div>
 <div>
 	<div class="show">
 		<c:forEach var="showList" items="${showList}">
@@ -171,25 +171,47 @@ $(document).ready(function() {
     	url: '/apiShowSale/manager/showSale',
   	    contentType: 'application/json; charset=utf-8',
   }).done(function(response) {
-	google.charts.load('current', {
-		packages : [ 'corechart', 'bar' ]
-	});
+	  google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
-	google.charts.setOnLoadCallback(drawBasic);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['title', '성인 ', '청소년 수','총 수'],
+          [response[0].title, response[0].adultCount, response[0].youthCount,response[0].adultCount+response[0].youthCount],
+        ]);
+          for(var i=1; i<response.length;i++){
+        	data.addRows([
+         	 [response[i].title, response[i].adultCount, response[i].youthCount,response[i].adultCount+response[i].youthCount],
+            ]);
+          }
 
-	function drawBasic() {
-		var data = new google.visualization.DataTable();
+        var options = {
+          chart: {
+            title: '공연별 방문자 현황',
+          },
+	        bar : {
+	    		groupWidth : '300%' // 예제에서 이 값을 수정
+	    	},
+	    	fontSize: 30	,
+	    	
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+		      
+		      
+		/* var data = new google.visualization.arrayToDataTable([
 		data.addColumn('string', '요일');
 		data.addColumn('number', '방문자수(명)');
 		for(var i=0; i<response.length;i++){
-	console.log("DDD");
-			console.log(i);
 			data.addRows([
-			[ response[i].title, 2 ],
+			[ response[i].title, response[i].adultCount ],
+			[ response[i].title, response[i].youthCount ],
 			]);
 		}
 		var options = {
-			title : '이번주 일별 방문자 현황',
+			title : '공연별 방문자 현황',
 			hAxis : {
 				title : '요일',
 				viewWindow : {
@@ -200,7 +222,8 @@ $(document).ready(function() {
 			vAxis : {
 				title : '방문자수(명)'
 			}
-		};
+			isStacked: true,
+		}; */
 		var chart = new google.visualization.ColumnChart(
 		document.getElementById('chart_div'));
 		chart.draw(data, options);
