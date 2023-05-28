@@ -53,7 +53,6 @@ public class KakaoPaymentController {
 	@GetMapping("/ready")
 	public String readyToKakaoPay(Integer rentId, RedirectAttributes redirectAttributes) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		System.out.println(rentId);
 		if (principal.getRoleId() == 1) {
 			Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
 			KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
@@ -87,7 +86,6 @@ public class KakaoPaymentController {
 			System.out.println(payment);
 			ticketService.updateTicketStatus(principal.getId(), sessionTicketingId);
 			paymentService.createPayment(payment);
-			session.invalidate();
 
 		} else if (principal.getRoleId() == 2) {
 
@@ -102,7 +100,6 @@ public class KakaoPaymentController {
 			// 렌트 아이디 받아가지고 status 업데이트
 			rentPlaceReservationService.updateRentPlaceReservation(rentId);
 			paymentService.createManagerPayment(managerPayment);
-			session.invalidate();
 			return "/payment/success";
 		}
 

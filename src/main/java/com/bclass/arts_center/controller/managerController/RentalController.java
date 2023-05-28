@@ -138,17 +138,7 @@ public class RentalController {
 		
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
-		try {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter w = response.getWriter();
-			String msg = "공연신청이 완료되었습니다.";
-			w.write("<script>alert('" + msg + "');location.href='/';</script>");
-			w.flush();
-			w.close();
-			return "/payment/payment";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 
 		String dtoStartDate = requestRentPlaceDto.getStartDate().replaceAll("-", "");
 		String startDate = dtoStartDate.replaceAll(" ", "");
@@ -174,6 +164,17 @@ public class RentalController {
 			} else {
 				break;
 			}
+		}
+		try {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter w = response.getWriter();
+			String msg = "공연신청이 완료되었습니다.";
+			w.write("<script>alert('" + msg + "');location.href='/';</script>");
+			w.flush();
+			w.close();
+			return "/payment/payment";
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "/main";
 	}
