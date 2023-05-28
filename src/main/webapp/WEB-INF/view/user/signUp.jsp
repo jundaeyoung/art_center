@@ -50,8 +50,8 @@
 								<i class="material-icons">person_outline</i> <input type="text"
 									placeholder="아이디를 입력하세요" name="userName" id="userName"
 									class="info"><br>
-								<button id="overlappedID" type="button">중복확인</button><br>
-									<span id="olmessage"></span>
+								<button id="overlappedID" type="button">중복확인</button>
+								<br> <span id="olmessage"></span>
 							</div>
 							<span class="error--messege" th:if="${valid_userName}">${valid_userName}</span>
 							<br>
@@ -76,23 +76,24 @@
 					<br>
 					<div id="ipw" class="email">
 						<p>이메일 :</p>
-						<i class="material-icons">mail_outline</i> <input type="email"
+						<i class="material-icons"style="margin-left: 450px;">mail_outline</i> <input type="email"
 							placeholder="이메일을 입력하세요" name="email" id="email" class="info"><br>
-						<button type="button" id="checkEmail" style="margin-left: 80px;">이메일 인증</button>
+						<button type="button" id="checkEmail" style="margin-left: 10px;">이메일
+							인증</button>
 					</div>
 					<span class="error--messege" th:if="${valid_email}">${valid_email}</span>
 					<br>
 					<div id="ipw" class="email">
 						<p>인증번호 :</p>
-						<i class="material-icons">mail_outline</i> <input type="text"
+						<i class="material-icons"style="margin-left: 450px;">mail_outline</i> <input type="text"
 							placeholder="이메일 인증번호를 입력하세요" name="text" id="emailCheck"
 							class="info"><br>
 						<button type="button" id="checkEmailNumber"
-							style="margin-left: 60px;">이메일 인증</button>
+							style="margin-left: 10px;">이메일 인증</button>
 					</div>
 					<span class="error--messege" th:if="${valid_email}">${valid_email}</span>
 					<br>
-					<div id="ipw">
+					<div id="ipw" style="margin-top: 30px;">
 						<div class="field birth">
 							<br>
 							<div class="birthDate">
@@ -141,11 +142,12 @@
 </div>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$(".login").attr("disabled", true),
-		$(".login").css("background-color","#ccc");
-		
-	});
+	$(document).ready(
+			function() {
+				$(".login").attr("disabled", true), $(".login").css(
+						"background-color", "#ccc");
+
+			});
 
 	function save() {
 		var year = document.getElementById("year").value;
@@ -163,60 +165,105 @@
 		$(this).find('form')[0].reset()
 	});
 
-	$("#checkEmail").click(function() {
-		let userEmail = $("#email").val();
-		if (userEmail.length < 5) {
-			alert("잘못된 이메일 형식입니다.")
-			return false;
-		}
-		$.ajax({
-			type : "GET",
-			url : "/user/check/findEmail",
-			data : {
-				"userEmail" : userEmail
-			},
-			success : function(res) {
-				if (res['check']) {
-					if ('check') {
-						alert("발송 완료!", "입력하신 이메일로 인증번호가 발송되었습니다.", "success")
-					}
-					if ('check') {
-						$.ajax({
-							type : "POST",
-							url : "/user/check/email/sendEmail",
-							data : {
-								"userEmail" : userEmail
-							},
-							success : function(res) {
-								console.log(res);
-								$("#checkEmailNumber").click(function() {
-									let checkCode = $("#emailCheck").val()
-									if (res == checkCode ) {
-										alert("인증 되었습니다.")
-										$('.info').on('keyup',function(){
-											if($("#userName").val().length>3&&$("#password").val().length>3&&$("#nickname").val().length>3) {
-												if($("#year").val().length>0&&$("#month").val().length>0&&$("#day").val().length>0&&$("#tel").val().length>10){
-													$(".login").attr("disabled", false),
-													$(".login").css("background-color","rgb(255, 80, 90)")
-												}
+	$("#checkEmail")
+			.click(
+					function() {
+						let userEmail = $("#email").val();
+						if (userEmail.length < 5) {
+							alert("잘못된 이메일 형식입니다.")
+							return false;
+						}
+						$
+								.ajax({
+									type : "GET",
+									url : "/user/check/findEmail",
+									data : {
+										"userEmail" : userEmail
+									},
+									success : function(res) {
+										if (res['check']) {
+											if ('check') {
+												alert(
+														"발송 완료!",
+														"입력하신 이메일로 인증번호가 발송되었습니다.",
+														"success")
 											}
-										});
-									} else {
-										alert("인증번호가 일치하지 않습니다.")
-									}
-								});
-							}
-						});
-					}
+											if ('check') {
+												$
+														.ajax({
+															type : "POST",
+															url : "/user/check/email/sendEmail",
+															data : {
+																"userEmail" : userEmail
+															},
+															success : function(
+																	res) {
+																console
+																		.log(res);
+																$(
+																		"#checkEmailNumber")
+																		.click(
+																				function() {
+																					let checkCode = $(
+																							"#emailCheck")
+																							.val()
+																					if (res == checkCode) {
+																						alert("인증 되었습니다.")
+																						$(
+																								'.info')
+																								.on(
+																										'keyup',
+																										function() {
+																											if ($(
+																													"#userName")
+																													.val().length > 3
+																													&& $(
+																															"#password")
+																															.val().length > 3
+																													&& $(
+																															"#nickname")
+																															.val().length > 3) {
+																												if ($(
+																														"#year")
+																														.val().length > 0
+																														&& $(
+																																"#month")
+																																.val().length > 0
+																														&& $(
+																																"#day")
+																																.val().length > 0
+																														&& $(
+																																"#tel")
+																																.val().length > 10) {
+																															$(
+																																	".login")
+																																	.attr(
+																																			"disabled",
+																																			false),
+																															$(
+																																	".login")
+																																	.css(
+																																			"background-color",
+																																			"rgb(255, 80, 90)")
+																												}
+																											}
+																										});
+																					} else {
+																						alert("인증번호가 일치하지 않습니다.")
+																					}
+																				});
+															}
+														});
+											}
 
-					$('#checkMsg').html('<p style="color:darkblue"></p>');
-				} else {
-					alert("해당이메일이 존재합니다.", "success")
-				}
-			}
-		})
-	})
-	
-	
+											$('#checkMsg')
+													.html(
+															'<p style="color:darkblue"></p>');
+										} else {
+											alert("해당이메일이 존재합니다.", "success")
+										}
+									}
+								})
+					})
 </script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

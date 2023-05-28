@@ -135,10 +135,10 @@ user__type {
 			<table class="user__type">
 				<tr>
 					<td class="user__ticket">
- 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}'">공연 대관 내역</button>
+ 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}'">공연내역</button>
 					</td>
 					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='#'">환불내역</button>
+						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='#'">대관내역</button>
 					</td>
 					<td class="user__ticket">
 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>

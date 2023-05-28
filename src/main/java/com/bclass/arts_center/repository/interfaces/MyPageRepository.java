@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 
 /**
@@ -14,11 +13,11 @@ import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
  */
 
 @Mapper
-public interface ManagerMyPageRepository {
+public interface MyPageRepository {
 
 	// 공연예약 불러오기
-	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId);
+	public List<RequestSignUpShowDto> selectMyShow(Integer organizerId);
 	
 	// 공연예약 detail
-	public List<MyRegistrationInfoDto> selectMyShowDetail(Integer id);
+	public List<RequestSignUpShowDto> selectMyShowDetail(Integer id);
 }

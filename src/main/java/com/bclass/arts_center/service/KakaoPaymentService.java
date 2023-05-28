@@ -1,6 +1,5 @@
 package com.bclass.arts_center.service;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,13 +16,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.payment.AdminKeyDto;
-import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoReadyResponse;
+import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
-import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
-import com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto;
 import com.bclass.arts_center.repository.interfaces.PaymentRepository;
-import com.bclass.arts_center.repository.interfaces.RentalRepository;
 import com.bclass.arts_center.repository.interfaces.TicketRepository;
 
 /**
@@ -39,9 +35,6 @@ public class KakaoPaymentService {
 
 	@Autowired
 	private TicketRepository ticketRepository;
-	
-	@Autowired
-	private RentalRepository rentalRepository;
 
 	private static final String cid = "TC0ONETIME";
 
@@ -105,51 +98,6 @@ public class KakaoPaymentService {
 		this.tid = response.getBody().getTid();
 		return response.getBody();
 	}
-	
-	@Transactional
-	public KakaoReadyResponse kakaoReady2(Integer rentId) {
-		
-		RequestRentPlaceReservationDto rentPlaceReservation
-		= rentalRepository.selectRentPlaceReservationById(rentId);
-		String userBirth = rentPlaceReservation.getBirthDate();
-		String replaceuserBirth = userBirth.replaceAll("-", "");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Date now = new Date();
-		String nowDate = sdf.format(now);
-		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
-		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
-		int userAge = startMonth2 - startMonth1;
-		String price = rentPlaceReservation.getRentPrice();
-		String rentPrice = price.replace(",", "");
-		RestTemplate restTemplate = new RestTemplate();
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK " + ADMIN_KEY.getAdminKey());
-		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-
-		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-		params.add("cid", cid);
-		params.add("partner_order_id", "partner_order_id");
-		params.add("partner_user_id", "partner_user_id");
-
-		params.add("item_name", rentPlaceReservation.getLocation() + " " + rentPlaceReservation.getName() 
-		+ "(공연 : " +rentPlaceReservation.getTitle()+")");
-		params.add("quantity", "1");
-		params.add("total_amount", rentPrice);
-		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://localhost:8080/kakao/success");
-		params.add("cancel_url", "http://localhost:8080/kakao/cancel");
-		params.add("fail_url", "http://localhost:8080/kakao/fail");
-
-		HttpEntity<MultiValueMap<String, String>> kakaoRequestEntity = new HttpEntity<>(params, headers);
-
-		ResponseEntity<KakaoReadyResponse> response = restTemplate.exchange("https://kapi.kakao.com/v1/payment/ready",
-				HttpMethod.POST, kakaoRequestEntity, KakaoReadyResponse.class);
-
-		this.tid = response.getBody().getTid();
-		return response.getBody();
-	}
-	
 
 	/**
 	 * 결제 요청

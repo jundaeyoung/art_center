@@ -138,17 +138,8 @@ public class RentalController {
 		
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
-		try {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter w = response.getWriter();
-			String msg = "공연신청이 완료되었습니다.";
-			w.write("<script>alert('" + msg + "');location.href='/';</script>");
-			w.flush();
-			w.close();
-			return "/payment/payment";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println("Ddd");
+		
 
 		String dtoStartDate = requestRentPlaceDto.getStartDate().replaceAll("-", "");
 		String startDate = dtoStartDate.replaceAll(" ", "");
@@ -165,15 +156,28 @@ public class RentalController {
 		startCal.set(startYear, startMonth - 1, startDay);
 		Calendar endCal = Calendar.getInstance();
 		endCal.set(endYear, endMonth - 1, endDay);
+		System.out.println("DDDD"+requestRentPlaceDto);
 		while (true) {
 			if (getDateByInteger(startCal.getTime()) <= getDateByInteger(endCal.getTime())) {
 				startCal.add(Calendar.DATE, 1);
 				requestRentPlaceDto.setStartDate(getDateByString(startCal.getTime()));
 				requestRentPlaceDto.setEndDate(getDateByString(endCal.getTime()));
+				System.out.println(requestRentPlaceDto+"DDDDDD");
 				showService.createShowDateTime(requestRentPlaceDto);
 			} else {
 				break;
 			}
+		}
+		try {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter w = response.getWriter();
+			String msg = "공연신청이 완료되었습니다.";
+			w.write("<script>alert('" + msg + "');location.href='/';</script>");
+			w.flush();
+			w.close();
+			return "/payment/payment";
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return "/main";
 	}
