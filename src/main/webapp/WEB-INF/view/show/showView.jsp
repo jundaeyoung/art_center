@@ -249,7 +249,7 @@ select option {
 							<button type="button" onclick="goTicketing(${showId})">예매하기</button>
 						</c:when>
 						<c:otherwise>
-								<button type="button" onclick="goTicketing(${showId})">예매하기</button>
+							<button type="button" onclick="goTicketing(${showId})">예매하기</button>
 						</c:otherwise>
 					</c:choose>
 
@@ -305,6 +305,11 @@ $(document).ready(function() {
 		  $(".show--introduction--content").append(content);
 	  });
 	  $(".show--review--button").on("click", function() {
+		  $.ajax({
+	        	type: 'get',
+	        	url: '/apiShow/showView/${showId}',
+	      	    contentType: 'application/json; charset=utf-8',
+	      }).done(function(response) {
 		  $(".show--introduction--content").empty();
 		  if(${reviewListSize} < 1){
 			  var content = `<p>등록된 리뷰가 없습니다.</p>`;
@@ -312,17 +317,18 @@ $(document).ready(function() {
 		  }else{
 		  	  var content = `<h2>리뷰</h2>`;
 		  	  $(".show--introduction--content").append(content);
-		  		for(var i = 0; i< ${reviewListSize}; i++) {
-		  			var content = `<div>
-		  						   <p>작성일 : ${reviewList.get(i).reviewCreationDate}</p>
-		  						   <p>내용 : ${reviewList.get(i).content}</p>
-		  						   <p>평점 : ${reviewList.get(i).rating}</p>
+		  		for(let i = 0; i< response.length; i++) {
+ 		  			var content = `<div>
+		  						   <p>작성일 : `+response[i].reviewCreationDate+`</p>
+		  						   <p>내용 : `+ response[i].content+`</p>
+		  						   <p>평점 : `+ response[i].rating +`</p>
 		  						   </div>
 		  							`;
-		  			$(".show--introduction--content").append(content);
+ 		  			$(".show--introduction--content").append(content);
 				  }
 		  }
 	  });
+});
 });
 </script>
 

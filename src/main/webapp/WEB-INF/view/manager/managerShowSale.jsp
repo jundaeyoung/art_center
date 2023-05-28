@@ -15,9 +15,9 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
 
 <div class="show__header"></div>
 <div class="signUpShow__content" style="margin-left: -60px;">
@@ -76,6 +76,7 @@
 		<h3></h3>
 	</div>
 </div>
+<div id="chart_div" style="height: 300px;"></div>
 <div>
 	<div class="show">
 		<c:forEach var="showList" items="${showList}">
@@ -161,6 +162,56 @@
 		</c:forEach>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$.ajax({
+    	type: 'get',
+    	url: '/apiShowSale/manager/showSale',
+  	    contentType: 'application/json; charset=utf-8',
+  }).done(function(response) {
+	google.charts.load('current', {
+		packages : [ 'corechart', 'bar' ]
+	});
+
+	google.charts.setOnLoadCallback(drawBasic);
+
+	function drawBasic() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', '요일');
+		data.addColumn('number', '방문자수(명)');
+		for(var i=0; i<response.length;i++){
+	console.log("DDD");
+			console.log(i);
+			data.addRows([
+			[ response[i].title, 2 ],
+			]);
+		}
+		var options = {
+			title : '이번주 일별 방문자 현황',
+			hAxis : {
+				title : '요일',
+				viewWindow : {
+					min : [ 7, 30, 0 ],
+					max : [ 17, 30, 0 ]
+				}
+			},
+			vAxis : {
+				title : '방문자수(명)'
+			}
+		};
+		var chart = new google.visualization.ColumnChart(
+		document.getElementById('chart_div'));
+		chart.draw(data, options);
+
+	}
+  });
+});
+</script>
+
+
+
 
 <script type="text/javascript">
 	$(function() {

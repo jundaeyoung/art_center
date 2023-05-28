@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.request.RequestShowDto;
+import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.service.ShowService;
 
 @RestController
@@ -82,6 +84,13 @@ public class ShowApiController {
 		Integer page = (int) Math.ceil(count / 3);
 		showList.get(0).setCount(page);
 		return showList;
+	}
+	
+	@GetMapping("/showView/{showId}")
+	public List<RequestShowDto> showView(@PathVariable Integer showId) {
+
+		List<RequestShowDto> reviewList = showService.readReviewByShowId(showId);
+		return reviewList;
 	}
 
 }

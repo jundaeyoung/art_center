@@ -802,7 +802,7 @@ $(document).ready(function() {
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage==null}">
+				<c:when test="${currentPage==page || currentPage<=1}">
 				</c:when>
 				<c:otherwise>
 					<a href="/show/categoryShow?category=${message}&currentPage=${page}&type=${type}&begin=${3*(page-1)}&range=3"><p>></p></a>

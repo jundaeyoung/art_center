@@ -52,6 +52,7 @@ public class ManagerShowSaleController {
 			}
 			df.format(sum);
 			model.addAttribute("showList", selectCount);
+			model.addAttribute("showListSize", selectCount.size());
 			model.addAttribute("sum", df.format(sum));
 		}
 		return "/manager/managerShowSale";
