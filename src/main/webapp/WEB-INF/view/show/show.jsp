@@ -72,8 +72,6 @@ $(document).ready(function() {
 	    	  let divH2Content = ("공연")
 	    	  divH2.append(divH2Content);
 	    	  
-	    	  
-	    	  
 				$(".show").empty(); 
 					console.log(response);
 					for(let i = 0; i < response.length; i++) {
@@ -146,7 +144,7 @@ $(document).ready(function() {
 						tagPageP1.append(value1);
 	      			}
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("등록된 공연이 없습니다.");
 			}); 
 		});
 	  
@@ -253,7 +251,7 @@ $(document).ready(function() {
 						tagPageP1.append(value1);
 	      			}
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("등록된 공연이 없습니다.");
 			}); 
 		});
 	  
@@ -360,7 +358,7 @@ $(document).ready(function() {
 	      			}
 					
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("등록된 공연이 없습니다.");
 			}); 
 		});
 	  
@@ -470,7 +468,7 @@ $(document).ready(function() {
 						tagPageP1.append(value1);
 	      			}
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("등록된 공연이 없습니다.");
 			}); 
 		});
 	$("#highes__rated").on("click", function() {
@@ -571,7 +569,7 @@ $(document).ready(function() {
 		      			}
 						
 					}).fail(function(error) {
-						alert("서버오류");
+						alert("등록된 공연이 없습니다.");
 					}); 
 				});
 			$("#lowest__rated").on("click", function() {
@@ -673,7 +671,7 @@ $(document).ready(function() {
 								tagPageP1.append(value1);
 			      			}
 					}).fail(function(error) {
-						alert("서버오류");
+						alert("등록된 공연이 없습니다.");
 					}); 
 				});
 				});
@@ -727,7 +725,7 @@ $(document).ready(function() {
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage==null}">
+				<c:when test="${currentPage==page || currentPage<=1}">
 				</c:when>
 				<c:otherwise>
 					<a href="/review/newestReview?currentPage=${page}&type=${type}&begin=${3*(page-1)}&range=3"><p>></p></a>
@@ -752,7 +750,7 @@ $(document).ready(function() {
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage==null}">
+				<c:when test="${currentPage==page || currentPage<=1}">
 				</c:when>
 				<c:otherwise>
 					<a href="/review/highesRatedShow?currentPage=${page}&type=${type}&begin=${3*(page-1)}&range=3"><p>></p></a>
@@ -777,7 +775,7 @@ $(document).ready(function() {
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage==null}">
+				<c:when test="${currentPage==page || currentPage<=1}">
 				</c:when>
 				<c:otherwise>
 					<a href="/show/rowestRatedShow?currentPage=${page}&type=${type}&begin=${3*(page-1)}&range=3"><p>></p></a>

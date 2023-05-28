@@ -95,6 +95,12 @@ i {
 	justify-content: center;
 	align-items: center;
 }
+#imail i{
+	margin-left: 460px;
+}
+#ipw i{
+	margin-left: 560px;
+}
 #ipw button{
 	width: 100px;
 	height: 50px;
@@ -105,11 +111,11 @@ i {
 	border-radius: 5px;
 }
 
-.email {
-	margin-left: 70px;
-}
 .email button{
 	margin-left: 50px;
+}
+#overlappedID{
+	margin-left: 10px;
 }
 #email {
 	display: flex;
@@ -197,24 +203,47 @@ a:hover {
 	font-size: 15px;
 }
 
-.birthDate {
-	margin-left: -50px;
+.field birth {
+	margin-top: 210px;
 }
 
 .content {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-left:400px;
+	width: 1000px;
+}
+.content div{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex
+}
+.content div p{
+	width: 100px;
+}
+.content div input{
+	width: 500px;
+}
+.content div select{
+	width: 500px;
 }
 
 input, select {
 	font-size: 20px;
 }
-
+#year{
+	width: 150px;
+	margin-left: -14px;
+}
 #month {
 	height: 56px;
-	width: 120px;
+	width: 150px;
+}
+#day{
+	width: 150px;
 }
 
 .login {
