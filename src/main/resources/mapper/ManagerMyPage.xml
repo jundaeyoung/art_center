@@ -5,6 +5,7 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.ManagerMyPageRepository">
 
+	<!-- 김미정: 공연,대관예약 정보 불러오기 -->	
 	<select id="selectMyShow"
 		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
 		select *, r.id AS rentId
@@ -18,6 +19,7 @@
 		order by s.start_date desc
 	</select>
 
+	<!-- 김미정 : 공연,대관예약 detail정보 불러오기 -->
 	<select id="selectMyShowDetail"
 		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
 		<!-- select * from show_tb as s left join rent_place_reservation_tb as 
