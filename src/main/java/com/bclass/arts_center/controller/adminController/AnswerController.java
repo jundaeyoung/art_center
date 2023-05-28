@@ -17,6 +17,8 @@ import com.bclass.arts_center.service.QuestionService;
 @Controller
 @RequestMapping("/answer")
 public class AnswerController {
+	
+	
 
 	@Autowired
 	private AnswerService answerService;
