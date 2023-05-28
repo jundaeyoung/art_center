@@ -91,7 +91,7 @@
 	color: gray;
 }
 
-.show__schedule__payment {
+.show__schedule__btn {
 	display: flex;
 	border: 1px solid #568607;
 	width: 180px;
@@ -119,10 +119,21 @@
 	display: flex;
 	margin-top: 10px;
 }
+
+.kakao__img {
+	width: 50px;
+	height: 20px;
+}
+
+.btn__a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 </style>
 	<div class="container">
 		<div class="userName">
-			<h1>${principal.nickname}님공연 신청 내역입니다</h1>
+			<h1>${principal.nickname}님 공연 대관 신청 내역입니다</h1>
 		</div>
 	</div>
 	<div class="content">
@@ -177,14 +188,14 @@
 							</c:when>
 							<c:when test="${myShowList.rentPlaceStatus == 0}">
 							<div class="show__btn">
-								<div class="show__schedule__payment">
+								<div class="show__schedule__btn">
 									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
 								</div>
-								<div class="show__schedule__payment">
+								<div class="show__schedule__btn">
 									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
 								</div>
-								<div class="show__schedule__payment">
-									<a href="#">결제 하기</a>
+								<div class="show__schedule__btn">
+									<a href="#" class="btn__a"><img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;결제 하기</a>
 								</div>
 							</div>
 							</c:when>

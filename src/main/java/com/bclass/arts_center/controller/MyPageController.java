@@ -34,6 +34,10 @@ public class MyPageController {
 	@Autowired
 	private ManagerMyPageService managerMyPageService;
 	
+	/**
+	 * 마이페이지 
+	 * @param 김미정
+	 */
 	@GetMapping("/info")
 	public String myPage(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -45,6 +49,10 @@ public class MyPageController {
 		return "/user/myPage";
 	}
 	
+	/**
+	 * 공연 대관 내역 보기
+	 * @param 김미정
+	 */
 	@GetMapping("/myShow/{organizerId}")
 	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
 		
@@ -54,10 +62,13 @@ public class MyPageController {
 		return "/user/myShow";
 	}
 	
+	/**
+	 * 공연, 대관 예약 상세보기 
+	 * @param 김미정
+	 */
 	@GetMapping("/showDetail/{id}")
 	public String selectMyShowDetail(Model model, @PathVariable Integer id) {
 		List<MyRegistrationInfoDto> detailList = managerMyPageService.selectMyShowDetail(id);
-		System.out.println(detailList);
 		model.addAttribute("detailList",detailList);
 		return "/user/myShowDetail";
 	}
