@@ -7,7 +7,7 @@
 
 	<select id="selectMyShow"
 		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
-		select *
+		select *, r.id AS rentId
 		from show_tb as s
 		left join
 		rent_place_reservation_tb as r

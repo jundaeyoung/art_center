@@ -195,7 +195,7 @@
 									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
 								</div>
 								<div class="show__schedule__btn">
-									<a href="#" class="btn__a"><img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;결제 하기</a>
+									<a href="/kakao/ready?rentId=${myShowList.rentId}" class="btn__a"><img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;결제 하기</a>
 								</div>
 							</div>
 							</c:when>

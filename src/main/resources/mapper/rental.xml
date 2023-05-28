@@ -5,6 +5,23 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.RentalRepository">
 
+<!-- 작성자 : 편용림 대관 예약 정보 조회 (id) -->
+	<select id="selectRentPlaceReservationById"
+		resultType="com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto">
+		SELECT r.*, h.name, l.location, u.nickname, u.birth_date, s.youth_rate, s.adult_rate, s.title
+		from rent_place_reservation_tb AS r
+		JOIN hole_tb AS h
+		ON r.hole_id = h.id
+		JOIN location_tb AS l
+		ON r.location_id = l.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		WHERE r.id = #{id};
+	</select>
+
+
 	<select id="selectByLocation"
 		resultType="com.bclass.arts_center.dto.request.RequestHoleDto">
 		SELECT l.id, l.location, h.name, h.price, MIN(h.id) AS

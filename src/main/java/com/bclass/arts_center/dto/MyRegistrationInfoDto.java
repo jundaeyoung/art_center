@@ -38,7 +38,7 @@ public class MyRegistrationInfoDto {
 	
 	private String location;
 	private String locationInfo;
-	
+	private String rentId;
 	
 	
 	
