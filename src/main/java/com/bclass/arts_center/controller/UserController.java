@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -64,7 +65,15 @@ public class UserController {
 
 	// 회원가입 페이지
 	@GetMapping("/signUp")
-	public String singUp() {
+	public String signUp() {
+		
+		return "/user/signUpchoice";
+	}
+	
+	@GetMapping("/signUpchoice")
+	public String signUpchoice(Integer roleId, Model model) {
+		System.out.println(roleId);
+		model.addAttribute("roleId", roleId);
 		return "/user/signUp";
 	}
 
@@ -143,7 +152,7 @@ public class UserController {
 		}
 
 		if (errors.hasErrors()) {
-
+			
 			Map<String, String> validatorResult = userService.validateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
@@ -151,7 +160,7 @@ public class UserController {
 
 			return "/user/signUp";
 		}
-		System.out.println(signUpFormDto.getApiId());
+		System.out.println(signUpFormDto);
 		userService.createUser(signUpFormDto);
 		return "redirect:/";
 	}
@@ -248,12 +257,16 @@ public class UserController {
 		
 	}
 	
-	@ResponseBody
-	@GetMapping("idCheck")
-	public int overlappedID(SignUpFormDto dto) {
-		int result = userService.readUserCountByUserName(dto.getUserName());
-		return result;
-	}
+	@RequestMapping("/idcheck")
+    @ResponseBody
+    public Map<Object, Object> idcheck(@RequestBody String userid) {
+        
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        count = userService.readUserCountByUserName(userid);
+        map.put("cnt", count);
+        return map;
+    }
 	
 
 }
