@@ -29,7 +29,7 @@
 		SELECT * 
 		FROM payment_tb AS p
         JOIN ticketing_tb AS t
-        ON p.ticketing1_id = t.id
+        ON p.ticketing_id = t.id
 		JOIN show_tb AS s
 		ON t.show_id = s.id
         LEFT JOIN seat_tb AS st
