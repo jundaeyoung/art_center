@@ -157,10 +157,10 @@ public class RentalController {
 		endCal.set(endYear, endMonth - 1, endDay);
 		while (true) {
 			if (getDateByInteger(startCal.getTime()) <= getDateByInteger(endCal.getTime())) {
-				startCal.add(Calendar.DATE, 1);
 				requestRentPlaceDto.setStartDate(getDateByString(startCal.getTime()));
 				requestRentPlaceDto.setEndDate(getDateByString(endCal.getTime()));
 				showService.createShowDateTime(requestRentPlaceDto);
+				startCal.add(Calendar.DATE, 1);
 			} else {
 				break;
 			}

@@ -94,7 +94,7 @@ function matchDate(createDateList) {
 
 	let paragraphs = $("p");
 	for (let i = 0; i < matchDateIndex.length; i++) {
-		let index = matchDateIndex[i] + 1;
+		let index = matchDateIndex[i] + 2;
 		if (index >= 0 && index < paragraphs.length) {
 			paragraphs[index].style.backgroundColor = '#F5A9BC';
 		}

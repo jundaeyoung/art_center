@@ -6,14 +6,13 @@
 
 	<!-- 작성자 : 전대영 내 공연보기 -->
 	<select id="selectByMySchedule" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-			select s.id as id,s.title as title, h.name as holeName, r.start_date
-			as startDate,r.start_time,r.end_time, r.end_date as endDate, img_route as imgRoute
-			from rent_place_reservation_tb as r
-			join hole_tb
-			as h
-			on r.hole_id=h.id
-			join show_Tb as s
-			on s.id = r.show_id
+			select s.id as id, s.title as title, h.name as holeName, sd.show_date
+			as startDate ,sd.show_time as start_time, img_route as imgRoute 
+            from show_datetime_tb as sd
+            join show_tb as s
+            on s.id = sd.show_id
+            join hole_tb as h
+            on h.id= s.hole_id
 			where s.organizer_id=#{id} AND s.show_status=1;
 	</select>
 </mapper>

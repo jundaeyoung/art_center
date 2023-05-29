@@ -99,7 +99,7 @@
 								<li><a href="#">공연</a>
 									<ul class="sub">
 										<li><a href="/schedule">전체 공연 일정(달력)</a></li>
-										<li><a href="/manager/schedule/${principal.id}">나의 공연
+										<li><a href="/manager/schedule">나의 공연
 												일정(달력)</a></li>
 										<li><a
 											href="/manager/showSale?currentPage=1&begin=0&range=5">나의

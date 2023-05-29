@@ -46,7 +46,6 @@ public class TicketController {
 
 		List<TicketingDto> showInfo = ticketService.readShowInfoForTicketing(showId);
 		List<ShowViewDto> showInformation = showService.readShowInfoByShowId(showId);
-		System.out.println(showInformation.get(0).getLocationId());
 		if (showDateList == null || showDateList.isEmpty()) {
 			model.addAttribute("showDateList", null);
 		} else {
@@ -71,7 +70,6 @@ public class TicketController {
 //		로그인 했다는 인증 필요
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
-		System.out.println(ticketingDto);
 		ticketingDto.setUserId(principal.getId());
 
 		ticketService.waitTicket(ticketingDto);
@@ -97,11 +95,9 @@ public class TicketController {
 		int userAge = startMonth2 - startMonth1;
 
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());
-		System.out.println(ticketListInfo);
 		model.addAttribute("ticketListInfo", ticketListInfo);
 		model.addAttribute("userAge", userAge);
 
-		System.out.println(ticketListInfo);
 		return "/ticket/ticketCheck";
 	}
 
