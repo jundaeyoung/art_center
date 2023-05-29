@@ -55,8 +55,8 @@ public class MyPageController {
 	 * @param 김미정
 	 */
 	@GetMapping("/myShow/{organizerId}")
-	public String selectMyShow1(Model model, @PathVariable("organizerId") Integer organizerId) {
-		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow2(organizerId);
+	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
+		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId);
 		model.addAttribute("myShowList",myShowList);
 		
 		return "/user/myShow";
@@ -67,8 +67,8 @@ public class MyPageController {
 	 * @param 김미정
 	 */
 	@GetMapping("/showDetail/{id}")
-	public String selectMyShowDetail1(Model model, @PathVariable Integer id) {
-		List<MyRegistrationInfoDto> detailList = myPageService.selectMyShowDetail2(id);
+	public String selectMyShowDetail(Model model, @PathVariable Integer id) {
+		List<MyRegistrationInfoDto> detailList = myPageService.selectMyShowDetail(id);
 		model.addAttribute("detailList",detailList);
 		return "/user/myShowDetail";
 	}

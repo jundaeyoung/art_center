@@ -44,7 +44,6 @@ function calculatePrice() {
 		data: JSON.stringify(data),
 		contentType: 'application/json; charset=utf-8',
 	}).done(function(response) {
-		console.log('들어옴:', response);
 		$('option').removeAttr('disabled');
 
 		for (var i = 0; i < response.length; i++) {
@@ -57,11 +56,18 @@ function calculatePrice() {
 		let dateTime = document.getElementById("dateTime").value;
 		let test = dateTime;
 		test = test.split(" ~ ");
+		
+		var date_arr = test[0].split("-");
 
-		let re1 = test[0]
-		re1 = re1.replaceAll("-", "");
-		let re2 = test[1]
-		re2 = re2.replaceAll("-", "");
+		var stDate = new Date(date_arr[0], date_arr[1]-1, date_arr[2]);
+
+		var endDate_arr = test[1].split("-");
+		var endDate = new Date(endDate_arr[0], endDate_arr[1]-1, endDate_arr[2]);
+		
+		// let re1 = test[0]
+		// re1 = re1.replaceAll("-", "");
+		// let re2 = test[1]
+		// re2 = re2.replaceAll("-", "");
 
 		let startTime = document.getElementById("timeSelect").value;
 		let startTime2 = startTime
@@ -73,8 +79,10 @@ function calculatePrice() {
 
 		let resultTime = (parseFloat(endTime2) - parseFloat(startTime2)) / 3;
 
-		let result = parseFloat(re2) - parseFloat(re1) + 1
-		console.log(result);
+		var btMs = endDate.getTime() - stDate.getTime();
+		var result = btMs / (1000 * 60 * 60 * 24);
+
+
 		let locationSelect = document.getElementById("locationSelect");
 		let selectedOption = locationSelect.options[locationSelect.selectedIndex];
 

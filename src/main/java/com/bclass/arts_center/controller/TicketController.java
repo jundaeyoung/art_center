@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.TicketingDto;
+import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.service.TicketService;
@@ -42,10 +44,39 @@ public class TicketController {
 	@GetMapping("/ticketing/{showId}")
 	public String ticketingPage(@PathVariable("showId") Integer showId, Model model) {
 //		로그인 인증 필요
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+
+		String userBirth = principal.getBirthDate();
+		String replaceuserBirth = userBirth.replaceAll("-", "");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date now = new Date();
+		String nowDate = sdf.format(now);
+
+		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
+		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
+
+		int userAge = startMonth2 - startMonth1;
 		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
 
 		List<TicketingDto> showInfo = ticketService.readShowInfoForTicketing(showId);
 		List<ShowViewDto> showInformation = showService.readShowInfoByShowId(showId);
+		System.out.println(showInformation + "DDD");
+		System.out.println(userAge);
+		if (showInformation.get(0).getAdmissionAge().equals("19세 이상")) {
+			if (userAge <= 20) {
+				throw new CustomRestfullException("19세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
+			}
+		}
+		if (showInformation.get(0).getAdmissionAge().equals("18세 이상")) {
+			if (userAge <= 19) {
+				throw new CustomRestfullException("18세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
+			}
+		}
+		if (showInformation.get(0).getAdmissionAge().equals("12세 이상")) {
+			if (userAge <= 13) {
+				throw new CustomRestfullException("12세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
+			}
+		}
 		if (showDateList == null || showDateList.isEmpty()) {
 			model.addAttribute("showDateList", null);
 		} else {
@@ -73,7 +104,6 @@ public class TicketController {
 		ticketingDto.setUserId(principal.getId());
 
 		ticketService.waitTicket(ticketingDto);
-
 
 		return "redirect:/ticket/ticketCheck";
 	}

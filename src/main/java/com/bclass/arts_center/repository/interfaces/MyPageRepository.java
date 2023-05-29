@@ -19,15 +19,10 @@ import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 public interface MyPageRepository {
 
 	// manager 공연 등록 내역 불러오기
-	public List<RequestSignUpShowDto> selectMyShow(Integer organizerId);
+	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId);
 	
 	// manager 공연 등록 detail
-	public List<RequestSignUpShowDto> selectMyShowDetail(Integer id);
-	// manager 공연 등록 내역 불러오기
-	public List<MyRegistrationInfoDto> selectMyShow2(Integer organizerId);
-	
-	// manager 공연 등록 detail
-	public List<MyRegistrationInfoDto> selectMyShowDetail2(Integer id);
+	public List<MyRegistrationInfoDto> selectMyShowDetail(Integer id);
 	
 	// user 공연 예매 내역 불러오기
 	public List<TicketCheckDto> selectMyTicket(Integer userId);
