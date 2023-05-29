@@ -75,8 +75,12 @@
 	
 	<!-- 편용림 -->
 	<!-- admin 회원 삭제 -->
-	<delete id="deleteById">
+	<delete id="deleteUserById">
 		DELETE FROM user_tb WHERE user_name = #{id}
+	</delete>
+	
+	<delete id="deleteById">
+		DELETE FROM user_tb WHERE id = #{id}
 	</delete>
 	
 	<update id="updateUserById">

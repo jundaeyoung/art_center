@@ -189,11 +189,14 @@ public class UserController {
 	@PostMapping("/deleteProc")
 	public String delete(SignInFormDto signInFormDto) {
 
-		int result = userService.deleteUser(signInFormDto);
 
+		System.out.println(signInFormDto);
+		
 		if (signInFormDto.getPassword() == null || signInFormDto.getPassword().isEmpty()) {
 			throw new CustomRestfullException("password를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
+
+		int result = userService.deleteUser(signInFormDto);
 
 		session.invalidate();
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.AdminSalesRepository">
+
+<select id="selectRentSalesDtoList" resultType="com.bclass.arts_center.dto.RentSalesDto">
+SELECT r.start_date, r.start_time, r.end_date, r.end_time,  s.title, l.location, h.name, u.nickname, r.rent_price 
+FROM rent_place_reservation_tb AS r
+JOIN location_tb AS l
+ON r.location_id = l.id
+JOIN hole_tb AS h
+ON r.hole_id = h.id
+JOIN show_tb AS s
+ON r.show_id = s.id
+JOIN user_tb AS u
+ON r.user_id = u.id
+WHERE r.rent_place_status = 1
+ORDER BY r.start_date asc, r.end_date asc;
+</select>
+
+
+</mapper>

@@ -70,9 +70,9 @@
 									<th>${ticketList.infantCount}</th>
 									<th>${ticketList.youthCount}</th>
 									<th>${ticketList.ticketingDate}</th>
-									<th>${totalAdultPrice}원</th>
+									<th>${totalAdultPrice}</th>
 								</tr>
-							</c:forEach>
+								</c:forEach>
 						</tbody>
 						<tfoot>
 						</tfoot>

@@ -24,11 +24,19 @@
 
 
 
-<div class="container" style="height: 500px;">
+<div class="container">
 	
 				<div class="signUpContainer">
-					<a href="/user/signUpchoice?roleId=1" class="signUp2" style="color: #fff">일반회원</a>
-					<a href="/user/signUpchoice?roleId=2" class="signUp" style="color: #fff;">매니저회원</a>
+				<div class="choiceContainer">
+				<img alt="" src="/images/user-icon-normal.png" id="signUpicon">
+					<a href="/user/signUpchoice?roleId=1" class="signUp" style="color: #fff">일반회원</a><br>
+					<h3>14세 이상 개인</h3>
+				</div>
+				<div class="choiceContainer">
+				<img alt="" src="/images/user-icon-biz.png" id="signUpicon">
+					<a href="/user/signUpchoice?roleId=2" class="signUp" style="color: #fff;">사업자</a><br>
+					<h3>사업자 및 기타 단체</h3>
+				</div>
 				</div>
 				
 </div>

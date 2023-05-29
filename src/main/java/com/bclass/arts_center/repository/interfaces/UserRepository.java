@@ -61,7 +61,7 @@ public interface UserRepository {
 	public int updateUserById(User user);
 	
 	// 관리자 유저 삭제
-	public int deleteById(String userName);
+	public int deleteById(String id);
 	
 	
 	/*

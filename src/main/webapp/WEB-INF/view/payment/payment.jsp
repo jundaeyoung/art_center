@@ -5,7 +5,7 @@
 
 	<div class=""></div>
 
-	<form action="/kakao/ready" method="post">
+	<form action="/kakao/ready" method="get">
 		<button type="submit">
 			<img alt="" src="/images/kakao/payment_icon_yellow_medium.png">
 		</button>
