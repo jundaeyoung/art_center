@@ -1,9 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/css/user/question.css">
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 
 
@@ -15,16 +20,20 @@
 		</span>
 	</div>
 	<div>
-		<a href="/quest/info?category=안내&currentPage=1&begin=0&range=5"><button id="info">안내</button></a>
+		<a href="/quest/info?category=안내&currentPage=1&begin=0&range=5"><button
+				id="info">안내</button></a>
 	</div>
 	<div>
-		<a href="/quest/info?category=대관&currentPage=1&begin=0&range=5"><button id="rent__place">대관</button></a>
+		<a href="/quest/info?category=대관&currentPage=1&begin=0&range=5"><button
+				id="rent__place">대관</button></a>
 	</div>
 	<div>
-		<a href="/quest/info?category=아카데미&currentPage=1&begin=0&range=5"><button id="academy">아카데미</button></a>
+		<a href="/quest/info?category=아카데미&currentPage=1&begin=0&range=5"><button
+				id="academy">아카데미</button></a>
 	</div>
 	<div>
-		<a href="/quest/info?category=모집&currentPage=1&begin=0&range=5"><button id="recruitment">모집</button></a>
+		<a href="/quest/info?category=모집&currentPage=1&begin=0&range=5"><button
+				id="recruitment">모집</button></a>
 	</div>
 </div>
 
@@ -69,27 +78,40 @@
 </div>
 <div class="answer__write" id="answer__write">
 	<form action="/quest/insert" method="post">
-		<div class="form-group bg-white" style="width: 1000px; margin-bottom: 50px;">
+		<div class="form-group bg-white"
+			style="width: 1000px; margin-bottom: 50px;">
 			<div class="question__type">
 				<div>
-					<input type="text" placeholder="제목" name="title" style="width: 400px; font-size: 20px; height: 30px; margin-bottom: 10px;">
+					<input type="text" placeholder="제목" name="title"
+						style="width: 400px; font-size: 20px; height: 30px; margin-bottom: 10px;">
 				</div>
 				<div class="question__category__info">
-					<input type="hidden" name="userId" value="${principal.getId()}"> <input type="hidden" name="currentPage" value="1"> <input type="hidden" name="begin" value="0"> <input
-						type="hidden" name="range" value="5"> <input type="hidden" name=searchText value=""> <input type="checkbox" name="questionTypeId" value="1" id="안내"><label for="안내">안내</label>
-					<input type="checkbox" name="questionTypeId" value="2" id="대관"><label for="대관">대관</label> <input type="checkbox" name="questionTypeId" value="3" id="아카데미"><label for="아카데미">아카데미</label>
-					<input type="checkbox" name="questionTypeId" value="4" id="모집"><label for="모집">모집</label>
+					<input type="hidden" name="userId" value="${principal.getId()}">
+					<input type="hidden" name="currentPage" value="1"> <input
+						type="hidden" name="begin" value="0"> <input type="hidden"
+						name="range" value="5"> <input type="hidden"
+						name=searchText value=""> <input type="checkbox"
+						name="questionTypeId" value="1" id="안내"><label for="안내">안내</label>
+					<input type="checkbox" name="questionTypeId" value="2" id="대관"><label
+						for="대관">대관</label> <input type="checkbox" name="questionTypeId"
+						value="3" id="아카데미"><label for="아카데미">아카데미</label> <input
+						type="checkbox" name="questionTypeId" value="4" id="모집"><label
+						for="모집">모집</label>
 				</div>
 			</div>
-			<textarea class="form-control summernote" rows="5" id="content" name="content" placeholder="내용"></textarea>
+			<textarea class="form-control summernote" rows="5" id="content"
+				name="content" placeholder="내용"></textarea>
 		</div>
 		<button type="submit" class="submit" style="margin-left: 30px;">작&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성</button>
 	</form>
 </div>
 <div class="search" id="hide__search__box">
 	<form action="/quest/search" method="get">
-		<input type="text" class="textbox" name="searchText"> <input type="hidden" name="currentPage" value="1"> <input type="hidden" name="begin" value="0"> <input type="hidden"
-			name="range" value="5"> <input type="submit" class="submit" value="검&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp색">
+		<input type="text" class="textbox" name="searchText"> <input
+			type="hidden" name="currentPage" value="1"> <input
+			type="hidden" name="begin" value="0"> <input type="hidden"
+			name="range" value="5"> <input type="submit" class="submit"
+			value="검&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp색">
 	</form>
 </div>
 
@@ -138,7 +160,8 @@
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
-								<c:when test="${questionList.answerStatus==0 && principal.getRoleId()==4}">
+								<c:when
+									test="${questionList.answerStatus==0 && principal.getRoleId()==4}">
 									<div>
 										<form action="" method="get" class="answer__btn">
 											<button type="submit">답변달기</button>
@@ -166,7 +189,8 @@
 				<c:when test="${currentPage==1 || currentPage==null}">
 				</c:when>
 				<c:otherwise>
-					<a href="/quest/search?searchText=${searchText}&currentPage=1&begin=${5*(1-1)}&range=5"><p><<</p></a>
+					<a
+						href="/quest/search?searchText=${searchText}&currentPage=1&begin=${5*(1-1)}&range=5"><p><<</p></a>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
@@ -174,15 +198,17 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<a href="/quest/search?searchText=${searchText}&currentPage=${i}&begin=${5*(i-1)}&range=5"><p>${i}</p></a>
+						<a
+							href="/quest/search?searchText=${searchText}&currentPage=${i}&begin=${5*(i-1)}&range=5"><p>${i}</p></a>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page}">
+				<c:when test="${currentPage==page || currentPage <= 1}">
 				</c:when>
 				<c:otherwise>
-					<a href="/quest/search?searchText=${searchText}&currentPage=${page}&type=${type}&begin=${5*(page-1)}&range=5"><p>>></p></a>
+					<a
+						href="/quest/search?searchText=${searchText}&currentPage=${page}&type=${type}&begin=${5*(page-1)}&range=5"><p>></p></a>
 				</c:otherwise>
 			</c:choose>
 		</c:when>
@@ -191,7 +217,8 @@
 				<c:when test="${currentPage==1 || currentPage==null}">
 				</c:when>
 				<c:otherwise>
-					<a href="/quest/info?category=${category}&currentPage=1&begin=${5*(1-1)}&range=5"><p><</p></a>
+					<a
+						href="/quest/info?category=${category}&currentPage=1&begin=${5*(1-1)}&range=5"><p><</p></a>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
@@ -199,15 +226,17 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<a href="/quest/info?category=${category}&currentPage=${i}&begin=${5*(i-1)}&range=5"><p>${i}</p></a>
+						<a
+							href="/quest/info?category=${category}&currentPage=${i}&begin=${5*(i-1)}&range=5"><p>${i}</p></a>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage==null}">
+				<c:when test="${currentPage==page || currentPage<=1}">
 				</c:when>
 				<c:otherwise>
-					<a href="/quest/info?category=${category}&currentPage=${page}&type=${type}&begin=${5*(page-1)}&range=5"><p>></p></a>
+					<a
+						href="/quest/info?category=${category}&currentPage=${page}&type=${type}&begin=${5*(page-1)}&range=5"><p>></p></a>
 				</c:otherwise>
 			</c:choose>
 
@@ -241,11 +270,11 @@
 	$('.summernote').summernote({
 		tabsize : 2,
 		height : 400,
-		callbacks: {
-	        onInit: function (c) {
-	            c.editable.html('');
-	        }
-	    }
+		callbacks : {
+			onInit : function(c) {
+				c.editable.html('');
+			}
+		}
 	});
 
 	$(document)

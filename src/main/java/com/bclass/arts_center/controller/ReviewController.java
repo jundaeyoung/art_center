@@ -61,6 +61,7 @@ public class ReviewController {
 		if (reviewList.isEmpty()) {
 			model.addAttribute("reviewList", null);
 		} else {
+			
 			model.addAttribute("reviewList", reviewList);
 		}
 		model.addAttribute("message", message);

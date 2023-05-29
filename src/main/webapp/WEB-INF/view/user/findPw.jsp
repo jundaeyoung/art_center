@@ -11,10 +11,10 @@
 
 
 
-<div class="signInContainer" style="margin-top:270px; margin-bottom: 200px;margin-left: 380px;">
+<div class="signInContainer" style="margin-top:150px; margin-bottom: 200px;margin-left: 400px;">
 	<div class="loginContainer">
 		<div style="color: #ac2925; margin-bottom: 50px; font-size: 30px;">
-			<p style="margin-left: 20px;margin-bottom: 50px;">입력된 정보로 임시 비밀번호가 전송됩니다.</p>
+			<p style="margin-left: 60px;margin-bottom: 50px;">입력된 정보로 임시 비밀번호가 전송됩니다.</p>
 		</div>
 		<div class="login--title">
 			<img alt="" src="/images/background/logo.png" class="loginLogo">
@@ -29,7 +29,7 @@
 			</div>
 		</form>
 		<button type="button" class="login" id="checkEmail" style="width: 605px;">OK</button>
-		<div class="selectIdAndPw" style="font-size: 20px; margin-left: 300px;">
+		<div class="selectIdAndPw" style="font-size: 20px; margin-left: 340px;">
 			<a href="/user/login">로그인</a>
 			<p>|</p>
 			<a href="/user/signUp">회원가입</a>

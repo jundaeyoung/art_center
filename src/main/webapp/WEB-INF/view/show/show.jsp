@@ -146,7 +146,7 @@ $(document).ready(function() {
 						tagPageP1.append(value1);
 	      			}
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("현재 상영중인 공연이 없습니다.");
 			}); 
 		});
 	  
@@ -253,7 +253,7 @@ $(document).ready(function() {
 						tagPageP1.append(value1);
 	      			}
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("현재 상영중인 공연이 없습니다.");
 			}); 
 		});
 	  
@@ -360,7 +360,7 @@ $(document).ready(function() {
 	      			}
 					
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("현재 상영중인 공연이 없습니다.");
 			}); 
 		});
 	  
@@ -470,7 +470,7 @@ $(document).ready(function() {
 						tagPageP1.append(value1);
 	      			}
 			}).fail(function(error) {
-				alert("서버오류");
+				alert("현재 상영중인 공연이 없습니다.");
 			}); 
 		});
 	$("#highes__rated").on("click", function() {
@@ -571,7 +571,7 @@ $(document).ready(function() {
 		      			}
 						
 					}).fail(function(error) {
-						alert("서버오류");
+						alert("현재 상영중인 공연이 없습니다.");
 					}); 
 				});
 			$("#lowest__rated").on("click", function() {
@@ -673,7 +673,7 @@ $(document).ready(function() {
 								tagPageP1.append(value1);
 			      			}
 					}).fail(function(error) {
-						alert("서버오류");
+						alert("현재 상영중인 공연이 없습니다.");
 					}); 
 				});
 				});
