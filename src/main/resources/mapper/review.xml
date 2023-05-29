@@ -88,9 +88,19 @@
 
 	<!-- 작성자 : 전대영 리뷰 카운터 -->
 	<select id="selectReviewCount" resultType="Integer">
-		select count(*) as
-		count from
-		review_tb
+		 select count(*) from
+		review_tb as r
+		join show_tb as s
+		on
+		r.show_id = s.id
+		join user_tb as u
+		on
+		r.user_id = u.id
+		join category_tb as sc
+		on s.show_type_id = sc.id
+		order
+		by
+		r.id desc;
 	</select>
 
 	<!-- 작성자 : 전대영 공연 select -->

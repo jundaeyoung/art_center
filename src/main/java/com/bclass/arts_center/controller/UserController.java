@@ -54,7 +54,6 @@ public class UserController {
 
 	@Autowired
 	private HttpSession session;
-	
 
 	// 로그인 페이지
 	@GetMapping("/login")
@@ -116,9 +115,7 @@ public class UserController {
 	// 로그아웃 처리
 	@GetMapping("/logout")
 	public String logout() {
-
 		session.invalidate();
-
 		return "redirect:/";
 	}
 
@@ -211,7 +208,7 @@ public class UserController {
 	}
 
 	/*
-	 *  전대영 : 등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
+	 * 전대영 : 등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
 	 */
 	@PostMapping("/check/findPw/sendEmail")
 	public @ResponseBody void sendEmail(String userEmail, String userName) {
@@ -219,7 +216,7 @@ public class UserController {
 		sendEmailService.mailSend(dto);
 
 	}
-	
+
 	/*
 	 * 작성자 : email 중복검사
 	 */
@@ -230,9 +227,9 @@ public class UserController {
 		json.put("check", findEmailCheck);
 		return json;
 	}
-	
+
 	/*
-	 *  전대영 : 이메일 중복검사 인증코드 날림
+	 * 전대영 : 이메일 중복검사 인증코드 날림
 	 */
 	@PostMapping("/check/email/sendEmail")
 	public @ResponseBody String sendEmailCheckEmail(String userEmail) {
@@ -240,20 +237,18 @@ public class UserController {
 		MailDto dto = new MailDto();
 		dto.setAddress(userEmail);
 		dto.setTitle("AMADEUS 인증코드 안내 이메일 입니다.");
-		dto.setMessage(
-				"안녕하세요. AMADEUS 인증코드 안내 관련 이메일 입니다. 인증코드는 " + str + " 입니다.");
+		dto.setMessage("안녕하세요. AMADEUS 인증코드 안내 관련 이메일 입니다. 인증코드는 " + str + " 입니다.");
 		sendEmailService.mailSend(dto);
-		
+
 		return str;
-		
+
 	}
-	
+
 	@ResponseBody
 	@GetMapping("idCheck")
 	public int overlappedID(SignUpFormDto dto) {
 		int result = userService.readUserCountByUserName(dto.getUserName());
 		return result;
 	}
-	
 
 }

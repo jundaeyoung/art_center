@@ -51,7 +51,7 @@
 	<c:forEach var="reviewList" items="${reviewList}">
 		<div class="review__content">
 			<div>
-				<a href="#"><img src="/images/${reviewList.imgRoute}" width="230" height="300"></a>
+				<a href="/show/showView/${reviewList.showId}"><img src="/images/${reviewList.imgRoute}" width="230" height="300"></a>
 			</div>
 			<div class="show__content">
 				<h2>${reviewList.title}&nbsp&nbsp&nbsp&nbsp(${reviewList.showType})</h2>

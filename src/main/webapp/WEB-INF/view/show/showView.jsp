@@ -174,7 +174,7 @@ select option {
 
 .show--price--button {
 	border-style: none;
-	background-color: #FAFAFA
+	background-color: #FAFAFA;
 }
 
 .show--introduction--content div {
@@ -194,6 +194,10 @@ select option {
 .show--review--button {
 	border-style: none;
 	background-color: #fafafa;
+}
+
+.show--introduction button {
+	width: 470px;
 }
 </style>
 <div class="show--main">

@@ -28,7 +28,7 @@
 			<p class="imgRoute" id="imgRoute">
 				<img alt="" id="images" width="210" , height="280">
 			</p>
-			<button class="modal__btn" onclick="location.href='#'">자세히보기</button>
+   			<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
 		</div>
 	</div>
 
@@ -156,6 +156,10 @@
 	                  // 모달 창 닫기
 	                  modal.style.display = 'none';
 	                });
+	                let showViewBtn = modal.querySelector('.showView');
+		            showViewBtn.addEventListener('click',function(){
+							location.href="/show/showView/" + id;
+			            });
 	            },
 				eventDataTransform: function(eventData) {
 				  if (eventData.end) {
@@ -167,14 +171,5 @@
 			calendar.render();
 		});
 		
-		// 상단 메뉴바 드롭다운
-		$(document).ready(function() {
-			$(".main>li").mouseover(function() {
-				$(this).children(".sub").stop().slideDown(200);
-			});
-			$(".main>li").mouseleave(function() {
-				$(this).children(".sub").stop().slideUp(200);
-			});
-		});
 </script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

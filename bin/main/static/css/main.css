@@ -11,7 +11,14 @@ body {
 .body--content--main {
 	background-color: #FAFAFA;
 }
-
+.showView {
+	margin-left: 0;
+	border: none;
+	width: 300px;
+	height: 40px;
+	background-color: #DBE4EB;
+	cursor: pointer;
+}
 .slide_wrapper {
 	position: relative;
 	width: 450px;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <html lang="utf-8" xmlns:th="http://www.thymeleaf.org"></html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,7 +16,6 @@
 	<div class="loginContainer">
 		<div class="login--title">
 			<img alt="" src="/images/background/logo.png" class="loginLogo">
-			<h2>Amadeus Login</h2>
 		</div>
 		<br>
 		<form action="/user/deleteProc" method="post">
@@ -39,6 +39,6 @@
 			</div>
 			</div>
 			</div>
-</body>
-
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+			
+			

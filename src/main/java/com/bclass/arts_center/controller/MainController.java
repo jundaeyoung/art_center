@@ -10,11 +10,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.repository.model.Notice;
 import com.bclass.arts_center.repository.model.Show;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.MainService;
 import com.bclass.arts_center.service.NoticeService;
+import com.bclass.arts_center.service.ScheduleService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller
@@ -25,6 +27,8 @@ public class MainController {
 	private MainService mainService;
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private ScheduleService scheduleService;
 	@Autowired
 	private HttpSession session;
 
@@ -39,7 +43,8 @@ public class MainController {
 			model.addAttribute("principal", null);
 		} else {
 			List<Notice> noticeList = noticeService.readNotice(principal.getId());
-			System.out.println(noticeList);
+			List<RequestShowDto> showList = scheduleService.selectByMyShow(principal.getId());
+			model.addAttribute("lists", showList);
 				if (noticeList == null || noticeList.size()==0) {
 					model.addAttribute("noticeList", null);
 					model.addAttribute("message", 0);
