@@ -5,17 +5,20 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
 
-	<select id="selectMyShow" resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
-		select * 
-		from show_tb 
-		where organizer_id = #{organizerId}
-		order by start_date desc;
-	</select>
+	 <!-- 김미정: 공연,대관예약 정보 불러오기 -->   
+   <select id="selectMyShow"
+      resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+      select *, r.id AS rentId
+      from show_tb as s
+      left join
+      rent_place_reservation_tb as r
+      on s.id = r.show_id
+      where s.organizer_id
+      = #{organizerId}
+      group by s.id
+      order by s.start_date desc
+   </select>
 
-	<select id="selectMyShowDetail" resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
-		select * from show_tb where id = #{id};
-	</select>
-	
 	<select id="selectMyTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
 		SELECT *
 		FROM ticketing_tb AS t
@@ -42,5 +45,22 @@
         ON h.location_id = l.id
 		WHERE t.id = #{id} 
 	</select>
-	
+  
+
+   <!-- 김미정 : 공연,대관예약 detail정보 불러오기 -->
+   <select id="selectMyShowDetail"
+      resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+      <!-- select * from show_tb as s left join rent_place_reservation_tb as 
+         r on s.id = r.show_id where s.id = #{id}; -->
+      SELECT *
+      FROM show_tb AS s
+      JOIN rent_place_reservation_tb AS r
+      ON s.id = r.show_id
+      JOIN hole_tb AS h
+      ON r.hole_id = h.id
+      JOIN location_tb AS l
+      ON h.location_id = l.id
+      WHERE s.id = #{id}
+
+   </select>
 </mapper>

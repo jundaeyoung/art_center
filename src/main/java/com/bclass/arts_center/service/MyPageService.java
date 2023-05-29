@@ -24,13 +24,8 @@ public class MyPageService {
 	 * @return myShowList
 	 */
 	@Transactional
-	public List<RequestSignUpShowDto> selectMyShow(Integer organizerId) {
-		List<RequestSignUpShowDto> myShowList = myPageRepository.selectMyShow(organizerId);
-		return myShowList;
-	}
-	@Transactional
-	public List<MyRegistrationInfoDto> selectMyShow2(Integer organizerId) {
-		List<MyRegistrationInfoDto> myShowList = myPageRepository.selectMyShow2(organizerId);
+	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId) {
+		List<MyRegistrationInfoDto> myShowList = myPageRepository.selectMyShow(organizerId);
 		return myShowList;
 	}
 
@@ -40,13 +35,8 @@ public class MyPageService {
 	 * @return detailList
 	 */
 	@Transactional
-	public List<RequestSignUpShowDto> selectMyShowDetail(Integer id) {
-		List<RequestSignUpShowDto> detailList = myPageRepository.selectMyShowDetail(id);
-		return detailList;
-	}
-	@Transactional
-	public List<MyRegistrationInfoDto> selectMyShowDetail2(Integer id) {
-		List<MyRegistrationInfoDto> detailList = myPageRepository.selectMyShowDetail2(id);
+	public List<MyRegistrationInfoDto> selectMyShowDetail(Integer id) {
+		List<MyRegistrationInfoDto> detailList = myPageRepository.selectMyShowDetail(id);
 		return detailList;
 	}
 
