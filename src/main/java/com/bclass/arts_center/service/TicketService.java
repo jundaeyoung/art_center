@@ -84,14 +84,21 @@ public class TicketService {
 	 * @return seatList
 	 */
 	@Transactional
-	public List<TicketingDto> readSeatInfo(Integer showId, Integer showDateTimeId) {
+	public List<TicketingDto> readSeatInfo(Integer showId, Integer showDatetimeId) {
 
-		List<TicketingDto> seatList = ticketRepository.selectSeatInfo(showId, showDateTimeId);
+		List<TicketingDto> seatList = ticketRepository.selectSeatInfo(showId, showDatetimeId);
 		return seatList;
 	}
 
+	@Transactional
+	public List<TicketingDto> readOccupiedSeat(Integer showDatetimeId) {
+
+		List<TicketingDto> occupiedList = ticketRepository.selectOccupiedSeat(showDatetimeId);
+		return occupiedList;
+	}
+
 	/**
-	 * 예매 확인
+	 * 예매
 	 * 
 	 * @author 손주이
 	 * @param ticketingDto
@@ -100,6 +107,15 @@ public class TicketService {
 	public void waitTicket(TicketingDto ticketingDto) {
 
 		int result = ticketRepository.insertTicket(ticketingDto);
+		if (result != 1) {
+			throw new CustomRestfullException("예매 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@Transactional
+	public void selectSeat(Integer seatId, Integer showDatetimeId) {
+
+		int result = ticketRepository.insertSeat(seatId, showDatetimeId);
 		if (result != 1) {
 			throw new CustomRestfullException("예매 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -138,8 +154,7 @@ public class TicketService {
 			throw new CustomRestfullException("티켓 정보가 업데이트 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
-	
+
 	/**
 	 * 예매 취소
 	 * 

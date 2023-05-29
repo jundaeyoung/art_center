@@ -51,7 +51,13 @@
 		ON sw.hole_id = h.id
 		JOIN show_datetime_tb AS sd
 		ON sd.show_id = sw.id
-		WHERE sw.id = #{showId} AND sd.id = #{showDateTimeId}
+		WHERE sw.id = #{showId} AND sd.id = #{showDatetimeId}
+	</select>
+	
+	<select id="selectOccupiedSeat" resultType="com.bclass.arts_center.dto.TicketingDto">
+		SELECT *
+		FROM seat_occupied_tb
+		WHERE show_datetime_id = #{showDatetimeId}
 	</select>
 
 	<!-- 작성자 전대영 : admin 예매 목록 검색 -->
@@ -80,10 +86,14 @@
 
 	<!-- 작성자 손주이 : 티켓 예매 -->
 	<insert id="insertTicket">
-		INSERT INTO ticketing_tb (user_id, show_id, seat_id,
-		show_datetime_id)
-		VALUES (#{userId}, #{showId}, #{seatId},
-		#{showDateTimeId})
+		INSERT INTO ticketing_tb (user_id, show_id, seat_id, show_datetime_id)
+		VALUES (#{userId}, #{showId}, #{seatId}, #{showDatetimeId})
+	</insert>
+
+	<!-- 작성자 손주이 : 좌석 선택  -->
+	<insert id="insertSeat">
+		INSERT INTO seat_occupied_tb (seat_id, show_datetime_id)
+		VALUES (#{seatId}, #{showDatetimeId})
 	</insert>
 
 	<!-- 잣겅자 손주이 : 결제대기 중 인 티켓 검색 -->

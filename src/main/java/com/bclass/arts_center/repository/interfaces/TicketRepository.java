@@ -20,10 +20,13 @@ public interface TicketRepository {
 
 	public List<TicketingDto> selectTicketingAll();
 
-	public List<TicketingDto> selectSeatInfo(@Param("showId") Integer showId,
-			@Param("showDateTimeId") Integer showDateTimeId);
+	public List<TicketingDto> selectSeatInfo(@Param("showId") Integer showId, @Param("showDatetimeId") Integer showDatetimeId);
+
+	public List<TicketingDto> selectOccupiedSeat(Integer showDatetimeId);
 
 	public int insertTicket(TicketingDto ticketingDto);
+
+	public int insertSeat(@Param("seatId") Integer seatId,@Param("showDatetimeId") Integer showDatetimeId);
 
 	public List<TicketCheckDto> selectTicket(Integer userId);
 	
