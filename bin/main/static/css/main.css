@@ -132,7 +132,8 @@ li {
 	margin: 10px auto;
 	margin-left: 100px;
 }
-.title img{
+
+.title img {
 	margin-left: 30px;
 	margin-top: 10px;
 }
@@ -365,12 +366,12 @@ content ul {
 }
 
 #modal .modal-window {
-	background: rgba(69, 139, 197, 0.90);
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	background-color: #F3F3F8;
+	box-shadow: black;
 	backdrop-filter: blur(13.5px);
 	-webkit-backdrop-filter: blur(13.5px);
 	border-radius: 10px;
-	border: 1px solid rgba(255, 255, 255, 0.18);
+	border: 1px solid gray;
 	width: 400px;
 	height: 500px;
 	position: relative;
@@ -380,22 +381,28 @@ content ul {
 
 #modal .title {
 	padding-left: 10px;
-	display: inline;
-	text-shadow: 1px 1px 2px gray;
-	color: #FAFAFA;
+	display: flex;
+	width: 200px;
+	text-shadow: 1px 1px 1px gray;
+	color: black;
+	margin: 0;
+	margin-left: 170px;
 }
 
 #modal .title h2 {
-	display: inline;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	margin-bottom: 10px;
+	margin-right: 50px;
 }
 
 #modal .close-area {
-	display: inline;
-	float: right;
-	padding-right: 10px;
+	display: flex;
+	justify-content: flex-end;
 	cursor: pointer;
-	text-shadow: 1px 1px 2px gray;
-	color: #FAFAFA;
+	padding: 5px 10px;
+	border: 1px;
 }
 
 .close--area {
@@ -403,15 +410,23 @@ content ul {
 	float: right;
 	padding-right: 10px;
 	cursor: pointer;
-	text-shadow: 1px 1px 2px gray;
-	color: #FAFAFA;
+	text-shadow: 1px 1px 2px #FAFAFA;
+	color: black;
+	
+}
+
+.msg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #modal .content {
 	margin-top: 20px;
 	padding: 0px 10px;
-	text-shadow: 1px 1px 2px gray;
-	color: #FAFAFA;
+	text-shadow: 1px 1px 2px #A7A7B0;
+	color: #45454A;
+	font-weight: bold;
 }
 
 .hidden {

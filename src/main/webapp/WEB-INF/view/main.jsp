@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
-
+<div class="dd" style="height: 100%">  
 <div class="content--box">
 	<div class="content">
 		<ul class="slider">
@@ -10,18 +10,18 @@
 					<div class="content--info">
 						<dl class="right">
 							<div class="info">
-								<h4 style="margin-top: 155px; margin-left: -50px; background-color: #fff; font-size: 30px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</h4>
-								<h3 style="margin-top: -10px; margin-left: -70px; font-size: 30px; font-weight: 200;">🔔️ ${showList.location}</h3>
-								<h1 style="margin-top: 30px; margin-left: -120px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
+								<p style="margin-top: 180px; margin-left: -30px; background-color: #fff; border: 1px solid #fff; border-radius: 20px; font-size: 20px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</p>
+								<h2 style="margin-top: -20px; margin-left: -80px; font-size: 35px; font-weight: 200;">🔔️ ${showList.location}</h2>
+								<h1 style="margin-top: 30px; margin-left: -80px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
 								<c:choose>
 									<c:when test="${showList.rating==null}">
-										<h3 style="margin-top: 30px; margin-left: -90px; font-size: 27px; font-weight: 100; height: 60px;">평점이 아직 등록되지 않았습니다.</h3>
+										<h3 style="margin-top: 30px; margin-left: -80px; font-size: 27px; font-weight: 100; height: 60px;">평점이 아직 등록되지 않았습니다.</h3>
 									</c:when>
 									<c:otherwise>
 										<h3 style="margin-top: 30px; margin-left: -50px; font-size: 27px; font-weight: 100; height: 60px;">평점 : ${showList.rating}</h3>
 									</c:otherwise>
 								</c:choose>
-								<h4 style="margin-top: 0; margin-left: -70px; font-size: 25px; font-weight: 100;">기간 : ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
+								<h4 style="margin-top: -20px; margin-left: -80px; font-size: 25px; font-weight: 100;">기간 : ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
 							</div>
 							<c:choose>
 								<c:when test="${showList.imgRoute.length()>=30}">
@@ -60,20 +60,21 @@
 				<button type="button" id="next" class="button">></button>
 			</div>
 		</div>
+		</div>
 		<c:choose>
 			<c:when test="${principal.roleId==2 && message!=0}">
 				<div id="modal" class="modal-overlay">
 					<div class="modal-window">
 						<div class="title">
-							<h2>모달</h2>
+							<div><h2>알림</h2></div>
+							<div class="close-area" style="color: black">X</div>
 						</div>
-						<div class="close-area">X</div>
 						<c:forEach var="noticeList" items="${noticeList}">
 							<div class="content" style="display: flex; justify-content: space-between;">
-								<div>${noticeList.notice}</div>
+								<div class="msg">${noticeList.notice}</div>
 								<form action="/managerNotice/update/${noticeList.id}" method="get">
 									<div class="close-area">
-										<button type="submit" class="close-area" style="border-style: none; background-color: rgba(69, 139, 197, 0.90);">확인</button>
+										<button type="submit" class="close-area" style="border-radius: 10px; background-color: #A7A7B0;">확인</button>
 									</div>
 								</form>
 							</div>

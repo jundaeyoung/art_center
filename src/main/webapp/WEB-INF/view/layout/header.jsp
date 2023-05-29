@@ -96,36 +96,27 @@
 					<nav>
 						<div id="nav">
 							<ul class="main">
-								<li><a href="#">공연</a>
+								<li><a href="#"> 공연 </a>
 									<ul class="sub">
-										<li><a href="/schedule">전체 공연 일정(달력)</a></li>
-										<li><a href="/manager/schedule/${principal.id}">나의 공연
-												일정(달력)</a></li>
-										<li><a
-											href="/manager/showSale?currentPage=1&begin=0&range=5">나의
-												공연 매출</a></li>
+										<li><a href="/schedule">전체 공연 일정</a></li>
+										<li><a href="/manager/schedule/${principal.id}">나의 공연 일정</a></li>
+										<li><a href="/manager/showSale?currentPage=1&begin=0&range=5">공연 매출</a></li>
 										<li><a href="/manager/signUpShow">공연 등록</a></li>
 									</ul></li>
-								<li><a href="#">공간·대관 </a>
+								<li><a href="#"> 대관 </a>
 									<ul class="sub">
-										<li><a href="#">공간 소개 </a></li>
-										<li><a href="/rental">대관 신청 </a></li>
-										<li><a href="#">공간별 대관 안내 </a></li>
-										<li><a href="#">입장권 운영 안내 </a></li>
+										<li><a href="/rental">대관 신청</a></li>
 									</ul></li>
-								<li><a href="#">전시회</a>
+								<li><a href="#"> 고객센터</a>
 									<ul class="sub">
-										<li><a href="#">전시회 전체 일정</a></li>
-										<li><a href="#">내 전시회 일정</a></li>
-										<li><a href="#">내 전시회 매출</a></li>
-										<li><a href="#">전시회 등록</a></li>
+										<li><a href="#">공지사항</a></li>
+										<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
+										<li><a href="#">FaQ</a></li>
 									</ul></li>
-								<li><a href="#">아카데미 </a>
+								<li><a href="#"> 이용서비스 </a>
 									<ul class="sub">
-										<li><a href="#">아카데미 전체 일정</a></li>
-										<li><a href="#">내 아카데미 일정</a></li>
-										<li><a href="#">수강 신청 관리</a></li>
-										<li><a href="#">아카데미 등록</a></li>
+										<li><a href="/map">오시는길</a></li>
+										<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 									</ul></li>
 								<li><a href="#"> 회원 서비스 </a>
 									<ul class="sub">
@@ -143,7 +134,6 @@
 												<li><a
 													href="/user/delete?userName=${principal.userName}">회원탈퇴
 												</a></li>
-												<li><a href="/announcement">공지사항 작성</a></li>
 											</c:otherwise>
 										</c:choose>
 									</ul></li>
@@ -162,23 +152,19 @@
 								<li><a href="#">공연</a>
 									<ul class="sub">
 										<li><a
-											href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시
+											href="/show/newestShow?currentPage=1&begin=0&range=3">공연·전시 예매
 										</a></li>
 									</ul></li>
-								<li><a href="#">예매</a>
+								<li><a href="#">고객센터</a>
 									<ul class="sub">
-										<li><a href="#">예매</a></li>
-										<li><a href="#">취소안내 </a></li>
+										<li><a href="#">공지사항</a></li>
+										<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
+										<li><a href="#">FAQ</a></li>
 									</ul></li>
-								<li><a href="#">소식·이용·참여</a>
+								<li><a href="#">이용서비스</a>
 									<ul class="sub">
-										<li><a href="#">전당 소식</a></li>
-										<li><a href="/map">오시는길·주차 안내</a></li>
-										<li><a
-											href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
-										<li><a href="#">고객센터</a></li>
-										<li><a
-											href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
+										<li><a href="/map">오시는길</a></li>
+										<li><a href="/review/newestReview?currentPage=1&begin=0&range=3">관람평</a></li>
 									</ul></li>
 								<li><a href="#"> 회원 서비스 </a>
 									<ul class="sub">
