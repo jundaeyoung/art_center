@@ -19,10 +19,12 @@ public class TicketingDto {
 	private String title;
 	private Date showDate;
 	private Time showTime;
+	private Integer showTypeId;
 
-	private Integer showDateTimeId;
+	private Integer showDatetimeId;
 	private Integer seatId;
 	private String seatName;
+	private int reserveState;
 
 	private Timestamp ticketingDate;
 

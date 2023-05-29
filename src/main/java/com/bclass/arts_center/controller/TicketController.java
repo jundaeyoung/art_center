@@ -71,10 +71,16 @@ public class TicketController {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
 		ticketingDto.setUserId(principal.getId());
-
+		System.out.println(ticketingDto);
+		
+//		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
+//		2랑 3일때는 setSeatId 억지로 해줘야
+		
+		
 		ticketService.waitTicket(ticketingDto);
-
-
+		//System.out.println("seat"+ticketingDto.getSeatId());
+		//System.out.println("showDate"+ticketingDto.getShowDatetimeId());
+		ticketService.selectSeat(ticketingDto.getSeatId(), ticketingDto.getShowDatetimeId());
 		return "redirect:/ticket/ticketCheck";
 	}
 
@@ -97,7 +103,6 @@ public class TicketController {
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());
 		model.addAttribute("ticketListInfo", ticketListInfo);
 		model.addAttribute("userAge", userAge);
-
 		return "/ticket/ticketCheck";
 	}
 

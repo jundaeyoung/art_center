@@ -41,8 +41,7 @@
 						</thead>
 						<tbody>
 							<c:forEach var="showDateList" items="${showDateList}">
-								<input type="hidden" class="listDate"
-									value="${showDateList.showDate}">
+								<input type="hidden" class="listDate" value="${showDateList.showDate}">
 							</c:forEach>
 						</tbody>
 					</table>

@@ -118,16 +118,17 @@ td {
 }
 
 .seat.selected {
-	background-color: #6feaf6;
-}
-
-.seat.occupied {
-	background-color: #fff;
+	background-color: #0289cc;
 }
 
 .seat:not(.occupied):hover {
 	cursor: pointer;
 	transform: scale(1.2);
+}
+
+.seat.occupied{
+	pointer-events: none;
+	background-color: #910000;
 }
 
 .showcase .seat:not(.occupied):hover {

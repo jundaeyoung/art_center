@@ -26,12 +26,20 @@ public class TicketApiController {
 		return showTimeList;
 	}
 
-	@GetMapping("/api/selectSeats/{showId}/{showDateTimeId}")
+	@GetMapping("/api/selectSeats/{showId}/{showDatetimeId}")
 	public List<TicketingDto> selectSeats(@PathVariable("showId") Integer showId,
-			@PathVariable("showDateTimeId") Integer showDateTimeId) {
-		List<TicketingDto> seatList = ticketService.readSeatInfo(showId, showDateTimeId);
-
+			@PathVariable("showDatetimeId") Integer showDatetimeId) {
+		List<TicketingDto> seatList = ticketService.readSeatInfo(showId, showDatetimeId);
+		
 		return seatList;
+	}
+	
+	@GetMapping("/api/occupied/{showDatetimeId}")
+	public List<TicketingDto> selectOccupiedSeat(@PathVariable Integer showDatetimeId){
+		
+		List<TicketingDto> occupiedList = ticketService.readOccupiedSeat(showDatetimeId);
+		
+		return occupiedList;
 	}
 	
 //	@PostMapping("/api/ticketCheck")
