@@ -251,3 +251,39 @@ input, select {
 	width: 600px;
 	font-size: 30px;
 }
+
+
+
+.signUpContainer{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 800px;
+}
+.signUp{
+	background-color: rgb(255, 80, 90);
+    color: white;
+    height: 50px;
+	width: 150px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+    padding-top: 25px;
+    text-align: center;
+  }
+  .choiceContainer{
+	  margin-left: 150px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  flex-direction: column;
+	  border: 1px solid #ccc;
+	  border-radius: 10px;
+	  width: 400px;
+	  height: 400px;
+	  padding: 50px;
+  }
+  #signUpicon{
+	  height: 200px;
+	  margin-bottom: 40px;
+  }

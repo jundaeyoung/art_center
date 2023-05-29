@@ -32,9 +32,6 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
-			<div id=show__write>
-					<button type="submit">등록하기</button>
-				</div>
 	</div>
 	<div></div>
 </div>
@@ -70,47 +67,12 @@
 							<div class="show">
 								<h2>${announcements.content}</h2>
 							</div>
-							<div class="update">
-								<form action="/announcement/detail?id=${announcements.id}">
-									<input type="hidden" name="id" value="${announcements.id}">
-									<button type="submit">수정</button>
-								</form>
-							</div>
-							<div class="delete">
-								<form action="/announcement/delete" method="get">
-									<input type="hidden" name="id" value="${announcements.id}">
-									<button type="submit">삭제</button>
-								</form>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
-</c:if>
-<c:if test="${crud.equals(\"update\") }">
-	<form action="/announcement/update?id=${announcement.id}" method="post">
-		<div class="question">
-			<div class="question__content">
-				<div>
-					<div class="show__content">
-						<div class="show">
-							<h2>${announcements.title}</h2>
-						</div>
-						<div class="question__content_show">
-							<div class="show">
-								<h2>${announcements.content}</h2>
-							</div>
-							<a href="/announcement?crud=update">수정</a>
-							<div class="delete"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<button class="button">수정</button>
-	</form>
 </c:if>
 <div class="page">
 	<c:choose>

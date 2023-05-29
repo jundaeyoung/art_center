@@ -16,7 +16,6 @@ public class SignUpFormDto {
 	
 	
 	private Integer id;
-	@Min(5)
 	private String userName;
 	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")
 	private String password;
@@ -29,5 +28,6 @@ public class SignUpFormDto {
 	@Pattern(regexp = "^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$", message = "10 ~ 11 자리의 숫자만 입력 가능합니다.")
 	private String tel;
 	private String apiId;
+	private Integer roleId;
 	private Integer usernamecheck;
 }

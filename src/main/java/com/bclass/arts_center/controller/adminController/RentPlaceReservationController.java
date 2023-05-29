@@ -39,4 +39,5 @@ public class RentPlaceReservationController {
 		
 		return "redirect:/rentPlace";
 	}
+	
 }

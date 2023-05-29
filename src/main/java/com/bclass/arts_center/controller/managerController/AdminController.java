@@ -189,6 +189,7 @@ public class AdminController {
 	@GetMapping("/deleteUser")
 	public String deleteUser(String id) {
 		int result = userService.deleteUserById(id);
+		System.out.println(result);
 		return "redirect:/admin/userList";
 	}
 }
