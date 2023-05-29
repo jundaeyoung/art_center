@@ -73,26 +73,6 @@ public class MyPageController {
 		return "/user/myShowDetail";
 	}
 
-	@GetMapping("/myShow/{organizerId}")
-	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
-
-		List<RequestSignUpShowDto> myShowList = myPageService.selectMyShow(organizerId);
-		model.addAttribute("myShowList", myShowList);
-
-		return "/user/myShow";
-	}
-
-	@GetMapping("/showDetail/{id}")
-	public String selectMyShowDetail(Model model, @PathVariable("id") Integer id) {
-		List<RequestSignUpShowDto> detailList = myPageService.selectMyShowDetail(id);
-		String title = detailList.get(0).getTitle();
-		String content = detailList.get(0).getContent();
-		String imgRoute = detailList.get(0).getImgRoute();
-		model.addAttribute("title", title);
-		model.addAttribute("content", content);
-		model.addAttribute("imgRoute", imgRoute);
-		return "/user/myShowDetail";
-	}
 
 	/**
 	 * @author 손주이
