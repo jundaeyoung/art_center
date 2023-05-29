@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <style type="text/css">
-.content {
+.show_content {
 	margin-top: 20px;
 	display: flex;
 	flex-direction: column;
@@ -81,15 +81,15 @@
 .reservation__date {
 	margin-left: 150px;
 }
-.date {
+.show_date {
 	color: gray;
 	font-weight: bold;
 }
 </style>
 <div class="reservation__date">
-<p class="date">[신청일] ${detailList.get(0).reservationDate}</p>
+<p class="show_date">[신청일] ${detailList.get(0).reservationDate}</p>
 </div>
-<div class="content">
+<div class="show_content">
 	<div class="show__detail">
 		<div class="dfdf">
 			<div class="rent__title">

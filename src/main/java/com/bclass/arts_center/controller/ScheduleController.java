@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.bclass.arts_center.dto.RequestShowDto;
-import com.bclass.arts_center.dto.ShowViewDto;
+import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.service.ScheduleService;
-import com.bclass.arts_center.service.ShowService;
 
 @Controller
 @RequestMapping("/")
@@ -26,7 +24,7 @@ public class ScheduleController {
 	 */
 	@GetMapping("/schedule")
 	public String selectByShow(Model model) {
-		List<RequestShowDto.selectByShow> lists = scheduleService.selectByShow();
+		List<RequestShowDto> lists = scheduleService.selectByShow();
 		model.addAttribute("lists", lists);
 		return "/schedule";
 	}
@@ -37,7 +35,7 @@ public class ScheduleController {
 	 */
 	@GetMapping("/schedule/category/{id}")
 	public String selectByCategory(Model model, @PathVariable("id") Integer showTypeId) {
-		List<RequestShowDto.selectByCategory> categoryLists = scheduleService.selecctByCategory(showTypeId);
+		List<RequestShowDto> categoryLists = scheduleService.selecctByCategory(showTypeId);
 		model.addAttribute("categoryLists", categoryLists);
 		return "/schedule";
 	}

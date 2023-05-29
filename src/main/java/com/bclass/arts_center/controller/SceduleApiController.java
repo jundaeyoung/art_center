@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bclass.arts_center.dto.RequestShowDto;
 import com.bclass.arts_center.dto.ShowViewDto;
+import com.bclass.arts_center.dto.request.RequestShowDto;
 import com.bclass.arts_center.service.ScheduleService;
 import com.bclass.arts_center.service.ShowService;
 
@@ -27,8 +27,8 @@ public class SceduleApiController {
 	 * 김미정 : calendar show detail 정보 불러오기
 	 */
 	@GetMapping("/api/scheduleDetail/{id}")
-	public RequestShowDto.selectByShowDetail selectByShowDetail(@PathVariable Integer id, Model model) {
-		RequestShowDto.selectByShowDetail selectByShowDetail = scheduleService.selectByShowDetail(id);
+	public RequestShowDto selectByShowDetail(@PathVariable Integer id, Model model) {
+		RequestShowDto selectByShowDetail = scheduleService.selectByShowDetail(id);
 		
 		 List<ShowViewDto> showInfo = showService.readShowInfoByShowId(id);
 		 model.addAttribute("showInfo",showInfo);
