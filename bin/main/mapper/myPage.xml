@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
+
+	<select id="selectMyShow" resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
+		select * 
+		from show_tb 
+		where organizer_id = #{organizerId}
+		order by start_date desc;
+	</select>
+
+	<select id="selectMyShowDetail" resultType="com.bclass.arts_center.dto.request.RequestSignUpShowDto">
+		select * from show_tb where id = #{id};
+	</select>
+	
+	<select id="selectMyTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+		SELECT *
+		FROM ticketing_tb AS t
+		JOIN show_tb AS s
+        ON t.show_id = s.id
+		WHERE user_id = ${userId}
+		ORDER BY ticketing_date desc
+	</select>
+	
+	<select id="selectMyTicketDetail" resultType="com.bclass.arts_center.dto.MyTicketDtailDto">
+		SELECT * 
+		FROM payment_tb AS p
+        JOIN ticketing_tb AS t
+        ON p.ticketing_id = t.id
+		JOIN show_tb AS s
+		ON t.show_id = s.id
+        LEFT JOIN seat_tb AS st
+		ON t.seat_id = st.seat_id
+		LEFT JOIN show_datetime_tb AS sd
+		ON t.show_datetime_id = sd.id
+		JOIN hole_tb AS h
+		ON s.hole_id = h.id
+		JOIN location_tb AS l
+        ON h.location_id = l.id
+		WHERE t.id = #{id} 
+	</select>
+	
+</mapper>

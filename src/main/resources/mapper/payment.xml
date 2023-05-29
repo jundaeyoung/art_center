@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="insertPayment">
-		INSERT INTO payment_tb(payment_id, user_id, payment_option, payment_date, ticketing1_id)
+		INSERT INTO payment_tb(payment_id, user_id, payment_option, payment_date, ticketing_id)
 		VALUES (#{paymentId},#{userId}, #{paymentOption}, #{paymentDate}, #{ticketingId});
 	</insert>
 	
