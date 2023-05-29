@@ -54,21 +54,16 @@ function calculatePrice() {
 		}
 
 		let dateTime = document.getElementById("dateTime").value;
-		let test = dateTime;
-		test = test.split(" ~ ");
+		let date = dateTime;
+		date = date.split(" ~ ");
 		
-		var date_arr = test[0].split("-");
+		var date_arr = date[0].split("-");
 
 		var stDate = new Date(date_arr[0], date_arr[1]-1, date_arr[2]);
 
-		var endDate_arr = test[1].split("-");
+		var endDate_arr = date[1].split("-");
 		var endDate = new Date(endDate_arr[0], endDate_arr[1]-1, endDate_arr[2]);
 		
-		// let re1 = test[0]
-		// re1 = re1.replaceAll("-", "");
-		// let re2 = test[1]
-		// re2 = re2.replaceAll("-", "");
-
 		let startTime = document.getElementById("timeSelect").value;
 		let startTime2 = startTime
 		startTime2 = startTime2.replaceAll(":00", "");

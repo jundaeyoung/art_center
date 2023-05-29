@@ -76,8 +76,9 @@
 					<br>
 					<div id="ipw" class="email">
 						<p>이메일 :</p>
-						<i class="material-icons"style="margin-left: 450px;">mail_outline</i> <input type="email"
-							placeholder="이메일을 입력하세요" name="email" id="email" class="info"><br>
+						<i class="material-icons" style="margin-left: 450px;">mail_outline</i>
+						<input type="email" placeholder="이메일을 입력하세요" name="email"
+							id="email" class="info"><br>
 						<button type="button" id="checkEmail" style="margin-left: 10px;">이메일
 							인증</button>
 					</div>
@@ -85,9 +86,9 @@
 					<br>
 					<div id="ipw" class="email">
 						<p>인증번호 :</p>
-						<i class="material-icons"style="margin-left: 450px;">mail_outline</i> <input type="text"
-							placeholder="이메일 인증번호를 입력하세요" name="text" id="emailCheck"
-							class="info"><br>
+						<i class="material-icons" style="margin-left: 450px;">mail_outline</i>
+						<input type="text" placeholder="이메일 인증번호를 입력하세요" name="text"
+							id="emailCheck" class="info"><br>
 						<button type="button" id="checkEmailNumber"
 							style="margin-left: 10px;">이메일 인증</button>
 					</div>
@@ -216,13 +217,13 @@
 																										function() {
 																											if ($(
 																													"#userName")
-																													.val().length > 3
+																													.val().length > 0
 																													&& $(
 																															"#password")
-																															.val().length > 3
+																															.val().length > 0
 																													&& $(
 																															"#nickname")
-																															.val().length > 3) {
+																															.val().length > 0) {
 																												if ($(
 																														"#year")
 																														.val().length > 0
