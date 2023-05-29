@@ -34,10 +34,10 @@
 						<label for="file"
 							style="width: 200px; margin-right: 80px; margin-left: -5px; margin-top: -10px;">이미지
 							: </label>
-						<div class="filebox">
+						<div class="filebox" >
 							<input class="upload-name" value="첨부파일" placeholder="첨부파일">
-							<label for="file">이미지 </label> <input type="file" name="file"
-								id="file" accept=".jpg,.jpeg,.png" style="width: 300px;">
+							<label for="file"style="margin-right: -12px;">이미지 </label> <input type="file" name="file"
+								id="file" accept=".jpg,.jpeg,.png" style="width: 400px;">
 						</div>
 					</div>
 					<div class="date" style="margin-left: 4px; color: black;">
