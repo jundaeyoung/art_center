@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/manager/rental.css">
 <style type="text/css">
 </style>
-<div class="content">
+<div class="rental--content">
 	<div class="rental-title">
 		<p>${show.title}&nbsp&nbsp대관신청&nbsp&nbsp바로가기</p>
 	</div>

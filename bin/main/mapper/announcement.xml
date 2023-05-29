@@ -7,7 +7,7 @@
 <mapper namespace="com.bclass.arts_center.repository.interfaces.AnnouncementRepository">
 
 <insert id="insertAnnouncement">
-INSERT INTO announcement(title, content ,user_id)
+INSERT INTO announcement_tb(title, content ,user_id)
 VALUES(#{title}, #{content}, #{userId});
 </insert>
 
@@ -21,17 +21,17 @@ SELECT id, title, content, user_id, FORMATDATETIME(created_date, 'yyyy-MM-dd') A
 </select>
 
 <select id="selectAnnouncementBySearchText" resultType="com.bclass.arts_center.repository.model.Announcement">
-select * from announcement
+select * from announcement_tb
 where title
 like #{searchText} or content like #{searchText};
 </select>
 
 <update id="updateByIdAndUserId">
-UPDATE announcement SET title = #{title}, content = #{content} WHERE id = #{id}
+UPDATE announcement_tb SET title = #{title}, content = #{content} WHERE id = #{id}
 </update>
 
 <delete id="deleteAnnouncementByUserId">
-DELETE FROM announcement WHERE id = #{id}
+DELETE FROM announcement_tb WHERE id = #{id}
 </delete>
 
 	

@@ -21,7 +21,7 @@
 	border: 2px solid black;
 }
 
-.content {
+.my_show_content {
 	box-sizing: border-box;
 	width: 1500px;
 	height: 100%;
@@ -136,7 +136,7 @@
 			<h1>${principal.nickname}님 공연 대관 신청 내역입니다</h1>
 		</div>
 	</div>
-	<div class="content">
+	<div class="my_show_content">
 		<div class="dd">
 			<c:forEach var="myShowList" items="${myShowList}">
 				<div class="myShow">

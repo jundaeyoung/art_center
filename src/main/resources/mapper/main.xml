@@ -25,5 +25,9 @@
 		order by
 		round(avg(r.rating),1) desc;
 	</select>
+	
+	<select id="selectAnnouncement" resultType="com.bclass.arts_center.repository.model.Announcement">
+		SELECT id, title, content, user_id, DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date FROM announcement_tb ORDER BY id DESC LIMIT 5
+	</select>
 </mapper>
 

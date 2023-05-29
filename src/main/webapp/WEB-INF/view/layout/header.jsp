@@ -109,7 +109,7 @@
 									</ul></li>
 								<li><a href="#"> 고객센터</a>
 									<ul class="sub">
-										<li><a href="#">공지사항</a></li>
+										<li><a href="/announcement">공지사항</a></li>
 										<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
 										<li><a href="#">FaQ</a></li>
 									</ul></li>
@@ -157,7 +157,7 @@
 									</ul></li>
 								<li><a href="#">고객센터</a>
 									<ul class="sub">
-										<li><a href="#">공지사항</a></li>
+										<li><a href="/announcement">공지사항</a></li>
 										<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
 										<li><a href="#">FAQ</a></li>
 									</ul></li>

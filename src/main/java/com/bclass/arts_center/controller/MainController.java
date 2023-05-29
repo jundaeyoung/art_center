@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bclass.arts_center.repository.model.Announcement;
 import com.bclass.arts_center.repository.model.Notice;
 import com.bclass.arts_center.repository.model.Show;
 import com.bclass.arts_center.repository.model.User;
@@ -34,6 +35,9 @@ public class MainController {
 	@GetMapping("/")
 	public String main(Model model) {
 		List<Show> showsList = mainService.readShowDto();
+		List<Announcement> selectAnnouncement = mainService.selectAnnouncement();
+		model.addAttribute("selectAnnouncement",selectAnnouncement);
+		System.out.println(selectAnnouncement);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			model.addAttribute("principal", null);
@@ -55,4 +59,5 @@ public class MainController {
 		}
 		return "/main";
 	}
+	
 }
