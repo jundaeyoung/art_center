@@ -6,6 +6,7 @@
 
 body {
 	background-color: #FAFAFA;
+	width: 100%;
 }
 
 .body--content--main {
@@ -316,12 +317,12 @@ content ul {
 }
 
 .content--box {
-	width: 2000px;
+	width: 2450px;
 	height: 700px;
 	border: 1px solid #f7ede4;
 	margin: 50px;
 	background-color: #f7ede4;
-	margin-left: -200px;
+	margin-left: -500px;
 }
 
 .slide_wrapper {
@@ -331,14 +332,14 @@ content ul {
 }
 
 .slide_wrapper_box {
-	margin: 120px 200px 0 0;
+	margin-left: 210px;
 	width: 300px;
 }
 
 .footer {
 	background-color: #ECECEC;
 	display: flex;
-	width: 3000px;
+	width: 2750px;
 	justify-content: center;
 	margin-left: -800px;
 }
@@ -438,6 +439,7 @@ content ul {
 	text-shadow: 1px 1px 2px #A7A7B0;
 	color: #45454A;
 	font-weight: bold;
+	margin-left:20px;
 }
 
 .hidden {
@@ -475,7 +477,7 @@ content ul {
 	margin-right: 20px;
 	width: 280px;
 	height: 350px;
-	border-radius: 10px;
+	border-radius: 8px;
 }
 
 .item span{

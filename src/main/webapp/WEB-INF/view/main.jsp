@@ -14,7 +14,7 @@
 									<p
 										style="margin-top: 180px; margin-left: -330px; background-color: #fff; border: 1px solid #fff; border-radius: 20px; font-size: 20px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</p>
 									<h2
-										style="margin-top: -20px; margin-left: -330px; font-size: 35px; font-weight: 200;">🔔️
+										style="margin-top: -10px; margin-left: -330px; font-size: 35px; font-weight: 200;">🔔️
 										${showList.location}</h2>
 									<h1
 										style="margin-top: 30px; margin-left: -330px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
@@ -101,7 +101,6 @@
 									</div>
 								</form>
 							</div>
-
 						</c:forEach>
 					</div>
 				</div>
