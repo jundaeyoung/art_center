@@ -40,7 +40,7 @@ public class FaqController {
 		List<Faq> faqList = faqService.selectByCategoryId(categoryId);
 		model.addAttribute("faqList", faqList);
 
-		return "/announcement/faqCategory";
+		return "/announcement/faq";
 
 	}
 

@@ -24,6 +24,7 @@ public class ShowViewDto {
 	private Integer locationId;
 	private String admissionAge;
 	private String userTel;
+	private Integer showTypeId;
 
 //	위치
 	private String name;

@@ -59,9 +59,8 @@ public class TicketController {
 		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
 
 		List<TicketingDto> showInfo = ticketService.readShowInfoForTicketing(showId);
+		System.out.println(showInfo.get(0).getShowTypeId()+"DDDD");
 		List<ShowViewDto> showInformation = showService.readShowInfoByShowId(showId);
-		System.out.println(showInformation + "DDD");
-		System.out.println(userAge);
 		if (showInformation.get(0).getAdmissionAge().equals("19세 이상")) {
 			if (userAge <= 20) {
 				throw new CustomRestfullException("19세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
@@ -87,6 +86,7 @@ public class TicketController {
 			model.addAttribute("showInfo", null);
 		} else {
 			model.addAttribute("title", showInfo.get(0).getTitle());
+			model.addAttribute("showTypeId", showInfo.get(0).getShowTypeId());
 		}
 		if (showInformation == null || showInformation.isEmpty()) {
 			model.addAttribute("showInformation", null);
@@ -102,10 +102,12 @@ public class TicketController {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
 		ticketingDto.setUserId(principal.getId());
-		System.out.println(ticketingDto);
 		
 //		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
 //		2랑 3일때는 setSeatId 억지로 해줘야
+		if(ticketingDto.getShowTypeId()!=1) {
+			ticketingDto.setSeatId(1);
+		}
 		
 		ticketService.waitTicket(ticketingDto);
 		ticketService.selectSeat(ticketingDto.getSeatId(), ticketingDto.getShowDatetimeId());

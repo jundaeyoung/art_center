@@ -168,9 +168,9 @@
 	</select>
 
 	<insert id="insertShow">
-		INSERT INTO show_tb(img_route ,title, content, start_date, end_date, admission_age, adult_rate, youth_rate, infant_rate, organizer_id,show_type_id, hole_id)
+		INSERT INTO show_tb(img_route ,title, content, start_date, end_date, admission_age, adult_rate, youth_rate, organizer_id,show_type_id, hole_id)
 		VALUES
-		(#{imgRoute},#{title},#{content}, #{startDate},#{endDate},#{admissionAge},#{adultRate},#{youthRate},#{infantRate},#{organizerId}, #{showTypeId} ,#{holeId})
+		(#{imgRoute},#{title},#{content}, #{startDate},#{endDate},#{admissionAge},#{adultRate},#{youthRate},#{organizerId}, #{showTypeId} ,#{holeId})
 	</insert>
 
 	<insert id="insertShowDateTime">
