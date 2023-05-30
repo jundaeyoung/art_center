@@ -94,10 +94,8 @@
 
 	<!-- 작성자 손주이 : 티켓 예매 -->
 	<insert id="insertTicket">
-		INSERT INTO ticketing_tb (user_id, show_id, seat_id,
-		show_datetime_id)
-		VALUES (#{userId}, #{showId}, #{seatId},
-		#{showDatetimeId})
+		INSERT INTO ticketing_tb (user_id, show_id, seat_id, age_group_id, show_datetime_id)
+		VALUES (#{userId}, #{showId}, #{seatId}, #{ageGroupId}, #{showDatetimeId})
 	</insert>
 
 	<!-- 작성자 손주이 : 좌석 선택 -->

@@ -100,4 +100,10 @@
 		update user_tb set password=#{pw}
         where user_name=#{id};
 	</update>
+	
+	<select id="findUserByUserName"
+		resultType="Integer">
+		SELECT count(*) FROM user_tb
+		WHERE user_name = #{userName}
+	</select>
 </mapper>

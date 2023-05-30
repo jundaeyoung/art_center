@@ -10,7 +10,7 @@ body {
 }
 
 .body--content--main {
-	background-color: #FAFAFA;
+	background-color: #fff;
 }
 .showView {
 	margin-left: 0;
@@ -113,7 +113,7 @@ li {
 
 .main>li a:hover {
 	background: #909090;
-	color: #FAFAFA;
+	color: #fff;
 }
 
 .sub {
@@ -151,6 +151,11 @@ li {
 	justify-content: center;
 	align-items: center;
 }
+.user--btn p{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .user--btn button {
 	height: 46px;
@@ -159,25 +164,25 @@ li {
 }
 
 .open-area {
-	background-color: #FAFAFA;
+	background-color: #fff;
 	border-style: none;
 	color: black;
 }
 
 .signUp--btn {
-	background-color: #FAFAFA;
+	background-color: #fff;
 	border-style: none;
 	color: black;
 }
 
 .login--btn {
-	background-color: #FAFAFA;
+	background-color: #fff;
 	border-style: none;
 	color: black;
 }
 
 .logout--btn {
-	background-color: #FAFAFA;
+	background-color: #fff;
 	border-style: none;
 	color: black;
 }
@@ -283,13 +288,13 @@ content ul {
 }
 
 .slider li dt {
-	color: #FAFAFA;
+	color: #fff;
 	font-size: 3rem;
 	text-shadow: 1px 1px 10px #444;
 }
 
 .slider li dd {
-	color: #FAFAFA;
+	color: #fff;
 	text-shadow: 1px 1px 10px #444;
 }
 
@@ -302,14 +307,14 @@ content ul {
 
 .btn button {
 	margin: 20px 20px 0 20px;
-	border: 1px solid #FAFAFA;
+	border: 1px solid #fff;
 	border-radius: 10px;
 	color: #666;
 	font-size: 1.5rem;
 	cursor: pointer;
-	background-color: #FAFAFA;
+	background-color: #fff;
 	border-radius: 10px;
-	background-color: #FAFAFA;
+	background-color: #fff;
 }
 
 .slider {
@@ -423,7 +428,7 @@ content ul {
 	float: right;
 	padding-right: 10px;
 	cursor: pointer;
-	text-shadow: 1px 1px 2px #FAFAFA;
+	text-shadow: 1px 1px 2px #fff;
 	color: black;
 }
 
@@ -491,4 +496,14 @@ content ul {
 	margin-bottom: 30px;
 	margin-left: 130px;
 	color: gray;
+}
+.apilogout{
+	display: flex;
+	font-size: 20px;
+	font-weight: lighter;
+	background-color: #FAFAFA;
+	color: black;
+}
+#columnchart_material svg g:nth-child(n+5) text {
+	font-size: 14px!important;
 }

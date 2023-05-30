@@ -14,5 +14,6 @@ public class RentSalesDto {
 	private String name;
 	private String nickname;
 	private String rentPrice;
+	private Integer totalPrice;
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bclass.arts_center.dto.RentSalesDto;
+import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
 import com.bclass.arts_center.repository.interfaces.AdminSalesRepository;
 
 @Service
@@ -22,4 +23,21 @@ public class AdminSaleService {
 		
 		return rentSalesDtolist;
 	};
+	
+	@Transactional
+	public List<RentSalesDto> readRentSaleGrape(){
+		
+		List<RentSalesDto> rentSaleGrape = adminSalesRepository.selectRentSaleGrape();
+		
+		return rentSaleGrape;
+	}
+	
+	@Transactional
+	public List<RequestManagerShowSaleDto> readShowSaleGrape(){
+		
+		List<RequestManagerShowSaleDto> showSaleGrape = adminSalesRepository.selectShowSaleGrape();
+		
+		return showSaleGrape;
+		
+	}
 }

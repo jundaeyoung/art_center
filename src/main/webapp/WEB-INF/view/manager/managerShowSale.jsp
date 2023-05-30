@@ -5,6 +5,9 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript" src="/js/main.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -15,9 +18,9 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
 
 <div class="show__header"></div>
 <div class="signUpShow__content" style="margin-left: -60px;">
@@ -40,7 +43,7 @@
 							name="organizerId">
 					</div>
 					<div class="btn__sub">
-						<button type="submit" style="width: 100px; height: 50px;">검색</button>
+						<button type="submit" style="width: 100px; height: 50px; position: relative; z-index: 999;">검색</button>
 					</div>
 				</div>
 			</div>
@@ -49,7 +52,7 @@
 	<div class="signUpShow__info">
 		<form action="/manager/showSaleBySearch" method="post">
 			<div
-				style="display: flex; width: 500px; flex-direction: row; justify-content: center;">
+				style="display: flex; width: 500px; flex-direction: row; justify-content: center; margin-left: -30px;">
 				<div
 					style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
 					<div class="date">
@@ -68,7 +71,7 @@
 		</form>
 	</div>
 </div>
-<div class="sumdiv" style="margin-bottom: 50px;">
+<div class="sumdiv">
 	<div class="sum">
 		<h3></h3>
 		<h3>매 출 :</h3>
@@ -76,7 +79,7 @@
 		<h3></h3>
 	</div>
 </div>
-    <div id="columnchart_material" style="width: 1200px; height: 800px;margin-left: 150px;"></div>
+ <div id="columnchart_material" style="width: 1200px; height: 800px;margin-left: 150px;"></div>
 <div>
 	<div class="show">
 		<c:forEach var="showList" items="${showList}">
@@ -163,79 +166,6 @@
 	</div>
 </div>
 
-
-<script type="text/javascript">
-$(document).ready(function() {
-	$.ajax({
-    	type: 'get',
-    	url: '/apiShowSale/manager/showSale',
-  	    contentType: 'application/json; charset=utf-8',
-  }).done(function(response) {
-	  google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['title', '성인 ', '청소년 수','총 수'],
-          [response[0].title, response[0].adultCount, response[0].youthCount,response[0].adultCount+response[0].youthCount],
-        ]);
-          for(var i=1; i<response.length;i++){
-        	data.addRows([
-         	 [response[i].title, response[i].adultCount, response[i].youthCount,response[i].adultCount+response[i].youthCount],
-            ]);
-          }
-
-        var options = {
-          chart: {
-            title: '공연별 방문자 현황',
-          },
-	        bar : {
-	    		groupWidth : '300%' // 예제에서 이 값을 수정
-	    	},
-	    	fontSize: 30	,
-	    	
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-		      
-		      
-		/* var data = new google.visualization.arrayToDataTable([
-		data.addColumn('string', '요일');
-		data.addColumn('number', '방문자수(명)');
-		for(var i=0; i<response.length;i++){
-			data.addRows([
-			[ response[i].title, response[i].adultCount ],
-			[ response[i].title, response[i].youthCount ],
-			]);
-		}
-		var options = {
-			title : '공연별 방문자 현황',
-			hAxis : {
-				title : '요일',
-				viewWindow : {
-					min : [ 7, 30, 0 ],
-					max : [ 17, 30, 0 ]
-				}
-			},
-			vAxis : {
-				title : '방문자수(명)'
-			}
-			isStacked: true,
-		}; */
-		var chart = new google.visualization.ColumnChart(
-		document.getElementById('chart_div'));
-		chart.draw(data, options);
-
-	}
-  });
-});
-</script>
-
-
-
-
 <script type="text/javascript">
 	$(function() {
 		$('#startDate').daterangepicker(
@@ -271,7 +201,74 @@ $(document).ready(function() {
 		var fileName = $("#file").val();
 		$(".upload-name").val(fileName);
 	});
+	
+	
+	$(document).ready(function() {
+		$.ajax({
+	    	type: 'get',
+	    	url: '/apiShowSale/manager/showSale',
+	  	    contentType: 'application/json; charset=utf-8',
+	  }).done(function(response) {
+		  google.charts.load('current', {'packages':['bar']});
+	      google.charts.setOnLoadCallback(drawChart);
+
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['title', '성인 ', '청소년 수','총 수'],
+	          [response[0].title, response[0].adultCount, response[0].youthCount,response[0].adultCount+response[0].youthCount],
+	        ]);
+	          for(var i=1; i<response.length;i++){
+	        	data.addRows([
+	         	 [response[i].title, response[i].adultCount, response[i].youthCount,response[i].adultCount+response[i].youthCount],
+	            ]);
+	          }
+
+	        var options = {
+	          chart: {
+	            title: '공연별 방문자 현황',
+	          },
+		        bar : {
+		    		groupWidth : '300%' // 예제에서 이 값을 수정
+		    	},
+		    	fontSize: 30	,
+		    	
+	        };
+
+	        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+	        chart.draw(data, google.charts.Bar.convertOptions(options));
+			      
+			      
+			/* var data = new google.visualization.arrayToDataTable([
+			data.addColumn('string', '요일');
+			data.addColumn('number', '방문자수(명)');
+			for(var i=0; i<response.length;i++){
+				data.addRows([
+				[ response[i].title, response[i].adultCount ],
+				[ response[i].title, response[i].youthCount ],
+				]);
+			}
+			var options = {
+				title : '공연별 방문자 현황',
+				hAxis : {
+					title : '요일',
+					viewWindow : {
+						min : [ 7, 30, 0 ],
+						max : [ 17, 30, 0 ]
+					}
+				},
+				vAxis : {
+					title : '방문자수(명)'
+				}
+				isStacked: true,
+			}; 
+			var chart = new google.visualization.ColumnChart(
+			document.getElementById('chart_div'));
+			chart.draw(data, options);*/
+
+		}
+	  });
+	});
 </script>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
-

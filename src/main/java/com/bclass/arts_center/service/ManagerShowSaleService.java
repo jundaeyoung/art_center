@@ -24,7 +24,6 @@ public class ManagerShowSaleService {
 	public List<RequestManagerShowSaleDto> readAndCount(RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
 				.selectAndCount(requestManagerShowSaleDto);
-
 		return showSaleList;
 	}
 	/*

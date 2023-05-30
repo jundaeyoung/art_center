@@ -284,7 +284,7 @@ select option {
 			<p>${content}</p>
 		</div>
 	</div>
-
+<input type="hidden" name="show_type_id" value="${showTypeId}">
 </div>
 
 

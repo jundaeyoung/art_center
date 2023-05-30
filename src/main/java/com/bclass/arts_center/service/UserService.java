@@ -187,6 +187,7 @@ public class UserService {
         return validatorResult;
     }
 	
+	
 	/*
 	 * 전대영 : email 비번 찾기 
 	 */
@@ -214,5 +215,13 @@ public class UserService {
 		}else {
 			return true;
 		}
+	}
+	
+	@Transactional
+	public Integer userNameCheck(String userName) {
+		System.out.println(userName);
+		Integer result = userRepository.findUserByUserName(userName);
+		System.out.println(result);
+		return result;
 	}
 }

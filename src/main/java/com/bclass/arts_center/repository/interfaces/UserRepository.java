@@ -70,13 +70,10 @@ public interface UserRepository {
 
 	public User findUserByUserId(String userEmail);
 
+	public Integer updateUserPassword(@Param("id") String id,@Param("pw") String pw);
 	
-	public int updateUserPassword(@Param("id") String id,@Param("pw") String pw);
 	
-	/*
-	 * email 중복검사 전대영
-	 */
-	
+	public Integer findUserByUserName(String userName);
 	
 	
 }
