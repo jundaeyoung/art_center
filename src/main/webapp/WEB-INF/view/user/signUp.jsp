@@ -130,7 +130,7 @@
 					<input type="hidden" value="${roleId}" name="roleId">
 					<c:choose>
 						<c:when test="${userInfo.id != null}">
-							<input type="hidden" value="${userInfo.id}" id="apiId"
+							<input type="hidden" value="${apiId}" id="apiId"
 								name="apiId">
 						</c:when>
 						<c:otherwise>
