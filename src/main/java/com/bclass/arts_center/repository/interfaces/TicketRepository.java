@@ -32,7 +32,7 @@ public interface TicketRepository {
 	
 	public TicketCheckDto selectTicketForPay(Integer ticketingId);
 
-	public int updateTicketing(@Param("userId") Integer userId, @Param("sessionTicketingId") Integer sessionTicketingId);
+	public int updateTicketing(@Param("userId") Integer userId, @Param("ticketingId") Integer ticketingId);
 //	public int delete(int id);
 
 }

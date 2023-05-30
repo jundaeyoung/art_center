@@ -55,10 +55,11 @@ button {
 
 							<div class="ticket--btn">
 								<div class="ticket--detail--btn">
-									<a href="/myPage/myTicketDetail/${myTicketList.id}">예매 정보</a>
+									<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId">예매 정보</a>
 								</div>
 								<div class="ticket--pay--btn">
 									<form action="/kakao/ready" method="get">
+										<input type="hidden" name="ticketingId" value="${myTicketList.id}">
 										<button type="submit" class="kakao--btn">
 											<img alt="" src="/images/kakao/payment_icon_yellow_small.png">
 										</button>
@@ -93,7 +94,7 @@ button {
 									<a href="/myPage/myTicketDetail/${myTicketList.id}">예매 정보</a>
 								</div>
 								<div class="ticket--refund--btn">
-									<form action="/kakao/refund" method="post">
+									<form action="/kakao/refund/${myTicketList.paymentId}" method="post">
 										<button type="submit">예매 취소</button>
 									</form>
 								</div>

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.interfaces.PaymentRepository;
 import com.bclass.arts_center.repository.model.ManagerPayment;
@@ -30,18 +31,26 @@ public class PaymentService {
 			throw new CustomRestfullException("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	// 작성자 : 편용림 대관 결제
-	
+
 	@Transactional
 	public void createManagerPayment(ManagerPayment payment) {
-		
+
 		int result = paymentRepository.insertManagerPayment(payment);
-		
+
 		if (result != 1) {
 			throw new CustomRestfullException("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 	}
 
+	@Transactional
+	public void updateCancelStatus(KakaoRefundResponse kakaoRefund) {
+
+		int result = paymentRepository.updateCancelStatus(kakaoRefund);
+		if (result != 1) {
+			throw new CustomRestfullException("결제 취소 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

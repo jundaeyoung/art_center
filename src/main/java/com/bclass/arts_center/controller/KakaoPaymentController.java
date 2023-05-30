@@ -52,12 +52,17 @@ public class KakaoPaymentController {
 	private RentPlaceReservationService rentPlaceReservationService;
 
 	@GetMapping("/ready")
-	public String readyToKakaoPay(Integer rentId, RedirectAttributes redirectAttributes) {
+	public String readyToKakaoPay(Integer ticketingId, Integer rentId, RedirectAttributes redirectAttributes) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		KakaoReadyResponse kakaoReadyResponse = null;
 		if (principal.getRoleId() == 1) {
 			Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
-			kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
+			if (sessionTicketingId != null) {
+				kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
+			} else if (sessionTicketingId == null) {
+				session.setAttribute("ticketingId", ticketingId);
+				kakaoReadyResponse = kakaoPaymentService.kakaoReady(ticketingId);
+			}
 
 		} else if (principal.getRoleId() == 2) {
 			kakaoReadyResponse = kakaoPaymentService.kakaoReady2(rentId);
@@ -67,7 +72,7 @@ public class KakaoPaymentController {
 	}
 
 	@GetMapping("/success")
-	public String success(@RequestParam("pg_token") String pgToken, Model model) {
+	public String success(Integer ticketingId, @RequestParam("pg_token") String pgToken, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		KakaoApprovalResponse kakaoApprove = kakaoPaymentService.kakaoApprove(pgToken);
 		model.addAttribute("kakaoApprove", kakaoApprove);
@@ -82,7 +87,6 @@ public class KakaoPaymentController {
 			Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
 			payment.setTicketingId(sessionTicketingId);
 
-			System.out.println(payment);
 			ticketService.updateTicketStatus(principal.getId(), sessionTicketingId);
 			paymentService.createPayment(payment);
 
@@ -100,6 +104,8 @@ public class KakaoPaymentController {
 			rentPlaceReservationService.updateRentPlaceReservation(rentId);
 			paymentService.createManagerPayment(managerPayment);
 		}
+		
+		session.invalidate();
 		return "/payment/success";
 	}
 
@@ -119,7 +125,15 @@ public class KakaoPaymentController {
 	@PostMapping("/refund/{tid}")
 	public String refund(@PathVariable String tid) {
 
-		KakaoRefundResponse kakaoRefundResponse = kakaoPaymentService.kakaoRefund(tid);
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+
+		KakaoRefundResponse kakaoRefundResponse = null;
+		if (principal.getRoleId() == 1) {
+			kakaoRefundResponse = kakaoPaymentService.kakaoRefund(principal.getId(), tid);
+			paymentService.updateCancelStatus(kakaoRefundResponse);
+		} else if (principal.getRoleId() == 2) {
+			kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
+		}
 
 		return "/payment/refund";
 	}

@@ -207,6 +207,11 @@
 								<div class="show__schedule">
 									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
 								</div>
+								<form action="">
+									<button>
+										<img alt="" src="">
+									</button>
+								</form>
 							</div>
 							</c:when>
 							

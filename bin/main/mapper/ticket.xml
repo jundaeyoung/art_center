@@ -105,7 +105,8 @@
 		on h.id = s.hole_id
 		JOIN show_datetime_tb as sd
 		ON t.show_datetime_id = sd.id
-		WHERE user_id = #{userId} AND payment_status = 0;
+		WHERE user_id = #{userId} AND payment_status = 0
+		ORDER BY ticketing_date desc
 	</select>
 
 	<!-- 작성자 손주이 : 결제 요청 티켓 값 넘기기 -->
@@ -126,15 +127,7 @@
 	<update id="updateTicketing">
 		UPDATE ticketing_tb
 		SET payment_status = 1
-		WHERE
-		user_id = #{userId} AND payment_status = 0 AND id =
-		${sessionTicketingId}
+		WHERE user_id = #{userId} AND payment_status = 0 AND id = #{ticketingId}
 	</update>
-
-	<select id="">
-
-
-	</select>
-
 
 </mapper>

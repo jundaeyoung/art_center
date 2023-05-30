@@ -21,4 +21,18 @@
 		VALUES (#{mPaymentId},#{managerId}, #{paymentOption}, #{paymentDate}, #{rentId});
 	</insert>
 	
+	<select id="selectPaymentInfo" resultType="com.bclass.arts_center.dto.payment.RequestPaymentInfoDto">
+		SELECT *
+		FROM ticketing_tb AS t
+		JOIN show_tb AS s
+        ON t.show_id = s.id
+		JOIN payment_tb AS p
+		ON p.ticketing_id = t.id
+        WHERE t.user_id = ${userId} AND payment_id = #{tid}
+	</select>
+	
+	<update id="updateCancelStatus">
+		UPDATE payment_tb SET cancel_status = 1 AND canceled_at = #{canceledAt} WHERE payment_id #{tid}
+	</update>
+	
 </mapper>

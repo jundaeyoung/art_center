@@ -3,6 +3,8 @@ package com.bclass.arts_center.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,10 +21,13 @@ import com.bclass.arts_center.dto.payment.AdminKeyDto;
 import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoReadyResponse;
 import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
+import com.bclass.arts_center.dto.payment.RequestPaymentInfoDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto;
 import com.bclass.arts_center.repository.interfaces.PaymentRepository;
 import com.bclass.arts_center.repository.interfaces.RentalRepository;
 import com.bclass.arts_center.repository.interfaces.TicketRepository;
+import com.bclass.arts_center.repository.model.User;
+import com.bclass.arts_center.utils.Define;
 
 /**
  * 
@@ -40,6 +45,9 @@ public class KakaoPaymentService {
 
 	@Autowired
 	private RentalRepository rentalRepository;
+
+	@Autowired
+	private HttpSession session;
 
 	private static final String cid = "TC0ONETIME";
 
@@ -62,6 +70,7 @@ public class KakaoPaymentService {
 
 		TicketCheckDto ticketCheckDto = ticketRepository.selectTicketForPay(ticketingId);
 		String userBirth = ticketCheckDto.getBirthDate();
+		System.out.println("dd" + userBirth);
 		String replaceuserBirth = userBirth.replaceAll("-", "");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date now = new Date();
@@ -108,16 +117,10 @@ public class KakaoPaymentService {
 	public KakaoReadyResponse kakaoReady2(Integer rentId) {
 
 		RequestRentPlaceReservationDto rentPlaceReservation = rentalRepository.selectRentPlaceReservationById(rentId);
-		String userBirth = rentPlaceReservation.getBirthDate();
-		String replaceuserBirth = userBirth.replaceAll("-", "");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Date now = new Date();
-		String nowDate = sdf.format(now);
-		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
-		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
-		int userAge = startMonth2 - startMonth1;
+
 		String price = rentPlaceReservation.getRentPrice();
 		String rentPrice = price.replace(",", "");
+
 		RestTemplate restTemplate = new RestTemplate();
 
 		HttpHeaders headers = new HttpHeaders();
@@ -184,7 +187,43 @@ public class KakaoPaymentService {
 	 * @return response.getBody()
 	 */
 	@Transactional
-	public KakaoRefundResponse kakaoRefund(String tid) {
+	public KakaoRefundResponse kakaoRefund(Integer userId, String tid) {
+
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		RequestPaymentInfoDto requestPayment = paymentRepository.selectPaymentInfo(userId, tid);
+		System.out.println("rr" + requestPayment);
+
+		RestTemplate restTemplate = new RestTemplate();
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Authorization", "KakaoAK " + ADMIN_KEY.getAdminKey());
+		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+		params.add("cid", cid);
+		params.add("tid", tid);
+		if (requestPayment.getAgeGroupId() == 3) {
+			params.add("cancel_amount", requestPayment.getAdultRate());
+		} else if (requestPayment.getAgeGroupId() == 2) {
+			params.add("cancel_amount", requestPayment.getYouthRate());
+		}
+		params.add("cancel_tax_free_amount", "0");
+
+		HttpEntity<MultiValueMap<String, String>> kakaoRequestEntity = new HttpEntity<>(params, headers);
+
+		ResponseEntity<KakaoRefundResponse> response = restTemplate.exchange("https://kapi.kakao.com/v1/payment/cancel",
+				HttpMethod.POST, kakaoRequestEntity, KakaoRefundResponse.class);
+
+		return response.getBody();
+	}
+
+	/**
+	 * 환불 요청
+	 * 
+	 * @return response.getBody()
+	 */
+	@Transactional
+	public KakaoRefundResponse kakaoRefund2(String tid) {
 
 		RestTemplate restTemplate = new RestTemplate();
 
