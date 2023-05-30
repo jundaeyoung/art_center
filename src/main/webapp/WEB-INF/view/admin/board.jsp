@@ -60,7 +60,7 @@
 																	title : ' 대관 총 매출 (공연별)',
 																},
 																bar : {
-																	groupWidth : '50%' // 예제에서 이 값을 수정
+																	groupWidth : '100%' // 예제에서 이 값을 수정
 																},
 																fontSize : 30,
 																vAxis : {

@@ -23,6 +23,6 @@ public interface AdminSalesRepository {
 	public List<RentSalesDto> selectRentSaleGrape();
 	
 	// 작성자 : 편용림 티켓 그래프
-	public List<RequestManagerShowSaleDto> selectShowSaleGrape();
+	public List<RequestManagerShowSaleDto> selectShowSalesGrape();
 	
 }

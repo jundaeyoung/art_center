@@ -42,18 +42,17 @@
 
 	<select id="selectShowSalesGrape" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id, s.title,s.adult_rate,s.youth_rate,s.infant_rate,
-		count(case when t.age_group_id=1 then 1 end) * replace(s.infant_rate,',','') +
-		count(case when t.age_group_id=2 then 1 end) *
-		replace(s.youth_rate,',','') +
-		count(case when t.age_group_id=3 then 1 end) * replace(s.adult_rate,',','') as
-		totalshowSales
-		from ticketing_tb AS t
-		join show_tb AS s
-		ON t.show_id = s.id
-		join show_datetime_tb AS sd
-		ON t.show_datetime_id = sd.id
-		where t.payment_status = 1
-		group by s.title;
+        count(case when t.age_group_id=1 then 1 end) * replace(s.infant_rate,',','') +
+        count(case when t.age_group_id=2 then 1 end) * replace(s.youth_rate,',','') +
+        count(case when t.age_group_id=3 then 1 end) * replace(s.adult_rate,',','') as totalshowSales
+        from ticketing_tb AS t
+        join show_tb AS s
+        ON t.show_id = s.id
+        join show_datetime_tb AS sd
+        ON t.show_datetime_id = sd.id
+        where t.payment_status = 1
+        group by s.title
+        ORDER BY totalshowSales desc;
 	</select>
 
 </mapper>

@@ -35,7 +35,7 @@ public class AdminSaleService {
 	@Transactional
 	public List<RequestManagerShowSaleDto> readShowSaleGrape(){
 		
-		List<RequestManagerShowSaleDto> showSaleGrape = adminSalesRepository.selectShowSaleGrape();
+		List<RequestManagerShowSaleDto> showSaleGrape = adminSalesRepository.selectShowSalesGrape();
 		
 		return showSaleGrape;
 		
