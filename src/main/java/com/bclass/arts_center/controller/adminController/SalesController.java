@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.dto.RentSalesDto;
 import com.bclass.arts_center.dto.TicketingDto;
+import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
 import com.bclass.arts_center.service.AdminSaleService;
 import com.bclass.arts_center.service.TicketService;
 
@@ -26,7 +28,6 @@ public class SalesController {
 	
 	@GetMapping("/showGrape")
 	public String showGrape() {
-		System.out.println("111111111");
 		return "/admin/board2";
 	}
 	
@@ -71,6 +72,13 @@ public class SalesController {
 	    model.addAttribute("rentSaleslist", rentSaleslist);
 	    model.addAttribute("totalRentPrice", formattedTotalRentPrice); // 쉼표를 포함한 문자열로 추가
 	    return "/admin/rentSales";
+	}
+	
+	@PostMapping("/showSalesDay")
+	public String ShowSalesDay(){
+		
+		return "redirect:/admin/rentSales";
+	
 	}
 	
 }

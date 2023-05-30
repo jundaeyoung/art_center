@@ -25,6 +25,13 @@
 							<i class="fas fa-table me-1"></i> 
 						</div>
 						<div class="card-body">
+						 <form action="/sales/showSalesDay" method="POST">
+                        <div class="mb-3">
+                            <label for="searchDate" class="form-label">날짜 검색</label>
+                            <input type="date" id="searchDate" name="searchDate" class="form-control" style="width: 150px;">
+                        </div>
+                        <button type="submit" class="btn btn-primary">검색</button>
+                    </form>
 						<table id="datatablesSimple">
                                     <thead>
                                           <tr>
