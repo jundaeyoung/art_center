@@ -30,6 +30,7 @@ public class ManagerShowSaleApiController {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> selectCount = managerShowSaleService.readAndCount(requestManagerShowSaleDto);
+		System.out.println(selectCount);
 		return selectCount;
 	}
 }

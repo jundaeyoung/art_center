@@ -70,7 +70,6 @@ public class UserController {
 	
 	@GetMapping("/signUpchoice")
 	public String signUpchoice(Integer roleId, Model model) {
-		System.out.println(roleId);
 		model.addAttribute("roleId", roleId);
 		return "/user/signUp";
 	}
@@ -156,7 +155,6 @@ public class UserController {
 
 			return "/user/signUp";
 		}
-		System.out.println(signUpFormDto);
 		userService.createUser(signUpFormDto);
 		return "redirect:/";
 	}
@@ -185,9 +183,6 @@ public class UserController {
 	@PostMapping("/deleteProc")
 	public String delete(SignInFormDto signInFormDto) {
 
-
-		System.out.println(signInFormDto);
-		
 		if (signInFormDto.getPassword() == null || signInFormDto.getPassword().isEmpty()) {
 			throw new CustomRestfullException("password를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
@@ -253,6 +248,15 @@ public class UserController {
 
 		return str;
 
+	}
+	@PostMapping("/check/userName")
+	@ResponseBody
+	public Integer sendUseNameCheck(@RequestBody String userName) {
+		System.out.println(userName);
+		System.out.println("여기들어옴");
+		Integer result = userService.userNameCheck(userName);
+		System.out.println(result);
+		return result;
 	}
 
 }
