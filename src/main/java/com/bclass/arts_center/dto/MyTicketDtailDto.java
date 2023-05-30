@@ -12,6 +12,7 @@ public class MyTicketDtailDto {
 	private String paymentId;
 	private String paymentOption;
 	private String paymentDate;
+	private Integer paymentStatus;
 	
 	private Integer id;
 	private Timestamp ticketingDate;

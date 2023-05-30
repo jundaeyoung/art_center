@@ -6,8 +6,7 @@
 	namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
 
 	 <!-- 김미정: 공연,대관예약 정보 불러오기 -->   
-   <select id="selectMyShow"
-      resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+   <select id="selectMyShow" resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
       select *, r.id AS rentId
       from show_tb as s
       left join
@@ -19,13 +18,28 @@
       order by s.start_date desc
    </select>
 
-	<select id="selectMyTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+   <!-- 김미정 : 공연,대관예약 detail정보 불러오기 -->
+   <select id="selectMyShowDetail" resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+      SELECT *
+      FROM show_tb AS s
+      JOIN rent_place_reservation_tb AS r
+      ON s.id = r.show_id
+      JOIN hole_tb AS h
+      ON r.hole_id = h.id
+      JOIN location_tb AS l
+      ON h.location_id = l.id
+      WHERE s.id = #{id}
+   </select>
+	
+	<select id="selectMyTicket" resultType="com.bclass.arts_center.dto.MyTicketDtailDto">
 		SELECT *
 		FROM ticketing_tb AS t
 		JOIN show_tb AS s
         ON t.show_id = s.id
-		WHERE user_id = ${userId}
-		ORDER BY ticketing_date desc
+		LEFT JOIN payment_tb AS p
+		ON p.ticketing_id = t.id
+        WHERE t.user_id = #{userId}
+        ORDER BY t.ticketing_date desc
 	</select>
 	
 	<select id="selectMyTicketDetail" resultType="com.bclass.arts_center.dto.MyTicketDtailDto">
@@ -46,21 +60,4 @@
 		WHERE t.id = #{id} 
 	</select>
   
-
-   <!-- 김미정 : 공연,대관예약 detail정보 불러오기 -->
-   <select id="selectMyShowDetail"
-      resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
-      <!-- select * from show_tb as s left join rent_place_reservation_tb as 
-         r on s.id = r.show_id where s.id = #{id}; -->
-      SELECT *
-      FROM show_tb AS s
-      JOIN rent_place_reservation_tb AS r
-      ON s.id = r.show_id
-      JOIN hole_tb AS h
-      ON r.hole_id = h.id
-      JOIN location_tb AS l
-      ON h.location_id = l.id
-      WHERE s.id = #{id}
-
-   </select>
 </mapper>

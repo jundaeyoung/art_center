@@ -246,7 +246,7 @@ select option {
 
 				<div class="side--container">
 					<div class="show--img">
-						<img alt="" src="/images/${imgRoute}">
+						<img alt="" src="/images/upload/${imgRoute}">
 					</div>
 					<c:choose>
 						<c:when test="${locationId==1}">

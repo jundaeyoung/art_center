@@ -17,27 +17,24 @@ public class TicketingDto {
 	private Integer id;
 	private Integer showId;
 	private String title;
-	private Date showDate;
-	private Time showTime;
 	private Integer showTypeId;
-	private Integer ageGroupId;
 
 	private Integer showDatetimeId;
+	private Date showDate;
+	private Time showTime;
+	
 	private Integer seatId;
 	private String seatName;
-	private int reserveState;
 
 	private Timestamp ticketingDate;
+	private Integer ageGroupId;
 
 	private Integer userId;
-
 	private String nickname;
 	private String tel;
 	private String email;
 	private String adultRate;
 	private String youthRate;
-	private String infantRate;
-	private Integer infantCount;
 	private Integer youthCount;
 	private Integer adultCount;
 

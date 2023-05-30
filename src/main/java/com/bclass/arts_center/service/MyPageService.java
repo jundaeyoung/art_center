@@ -46,9 +46,9 @@ public class MyPageService {
 	 * @return ticketList
 	 */
 	@Transactional
-	public List<TicketCheckDto> readMyTicketList(Integer userId) {
+	public List<MyTicketDtailDto> readMyTicketList(Integer userId) {
 
-		List<TicketCheckDto> ticketList = myPageRepository.selectMyTicket(userId);
+		List<MyTicketDtailDto> ticketList = myPageRepository.selectMyTicket(userId);
 		return ticketList;
 	}
 

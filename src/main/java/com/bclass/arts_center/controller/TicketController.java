@@ -109,13 +109,13 @@ public class TicketController {
 		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
 
 		int userAge = startMonth2 - startMonth1;
-		if(userAge<20) {
+		if (userAge < 20) {
 			ticketingDto.setAgeGroupId(2);
-		}else {
+		} else if (userAge >= 20) {
 			ticketingDto.setAgeGroupId(3);
 		}
 		ticketingDto.setUserId(principal.getId());
-		if(ticketingDto.getShowTypeId()!=1) {
+		if (ticketingDto.getShowTypeId() != 1) {
 			ticketingDto.setSeatId(1);
 		}
 		ticketService.waitTicket(ticketingDto);
@@ -128,20 +128,8 @@ public class TicketController {
 
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
-		String userBirth = principal.getBirthDate();
-		String replaceuserBirth = userBirth.replaceAll("-", "");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		Date now = new Date();
-		String nowDate = sdf.format(now);
-
-		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
-		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
-
-		int userAge = startMonth2 - startMonth1;
-
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());
 		model.addAttribute("ticketListInfo", ticketListInfo);
-		model.addAttribute("userAge", userAge);
 		return "/ticket/ticketCheck";
 	}
 

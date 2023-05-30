@@ -25,7 +25,7 @@ public interface MyPageRepository {
 	public List<MyRegistrationInfoDto> selectMyShowDetail(Integer id);
 	
 	// user 공연 예매 내역 불러오기
-	public List<TicketCheckDto> selectMyTicket(Integer userId);
+	public List<MyTicketDtailDto> selectMyTicket(Integer userId);
 	
 	// user 공연 예매 detail
 	public MyTicketDtailDto selectMyTicketDetail(Integer id);

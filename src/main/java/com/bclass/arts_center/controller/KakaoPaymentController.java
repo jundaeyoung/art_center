@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,18 +54,16 @@ public class KakaoPaymentController {
 	@GetMapping("/ready")
 	public String readyToKakaoPay(Integer rentId, RedirectAttributes redirectAttributes) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		KakaoReadyResponse kakaoReadyResponse = null;
 		if (principal.getRoleId() == 1) {
 			Integer sessionTicketingId = (Integer) session.getAttribute("ticketingId");
-			KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
-			return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
-			
-		}else if(principal.getRoleId() == 2) {
-			KakaoReadyResponse kakaoReadyResponse = kakaoPaymentService.kakaoReady2(rentId);
+			kakaoReadyResponse = kakaoPaymentService.kakaoReady(sessionTicketingId);
+
+		} else if (principal.getRoleId() == 2) {
+			kakaoReadyResponse = kakaoPaymentService.kakaoReady2(rentId);
 			session.setAttribute("rentId", rentId);
-			return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
 		}
-		
-		return null;
+		return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
 	}
 
 	@GetMapping("/success")
@@ -100,9 +99,7 @@ public class KakaoPaymentController {
 			// 렌트 아이디 받아가지고 status 업데이트
 			rentPlaceReservationService.updateRentPlaceReservation(rentId);
 			paymentService.createManagerPayment(managerPayment);
-			return "/payment/success";
 		}
-
 		return "/payment/success";
 	}
 
@@ -119,11 +116,11 @@ public class KakaoPaymentController {
 		return "/payment/fail";
 	}
 
-	@PostMapping("/refund")
-	public ResponseEntity<?> refund() {
+	@PostMapping("/refund/{tid}")
+	public String refund(@PathVariable String tid) {
 
-		KakaoRefundResponse kakaoRefundResponse = kakaoPaymentService.kakaoRefund();
+		KakaoRefundResponse kakaoRefundResponse = kakaoPaymentService.kakaoRefund(tid);
 
-		return new ResponseEntity<>(kakaoRefundResponse, HttpStatus.OK);
+		return "/payment/refund";
 	}
 }

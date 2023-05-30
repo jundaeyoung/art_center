@@ -11,14 +11,19 @@ public class TicketCheckDto {
 
 	private Integer id;
 	private Integer userId;
-	private Timestamp ticketingDate;
 	private String birthDate;
-	private String name;
+	
+
 	private Integer showId;
 	private String title;
 	private String imgRoute;
 	private String adultRate;
 	private String youthRate;
+	
+	private String name;
+	
+	private Timestamp ticketingDate;
+	private Integer ageGroupId; 
 	
 	private Integer showDatetimeId;
 	private Date showDate;

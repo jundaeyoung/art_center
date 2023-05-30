@@ -20,5 +20,5 @@
 		INSERT INTO manager_payment_tb(m_payment_id, manager_id, payment_option, payment_date, rent_id)
 		VALUES (#{mPaymentId},#{managerId}, #{paymentOption}, #{paymentDate}, #{rentId});
 	</insert>
-
+	
 </mapper>
