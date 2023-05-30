@@ -6,8 +6,7 @@
 <mapper namespace="com.bclass.arts_center.repository.interfaces.ManagerShowSaleRepository">
 
 	<select id="selectAndCount" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
-		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,s.infant_rate, count(case when t.age_group_id=1 then 1 end) as
-		infantCount ,
+		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
 		FROM show_tb AS s
 		Join user_tb AS u ON u.id = s.organizer_id
@@ -20,8 +19,7 @@
 	</select>
 
 	<select id="selectManagerShowSaleByDate" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
-		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,s.infant_rate, count(case when t.age_group_id=1 AND t.ticketing_date BETWEEN #{startDate} and #{endDate} then 1 end) as
-		infantCount ,
+		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 AND t.ticketing_date BETWEEN #{startDate} and #{endDate} then 1 end) as youthCount, count(case when t.age_group_id=3 AND t.ticketing_date BETWEEN #{startDate} and #{endDate} then 1 end) as adultCount
 		FROM show_tb AS s
 		Join user_tb AS u ON u.id = s.organizer_id
@@ -35,8 +33,7 @@
 
 
 	<select id="selectManagerShowBySearch" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
-		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,s.infant_rate, count(case when t.age_group_id=1 then 1 end) as
-		infantCount ,
+		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
 		FROM show_tb AS s
 		Join user_tb AS u ON u.id = s.organizer_id
@@ -49,8 +46,7 @@
 	
 	
 	<select id="selectManagerShowDetailByShowId" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
-		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,s.infant_rate, count(case when t.age_group_id=1 then 1 end) as
-		infantCount ,
+		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
 		FROM show_tb AS s
 		Join user_tb AS u ON u.id = s.organizer_id

@@ -1,47 +1,60 @@
 @charset "UTF-8";
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-html, body {
-	width: 100%;
-	height: 100%;
-}
-
-main {
+.faq__header {
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
 	margin-top: 100px;
+	padding: 300px;
+	background-image: url('/images/background/faq.png');
+	background-position: 50% 10%;
 }
 
-.faq--header h2{
-	margin:100px;
+.material-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	margin: 100px;
+}
+
+.faq--header h2 {
+	font-size: 50px;
+	margin-left: 30px;
+	font-weight: 300;
 }
 
 .faq-type ul {
 	display: flex;
+	margin-bottom: 100px;
+	margin-top: 8px;
 }
 
-.faq--title {
-	width: 960px;
-}
-
-.category-list-table {
+.faq-type ul li {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-align: center;
-	width: 50%;
-	margin: 20px 100px;
+	height: 100px;
+}
+
+.faq-type ul li form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.faq-type ul li form button {
+	font-size: 20px;
+}
+
+.faq--title {
+	width: 1540px;
+	margin-left: -40px;
+	margin-top: -10px;
 }
 
 .category-list:nth-of-type(1) {
 	border: 1px solid #ebebeb;
 	width: 400px;
-	height: 60px;
+	height: 100px;
 	text-align: center;
 }
 
@@ -50,7 +63,7 @@ main {
 	border-bottom: 1px solid #ebebeb;
 	border-right: 1px solid #ebebeb;
 	width: 400px;
-	height: 60px;
+	height: 100px;
 	text-align: center;
 }
 
@@ -66,6 +79,7 @@ main {
 .faq--container {
 	width: 90%;
 	margin: 0 auto;
+	border-top: 1px solid #ccc;
 }
 
 .panel-question {
@@ -74,11 +88,12 @@ main {
 }
 
 .panel-heading {
-	font-weight: bold;
 	padding: 5px;
-	/* background-color: #333;
-    color: #fff;*/
 	cursor: pointer;
+	font-size: 30px;
+	font-weight: 300;
+	margin-top: 50px;
+	margin-left: 30px;
 }
 
 .panel-body {
@@ -88,4 +103,23 @@ main {
 
 .active .panel-body {
 	display: block;
+}
+
+.panel-question {
+	padding-bottom:50px;
+	border-bottom: 1px solid #ccc;
+	width: 1300px;
+}
+
+#thisone p {
+	font-size: 25px;
+	font-weight: 200;
+}
+
+.material-symbols-outlined {
+	height: 25px;
+	width: 25px;
+	color: red;
+	background-color: red;
+	color: red;
 }

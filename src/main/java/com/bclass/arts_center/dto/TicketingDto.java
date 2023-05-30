@@ -20,6 +20,7 @@ public class TicketingDto {
 	private Date showDate;
 	private Time showTime;
 	private Integer showTypeId;
+	private Integer ageGroupId;
 
 	private Integer showDatetimeId;
 	private Integer seatId;

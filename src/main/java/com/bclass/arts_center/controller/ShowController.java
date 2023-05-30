@@ -218,6 +218,7 @@ public class ShowController {
 			model.addAttribute("showInfo", showInfo);
 			model.addAttribute("title", showInfo.get(0).getTitle());
 			model.addAttribute("locationId", showInfo.get(0).getLocationId());
+			model.addAttribute("showTypeId", showInfo.get(0).getShowTypeId());
 			model.addAttribute("content", showInfo.get(0).getContent());
 			model.addAttribute("imgRoute", showInfo.get(0).getImgRoute());
 			model.addAttribute("startDate", showInfo.get(0).getStartDate());

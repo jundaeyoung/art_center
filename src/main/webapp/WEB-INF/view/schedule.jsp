@@ -80,15 +80,15 @@
 			 	events: [
 			 		<c:forEach items="${lists}" var="list">
 			 		 <c:choose>
-			         <c:when test="${list.holeName == '1층'}">
+			         <c:when test="${list.holeName == '1관'}">
 			             <c:set var="backgroundColor" value="#FFE3D5" />
 			             <c:set var="borderColor" value="#FFE3D5" />
 			         </c:when>
-			         <c:when test="${list.holeName == '2층'}">
+			         <c:when test="${list.holeName == '2관'}">
 			             <c:set var="backgroundColor" value="#8DC6ED" />
 			             <c:set var="borderColor" value="#8DC6ED" />
 			         </c:when>
-			         <c:when test="${list.holeName == '3층'}">
+			         <c:when test="${list.holeName == '3관'}">
 			             <c:set var="backgroundColor" value="#EAFCD4" />
 			             <c:set var="borderColor" value="#EAFCD4" />
 			         </c:when>

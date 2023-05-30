@@ -47,6 +47,7 @@
 					</table>
 				</div>
 			</div>
+			<input type="hidden" name="showTypeId" value="${showTypeId}">
 			<c:choose>
 				<c:when test="${showInformation==1}">
 					<div class="reservation--Time">
