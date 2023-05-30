@@ -39,5 +39,7 @@ public class TicketingDto {
 	private Integer infantCount;
 	private Integer youthCount;
 	private Integer adultCount;
+	
+	private Integer count;
 
 }

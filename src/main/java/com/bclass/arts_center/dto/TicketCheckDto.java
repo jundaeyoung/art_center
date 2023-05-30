@@ -26,5 +26,4 @@ public class TicketCheckDto {
 
 	private Integer seatId;
 	private String seatName;
-
 }

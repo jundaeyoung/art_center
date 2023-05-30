@@ -96,6 +96,11 @@ public class TicketService {
 		List<TicketingDto> occupiedList = ticketRepository.selectOccupiedSeat(showDatetimeId);
 		return occupiedList;
 	}
+	
+	public Integer countTicketing(Integer showDatetimeId) {
+		Integer ticketingPeople = ticketRepository.countTicketing(showDatetimeId);
+		return ticketingPeople;
+	}
 
 	/**
 	 * 예매

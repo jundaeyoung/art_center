@@ -60,8 +60,6 @@ public class TicketController {
 
 		List<TicketingDto> showInfo = ticketService.readShowInfoForTicketing(showId);
 		List<ShowViewDto> showInformation = showService.readShowInfoByShowId(showId);
-		System.out.println(showInformation + "DDD");
-		System.out.println(userAge);
 		if (showInformation.get(0).getAdmissionAge().equals("19세 이상")) {
 			if (userAge <= 20) {
 				throw new CustomRestfullException("19세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
@@ -97,20 +95,30 @@ public class TicketController {
 	}
 
 	@PostMapping("/ticketing")
-	public String ticketProc(TicketingDto ticketingDto) {
+	public String ticketProc(TicketingDto ticketingDto, Integer showDatetimeId) {
 //		로그인 했다는 인증 필요
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
-		ticketingDto.setUserId(principal.getId());
-		System.out.println(ticketingDto);
 		
+		ticketingDto.setUserId(principal.getId());
+		System.out.println("dhdh"+ticketingDto+"오메");
+		ticketingDto.setShowTypeId(showDatetimeId);
+
 //		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
 //		2랑 3일때는 setSeatId 억지로 해줘야
+		Integer count = ticketService.countTicketing(showDatetimeId);
 		
-		ticketService.waitTicket(ticketingDto);
-		ticketService.selectSeat(ticketingDto.getSeatId(), ticketingDto.getShowDatetimeId());
+		if (ticketingDto.getShowTypeId() == 3 && count > 3) {
+			throw new CustomRestfullException("예매 정원을 초과하였습니다.", HttpStatus.BAD_REQUEST);
+		} else {
+			ticketService.waitTicket(ticketingDto);
+			ticketService.selectSeat(ticketingDto.getSeatId(), ticketingDto.getShowDatetimeId());
+		}
 		return "redirect:/ticket/ticketCheck";
+
 	}
+//		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
+//		2랑 3일때는 setSeatId 억지로 해줘야
 
 	@GetMapping("/ticketCheck")
 	public String ticketCheck(Model model) {
