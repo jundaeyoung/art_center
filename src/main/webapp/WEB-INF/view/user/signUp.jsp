@@ -115,16 +115,15 @@
 			var idCheck=false;
 			var nicknameCheck = false;
 			var telCheck = false;
+			var emailCheck = false;
 	$(document).ready(
 			function() {
 				$(".login").attr("disabled", true), $(".login").css(
 						"background-color", "#ccc");
 				
 				$(function() {
-						var count = 0;
 					$("#userName").on('keyup', function() {
 						var formData = $("#userName").val();
-						console.log(formData);
 						$.ajax({
 							type : 'post',
 							url : "/user/check/userName",
@@ -132,16 +131,26 @@
 							data : formData,
 							datatype: "json",
 							success : function(res) {
-								if (res == 1 && count==0) {
+								if (res == 1) {
 									$("#error--userName").empty();
 									$("#error--userName").append("해당 아이디가 존재합니다.");
-									count=1;
+									$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
 									idCheck=false;
 								}else{
 									$("#error--userName").empty();
 									$("#error--userName").append("사용할 수 있는 아이디 입니다.");
-									count=0;
 									idCheck=true;
+									if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
+										if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
+											if(idCheck==true&&nicknameCheck==true){
+												if(telCheck==true){
+													$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
+												}
+											}else{
+												$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+												}
+											}
+									}
 								}
 							},
 							error : function(error) {
@@ -150,10 +159,8 @@
 					});
 				});
 				$(function() {
-						var count = 0;
 					$("#nickname").on('keyup', function() {
 						var formData = $("#nickname").val();
-						console.log(formData);
 						$.ajax({
 							type : 'post',
 							url : "/user/check/nickname",
@@ -161,16 +168,33 @@
 							data : formData,
 							datatype: "json",
 							success : function(res) {
-								if (res == 1 && count==0) {
+								if(formData.length<=1){
 									$("#error--nickname").empty();
-									$("#error--nickname").append("해당 닉네임이 존재합니다.");
-									count=1;
+									$("#error--nickname").append("닉네임은 최소 2글자입니다.");
+									$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
 									nicknameCheck = false;
 								}else{
-									$("#error--nickname").empty();
-									$("#error--nickname").append("사용할 수 있는 닉네임 입니다.");
-									count=0;
-									nicknameCheck = true;
+									if (res == 1) {
+										$("#error--nickname").empty();
+										$("#error--nickname").append("해당 닉네임이 존재합니다.");
+										$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+										nicknameCheck = false;
+									}else{
+										$("#error--nickname").empty();
+										$("#error--nickname").append("사용할 수 있는 닉네임 입니다.");
+										nicknameCheck = true;
+										if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
+											if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
+												if(idCheck==true&&nicknameCheck==true){
+													if(telCheck==true){
+														$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
+													}
+												}else{
+													$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+													}
+												}
+										}
+									}
 								}
 							},
 							error : function(error) {
@@ -179,10 +203,8 @@
 					});
 				});
 				$(function() {
-						var count = 0;
 					$("#tel").on('keyup', function() {
 						var formData = $("#tel").val();
-						console.log(formData);
 						$.ajax({
 							type : 'post',
 							url : "/user/check/tel",
@@ -190,16 +212,34 @@
 							data : formData,
 							datatype: "json",
 							success : function(res) {
-								if (res == 1 && count==0) {
+								console.log(formData.length==11);
+								if((formData.length==11)==false){	
+									telCheck=false;
 									$("#error--tel").empty();
-									$("#error--tel").append("등록된 전화번호입니다.");
-									count=1;
-									telCheck = false;
+									$("#error--tel").append("올바른 전화번호가 아닙니다.");
+									$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
 								}else{
-									$("#error--tel").empty();
-									$("#error--tel").append("사용할 수 있는 전화번호 입니다.");
-									count=0;
-									telCheck = true;
+									if (res == 1 && count==0) {
+										telCheck = false;
+										$("#error--tel").empty();
+										$("#error--tel").append("등록된 전화번호입니다.");
+										$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+									}else{
+										telCheck = true;
+										$("#error--tel").empty();
+										$("#error--tel").append("사용할 수 있는 전화번호 입니다.");
+										if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
+											if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
+												if(idCheck==true&&nicknameCheck==true){
+													if(telCheck==true){
+														$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
+													}
+												}else{
+													$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+													}
+												}
+										}
+									}
 								}
 							},
 							error : function(error) {
@@ -219,10 +259,10 @@
 
 		var birthDate = date.toISOString().slice(0, 10);
 		document.getElementById("birthDate").value = birthDate;
+		alert("회원가입이 완료되었습니다.")
 	}
 
 	$('.modal').on('hidden.bs.modal', function(e) {
-		console.log('modal close');
 		$(this).find('form')[0].reset()
 	});
 
@@ -265,29 +305,13 @@
 																		"#checkEmailNumber")
 																		.click(
 																				function() {
+																					
 																					let checkCode = $(
 																							"#emailCheck")
 																							.val()
 																					if (res == checkCode) {
 																						alert("인증 되었습니다.")
-																						$('.info').on('keyup',function() {
-																							if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
-																								if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
-																									if(idCheck==true&&nicknameCheck==true&&telCheck==true){
-																											$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
-																													}
-																									else{
-																										$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
-																									}
-																												}
-																								else{
-																									$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
-																								}
-																											}
-																							else{
-																								$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
-																							}
-																										});
+																						emailCheck=true;
 																					} else {
 																						alert("인증번호가 일치하지 않습니다.")
 																					}
@@ -306,47 +330,25 @@
 								})
 					})
 
-	//아이디 체크여부 확인 (아이디 중복일 경우 = 0 , 중복이 아닐경우 = 1 )
 	var idck = 0;
 	$(function() {
-		//idck 버튼을 클릭했을 때 
-		$("#idck").click(function() {
-
-			//userid 를 param.
-			var userid = $("#userid").val();
-
-			$.ajax({
-				async : true,
-				type : 'POST',
-				data : userid,
-				url : "idcheck",
-				dataType : "json",
-				contentType : "application/json; charset=UTF-8",
-				success : function(data) {
-					if (data.cnt > 0) {
-
-						alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-						//아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-						$("#divInputId").addClass("has-error")
-						$("#divInputId").removeClass("has-success")
-						$("#userid").focus();
-
-					} else {
-						alert("사용가능한 아이디입니다.");
-						//아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-						$("#divInputId").addClass("has-success")
-						$("#divInputId").removeClass("has-error")
-						$("#userpwd").focus();
-						//아이디가 중복하지 않으면  idck = 1 
-						idck = 1;
-					}
-				},
-				error : function(error) {
-
-					alert("error : " + error);
-				}
-			});
+			$('.info').on('keyup',function() {
+			console.log("id"+idCheck);
+			console.log("nickname"+nicknameCheck);
+			console.log("tel"+telCheck);
+			console.log("email"+emailCheck);
+				if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
+					if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
+						if(idCheck==true&&nicknameCheck==true){
+							if(telCheck==true){
+								$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
+							}
+						}else{
+							$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+							}
+						}
+						}
+						});
 		});
-	});
 </script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
