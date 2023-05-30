@@ -54,7 +54,7 @@
 						<p>닉네임 :</p>
 						<i class="material-icons">insert_emoticon</i> <input type="text" placeholder="닉네임을 입력하세요" name="nickname" id="nickname" class="info"><br>
 					</div>
-					<span class="error--messege" th:if="${valid_nickname}">${valid_nickname}</span> <br>
+					<span class="error--messege" id="error--nickname" th:if="${valid_nickname}">${valid_nickname}</span> <br>
 					<div id="ipw" class="email">
 						<p>이메일 :</p>
 						<i class="material-icons" style="margin-left: 450px;">mail_outline</i> <input type="email" placeholder="이메일을 입력하세요" name="email" id="email" class="info"><br>
@@ -95,7 +95,7 @@
 						<p>전화번호 :</p>
 						&nbsp; <i class="material-icons">phone_android</i> <input type="text" placeholder="전화번호를 입력하세요" name="tel" id="tel" class="info"><br>
 					</div>
-					<span class="error--messege" th:if="${valid_tel}">${valid_tel}</span> <br> <input type="hidden" value="${roleId}" name="roleId">
+					<span class="error--messege" id="error--tel" th:if="${valid_tel}">${valid_tel}</span> <br> <input type="hidden" value="${roleId}" name="roleId">
 					<c:choose>
 						<c:when test="${userInfo.id != null}">
 							<input type="hidden" value="${apiId}" id="apiId"
@@ -112,15 +112,18 @@
 </div>
 
 <script type="text/javascript">
+			var idCheck=false;
+			var nicknameCheck = false;
+			var telCheck = false;
 	$(document).ready(
 			function() {
 				$(".login").attr("disabled", true), $(".login").css(
 						"background-color", "#ccc");
 				
 				$(function() {
-						let count = 0;
+						var count = 0;
 					$("#userName").on('keyup', function() {
-						let formData = $("#userName").val();
+						var formData = $("#userName").val();
 						console.log(formData);
 						$.ajax({
 							type : 'post',
@@ -133,10 +136,70 @@
 									$("#error--userName").empty();
 									$("#error--userName").append("해당 아이디가 존재합니다.");
 									count=1;
-								} else {
+									idCheck=false;
+								}else{
 									$("#error--userName").empty();
 									$("#error--userName").append("사용할 수 있는 아이디 입니다.");
 									count=0;
+									idCheck=true;
+								}
+							},
+							error : function(error) {
+							}
+						});
+					});
+				});
+				$(function() {
+						var count = 0;
+					$("#nickname").on('keyup', function() {
+						var formData = $("#nickname").val();
+						console.log(formData);
+						$.ajax({
+							type : 'post',
+							url : "/user/check/nickname",
+							contentType : "application/json; charset=UTF-8",
+							data : formData,
+							datatype: "json",
+							success : function(res) {
+								if (res == 1 && count==0) {
+									$("#error--nickname").empty();
+									$("#error--nickname").append("해당 닉네임이 존재합니다.");
+									count=1;
+									nicknameCheck = false;
+								}else{
+									$("#error--nickname").empty();
+									$("#error--nickname").append("사용할 수 있는 닉네임 입니다.");
+									count=0;
+									nicknameCheck = true;
+								}
+							},
+							error : function(error) {
+							}
+						});
+					});
+				});
+				$(function() {
+						var count = 0;
+					$("#tel").on('keyup', function() {
+						var formData = $("#tel").val();
+						console.log(formData);
+						$.ajax({
+							type : 'post',
+							url : "/user/check/tel",
+							contentType : "application/json; charset=UTF-8",
+							data : formData,
+							datatype: "json",
+							success : function(res) {
+								if (res == 1 && count==0) {
+									$("#error--tel").empty();
+									$("#error--tel").append("등록된 전화번호입니다.");
+									count=1;
+									telCheck = false;
+								}else{
+									$("#error--tel").empty();
+									$("#error--tel").append("사용할 수 있는 전화번호 입니다.");
+									count=0;
+									telCheck = true;
 								}
 							},
 							error : function(error) {
@@ -207,44 +270,23 @@
 																							.val()
 																					if (res == checkCode) {
 																						alert("인증 되었습니다.")
-																						$(
-																								'.info')
-																								.on(
-																										'keyup',
-																										function() {
-																											if ($(
-																													"#userName")
-																													.val().length > 0
-																													&& $(
-																															"#password")
-																															.val().length > 0
-																													&& $(
-																															"#nickname")
-																															.val().length > 0) {
-																												if ($(
-																														"#year")
-																														.val().length > 0
-																														&& $(
-																																"#month")
-																																.val().length > 0
-																														&& $(
-																																"#day")
-																																.val().length > 0
-																														&& $(
-																																"#tel")
-																																.val().length > 10) {
-																															$(
-																																	".login")
-																																	.attr(
-																																			"disabled",
-																																			false),
-																															$(
-																																	".login")
-																																	.css(
-																																			"background-color",
-																																			"rgb(255, 80, 90)")
+																						$('.info').on('keyup',function() {
+																							if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
+																								if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
+																									if(idCheck==true&&nicknameCheck==true&&telCheck==true){
+																											$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
+																													}
+																									else{
+																										$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+																									}
 																												}
+																								else{
+																									$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+																								}
 																											}
+																							else{
+																								$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+																							}
 																										});
 																					} else {
 																						alert("인증번호가 일치하지 않습니다.")

@@ -251,12 +251,23 @@ public class UserController {
 	}
 	@PostMapping("/check/userName")
 	@ResponseBody
-	public Integer sendUseNameCheck(@RequestBody String userName) {
-		System.out.println(userName);
-		System.out.println("여기들어옴");
+	public Integer sendUserNameCheck(@RequestBody String userName) {
 		Integer result = userService.userNameCheck(userName);
-		System.out.println(result);
+		return result;
+	}
+	
+	@PostMapping("/check/nickname")
+	@ResponseBody
+	public Integer sendNicknameCheck(@RequestBody String nickname) {
+		Integer result = userService.nicknameCheck(nickname);
 		return result;
 	}
 
+	@PostMapping("/check/tel")
+	@ResponseBody
+	public Integer sendTelCheck(@RequestBody String tel) {
+		Integer result = userService.telCheck(tel);
+		return result;
+	}
+	
 }
