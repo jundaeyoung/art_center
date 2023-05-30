@@ -24,6 +24,12 @@ public class SalesController {
 	@Autowired
 	private AdminSaleService adminSaleService;
 	
+	@GetMapping("/showGrape")
+	public String showGrape() {
+		System.out.println("111111111");
+		return "/admin/board2";
+	}
+	
 	@GetMapping("/show")
 	public String showSales(Model model) {
 		List<TicketingDto> ticketList = ticketService.readTicketingAll();

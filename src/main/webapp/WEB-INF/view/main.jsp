@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <div class="dd" style="height: 100%">

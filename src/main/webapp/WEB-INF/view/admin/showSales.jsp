@@ -39,6 +39,7 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:set var = "total" value = "0" />
 							<c:forEach var="ticketList" items="${ticketList}">
 								<fmt:parseNumber var="adultRate" type="number" value="${ticketList.adultRate}" />
 								<fmt:formatNumber value="${adultRate}" pattern="#,##0" var="formattedAdultRate" />
@@ -55,6 +56,7 @@
 								<fmt:formatNumber value="${totalInfantPrice}" pattern="#,##0" var="I__price" />
 
 								<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice+totalInfantPrice}" />
+								<c:set var= "total" value="${total + totalPrice}"/>
 								<fmt:formatNumber value="${totalPrice}" pattern="#,##0" var="T__price" />
 								<tr>
 									<th>${ticketList.nickname}</th>
@@ -74,9 +76,8 @@
 								</tr>
 								</c:forEach>
 						</tbody>
-						<tfoot>
-						</tfoot>
 					</table>
+						<p>총매출 : <fmt:formatNumber value="${total}" pattern="#,##0" />원</p>
 				</div>
 			</div>
 		</div>
