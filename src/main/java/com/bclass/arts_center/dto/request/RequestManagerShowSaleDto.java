@@ -17,6 +17,6 @@ public class RequestManagerShowSaleDto {
 	private Integer adultCount;
 	private Integer youthCount;
 	private Integer infantCount;
-
+	private Integer totalshowSales;
 	
 }

@@ -1,46 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
-		<div id="layoutSidenav_content">
-			<main>
-				<div class="container-fluid px-4">
-					<h1 class="mt-4">Tables</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-						<li class="breadcrumb-item active">Tables</li>
-					</ol>
-					<div class="card mb-4">
-						<div class="card-body">
-							DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net/">official
-								DataTables documentation</a> .
-						</div>
-					</div>
-					<div class="card mb-4">
-						<div class="card-header">
-							<i class="fas fa-table me-1"></i> DataTable Example
-						</div>
-						<div class="card-body">
-							<table id="datatablesSimple">
-								<thead>
-									<tr>
-										<th>user_name</th>
-										<th>nickname</th>
-										<th>email</th>
-										<th>birth_date</th>
-										<th>tel</th>
-									</tr>
-								</thead>
-								<tfoot>
-									<tr>
-										<th>Name</th>
-										<th>Position</th>
-										<th>Office</th>
-										<th>Age</th>
-										<th>Start date</th>
-										<th>Salary</th>
-									</tr>
-								</tfoot>
-							</table>
-						</div>
-					</div>
-				</div>
-<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div id="layoutSidenav_content">
+	<main>
+		<a href="/sales/showGrape">공연 매출 그래프</a>
+		<div id="columnchart_material" style="width: 1200px; height: 800px; margin-left: 150px; padding: 100px;"></div>
+		<div class="container-fluid px-4">
+			<ol class="breadcrumb mb-4">
+			</ol>
+			<div class="review__content" style="margin-left: -30px;"></div>
+
+
+			<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>
+
+
+
+			<script type="text/javascript">
+				$(document)
+						.ready(
+								function() {
+									$
+											.ajax(
+													{
+														type : 'get',
+														url : '/apiAdminShowSale/admin/rentSale',
+														contentType : 'application/json; charset=utf-8',
+													})
+											.done(
+													function(response) {
+														google.charts
+																.load(
+																		'current',
+																		{
+																			'packages' : [ 'bar' ]
+																		});
+														google.charts
+																.setOnLoadCallback(drawChart);
+
+														function drawChart() {
+															var data = google.visualization
+																	.arrayToDataTable([
+																			[
+																					'title',
+																					'총매출' ],
+																			[
+																					response[0].title,
+																					response[0].totalPrice ], ]);
+															for (var i = 1; i < response.length; i++) {
+																data
+																		.addRows([
+																				[
+																						response[i].title,
+																						response[i].totalPrice ], ]);
+															}
+
+															var options = {
+																chart : {
+																	title : ' 대관 총 매출 (공연별)',
+																},
+																bar : {
+																	groupWidth : '50%' // 예제에서 이 값을 수정
+																},
+																fontSize : 30,
+																vAxis : {
+																	format : '₩#,###'
+																}
+
+															};
+
+															var chart = new google.charts.Bar(
+																	document
+																			.getElementById('columnchart_material'));
+
+															chart
+																	.draw(
+																			data,
+																			google.charts.Bar
+																					.convertOptions(options));
+
+															var chart = new google.visualization.ColumnChart(
+																	document
+																			.getElementById('chart_div'));
+															chart.draw(data,
+																	options);
+
+														}
+													});
+								});
+			</script>
