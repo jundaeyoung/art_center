@@ -30,7 +30,6 @@ public class ManagerScheduleController {
 	public String selectByShow(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<RequestShowDto> showList = scheduleService.selectByMyShow(principal.getId());
-		System.out.println(showList);
 		model.addAttribute("lists", showList);
 		return "/manager/managerSchedule";
 	}

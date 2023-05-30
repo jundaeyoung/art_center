@@ -203,3 +203,6 @@
 .sum h3 {
 	font-weight: 400;
 }
+#columnchart_material svg g:nth-child(n+5) text {
+	font-size: 15px!important;
+}
