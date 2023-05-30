@@ -143,7 +143,7 @@
 									if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
 										if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
 											if(idCheck==true&&nicknameCheck==true){
-												if(telCheck==true){
+												if(telCheck==true&&emailCheck==true){
 													$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
 												}
 											}else{
@@ -186,7 +186,7 @@
 										if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
 											if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
 												if(idCheck==true&&nicknameCheck==true){
-													if(telCheck==true){
+													if(telCheck==true&&emailCheck==true){
 														$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
 													}
 												}else{
@@ -212,14 +212,13 @@
 							data : formData,
 							datatype: "json",
 							success : function(res) {
-								console.log(formData.length==11);
 								if((formData.length==11)==false){	
 									telCheck=false;
 									$("#error--tel").empty();
 									$("#error--tel").append("올바른 전화번호가 아닙니다.");
 									$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
 								}else{
-									if (res == 1 && count==0) {
+									if (res == 1) {
 										telCheck = false;
 										$("#error--tel").empty();
 										$("#error--tel").append("등록된 전화번호입니다.");
@@ -231,7 +230,7 @@
 										if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
 											if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
 												if(idCheck==true&&nicknameCheck==true){
-													if(telCheck==true){
+													if(telCheck==true&&emailCheck==true){
 														$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
 													}
 												}else{
@@ -259,7 +258,6 @@
 
 		var birthDate = date.toISOString().slice(0, 10);
 		document.getElementById("birthDate").value = birthDate;
-		alert("회원가입이 완료되었습니다.")
 	}
 
 	$('.modal').on('hidden.bs.modal', function(e) {
@@ -282,6 +280,7 @@
 										"userEmail" : userEmail
 									},
 									success : function(res) {
+										emailCheck=false;
 										if (res['check']) {
 											if ('check') {
 												alert(
@@ -301,21 +300,26 @@
 																	res) {
 																console
 																		.log(res);
-																$(
-																		"#checkEmailNumber")
-																		.click(
-																				function() {
-																					
-																					let checkCode = $(
-																							"#emailCheck")
-																							.val()
-																					if (res == checkCode) {
-																						alert("인증 되었습니다.")
-																						emailCheck=true;
-																					} else {
-																						alert("인증번호가 일치하지 않습니다.")
+																$("#checkEmailNumber").click(function() {
+																		let checkCode = $("#emailCheck").val()
+																		if (res == checkCode) {
+																			alert("인증 되었습니다.")
+																			emailCheck=true;
+																			if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
+																				if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
+																					if(idCheck==true&&nicknameCheck==true){
+																						if(telCheck==true&&emailCheck==true){
+																							$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
+																						}
+																					}else{
+																						$(".login").attr("disabled", true), $(".login").css("background-color", "#ccc");
+																						}
 																					}
-																				});
+																			}
+																		} else {
+																			alert("인증번호가 일치하지 않습니다.")
+																			}
+																		});
 															}
 														});
 											}
@@ -333,14 +337,10 @@
 	var idck = 0;
 	$(function() {
 			$('.info').on('keyup',function() {
-			console.log("id"+idCheck);
-			console.log("nickname"+nicknameCheck);
-			console.log("tel"+telCheck);
-			console.log("email"+emailCheck);
 				if ($("#userName").val().length > 0&& $("#password").val().length > 0&& $("#nickname").val().length > 0) {
 					if ($("#year").val().length > 0&& $("#month").val().length > 0&& $("#day").val().length > 0&& $("#tel").val().length > 10) {
 						if(idCheck==true&&nicknameCheck==true){
-							if(telCheck==true){
+							if(telCheck==true&&emailCheck==true){
 								$(".login").attr("disabled",false),$(".login").css("background-color","rgb(255, 80, 90)")
 							}
 						}else{
