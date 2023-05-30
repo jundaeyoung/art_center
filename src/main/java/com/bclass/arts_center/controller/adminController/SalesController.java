@@ -1,5 +1,6 @@
 package com.bclass.arts_center.controller.adminController;
 
+import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.RentSalesDto;
 import com.bclass.arts_center.dto.TicketingDto;
@@ -33,23 +35,8 @@ public class SalesController {
 	
 	@GetMapping("/show")
 	public String showSales(Model model) {
-		List<TicketingDto> ticketList = ticketService.readTicketingAll();
-		System.out.println(ticketList);
-		DecimalFormat df = new DecimalFormat("###,###");
-		if (ticketList.size() == 0) {
-			model.addAttribute("ticketList", null);
-		} else {
-			int sum = 0;
-			for (int i = 0; i < ticketList.size(); i++) {
-				if (ticketList.get(i).getAdultCount() != 0) {
-					String str = ticketList.get(i).getAdultRate();
-					String newStr = str.replaceAll(",", "");
-					sum += Integer.parseInt(newStr) * ticketList.get(i).getAdultCount();
-				}
-			}
-			df.format(sum);
-			model.addAttribute("ticketList", ticketList);
-		}
+		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleList();
+		model.addAttribute("showSalesList", showSalesList);
 		
 		return "/admin/showSales";
 	}
@@ -75,10 +62,25 @@ public class SalesController {
 	}
 	
 	@PostMapping("/showSalesDay")
-	public String ShowSalesDay(){
+	public String ShowSalesDay(@RequestParam("startDate") String startDate,
+            @RequestParam("endDate") String endDate,Model model){
+		System.out.println(startDate);
+		System.out.println(endDate);
+		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleByStartDateAndEndDate(startDate, endDate);
+		System.out.println(showSalesList);
+		model.addAttribute("showSalesList", showSalesList);
 		
-		return "redirect:/admin/rentSales";
+		return "/admin/showSales";
 	
 	}
+	
+	@PostMapping("/showSalesTitle")
+	public String showSalesSearchTitle(@RequestParam("searchTitle") String searchTitle,Model model) {
+		System.out.println(searchTitle);
+		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleBySearch(searchTitle);
+		model.addAttribute("showSalesList", showSalesList);
+		
+		return "/admin/showSales";
+		}
 	
 }

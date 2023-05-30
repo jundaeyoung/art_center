@@ -1,5 +1,6 @@
 package com.bclass.arts_center.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,28 @@ public class AdminSaleService {
 		
 		return showSaleGrape;
 		
+	}
+	
+	@Transactional
+	public List<RequestManagerShowSaleDto> readShowSaleList(){
+		
+		List<RequestManagerShowSaleDto> showsalesList = adminSalesRepository.selectShowSales();
+		
+		return showsalesList;
+	}
+	
+	@Transactional
+	public List<RequestManagerShowSaleDto> readShowSaleByStartDateAndEndDate(String startDate, String endDate){
+		
+		List<RequestManagerShowSaleDto> showsalesList = adminSalesRepository.selectShowSalesBystartDateAndEndDate(startDate, endDate);
+		
+		return showsalesList;
+	}
+	
+	public List<RequestManagerShowSaleDto> readShowSaleBySearch(String searchTitle){
+		
+		List<RequestManagerShowSaleDto> showSalesList = adminSalesRepository.selectShowSalesBysearchTitle(searchTitle);
+		
+		return showSalesList;
 	}
 }
