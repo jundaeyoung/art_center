@@ -59,10 +59,7 @@
 	<!-- 작성자 전대영 : admin 예매 목록 검색 -->
 	<select id="selectTicketingAll" resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT
-		t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,s.infant_rate,
-		count(case when
-		t.age_group_id=1 then 1 end) as
-		infantCount ,
+		t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case
 		when
 		t.age_group_id=3 then 1 end) as adultCount
