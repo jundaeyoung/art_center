@@ -226,6 +226,7 @@
 											action="/kakao/refund/${myRegistrationInfoDto.getMPaymentId()}"
 											method="post">
 											<div>
+											<input type="hidden" name="id" value="${myRegistrationInfoDto.id}">
 											<button type="submit" class="btn__a" id="btn">
 												<img alt=""
 													src="/images/kakao/payment_icon_yellow_medium.png"

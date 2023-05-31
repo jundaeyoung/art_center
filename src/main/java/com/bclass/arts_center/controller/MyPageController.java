@@ -38,6 +38,7 @@ public class MyPageController {
 
 	@Autowired
 	private TicketService ticketService;
+	
 
 	/**
 	 * @author 김미정
@@ -66,7 +67,6 @@ public class MyPageController {
 	@GetMapping("/myShow/{organizerId}")
 	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
 		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId);
-		System.out.println(myShowList.toString());
 		model.addAttribute("myShowList", myShowList);
 		return "/user/myShow";
 	}

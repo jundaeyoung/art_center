@@ -49,6 +49,4 @@ public class RentalService {
 		return rendPlaceList;
 	}
 	
-	
-	
 }

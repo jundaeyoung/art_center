@@ -37,4 +37,6 @@ public interface RentalRepository {
 	public List<RequestHoleDto> selectByTime2(Integer id);
 	
 	public RequestRentPlaceReservationDto selectRentPlaceReservationById(Integer id);
+	
+	
 }
