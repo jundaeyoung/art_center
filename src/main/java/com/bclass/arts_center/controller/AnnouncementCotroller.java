@@ -22,7 +22,7 @@ import com.bclass.arts_center.utils.Define;
  * @author 편용림
  *
  */
-@Controller
+@Controller 
 @RequestMapping("/announcement")
 public class AnnouncementCotroller {
 
