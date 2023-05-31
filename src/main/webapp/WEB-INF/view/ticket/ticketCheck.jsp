@@ -36,7 +36,10 @@
 	font-size: 70px;
 	font-weight: 300;
 	color: #DB2F1B;
-	height: 50px;
+	max-height: 100px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-bottom: 10px;;
 }
 
 .ticket--hole h2 {
@@ -82,10 +85,13 @@
 }
 
 .bacode {
-	width: 300px;
-	height: 300px;
+	width: 350px;
+	height: 350px;
 	transform: rotate(270deg);
+	margin-top: 20px;
+	margin-left: 10px;
 }
+
 
 .ticket--content form {
 	width: 500px;
@@ -134,7 +140,7 @@
 					</form>
 				</div>
 				<div></div>
-				<img alt="" src="/images/bacode.png" class="bacode">
+				<img alt="" src="/images/upload/${ticketListInfo.qrCode}.png" class="bacode">
 			</div>
 		</c:forEach>
 

@@ -138,6 +138,23 @@ public class TicketService {
 
 		return ticketEntityList;
 	}
+	
+	/**
+	 * 결제 대기 중 인 티켓 확인
+	 * 
+	 * @author 전대영
+	 * @param userId
+	 * @return ticketEntityList
+	 */
+	@Transactional
+	public TicketCheckDto checkTicketForPay(Integer ticketingId) {
+		
+		TicketCheckDto ticketEntityList = ticketRepository.selectTicketForPay(ticketingId);
+		if (ticketEntityList == null) {
+			throw new CustomRestfullException("티켓 정보를 찾을 수 없습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return ticketEntityList;
+	}
 
 	/**
 	 * 결제된 티켓 결제완료시키기
@@ -153,6 +170,18 @@ public class TicketService {
 		if (result != 1) {
 			throw new CustomRestfullException("티켓 정보가 업데이트 되지 않았습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	// qr 코드 update
+	@Transactional
+	public int updateQrCode(Integer id,String path) {
+		int result = ticketRepository.updateQrCode(id,path);
+		return result;
+	}
+	
+	@Transactional
+	public TicketCheckDto readTicketId() {
+		TicketCheckDto result = ticketRepository.selectTicketId();
+		return result;
 	}
 
 	/**

@@ -30,4 +30,8 @@ public class MyTicketDtailDto {
 	
 	private String name;
 	private String location;
+	
+	
+	private Integer ageGroupId;
+	private String qrCode;
 }
