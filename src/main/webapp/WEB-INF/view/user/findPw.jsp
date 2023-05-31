@@ -25,7 +25,7 @@
 				<i class="material-icons">alternate_email</i> <span class="glyphicon glyphicon-user"></span> <input type="text" class="info" id="userEmail" placeholder="가입시 등록한 이메일을 입력하세요.">
 			</div>
 			<div id="ipw">
-				<i class="material-icons">person_outline</i> <span class="glyphicon glyphicon-eye-open"></span> <input type="text" class="info" placeholder="가입시 등록한 이름을 입력하세요.">
+				<i class="material-icons">person_outline</i> <span class="glyphicon glyphicon-eye-open"></span> <input type="text" class="info" id = "userName" placeholder="가입시 등록한 이름을 입력하세요.">
 			</div>
 		</form>
 		<button type="button" class="login" id="checkEmail" style="width: 605px;">OK</button>
