@@ -183,7 +183,7 @@
 		WHERE t.user_id = #{userId}
 		AND t.payment_status = 1
 		AND sd.show_date > now()
-		ORDER BY show_date DESC;
+		ORDER BY r.content ASC, show_date DESC ;
 	</select>
 
 </mapper>

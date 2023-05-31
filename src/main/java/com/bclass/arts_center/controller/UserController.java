@@ -258,5 +258,17 @@ public class UserController {
 		System.out.println(result);
 		return result;
 	}
+	
+	@GetMapping("/findId")
+	public String findId() {
+		
+		return "user/findId";
+	}
+	
+	@PostMapping("/")
+	public String findUserName(User user) {
+		
+		return "";
+	}
 
 }

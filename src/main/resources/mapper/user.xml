@@ -106,4 +106,10 @@
 		SELECT count(*) FROM user_tb
 		WHERE user_name = #{userName}
 	</select>
+	
+	<!-- 작성자 : 편용림 아이디 찾기 -->
+	<select id="findUserByEmailAndTel">
+	SELECT * from user_tb where email = #{email} AND TEL = #{tel}
+	</select>
+	
 </mapper>

@@ -224,4 +224,12 @@ public class UserService {
 		System.out.println(result);
 		return result;
 	}
+	
+	@Transactional
+	public User selectUserName(User user) {
+		
+		User users = userRepository.findUserByEmailAndTel(user);
+		
+		return users;
+	}
 }

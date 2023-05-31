@@ -1,0 +1,290 @@
+/*
+작성자 편용림
+*/
+@charset "UTF-8";
+
+
+.olmessagef {color: red; font-style: Italic;}
+.olmessaget {color: blue; font-style: Italic;}
+
+#overlappedID{
+	width: 100px;
+    height: 50px;
+    background-color: rgb(255, 80, 90);
+    border-style: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+input.info {
+	border: none;
+	border-bottom: 1px solid black;
+	outline: none;
+}
+
+input.infoPw {
+	border: none;
+	border-bottom: 1px solid black;
+	outline: none;
+	width: 390px;
+	margin: 5px;
+}
+
+.signInContainer {
+	width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	font-size: 20px;
+}
+
+.material-icons {
+	font-size: 30px;
+}
+
+.loginContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 100px;
+	margin-left: -140px;
+	margin-bottom: 100px;
+}
+
+.login {
+	background-color: rgb(255, 80, 90);
+	color: white;
+	border-radius: 5px;
+	border: 0;
+	padding: 30px 175px;
+	padding-bottom: 50px;
+	margin-top: 30px;
+	margin-left: 10px;
+	font-size: large;
+	text-align: center;
+}
+
+#signup {
+	background-color: white;
+	color: #C0C0C0;
+	border: 0;
+	font-size: 17px;
+}
+
+p {
+	text-align: center;
+}
+
+i {
+	color: lightgray;
+	position: absolute;
+	margin-left: 400px;
+}
+
+#imail {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#ipw {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#imail i{
+	margin-left: 460px;
+}
+#ipw i{
+	margin-left: 560px;
+}
+#ipw button{
+	width: 100px;
+	height: 50px;
+	background-color: rgb(255, 80, 90);
+	border-style: none;
+	color:white;
+	font-size: 15px;
+	border-radius: 5px;
+}
+
+.email button{
+	margin-left: 50px;
+}
+#overlappedID{
+	margin-left: 10px;
+}
+#email {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#nickname {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+input {
+	border-bottom: 1 solid #FF0000;
+	height: 50px;
+}
+
+.info {
+	width: 400px;
+	margin: 5px;
+}
+
+a:link {
+	color: black;
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+.loginLogo {
+	height: 200px;
+	width: 200px;
+	margin-left: 50px;
+}
+
+.login--title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-left: 20px;
+}
+
+.line {
+	margin: 20px;
+	border-left: 1px solid #ccc;
+	height: 660px;
+}
+
+.logobox {
+	margin-left: 210px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 20px;
+}
+
+.logobox img {
+	margin: 7px;
+}
+
+.field.birth div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	margin-top: -30px;
+}
+
+.field.birth input {
+	width: 130px;
+}
+
+.error--messege {
+	color: red;
+	font-size: 15px;
+}
+
+.field birth {
+	margin-top: 210px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-left:400px;
+	width: 1000px;
+}
+.content div{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex
+}
+.content div p{
+	width: 100px;
+}
+.content div input{
+	width: 500px;
+}
+.content div select{
+	width: 500px;
+}
+
+input, select {
+	font-size: 20px;
+}
+#year{
+	width: 150px;
+	margin-left: -14px;
+}
+#month {
+	height: 56px;
+	width: 150px;
+}
+#day{
+	width: 150px;
+}
+
+.login {
+	height: 100px;
+	width: 600px;
+	font-size: 30px;
+}
+
+
+
+.signUpContainer{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 800px;
+}
+.signUp{
+	background-color: rgb(255, 80, 90);
+    color: white;
+    height: 50px;
+	width: 150px;
+    border-radius: 5px;
+    border: 0;
+    font-size: 18px;
+    padding-top: 25px;
+    text-align: center;
+  }
+  .choiceContainer{
+	  margin-left: 150px;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  flex-direction: column;
+	  border: 1px solid #ccc;
+	  border-radius: 10px;
+	  width: 400px;
+	  height: 400px;
+	  padding: 50px;
+  }
+  #signUpicon{
+	  height: 200px;
+	  margin-bottom: 40px;
+  }

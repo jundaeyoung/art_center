@@ -172,7 +172,7 @@
 											<c:when test="${principal == null}">
 												<li><a href="/user/signUp"> 회원가입 </a></li>
 												<li><a href="/user/login">로그인 </a></li>
-												<li><a>아이디 찾기</a></li>
+												<li><a href="/user/findId">아이디 찾기</a></li>
 												<li><a href="/user/findPw">비밀번호 찾기</a></li>
 											</c:when>
 											<c:otherwise>

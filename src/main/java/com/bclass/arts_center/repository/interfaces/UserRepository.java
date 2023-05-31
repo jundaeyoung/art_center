@@ -75,6 +75,7 @@ public interface UserRepository {
 	
 	public Integer findUserByUserName(String userName);
 	
+	public User findUserByEmailAndTel(User user);
 	
 }
 	
