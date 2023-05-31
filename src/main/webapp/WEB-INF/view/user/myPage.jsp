@@ -118,7 +118,7 @@ user__type {
 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicket/${principal.id}'">티켓예매내역</button>
 					</td>
 					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='#'">관람평</button>
+						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicketReview'">관람평</button>
 					</td>
 					<td class="user__ticket">
 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
