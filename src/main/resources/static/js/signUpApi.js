@@ -58,12 +58,6 @@ $(document)
 													"사용할 수 있는 아이디 입니다.");
 											idCheck = true;
 											if ($(
-												"#userName")
-												.val().length > 0
-												&& $(
-													"#password")
-													.val().length > 0
-												&& $(
 													"#nickname")
 													.val().length > 0) {
 												if ($(
@@ -78,8 +72,7 @@ $(document)
 													&& $(
 														"#tel")
 														.val().length > 10) {
-													if (idCheck == true
-														&& nicknameCheck == true) {
+													if (nicknameCheck == true) {
 														if (telCheck == true
 															&& emailCheck == true) {
 															$(
@@ -180,12 +173,6 @@ $(document)
 														"사용할 수 있는 닉네임 입니다.");
 												nicknameCheck = true;
 												if ($(
-													"#userName")
-													.val().length > 0
-													&& $(
-														"#password")
-														.val().length > 0
-													&& $(
 														"#nickname")
 														.val().length > 0) {
 													if ($(
@@ -302,12 +289,6 @@ $(document)
 													.append(
 														"사용할 수 있는 전화번호 입니다.");
 												if ($(
-													"#userName")
-													.val().length > 0
-													&& $(
-														"#password")
-														.val().length > 0
-													&& $(
 														"#nickname")
 														.val().length > 0) {
 													if ($(
@@ -322,8 +303,7 @@ $(document)
 														&& $(
 															"#tel")
 															.val().length > 10) {
-														if (idCheck == true
-															&& nicknameCheck == true) {
+														if (nicknameCheck == true) {
 															if (telCheck == true
 																&& emailCheck == true) {
 																$(
@@ -425,12 +405,6 @@ $("#checkEmail")
 															alert("인증 되었습니다.")
 															emailCheck = true;
 															if ($(
-																"#userName")
-																.val().length > 0
-																&& $(
-																	"#password")
-																	.val().length > 0
-																&& $(
 																	"#nickname")
 																	.val().length > 0) {
 																if ($(
@@ -445,8 +419,7 @@ $("#checkEmail")
 																	&& $(
 																		"#tel")
 																		.val().length > 10) {
-																	if (idCheck == true
-																		&& nicknameCheck == true) {
+																	if (nicknameCheck == true) {
 																		if (telCheck == true
 																			&& emailCheck == true) {
 																			$(
@@ -497,14 +470,12 @@ $(function() {
 	$('.info').on(
 		'keyup',
 		function() {
-			if ($("#userName").val().length > 0
-				&& $("#password").val().length > 0
-				&& $("#nickname").val().length > 0) {
+			if ($("#nickname").val().length > 0) {
 				if ($("#year").val().length > 0
 					&& $("#month").val().length > 0
 					&& $("#day").val().length > 0
 					&& $("#tel").val().length > 10) {
-					if (idCheck == true && nicknameCheck == true) {
+					if (nicknameCheck == true) {
 						if (telCheck == true && emailCheck == true) {
 							$(".login").attr("disabled", false), $(
 								".login").css("background-color",
