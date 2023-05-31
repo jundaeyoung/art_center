@@ -41,7 +41,6 @@ public class MainController {
 		List<Show> showsList = mainService.readShowDto();
 		List<Announcement> selectAnnouncement = mainService.selectAnnouncement();
 		model.addAttribute("selectAnnouncement",selectAnnouncement);
-		//System.out.println(selectAnnouncement);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			model.addAttribute("principal", null);

@@ -106,4 +106,16 @@
 		SELECT count(*) FROM user_tb
 		WHERE user_name = #{userName}
 	</select>
+	
+	<select id="findUserByNickname"
+		resultType="Integer">
+		SELECT count(*) FROM user_tb
+		WHERE nickname = #{nickname}
+	</select>
+	
+	<select id="findUserByTel"
+		resultType="Integer">
+		SELECT count(*) FROM user_tb
+		WHERE tel = #{tel}
+	</select>
 </mapper>

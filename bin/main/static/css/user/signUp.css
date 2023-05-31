@@ -201,6 +201,7 @@ a:hover {
 .error--messege {
 	color: red;
 	font-size: 15px;
+	margin-left: 100px;
 }
 
 .field birth {

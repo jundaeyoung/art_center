@@ -219,9 +219,19 @@ public class UserService {
 	
 	@Transactional
 	public Integer userNameCheck(String userName) {
-		System.out.println(userName);
 		Integer result = userRepository.findUserByUserName(userName);
-		System.out.println(result);
+		return result;
+	}
+	
+	@Transactional
+	public Integer nicknameCheck(String nickname) {
+		Integer result = userRepository.findUserByNickname(nickname);
+		return result;
+	}
+	
+	@Transactional
+	public Integer telCheck(String nickname) {
+		Integer result = userRepository.findUserByTel(nickname);
 		return result;
 	}
 }
