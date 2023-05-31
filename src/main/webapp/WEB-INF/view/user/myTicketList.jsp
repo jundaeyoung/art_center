@@ -129,6 +129,9 @@
 								<c:when test="${myTicketList.paymentStatus == 1}">
 									<h2>(결제완료)</h2>
 								</c:when>
+								<c:when test="${myTicketList.paymentStatus == 2}">
+									<h2>(취소완료)</h2>
+								</c:when>
 							</c:choose>
 						</div>
 						<div class="ticket--hole">
