@@ -55,22 +55,7 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                             
-                             
-                             
-                             <div class="card-body">
-						<table id="datatablesSimple">
-                                    <thead>
-                                          <tr>
-                                            <th>총매출 : </th>
-                                            <th>${totalRentPrice}원</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                                
-                                
+                             <p>총매출 : ${totalRentPrice}원</p>
 						</div>
 					</div>
 				</div>
