@@ -246,7 +246,7 @@ select option {
 
 				<div class="side--container">
 					<div class="show--img">
-						<img alt="" src="/images/${imgRoute}">
+						<img alt="" src="/images/upload/${imgRoute}">
 					</div>
 					<c:choose>
 						<c:when test="${locationId==1}">
@@ -300,8 +300,8 @@ $(document).ready(function() {
 	  $(".show--price--button").on("click", function() {
 		  $(".show--introduction--content").empty();
 		  var content = `<h2>가격정보</h2>
-		  		<p>- 성인 : ${adultRate}</p>
-				<p>- 청소년 : ${youthRate}</p>
+		  		<p>- 성인 : ${adultRate} 원 </p>
+				<p>- 청소년 : ${youthRate} 원 </p>
 				<p>- 장애인 복지카드 소지자 (1급~3급/중증) 본인 및 동반 1인 50% (현장결제시)</p>
 				<p>- 장애인 복지카드 소지자 (4급~6급/경증) 본인 50% (현장결제시)</p>
 				<p>- 국가유공자증, 의상자(1~2급)증 / 소지자 본인 및 동반 1인 50% (현장결제시)</p>

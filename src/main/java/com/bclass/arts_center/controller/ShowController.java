@@ -1,5 +1,6 @@
 package com.bclass.arts_center.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -207,6 +208,9 @@ public class ShowController {
 
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
 		List<RequestShowDto> reviewList = showService.readReviewByShowId(showId);
+		DecimalFormat df = new DecimalFormat("###,###");
+		String adultRate = showInfo.get(0).getAdultRate().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+		String youthRate = showInfo.get(0).getYouthRate().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 		if (reviewList == null || reviewList.isEmpty()) {
 			model.addAttribute("reviewList", null);
 		} else {
@@ -229,9 +233,8 @@ public class ShowController {
 			model.addAttribute("content", showInfo.get(0).getContent());
 			model.addAttribute("nickname", showInfo.get(0).getNickname());
 			model.addAttribute("tel", showInfo.get(0).getTel());
-			model.addAttribute("adultRate", showInfo.get(0).getAdultRate());
-			model.addAttribute("infantRate", showInfo.get(0).getInfantRate());
-			model.addAttribute("youthRate", showInfo.get(0).getYouthRate());
+			model.addAttribute("adultRate",adultRate);
+			model.addAttribute("youthRate",youthRate);
 		}
 		model.addAttribute("reviewListSize", reviewList.size());
 
