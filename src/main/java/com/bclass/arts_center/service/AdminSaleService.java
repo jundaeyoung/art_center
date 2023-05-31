@@ -64,4 +64,18 @@ public class AdminSaleService {
 		
 		return showSalesList;
 	}
+	
+	public List<RentSalesDto> readRentalSlesByStartDateAndEndDate(String startDate, String endDate){
+		
+		List<RentSalesDto> rentalSlaesList = adminSalesRepository.selectRentSalesBystartDateAndEndDate(startDate, endDate);
+		
+		return rentalSlaesList;
+	}
+	
+	public List<RentSalesDto> readRentalSalesBySearch(String searchTitle){
+		
+		List<RentSalesDto> rentalSalesList = adminSalesRepository.selectRentSalesBysearchTitle(searchTitle);
+		
+		return rentalSalesList;
+	}
 }

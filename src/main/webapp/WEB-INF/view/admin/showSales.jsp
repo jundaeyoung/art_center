@@ -55,6 +55,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+						<p>총매출 : ${totalShowPrice}원</p>
 				</div>
 			</div>
 		</div>

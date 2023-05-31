@@ -36,7 +36,18 @@ public class SalesController {
 	@GetMapping("/show")
 	public String showSales(Model model) {
 		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleList();
+		int totalShowPrice = 0;
+		for (RequestManagerShowSaleDto dto : showSalesList) {
+	        String ShowPriceString = Integer.toString(dto.getTotalshowSales());
+	        String cleanedShowPriceString = ShowPriceString;
+	        int rentPrice = Integer.parseInt(cleanedShowPriceString);
+	        totalShowPrice += rentPrice;
+	    }
+		DecimalFormat decimalFormat = new DecimalFormat("#,###"); // 쉼표 포함한 형식 지정
+		String formattedTotalRentPrice = decimalFormat.format(totalShowPrice);
+		
 		model.addAttribute("showSalesList", showSalesList);
+		model.addAttribute("totalShowPrice",formattedTotalRentPrice);
 		
 		return "/admin/showSales";
 	}
@@ -68,19 +79,72 @@ public class SalesController {
 		System.out.println(endDate);
 		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleByStartDateAndEndDate(startDate, endDate);
 		System.out.println(showSalesList);
-		model.addAttribute("showSalesList", showSalesList);
 		
+		int totalShowPrice = 0;
+		for (RequestManagerShowSaleDto dto : showSalesList) {
+	        String ShowPriceString = Integer.toString(dto.getTotalshowSales());
+	        String cleanedShowPriceString = ShowPriceString;
+	        int rentPrice = Integer.parseInt(cleanedShowPriceString);
+	        totalShowPrice += rentPrice;
+	    }
+		DecimalFormat decimalFormat = new DecimalFormat("#,###"); // 쉼표 포함한 형식 지정
+		String formattedTotalRentPrice = decimalFormat.format(totalShowPrice);
+		
+		model.addAttribute("showSalesList", showSalesList);
+		model.addAttribute("totalShowPrice", formattedTotalRentPrice);
 		return "/admin/showSales";
 	
 	}
 	
 	@PostMapping("/showSalesTitle")
 	public String showSalesSearchTitle(@RequestParam("searchTitle") String searchTitle,Model model) {
-		System.out.println(searchTitle);
 		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleBySearch(searchTitle);
 		model.addAttribute("showSalesList", showSalesList);
 		
 		return "/admin/showSales";
 		}
+	
+	@PostMapping("/rentSalesDay")
+	public String rentSalesDay(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate, Model model) {
+		
+		List<RentSalesDto> rentSaleslist = adminSaleService.readRentalSlesByStartDateAndEndDate(startDate, endDate);
+		
+		int totalRentPrice = 0;
+	    for (RentSalesDto rentSalesDto : rentSaleslist) {
+	        String rentPriceString = rentSalesDto.getRentPrice();
+	        String cleanedRentPriceString = rentPriceString.replace(",", "");
+	        int rentPrice = Integer.parseInt(cleanedRentPriceString);
+	        totalRentPrice += rentPrice;
+	    }
+	    
+	    DecimalFormat decimalFormat = new DecimalFormat("#,###"); // 쉼표 포함한 형식 지정
+	    String formattedTotalRentPrice = decimalFormat.format(totalRentPrice);
+	    model.addAttribute("rentSaleslist", rentSaleslist);
+	    model.addAttribute("totalRentPrice", formattedTotalRentPrice); // 쉼표를 포함한 문자열로 추가
+		
+		return "/admin/rentSales";
+	}
+	
+	@PostMapping("/rentSalesTitle")
+	public String rentSalesSearchTitle(@RequestParam("searchTitle") String searchTitle,Model model) {
+		
+		
+		List<RentSalesDto> rentSaleslist = adminSaleService.readRentalSalesBySearch(searchTitle);
+		System.out.println(rentSaleslist);
+		int totalRentPrice = 0;
+	    for (RentSalesDto rentSalesDto : rentSaleslist) {
+	        String rentPriceString = rentSalesDto.getRentPrice();
+	        String cleanedRentPriceString = rentPriceString.replace(",", "");
+	        int rentPrice = Integer.parseInt(cleanedRentPriceString);
+	        totalRentPrice += rentPrice;
+	    }
+	    
+	    DecimalFormat decimalFormat = new DecimalFormat("#,###"); // 쉼표 포함한 형식 지정
+	    String formattedTotalRentPrice = decimalFormat.format(totalRentPrice);
+		model.addAttribute("rentSaleslist", rentSaleslist);
+	    model.addAttribute("totalRentPrice", formattedTotalRentPrice);
+		
+		return "/admin/rentSales";
+	}
 	
 }

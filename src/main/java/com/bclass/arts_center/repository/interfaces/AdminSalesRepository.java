@@ -33,6 +33,12 @@ public interface AdminSalesRepository {
 	
 	public List<RequestManagerShowSaleDto> selectShowSalesBystartDateAndEndDate(@Param("startDate") String startDate, @Param("endDate") String endDate);
 	
+	public List<RentSalesDto> selectRentSalesBystartDateAndEndDate(@Param("startDate") String startDate, @Param("endDate") String endDate);
+	
 	public List<RequestManagerShowSaleDto> selectShowSalesBysearchTitle(@Param("searchTitle") String searchTitle);
+	
+	public List<RentSalesDto> selectRentSalesBysearchTitle(@Param("searchTitle") String searchTitle);
+	
+	
 	
 }
