@@ -33,6 +33,9 @@ public interface TicketRepository {
 	public TicketCheckDto selectTicketForPay(Integer ticketingId);
 
 	public int updateTicketing(@Param("userId") Integer userId, @Param("ticketingId") Integer ticketingId);
+	
+	public int updateQrCode(@Param("id")Integer id, @Param("path") String path);
 //	public int delete(int id);
+	public TicketCheckDto selectTicketId();
 
 }

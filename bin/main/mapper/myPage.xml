@@ -37,8 +37,14 @@
 		ON t.show_id = s.id
 		LEFT JOIN payment_tb AS p
 		ON p.ticketing_id = t.id
-		WHERE t.user_id = #{userId}
-		ORDER BY t.ticketing_date desc
+        LEFT JOIN seat_tb as se
+		ON t.seat_id = se.seat_id
+		join hole_tb as h
+		on h.id = s.hole_id
+		JOIN show_datetime_tb as sd
+		ON t.show_datetime_id = sd.id
+        WHERE t.user_id = #{userId}
+        ORDER BY t.ticketing_date desc;
 	</select>
 
 	<select id="selectMyTicketDetail" resultType="com.bclass.arts_center.dto.MyTicketDtailDto">

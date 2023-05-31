@@ -116,6 +116,8 @@
 		ON t.show_id = s.id
 		LEFT JOIN seat_tb as se
 		ON t.seat_id = se.seat_id
+		join hole_tb as h
+		on h.id = s.hole_id
 		JOIN show_datetime_tb as sd
 		ON
 		t.show_datetime_id = sd.id
@@ -130,4 +132,16 @@
 		WHERE user_id = #{userId} AND payment_status = 0 AND id = #{ticketingId}
 	</update>
 
+	<update id="updateQrCode">
+		UPDATE ticketing_tb
+		SET qr_code = #{path}
+		WHERE id=#{id}
+	</update>
+
+	<!-- 작성자 손주이 : 결제 요청 티켓 값 넘기기 -->
+	<select id="selectTicketId" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+		select * from ticketing_tb
+		order by id desc
+        LIMIT 1;
+	</select>
 </mapper>
