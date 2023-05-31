@@ -109,11 +109,7 @@ public class TicketController {
 
 //		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
 //		2랑 3일때는 setSeatId 억지로 해줘야
-		Integer totalCount = 30;
 		Integer count = ticketService.countTicketing(ticketingDto.getShowDatetimeId());
-		Integer remainingCount = totalCount - count;
-		System.out.println(count);
-		System.out.println(remainingCount);
 		
 		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
 		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));

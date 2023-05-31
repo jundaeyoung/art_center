@@ -43,6 +43,7 @@ public class TicketApiController {
 		return occupiedList;
 	}
 	
+	
 	@GetMapping("/api/remainingCount/{showDatetimeId}")
 	public Integer remainingCount(TicketingDto ticketingDto,@PathVariable Integer showDatetimeId) {
 		

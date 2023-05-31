@@ -218,19 +218,15 @@ function selectDateForTime(showId, date) {
 					contentType: "application/json; charset=utf-8",
 					dataType: "json"
 				}).done(function(remainingCount) {
-					
 					$("#remainingCount").text(remainingCount);
 					
 				}).fail(function(error) {
 					console.log(error);
 					console.log("잔여 좌석 수를 가져오는 데 실패했습니다.");
 				});
-				
 				//console.log("id" + showTime.id);
 			});
 		});
-		
-
 		console.log('된겨?');
 	}).fail(function(error) {
 		console.log(error);

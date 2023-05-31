@@ -24,8 +24,10 @@ public class FaqController {
 
 		List<Faq> faqCategoryList = faqService.selectFaqCategory();
 		model.addAttribute("faqCategoryList", faqCategoryList);
-
 		List<Faq> faqList = faqService.selectAll();
+		
+		
+		
 		model.addAttribute("faqList", faqList);
 
 		return "/announcement/faq";
@@ -33,7 +35,6 @@ public class FaqController {
 
 	@GetMapping("/faq/{categoryId}")
 	public String faqByCategory(@PathVariable Integer categoryId, Model model) {
-
 		List<Faq> faqCategoryList = faqService.selectFaqCategory();
 		model.addAttribute("faqCategoryList", faqCategoryList);
 

@@ -16,10 +16,19 @@ public class FaqApiController {
 	@Autowired
 	private FaqService faqService;
 
+	@GetMapping("/api/faq")
+	public List<Faq> selectAllFaq(){
+		List<Faq> faqAllList = faqService.selectAll();
+		System.out.println("야 뭘봐?!"+faqAllList);
+		return faqAllList;
+	}
+	
+	
 	@GetMapping("/api/selectFaq/{categoryId}")
 	public List<Faq> selectFaq(@PathVariable Integer categoryId) {
-
+		System.out.println(categoryId);
 		List<Faq> faqList = faqService.selectByCategoryId(categoryId);
+		System.out.println("야호야호야향"+faqList);
 		return faqList;
 	}
 
