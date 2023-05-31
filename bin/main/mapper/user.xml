@@ -118,4 +118,13 @@
 		SELECT count(*) FROM user_tb
 		WHERE tel = #{tel}
 	</select>
+	
+	
+	<select id="selectUserByDateForGraph" resultType="Integer">
+		SELECT count(*)
+		FROM user_tb
+		WHERE role_id = 1 AND created_at LIKE ${createdDate}
+	</select>
+	
+	
 </mapper>

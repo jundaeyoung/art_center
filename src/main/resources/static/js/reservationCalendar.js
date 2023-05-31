@@ -207,7 +207,7 @@ function selectDateForTime(showId, date) {
 
 				}).fail(function(error) {
 					console.log(error);
-					console.log("좌석 정보를 가져오는 데 실패했습니다.");
+					console.log("좌석 정보를 가져오는 데 실패하였습니다.");
 				});
 
 				//console.log("id" + showTime.id);

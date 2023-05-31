@@ -21,7 +21,7 @@ import com.bclass.arts_center.repository.model.User;
 
 import lombok.AllArgsConstructor;
 
-/** 
+/**
  * @author 편용림
  *
  */
@@ -36,8 +36,6 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
-	
 	// 회원가입
 	@Transactional
 	public void createUser(SignUpFormDto signUpFormDto) {
@@ -45,11 +43,11 @@ public class UserService {
 		String rawPwd = signUpFormDto.getPassword();
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		signUpFormDto.setPassword(hashPwd);
-		
+
 		User selectUser = userRepository.selectUserByUsername(signUpFormDto.getUserName());
-		
+
 		User selectNickName = userRepository.selectUserBynickname(signUpFormDto.getNickname());
-		
+
 		if (selectUser != null) {
 			throw new CustomRestfullException("중복된 아이디가 있습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -57,51 +55,47 @@ public class UserService {
 			throw new CustomRestfullException("중복된 닉네임이 있습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		int result = userRepository.insertUser(signUpFormDto);
-		
+
 	}
-
-
 
 	// 로그인
 	@Transactional
 	public User readUser(SignInFormDto signInFormDto) {
 
 		User userEntity = userRepository.selectUserByUsername(signInFormDto.getUserName());
-		
+
 		if (userEntity == null || userEntity.getUserName().equals(signInFormDto.getUserName()) == false) {
 			throw new CustomRestfullException("존재하지 않는 계정입니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		boolean isPwdMatched = passwordEncoder.matches(signInFormDto.getPassword(), userEntity.getPassword());
-		
+
 		if (isPwdMatched == false) {
 			throw new CustomRestfullException("비밀번호가 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		return userEntity;
 	}
-	
+
 	// api id로 유저정보 조회
 	public User readUserByApiId(String apiId) {
 		User userEntity = userRepository.selectUserByApiId(apiId);
 		return userEntity;
 	}
-	
-	
-	//내 정보
+
+	// 내 정보
 	@Transactional
 	public User readUserByUserName(String userName) {
 		User user = userRepository.selectUserByUsername(userName);
 		return user;
 	}
-	
+
 	// 아이디 중복체크
 	@Transactional
 	public int readUserCountByUserName(String userName) {
 		int result = userRepository.selectUserCountByUserName(userName);
 		return result;
 	}
-	
 
 	// 회원정보 수정
 	@Transactional
@@ -116,122 +110,127 @@ public class UserService {
 	// 회원 탈퇴
 	@Transactional
 	public int deleteUser(SignInFormDto signInFormDto) {
-		
+
 		User userEntity = userRepository.selectUserByUsername(signInFormDto.getUserName());
-		
+
 		if (userEntity.getApiId() != null) {
 			int result = userRepository.deleteUserById(signInFormDto);
 			return result;
-		}else {
-			
+		} else {
+
 			boolean isPwdMatched = passwordEncoder.matches(signInFormDto.getPassword(), userEntity.getPassword());
-			
+
 			if (isPwdMatched == false) {
 				throw new CustomRestfullException("비밀번호가 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
-			}else {
+			} else {
 				int result = userRepository.deleteUserById(signInFormDto);
 				return result;
-			}		
+			}
 		}
 	}
 
 	// 편용림
 	// 유저 목록
 	@Transactional
-	public  List<User> readUser() {
+	public List<User> readUser() {
 		List<User> users = userRepository.selectUserList();
 		return users;
 	}
-	
+
 	// 매니저 목록
 	@Transactional
-	public List<User> readManager(){
+	public List<User> readManager() {
 		List<User> managers = userRepository.selectManagerList();
 		return managers;
 	}
-	
+
 	// 강사 목록
-	public List<User> readTeacher(){
+	public List<User> readTeacher() {
 		List<User> teachers = userRepository.selectTeacherList();
 		return teachers;
 	}
-	
-	
-	//관리자 유저 수정
+
+	// 관리자 유저 수정
 	@Transactional
 	public int updateUserById(User user) {
-		
+
 		int result = userRepository.updateUserById(user);
 		return result;
 	}
-	
+
 	// 삭제
 	@Transactional
 	public int deleteUserById(String id) {
-		
+
 		int result = userRepository.deleteById(id);
 		return result;
 	}
-	
-	
-	
+
 	// 편용림 : valid 검사
 	@Transactional(readOnly = true)
 	public Map<String, String> validateHandling(Errors errors) {
-        Map<String, String> validatorResult = new HashMap<>();
+		Map<String, String> validatorResult = new HashMap<>();
 
-        for (FieldError error : errors.getFieldErrors()) {
-            String validKeyName = String.format("valid_%s", error.getField());
-            validatorResult.put(validKeyName, error.getDefaultMessage());
-        }
-        return validatorResult;
-    }
-	
-	
+		for (FieldError error : errors.getFieldErrors()) {
+			String validKeyName = String.format("valid_%s", error.getField());
+			validatorResult.put(validKeyName, error.getDefaultMessage());
+		}
+		return validatorResult;
+	}
+
 	/*
-	 * 전대영 : email 비번 찾기 
+	 * 전대영 : email 비번 찾기
 	 */
 	public boolean userEmailCheck(String userEmail, String userName) {
 
-        User user = userRepository.findUserByUserId(userEmail);
-        if(user!=null && user.getUserName().equals(userName)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-	
+		User user = userRepository.findUserByUserId(userEmail);
+		if (user != null && user.getUserName().equals(userName)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	/*
 	 * 전대영 : email 중복검사
 	 */
 	public boolean emailCheck(String userEmail) {
-		if(userEmail.length()<5 ||userEmail.isBlank()) {
+		if (userEmail.length() < 5 || userEmail.isBlank()) {
 			return false;
 		}
 		User user = userRepository.findUserByUserId(userEmail);
-		if(user!=null && user.getEmail().equals(userEmail)) {
+		if (user != null && user.getEmail().equals(userEmail)) {
 			return false;
-		}else {
+		} else {
 			return true;
 		}
 	}
-	
+
 	@Transactional
 	public Integer userNameCheck(String userName) {
 		Integer result = userRepository.findUserByUserName(userName);
 		return result;
 	}
-	
+
 	@Transactional
 	public Integer nicknameCheck(String nickname) {
 		Integer result = userRepository.findUserByNickname(nickname);
 		return result;
 	}
-	
+
 	@Transactional
 	public Integer telCheck(String nickname) {
 		Integer result = userRepository.findUserByTel(nickname);
+		return result;
+	}
+
+	/**
+	 * @author 손주이
+	 * @param createdDate
+	 * @return result
+	 */
+	public Integer readUserJoinPerDay(String createdDate) {
+		Integer result = userRepository.selectUserByDateForGraph(createdDate);
 		return result;
 	}
 }
