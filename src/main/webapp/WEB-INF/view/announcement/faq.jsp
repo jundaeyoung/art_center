@@ -50,6 +50,16 @@
 <script type="text/javascript">
 $(document).ready(function () {
     $(".faq-type-btn").on("click", function () {
+		$.ajax({
+				type:'get',
+				url:'/api/faq',
+				contentType:'application/json; charset=utf-8',
+			}).done(function(response){
+				console.log(response);
+			}).fail(function(error){
+				console.log(error);
+				});
+        
         let categoryId = parseInt($(this).attr("id"));
         $.ajax({
             type: 'get',
@@ -86,7 +96,8 @@ $(document).ready(function () {
             console.log(error);
         });
   });
-   
+
+    
 });
 </script>
 
