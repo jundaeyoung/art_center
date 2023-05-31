@@ -67,8 +67,6 @@ function buildCalendar() {
     matchDate(createDateList);
 }
 
-
-
 function matchDate(createDateList) {
 
     let arrayDateList = [];
@@ -191,16 +189,12 @@ function seatInfo(showId, showTime) {
             let addSeat = `<div class="seat" data-seq="${seat.seatId}" value="${seat.seatId}">${seat.seatName}</div>`;
             currentRow.append(addSeat);
 
-           
-
             $(document).on('click', `.seat[data-seq="${seat.seatId}"]`, function () {
                 $(".seat").removeClass("selected");
                 $(this).addClass("selected");
                 $(".seat--info").append(`<input type="hidden" id="hiddenSeatId" name="seatId" value="${seat.seatId}">`);
             });
         });
-
-
 
         $.ajax({
             type: "get",
@@ -213,9 +207,9 @@ function seatInfo(showId, showTime) {
                 console.log("ddd" + occupiedSeat.seatId);
                 console.log("DDD");
                 arrSeat.push(occupiedSeat.seatId);
-				//$(`.seat[data-seq="${occupiedSeat.seatId}"]`).css("background-color","red");
-				$(`.seat[data-seq="${occupiedSeat.seatId}"]`).attr("disabled",true);
-				$(`.seat[data-seq="${occupiedSeat.seatId}"]`).addClass("occupied");
+                //$(`.seat[data-seq="${occupiedSeat.seatId}"]`).css("background-color","red");
+                $(`.seat[data-seq="${occupiedSeat.seatId}"]`).attr("disabled", true);
+                $(`.seat[data-seq="${occupiedSeat.seatId}"]`).addClass("occupied");
             });
             console.log("arr" + arrSeat);
             console.log();
@@ -224,16 +218,8 @@ function seatInfo(showId, showTime) {
             console.log("예매완료된 좌석정보를 가져오는 데 실패했습니다.");
         });
 
-
-
-
-
-
     }).fail(function (error) {
         console.log(error);
         console.log("좌석 정보를 가져오는 데 실패했습니다.");
     });
 }
-
-
-
