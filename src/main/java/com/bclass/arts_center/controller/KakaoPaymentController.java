@@ -65,8 +65,8 @@ public class KakaoPaymentController {
 			}
 
 		} else if (principal.getRoleId() == 2) {
-			kakaoReadyResponse = kakaoPaymentService.kakaoReady2(rentId);
 			session.setAttribute("rentId", rentId);
+			kakaoReadyResponse = kakaoPaymentService.kakaoReady2(rentId);
 		}
 		return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
 	}

@@ -1,6 +1,5 @@
 package com.bclass.arts_center.dto;
 
-
 import java.sql.Date;
 import java.sql.Time;
 
@@ -18,12 +17,11 @@ public class MyRegistrationInfoDto {
 	private String admissionAge;
 	private String adultRate;
 	private String youthRate;
-	private String infantRate;
 	private Integer organizerId;
 	private Integer holeId;
 	private Integer showTypeId;
 	private Integer showStatus;
-	
+
 	private Integer rentPlaceId;
 	private Time startTime;
 	private Time endTime;
@@ -33,14 +31,14 @@ public class MyRegistrationInfoDto {
 	private Integer locationId;
 	private Integer rentPlaceStatus;
 	private Integer showId;
-	
+
 	private String name;
 	private String tel;
-	
+
 	private String location;
 	private String locationInfo;
 	private String rentId;
 	
 	
-	
+	private String mPaymentId;
 }

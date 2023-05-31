@@ -7,11 +7,10 @@
 	<div>
 	
 		<h1>예매 취소</h1>
-		<h3>예매 취소 내역</h3><p>${kakaoRefundResponse.itemName}</p>
-		<h3>결제 상태</h3><p>${kakaoRefundResponse.status}</p>
-		<h3>취소 일시</h3><p>${kakaoRefundResponse.canceledAt}</p>
-		<h3>취소 금액</h3><p>${kakaoRefundResponse.canceledAmount}</p>
-		<h3>결제 수단</h3><p>${kakaoRefundResponse.paymentMethodType}</p>
+		<h3>취소 내역 : </h3><p>${kakaoRefundResponse.itemName}</p>
+		<h3>취소 일시 : </h3><p>${kakaoRefundResponse.canceledAt}</p>
+		<h3>취소 금액 : </h3><p>${kakaoRefundResponse.canceledAmount.total}</p>
+		<h3>결제 수단 : </h3><p>${kakaoRefundResponse.paymentMethodType}</p>
 		
 	
 	

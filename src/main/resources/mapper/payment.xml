@@ -9,30 +9,43 @@
 		FROM payment_adminkey_tb
 		WHERE id = 1
 	</select>
-	
+
 	<insert id="insertPayment">
 		INSERT INTO payment_tb(payment_id, user_id, payment_option, payment_date, ticketing_id)
 		VALUES (#{paymentId},#{userId}, #{paymentOption}, #{paymentDate}, #{ticketingId});
 	</insert>
-	
+
 	<!-- 작성자 : 편용림 대관 결제 -->
 	<insert id="insertManagerPayment">
 		INSERT INTO manager_payment_tb(m_payment_id, manager_id, payment_option, payment_date, rent_id)
 		VALUES (#{mPaymentId},#{managerId}, #{paymentOption}, #{paymentDate}, #{rentId});
 	</insert>
-	
+
 	<select id="selectPaymentInfo" resultType="com.bclass.arts_center.dto.payment.RequestPaymentInfoDto">
 		SELECT *
 		FROM ticketing_tb AS t
 		JOIN show_tb AS s
-        ON t.show_id = s.id
+		ON t.show_id = s.id
 		JOIN payment_tb AS p
 		ON p.ticketing_id = t.id
-        WHERE t.user_id = ${userId} AND payment_id = #{tid}
+		WHERE t.user_id = ${userId} AND payment_id = #{tid}
 	</select>
-	
+
 	<update id="updateCancelStatus">
 		UPDATE payment_tb SET cancel_status = 1, canceled_at = #{canceledAt} WHERE payment_id = #{tid}
 	</update>
-	
+
+	<select id="selectRentalPaymentInfo" resultType="com.bclass.arts_center.dto.payment.RequestPaymentInfoDto">
+		SELECT *
+		FROM rent_place_reservation_tb AS r
+		JOIN manager_payment_tb AS mp
+		ON mp.rent_id = r.id
+		WHERE m_payment_id = #{tid}
+	</select>
+
+
+	<update id="updateManagerCancelStatus">
+		UPDATE manager_payment_tb SET cancel_status = 1, canceled_at = #{canceledAt} WHERE m_payment_id = #{tid}
+	</update>
+
 </mapper>
