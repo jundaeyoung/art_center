@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.dto.MyRegistrationInfoDto;
+import com.bclass.arts_center.dto.MyShowDto;
 import com.bclass.arts_center.dto.MyTicketDtailDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
@@ -64,10 +65,8 @@ public class MyPageController {
 	 */
 	@GetMapping("/myShow/{organizerId}")
 	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
-		System.out.println("select 전");
 		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId);
-		System.out.println(myShowList);
-		System.out.println("select 후 :" + myShowList.get(0).getMPaymentId());
+		System.out.println(myShowList.toString());
 		model.addAttribute("myShowList", myShowList);
 		return "/user/myShow";
 	}

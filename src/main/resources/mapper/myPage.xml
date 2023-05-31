@@ -7,14 +7,13 @@
 	<!-- 김미정: 공연,대관예약 정보 불러오기 -->
 	<select id="selectMyShow" resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
 		SELECT *, r.id AS rentId
-		FROM show_tb AS s
-		LEFT JOIN rent_place_reservation_tb AS r
-		ON s.id = r.show_id
-		LEFT JOIN manager_payment_tb AS mp
-		ON r.id = mp.rent_id
+        FROM rent_place_reservation_tb AS r
+        JOIN show_tb AS s
+        ON r.show_id = s.id
+        LEFT JOIN manager_payment_tb AS mp
+        ON r.id = mp.rent_id
 		WHERE s.organizer_id = #{organizerId}
-		GROUP BY s.id
-		ORDER BY s.start_date desc
+        ORDER BY mp.m_payment_id asc, s.start_date desc;
 	</select>
 
 	<!-- 김미정 : 공연,대관예약 detail정보 불러오기 -->

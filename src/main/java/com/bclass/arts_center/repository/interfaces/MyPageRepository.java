@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.MyTicketDtailDto;
-import com.bclass.arts_center.dto.TicketCheckDto;
-import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 
 /**
  * 

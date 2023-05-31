@@ -1,7 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style>
+#btn{
+  border: 0;
+  background-color: transparent;
+  font-size: 16px;
+}
 .container {
 	display: flex;
 	justify-content: center;
@@ -158,7 +164,9 @@
 				</div>
 				<div class="show__info__list">
 					<div>
-						<a href="/myPage/showDetail/${myRegistrationInfoDto.id}"><img alt="" src="/images/upload/${myRegistrationInfoDto.imgRoute}" class="show__img"></a>
+						<a href="/myPage/showDetail/${myRegistrationInfoDto.id}"><img
+							alt="" src="/images/upload/${myRegistrationInfoDto.imgRoute}"
+							class="show__img"></a>
 					</div>
 
 					<div>
@@ -180,7 +188,8 @@
 										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule">
-										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
+										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약
+											정보</a>
 									</div>
 								</div>
 							</c:when>
@@ -190,31 +199,44 @@
 										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule__btn">
-										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
+										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약
+											정보</a>
 									</div>
 									<div class="show__schedule__btn">
-										<a href="/kakao/ready?rentId=${myRegistrationInfoDto.rentId}" class="btn__a"><img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;결제 하기</a>
+										<a href="/kakao/ready?rentId=${myRegistrationInfoDto.rentId}"
+											class="btn__a"><img alt=""
+											src="/images/kakao/payment_icon_yellow_medium.png"
+											class="kakao__img"> &nbsp;결제 하기</a>
 									</div>
-								</div>
-							</c:when>
-							
-							<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 1}">
-						
-								<div class="show__btn">
-									<div class="show__schedule">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
-									</div>
-									<div class="show__schedule">
-										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
-									</div>
-								<%-- 	<form action="/kakao/refund/${myRegistrationInfoDto.mPaymentId}"> --%>
-										<button type="submit">예매취소</button>
-									<!-- </form> -->
-										
-									
 								</div>
 							</c:when>
 
+							<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 1}">
+								<div class="show__btn">
+									<div class="show__schedule__btn">
+										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+									</div>
+									<div class="show__schedule__btn">
+										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약
+											정보</a>
+									</div>
+									<div class="show__schedule__btn">
+									<div>
+										<form
+											action="/kakao/refund/${myRegistrationInfoDto.getMPaymentId()}"
+											method="post">
+											<div>
+											<button type="submit" class="btn__a" id="btn">
+												<img alt=""
+													src="/images/kakao/payment_icon_yellow_medium.png"
+													class="kakao__img"> &nbsp;&nbsp;환불요청
+											</button>
+											
+											</div>
+										</form>
+									</div>
+								</div>
+							</c:when>
 						</c:choose>
 					</div>
 				</div>

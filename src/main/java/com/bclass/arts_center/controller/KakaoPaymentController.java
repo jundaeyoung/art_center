@@ -124,7 +124,7 @@ public class KakaoPaymentController {
 
 	@PostMapping("/refund/{tid}")
 	public String refund(@PathVariable String tid, Model model) {
-
+		System.out.println("dddddddddddddddd"+tid);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
 		KakaoRefundResponse kakaoRefundResponse = null;
