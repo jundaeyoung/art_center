@@ -29,4 +29,8 @@ public interface PaymentRepository {
 
 	public int updateCancelStatus(@Param("canceledAt") LocalDateTime canceledAt, @Param("tid") String tid);
 
+	public RequestPaymentInfoDto selectRentalPaymentInfo(@Param("tid") String tid);
+
+	public int updateManagerCancelStatus(@Param("canceledAt") LocalDateTime canceledAt, @Param("tid") String tid);
+
 }

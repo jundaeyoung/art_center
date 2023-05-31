@@ -79,8 +79,6 @@ public class KakaoPaymentService {
 		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
 		int userAge = startMonth2 - startMonth1;
 
-		// System.out.println(ticketCheckDto);
-
 		RestTemplate restTemplate = new RestTemplate();
 
 		HttpHeaders headers = new HttpHeaders();
@@ -132,7 +130,7 @@ public class KakaoPaymentService {
 		params.add("partner_order_id", "partner_order_id");
 		params.add("partner_user_id", "partner_user_id");
 
-		params.add("item_name", rentPlaceReservation.getLocation() + " " + rentPlaceReservation.getName() + "(공연 : "
+		params.add("item_name", rentPlaceReservation.getLocation() + " " + rentPlaceReservation.getName() + " (공연 : "
 				+ rentPlaceReservation.getTitle() + ")");
 		params.add("quantity", "1");
 		params.add("total_amount", rentPrice);
@@ -190,7 +188,7 @@ public class KakaoPaymentService {
 	public KakaoRefundResponse kakaoRefund(Integer userId, String tid) {
 
 		RequestPaymentInfoDto requestPayment = paymentRepository.selectPaymentInfo(userId, tid);
-		//System.out.println("rr" + requestPayment);
+		// System.out.println("rr" + requestPayment);
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -224,6 +222,9 @@ public class KakaoPaymentService {
 	@Transactional
 	public KakaoRefundResponse kakaoRefund2(String tid) {
 
+		RequestPaymentInfoDto requestPaymentInfoDto = paymentRepository.selectRentalPaymentInfo(tid);
+		System.out.println("aaaa" + requestPaymentInfoDto);
+
 		RestTemplate restTemplate = new RestTemplate();
 
 		HttpHeaders headers = new HttpHeaders();
@@ -233,7 +234,7 @@ public class KakaoPaymentService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", cid);
 		params.add("tid", tid);
-		params.add("cancel_amount", "");
+		params.add("cancel_amount", requestPaymentInfoDto.getRentPrice());
 		params.add("cancel_tax_free_amount", "0");
 
 		HttpEntity<MultiValueMap<String, String>> kakaoRequestEntity = new HttpEntity<>(params, headers);

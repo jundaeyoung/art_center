@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
@@ -131,95 +130,96 @@
 	align-items: center;
 }
 </style>
-	<div class="container">
-		<div class="userName">
-			<h1>${principal.nickname}님 공연 대관 신청 내역입니다</h1>
-		</div>
+<div class="container">
+	<div class="userName">
+		<h1>${principal.nickname}님공연대관신청내역입니다</h1>
 	</div>
-	<div class="my_show_content">
-		<div class="dd">
-			<c:forEach var="myShowList" items="${myShowList}">
-				<div class="myShow">
-					<div class="show__approve">
-						<c:choose>
-							<c:when test="${myShowList.showStatus == 0}">
-								<h3 style="color: #ccc; font-weight: bold;">승인대기</h3>
-							</c:when>
-							<c:when test="${myShowList.showStatus == 1}">
-								<c:choose>
-								<c:when test="${myShowList.rentPlaceStatus == 1}">
-								<h3 style="font-weight: bold;">승인완료 (결제 완료)</h3>
+</div>
+<div class="my_show_content">
+	<div class="dd">
+		<c:forEach var="myRegistrationInfoDto" items="${myShowList}">
+			<div class="myShow">
+				<div class="show__approve">
+					<c:choose>
+						<c:when test="${myRegistrationInfoDto.showStatus == 0}">
+							<h3 style="color: #ccc; font-weight: bold;">승인대기</h3>
+						</c:when>
+						<c:when test="${myRegistrationInfoDto.showStatus == 1}">
+							<c:choose>
+								<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 1}">
+									<h3 style="font-weight: bold;">승인완료 (결제 완료)</h3>
 								</c:when>
-								<c:when test="${myShowList.rentPlaceStatus == 0}">
+								<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 0}">
 									<h3 style="font-weight: bold;">승인완료 (결제 미완료)</h3>
 								</c:when>
 							</c:choose>
-							</c:when>
-						</c:choose>
+						</c:when>
+					</c:choose>
+				</div>
+				<div class="show__info__list">
+					<div>
+						<a href="/myPage/showDetail/${myRegistrationInfoDto.id}"><img alt="" src="/images/upload/${myRegistrationInfoDto.imgRoute}" class="show__img"></a>
 					</div>
-					<div class="show__info__list">
-						<div>
-							<a href="/myPage/showDetail/${myShowList.id}"><img alt=""
-								src="/images/upload/${myShowList.imgRoute}" class="show__img"></a>
-						</div>
 
-						<div>
-							<div class="show__date">
-								<p>${myShowList.startDate}&nbsp;~&nbsp;${myShowList.endDate}</p>
+					<div>
+						<div class="show__date">
+							<p>${myRegistrationInfoDto.startDate}&nbsp;~&nbsp;${myRegistrationInfoDto.endDate}</p>
+						</div>
+						<div class="show__info__ta">
+							<h2>
+								<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">${myRegistrationInfoDto.title}</a>
+							</h2>
+							<div class="show__age">
+								<p>${myRegistrationInfoDto.admissionAge}</p>
 							</div>
-							<div class="show__info__ta">
-								<h2>
-									<a href="/myPage/showDetail/${myShowList.id}">${myShowList.title}</a>
-								</h2>
-								<div class="show__age">
-									<p>${myShowList.admissionAge}</p>
-								</div>
-							</div>
-							<c:choose>
-							<c:when test="${myShowList.showStatus == 0}">
+						</div>
+						<c:choose>
+							<c:when test="${myRegistrationInfoDto.showStatus == 0}">
 								<div class="show__btn">
-								<div class="show__schedule">
-									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+									<div class="show__schedule">
+										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+									</div>
+									<div class="show__schedule">
+										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
+									</div>
 								</div>
-								<div class="show__schedule">
-									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
-								</div>
-							</div>
 							</c:when>
-							<c:when test="${myShowList.rentPlaceStatus == 0}">
-							<div class="show__btn">
-								<div class="show__schedule__btn">
-									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+							<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 0}">
+								<div class="show__btn">
+									<div class="show__schedule__btn">
+										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+									</div>
+									<div class="show__schedule__btn">
+										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
+									</div>
+									<div class="show__schedule__btn">
+										<a href="/kakao/ready?rentId=${myRegistrationInfoDto.rentId}" class="btn__a"><img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;결제 하기</a>
+									</div>
 								</div>
-								<div class="show__schedule__btn">
-									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
-								</div>
-								<div class="show__schedule__btn">
-									<a href="/kakao/ready?rentId=${myShowList.rentId}" class="btn__a"><img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;결제 하기</a>
-								</div>
-							</div>
-							</c:when>
-							<c:when test="${myShowList.rentPlaceStatus == 1}">
-							<div class="show__btn">
-								<div class="show__schedule">
-									<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
-								</div>
-								<div class="show__schedule">
-									<a href="/myPage/showDetail/${myShowList.id}">예약 정보</a>
-								</div>
-								<form action="">
-									<button>
-										<img alt="" src="">
-									</button>
-								</form>
-							</div>
 							</c:when>
 							
-							</c:choose>
-						</div>
+							<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 1}">
+						
+								<div class="show__btn">
+									<div class="show__schedule">
+										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+									</div>
+									<div class="show__schedule">
+										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
+									</div>
+								<%-- 	<form action="/kakao/refund/${myRegistrationInfoDto.mPaymentId}"> --%>
+										<button type="submit">예매취소</button>
+									<!-- </form> -->
+										
+									
+								</div>
+							</c:when>
+
+						</c:choose>
 					</div>
 				</div>
-			</c:forEach>
-		</div>
+			</div>
+		</c:forEach>
 	</div>
+</div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

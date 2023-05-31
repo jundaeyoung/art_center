@@ -59,7 +59,10 @@ public class MyPageController {
 	 */
 	@GetMapping("/myShow/{organizerId}")
 	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
+		System.out.println("select 전");
 		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId);
+		System.out.println(myShowList);
+		System.out.println("select 후 :" + myShowList.get(0).getMPaymentId());
 		model.addAttribute("myShowList", myShowList);
 		return "/user/myShow";
 	}
@@ -74,6 +77,7 @@ public class MyPageController {
 	 */
 	@GetMapping("/showDetail/{id}")
 	public String selectMyShowDetail(Model model, @PathVariable Integer id) {
+
 		List<MyRegistrationInfoDto> detailList = myPageService.selectMyShowDetail(id);
 		model.addAttribute("detailList", detailList);
 		return "/user/myShowDetail";
@@ -87,7 +91,6 @@ public class MyPageController {
 	 */
 	@GetMapping("/myTicket/{userId}")
 	public String selectMyTicket(Model model, @PathVariable Integer userId) {
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
 		List<MyTicketDtailDto> myTicketList = myPageService.readMyTicketList(userId);
 		model.addAttribute("myTicketList", myTicketList);
