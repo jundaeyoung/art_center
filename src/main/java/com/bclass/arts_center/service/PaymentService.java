@@ -1,5 +1,7 @@
 package com.bclass.arts_center.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -46,11 +48,12 @@ public class PaymentService {
 	}
 
 	@Transactional
-	public void updateCancelStatus(KakaoRefundResponse kakaoRefund) {
+	public void updateCancelStatus(LocalDateTime canceledAt, String tid) {
 
-		int result = paymentRepository.updateCancelStatus(kakaoRefund);
+		int result = paymentRepository.updateCancelStatus(canceledAt, tid);
 		if (result != 1) {
 			throw new CustomRestfullException("결제 취소 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 }

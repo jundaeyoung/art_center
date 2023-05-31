@@ -154,7 +154,7 @@ public class QuestionCotroller {
 	 */
 	@PostMapping("/insert")
 	public String writeQuestion(Question question) {
-		System.out.println(question.getQuestionTypeId());
+		//System.out.println(question.getQuestionTypeId());
 		if (question.getTitle() == null || question.getTitle().isEmpty()) {
 			throw new CustomRestfullException("제목을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}

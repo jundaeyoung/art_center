@@ -87,6 +87,7 @@ public class MyPageController {
 	 */
 	@GetMapping("/myTicket/{userId}")
 	public String selectMyTicket(Model model, @PathVariable Integer userId) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
 		List<MyTicketDtailDto> myTicketList = myPageService.readMyTicketList(userId);
 		model.addAttribute("myTicketList", myTicketList);

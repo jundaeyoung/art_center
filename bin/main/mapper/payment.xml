@@ -32,7 +32,7 @@
 	</select>
 	
 	<update id="updateCancelStatus">
-		UPDATE payment_tb SET cancel_status = 1 AND canceled_at = #{canceledAt} WHERE payment_id #{tid}
+		UPDATE payment_tb SET cancel_status = 1, canceled_at = #{canceledAt} WHERE payment_id = #{tid}
 	</update>
 	
 </mapper>

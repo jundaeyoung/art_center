@@ -44,7 +44,7 @@ public class AnnouncementCotroller {
 	}
 	@PostMapping("/search")
 	public String notice2(Model model, String searchText) {
-		System.out.println(searchText);
+		//System.out.println(searchText);
 		List<Announcement> announcements = announcementService.readAnnouncementBySearchText(searchText);
 		model.addAttribute("announcements", announcements);
 		model.addAttribute("crud", "select");
@@ -63,9 +63,9 @@ public class AnnouncementCotroller {
 	
 	@GetMapping("detail")
 	public String detailAnnouncement(Model model, Integer id) {
-		System.out.println("디테일입니다.");
+		//System.out.println("디테일입니다.");
 		Announcement announcement = announcementService.readAnnouncementById(id);
-		System.out.println(announcement);
+		//System.out.println(announcement);
 		model.addAttribute("announcement", announcement);
 		model.addAttribute("id", id);
 		return "/announcement/detail";
@@ -76,7 +76,7 @@ public class AnnouncementCotroller {
 	public String updateAnnouncement(Announcement announcement, Integer id) {
 		announcement.setId(id);
 		int result = announcementService.updateAnnouncement(announcement);
-		System.out.println(result);
+		//System.out.println(result);
 		return "redirect:/announcement";
 	}
 	

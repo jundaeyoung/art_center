@@ -189,9 +189,8 @@ public class KakaoPaymentService {
 	@Transactional
 	public KakaoRefundResponse kakaoRefund(Integer userId, String tid) {
 
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		RequestPaymentInfoDto requestPayment = paymentRepository.selectPaymentInfo(userId, tid);
-		System.out.println("rr" + requestPayment);
+		//System.out.println("rr" + requestPayment);
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -218,7 +217,7 @@ public class KakaoPaymentService {
 	}
 
 	/**
-	 * 환불 요청
+	 * 대관 환불 요청
 	 * 
 	 * @return response.getBody()
 	 */
