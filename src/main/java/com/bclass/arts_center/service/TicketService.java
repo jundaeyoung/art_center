@@ -102,6 +102,7 @@ public class TicketService {
 		Integer ticketingPeople = ticketRepository.countTicketing(showDatetimeId);
 		return ticketingPeople;
 	}
+	
 
 	/**
 	 * 예매

@@ -36,6 +36,7 @@ public interface TicketRepository {
 	
 	public Integer countTicketing(Integer showDatetimeId);
 	
+	
 //	public int delete(int id);
 	
 	

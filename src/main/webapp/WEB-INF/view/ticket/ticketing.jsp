@@ -68,12 +68,24 @@
 					</div>
 
 				</c:when>
+				<c:when test="${showInformation==2}">
+					<div class="reservation--Time"style="margin-left: -200px;">
+						<p class="title" style="font-size: 30px; width: 300px;">관람 시간</p>
+						<div class="watchTime--content">
+							<div class="TagPlay"></div>
+						</div>
+					</div>
+					<button type="submit" class="btn--ticketing"
+						style="margin-left: -400px; margin-top: 430px;">예 매</button>
+				</c:when>
 				<c:otherwise>
 					<div class="reservation--Time"style="margin-left: -200px;">
 						<p class="title" style="font-size: 30px; width: 300px;">관람 시간</p>
 						<div class="watchTime--content">
 							<div class="TagPlay"></div>
 						</div>
+						<p class="title" id="count" style="font-size: 30px; width: 300px;">신청 가능 인원</p>
+						<div id="remainingCount"></div>
 					</div>
 					<button type="submit" class="btn--ticketing"
 						style="margin-left: -400px; margin-top: 430px;">예 매</button>

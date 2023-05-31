@@ -16,7 +16,7 @@ function buildCalendar() {
 	let createDate;
 	let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1); // 이번달 1일
 	let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0); // 이번달 마지막날
-
+	
 	let tbody_Calendar = document.querySelector(".Calendar > tbody");
 	document.getElementById("calYear").innerText = nowMonth.getFullYear(); // 연도 숫자 갱신
 	document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1); // 월 숫자 갱신
@@ -151,6 +151,7 @@ function selectDateForTime(showId, date) {
 
 		//$(".watch--time").empty();
 		$(".timeTableList").remove();
+		$(".timeTableList").remove();
 		console.log(showTimeList);
 		$(".TagPlay").append(`<ul class="timeTableList"></ul>`);
 		showTimeList.forEach((showTime) => {
@@ -179,6 +180,8 @@ function selectDateForTime(showId, date) {
 					console.log("좌석 정보:", seatList);
 					$(".seat--info").append(`<div class="screen"></div>`);
 					$(".seat--info").append(`<div class="row"></div>`);
+					
+					
 					let seatsPerRow = 5;
 					//console.log(typeof seatList);
 					//console.log(seatList[0].seatId);
@@ -209,11 +212,24 @@ function selectDateForTime(showId, date) {
 					console.log(error);
 					console.log("좌석 정보를 가져오는 데 실패했습니다.");
 				});
-
+					$.ajax({
+					type: "get",
+					url: "/api/remainingCount/"  + showTime.id,
+					contentType: "application/json; charset=utf-8",
+					dataType: "json"
+				}).done(function(remainingCount) {
+					
+					$("#remainingCount").text(remainingCount);
+					
+				}).fail(function(error) {
+					console.log(error);
+					console.log("잔여 좌석 수를 가져오는 데 실패했습니다.");
+				});
+				
 				//console.log("id" + showTime.id);
 			});
 		});
-
+		
 
 		console.log('된겨?');
 	}).fail(function(error) {

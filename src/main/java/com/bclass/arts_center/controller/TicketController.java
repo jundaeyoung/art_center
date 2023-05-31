@@ -109,7 +109,12 @@ public class TicketController {
 
 //		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
 //		2랑 3일때는 setSeatId 억지로 해줘야
+		Integer totalCount = 30;
 		Integer count = ticketService.countTicketing(ticketingDto.getShowDatetimeId());
+		Integer remainingCount = totalCount - count;
+		System.out.println(count);
+		System.out.println(remainingCount);
+		
 		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
 		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
 
@@ -120,7 +125,7 @@ public class TicketController {
 			ticketingDto.setAgeGroupId(3);
 		}
 		ticketingDto.setUserId(principal.getId());
-		if (ticketingDto.getShowTypeId() == 3 && count > 30) {
+		if (ticketingDto.getShowTypeId() == 3 && count >= 30) {
 			throw new CustomRestfullException("예매 정원을 초과하였습니다.", HttpStatus.BAD_REQUEST);
 		}
 		if (ticketingDto.getShowTypeId() != 1) {

@@ -150,6 +150,7 @@
 	</update>
 
 
+	
 	<select id="countTicketing" resultType="Integer">
 
 		select count(*) as count, s.show_type_id as showTypeId from show_tb as s
@@ -164,6 +165,6 @@
 			as t on t.show_id = s.id join show_datetime_tb as sd on sd.id = t.show_datetime_id 
 			where sd.id = #{showDatetimeId}; -->
 	</select>
-	<!-- <delete id="delete"> DELETE FROM ticketing_tb WHERE id = #{id} </delete> -->
+	
 
 </mapper>
