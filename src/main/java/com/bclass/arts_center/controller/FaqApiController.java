@@ -26,9 +26,9 @@ public class FaqApiController {
 	
 	@GetMapping("/api/selectFaq/{categoryId}")
 	public List<Faq> selectFaq(@PathVariable Integer categoryId) {
-		System.out.println(categoryId);
+		/* System.out.println(categoryId); */
 		List<Faq> faqList = faqService.selectByCategoryId(categoryId);
-		System.out.println("야호야호야향"+faqList);
+		/* System.out.println("야호야호야향"+faqList); */
 		return faqList;
 	}
 

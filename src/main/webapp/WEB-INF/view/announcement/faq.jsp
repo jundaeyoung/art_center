@@ -47,19 +47,41 @@
 
 
 </div>
+<script>
+function addPanelQuestion(){
+	let panelQuestion = document.querySelectorAll('.panel-question');
+
+	for (let pq of panelQuestion) {
+	  pq.addEventListener('click', function () {
+	    if (this.classList.contains('active')) {
+	      this.classList.remove('active');
+	    } else {
+	      hideAll();
+	      this.classList.add('active');
+	    }
+	  });
+	}
+
+	function hideAll() {
+	  for (let q of panelQuestion) {
+	    q.classList.remove('active');
+	  }
+	}
+
+/*    function hideAll() {
+      for (q of panelQuestion) {
+            q.classList.remove('active');
+        }
+  	  }   */
+    
+ }
+</script>
+
 <script type="text/javascript">
+	  
+addPanelQuestion();
 $(document).ready(function () {
     $(".faq-type-btn").on("click", function () {
-		$.ajax({
-				type:'get',
-				url:'/api/faq',
-				contentType:'application/json; charset=utf-8',
-			}).done(function(response){
-				console.log(response);
-			}).fail(function(error){
-				console.log(error);
-				});
-        
         let categoryId = parseInt($(this).attr("id"));
         $.ajax({
             type: 'get',
@@ -71,7 +93,34 @@ $(document).ready(function () {
             $(".faq--container").append(faq);
             for (let i = 0; i < response.length; i++) {
                 var faqcontent = `<div class="panel-question">
-					<div class="panel-heading" id="faq-title">`+ response[i].title + `</div>
+					<div class="panel-heading" id="faq-title" onclick="addPanelQuestion()">`+ response[i].title + `</div>
+					<div class="panel-body" id="thisone">
+					    <p>`+ response[i].content + `</p>
+					</div>
+					</div>`;
+                $("#faq").append(faqcontent);
+            }
+        }).fail(function (error) {
+            console.log(error);
+        });
+  });
+
+    
+});
+
+$(document).ready(function () {
+    $("#faq-all").on("click", function () {
+        $.ajax({
+            type: 'get',
+            url: '/api/faq/',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function (response) {
+            $(".faq--container").empty();
+            let faq = `<section id="faq">`;
+            $(".faq--container").append(faq);
+            for (let i = 0; i < response.length; i++) {
+                let faqcontent = `<div class="panel-question">
+					<div class="panel-heading" id="faq-title" onclick="addPanelQuestion()">`+ response[i].title + `</div>
 					<div class="panel-body" id="thisone">
 					    <p>`+ response[i].content + `</p>
 					</div>
@@ -79,24 +128,10 @@ $(document).ready(function () {
                 $("#faq").append(faqcontent);
 
             }
-            let panelQuestion = document.querySelectorAll('.panel-question');
-
-            for (let pq of panelQuestion) {
-                pq.addEventListener('click', function () {
-                    hideAll();
-                    this.classList.add('active');
-                });
-            }
-            function hideAll() {
-                for (q of panelQuestion) {
-                    q.classList.remove('active');
-                }
-            }
         }).fail(function (error) {
             console.log(error);
         });
   });
-
     
 });
 </script>
