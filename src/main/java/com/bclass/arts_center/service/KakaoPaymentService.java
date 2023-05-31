@@ -95,9 +95,9 @@ public class KakaoPaymentService {
 		params.add("item_name", ticketCheckDto.getTitle());
 		params.add("quantity", "1");
 		if (userAge > 19) {
-			params.add("total_amount", ticketCheckDto.getAdultRate());
+			params.add("total_amount", ticketCheckDto.getAdultRate().replace(",", ""));
 		} else if (userAge <= 19) {
-			params.add("total_amount", ticketCheckDto.getYouthRate());
+			params.add("total_amount", ticketCheckDto.getYouthRate().replace(",", ""));
 		}
 		params.add("tax_free_amount", "0");
 		params.add("approval_url", "http://localhost:8080/kakao/success");

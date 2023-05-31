@@ -1,5 +1,6 @@
 package com.bclass.arts_center.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,46 @@ public class AdminSaleService {
 	@Transactional
 	public List<RequestManagerShowSaleDto> readShowSaleGrape(){
 		
-		List<RequestManagerShowSaleDto> showSaleGrape = adminSalesRepository.selectShowSaleGrape();
+		List<RequestManagerShowSaleDto> showSaleGrape = adminSalesRepository.selectShowSalesGrape();
 		
 		return showSaleGrape;
 		
+	}
+	
+	@Transactional
+	public List<RequestManagerShowSaleDto> readShowSaleList(){
+		
+		List<RequestManagerShowSaleDto> showsalesList = adminSalesRepository.selectShowSales();
+		
+		return showsalesList;
+	}
+	
+	@Transactional
+	public List<RequestManagerShowSaleDto> readShowSaleByStartDateAndEndDate(String startDate, String endDate){
+		
+		List<RequestManagerShowSaleDto> showsalesList = adminSalesRepository.selectShowSalesBystartDateAndEndDate(startDate, endDate);
+		
+		return showsalesList;
+	}
+	
+	public List<RequestManagerShowSaleDto> readShowSaleBySearch(String searchTitle){
+		
+		List<RequestManagerShowSaleDto> showSalesList = adminSalesRepository.selectShowSalesBysearchTitle(searchTitle);
+		
+		return showSalesList;
+	}
+	
+	public List<RentSalesDto> readRentalSlesByStartDateAndEndDate(String startDate, String endDate){
+		
+		List<RentSalesDto> rentalSlaesList = adminSalesRepository.selectRentSalesBystartDateAndEndDate(startDate, endDate);
+		
+		return rentalSlaesList;
+	}
+	
+	public List<RentSalesDto> readRentalSalesBySearch(String searchTitle){
+		
+		List<RentSalesDto> rentalSalesList = adminSalesRepository.selectRentSalesBysearchTitle(searchTitle);
+		
+		return rentalSalesList;
 	}
 }

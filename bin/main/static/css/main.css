@@ -496,8 +496,7 @@ content ul {
 	color: gray;
 }
 .apilogout{
-	display: flex;
-	font-size: 20px;
+	margin-top: -20px;
 	font-weight: lighter;
 	background-color: #FAFAFA;
 	color: black;

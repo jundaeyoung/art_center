@@ -79,7 +79,7 @@
 		<h3></h3>
 	</div>
 </div>
- <div id="columnchart_material" style="width: 1200px; height: 800px;margin-left: 150px;"></div>
+ <div id="columnchart_material" style="width: 600px; height: 800px;margin-left: 150px;"></div>
 <div>
 	<div class="show">
 		<c:forEach var="showList" items="${showList}">
@@ -228,7 +228,7 @@
 	            title: '공연별 방문자 현황',
 	          },
 		        bar : {
-		    		groupWidth : '300%' // 예제에서 이 값을 수정
+		    		groupWidth : '50%' // 예제에서 이 값을 수정
 		    	},
 		    	fontSize: 30	,
 		    	

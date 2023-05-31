@@ -34,7 +34,6 @@
                                             <th>종료시간</th>
                                             <th>위치</th>
                                             <th>장소</th>
-                                            <th>승인여부</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,22 +47,6 @@
                                     	<td>${rentPlaces.endTime}</td>
                                     	<td>${rentPlaces.name}</td>
                                     	<td>${rentPlaces.location}</td>
-                                    	<c:choose>
-                                    	<c:when test="${rentPlaces.rentPlaceStatus==0}">
-                                    	<td>
-                                    	<form action="/rentPlace/update?id=${rentPlaces.id}" method="get">
-                                         <a href="/rentPlace/update?id=${rentPlaces.id}">승인</a> 
-                                        </form>
-                                    	</td>
-                                    	</c:when>
-                                    	<c:otherwise>
-                                    		<td>
-                                    	<p>완료</p>
-                                    	</td>
-                                    	</c:otherwise>
-	                                    	
-                                    	</c:choose>
-                                    	
                                     </tr>
                                     </c:forEach>
                                     </tbody>

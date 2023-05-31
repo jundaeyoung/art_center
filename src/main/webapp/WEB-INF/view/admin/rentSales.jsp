@@ -22,6 +22,19 @@
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
+						<form action="/sales/rentSalesDay" method="post">
+						<label for="startDate">시작날짜:</label> <input type="date"
+							id="startDate" name="startDate" /> <label for="endDate">종료날짜:</label>
+						<input type="date" id="endDate" name="endDate" />
+						<button type="submit">검색</button>
+					</form>
+					 <form action="/sales/showSalesDay" method="POST">
+                    </form>
+                    <form action="/sales/rentSalesTitle" method="post">
+						<label for="searchTitle">장소:</label> <input type="text"
+							id="searchTitle" name="searchTitle" />
+						<button type="submit">검색</button>
+					</form>
 							<i class="fas fa-table me-1"></i> 
 						</div>
 						<div class="card-body">
