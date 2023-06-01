@@ -139,7 +139,6 @@ function selectDateForTime(showId, date) {
     }).done(function (showTimeList) {
         //$(".watch--time").empty();
         $(".timeTableList").remove();
-        console.log("쇼타임" + showTimeList);
         $(".TagPlay").append(`<ul class="timeTableList"></ul>`);
         showTimeList.forEach((showTime) => {
             let addTime = `<li class="timeTableItem"><a class="timeTableLabel" data-tabtoggle="timeTableList" role="button" data-seq="${showTime.id}">${showTime.showTime}</li>`

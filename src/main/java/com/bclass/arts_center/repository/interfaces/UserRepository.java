@@ -1,11 +1,11 @@
 package com.bclass.arts_center.repository.interfaces;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.bclass.arts_center.dto.RequestUserCountDto;
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
 import com.bclass.arts_center.dto.UpdateUserDto;
@@ -78,8 +78,8 @@ public interface UserRepository {
 
 	/**
 	 * @author 손주이
-	 * @param createdDate
+	 * @return 하루 가입자 수
 	 */
-	public Integer selectUserByDateForGraph(String createdDate);
+	public List<RequestUserCountDto> selectJoinUserByDate();
 
 }

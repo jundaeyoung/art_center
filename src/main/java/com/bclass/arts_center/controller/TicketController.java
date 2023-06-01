@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
@@ -137,7 +135,7 @@ public class TicketController {
 		return "redirect:/ticket/ticketCheck/";
 	}
 
-	@GetMapping("/ticketCheck/")
+	@GetMapping("/ticketCheck")
 	public String ticketCheck(TicketingDto ticketingDto, Model model) throws WriterException, IOException {
 		TicketCheckDto ticketid = ticketService.readTicketId();
 

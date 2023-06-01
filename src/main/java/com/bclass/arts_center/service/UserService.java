@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
+import com.bclass.arts_center.dto.RequestUserCountDto;
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
 import com.bclass.arts_center.dto.UpdateUserDto;
@@ -226,11 +227,12 @@ public class UserService {
 
 	/**
 	 * @author 손주이
-	 * @param createdDate
-	 * @return result
+	 * @return dateList
 	 */
-	public Integer readUserJoinPerDay(String createdDate) {
-		Integer result = userRepository.selectUserByDateForGraph(createdDate);
-		return result;
+	public List<RequestUserCountDto> readJoinUserByDate() {
+
+		List<RequestUserCountDto> dateList = userRepository.selectJoinUserByDate();
+		return dateList;
 	}
+
 }

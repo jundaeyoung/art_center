@@ -24,9 +24,4 @@ public class User {
 	private String tel;
 	private Timestamp createdAt;
 
-	public String createdDate(Timestamp createdAt) {
-		this.createdAt = createdAt;
-		return TimestampUtil.timestampByDate(createdAt) + "%";
-	}
-
 }
