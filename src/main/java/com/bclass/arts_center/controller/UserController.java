@@ -275,8 +275,18 @@ public class UserController {
 	}
 	
 	@PostMapping("findId")
-	public String findId(User user) {
-		User users = userService.selectUserName(user);
+	public String findId(User user, Model model) {
+		System.out.println(user);
+		User finduserName = userService.selectUserName(user);
+		
+		if (finduserName == null) {
+			throw new CustomRestfullException("다시 입력해주세요.", HttpStatus.BAD_REQUEST);
+		}else if(finduserName != null) {
+			throw new CustomRestfullException("귀하의 아이디는 " + finduserName.getUserName() + "입니다.", HttpStatus.OK);
+		}
+		
+		//model.addAttribute("finduserName", finduserName);
+		
 		return "user/findId";
 	}
 	

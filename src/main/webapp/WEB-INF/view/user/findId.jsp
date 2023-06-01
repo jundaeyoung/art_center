@@ -17,15 +17,15 @@
 
 <div class="container">
 	<div class="signInContainer">
-		<div class="loginContainer">
+			<c:choose>
+			<c:when test="${finduserName == null}">
+			<div class="loginContainer">
 			<div class="login--title">
 				<img alt="" src="/images/background/logo.png" class="loginLogo">
 			</div>
 			<br>
-				<form action="/user/signUp" method="post">
+				<form action="/user/findId" method="post">
 				<div class="content">
-
-					<span class="error--messege" th:if="${valid_password}">${valid_password}</span> <br>
 					<div id="ipw" class="email">
 						<p>이메일 :</p>
 						<i class="material-icons" style="margin-left: 560px;">mail_outline</i> <input type="email" placeholder="이메일을 입력하세요" name="email" id="email" class="info"><br>
@@ -34,19 +34,17 @@
 						<p>전화번호 :</p>
 						&nbsp; <i class="material-icons">phone_android</i> <input type="text" placeholder="전화번호를 입력하세요" name="tel" id="tel" class="info"><br>
 					</div>
-					<span class="error--messege" th:if="${valid_tel}">${valid_tel}</span> <br> <input type="hidden" value="${roleId}" name="roleId">
-					<c:choose>
-						<c:when test="${userInfo.id != null}">
-							<input type="hidden" value="${apiId}" id="apiId"
-								name="apiId">
-						</c:when>
-						<c:otherwise>
-						</c:otherwise>
-					</c:choose>
 					<input type="submit" value="아이디찾기" class="login" onclick="save()">
 				</div>
 			</form>
+			</div>
+			</c:when>
+			<c:otherwise>
+			<!-- 
+			<p>귀하의 아이디는 ${finduserName.userName} 입니다</p>
+			 -->
+			</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
-</div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

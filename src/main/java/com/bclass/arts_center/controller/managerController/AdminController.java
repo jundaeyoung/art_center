@@ -50,6 +50,11 @@ public class AdminController {
 		return "admin/board";
 	}
 	
+	@GetMapping("/main")
+	public String main() {
+		return "admin/NewFile";
+	}
+	
 	// 작성자 :  편용림 관리자 페이지 로그아웃
 	@GetMapping("/logout")
 	public String AdminLogout() {

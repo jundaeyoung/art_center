@@ -2,11 +2,30 @@
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="/js/admin/userJoinPerDay.js">
-	
-</script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/admin/userJoinPerDay.js"></script>
 <div id="layoutSidenav_content">
 	<main>
+	<div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Area Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Bar Chart Example
+                                    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
 		<div id="top_x_div" style="width: 800px; height: 600px;"></div>
 		<!-- <div id="donutchart" style="width: 900px; height: 500px;"></div> -->
 		<div class="container-fluid px-4">
@@ -63,4 +82,6 @@
 				</div>
 			</div>
 		</div>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="/js/chart-area-demo.js"></script>
 		<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>

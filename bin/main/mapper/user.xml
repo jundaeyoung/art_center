@@ -103,7 +103,7 @@
 	</select>
 	
 	<!-- 작성자 : 편용림 아이디 찾기 -->
-	<select id="findUserByEmailAndTel">
+	<select id="findUserByEmailAndTel" resultType="com.bclass.arts_center.repository.model.User">
 	SELECT * from user_tb where email = #{email} AND TEL = #{tel}
 	</select>
 
