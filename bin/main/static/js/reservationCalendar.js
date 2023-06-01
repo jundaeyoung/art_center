@@ -222,6 +222,7 @@ function seatInfo(showId, showTime) {
                         console.log(error);
                         console.log("좌석 정보를 가져오는 데 실패했습니다.");
                     });
+                   
                     $.ajax({
                         type: "get",
                         url: "/api/remainingCount/" + showTime.id,

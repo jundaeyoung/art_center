@@ -58,7 +58,7 @@ public class KakaoPaymentController {
 	public String readyToKakaoPay(Integer ticketingId, Integer rentId, RedirectAttributes redirectAttributes) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		KakaoReadyResponse kakaoReadyResponse = null;
-		if(principal==null) {
+		if (principal == null) {
 			throw new LoginException("로그인을 해주세요.", HttpStatus.BAD_REQUEST);
 		}
 		if (principal.getRoleId() == 1) {
@@ -78,9 +78,10 @@ public class KakaoPaymentController {
 	}
 
 	@GetMapping("/success")
-	public String success(Integer ticketingId, @RequestParam(name ="pg_token", required=false) String pgToken, Model model) {
+	public String success(Integer ticketingId, @RequestParam(name = "pg_token", required = false) String pgToken,
+			Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		
+
 		KakaoApprovalResponse kakaoApprove = kakaoPaymentService.kakaoApprove(pgToken);
 		model.addAttribute("kakaoApprove", kakaoApprove);
 
@@ -134,7 +135,8 @@ public class KakaoPaymentController {
 	}
 
 	@PostMapping("/refund/{tid}")
-	public String refund(@PathVariable(name="tid", required=false) String tid, Model model,@RequestParam(name="id", required=false) Integer id) {
+	public String refund(@PathVariable(name = "tid", required = false) String tid, Model model,
+			@RequestParam(name = "id", required = false) Integer id) {
 
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
@@ -145,13 +147,13 @@ public class KakaoPaymentController {
 		} else if (principal.getRoleId() == 2) {
 			kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
 			paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
-				
+
 			int result = rentPlaceReservationService.updateRentByStatus(id);
-				System.out.println("업데이트 되는지 확인" + result);
+			System.out.println("업데이트 되는지 확인" + result);
 		}
 		model.addAttribute("kakaoRefundResponse", kakaoRefundResponse);
 
 		return "/payment/refund";
 	}
-	
+
 }

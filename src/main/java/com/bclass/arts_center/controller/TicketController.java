@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.ShowViewDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
@@ -123,7 +121,7 @@ public class TicketController {
 //		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
 //		2랑 3일때는 setSeatId 억지로 해줘야
 		Integer count = ticketService.countTicketing(ticketingDto.getShowDatetimeId());
-		
+
 		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
 		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
 
@@ -145,8 +143,6 @@ public class TicketController {
 		return "redirect:/ticket/ticketCheck";
 
 	}
-//		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
-//		2랑 3일때는 setSeatId 억지로 해줘야
 
 	@GetMapping("/ticketCheck")
 	public String ticketCheck(TicketingDto ticketingDto, Model model) throws WriterException, IOException {
