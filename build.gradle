@@ -44,6 +44,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	// 문자 api
 	implementation 'net.nurigo:sdk:4.2.7'
+	// qr코드 생성
+	implementation group: 'com.kuisama.zxing', name: 'zxing-spring-boot-starter', version: '1.0.0.RELEASE'
 }
 
 tasks.named('test') {

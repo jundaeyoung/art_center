@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.MyTicketDtailDto;
+import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.MyPageService;
+import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
 
 /**
@@ -32,6 +34,9 @@ public class MyPageController {
 
 	@Autowired
 	private MyPageService myPageService;
+
+	@Autowired
+	private TicketService ticketService;
 
 	/**
 	 * @author 김미정
@@ -91,9 +96,13 @@ public class MyPageController {
 	 */
 	@GetMapping("/myTicket/{userId}")
 	public String selectMyTicket(Model model, @PathVariable Integer userId) {
-
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyTicketDtailDto> myTicketList = myPageService.readMyTicketList(userId);
-		model.addAttribute("myTicketList", myTicketList);
+		if (myTicketList == null) {
+			model.addAttribute("myTicketList", null);
+		} else {
+			model.addAttribute("myTicketList", myTicketList);
+		}
 		return "/user/myTicketList";
 	}
 
@@ -110,7 +119,6 @@ public class MyPageController {
 		model.addAttribute("userName", principal.getNickname());
 
 		MyTicketDtailDto ticketInfo = myPageService.readMyTicketDetail(id);
-		System.out.println(ticketInfo);
 		if (ticketInfo == null) {
 			model.addAttribute("ticketInfo", null);
 		} else {

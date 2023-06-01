@@ -42,7 +42,6 @@ public class UserController {
 	/*
 	 * 전대영 : email 임시비밀번호 발급
 	 */
-
 	@Autowired
 	private SendEmailService sendEmailService;
 
