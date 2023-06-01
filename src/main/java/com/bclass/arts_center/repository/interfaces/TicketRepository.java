@@ -40,6 +40,8 @@ public interface TicketRepository {
 	public TicketCheckDto selectTicketId();
 	
 	public List<MyTiketDto> selectMyTiketDto(Integer userId);
+	
+	public TicketCheckDto selectTicketIdbyId(Integer id);
 
 	
 	public Integer countTicketing(Integer showDatetimeId);

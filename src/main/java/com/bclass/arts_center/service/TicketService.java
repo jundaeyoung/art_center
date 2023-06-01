@@ -203,6 +203,12 @@ public class TicketService {
 		
 		return myTiketList;
 	}
+	
+	@Transactional
+	public TicketCheckDto readTicketIdById(Integer id) {
+		TicketCheckDto result = ticketRepository.selectTicketIdbyId(id);
+		return result;
+	}
 
 	/**
 	 * 예매 취소

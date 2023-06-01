@@ -109,10 +109,10 @@
 							<c:choose>
 								<c:when test="${questionList.answerStatus==1}">
 									<div class="answer_status">답변완료</div>
-									<div>
+									<div class="delete">
 										<c:choose>
 											<c:when test="${questionList.userId==principal.getId()}">
-												<form action="" method="get">
+												<form action="/quest/delete" method="get">
 													<button type="submit">삭제</button>
 												</form>
 											</c:when>
@@ -153,7 +153,14 @@
 					</div>
 				</div>
 				<div class="hide" id="hide_${questionList.id}">
-					<h4>${questionList.content}</h4>
+					<h4>내용 : ${questionList.content}</h4>
+					<c:choose>
+						<c:when test="${questionList.answerStatus==1}">
+							<h4>답변 : ${questionList.answer}</h4>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</div>

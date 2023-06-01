@@ -75,7 +75,6 @@
 	font-weight: 400;
 }
 
-
 .ticket--button {
 	margin-top: 50px;
 	margin-left: 750px;
@@ -108,9 +107,17 @@
 	border-style: none;
 	background-color: white;
 }
-.ticket--content--info{
-	margin-left:350px;
+
+.ticket--content--info {
+	margin-left: 350px;
 	width: 400px;
+}
+.qrcode {
+	width: 350px;
+	height: 350px;
+	transform: rotate(270deg);
+	margin-top: 20px;
+	margin-left: -70px;
 }
 </style>
 
@@ -154,7 +161,7 @@
 				</div>
 			</div>
 			<div></div>
-			<img alt="" src="/images/bacode.png" class="bacode">
+			<img alt="" src="/images/upload/${ticket.qrCode}.png" class="qrcode">
 		</div>
 		<div class="kakao">
 			<form action="/kakao/ready" method="get">
