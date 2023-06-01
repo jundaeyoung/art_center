@@ -102,7 +102,7 @@ public class KakaoPaymentController {
 			}
 			ticketService.updateTicketStatus(principal.getId(), sessionTicketingId);
 			paymentService.createPayment(payment);
-
+			session.setAttribute("ticketingId", null);
 		} else if (principal.getRoleId() == 2) {
 
 			ManagerPayment managerPayment = new ManagerPayment();
