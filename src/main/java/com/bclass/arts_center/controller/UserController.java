@@ -268,13 +268,15 @@ public class UserController {
 		return "user/findId";
 	}
 	
-	@PostMapping("/")
-	public String findUserName(User user) {
-		
-		return "";
+	@PostMapping("findId")
+	public String findId(User user) {
+		User users = userService.selectUserName(user);
+		return "user/findId";
 	}
-
-	@PostMapping("/check/tel")
+	
+	
+	
+	@PostMapping("/findBy")
 	@ResponseBody
 	public Integer sendTelCheck(@RequestBody String tel) {
 		Integer result = userService.telCheck(tel);

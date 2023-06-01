@@ -15,4 +15,5 @@ public interface RentPlaceReservationRepository {
 	// 작성자 : 편용림 승인 요청 업데이트
 	public int updateRentPlaceReservation(Integer id);
 
+	public int updateRentById(Integer id);
 }

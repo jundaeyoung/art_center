@@ -21,6 +21,10 @@
 	<update id="updateRentPlaceReservation">
 	UPDATE rent_place_reservation_tb SET rent_place_status = 1 WHERE id = #{id};
 	</update>
+	
+	<update id="updateRentById">
+	UPDATE rent_place_reservation_tb  SET rent_place_status = 2 where id = #{id}
+	</update>
 </mapper>
 
 

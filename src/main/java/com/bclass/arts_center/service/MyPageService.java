@@ -63,5 +63,10 @@ public class MyPageService {
 		MyTicketDtailDto ticketDetail = myPageRepository.selectMyTicketDetail(id);
 		return ticketDetail;
 	}
+	
+	public List<MyRegistrationInfoDto> readMyRentRefund(Integer id){
+		List<MyRegistrationInfoDto> rentList = myPageRepository.selectMyRentRefund(id);
+		return rentList;
+	}
 
 }
