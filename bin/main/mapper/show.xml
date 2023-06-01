@@ -5,177 +5,180 @@
 
 <mapper namespace="com.bclass.arts_center.repository.interfaces.ShowRepository">
 
-	<!-- 작성자 : 전대영 show 최신순 -->
+	<!-- 작성자 : 전대영 show 최신순 카운터 -->
 	<select id="selectShowByNewestCount" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id
-		from show_tb as s
-		LEFT JOIN review_tb as r
-		on r.show_id = s.id
-		left JOIN category_tb as sc
-		on s.show_type_id = sc.id
-		LEFT JOIN user_tb AS
-		u
-		ON r.user_id = u.id
-		JOIN hole_tb AS h
-		ON h.id = s.hole_id
-		JOIN location_tb as l
-		ON l.id = h.location_id
-		where s.show_status=1
-		GROUP BY s.title
-		ORDER BY s.id DESC
-	</select>
-	<!-- 작성자 : 전대영 show 최신순 -->
-	<select id="selectShowByNewest" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
-		from
-		show_tb as s
-		LEFT JOIN review_tb as r
-		on r.show_id = s.id
-		left JOIN category_tb as sc
-		on s.show_type_id = sc.id
+		SELECT s.id
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
 		LEFT JOIN user_tb AS u
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN
-		location_tb as l
+		JOIN location_tb AS l
 		ON l.id = h.location_id
-		where s.show_status=1
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1
 		GROUP BY s.title
 		ORDER BY s.id DESC
-		limit #{begin},
-		#{range}
+	</select>
+	
+	<!-- 작성자 : 전대영 show 최신순 -->
+	<select id="selectShowByNewest" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN hole_tb AS h
+		ON h.id = s.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1
+		GROUP BY s.title
+		ORDER BY s.id DESC
+		LIMIT #{begin}, #{range}
 	</select>
 
 	<!-- 작성자 : 전대영 show 평점 높은순 -->
 	<select id="selectShowByHighesRated" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
-		from show_tb as s
-		LEFT JOIN review_tb as r
-		on r.show_id = s.id
-		left JOIN category_tb as sc
-		on s.show_type_id = sc.id
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
 		LEFT JOIN user_tb AS u
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN
-		location_tb as l
+		JOIN location_tb AS l
 		ON l.id = h.location_id
-		where s.show_status=1 AND rating != 'NULL'
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND rating != 'NULL'
 		GROUP BY s.title
-		order by round(avg(r.rating),1) desc
-		limit #{begin},
-		#{range}
+		ORDER BY round(avg(r.rating), 1) DESC
+		LIMIT #{begin}, #{range}
 	</select>
-
 
 	<!-- 작성자 : 전대영 show 평점 낮은순 -->
 	<select id="selectShowByRowestRated" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
-		from show_tb as s
-		LEFT JOIN review_tb as r
-		on r.show_id = s.id
-		left JOIN category_tb as sc
-		on s.show_type_id = sc.id
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
 		LEFT JOIN user_tb AS u
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN
-		location_tb as l
+		JOIN location_tb AS l
 		ON l.id = h.location_id
-		where s.show_status=1 AND rating != 'NULL'
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND rating != 'NULL'
 		GROUP BY s.title
-		order by round(avg(r.rating),1) asc
-		limit #{begin},
-		#{range}
+		ORDER BY round(avg(r.rating), 1) ASC
+		LIMIT #{begin},	#{range}
 	</select>
+	
 	<!-- 작성자 : 전대영 show 카운터 -->
 	<select id="selectShowCount" resultType="Integer">
-		select count(*) as count from(
-		select s.id from show_tb as s
-		join review_tb as r
-		on r.show_id = s.id
-		where s.show_status=1 AND r.rating != 'NULL'
-		group by
-		s.title) as c;
+		SELECT count(*) AS count
+		FROM (
+		SELECT s.id
+		FROM show_tb AS s
+		JOIN review_tb AS r
+		ON r.show_id = s.id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND rating != 'NULL'
+		GROUP BY s.title) AS c
 	</select>
 
 	<!-- 작성자 : 전대영 show 카테고리 -->
 	<select id="selectShowByCategory" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id, s.title, round(avg(r.rating),1) as rating , s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
-		from
-		show_tb as s
-		LEFT JOIN review_tb as r
-		on r.show_id = s.id
-		left JOIN category_tb as sc
-		on s.show_type_id = sc.id
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
 		LEFT JOIN user_tb AS u
 		ON r.user_id = u.id
 		JOIN hole_tb AS h
 		ON h.id = s.hole_id
-		JOIN
-		location_tb as l
+		JOIN location_tb AS l
 		ON l.id = h.location_id
-		where s.show_status=1 AND sc.show_type=#{category}
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND sc.show_type = #{category}
 		GROUP BY s.title
 		ORDER BY s.id DESC
-		limit #{begin},
-		#{range}
+		LIMIT #{begin},	#{range}
 	</select>
 
 	<!-- 작성자 : 전대영 show 카테고리 -->
 	<select id="selectShowByNewestOne" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select * from show_tb
-		where organizer_id = #{userId}
-		ORDER BY id desc
-		limit 1;
+		SELECT *
+		FROM show_tb
+		WHERE organizer_id = #{userId}
+		ORDER BY id DESC
+		LIMIT 1
 	</select>
 
 	<!-- 작성자 : 전대영 show 아이디로 찾기 -->
 	<select id="selectShowByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select * from show_tb
-		where id = #{showId}
+		SELECT *
+		FROM show_tb
+		WHERE id = #{showId}
 	</select>
 
 	<!-- 작성자 : 전대영 show 아이디로 리뷰찾기 -->
 	<select id="selectReviewByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select r.* from show_tb as s
-		join review_tb as r
-		on r.show_id = s.id
-		where s.id = #{showId};
+		SELECT r.*
+		FROM show_tb AS s
+		JOIN review_tb AS r
+		ON r.show_id = s.id
+		WHERE s.id = #{showId};
 	</select>
-
 
 	<!-- 작성자 : 전대영 show 카운터 -->
 	<select id="selectShowByCategoryCount" resultType="Integer">
-		select count(*) AS
-		count from(
-		select s.id from
-		review_tb as r
-		right join show_tb as s
-		on r.show_id = s.id
-		left join user_tb as
-		u
-		on r.user_id =
-		u.id
-		left join category_tb as sc
-		on s.show_type_id = sc.id
-		where sc.show_type=#{category} AND s.show_status=1
-		GROUP BY s.title
-		) as c;
+		SELECT count(*) AS count
+		FROM (
+		SELECT s.id
+		FROM review_tb AS r
+		RIGHT JOIN show_tb AS s
+		ON r.show_id = s.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE rent_place_status = 1 AND sc.show_type = #{category} AND s.show_status = 1
+		GROUP BY s.title) AS c
 	</select>
 
 	<insert id="insertShow">
-		INSERT INTO show_tb(img_route ,title, content, start_date, end_date, admission_age, adult_rate, youth_rate, organizer_id,show_type_id, hole_id)
-		VALUES
-		(#{imgRoute},#{title},#{content}, #{startDate},#{endDate},#{admissionAge},#{adultRate},#{youthRate},#{organizerId}, #{showTypeId} ,#{holeId})
+		INSERT INTO show_tb(img_route, title, content, start_date, end_date, admission_age, adult_rate, youth_rate, organizer_id, show_type_id, hole_id)
+		VALUES (#{imgRoute}, #{title}, #{content}, #{startDate}, #{endDate}, #{admissionAge}, #{adultRate}, #{youthRate}, #{organizerId}, #{showTypeId}, #{holeId})
 	</insert>
 
 	<insert id="insertShowDateTime">
-		INSERT INTO show_datetime_tb(show_date, show_time , show_id, hole_id)
-		VALUES (#{startDate},#{startTime},#{showId},#{holeId})
+		INSERT INTO show_datetime_tb(show_date, show_time, show_id, hole_id)
+		VALUES (#{startDate}, #{startTime}, #{showId}, #{holeId})
 	</insert>
 
 
@@ -190,30 +193,28 @@
 		JOIN location_tb AS l
 		ON l.id = h.location_id
 		JOIN user_tb AS u
-		ON
-		u.id = s.organizer_id
+		ON u.id = s.organizer_id
 		WHERE sdt.show_id = #{showId}
 	</select>
 
 
 	<!-- 작성자 편용림 : admin 쪽 정보 상세 -->
 	<select id="selectShowInfoAdmin" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		SELECT s.id,s.organizer_id AS user_id ,s.title, s.content, s.admission_age, c.show_type, s.show_status
+		SELECT s.id, s.organizer_id AS user_id, s.title, s.content, s.admission_age, c.show_type, s.show_status
 		FROM show_tb AS s
 		JOIN category_tb AS c
-		ON
-		s.show_type_id = c.id
-		order by s.show_status asc, s.id desc;
+		ON s.show_type_id = c.id
+		ORDER BY s.show_status ASC, s.id DESC
 	</select>
 
 	<!-- 작성자 편용림 : 공연 예약 승인 여부 -->
 	<update id="updateShowById">
-		UPDATE show_tb SET show_status = 1 WHERE id = #{id};
+		UPDATE show_tb SET show_status = 1 WHERE id = #{id}
 	</update>
 
 	<!-- 작성자 전대영 : 공연 holeId update -->
 	<update id="updateShowHole">
-		UPDATE show_tb SET hole_id = #{holeId} WHERE id = #{id};
+		UPDATE show_tb SET hole_id = #{holeId} WHERE id = #{id}
 	</update>
 
 </mapper>
