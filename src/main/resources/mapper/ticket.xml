@@ -201,6 +201,6 @@
 		AND t.payment_status = 1
 		AND sd.show_date > now()
 		ORDER BY r.content ASC, show_date DESC ;
-	</select>
+	</select>	
 
 </mapper>
