@@ -25,7 +25,6 @@ public class TicektingController {
 	@GetMapping("/")
 	public String selectTicekting(Model model) {
 		List<TicketingDto> ticketList = ticketService.readTicketingAll();
-		System.out.println(ticketList);
 		DecimalFormat df = new DecimalFormat("###,###");
 		if (ticketList.size() == 0) {
 			model.addAttribute("ticketList", null);

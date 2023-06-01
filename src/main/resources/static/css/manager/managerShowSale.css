@@ -206,3 +206,9 @@
 #columnchart_material svg g:nth-child(n+5) text {
 	font-size: 15px!important;
 }
+#columnchart_material{
+	margin-top:50px!important;
+	margin-bottom:50px!important;
+	width: 1300px!important;
+	
+}

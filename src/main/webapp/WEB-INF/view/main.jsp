@@ -104,7 +104,7 @@
 		</c:otherwise>
 	</c:choose>
 	<c:choose>
-		<c:when test="${pricipal!=null && principal.roleId==2}">
+		<c:when test="${pricipal!=null || principal.roleId==2}">
 			<div class="show-content">
 				<div class="modal" id="myModal">
 					<div class="modal-content">
@@ -151,7 +151,7 @@
 	</div>
 </div>
 <c:choose>
-	<c:when test="${pricipal!=null && principal.roleId==2}">
+	<c:when test="${pricipal!=null || principal.roleId==2}">
 		<script type="text/javascript">
 $(document).ready(function() {
     $.ajax({
