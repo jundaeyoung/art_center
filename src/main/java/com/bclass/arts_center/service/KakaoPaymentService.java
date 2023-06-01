@@ -225,6 +225,10 @@ public class KakaoPaymentService {
 		RequestPaymentInfoDto requestPaymentInfoDto = paymentRepository.selectRentalPaymentInfo(tid);
 		System.out.println("aaaa" + requestPaymentInfoDto);
 
+		String rentPrice = requestPaymentInfoDto.getRentPrice();
+		rentPrice = rentPrice.replace(",", ""); // 콤마(,) 제거
+		int cancelAmount = Integer.parseInt(rentPrice); // 숫자로 변환
+		
 		RestTemplate restTemplate = new RestTemplate();
 
 		HttpHeaders headers = new HttpHeaders();
@@ -234,7 +238,7 @@ public class KakaoPaymentService {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("cid", cid);
 		params.add("tid", tid);
-		params.add("cancel_amount", requestPaymentInfoDto.getRentPrice());
+		params.add("cancel_amount", String.valueOf(cancelAmount));
 		params.add("cancel_tax_free_amount", "0");
 
 		HttpEntity<MultiValueMap<String, String>> kakaoRequestEntity = new HttpEntity<>(params, headers);

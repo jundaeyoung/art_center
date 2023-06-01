@@ -22,21 +22,8 @@
 				<img alt="" src="/images/background/logo.png" class="loginLogo">
 			</div>
 			<br>
-			<form action="/user/signUp" method="post">
+				<form action="/user/signUp" method="post">
 				<div class="content">
-					<c:choose>
-						<c:when test="${userInfo.id != null}">
-							<div class="form-group">
-								<input type="hidden" class="form-control" id="userName" name="userName" value="${userInfo.id}">
-							</div>
-							<div class="form-group">
-								<input type="hidden" class="form-control" id="password" name="password" value="${userInfo.id}">
-							</div>
-						</c:when>
-						<c:otherwise>
-							<br>
-						</c:otherwise>
-					</c:choose>
 
 					<span class="error--messege" th:if="${valid_password}">${valid_password}</span> <br>
 					<div id="ipw" class="email">

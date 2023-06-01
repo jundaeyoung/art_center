@@ -71,10 +71,7 @@ public class MyPageController {
 	 */
 	@GetMapping("/myShow/{organizerId}")
 	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
-		System.out.println("select 전");
 		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId);
-		System.out.println(myShowList);
-		System.out.println("select 후 :" + myShowList.get(0).getMPaymentId());
 		model.addAttribute("myShowList", myShowList);
 		return "/user/myShow";
 	}
@@ -135,7 +132,7 @@ public class MyPageController {
 		return "/user/myTicketDetail";
 	}
 	
-	
+	// 작성자 편용림 : 봤던 공연 목록
 	@GetMapping("/myTicketReview")
 	public String myTicketReview(Model model) {
 		
@@ -145,6 +142,7 @@ public class MyPageController {
 		return "/user/myTicketReview";
 	}
 	
+	// 작성자 편용림 : 봤던 공연 리뷰 작성
 	@PostMapping("/myReviewWrite")
 	public String myReviewWrite(Integer showId, Review review) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -154,6 +152,7 @@ public class MyPageController {
 		return "/user/myTicketReview";
 	}
 	
+	// 작성자 편용림 : 봤던 공연 리뷰 타입
 	@GetMapping("/myReviewShowType")
 	public String myReviewShowType(String showType, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -161,10 +160,21 @@ public class MyPageController {
 		myTiketDto.setUserId(principal.getId());
 		myTiketDto.setShowType(showType);
 		List<MyTiketDto> myTicketList = reviewService.readMyReviewByShowType(myTiketDto);
-		System.out.println(myTicketList);
 		model.addAttribute("myTicketList", myTicketList);
 		return "/user/myTicketReview";
 	
+	}
+	
+	@GetMapping("/rentRefund")
+	public String rentRefund(Model model) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		
+		List<MyRegistrationInfoDto> myrentList = myPageService.readMyRentRefund(principal.getId());
+		System.out.println(myrentList.toString());
+		
+		model.addAttribute("myrentList", myrentList);
+		
+		return "/user/rentRefund";
 	}
 
 }
