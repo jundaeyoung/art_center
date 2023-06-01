@@ -43,7 +43,6 @@ public class MainController {
 		model.addAttribute("selectAnnouncement", selectAnnouncement);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
-			System.out.println("Ddd");
 			model.addAttribute("principal", null);
 		} else {
 			List<Notice> noticeList = noticeService.readNotice(principal.getId());

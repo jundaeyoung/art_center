@@ -73,6 +73,9 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</c:when>
+		<c:otherwise>
 				<c:choose>
 					<c:when test="${principal.roleId==2 && message!=0}">
 						<div id="modal" class="modal-overlay">
@@ -92,15 +95,11 @@
 											</div>
 										</form>
 									</div>
-
 								</c:forEach>
 							</div>
 						</div>
 					</c:when>
 				</c:choose>
-			</div>
-		</c:when>
-		<c:otherwise>
 		</c:otherwise>
 	</c:choose>
 	<c:choose>

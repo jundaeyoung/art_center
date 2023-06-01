@@ -184,8 +184,8 @@
 								"7월", "8월", "9월", "10월", "11월", "12월" ],
 						"firstDay" : 0
 					},
-					"startDate" : "2023-05-01",
-					"endDate" : "2023-06-23",
+					"startDate" : "${startDate}",
+					"endDate" : "${endDate}",
 					"drops" : "down"
 				},
 				function(start, end, label) {
@@ -204,77 +204,7 @@
 	
 	
 	$(document).ready(function() {
-		$.ajax({
-	    	type: 'get',
-	    	url: '/apiShowSale/manager/showSale',
-	  	    contentType: 'application/json; charset=utf-8',
-	  }).done(function(response) {
-		  google.charts.load('current', {'packages':['bar']});
-	      google.charts.setOnLoadCallback(drawChart);
-
-	      function drawChart() {
-	        var data = google.visualization.arrayToDataTable([
-	          ['title', '성인 ', '청소년 수','총 수'],
-	          [response[0].title, response[0].adultCount, response[0].youthCount,response[0].adultCount+response[0].youthCount],
-	        ]);
-	          for(var i=1; i<response.length;i++){
-	        	data.addRows([
-	         	 [response[i].title, response[i].adultCount, response[i].youthCount,response[i].adultCount+response[i].youthCount],
-	            ]);
-	          }
-
-	        var options = {
-	          chart: {
-	            title: '공연별 방문자 현황',
-	          },
-		        bar : {
-		    		groupWidth : '50%' // 예제에서 이 값을 수정
-		    	},
-		    	fontSize: 30	,
-		    	
-	        };
-
-	        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-	        chart.draw(data, google.charts.Bar.convertOptions(options));
-			      
-			      
-			/* var data = new google.visualization.arrayToDataTable([
-			data.addColumn('string', '요일');
-			data.addColumn('number', '방문자수(명)');
-			for(var i=0; i<response.length;i++){
-				data.addRows([
-				[ response[i].title, response[i].adultCount ],
-				[ response[i].title, response[i].youthCount ],
-				]);
-			}
-			var options = {
-				title : '공연별 방문자 현황',
-				hAxis : {
-					title : '요일',
-					viewWindow : {
-						min : [ 7, 30, 0 ],
-						max : [ 17, 30, 0 ]
-					}
-				},
-				vAxis : {
-					title : '방문자수(명)'
-				}
-				isStacked: true,
-			}; 
-			var chart = new google.visualization.ColumnChart(
-			document.getElementById('chart_div'));
-			chart.draw(data, options);*/
-
-			
-		}
-	      
-	  });
-			
-	});
-	$("#dateSearch").on("click",function(){
 		let startDate = $("#startDate").val();
-		console.log(startDate);
 		$.ajax({
 	    	type: 'get',
 	    	url: "/apiShowSale/manager/showSaleByDate/"+ startDate,
@@ -283,7 +213,6 @@
 	  }).done(function(response) {
 		  google.charts.load('current', {'packages':['bar']});
 	      google.charts.setOnLoadCallback(drawChart);
-	      console.log("된다/.");
 
 	      function drawChart() {
 	        var data = google.visualization.arrayToDataTable([
