@@ -19,49 +19,36 @@ $.ajax({
 
 function joinPerDate(joinDateUserList) {
 
-	google.charts.load('current', { 'packages': ['bar'] });
+	google.charts.load('current', { 'packages': ['corechart'] });
 	google.charts.setOnLoadCallback(drawStuff);
 
 	function drawStuff() {
-
-		let data = new google.visualization.arrayToDataTable([
-			['Move', '가입자 수'],
-			[joinDateUserList[0].createdDate, joinDateUserList[0].joinUserPerDate]]);
-		for (let i = 1; i < joinDateUserList.length; i++) {
-			data.addRows([[joinDateUserList[i].createdDate, joinDateUserList[i].joinUserPerDate]]);
-		}
-
-		let options = {
-			width: 800,
-			legend: {
-				position: 'center'
-			},
-			chart: {
-				title: '일일 가입자 수',
-			},
-			axes: {
-				x: {
-					0: {
-						side: 'bottom',
-						label: '날짜'
-					}
-					// Top x-axis.
-				},
-			},
-			bar: {
-				groupWidth: "90%"
-			},
-			vAxis: {
-				viewWindow: {
-					min: 0, // y축의 최소값
-					max: 10 // y축의 최대값
-				}
-			}
-		};
-
-		let chart = new google.charts.Bar(document.getElementById('top_x_div'));
-		// Convert the Classic options to Material options.
-		chart.draw(data, google.charts.Bar.convertOptions(options));
-	}
-	;
+  let data = new google.visualization.DataTable();
+  data.addColumn('string', '날짜');
+  data.addColumn('number', '가입자 수');
+  
+  for (let i = 0; i < joinDateUserList.length; i++) {
+    data.addRow([joinDateUserList[i].createdDate, joinDateUserList[i].joinUserPerDate]);
+  }
+  
+  let options = {
+    width: 800,
+    legend: { position: 'center' },
+    title: '일일 가입자 수',
+    hAxis: {
+      title: '날짜',
+      slantedText: true,
+      slantedTextAngle: 45
+    },
+    vAxis: {
+      viewWindow: { min: 0, max: 10 }
+    },
+    series: {
+      0: { areaOpacity: 0.7 } // Area 투명도 설정
+    }
+  };
+  
+  let chart = new google.visualization.AreaChart(document.getElementById('top_x_div'));
+  chart.draw(data, options);
+}
 }

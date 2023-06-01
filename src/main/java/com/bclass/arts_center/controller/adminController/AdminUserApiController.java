@@ -18,7 +18,6 @@ public class AdminUserApiController {
 
 	@GetMapping("/api/admin/userjoinPerDate")
 	public List<RequestUserCountDto> readUserByDate() {
-		System.out.println("111111111111111111");
 		List<RequestUserCountDto> joinDateUserList = userService.readJoinUserByDate();
 		return joinDateUserList;
 	}

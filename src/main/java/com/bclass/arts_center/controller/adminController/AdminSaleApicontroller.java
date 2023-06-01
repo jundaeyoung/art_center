@@ -1,6 +1,9 @@
 package com.bclass.arts_center.controller.adminController;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -36,7 +39,8 @@ public class AdminSaleApicontroller {
 	@GetMapping("/admin/showSale")
 	public List<RequestManagerShowSaleDto> adminShowSales(RequestManagerShowSaleDto dto){
 		List<RequestManagerShowSaleDto> showSalesGrape = adminSaleService.readShowSaleGrape();
-		return showSalesGrape;
+		
+	    return showSalesGrape;
 	}
 	
 	
