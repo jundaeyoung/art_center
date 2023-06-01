@@ -36,7 +36,7 @@
 		<section id="faq">
 			<c:forEach var="faqList" items="${faqList}">
 				<div class="panel-question">
-					<div class="panel-heading" id="faq-title">${faqList.title}</div>
+					<div class="panel-heading" id="faq-title">${faqList.title}<img src="/images/down.png" class="panel-img"></div>
 					<div class="panel-body" id="thisone">
 						<p>${faqList.content}</p>
 					</div>
@@ -68,12 +68,6 @@ function addPanelQuestion(){
 	  }
 	}
 
-/*    function hideAll() {
-      for (q of panelQuestion) {
-            q.classList.remove('active');
-        }
-  	  }   */
-    
  }
 </script>
 
@@ -93,7 +87,7 @@ $(document).ready(function () {
             $(".faq--container").append(faq);
             for (let i = 0; i < response.length; i++) {
                 var faqcontent = `<div class="panel-question">
-					<div class="panel-heading" id="faq-title" onclick="addPanelQuestion()">`+ response[i].title + `</div>
+					<div class="panel-heading" id="faq-title" onclick="addPanelQuestion()">`+ response[i].title + `<img src="/images/down.png" class="panel-img"></div>
 					<div class="panel-body" id="thisone">
 					    <p>`+ response[i].content + `</p>
 					</div>
@@ -120,7 +114,7 @@ $(document).ready(function () {
             $(".faq--container").append(faq);
             for (let i = 0; i < response.length; i++) {
                 let faqcontent = `<div class="panel-question">
-					<div class="panel-heading" id="faq-title" onclick="addPanelQuestion()">`+ response[i].title + `</div>
+					<div class="panel-heading" id="faq-title" onclick="addPanelQuestion()">`+ response[i].title + `<img src="/images/down.png" class="panel-img"></div>
 					<div class="panel-body" id="thisone">
 					    <p>`+ response[i].content + `</p>
 					</div>

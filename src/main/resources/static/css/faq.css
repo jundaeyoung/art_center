@@ -88,12 +88,15 @@
 }
 
 .panel-heading {
+	display: flex;
+	justify-content: space-between;
 	padding: 5px;
 	cursor: pointer;
 	font-size: 30px;
-	font-weight: 300;
+	font-weight: 300px;
 	margin-top: 50px;
 	margin-left: 30px;
+	
 }
 
 .panel-body {
@@ -122,4 +125,9 @@
 	color: red;
 	background-color: red;
 	color: red;
+}
+
+.panel-img {
+	height: 30px;
+	width: 30px;
 }
