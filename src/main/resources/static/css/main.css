@@ -470,32 +470,25 @@ content ul {
 	
 }
 .notice__title h2 {
-	font-size: 30px;
+	font-size: 20px;
 }
 
-.no_content {
-	display: flex;
-}
 
 .notice__content {
-	border: 2px solid #000;
-	margin-right: 20px;
-	width: 280px;
-	height: 350px;
-	border-radius: 8px;
-}
+	border-top: 2px solid #000;
+	border-left: 2px solid #000;
+	border-right: 2px solid #000;
+	width: 1480px;
+	height: 70px;
+	}
 
-.item span{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+.notice__content:last-child {
+	border-bottom: 2px solid #000;
 }
 
 .date {
-	margin-bottom: 30px;
-	margin-left: 130px;
 	color: gray;
+	
 }
 .apilogout{
 	margin-top: -20px;

@@ -181,8 +181,9 @@
 				<div id='user-calendar-container'>
 					<div id='userCalendar' style="width: 700px; height: 600px;"></div>
 					<div class="main-map">
-					<h2>찾아오는 길</h2>
-					<div id='map' style="width: 700px; height: 520px; margin-right:30px;"></div>
+						<h2>찾아오는 길</h2>
+						<div id='map'
+							style="width: 700px; height: 520px; margin-right: 30px;"></div>
 					</div>
 				</div>
 			</div>
@@ -197,22 +198,22 @@
 			<span>Notice</span>
 		</div>
 		<div class="notice__title">
-			<h2>공지사항</h2>
+			<h1>공지사항</h1>
 			<h1>
 				<a href="/announcement">더보기 +</a>
 			</h1>
 		</div>
 		<div class="no_content">
-			<c:forEach var="selectAnnouncement" items="${selectAnnouncement}">
-				<div class="notice__content">
-					<ul style="padding: 0 20px;">
-						<li class="item"><a href="/announcement"> <span
-								class="date">${selectAnnouncement.createdDate}</span> <span
-								style="font-size: 30px;">${selectAnnouncement.title}</span>
-						</a></li>
-					</ul>
-				</div>
-			</c:forEach>
+			<a href="/announcement"> <c:forEach var="selectAnnouncement"
+					items="${selectAnnouncement}">
+					<div class="notice__content">
+						<ul style="padding: 0 20px;">
+							<li class="item"><span style="font-size: 30px;">${selectAnnouncement.title}</span>
+							</li>
+						</ul>
+					</div>
+				</c:forEach>
+			</a>
 		</div>
 	</div>
 </div>
