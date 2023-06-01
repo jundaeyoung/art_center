@@ -39,7 +39,9 @@ public interface TicketRepository {
 //	public int delete(int id);
 	public TicketCheckDto selectTicketId();
 	
+	
 	public List<MyTiketDto> selectMyTiketDto(Integer userId);
+	
 	
 	public TicketCheckDto selectTicketIdbyId(Integer id);
 
