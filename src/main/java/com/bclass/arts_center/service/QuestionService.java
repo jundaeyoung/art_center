@@ -101,4 +101,15 @@ public class QuestionService {
 		Integer result = questionRepository.deleteQuestionByQuestionId(questionId);
 		return result;
 	}
+	
+	/**
+	 * @author 손주이
+	 * @param question
+	 * @return questionListByCategory
+	 */
+	@Transactional
+	public List<Question> readQuestionByCategory(Integer categoryId) {
+		List<Question> questionListByCategory = questionRepository.selectQuestionByCategory(categoryId);
+		return questionListByCategory;
+	}
 }

@@ -7,120 +7,105 @@
 
 	<!-- 작성자 : 전대영 question select -->
 	<select id="selectQuestionByType" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
-		select q.id ,u.id as userId,u.user_name,r.role,
-		q.title,q.content,q.answer_status,qc.question_type,a.content AS answer from question_tb as q 
-		join question_category_tb as qc
-		on q.question_type_id = qc.id
-		join user_tb as u
-		on u.id = q.user_id
-		join role_tb as r
-		on u.role_id = r.id
-        left join answer_tb as a
-        on a.question_id = q.id
-		where
-		qc.question_type = #{category}
-		order by q.id desc
-		limit #{begin},
-		#{range};
+		SELECT q.id, u.id AS userId, u.user_name, r.role, q.title, q.content, q.answer_status, qc.question_type, a.content AS answer
+		FROM question_tb AS q
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb AS r
+		ON u.role_id = r.id
+		LEFT JOIN answer_tb AS a
+		ON a.question_id = q.id
+		WHERE qc.question_type = #{category}
+		ORDER BY q.id DESC
+		LIMIT #{begin}, #{range}
 	</select>
 
 	<!-- 작성자 : 전대영 question 카운터 -->
 	<select id="selectQuestionCount" resultType="Integer">
-		select count(*)
-		from question_tb
-		where question_type_id = (
-		select id
-		from
-		question_category_tb
-		where question_type = #{category}
-		);
+		SELECT count(*)
+		FROM question_tb
+		WHERE question_type_id = (
+		SELECT id
+		FROM question_category_tb
+		WHERE question_type = #{category}
+		)
 	</select>
-
 
 	<!-- 작성자 : 전대영 question 검색 -->
 	<select id="selectQuestionBySearchText" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
-		select q.id ,u.id as userId,u.user_name,r.role,
-		q.title,q.content,q.answer_status,qc.question_type,a.content AS answer from question_tb as q 
-		join question_category_tb as qc
-		on q.question_type_id = qc.id
-		join user_tb as u
-		on u.id = q.user_id
-		join role_tb as r
-		on u.role_id = r.id
-        left join answer_tb as a
-        on a.question_id = q.id
-		where q.title
-		like #{searchText} or q.content like #{searchText}
-		order
-		by
-		q.id desc
-		limit
-		#{begin},
-		#{range};
+		SELECT q.id, u.id AS userId, u.user_name, r.role, q.title, q.content, q.answer_status, qc.question_type, a.content AS answer
+		FROM question_tb AS q
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb AS r
+		ON u.role_id = r.id
+		LEFT JOIN answer_tb AS a
+		ON a.question_id = q.id
+		WHERE q.title LIKE #{searchText} OR q.content LIKE #{searchText}
+		ORDER BY q.id DESC
+		LIMIT #{begin},	#{range}
 	</select>
-
 
 	<!-- 작성자 : 전대영 question 검색 카운터 -->
 	<select id="selectQuestionBySearchTextCount" resultType="Integer">
-		select count(*) from question_tb
-		where title
-		like #{searchText} or content like #{searchText};
+		SELECT count(*)
+		FROM question_tb
+		WHERE title LIKE #{searchText} OR content LIKE #{searchText};
 	</select>
 
 	<insert id="insert">
-		INSERT INTO question_tb(title, content, user_id,
-		question_type_id)
-		VALUES
-		(#{title},#{content},#{userId},#{questionTypeId})
+		INSERT INTO question_tb(title, content, user_id, question_type_id)
+		VALUES (#{title}, #{content}, #{userId}, #{questionTypeId})
 	</insert>
 
 	<delete id="deleteById">
-		delete from question_tb
-		where id=#{id};
+		DELETE FROM question_tb WHERE id = #{id}
 	</delete>
-
 
 	<!-- 작성자 : 전대영 question all 검색 -->
 	<select id="selectQuestionAll" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
-		select q.id ,u.id as userId,u.user_name,r.role,
-		q.title,q.content,q.answer_status,qc.question_type,a.content AS answer from question_tb as q 
-		join question_category_tb as qc
-		on q.question_type_id = qc.id
-		join user_tb as u
-		on u.id = q.user_id
-		join role_tb as r
-		on u.role_id = r.id
-        left join answer_tb as a
-        on a.question_id = q.id
-		order
-		by q.id desc
-
+		SELECT q.id, u.id AS userId, u.user_name, r.role, q.title, q.content, q.answer_status, qc.question_type, a.content AS answer
+		FROM question_tb AS q
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb AS r
+		ON u.role_id = r.id
+		LEFT JOIN answer_tb AS a
+		ON a.question_id = q.id
+		ORDER BY q.id DESC
 	</select>
 
 	<!-- 작성자 : 전대영 question all 검색 -->
 	<select id="selectQuestionByQuestionId" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
-		select q.id ,u.id as userId,u.user_name,r.role,
-		q.title,q.content,q.answer_status,qc.question_type,a.content AS answer from question_tb as q 
-		join question_category_tb as qc
-		on q.question_type_id = qc.id
-		join user_tb as u
-		on u.id = q.user_id
-		join role_tb as r
-		on u.role_id = r.id
-        left join answer_tb as a
-        on a.question_id = q.id
-		where q.id=#{questionId}
-		order
-		by q.id desc
+		SELECT q.id, u.id AS userId, u.user_name, r.role, q.title, q.content, q.answer_status, qc.question_type, a.content AS answer
+		FROM question_tb AS q
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb AS r
+		ON u.role_id = r.id
+		LEFT JOIN answer_tb AS a
+		ON a.question_id = q.id
+		WHERE q.id = #{questionId}
+		ORDER BY q.id DESC
 	</select>
 
-
 	<delete id="deleteQuestionByQuestionId">
-		delete from question_tb
-		where id=#{questionId}
+		DELETE FROM question_tb WHERE id = #{questionId}
 	</delete>
-	
-	
+
+	<select id="selectQuestionByCategory" resultType="com.bclass.arts_center.repository.model.Question">
+		SELECT *
+		FROM question_tb
+		WHERE question_type_id = #{questionTypeId}
+	</select>
 
 </mapper>
 
