@@ -36,4 +36,11 @@ public class RentPlaceReservationService {
 		
 		return resultRowCount;
 	}
+	
+	@Transactional
+	public int updateRentByStatus(Integer id) {
+		
+		int resultRowCount = placeReservationRepository.updateRentById(id);
+		return resultRowCount;
+	}
 }

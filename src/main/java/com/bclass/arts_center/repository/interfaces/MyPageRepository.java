@@ -29,4 +29,6 @@ public interface MyPageRepository {
 	
 	// user 공연 예매 detail
 	public MyTicketDtailDto selectMyTicketDetail(Integer id);
+	
+	public List<MyRegistrationInfoDto> selectMyRentRefund(Integer id);
 }

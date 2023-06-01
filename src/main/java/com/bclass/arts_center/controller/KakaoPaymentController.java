@@ -105,7 +105,6 @@ public class KakaoPaymentController {
 			paymentService.createManagerPayment(managerPayment);
 		}
 
-		session.invalidate();
 		return "/payment/success";
 	}
 
@@ -133,10 +132,10 @@ public class KakaoPaymentController {
 			paymentService.updateCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
 		} else if (principal.getRoleId() == 2) {
 			kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
-			//paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
+			paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
 				
-			//int result = rentPlaceReservationService.updateStatus(id);
-				//System.out.println("업데이트 되는지 확인" + result);
+			int result = rentPlaceReservationService.updateRentByStatus(id);
+				System.out.println("업데이트 되는지 확인" + result);
 		}
 		model.addAttribute("kakaoRefundResponse", kakaoRefundResponse);
 
