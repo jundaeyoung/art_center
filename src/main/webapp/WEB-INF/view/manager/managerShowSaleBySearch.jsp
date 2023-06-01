@@ -229,6 +229,7 @@
 	        var options = {
 	          chart: {
 	            title: '공연별 방문자 현황',
+	            
 	          },
 		        bar : {
 		    		groupWidth : '50%' // 예제에서 이 값을 수정

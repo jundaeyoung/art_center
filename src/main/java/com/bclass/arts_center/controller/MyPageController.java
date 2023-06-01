@@ -162,7 +162,6 @@ public class MyPageController {
 	public String rentRefund(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyRegistrationInfoDto> myrentList = myPageService.readMyRentRefund(principal.getId());
-		System.out.println(myrentList.toString());
 		
 		model.addAttribute("myrentList", myrentList);
 		

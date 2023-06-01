@@ -28,13 +28,13 @@
 				<c:otherwise>
 				<div id="ipw">
 				<p>비밀번호 :</p>
-				<i class="material-icons">lock_outline</i> <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password" class="infoPw">
+				<i class="material-icons" style="margin-left:440px;">lock_outline</i> <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password" class="infoPw">
 				<br>
 				</div>
 				<span class="error--messege" th:if="${valid_password}">${valid_password}</span>
 				</c:otherwise>
 			</c:choose>
-			<input type="submit" value="회원탈퇴" class="login">
+			<input type="submit" value="회원탈퇴" class="login" style="margin-left: -100px;">
 		</form>
 			</div>
 			</div>

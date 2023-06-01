@@ -151,8 +151,8 @@
 button:hover {
 	transform: none;
 }
-.user--btn p{
-	margin-top: -7px;
+.user--btn form button{
+	margin-top:26px;
 }
 p {
 	margin: 10px 0;
