@@ -13,4 +13,5 @@ public class RequestQuestionDto {
 	private String content;
 	private String questionType;
 	private Integer answerStatus;
+	private String answer;
 }

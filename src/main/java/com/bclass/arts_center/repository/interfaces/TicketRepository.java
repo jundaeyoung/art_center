@@ -37,5 +37,7 @@ public interface TicketRepository {
 	public int updateQrCode(@Param("id")Integer id, @Param("path") String path);
 //	public int delete(int id);
 	public TicketCheckDto selectTicketId();
+	
+	public TicketCheckDto selectTicketIdbyId(Integer id);
 
 }

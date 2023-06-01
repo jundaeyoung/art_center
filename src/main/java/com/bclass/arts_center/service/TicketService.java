@@ -183,6 +183,12 @@ public class TicketService {
 		TicketCheckDto result = ticketRepository.selectTicketId();
 		return result;
 	}
+	
+	@Transactional
+	public TicketCheckDto readTicketIdById(Integer id) {
+		TicketCheckDto result = ticketRepository.selectTicketIdbyId(id);
+		return result;
+	}
 
 	/**
 	 * 예매 취소

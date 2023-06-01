@@ -32,5 +32,8 @@ public class TicketCheckDto {
 	private Integer seatId;
 	private String seatName;
 	private String qrCode;
+	
+	private Integer showTypeId;
+	private String holeName;
 
 }

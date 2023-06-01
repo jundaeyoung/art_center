@@ -177,7 +177,6 @@ public class TicketController {
 		ImageIO.write(bufferedImage, "png", temp);
 
 		ticketService.updateQrCode(ticketid.getId(), path);
-		System.out.println(ticketid.getId() + "id");
 
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<TicketCheckDto> ticketListInfo = ticketService.checkTicket(principal.getId());

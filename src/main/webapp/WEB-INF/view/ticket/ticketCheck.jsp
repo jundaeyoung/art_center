@@ -84,14 +84,13 @@
 	border-radius: 10px;
 }
 
-.bacode {
+.qrcode {
 	width: 350px;
 	height: 350px;
 	transform: rotate(270deg);
 	margin-top: 20px;
 	margin-left: 10px;
 }
-
 
 .ticket--content form {
 	width: 500px;
@@ -120,7 +119,14 @@
 								<h2>${ticketListInfo.title}</h2>
 							</div>
 							<div class="ticket--hole">
-								<h2>${ticketListInfo.name}&nbsp;&nbsp;&nbsp;&nbsp;${ticketListInfo.seatName}</h2>
+								<c:choose>
+									<c:when test="${ticketListInfo.showTypeId==1}">
+										<h2>${ticketListInfo.name}&nbsp;&nbsp;&nbsp;&nbsp;${ticketListInfo.seatName}</h2>
+									</c:when>
+									<c:otherwise>
+										<h2>${ticketListInfo.name}</h2>
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="ticket--date">
 								<h2>날짜 : ${ticketListInfo.showDate}&nbsp;&nbsp;&nbsp;&nbsp;시간 : ${ticketListInfo.showTime}</h2>
@@ -140,7 +146,7 @@
 					</form>
 				</div>
 				<div></div>
-				<img alt="" src="/images/upload/${ticketListInfo.qrCode}.png" class="bacode">
+				<img alt="" src="/images/upload/${ticketListInfo.qrCode}.png" class="qrcode">
 			</div>
 		</c:forEach>
 
