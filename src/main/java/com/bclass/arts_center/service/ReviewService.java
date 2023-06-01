@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bclass.arts_center.dto.MyTiketDto;
 import com.bclass.arts_center.dto.request.RequestReviewDto;
 import com.bclass.arts_center.repository.interfaces.ReviewRepository;
+import com.bclass.arts_center.repository.model.Review;
 
 @Service
 public class ReviewService {
@@ -87,5 +89,23 @@ public class ReviewService {
 	public Integer readReviewCountByShow(String showName) {
 		Integer reviewCount = reviewRepository.selectReviewCountByShow(showName);
 		return reviewCount;
+	}
+	
+	// 작성자 : 편용림 리뷰작성
+	@Transactional
+	public int saveReview(Review review) {
+		int result = reviewRepository.insertReview(review);
+		return result;
+	}
+	
+	// 작성자 : 편용림 리뷰 카테고리별 검색
+	
+	@Transactional
+	public List<MyTiketDto> readMyReviewByShowType(MyTiketDto myTiketDto){
+
+		List<MyTiketDto> reviewList = reviewRepository.selectMyTiketDtoByShowType(myTiketDto);
+		
+		return reviewList;
+		
 	}
 }

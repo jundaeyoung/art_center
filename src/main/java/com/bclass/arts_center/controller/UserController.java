@@ -261,6 +261,18 @@ public class UserController {
 		Integer result = userService.nicknameCheck(nickname);
 		return result;
 	}
+	
+	@GetMapping("/findId")
+	public String findId() {
+		
+		return "user/findId";
+	}
+	
+	@PostMapping("/")
+	public String findUserName(User user) {
+		
+		return "";
+	}
 
 	@PostMapping("/check/tel")
 	@ResponseBody

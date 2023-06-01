@@ -234,4 +234,12 @@ public class UserService {
 		Integer result = userRepository.findUserByTel(nickname);
 		return result;
 	}
+	
+	@Transactional
+	public User selectUserName(User user) {
+		
+		User users = userRepository.findUserByEmailAndTel(user);
+		
+		return users;
+	}
 }

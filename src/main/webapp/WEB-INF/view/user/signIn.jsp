@@ -28,7 +28,7 @@
 		<div class="selectIdAndPw">
 			<a href="/user/signUp">회원가입</a>
 			<p>|</p>
-			<a>아이디 찾기</a>
+			<a href="/user/findId">아이디 찾기</a>
 			<p>|</p>
 			<a href="/user/findPw">비밀번호 찾기</a>
 		</div>

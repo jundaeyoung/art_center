@@ -179,6 +179,41 @@
 		where
 		c.show_type= #{category}
 	</select>
+	<!-- 리뷰 작성 -->
+	<insert id="insertReview">
+	INSERT INTO review_tb(content, rating, user_id, show_id)
+        VALUES(#{content}, #{rating}, #{userId}, #{showId})
+	</insert>
+	
+	<!-- 작성자 : 공연 타입별 조회 -->
+	<select id="selectMyTiketDtoByShowType" resultType="com.bclass.arts_center.dto.MyTiketDto">
+		SELECT t.user_id, s.img_route, s.title,
+		s.content,l.location, h.name, se.seat_name, sd.show_date,
+		sd.show_time, c.show_type, r.content AS reviewContent, t.show_id, r.rating
+		from ticketing_tb AS t
+		JOIN payment_tb AS p
+		ON t.id = p.ticketing_id
+		JOIN show_tb AS s
+		ON t.show_id = s.id
+		JOIN show_datetime_tb AS sd
+		ON sd.id = t.show_datetime_id
+		JOIN seat_tb AS se
+		ON t.seat_id = se.seat_id
+		JOIN hole_tb AS h
+		ON h.id = se.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN category_tb AS c
+		ON c.id = s.show_type_id
+        LEFT JOIN review_tb AS r
+        ON r.show_id = s.id
+		WHERE t.user_id = #{userId}
+		AND t.payment_status = 1
+		AND sd.show_date > now()
+		AND c.show_type = #{showType}
+		ORDER BY r.content ASC, show_date DESC;
+	</select>
+	
 	
 	
 </mapper>

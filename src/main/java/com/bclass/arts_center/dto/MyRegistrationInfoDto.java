@@ -38,7 +38,15 @@ public class MyRegistrationInfoDto {
 	private String location;
 	private String locationInfo;
 	private String rentId;
-	
-	
 	private String mPaymentId;
+	
+	
+	public String getMPaymentId() {
+        return mPaymentId;
+    }
+
+    public void setMPaymentId(String mPaymentId) {
+        this.mPaymentId = mPaymentId;
+    }
+	
 }

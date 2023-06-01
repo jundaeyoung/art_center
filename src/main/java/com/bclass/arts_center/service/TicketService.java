@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bclass.arts_center.dto.MyTiketDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
@@ -182,6 +183,18 @@ public class TicketService {
 	public TicketCheckDto readTicketId() {
 		TicketCheckDto result = ticketRepository.selectTicketId();
 		return result;
+	}
+	
+	/*
+	 * 작성자 : 편용림 내가본 공연 조회
+	 */
+	
+	@Transactional
+	public List<MyTiketDto> readMyTicketByUserId(Integer userId) {
+		
+		List<MyTiketDto> myTiketList = ticketRepository.selectMyTiketDto(userId);
+		
+		return myTiketList;
 	}
 
 	/**

@@ -79,6 +79,7 @@ public interface UserRepository {
 	
 	public Integer findUserByTel(String userName);
 	
+	public User findUserByEmailAndTel(User user);
 	
 }
 	

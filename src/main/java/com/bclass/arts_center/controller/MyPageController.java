@@ -10,14 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.MyTicketDtailDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
+import com.bclass.arts_center.dto.MyTiketDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
+import com.bclass.arts_center.repository.model.Review;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.MyPageService;
+import com.bclass.arts_center.service.ReviewService;
 import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
 
@@ -34,9 +38,12 @@ public class MyPageController {
 
 	@Autowired
 	private MyPageService myPageService;
-
+	
 	@Autowired
 	private TicketService ticketService;
+	
+	@Autowired
+	private ReviewService reviewService;
 
 	/**
 	 * @author 김미정
@@ -126,6 +133,38 @@ public class MyPageController {
 		}
 
 		return "/user/myTicketDetail";
+	}
+	
+	
+	@GetMapping("/myTicketReview")
+	public String myTicketReview(Model model) {
+		
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		List<MyTiketDto> myTicketList = ticketService.readMyTicketByUserId(principal.getId());
+		model.addAttribute("myTicketList", myTicketList);
+		return "/user/myTicketReview";
+	}
+	
+	@PostMapping("/myReviewWrite")
+	public String myReviewWrite(Integer showId, Review review) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		review.setUserId(principal.getId());
+		int result = reviewService.saveReview(review);
+		
+		return "/user/myTicketReview";
+	}
+	
+	@GetMapping("/myReviewShowType")
+	public String myReviewShowType(String showType, Model model) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		MyTiketDto myTiketDto = new MyTiketDto();
+		myTiketDto.setUserId(principal.getId());
+		myTiketDto.setShowType(showType);
+		List<MyTiketDto> myTicketList = reviewService.readMyReviewByShowType(myTiketDto);
+		System.out.println(myTicketList);
+		model.addAttribute("myTicketList", myTicketList);
+		return "/user/myTicketReview";
+	
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.bclass.arts_center.dto.MyTiketDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.TicketingDto;
 
@@ -37,5 +38,7 @@ public interface TicketRepository {
 	public int updateQrCode(@Param("id")Integer id, @Param("path") String path);
 //	public int delete(int id);
 	public TicketCheckDto selectTicketId();
+	
+	public List<MyTiketDto> selectMyTiketDto(Integer userId);
 
 }

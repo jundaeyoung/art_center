@@ -3,32 +3,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bclass.arts_center.repository.interfaces.TicketRepository">
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.TicketRepository">
 
 	<!-- 손주이 : 공연 예매 시 필요한 정보 -->
-	<select id="selectShowInfoForTicketingByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectShowInfoForTicketingByShowId"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT *
 		FROM show_tb AS s
 		JOIN show_datetime_tb AS sd
-		ON s.id = sd.show_id
+		ON s.id
+		= sd.show_id
 		WHERE sd.show_id = #{showId}
 	</select>
 
 	<!-- 작성자 손주이 : show별 날짜 검색 -->
-	<select id="selectShowDateByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectShowDateByShowId"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT s.id, sd.show_date
 		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
+		JOIN
+		show_datetime_tb AS sd
 		ON s.id = sd.show_id
 		WHERE sd.show_id = #{showId}
 		GROUP BY show_date
 	</select>
 
 	<!-- 작성자 손주이 : show별 공연 시간 검색 -->
-	<select id="selectShowTimeByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectShowTimeByShowId"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT sd.id, sd.show_time
 		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
+		JOIN
+		show_datetime_tb AS sd
 		ON s.id = sd.show_id
 		WHERE sd.show_id = #{showId}
 		AND sd.show_date =
@@ -38,32 +45,40 @@
 	</select>
 
 	<!-- 작성자 손주이 : show 공연 시간 별 좌석 검색 -->
-	<select id="selectSeatInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectSeatInfo"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT *
 		FROM seat_tb AS st
 		JOIN hole_tb AS h
-		ON h.id = st.hole_id
+		ON h.id =
+		st.hole_id
 		JOIN show_tb AS sw
 		ON sw.hole_id = h.id
-		JOIN show_datetime_tb AS sd
+		JOIN show_datetime_tb
+		AS sd
 		ON sd.show_id = sw.id
-		WHERE sw.id = #{showId} AND sd.id = #{showDatetimeId}
+		WHERE sw.id = #{showId} AND sd.id =
+		#{showDatetimeId}
 	</select>
 
-	<select id="selectOccupiedSeat" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectOccupiedSeat"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT *
 		FROM seat_occupied_tb
-		WHERE show_datetime_id = #{showDatetimeId}
+		WHERE show_datetime_id =
+		#{showDatetimeId}
 	</select>
 
 	<!-- 작성자 전대영 : admin 예매 목록 검색 -->
-	<select id="selectTicketingAll" resultType="com.bclass.arts_center.dto.TicketingDto">
+	<select id="selectTicketingAll"
+		resultType="com.bclass.arts_center.dto.TicketingDto">
 		SELECT
 		t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,s.infant_rate,
 		count(case when
 		t.age_group_id=1 then 1 end) as
 		infantCount ,
-		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case
+		count(case
+		when t.age_group_id=2 then 1 end) as youthCount, count(case
 		when
 		t.age_group_id=3 then 1 end) as adultCount
 		FROM show_tb AS s
@@ -84,36 +99,46 @@
 
 	<!-- 작성자 손주이 : 티켓 예매 -->
 	<insert id="insertTicket">
-		INSERT INTO ticketing_tb (user_id, show_id, seat_id, age_group_id, show_datetime_id)
-		VALUES (#{userId}, #{showId}, #{seatId}, #{ageGroupId}, #{showDatetimeId})
+		INSERT INTO ticketing_tb (user_id, show_id, seat_id,
+		age_group_id, show_datetime_id)
+		VALUES (#{userId}, #{showId},
+		#{seatId}, #{ageGroupId}, #{showDatetimeId})
 	</insert>
 
 	<!-- 작성자 손주이 : 좌석 선택 -->
 	<insert id="insertSeat">
-		INSERT INTO seat_occupied_tb (seat_id, show_datetime_id)
+		INSERT INTO seat_occupied_tb (seat_id,
+		show_datetime_id)
 		VALUES (#{seatId}, #{showDatetimeId})
 	</insert>
 
 	<!-- 잣겅자 손주이 : 결제대기 중 인 티켓 검색 -->
-	<select id="selectTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+	<select id="selectTicket"
+		resultType="com.bclass.arts_center.dto.TicketCheckDto">
 		SELECT * FROM ticketing_tb as t
 		JOIN show_tb as s
-		ON t.show_id = s.id
+		ON
+		t.show_id = s.id
 		LEFT JOIN seat_tb as se
 		ON t.seat_id = se.seat_id
-		join hole_tb as h
+		join
+		hole_tb as h
 		on h.id = s.hole_id
 		JOIN show_datetime_tb as sd
-		ON t.show_datetime_id = sd.id
-		WHERE user_id = #{userId} AND payment_status = 0
+		ON
+		t.show_datetime_id = sd.id
+		WHERE user_id = #{userId} AND payment_status
+		= 0
 		ORDER BY ticketing_date desc
 	</select>
 
 	<!-- 작성자 손주이 : 결제 요청 티켓 값 넘기기 -->
-	<select id="selectTicketForPay" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+	<select id="selectTicketForPay"
+		resultType="com.bclass.arts_center.dto.TicketCheckDto">
 		SELECT * FROM ticketing_tb as t
 		JOIN show_tb as s
-		ON t.show_id = s.id
+		ON
+		t.show_id = s.id
 		LEFT JOIN seat_tb as se
 		ON t.seat_id = se.seat_id
 		join hole_tb as h
@@ -122,14 +147,16 @@
 		ON
 		t.show_datetime_id = sd.id
 		JOIN user_tb as u
-		ON t.user_id = u.id
+		ON
+		t.user_id = u.id
 		WHERE t.id = #{ticketingId}
 	</select>
 
 	<update id="updateTicketing">
 		UPDATE ticketing_tb
 		SET payment_status = 1
-		WHERE user_id = #{userId} AND payment_status = 0 AND id = #{ticketingId}
+		WHERE
+		user_id = #{userId} AND payment_status = 0 AND id = #{ticketingId}
 	</update>
 
 	<update id="updateQrCode">
@@ -144,4 +171,32 @@
 		order by id desc
         LIMIT 1;
 	</select>
+	<!-- 작성자 : 편용림 내가 본 공연 조회 -->
+	<select id="selectMyTiketDto" resultType="com.bclass.arts_center.dto.MyTiketDto">
+		SELECT t.user_id, s.img_route, s.title,
+		s.content,l.location, h.name, se.seat_name, sd.show_date,
+		sd.show_time, c.show_type, r.content AS reviewContent, t.show_id, r.rating
+		from ticketing_tb AS t
+		JOIN payment_tb AS p
+		ON t.id = p.ticketing_id
+		JOIN show_tb AS s
+		ON t.show_id = s.id
+		JOIN show_datetime_tb AS sd
+		ON sd.id = t.show_datetime_id
+		JOIN seat_tb AS se
+		ON t.seat_id = se.seat_id
+		JOIN hole_tb AS h
+		ON h.id = se.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN category_tb AS c
+		ON c.id = s.show_type_id
+        LEFT JOIN review_tb AS r
+        ON r.show_id = s.id
+		WHERE t.user_id = #{userId}
+		AND t.payment_status = 1
+		AND sd.show_date > now()
+		ORDER BY r.content ASC, show_date DESC ;
+	</select>
+
 </mapper>

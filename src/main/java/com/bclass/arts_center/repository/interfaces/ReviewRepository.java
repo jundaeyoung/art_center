@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.bclass.arts_center.dto.MyTiketDto;
 import com.bclass.arts_center.dto.request.RequestReviewDto;
+import com.bclass.arts_center.repository.model.Review;
 @Mapper
 public interface ReviewRepository {
 
@@ -58,4 +60,11 @@ public interface ReviewRepository {
 	 * review에서 show검색해서show별로 카운터하기
 	 */
 	public Integer selectReviewCountByShow(String showName);
+	
+	// 작성자 : 편용림 리뷰 작성
+	public int insertReview(Review review);
+	
+	// 작성자 : 편용림 리뷰 공연별 검색
+	public List<MyTiketDto> selectMyTiketDtoByShowType(MyTiketDto myTiketDto);
+	
 }
