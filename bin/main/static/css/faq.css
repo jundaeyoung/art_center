@@ -102,6 +102,8 @@
 .panel-body {
 	padding: 15px;
 	display: none;
+	background-color: #eee;
+	margin-top: 30px;
 }
 
 .active .panel-body {
