@@ -452,7 +452,7 @@ content ul {
 }
 
 .main__notice {
-	margin-bottom: 30px;
+	margin-bottom: 80px;
 }
 
 .main_notice_title {
@@ -507,7 +507,18 @@ content ul {
 	font-size: 14px!important;
 }
 
-.user-calendar {
-	height: 700px;
-	
+#user-calendar-container {
+	display: flex;
+	width: 1500px;
+	height: 600px;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: -100px;
+}
+
+.main-map {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

@@ -45,12 +45,10 @@ public class MainController {
 
 		if (principal == null) {
 			List<RequestShowDto> lists = scheduleService.selectByShow();
-			System.out.println(lists + "lists");
 			model.addAttribute("lists", lists);
 			model.addAttribute("principal", null);
 		} else if (principal.getRoleId() == 1) {
 			List<RequestShowDto> lists = scheduleService.selectByShow();
-			System.out.println(lists + "lists");
 			model.addAttribute("lists", lists);
 		}else {
 			List<Notice> noticeList = noticeService.readNotice(principal.getId());

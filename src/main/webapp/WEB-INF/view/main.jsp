@@ -16,6 +16,8 @@
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/manager/managerSchedule.css">
 <script src="https://www.gstatic.com/charts/loader.js"></script>
+<script
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
 
 <div class="dd" style="height: 100%">
 	<c:choose>
@@ -161,7 +163,7 @@
 		<c:otherwise>
 			<div class="show-content">
 				<div class="modal" id="myModal">
-					<div class="modal-content">
+					<div class="modal-content" style="margin: 0;">
 						<span class="close" id="close" onclick="close()">&times;</span> <input
 							type="hidden" class="showId" id="showId" name="showId">
 						<h3 class="modal-title" id="title"></h3>
@@ -176,11 +178,12 @@
 					</div>
 				</div>
 
-				<div id='calendar-container'
-					style="display: flex; width: 1500px; justify-content: space-between; align-items: center; margin-left: -100px;">
-					<div id='userCalendar' style="width: 800px; height: 500px;"></div>
-					<div id="columnchart_material"
-						style="width: 700px; height: 600px; margin-left: 50px; margin-top: 150px;"></div>
+				<div id='user-calendar-container'>
+					<div id='userCalendar' style="width: 700px; height: 600px;"></div>
+					<div class="main-map">
+					<h2>찾아오는 길</h2>
+					<div id='map' style="width: 700px; height: 520px; margin-right:30px;"></div>
+					</div>
 				</div>
 			</div>
 		</c:otherwise>
@@ -383,7 +386,6 @@ $(document).ready(function() {
                    var modal = document.getElementById('myModal');
                    modal.style.display = 'block';
                    let id = event.event.id;
-                   console.log(id);
                    $.ajax({
                      url: '/api/scheduleDetail/'+ id,
                      type: "GET",
@@ -421,7 +423,7 @@ $(document).ready(function() {
 </script>
 	</c:when>
 	<c:otherwise>
-	<script type="text/javascript">
+		<script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() {
 			let calendarEl = document.getElementById('userCalendar');
 			let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -429,16 +431,14 @@ $(document).ready(function() {
 				headerToolbar : { // 헤더에 표시할 툴 바
 					start : 'prev next today',
 					center : 'title',
-					end : 'dayGridMonth,dayGridWeek,dayGridDay'
+					end : 'dayGridMonth'
 				},
 				titleFormat : function(date) {
 					return date.date.year + '년 '
 							+ (parseInt(date.date.month) + 1) + '월';
 				},
-				//initialDate: '2021-07-15', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.)
 				selectable : true, // 달력 일자 드래그 설정가능
 				droppable : true,
-				// editable : true,
 				nowIndicator : true, // 현재 시간 마크
 				allDay: true,
 				locale : 'ko', // 한국어 설정
@@ -576,14 +576,12 @@ $(document).ready(function() {
 	                var modal = document.getElementById('myModal');
 	                modal.style.display = 'block';
 	                let id = event.event.id;
-	                console.log(id);
 	                $.ajax({
 							url: '/api/scheduleDetail/'+ id,
 							type: "GET",
 							contentType: 'application/json; charset=utf-8',
 							dataType: 'json',
 							success: function(event) {
-									console.log(event);
 									$("#id").val(event.id),
 									$("#title").text(event.title);
 									$("#startDate.startDate").text(event.startDate);
@@ -593,7 +591,7 @@ $(document).ready(function() {
 								}
 		                });
 	                // 모달 창 닫기 버튼 클릭 핸들러
-	                var closeBtn = modal.querySelector('.close');
+	                let closeBtn = modal.querySelector('.close');
 	                closeBtn.addEventListener('click', function() {
 	                  // 모달 창 닫기
 	                  modal.style.display = 'none';
@@ -612,8 +610,22 @@ $(document).ready(function() {
 				}
 			});
 			calendar.render();
+			
+			let container = document.getElementById('map');
+			let options = {
+				center : new kakao.maps.LatLng(35.159573, 129.060249),
+				level : 1
+			};
+				
+			let map = new kakao.maps.Map(container, options);
+
+			
 		});
+
+			
 		</script>
+		<script type="text/javascript"
+			src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
 	</c:otherwise>
 </c:choose>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
