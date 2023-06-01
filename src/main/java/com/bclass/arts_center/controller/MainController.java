@@ -40,21 +40,29 @@ public class MainController {
 	public String main(Model model) {
 		List<Show> showsList = mainService.readShowDto();
 		List<Announcement> selectAnnouncement = mainService.selectAnnouncement();
-		model.addAttribute("selectAnnouncement",selectAnnouncement);
+		model.addAttribute("selectAnnouncement", selectAnnouncement);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+
 		if (principal == null) {
+			List<RequestShowDto> lists = scheduleService.selectByShow();
+			System.out.println(lists + "lists");
+			model.addAttribute("lists", lists);
 			model.addAttribute("principal", null);
-		} else {
+		} else if (principal.getRoleId() == 1) {
+			List<RequestShowDto> lists = scheduleService.selectByShow();
+			System.out.println(lists + "lists");
+			model.addAttribute("lists", lists);
+		}else {
 			List<Notice> noticeList = noticeService.readNotice(principal.getId());
 			List<RequestShowDto> showList = scheduleService.selectByMyShow(principal.getId());
 			model.addAttribute("lists", showList);
-				if (noticeList == null || noticeList.size()==0) {
-					model.addAttribute("noticeList", null);
-					model.addAttribute("message", 0);
-				} else {
-					model.addAttribute("noticeList", noticeList);
-				}
-				model.addAttribute("principal", principal);
+			if (noticeList == null || noticeList.size() == 0) {
+				model.addAttribute("noticeList", null);
+				model.addAttribute("message", 0);
+			} else {
+				model.addAttribute("noticeList", noticeList);
+			}
+			model.addAttribute("principal", principal);
 		}
 		if (showsList.isEmpty()) {
 			model.addAttribute("showsList", null);
@@ -63,5 +71,5 @@ public class MainController {
 		}
 		return "/main";
 	}
-	
+
 }

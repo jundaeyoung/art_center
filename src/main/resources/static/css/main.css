@@ -506,3 +506,8 @@ content ul {
 #columnchart_material svg g:nth-child(n+5) text {
 	font-size: 14px!important;
 }
+
+.user-calendar {
+	height: 700px;
+	
+}
