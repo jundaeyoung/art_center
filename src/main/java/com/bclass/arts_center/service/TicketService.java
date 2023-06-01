@@ -98,6 +98,13 @@ public class TicketService {
 		return occupiedList;
 	}
 
+	@Transactional
+	public Integer countTicketing(Integer showDatetimeId) {
+		Integer ticketingPeople = ticketRepository.countTicketing(showDatetimeId);
+		return ticketingPeople;
+	}
+	
+
 	/**
 	 * 예매
 	 * 

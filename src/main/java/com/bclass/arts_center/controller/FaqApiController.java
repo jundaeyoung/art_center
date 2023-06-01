@@ -16,9 +16,15 @@ public class FaqApiController {
 	@Autowired
 	private FaqService faqService;
 
+	@GetMapping("/api/faq")
+	public List<Faq> selectAllFaq(){
+		List<Faq> faqAllList = faqService.selectAll();
+		return faqAllList;
+	}
+	
+	
 	@GetMapping("/api/selectFaq/{categoryId}")
 	public List<Faq> selectFaq(@PathVariable Integer categoryId) {
-
 		List<Faq> faqList = faqService.selectByCategoryId(categoryId);
 		return faqList;
 	}

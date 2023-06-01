@@ -49,6 +49,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/upload/**")
 				.addResourceLocations("file:///C:\\spring_upload\\arts_center\\upload/");
+
 	}
 
 	@Bean

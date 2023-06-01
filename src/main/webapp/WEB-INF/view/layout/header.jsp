@@ -117,7 +117,7 @@
 									<ul class="sub">
 										<li><a href="/announcement">공지사항</a></li>
 										<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
-										<li><a href="/notice/faq?category=0">FaQ</a></li>
+										<li><a href="/notice/faq">FaQ</a></li>
 									</ul></li>
 								<li><a href="#"> 이용서비스 </a>
 									<ul class="sub">
@@ -159,7 +159,7 @@
 									<ul class="sub">
 										<li><a href="/announcement">공지사항</a></li>
 										<li><a href="/quest/search?searchText=&currentPage=1&begin=0&range=5">QnA</a></li>
-										<li><a href="/notice/faq?category=0">FaQ</a></li>
+										<li><a href="/notice/faq">FaQ</a></li>
 									</ul></li>
 								<li><a href="#">이용서비스</a>
 									<ul class="sub">

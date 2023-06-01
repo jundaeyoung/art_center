@@ -37,5 +37,7 @@ public class TicketingDto {
 	private String youthRate;
 	private Integer youthCount;
 	private Integer adultCount;
+	
+	private Integer count;
 
 }

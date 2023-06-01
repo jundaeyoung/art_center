@@ -41,4 +41,11 @@ public interface TicketRepository {
 	
 	public List<MyTiketDto> selectMyTiketDto(Integer userId);
 
+	
+	public Integer countTicketing(Integer showDatetimeId);
+	
+	
+//	public int delete(int id);
+	
+	
 }

@@ -24,24 +24,25 @@ public class FaqController {
 
 		List<Faq> faqCategoryList = faqService.selectFaqCategory();
 		model.addAttribute("faqCategoryList", faqCategoryList);
-
 		List<Faq> faqList = faqService.selectAll();
+		
+		
+		
 		model.addAttribute("faqList", faqList);
 
 		return "/announcement/faq";
 	}
-
-	@GetMapping("/faq/{categoryId}")
-	public String faqByCategory(@PathVariable Integer categoryId, Model model) {
-
-		List<Faq> faqCategoryList = faqService.selectFaqCategory();
-		model.addAttribute("faqCategoryList", faqCategoryList);
-
-		List<Faq> faqList = faqService.selectByCategoryId(categoryId);
-		model.addAttribute("faqList", faqList);
-
-		return "/announcement/faq";
-
-	}
+//
+//	@GetMapping("/faq/{categoryId}")
+//	public String faqByCategory(@PathVariable Integer categoryId, Model model) {
+//		List<Faq> faqCategoryList = faqService.selectFaqCategory();
+//		model.addAttribute("faqCategoryList", faqCategoryList);
+//
+//		List<Faq> faqList = faqService.selectByCategoryId(categoryId);
+//		model.addAttribute("faqList", faqList);
+//
+//		return "/announcement/faq";
+//
+//	}
 
 }

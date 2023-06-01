@@ -3,9 +3,9 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 .container {
+	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
-	box-sizing: border-box;
 	margin-bottom: 50px;
 	width: 100%;
 	height: 100%;

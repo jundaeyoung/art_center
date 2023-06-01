@@ -139,7 +139,6 @@ function selectDateForTime(showId, date) {
     }).done(function (showTimeList) {
         //$(".watch--time").empty();
         $(".timeTableList").remove();
-        console.log("쇼타임" + showTimeList);
         $(".TagPlay").append(`<ul class="timeTableList"></ul>`);
         showTimeList.forEach((showTime) => {
             let addTime = `<li class="timeTableItem"><a class="timeTableLabel" data-tabtoggle="timeTableList" role="button" data-seq="${showTime.id}">${showTime.showTime}</li>`
@@ -150,76 +149,89 @@ function selectDateForTime(showId, date) {
                 $(this).addClass("is-toggled");
                 $(".timeTableLabel").append(`<input type="hidden" id="hiddenshowDatetimeId" name="showDatetimeId" value="${showTime.id}">`);
 
-                // 해당 공연장의 좌석 정보를 가져오기 위함
-                seatInfo(showId, showTime);
-                // 해당 공연일 공연장의 예매 완료된 좌석 정보를 가져오기 위함
-                //occupiedSeat(showTime);
-            });
-        });
-    }).fail(function (error) {
-        console.log(error);
-        console.log('해당 공연일의 시간 정보를 가져오지 못 함')
-    });
-}
 
-function seatInfo(showId, showTime) {
-    //좌석정보를 갖고 오기 위함
-    $.ajax({
-        type: "get",
-        url: "/api/selectSeats/" + showId + "/" + showTime.id,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json"
-    }).done(function (seatList) {
-        console.log(showTime.id + "아이");
-        /*$(".row").remove();*/
-        $(".seat--info").empty();
-        //console.log("좌석 정보:", seatList);
-        $(".seat--info").append(`<div class="screen"></div>`);
-        $(".seat--info").append(`<div class="row"></div>`);
-        let seatsPerRow = 5;
-        let currentRow = $(".row");
-
-        let arrSeat = [];
-        seatList.forEach((seat, index) => {
-            if (index % seatsPerRow === 0 && index !== 0) {
-                currentRow = $("<div class='row'></div>");
-                $(".seat--info").append(currentRow);
+                            // 해당 공연장의 좌석 정보를 가져오기 위함
+                            seatInfo(showId, showTime);
+                            // 해당 공연일 공연장의 예매 완료된 좌석 정보를 가져오기 위함
+                            //occupiedSeat(showTime);
+                        });
+                    });
+                }).fail(function (error) {
+                    console.log(error);
+                    console.log('해당 공연일의 시간 정보를 가져오지 못 함')
+                });
             }
 
-            let addSeat = `<div class="seat" data-seq="${seat.seatId}" value="${seat.seatId}">${seat.seatName}</div>`;
-            currentRow.append(addSeat);
+function seatInfo(showId, showTime) {
+                    //좌석정보를 갖고 오기 위함
+                    $.ajax({
+                        type: "get",
+                        url: "/api/selectSeats/" + showId + "/" + showTime.id,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"
+                    }).done(function (seatList) {
+                        console.log(showTime.id + "아이");
+                        /*$(".row").remove();*/
+                        $(".seat--info").empty();
+                        //console.log("좌석 정보:", seatList);
+                        $(".seat--info").append(`<div class="screen"></div>`);
+                        $(".seat--info").append(`<div class="row"></div>`);
+                        let seatsPerRow = 5;
+                        let currentRow = $(".row");
 
-            $(document).on('click', `.seat[data-seq="${seat.seatId}"]`, function () {
-                $(".seat").removeClass("selected");
-                $(this).addClass("selected");
-                $(".seat--info").append(`<input type="hidden" id="hiddenSeatId" name="seatId" value="${seat.seatId}">`);
-            });
-        });
+                        let arrSeat = [];
+                        seatList.forEach((seat, index) => {
+                            if (index % seatsPerRow === 0 && index !== 0) {
+                                currentRow = $("<div class='row'></div>");
+                                $(".seat--info").append(currentRow);
+                            }
 
-        $.ajax({
-            type: "get",
-            url: "/api/occupied/" + showTime.id,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json"
-        }).done(function (occupiedList) {
-            console.log("oc" + occupiedList);
-            occupiedList.forEach((occupiedSeat) => {
-                console.log("ddd" + occupiedSeat.seatId);
-                console.log("DDD");
-                arrSeat.push(occupiedSeat.seatId);
-                //$(`.seat[data-seq="${occupiedSeat.seatId}"]`).css("background-color","red");
-                $(`.seat[data-seq="${occupiedSeat.seatId}"]`).attr("disabled", true);
-                $(`.seat[data-seq="${occupiedSeat.seatId}"]`).addClass("occupied");
-            });
-            console.log("arr" + arrSeat);
-            console.log();
-        }).fail(function (error) {
-            console.log(error);
-            console.log("예매완료된 좌석정보를 가져오는 데 실패했습니다.");
-        });
+                            let addSeat = `<div class="seat" data-seq="${seat.seatId}" value="${seat.seatId}">${seat.seatName}</div>`;
+                            currentRow.append(addSeat);
 
-    }).fail(function (error) {
-        console.log(error);
-        console.log("좌석 정보를 가져오는 데 실패했습니다.");
-    });
-}
+                            $(document).on('click', `.seat[data-seq="${seat.seatId}"]`, function () {
+                                $(".seat").removeClass("selected");
+                                $(this).addClass("selected");
+                                $(".seat--info").append(`<input type="hidden" id="hiddenSeatId" name="seatId" value="${seat.seatId}">`);
+                            });
+                        });
+
+                        $.ajax({
+                            type: "get",
+                            url: "/api/occupied/" + showTime.id,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json"
+                        }).done(function (occupiedList) {
+                            console.log("oc" + occupiedList);
+                            occupiedList.forEach((occupiedSeat) => {
+                                console.log("ddd" + occupiedSeat.seatId);
+                                console.log("DDD");
+                                arrSeat.push(occupiedSeat.seatId);
+                                //$(`.seat[data-seq="${occupiedSeat.seatId}"]`).css("background-color","red");
+                                $(`.seat[data-seq="${occupiedSeat.seatId}"]`).attr("disabled", true);
+                                $(`.seat[data-seq="${occupiedSeat.seatId}"]`).addClass("occupied");
+                            });
+                            console.log("arr" + arrSeat);
+                            console.log();
+                        }).fail(function (error) {
+                            console.log(error);
+                            console.log("예매완료된 좌석정보를 가져오는 데 실패했습니다.");
+                        });
+
+                    }).fail(function (error) {
+                        console.log(error);
+                        console.log("좌석 정보를 가져오는 데 실패했습니다.");
+                    });
+                    $.ajax({
+                        type: "get",
+                        url: "/api/remainingCount/" + showTime.id,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"
+                    }).done(function (remainingCount) {
+                        $("#remainingCount").text(remainingCount);
+
+                    }).fail(function (error) {
+                        console.log(error);
+                        console.log("잔여 좌석 수를 가져오는 데 실패했습니다.");
+                    });
+                }
