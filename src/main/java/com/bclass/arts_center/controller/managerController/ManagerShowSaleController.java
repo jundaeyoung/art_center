@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
 import com.bclass.arts_center.dto.response.ResponseManagerShowSaleDto;
+import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ManagerShowSaleService;
 import com.bclass.arts_center.utils.Define;
@@ -36,6 +38,9 @@ public class ManagerShowSaleController {
 			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
 			@RequestParam(required = false) Integer range, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if(principal==null || principal.getRoleId()!=2) {
+			throw new LoginException("매니저 아이디로 로그인을 해주세요.", HttpStatus.BAD_REQUEST);
+		}
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> selectCount = managerShowSaleService.readAndCount(requestManagerShowSaleDto);
 		DecimalFormat df = new DecimalFormat("###,###");
@@ -64,7 +69,11 @@ public class ManagerShowSaleController {
 	@PostMapping("/manager/showSaleByDate")
 	public String selectShowSaleByDate(RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if(principal==null || principal.getRoleId()!=2) {
+			throw new LoginException("매니저 아이디로 로그인을 해주세요.", HttpStatus.BAD_REQUEST);
+		}
 		String str = requestManagerShowSaleDto.getStartDate();
+		System.out.println("str"+str);
 		String[] split = str.split(" ~ ");
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		requestManagerShowSaleDto.setStartDate(split[0] + " 00:00:00");
@@ -85,16 +94,18 @@ public class ManagerShowSaleController {
 			}
 			df.format(sum);
 			model.addAttribute("showList", showSaleList);
+			model.addAttribute("startDate", requestManagerShowSaleDto.getStartDate().substring(0, 10));
+			model.addAttribute("endDate", requestManagerShowSaleDto.getEndDate().substring(0, 10));
 			model.addAttribute("sum", df.format(sum));
 		}
-		return "/manager/managerShowSale";
+		return "/manager/managerShowSaleByDate";
 	}
 
 	/*
 	 * 전대영 : 판매 상품 검색하기
 	 */
 	@PostMapping("/manager/showSaleBySearch")
-	public String selectShowSaleBySearch(RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
+	public String selectShowSaleBySearch(String title,RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
@@ -112,10 +123,11 @@ public class ManagerShowSaleController {
 				}
 			}
 			df.format(sum);
+			model.addAttribute("title",title);
 			model.addAttribute("showList", showSaleList);
 			model.addAttribute("sum", df.format(sum));
 		}
-		return "/manager/managerShowSale";
+		return "/manager/managerShowSaleBySearch";
 	}
 
 	/*

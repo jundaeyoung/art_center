@@ -221,7 +221,9 @@
 	margin-left: 100px;
 	display: flex;
 }
-
+.show span{
+	margin-left: -400px;
+}
 .question__category {
 	width: 150px;
 	height: 50px;
@@ -239,6 +241,7 @@
 
 .answer {
 	display: flex;
+	margin-left: -400px;
 }
 
 .answer_status {
@@ -246,7 +249,7 @@
 }
 
 .question__content_show {
-	width: 1000px;
+	width: 1400px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -254,6 +257,7 @@
 
 .hide {
 	margin-top: 20px;
+	width:1400px;
 	background-color: #FAFAFA;
 	overflow-y: auto;
 	height: auto;

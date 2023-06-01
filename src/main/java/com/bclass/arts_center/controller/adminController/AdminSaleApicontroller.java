@@ -19,13 +19,7 @@ import com.bclass.arts_center.service.TicketService;
 public class AdminSaleApicontroller {
 
 	@Autowired
-	private TicketService ticketService;
-	
-	@Autowired
 	private AdminSaleService adminSaleService;
-	
-	@Autowired
-	private HttpSession session;
 	
 	@GetMapping("/admin/rentSale")
 	public List<RentSalesDto> adminRentSales(RentSalesDto rentSalesDto){

@@ -24,12 +24,6 @@ public class LoginInterceptor implements HandlerInterceptor{
 		if(principal == null) {
 			throw new LoginException("로그인 후 이용 가능한 서비스 입니다.", HttpStatus.BAD_REQUEST);
 		}
-		if(principal != null && principal.getRoleId()==2) {
-			throw new LoginException("매니저는 이용할 수 없는 서비스 입니다.", HttpStatus.BAD_REQUEST);
-		}
-		if(principal != null && principal.getRoleId()==3) {
-			throw new LoginException("관리자는 이용할 수 없는 서비스 입니다.", HttpStatus.BAD_REQUEST);
-		}
 		return true;
 	}
 }

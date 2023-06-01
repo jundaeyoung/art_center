@@ -35,7 +35,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor).addPathPatterns("/auth/**");
-		registry.addInterceptor(loginInterceptor).addPathPatterns("/ticket/**").addPathPatterns("/quest/insert/**");
+
+		registry.addInterceptor(loginInterceptor).addPathPatterns("/ticket/**").addPathPatterns("/quest/insert/**")
+				.addPathPatterns("/myPage/**");
 
 		registry.addInterceptor(managerLoginInterceptor).addPathPatterns("/rental/**").addPathPatterns("/manager/**");
 
@@ -49,6 +51,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/upload/**")
 				.addResourceLocations("file:///C:\\spring_upload\\arts_center\\upload/");
+//		registry.addResourceHandler("/images/upload/**")
+//				.addResourceLocations("file:///Users/jundaeyeong/Desktop/upload");
 
 	}
 

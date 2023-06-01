@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
 #ticket--title {
@@ -117,19 +118,22 @@
 			<div class="ticket--content">
 				<div class="myTicket">
 					<div class="ticketing--img">
-						<img alt="" src="/images/upload/${myTicketList.imgRoute}" width="300" height="400">
+						<img alt="" src="/images/upload/${myTicketList.imgRoute}"
+							width="300" height="400">
 					</div>
 					<div class="ticket--info">
 						<div class="ticket--title">
-							<a href="/show/showView/${myTicketList.showId}"><p>${myTicketList.title}</p> </a>
+							<a href="/show/showView/${myTicketList.showId}"><p>${myTicketList.title}</p>
+							</a>
 							<c:choose>
 								<c:when test="${myTicketList.paymentStatus == 0}">
 									<h2>(결제대기)</h2>
 								</c:when>
-								<c:when test="${myTicketList.paymentStatus == 1}">
+								<c:when
+									test="${myTicketList.cancelStatus == 0 && myTicketList.paymentStatus == 1}">
 									<h2>(결제완료)</h2>
 								</c:when>
-								<c:when test="${myTicketList.paymentStatus == 2}">
+								<c:when test="${myTicketList.cancelStatus == 1}">
 									<h2>(취소완료)</h2>
 								</c:when>
 							</c:choose>
@@ -138,36 +142,51 @@
 							<h2>${myTicketList.name}&nbsp&nbsp&nbsp${myTicketList.seatName}</h2>
 						</div>
 						<div class="ticket--date">
-							<h2>날짜 : ${myTicketList.showDate}&nbsp;&nbsp;&nbsp;&nbsp;시간 : ${myTicketList.showTime}</h2>
+							<h2>날짜 : ${myTicketList.showDate}&nbsp;&nbsp;&nbsp;&nbsp;시간
+								: ${myTicketList.showTime}</h2>
 						</div>
 						<div class="ticketing--date">
-							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId">
+							<a href="/myPage/myTicketDetail/${myTicketList.id}"
+								class="ticketingId">
 								<h2>예매일&nbsp&nbsp:&nbsp&nbsp</h2>
-							</a> <a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
+							</a> <a href="/myPage/myTicketDetail/${myTicketList.id}"
+								class="ticketingId"> </a>
 							<h2>${myTicketList.ticketingDate}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
-							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
+							<a href="/myPage/myTicketDetail/${myTicketList.id}"
+								class="ticketingId"> </a>
 							<h2>예매 번호&nbsp&nbsp:&nbsp&nbsp</h2>
-							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
+							<a href="/myPage/myTicketDetail/${myTicketList.id}"
+								class="ticketingId"> </a>
 							<h2>${myTicketList.id}</h2>
-							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
+							<a href="/myPage/myTicketDetail/${myTicketList.id}"
+								class="ticketingId"> </a>
 						</div>
 					</div>
-					<img alt="" src="/images/upload/${myTicketList.qrCode}.png" class="bacode">
+					<img alt="" src="/images/upload/${myTicketList.qrCode}.png"
+						class="bacode">
 				</div>
 			</div>
 			<div class="btn">
 				<c:choose>
 					<c:when test="${myTicketList.paymentStatus == 0}">
 						<form action="/kakao/ready" method="get">
-							<input type="hidden" name="ticketingId" value="${myTicketList.id}">
+							<input type="hidden" name="ticketingId"
+								value="${myTicketList.id}">
 							<button type="submit" class="kakao--btn">
 								<img alt="" src="/images/kakao/payment_icon_yellow_small.png">
 							</button>
 						</form>
 					</c:when>
 					<c:when test="${myTicketList.paymentStatus == 1}">
-						<form action="/kakao/refund/${myTicketList.paymentId}" method="post">
-							<button type="submit">예매 취소</button>
+						<form action="/kakao/refund/${myTicketList.paymentId}"
+							method="post">
+							<c:choose>
+								<c:when test="${myTicketList.cancelStatus == 1}">
+								</c:when>
+								<c:otherwise>
+									<button type="submit">예매 취소</button>
+								</c:otherwise>
+							</c:choose>
 						</form>
 					</c:when>
 				</c:choose>

@@ -124,11 +124,11 @@
 }
 /* 캘린더뒷배경 */
 .calendar-table {
-	width: 800px;
-	height: 800px;
+	width: 400px;
+	height: 450px;
 }
 .calendar-table table{
-	height: 750px!important;
+	height: 450px!important;
 }
 
 .in-range available {
@@ -137,11 +137,11 @@
 
 .calendar-time {
 	width: 400px;
-	height: 850px;
+	height: 450px;
 }
 .opensright{
-	top: 550px!important;
-	left:auto!important;
+	top: 700px!important;
+	left:400px!important;
 	margin-left: -100px!important;
 }
 .daterangepicker .calendar-table {
@@ -149,7 +149,7 @@
 }
 
 .daterangepicker .drp-calendar {
-	max-width: 860px !important;
+	max-width: 460px !important;
 }
 
 .daterangepicker .drp-calendar.right .calendar-table {

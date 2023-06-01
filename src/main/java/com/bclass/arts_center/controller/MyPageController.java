@@ -18,6 +18,7 @@ import com.bclass.arts_center.dto.MyTicketDtailDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.MyTiketDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
+import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.repository.model.Review;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.MyPageService;
@@ -52,12 +53,6 @@ public class MyPageController {
 	 */
 	@GetMapping("/info")
 	public String myPage(Model model) {
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-
-		if (principal == null) {
-			throw new CustomRestfullException("로그인 해주세요.", HttpStatus.BAD_REQUEST);
-		}
-
 		return "/user/myPage";
 	}
 
@@ -100,7 +95,6 @@ public class MyPageController {
 	 */
 	@GetMapping("/myTicket/{userId}")
 	public String selectMyTicket(Model model, @PathVariable Integer userId) {
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyTicketDtailDto> myTicketList = myPageService.readMyTicketList(userId);
 		if (myTicketList == null) {
 			model.addAttribute("myTicketList", null);
@@ -135,7 +129,6 @@ public class MyPageController {
 	// 작성자 편용림 : 봤던 공연 목록
 	@GetMapping("/myTicketReview")
 	public String myTicketReview(Model model) {
-		
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyTiketDto> myTicketList = ticketService.readMyTicketByUserId(principal.getId());
 		model.addAttribute("myTicketList", myTicketList);
@@ -147,7 +140,7 @@ public class MyPageController {
 	public String myReviewWrite(Integer showId, Review review) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		review.setUserId(principal.getId());
-		int result = reviewService.saveReview(review);
+		reviewService.saveReview(review);
 		
 		return "/user/myTicketReview";
 	}
@@ -168,9 +161,7 @@ public class MyPageController {
 	@GetMapping("/rentRefund")
 	public String rentRefund(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		
 		List<MyRegistrationInfoDto> myrentList = myPageService.readMyRentRefund(principal.getId());
-		System.out.println(myrentList.toString());
 		
 		model.addAttribute("myrentList", myrentList);
 		

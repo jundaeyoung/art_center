@@ -124,8 +124,8 @@
 								"7월", "8월", "9월", "10월", "11월", "12월" ],
 						"firstDay" : 0
 					},
-					"startDate" : "2023-5-16",
-					"endDate" : "2023-10-23",
+					"startDate" : "2023-6-16",
+					"endDate" : "2023-7-23",
 					"drops" : "down",
 					"minDate" : moment().startOf('day')
 				},
