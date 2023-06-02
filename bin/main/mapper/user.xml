@@ -3,6 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
+
+
+
 <mapper namespace="com.bclass.arts_center.repository.interfaces.UserRepository">
 
 	<!-- 회원가입 -->
