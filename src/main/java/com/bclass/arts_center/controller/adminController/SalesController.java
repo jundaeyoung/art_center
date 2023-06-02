@@ -1,6 +1,5 @@
 package com.bclass.arts_center.controller.adminController;
 
-import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.RentSalesDto;
-import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
 import com.bclass.arts_center.service.AdminSaleService;
 import com.bclass.arts_center.service.TicketService;

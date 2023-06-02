@@ -31,7 +31,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Autowired
 	private AdminLoginInterceptor adminLoginInterceptor;
 
-	// 추후에 추가할 예정
+	// 인터셉터
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor).addPathPatterns("/auth/**");

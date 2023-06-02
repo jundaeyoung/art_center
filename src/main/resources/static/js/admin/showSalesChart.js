@@ -66,7 +66,7 @@ $(document).ready(function() {
     url: '/apiAdminShowSale/admin/showSale',
     contentType: 'application/json; charset=utf-8',
   }).done(function(response) {
-    drawChart(response);
+    drawChart(response.data);
   }).fail(function(error) {
     console.log(error);
     console.log("데이터를 불러오는 데 실패하였습니다.");

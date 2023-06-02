@@ -1,4 +1,4 @@
-package com.bclass.arts_center.controller.managerController;
+package com.bclass.arts_center.controller.adminController;
 
 import java.util.List;
 
@@ -20,7 +20,6 @@ import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
 
-
 /**
  * 
  * @author 편용림, 전대영
@@ -31,33 +30,29 @@ import com.bclass.arts_center.utils.Define;
 @RequestMapping("/admin")
 public class AdminController {
 
-	
 	@Autowired
 	private HttpSession session;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private QuestionService questionService;
-	
 	@Autowired
 	private ShowService showService;
 	@Autowired
 	private NoticeService noticeService;
-	
+
 	// 메인화면
-		@GetMapping("")
-		public String Admin(Model model) {
-			List<User> userList = userService.readUser();
-			model.addAttribute("userList", userList);
-			return "admin/userList";
-		}
-	
-	// 작성자 :  편용림 관리자 페이지 로그아웃
+	@GetMapping("")
+	public String admin(Model model) {
+		List<User> userList = userService.readUser();
+		model.addAttribute("userList", userList);
+		return "/admin/userList";
+	}
+
+	// 작성자 : 편용림 관리자 페이지 로그아웃
 	@GetMapping("/logout")
-	public String AdminLogout() {
-		
+	public String adminLogout() {
 		session.invalidate();
-		
 		return "redirect:/";
 	}
 
@@ -65,10 +60,8 @@ public class AdminController {
 	 * 작성자 편용림 : 유저 목록
 	 */
 	@GetMapping("/userList")
-	public String userList(Model model) {
-		List<User> userList = userService.readUser();
-		model.addAttribute("userList", userList);
-		return "admin/userList";
+	public String userList() {
+		return "redirect:/admin/";
 	}
 
 	/*
@@ -84,25 +77,25 @@ public class AdminController {
 		}
 		return "/admin/adminQuestion";
 	}
-	
+
 	/*
 	 * 전대영 : Question 답변 달기
 	 */
 	@GetMapping("/answer")
-	public String createAnswer(Model model) {
+	public String createAnswer() {
 		questionService.readQuestionAll();
 		return "/admin/adminQuestion";
 	}
-	
+
 	/*
 	 * 전대영 : Question 삭제하기
 	 */
 	@GetMapping("/deleteQuestion/{questionId}")
-	public String deleteQuestion(@PathVariable Integer questionId,Model model) {
+	public String deleteQuestion(@PathVariable Integer questionId) {
 		questionService.deleteQuestionByQuestionId(questionId);
 		return "redirect:/admin/questionAll";
 	}
-	
+
 	/**
 	 * 작성자 편용림 : 매니저 목록
 	 */
@@ -110,47 +103,31 @@ public class AdminController {
 	public String managerList(Model model) {
 		List<User> managerList = userService.readManager();
 		model.addAttribute("managerList", managerList);
-		
 		return "admin/managerList";
 	}
-	
-	/**
-	 * 작성자 편용림: 강사 목록
-	 */
-	@GetMapping("/teacherList")
-	public String teacherList(Model model) {
-		List<User> teacherList = userService.readTeacher();
-		model.addAttribute("teacherList", teacherList);
-		return "admin/teacherList";
-	}
-	
-	
+
 	/*
-	 * 편용림
-	 * 유저 정보 수정
+	 * 편용림 유저 정보 수정
 	 * 
 	 */
-	@GetMapping("/updateUser")
-	public String updateUser(String userName, Model model) {
-		User userList = userService.readUserByUserName(userName);
-		
-		model.addAttribute("userList", userList);
-		
+	@GetMapping("/updateUser/{userName}")
+	public String updateUser(@PathVariable("userName") String userName, Model model) {
+		User user = userService.readUserByUserName(userName);
+		model.addAttribute("user", user);
 		return "admin/userUpdate";
 	}
-	
+
 	/**
-	 *  작성자 편용림 : 공연 예약 수락 페이지
+	 * 작성자 편용림 : 공연 예약 수락 페이지
 	 */
-	
+
 	@GetMapping("/show")
 	public String show(Model model) {
 		List<RequestShowDto> showList = showService.readShow();
 		model.addAttribute("showList", showList);
 		return "admin/show";
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param 편용림
@@ -158,40 +135,49 @@ public class AdminController {
 	 */
 	@PostMapping("/update")
 	public String update(User user) {
-		int result = userService.updateUserById(user);
-		
+		userService.updateUserById(user);
+
 		if (user.getRoleId() == 1) {
 			return "redirect:/admin/userList";
-		}else if (user.getRoleId() == 2) {
+		} else if (user.getRoleId() == 2) {
 			return "redirect:/admin/managerList";
 		}
-		
+
 		return "redirect:/admin/teacherList";
-		
+
 	}
 
 	/*
-	 *  편용림 작성자 : 승인
+	 * 편용림 작성자 : 승인
 	 */
 	@GetMapping("/updateShow/{id}/{userId}")
-	public String updateShow(@PathVariable Integer id,@PathVariable Integer userId){
+	public String updateShow(@PathVariable Integer id, @PathVariable Integer userId) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		int result = showService.updateShow(id);
+		showService.updateShow(id);
 		String notice = "공연등록이 수락되었습니다.";
-		System.out.println(userId);
-		System.out.println(principal.getId());
 		noticeService.createManagerNotice(notice, userId, principal.getId());
 		return "redirect:/admin/show";
 	}
-	
+
 	/**
-	 *  편용림
-	 * @return admin 유저, 매니저, 강사 삭제
+	 * 편용림
+	 * 
+	 * @return admin 유저 삭제
 	 */
-	@GetMapping("/deleteUser")
-	public String deleteUser(String id) {
-		int result = userService.deleteUserById(id);
-		System.out.println(result);
+	@GetMapping("/deleteUser/{id}")
+	public String deleteUser(@PathVariable("id") String id) {
+		userService.deleteUserById(id);
 		return "redirect:/admin/userList";
+	}
+
+	/**
+	 * 편용림
+	 * 
+	 * @return admin 매니저 삭제
+	 */
+	@GetMapping("/deleteManager/{id}")
+	public String deleteManager(@PathVariable("id") String id) {
+		userService.deleteUserById(id);
+		return "redirect:/admin/managerList";
 	}
 }
