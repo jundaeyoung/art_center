@@ -7,7 +7,7 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertUser">
-		INSERT INTO user_tb (user_name, password, nickname, birth_date, tel, api_id, role_id)
+		INSERT INTO user_tb (user_name, password, nickname, email, birth_date, tel, api_id, role_id)
 		VALUES (#{userName}, #{password}, #{nickname}, #{email}, #{birthDate}, #{tel}, #{apiId}, #{roleId})
 	</insert>
 

@@ -129,6 +129,8 @@ public class UserController {
 	@PostMapping("/signUp")
 	public String signUpProc(@Valid SignUpFormDto signUpFormDto, BindingResult errors, Model model) {
 
+		System.out.println(signUpFormDto.toString());
+		
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {
