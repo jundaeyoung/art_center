@@ -35,5 +35,5 @@ public interface MyPageRepository {
 	public List<MyRegistrationInfoDto> selectMyRentRefund(Integer id);
 	
 	// 공연,대관 목록 count
-	public Integer selectMyShowCount();
+	public Integer selectMyShowCount(Integer organizerId);
 }

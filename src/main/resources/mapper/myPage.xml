@@ -2,89 +2,102 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.MyPageRepository">
 
 	<!-- 김미정: 공연,대관예약 정보 불러오기 -->
-	<select id="selectMyShow" resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+	<select id="selectMyShow"
+		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
 		SELECT *, r.id AS rentId
-        FROM rent_place_reservation_tb AS r
-        JOIN show_tb AS s
-        ON r.show_id = s.id
-        LEFT JOIN manager_payment_tb AS mp
-        ON r.id = mp.rent_id
+		FROM rent_place_reservation_tb AS r
+		JOIN show_tb AS s ON r.show_id = s.id
+		LEFT JOIN manager_payment_tb AS mp ON r.id = mp.rent_id
 		WHERE s.organizer_id = #{organizerId} AND r.rent_place_status != 2
-        ORDER BY mp.m_payment_id asc, s.start_date desc
-        limit #{begin}, #{range}
+		ORDER BY mp.m_payment_id ASC, s.start_date DESC
+		LIMIT #{begin},#{range};
 	</select>
-	
+
 	<!-- 편용림 : 환불 내역 -->
-	<select id="selectMyRentRefund" resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+	<select id="selectMyRentRefund"
+		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
 		SELECT *, r.id AS rentId
-        FROM rent_place_reservation_tb AS r
-        JOIN show_tb AS s
-        ON r.show_id = s.id
-        LEFT JOIN manager_payment_tb AS mp
-        ON r.id = mp.rent_id
-		WHERE s.organizer_id = #{organizerId} AND r.rent_place_status = 2
-        ORDER BY mp.m_payment_id asc, s.start_date desc;
+		FROM rent_place_reservation_tb AS r
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		LEFT JOIN manager_payment_tb AS mp
+		ON r.id = mp.rent_id
+		WHERE s.organizer_id = #{organizerId} AND
+		r.rent_place_status = 2
+		ORDER BY mp.m_payment_id asc, s.start_date desc;
 	</select>
 
 	<!-- 김미정 : 공연,대관예약 detail정보 불러오기 -->
-	<select id="selectMyShowDetail" resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
+	<select id="selectMyShowDetail"
+		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
 		SELECT *
 		FROM show_tb AS s
-		JOIN rent_place_reservation_tb AS r
+		JOIN rent_place_reservation_tb AS
+		r
 		ON s.id = r.show_id
 		JOIN hole_tb AS h
 		ON r.hole_id = h.id
-		JOIN location_tb AS l
+		JOIN
+		location_tb AS l
 		ON h.location_id = l.id
 		WHERE s.id = #{id}
 	</select>
 
-	<select id="selectMyTicket" resultType="com.bclass.arts_center.dto.MyTicketDtailDto">
+	<select id="selectMyTicket"
+		resultType="com.bclass.arts_center.dto.MyTicketDtailDto">
 		SELECT *
 		FROM ticketing_tb AS t
 		JOIN show_tb AS s
-		ON t.show_id = s.id
+		ON t.show_id
+		= s.id
 		LEFT JOIN payment_tb AS p
 		ON p.ticketing_id = t.id
-        LEFT JOIN seat_tb as se
+		LEFT JOIN seat_tb as se
 		ON t.seat_id = se.seat_id
 		join hole_tb as h
-		on h.id = s.hole_id
+		on h.id =
+		s.hole_id
 		JOIN show_datetime_tb as sd
 		ON t.show_datetime_id = sd.id
-        WHERE t.user_id = #{userId}
-        ORDER BY t.ticketing_date desc;
+		WHERE t.user_id = #{userId}
+		ORDER BY t.ticketing_date desc;
 	</select>
 
-	<select id="selectMyTicketDetail" resultType="com.bclass.arts_center.dto.MyTicketDtailDto">
+	<select id="selectMyTicketDetail"
+		resultType="com.bclass.arts_center.dto.MyTicketDtailDto">
 		SELECT *
 		FROM payment_tb AS p
 		JOIN ticketing_tb AS t
-		ON p.ticketing_id = t.id
+		ON
+		p.ticketing_id = t.id
 		JOIN show_tb AS s
 		ON t.show_id = s.id
-		LEFT JOIN seat_tb AS st
+		LEFT JOIN
+		seat_tb AS st
 		ON t.seat_id = st.seat_id
 		LEFT JOIN show_datetime_tb AS sd
 		ON t.show_datetime_id = sd.id
 		JOIN hole_tb AS h
 		ON s.hole_id = h.id
-		JOIN location_tb AS l
+		JOIN
+		location_tb AS l
 		ON h.location_id = l.id
 		WHERE t.id = #{id}
 	</select>
-	
+
 	<select id="selectMyShowCount" resultType="Integer">
-		SELECT count(*) as count
-        FROM rent_place_reservation_tb AS r
-        JOIN show_tb AS s
-        ON r.show_id = s.id
-        LEFT JOIN manager_payment_tb AS mp
-        ON r.id = mp.rent_id
-		WHERE s.organizer_id = #{organizerId} AND r.rent_place_status != 2
+		SELECT count(*)
+		FROM rent_place_reservation_tb AS r
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		LEFT JOIN manager_payment_tb AS mp
+		ON r.id = mp.rent_id
+		WHERE s.organizer_id = #{organizerId} AND
+		r.rent_place_status != 2
 	</select>
 
 </mapper>

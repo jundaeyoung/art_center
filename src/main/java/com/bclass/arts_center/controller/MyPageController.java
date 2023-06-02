@@ -71,11 +71,8 @@ public class MyPageController {
 		
 		
 		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId, begin, range);
-		Integer showCount = myPageService.selectMyShowCount();
-		System.out.println("들어오나"+myShowList);
-		System.out.println(showCount);
+		Integer showCount = myPageService.selectMyShowCount(organizerId);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		System.out.println(myShowList);
 		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 5);
 		Integer startPage = currentPage - 2;
@@ -84,7 +81,7 @@ public class MyPageController {
 			startPage = 1;
 		}
 		Integer endPage = startPage + 4;
-		if (endPage > page) {
+		if (endPage >= page) {
 			endPage = page;
 		}
 	

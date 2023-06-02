@@ -26,7 +26,6 @@ public class MyPageService {
 	@Transactional
 	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId, Integer begin, Integer range) {
 		List<MyRegistrationInfoDto> myShowList = myPageRepository.selectMyShow(organizerId, begin, range);
-		System.out.println("여기 들어오세요?" + myShowList);
 		return myShowList;
 	}
 
@@ -74,9 +73,9 @@ public class MyPageService {
 	 * @author 김미정
 	 * @return showCount
 	 */
-	public Integer selectMyShowCount() {
-		Integer showCount = myPageRepository.selectMyShowCount();
-			System.out.println("여기 들어올까요" + showCount);
+	@Transactional
+	public Integer selectMyShowCount(Integer organizerId) {
+		Integer showCount = myPageRepository.selectMyShowCount(organizerId);
 		return showCount;
 	}
 
