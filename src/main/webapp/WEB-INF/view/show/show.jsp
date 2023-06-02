@@ -47,8 +47,8 @@ $(document).ready(function() {
 	        	type: 'get',
 	        	url: '/apiShow/categoryShow?category=공연&currentPage=1&begin=0&range=3',
 	      	    contentType: 'application/json; charset=utf-8',
-	      }).done(function(response) {
-	    	  
+	      }).done(function(data) {
+	    	  let response = data.data;
 	    	  $(".show__title").empty();
 	    	  let span = $("<span>");
 	    	  span.attr("class", "material-symbols-outlined");
@@ -75,7 +75,6 @@ $(document).ready(function() {
 	    	  
 	    	  
 				$(".show").empty(); 
-					console.log(response);
 					for(let i = 0; i < response.length; i++) {
 						let el = $("<div>");
 						el.attr("class", "review__content");
@@ -124,7 +123,7 @@ $(document).ready(function() {
 					$(".page").empty(); 
 					
 					
-					for(let i = 1; i <= response[0].count ; i++) {
+					for(let i = 1; i <= response.length/3 ; i++) {
 						let page=$("<a>");
 						page.attr("href","/show/categoryShow?category=공연&currentPage="+i+"&begin="+(3*(i-1))+"&range=3");
 						$(".page").append(page);
@@ -155,8 +154,8 @@ $(document).ready(function() {
 	        	type: 'get',
 	        	url: '/apiShow/categoryShow?category=전시회&currentPage=1&begin=0&range=3',
 	      	    contentType: 'application/json; charset=utf-8',
-	      }).done(function(response) {
-	    	  
+	      }).done(function(data) {
+	    	  let response = data.data;
 	    	  $(".show__title").empty();
 	    	  let span = $("<span>");
 	    	  span.attr("class", "material-symbols-outlined");
@@ -231,7 +230,7 @@ $(document).ready(function() {
 					$(".page").empty(); 
 					
 					
-					for(let i = 1; i <= response[0].count ; i++) {
+					for(let i = 1; i <= response.length/3 ; i++) {
 						let page=$("<a>");
 						page.attr("href","/show/categoryShow?category=전시회&currentPage="+i+"&begin="+(3*(i-1))+"&range=3");
 						$(".page").append(page);
@@ -262,9 +261,9 @@ $(document).ready(function() {
 	        	type: 'get',
 	        	url: '/apiShow/categoryShow?category=아카데미&currentPage=1&begin=0&range=3',
 	      	    contentType: 'application/json; charset=utf-8',
-	      }).done(function(response) {
+	      }).done(function(data) {
 	    	  
-	    	  
+	    	  let response = data.data;
 	    	  $(".show__title").empty();
 	    	  let span = $("<span>");
 	    	  span.attr("class", "material-symbols-outlined");
@@ -370,8 +369,8 @@ $(document).ready(function() {
 	        	type: 'get',
 	        	url: '/apiShow/newestShow?currentPage=1&begin=0&range=3',
 	      	    contentType: 'application/json; charset=utf-8',
-	      }).done(function(response) {
-	    	  
+	      }).done(function(data) {
+	    	  let response = data.data;
 	    	  $(".show__title").empty();
 	    	  let span = $("<span>");
 	    	  span.attr("class", "material-symbols-outlined");
@@ -398,8 +397,6 @@ $(document).ready(function() {
 	    	  
 	    	  
 				$(".show").empty(); 
-					console.log("dd")
-					console.log(response);
 					for(let i = 0; i < response.length; i++) {
 						let el = $("<div>");
 						el.attr("class", "review__content");
@@ -478,8 +475,8 @@ $(document).ready(function() {
 			        	type: 'get',
 			        	url: '/apiShow/highesRatedShow?currentPage=1&begin=0&range=3',
 			      	    contentType: 'application/json; charset=utf-8',
-			      }).done(function(response) {
-			    	  
+			      }).done(function(data) {
+			    	  let response = data.data;
 			    	  $(".show__title").empty();
 			    	  let span = $("<span>");
 			    	  span.attr("class", "material-symbols-outlined");
@@ -579,10 +576,8 @@ $(document).ready(function() {
 			        	type: 'get',
 			        	url: '/apiShow/rowestRatedShow?currentPage=1&begin=0&range=3',
 			      	    contentType: 'application/json; charset=utf-8',
-			      }).done(function(response) {
-			    	  
-			    	  console.log(response[0].count);
-			    	  
+			      }).done(function(data) {
+			    	  let response = data.data;
 			    	  $(".show__title").empty();
 			    	  let span = $("<span>");
 			    	  span.attr("class", "material-symbols-outlined");
@@ -802,7 +797,7 @@ $(document).ready(function() {
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage<=1}">
+				<c:when test="${currentPage==page || currentPage==null}">
 				</c:when>
 				<c:otherwise>
 					<a href="/show/categoryShow?category=${message}&currentPage=${page}&type=${type}&begin=${3*(page-1)}&range=3"><p>></p></a>

@@ -12,7 +12,6 @@ public interface RentPlaceReservationRepository {
 	// 작성자 : 편용림 대관승인 리스트 조회
 	public List<RequestRentPlaceReservationDto> selectRentPlaceReservationList();
 
-	// 작성자 : 편용림 승인 요청 업데이트
 	public int updateRentPlaceReservation(Integer id);
 
 	public int updateRentById(Integer id);

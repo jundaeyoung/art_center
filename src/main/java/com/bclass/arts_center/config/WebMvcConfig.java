@@ -37,9 +37,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(authInterceptor).addPathPatterns("/auth/**");
 
 		registry.addInterceptor(loginInterceptor).addPathPatterns("/ticket/**").addPathPatterns("/quest/insert/**")
-				.addPathPatterns("/myPage/**");
+				.addPathPatterns("/myPage/**").addPathPatterns("/kakao/**");
 
-		registry.addInterceptor(managerLoginInterceptor).addPathPatterns("/rental/**").addPathPatterns("/manager/**");
+		registry.addInterceptor(managerLoginInterceptor).addPathPatterns("/rental/**").addPathPatterns("/manager/**")
+				.addPathPatterns("/managerNotice/**");
 
 		registry.addInterceptor(adminLoginInterceptor).addPathPatterns("/admin/**");
 	}

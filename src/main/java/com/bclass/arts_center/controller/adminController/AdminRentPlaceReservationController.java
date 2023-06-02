@@ -13,8 +13,8 @@ import com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto;
 import com.bclass.arts_center.service.RentPlaceReservationService;
 
 @Controller
-@RequestMapping("/rentPlace")
-public class RentPlaceReservationController {
+@RequestMapping("/admin/rentPlace")
+public class AdminRentPlaceReservationController {
 
 	@Autowired
 	private RentPlaceReservationService placeReservationService;
@@ -28,16 +28,6 @@ public class RentPlaceReservationController {
 		model.addAttribute("rentPlaces", rentPlaces);
 		
 		return "admin/rentPlaceReservationList";
-	}
-	
-	// 작성자 : 편용림 대관예매 승인 요청
-	
-	@GetMapping("/update")
-	public String updateRentPlace(Integer id) {
-		
-		int result = placeReservationService.updateRentPlaceReservation(id);
-		
-		return "redirect:/rentPlace";
 	}
 	
 }

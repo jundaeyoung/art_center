@@ -9,7 +9,7 @@
 
 <div class="rental__img"></div>
 <div class="rental__title">
-	<h1>${location}대관</h1>
+	<h1>${locationLists[0].location}대관</h1>
 </div>
 
 <div class="rental__info">
@@ -42,7 +42,7 @@
 				</div>
 				<div class="rental__price">
 					 <p id="totalPrice" style="margin: 0;"></p> 
-					<input type=hidden id="totalPrice2" name="rentPrice" value="${price}">
+					<input type=hidden id="totalPrice2" name="rentPrice" value="${locationLists[0].price}">
 				</div>
 				<div class="rental__time">
 					<label>대관 시간 : </label> <select id="timeSelect" name="startTime" onchange="calculatePrice()">

@@ -3,7 +3,7 @@
 
 <div class="main">
 
-	<div class="">
+	<div class="fail">
 
 		<h1>결제실패</h1>
 

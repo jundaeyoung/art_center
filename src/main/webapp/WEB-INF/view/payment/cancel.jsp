@@ -3,19 +3,14 @@
 
 <div class="main">
 
-	<div class="">
+	<div class="cancle">
 
 		<h1>결제취소</h1>
 
 
 	</div>
 
-
-
-
 </div>
-
-
 
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

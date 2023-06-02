@@ -8,13 +8,13 @@
 
 	<select id="selectAnswer"  resultType="com.bclass.arts_center.repository.model.Answer">
 		select * from answer_tb
-		where id=#{questionId}
+		where question_id=#{questionId}
 	</select>
 
 	<!-- 작성자 : 전대영 answerInsert -->
 	<insert id="insertAnswer">
 		insert into answer_tb (content, user_id, question_id)
-		values('어디야',#{userId},#{questionId});
+		values(#{content},#{userId},#{questionId});
 	</insert>
 
 

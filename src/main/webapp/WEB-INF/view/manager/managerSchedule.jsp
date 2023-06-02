@@ -141,7 +141,8 @@
 							type: "GET",
 							contentType: 'application/json; charset=utf-8',
 							dataType: 'json',
-							success: function(event) {
+							success: function(data) {
+									let event = data.data;
 									$("#id").val(event.id),
 									$("#title").text(event.title);
 									$("#showDate").text(event.startDate);

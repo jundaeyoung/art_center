@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
@@ -13,50 +12,47 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 
-	<div class="show-content">
-		<div class="show-title">
-			<h2>
-				<a href="/schedule">전체일정</a>
-			</h2>
-		</div>
-		<div class="category-list-table">
-			<table class="show-type">
-				<tr>
-					<td class="category-list">
-						<button type="submit" class="show-type-btn" name="category"
-							value="오페라하우스" onclick="location.href='/schedule/category/1'">오페라하우스</button>
-					</td>
-					<td class="category-list">
-						<button type="submit" class="show-type-btn" name="category"
-							value="디자인미술관" onclick="location.href='/schedule/category/2'">디자인미술관</button>
-					</td>
-					<td class="category-list">
-						<button type="submit" class="show-type-btn" name="category"
-							value="아카데미" onclick="location.href='/schedule/category/3'">아카데미</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-		
-		<div class="modal" id="myModal">
-		<div class="modal-content">
-			<span class="close" id="close" onclick="close()">&times;</span>
-			<input type="hidden" class="id" id="id" name="id">
-			<h3 class="modal-title" id="title"></h3>
-			<span class="startDate" id="startDate"></span> ~ 
-			<span class="endDate" id="endDate"></span> 
-			<p class="holeName" id="holeName"></p>
-			<p class="imgRoute"  id="imgRoute"><img alt="" id="images" width="210" height="280" ></p>
-   			<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
-		</div>
+<div class="show-content">
+	<div class="show-title">
+		<h2>
+			<a href="/schedule">전체일정</a>
+		</h2>
 	</div>
-		
-		
-		
-		<div id='calendar'></div>
+	<div class="category-list-table">
+		<table class="show-type">
+			<tr>
+				<td class="category-list">
+					<button type="submit" class="show-type-btn" name="category" value="오페라하우스" onclick="location.href='/schedule/category/1'">오페라하우스</button>
+				</td>
+				<td class="category-list">
+					<button type="submit" class="show-type-btn" name="category" value="디자인미술관" onclick="location.href='/schedule/category/2'">디자인미술관</button>
+				</td>
+				<td class="category-list">
+					<button type="submit" class="show-type-btn" name="category" value="아카데미" onclick="location.href='/schedule/category/3'">아카데미</button>
+				</td>
+			</tr>
+		</table>
 	</div>
 
-	<script type="text/javascript">
+	<div class="modal" id="myModal">
+		<div class="modal-content">
+			<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="id" id="id" name="id">
+			<h3 class="modal-title" id="title"></h3>
+			<span class="startDate" id="startDate"></span> ~ <span class="endDate" id="endDate"></span>
+			<p class="holeName" id="holeName"></p>
+			<p class="imgRoute" id="imgRoute">
+				<img alt="" id="images" width="210" height="280">
+			</p>
+			<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
+		</div>
+	</div>
+
+
+
+	<div id='calendar'></div>
+</div>
+
+<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() {
 			let calendarEl = document.getElementById('calendar');
 			let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -217,8 +213,8 @@
 							type: "GET",
 							contentType: 'application/json; charset=utf-8',
 							dataType: 'json',
-							success: function(event) {
-									console.log(event);
+							success: function(data) {
+									let event = data.data;
 									$("#id").val(event.id),
 									$("#title").text(event.title);
 									$("#startDate.startDate").text(event.startDate);

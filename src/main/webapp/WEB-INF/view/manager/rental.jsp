@@ -48,3 +48,4 @@
 </div>
 <script type="text/javascript" src="/js/manager/rental.js"></script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+

@@ -9,6 +9,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script type="text/javascript" src="/js/daterangepicker.js"></script>
 
 
 
@@ -56,10 +57,8 @@
 	<fmt:parseNumber var="youthRate" type="number" value="${showList.youthRate}" />
 	<fmt:formatNumber value="${youthRate}" pattern="#,##0" var="formattedYouthRate" />
 	<fmt:parseNumber var="infantRate" type="number" value="${showList.infantRate}" />
-	<fmt:formatNumber value="${infantRate}" pattern="#,##0" var="formattedInfantRate" />
 	<c:set var="totalAdultPrice" value="${adultRate * showList.adultCount}" />
-	<c:set var="totalYouthPrice" value="${adultRate * showList.youthCount}" />
-	<c:set var="totalInfantPrice" value="${adultRate * showList.infantCount}" />
+	<c:set var="totalYouthPrice" value="${youthRate * showList.youthCount}" />
 
 	<fmt:formatNumber value="${totalAdultPrice}" pattern="#,##0" var="A__price" />
 	<fmt:formatNumber value="${totalYouthPrice}" pattern="#,##0" var="Y__price" />
@@ -74,20 +73,19 @@
 	<div class="show">
 		<div class="review__content">
 			<c:choose>
-				<c:when test="${imgRoute==null}">
+				<c:when test="${showList.get(0).getTitle()==null}">
 					<h1>주문 목록이 없습니다.</h1>
 				</c:when>
 				<c:otherwise>
 					<div>
-						<img src="/images/${imgRoute}" width="350" height="450">
+						<img src="/images/upload/${showList.get(0).getImgRoute()}" width="350" height="450">
 					</div>
 					<div class="show__content">
 						<h1>${title}</h1>
 						<div>
-							<p>기간 : ${startDate}&nbsp&nbsp~&nbsp&nbsp${endDate}</p>
-							<p>성인 요금 : ${adultRate}원</p>
-							<p>청소년 요금 : ${youthRate}원</p>
-							<p>유아 요금 : ${infantRate}원</p>
+							<p>기간 : ${showList.get(0).getStartDate()}&nbsp&nbsp~&nbsp&nbsp${showList.get(0).getEndDate()}</p>
+							<p>성인 요금 : ${showList.get(0).getAdultRate()}원</p>
+							<p>청소년 요금 : ${showList.get(0).getYouthRate()}원</p>
 						</div>
 					</div>
 					<div class="total" style="display: flex; justify-content: center;">
@@ -100,16 +98,12 @@
 		<c:forEach var="showList" items="${showList}">
 
 			<div class="money__content">
-				<div></div>
 				<div id="money">
 					<div>
 						<p>성인 : ${showList.adultCount}명</p>
 					</div>
 					<div>
 						<p>청소년 : ${showList.youthCount}명</p>
-					</div>
-					<div>
-						<p>유아 : ${showList.infantCount}명</p>
 					</div>
 				</div>
 				<h3>매출 : ${T__price}</h3>
@@ -119,42 +113,7 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	$(function() {
-		$('#startDate').daterangepicker(
-				{
-					"locale" : {
-						"format" : "YYYY-MM-DD",
-						"separator" : " ~ ",
-						"applyLabel" : "확인",
-						"cancelLabel" : "취소",
-						"fromLabel" : "From",
-						"toLabel" : "To",
-						"customRangeLabel" : "Custom",
-						"weekLabel" : "W",
-						"daysOfWeek" : [ "월", "화", "수", "목", "금", "토", "일" ],
-						"monthNames" : [ "1월", "2월", "3월", "4월", "5월", "6월",
-								"7월", "8월", "9월", "10월", "11월", "12월" ],
-						"firstDay" : 0
-					},
-					"startDate" : "2023-5-16",
-					"endDate" : "2023-10-23",
-					"drops" : "down"
-				},
-				function(start, end, label) {
-					console.log('New date range selected: '
-							+ start.format('YYYY-MM-DD') + ' to '
-							+ end.format('YYYY-MM-DD') + ' (predefined range: '
-							+ label + ')');
-				});
-	});
 
-	// 파일 업로드 시 이름 나오도록 
-	$("#file").on('change', function() {
-		var fileName = $("#file").val();
-		$(".upload-name").val(fileName);
-	});
-</script>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 

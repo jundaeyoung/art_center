@@ -1,23 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<link rel="stylesheet" href="/css/success.css">
 
 <style>
-.content {
-	display: flex;
-	flex-direction: column;
-}
 
-.content div {
-	display: flex;
-	flex-direction: row;
-	align-items:center;
-	font-size: 20px;
-}
-
-.content div h3 {
-	width: 150px;
-}
 </style>
 
 
@@ -52,3 +39,4 @@
 </div>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%></html>
+

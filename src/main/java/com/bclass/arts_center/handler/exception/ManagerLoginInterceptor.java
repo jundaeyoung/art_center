@@ -20,7 +20,7 @@ public class ManagerLoginInterceptor implements HandlerInterceptor{
 		HttpSession session = request.getSession();
 		User principal = (User)session.getAttribute(Define.PRINCIPAL);
 		
-		if(principal!=null && principal.getRoleId()!=2) {
+		if(principal==null || principal.getRoleId()!=2) {
 			throw new LoginException("매니저만 이용가능합니다. 매니저 아이디로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
 		}
 		return true;

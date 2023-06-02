@@ -21,7 +21,7 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
 		HttpSession session = request.getSession();
 		User principal = (User)session.getAttribute(Define.PRINCIPAL);
 		
-		if(principal!=null && principal.getRoleId()!=3) {
+		if(principal==null || principal.getRoleId()!=3) {
 			throw new LoginException("관리자만 이용가능합니다. 관리자 아이디로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
 		}
 		return true;

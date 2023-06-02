@@ -16,21 +16,26 @@ import com.bclass.arts_center.service.ScheduleService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/manager/schedule")
 public class ManagerScheduleController {
 
 	@Autowired
 	private ScheduleService scheduleService;
 	@Autowired
 	private HttpSession session;
+
 	/**
 	 * 작성자 : 전대영 managerSchedule 페이지 데이터 불러오기
 	 */
-	@GetMapping("/schedule")
+	@GetMapping("")
 	public String selectByShow(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<RequestShowDto> showList = scheduleService.selectByMyShow(principal.getId());
-		model.addAttribute("lists", showList);
+		if (showList.isEmpty() || showList == null) {
+			model.addAttribute("lists", null);
+		} else {
+			model.addAttribute("lists", showList);
+		}
 		return "/manager/managerSchedule";
 	}
 

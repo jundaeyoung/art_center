@@ -1,101 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<link rel="stylesheet" href="/css/user/ticketCheck.css">
 
-<style>
-#ticket--title {
-	border-bottom: 1px solid #ccc;
-}
 
-#ticket--title h2 {
-	font-size: 50px;
-	margin-bottom: 50px;
-	font-weight: 300;
-}
-
-.ticketInfo--wrap {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-top: 50px;
-}
-
-.ticket--content {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	border: 1px solid #ccc;
-	background-color: #efe3d3;
-	margin-bottom: 150px;
-	border-radius: 10px;
-	width: 1350px;
-	height: 450px;
-}
-
-.ticket--title h2 {
-	font-size: 70px;
-	font-weight: 300;
-	color: #DB2F1B;
-	max-height: 100px;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	margin-bottom: 10px;;
-}
-
-.ticket--hole h2 {
-	font-size: 30px;
-	color: #DB2F1B;
-	font-weight: 400;
-}
-
-.ticket--info {
-	margin-right: 200px;
-	margin-top: 70px;
-}
-
-.ticket--info div {
-	align-items: center;
-	border-bottom: 1px solid black;
-	width: 600px;
-	display: flex;
-}
-
-.ticket--date h2 {
-	font-size: 30px;
-	color: #d6644d;
-	font-weight: 400;
-}
-
-.ticket--price h2 {
-	font-size: 30px;
-	color: #d6644d;
-	font-weight: 400;
-}
-
-.ticket--button {
-	margin-top: 50px;
-	margin-left: 750px;
-	width: 200px;
-	height: 70px;
-	border-style: none;
-	background-color: rgb(255, 80, 90);
-	color: white;
-	font-size: 30px;
-	border-radius: 10px;
-}
-
-.qrcode {
-	width: 350px;
-	height: 350px;
-	transform: rotate(270deg);
-	margin-top: 20px;
-	margin-left: 10px;
-}
-
-.ticket--content form {
-	width: 500px;
-}
-</style>
 
 
 <div class="main">
@@ -158,3 +65,7 @@
 
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+
+
+

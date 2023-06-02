@@ -22,8 +22,8 @@ public class AnswerService {
 	
 	
 	@Transactional
-	public Integer createAnswerById(Integer userId, Integer quetionId) {
-		Integer result =  answerRepository.insertAnswer(userId, quetionId);
+	public Integer createAnswerById(String content,Integer userId, Integer quetionId) {
+		Integer result =  answerRepository.insertAnswer(content,userId, quetionId);
 		return result;
 	}
 	

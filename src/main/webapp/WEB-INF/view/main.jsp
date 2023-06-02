@@ -1,238 +1,199 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-<script
-   src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script
-   src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
 <script type="text/javascript"></script>
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script
-   src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/manager/managerSchedule.css">
 <script src="https://www.gstatic.com/charts/loader.js"></script>
-<script
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
 
 <div class="dd" style="height: 100%">
-   <c:choose>
-      <c:when test="${principal==null || principal.roleId==1}">
-         <div class="content--box">
-            <div class="content">
-               <ul class="slider">
-                  <c:forEach var="showList" items="${showsList}">
-                     <li>
-                        <div class="content--info">
-                           <dl class="right">
-                              <div class="info">
-                                 <p
-                                    style="margin-top: 180px; margin-left: -330px; background-color: #fff; border: 1px solid #fff; border-radius: 20px; font-size: 20px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</p>
-                                 <h2
-                                    style="margin-top: -20px; margin-left: -330px; font-size: 35px; font-weight: 200;">🔔️
-                                    ${showList.location}</h2>
-                                 <h1
-                                    style="margin-top: 30px; margin-left: -330px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
-                                 <c:choose>
-                                    <c:when test="${showList.rating==null}">
-                                       <h3
-                                          style="margin-top: 30px; margin-left: -330px; font-size: 27px; font-weight: 100; height: 60px;">평점이
-                                          아직 등록되지 않았습니다.</h3>
-                                    </c:when>
-                                    <c:otherwise>
-                                       <h3
-                                          style="margin-top: 30px; margin-left: -150px; font-size: 27px; font-weight: 100; height: 60px;">평점
-                                          : ${showList.rating}</h3>
-                                    </c:otherwise>
-                                 </c:choose>
-                                 <h4
-                                    style="margin-top: -20px; margin-left: -330px; font-size: 25px; font-weight: 100;">기간
-                                    :
-                                    ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
-                              </div>
-                              <c:choose>
-                                 <c:when test="${showList.imgRoute.length()>=30}">
-                                    <div>
-                                       <a href="/show/showView/${showList.id}"><img
-                                          src="/images/upload/${showList.imgRoute}" width="480"
-                                          height="600"></a>
-                                    </div>
-                                 </c:when>
-                                 <c:otherwise>
-                                    <div>
-                                       <a href="/show/showView/${showList.id}"><img
-                                          src="/images/${showList.imgRoute}" width="480"
-                                          height="600"></a>
-                                    </div>
-                                 </c:otherwise>
-                              </c:choose>
-                           </dl>
-                        </div>
-                     </li>
-                  </c:forEach>
-               </ul>
-               <div class="slide_wrapper_box">
-                  <div class="slide_wrapper">
-                     <ul class="slides">
-                        <c:forEach var="showList" items="${showsList}">
-                           <c:choose>
-                              <c:when test="${showList.imgRoute.length()>=30}">
-                                 <li><a href="/show/showView/${showList.id}"><img
-                                       src="/images/upload/${showList.imgRoute}" width="150"
-                                       height="200"></a></li>
-                              </c:when>
-                              <c:otherwise>
-                                 <li><a href="/show/showView/${showList.id}"><img
-                                       src="/images/${showList.imgRoute}" width="150" height="200"></a></li>
-                              </c:otherwise>
-                           </c:choose>
-                        </c:forEach>
-                     </ul>
-                  </div>
-                  <div class="btn">
-                     <button type="button" id="prev" class="button"><</button>
-                     <button type="button" id="next" class="button">></button>
-                  </div>
-               </div>
-            </div>
-            <c:choose>
-               <c:when test="${principal.roleId==2 && message!=0}">
-                  <div id="modal" class="modal-overlay">
-                     <div class="modal-window">
-                        <div class="title">
-                           <div>
-                              <h2>알림</h2>
-                           </div>
-                           <div class="close-area" style="color: black">X</div>
-                        </div>
-                        <c:forEach var="noticeList" items="${noticeList}">
-                           <div class="content"
-                              style="display: flex; justify-content: space-between;">
-                              <div class="msg">${noticeList.notice}</div>
-                              <form action="/managerNotice/update/${noticeList.id}"
-                                 method="get">
-                                 <div class="close-area">
-                                    <button type="submit" class="close-area"
-                                       style="border: 1px solid gray; border-radius: 10px; background-color: #eee;">확인</button>
-                                 </div>
-                              </form>
-                           </div>
+	<c:choose>
+		<c:when test="${principal==null || principal.roleId==1}">
+			<div class="content--box">
+				<div class="content">
+					<ul class="slider">
+						<c:forEach var="showList" items="${showsList}">
+							<li>
+								<div class="content--info">
+									<dl class="right">
+										<div class="info">
+											<p style="margin-top: 180px; margin-left: -330px; background-color: #fff; border: 1px solid #fff; border-radius: 20px; font-size: 20px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</p>
+											<h2 style="margin-top: -20px; margin-left: -330px; font-size: 35px; font-weight: 200;">🔔️ ${showList.location}</h2>
+											<h1 style="margin-top: 30px; margin-left: -330px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
+											<c:choose>
+												<c:when test="${showList.rating==null}">
+													<h3 style="margin-top: 30px; margin-left: -330px; font-size: 27px; font-weight: 100; height: 60px;">평점이 아직 등록되지 않았습니다.</h3>
+												</c:when>
+												<c:otherwise>
+													<h3 style="margin-top: 30px; margin-left: -150px; font-size: 27px; font-weight: 100; height: 60px;">평점 : ${showList.rating}</h3>
+												</c:otherwise>
+											</c:choose>
+											<h4 style="margin-top: -20px; margin-left: -330px; font-size: 25px; font-weight: 100;">기간 : ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
+										</div>
+										<c:choose>
+											<c:when test="${showList.imgRoute.length()>=30}">
+												<div>
+													<a href="/show/showView/${showList.id}"><img src="/images/upload/${showList.imgRoute}" width="480" height="600"></a>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div>
+													<a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}" width="480" height="600"></a>
+												</div>
+											</c:otherwise>
+										</c:choose>
+									</dl>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
+					<div class="slide_wrapper_box">
+						<div class="slide_wrapper">
+							<ul class="slides">
+								<c:forEach var="showList" items="${showsList}">
+									<c:choose>
+										<c:when test="${showList.imgRoute.length()>=30}">
+											<li><a href="/show/showView/${showList.id}"><img src="/images/upload/${showList.imgRoute}" width="150" height="200"></a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}" width="150" height="200"></a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							</ul>
+						</div>
+						<div class="btn">
+							<button type="button" id="prev" class="button"><</button>
+							<button type="button" id="next" class="button">></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
+	<c:choose>
+		<c:when test="${principal.roleId==2 && message!=0}">
+			<div id="modal" class="modal-overlay">
+				<div class="modal-window">
+					<div class="title">
+						<div>
+							<h2>알림</h2>
+						</div>
+						<div class="close-area" style="color: black">X</div>
+					</div>
+					<c:forEach var="noticeList" items="${noticeList}">
+						<div class="content" style="display: flex; justify-content: space-between;">
+							<div class="msg">${noticeList.notice}</div>
+							<form action="/managerNotice/update/${noticeList.id}" method="get">
+								<div class="close-area">
+									<button type="submit" class="close-area" style="border: 1px solid gray; border-radius: 10px; background-color: #eee;">확인</button>
+								</div>
+							</form>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</c:when>
+	</c:choose>
 
-                        </c:forEach>
-                     </div>
-                  </div>
-               </c:when>
-            </c:choose>
-         </div>
-      </c:when>
-      <c:otherwise>
-      </c:otherwise>
-   </c:choose>
+	<c:choose>
+		<c:when test="${pricipal!=null || principal.roleId==2}">
+			<div class="show-content">
+				<div class="modal" id="myModal">
+					<div class="modal-content">
+						<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="showId" id="showId" name="showId">
+						<h3 class="modal-title" id="title"></h3>
+						<span class="showDate" id="showDate"></span> <span class="showTime" id="showTime"></span>
+						<p class="holeName" id="holeName"></p>
+						<p class="imgRoute" id="imgRoute">
+							<img alt="" id="images" width="210" , height="280">
+						</p>
+						<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
+					</div>
+				</div>
 
-   <c:choose>
-      <c:when test="${pricipal!=null || principal.roleId==2}">
-         <div class="show-content">
-            <div class="modal" id="myModal">
-               <div class="modal-content">
-                  <span class="close" id="close" onclick="close()">&times;</span> <input
-                     type="hidden" class="showId" id="showId" name="showId">
-                  <h3 class="modal-title" id="title"></h3>
-                  <span class="showDate" id="showDate"></span> <span
-                     class="showTime" id="showTime"></span>
-                  <p class="holeName" id="holeName"></p>
-                  <p class="imgRoute" id="imgRoute">
-                     <img alt="" id="images" width="210" , height="280">
-                  </p>
-                  <button class="showView" id="showView" onclick="showView()"
-                     style="text-align: center;">자세히보기</button>
-               </div>
-            </div>
+				<div id='calendar-container' style="display: flex; width: 1500px; justify-content: space-between; align-items: center; margin-left: -100px;">
+					<div id='calendar' style="width: 800px; height: 500px;"></div>
+					<div id="columnchart_material" style="width: 700px; height: 600px; margin-left: 50px; margin-top: 150px;"></div>
+				</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="show-content">
+				<div class="modal" id="myModal">
+					<div class="modal-content" style="margin: 0;">
+						<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="showId" id="showId" name="showId">
+						<h3 class="modal-title" id="title"></h3>
+						<span class="showDate" id="showDate"></span> <span class="showTime" id="showTime"></span>
+						<p class="holeName" id="holeName"></p>
+						<p class="imgRoute" id="imgRoute">
+							<img alt="" id="images" width="210" , height="280">
+						</p>
+						<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
+					</div>
+				</div>
 
-            <div id='calendar-container'
-               style="display: flex; width: 1500px; justify-content: space-between; align-items: center; margin-left: -100px;">
-               <div id='calendar' style="width: 800px; height: 500px;"></div>
-               <div id="columnchart_material"
-                  style="width: 700px; height: 600px; margin-left: 50px; margin-top: 150px;"></div>
-            </div>
-         </div>
-      </c:when>
-      <c:otherwise>
-         <div class="show-content">
-            <div class="modal" id="myModal">
-               <div class="modal-content" style="margin: 0;">
-                  <span class="close" id="close" onclick="close()">&times;</span> <input
-                     type="hidden" class="showId" id="showId" name="showId">
-                  <h3 class="modal-title" id="title"></h3>
-                  <span class="showDate" id="showDate"></span> <span
-                     class="showTime" id="showTime"></span>
-                  <p class="holeName" id="holeName"></p>
-                  <p class="imgRoute" id="imgRoute">
-                     <img alt="" id="images" width="210" , height="280">
-                  </p>
-                  <button class="showView" id="showView" onclick="showView()"
-                     style="text-align: center;">자세히보기</button>
-               </div>
-            </div>
-
-            <div id='user-calendar-container'>
-               <div id='userCalendar' style="width: 700px; height: 600px;"></div>
-               <div class="main-map">
-                  <h2>찾아오시는 길</h2>
-                  <div id='map'
-                     style="width: 700px; height: 520px; margin-right: 30px;"></div>
-               </div>
-            </div>
-         </div>
-      </c:otherwise>
-   </c:choose>
+				<div id='user-calendar-container'>
+					<div id='userCalendar' style="width: 700px; height: 600px;"></div>
+					<div class="main-map">
+						<h2>찾아오시는 길</h2>
+						<div id='map' style="width: 700px; height: 520px; margin-right: 30px;"></div>
+					</div>
+				</div>
+			</div>
+		</c:otherwise>
+	</c:choose>
 
 
 
 
-   <div class="main__notice">
-      <div class="main_notice_title">
-         <span>Notice</span>
-      </div>
-      <div class="notice__title">
-         <h1>공지사항</h1>
-         <h1>
-            <a href="/announcement">더보기 +</a>
-         </h1>
-      </div>
-      <div class="no_content">
-         <a href="/announcement"> <c:forEach var="selectAnnouncement"
-               items="${selectAnnouncement}">
-               <div class="notice__content">
-                  <ul style="padding: 0 20px;">
-                     <li class="item"><span style="font-size: 30px;">${selectAnnouncement.title}</span>
-                     </li>
-                  </ul>
-               </div>
-            </c:forEach>
-         </a>
-      </div>
-   </div>
+	<div class="main__notice">
+		<div class="main_notice_title">
+			<span>Notice</span>
+		</div>
+		<div class="notice__title">
+			<h1>공지사항</h1>
+			<h1>
+				<a href="/announcement">더보기 +</a>
+			</h1>
+		</div>
+		<div class="no_content">
+			<a href="/announcement"> <c:forEach var="selectAnnouncement" items="${selectAnnouncement}">
+					<div class="notice__content">
+						<ul style="padding: 0 20px;">
+							<li class="item"><span style="font-size: 30px;">${selectAnnouncement.title}</span></li>
+						</ul>
+					</div>
+				</c:forEach>
+			</a>
+		</div>
+	</div>
 </div>
 
 
 
 <script type="text/javascript" src="/js/main.js"></script>
 <c:choose>
-   <c:when test="${pricipal!=null || principal.roleId==2}">
-      <script type="text/javascript">
+	<c:when test="${pricipal!=null || principal.roleId==2}">
+		<script type="text/javascript">
 $(document).ready(function() {
     $.ajax({
         type: 'get',
         url: '/apiShowSale/manager/showSale',
           contentType: 'application/json; charset=utf-8',
-   }).done(function(response) {
+   }).done(function(data) {
       google.charts.load('current', {'packages':['bar']});
        google.charts.setOnLoadCallback(drawChart);
-
+		
+       let response = data.data;
        function drawChart() {
          var data = google.visualization.arrayToDataTable([
            ['title', '성인 ', '청소년 수','총 수'],
@@ -258,31 +219,6 @@ $(document).ready(function() {
          var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
          chart.draw(data, google.charts.Bar.convertOptions(options));
-             
-             
-       /* var data = new google.visualization.arrayToDataTable([
-       data.addColumn('string', '요일');
-       data.addColumn('number', '방문자수(명)');
-       for(var i=0; i<response.length;i++){
-          data.addRows([
-          [ response[i].title, response[i].adultCount ],
-          [ response[i].title, response[i].youthCount ],
-          ]);
-       }
-       var options = {
-          title : '공연별 방문자 현황',
-          hAxis : {
-             title : '요일',
-             viewWindow : {
-                min : [ 7, 30, 0 ],
-                max : [ 17, 30, 0 ]
-             }
-          },
-          vAxis : {
-             title : '방문자수(명)'
-          }
-          isStacked: true,
-       }; */
        var chart = new google.visualization.ColumnChart(
        document.getElementById('chart_div'));
        chart.draw(data, options);
@@ -392,7 +328,8 @@ $(document).ready(function() {
                      type: "GET",
                      contentType: 'application/json; charset=utf-8',
                      dataType: 'json',
-                     success: function(event) {
+                     success: function(data) {
+                    	   let event = data.data;
                            $("#id").val(event.id),
                            $("#title").text(event.title);
                            $("#showDate").text(event.startDate);
@@ -422,9 +359,9 @@ $(document).ready(function() {
          calendar.render();
       });
 </script>
-   </c:when>
-   <c:otherwise>
-      <script type="text/javascript">
+	</c:when>
+	<c:otherwise>
+		<script type="text/javascript">
    document.addEventListener('DOMContentLoaded', function() {
          let calendarEl = document.getElementById('userCalendar');
          let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -582,7 +519,8 @@ $(document).ready(function() {
                      type: "GET",
                      contentType: 'application/json; charset=utf-8',
                      dataType: 'json',
-                     success: function(event) {
+                     success: function(data) {
+                    	   let event = data.data;
                            $("#id").val(event.id),
                            $("#title").text(event.title);
                            $("#startDate.startDate").text(event.startDate);
@@ -629,7 +567,9 @@ $(document).ready(function() {
              marker.setMap(map);
       });
       </script>
-      <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
-   </c:otherwise>
+		<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
+	</c:otherwise>
 </c:choose>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+

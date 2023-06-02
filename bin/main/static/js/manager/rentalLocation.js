@@ -43,9 +43,9 @@ function calculatePrice() {
 		type: 'POST',
 		data: JSON.stringify(data),
 		contentType: 'application/json; charset=utf-8',
-	}).done(function(response) {
+	}).done(function(data) {
+		var response = data.data;
 		$('option').removeAttr('disabled');
-
 		for (var i = 0; i < response.length; i++) {
 			for (var j = response[i].startTime; j < response[i].endTime; j++) {
 				$("#timeSelect option[value*='" + response[i].startTime + "']").attr("disabled", true);

@@ -40,7 +40,6 @@ public class AuthController {
 	private HttpSession session;
 	
 	
-	
 	// 편용림
 	// 카카오 엑세스 토큰 들고오기
 	@GetMapping("/auth/kakao/callback")
@@ -61,7 +60,7 @@ public class AuthController {
 		ResponseEntity<OAuthTokenKakao> responseToken = restTemplate.exchange("https://kauth.kakao.com/oauth/token",
 				HttpMethod.POST, kakaoReqEntity, OAuthTokenKakao.class);
 		
-		ObjectMapper objectMapper = new ObjectMapper();
+//		ObjectMapper objectMapper = new ObjectMapper();
 		
 		ResponseEntity<KakaoDto> userInfo = requestKakaoUserInfo(responseToken.getBody().getAccessToken());
 		
@@ -76,7 +75,6 @@ public class AuthController {
 		if (principal == null) {
 			return "/user/signUp";
 		}
-		
 		session.setAttribute(Define.PRINCIPAL, principal);
 		
 		return "redirect:/";
@@ -99,9 +97,7 @@ public class AuthController {
 				profileReqEntity,
 				KakaoDto.class);
 		
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-
+//		ObjectMapper objectMapper = new ObjectMapper();
 		
 		return response;
 	};
@@ -151,7 +147,7 @@ public class AuthController {
 		ResponseEntity<OAuthTokenGoogle> responseToken = restTemplate.exchange("https://oauth2.googleapis.com/token",
 				HttpMethod.POST, kakaoReqEntity, OAuthTokenGoogle.class);
 		
-		ObjectMapper objectMapper = new ObjectMapper();
+//		ObjectMapper objectMapper = new ObjectMapper();
 		
 		ResponseEntity<GoogleDto> userInfo = RequestGoogleUserInfo(responseToken.getBody().getAccess_token());
 		
@@ -194,8 +190,7 @@ public class AuthController {
 				profileReqEntity,
 				GoogleDto.class);
 		
-		
-		ObjectMapper objectMapper = new ObjectMapper();
+//		ObjectMapper objectMapper = new ObjectMapper();
 		
 		
 		return response;

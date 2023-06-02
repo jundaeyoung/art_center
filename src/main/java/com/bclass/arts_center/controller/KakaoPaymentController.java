@@ -148,8 +148,7 @@ public class KakaoPaymentController {
 			kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
 			paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
 
-			int result = rentPlaceReservationService.updateRentByStatus(id);
-			System.out.println("업데이트 되는지 확인" + result);
+			rentPlaceReservationService.updateRentByStatus(id);
 		}
 		model.addAttribute("kakaoRefundResponse", kakaoRefundResponse);
 

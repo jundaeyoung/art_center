@@ -51,13 +51,6 @@ public class RentalController {
 	@GetMapping("")
 	public String rentalPage(RequestSignUpShowDto requestSignUpShowDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-
-		if (principal == null) {
-			throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
-		}
-		if (principal.getRoleId() != 2) {
-			throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
-		}
 		RequestShowDto show = showService.readShowByNewestOne(principal.getId());
 		if (show == null) {
 			model.addAttribute("show", null);
@@ -84,10 +77,7 @@ public class RentalController {
 		}
 		model.addAttribute("locationLists", locationLists);
 		model.addAttribute("timeList", timeList);
-		model.addAttribute("location", locationLists.get(0).getLocation());
 		model.addAttribute("locationId", id);
-		model.addAttribute("price", locationLists.get(0).getPrice());
-		model.addAttribute("name", locationLists.get(0).getName());
 		return "/manager/rentalLocation";
 	}
 
@@ -111,9 +101,6 @@ public class RentalController {
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, HttpServletResponse response, Model model) {
 		System.out.println(requestRentPlaceDto);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		if (principal == null) {
-			throw new CustomRestfullException("사용자 인증이 필요합니다.", HttpStatus.UNAUTHORIZED);
-		}
 		if (requestRentPlaceDto.getStartTime() == null || requestRentPlaceDto.getEndTime() == null) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		}
@@ -135,10 +122,9 @@ public class RentalController {
 		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
 
 		model.addAttribute("dto", requestRentPlaceDto);
-		
+
 		rentalService.insertRental(requestRentPlaceDto);
 		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
-		
 
 		String dtoStartDate = requestRentPlaceDto.getStartDate().replaceAll("-", "");
 		String startDate = dtoStartDate.replaceAll(" ", "");
@@ -168,7 +154,7 @@ public class RentalController {
 		try {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter w = response.getWriter();
-			String msg = "공연신청이 완료되었습니다.";
+			String msg = "대관 신청이 완료되었습니다.";
 			w.write("<script>alert('" + msg + "');location.href='/';</script>");
 			w.flush();
 			w.close();

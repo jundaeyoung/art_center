@@ -4,60 +4,52 @@
 
 
 
-		<div id="layoutSidenav_content">
-			<main>
-				<div class="container-fluid px-4">
-					<h1 class="mt-4">Tables</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-						<li class="breadcrumb-item active">Tables</li>
-					</ol>
-					<div class="card mb-4">
-						<div class="card-body">
-							DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net/">official
-								DataTables documentation</a> .
-						</div>
-					</div>
-					<div class="card mb-4">
-						<div class="card-header">
-							<i class="fas fa-table me-1"></i> DataTable Example
-						</div>
-						<div class="card-body">
-							<table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>user_name</th>
-                                            <th>nickname</th>
-                                            <th>email</th>
-                                            <th>birth_date</th>
-                                            <th>tel</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="managerList" items="${managerList}">
-                                        <tr>
-                                        <td>${managerList.userName}</td>
-                                        <td>${managerList.nickname}</td>
-                                        <td>${managerList.email}</td>
-                                        <td>${managerList.birthDate}</td>
-                                        <td>${managerList.tel}</td>
-                                        <td>
-                                        <form action="/admin/updateUser?username=${managerList.userName}" method="get">
-                                         <a href="/admin/updateUser?userName=${managerList.id}">수정</a> 
-                                        </form>
-                                        </td>
-                                        <td>
-                                        <form action="/admin/deleteUser?id=${managerList.id}" method="get">
-                                        <a href="/admin/deleteUser?id=${managerList.id}">삭제</a> 
-                                        </form>
-                                        </td>
-                                        </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-						</div>
-					</div>
+<div id="layoutSidenav_content">
+	<main>
+		<div class="container-fluid px-4">
+			<h1 class="mt-4">Manager</h1>
+			<ol class="breadcrumb mb-4">
+			</ol>
+			<div class="card mb-4">
+				<div class="card-body">ManagerList</div>
+			</div>
+			<div class="card mb-4">
+				<div class="card-header">
+					<i class="fas fa-table me-1"></i> ManagerList
 				</div>
-<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>
+				<div class="card-body">
+					<table id="datatablesSimple">
+						<thead>
+							<tr>
+								<th>user_name</th>
+								<th>nickname</th>
+								<th>email</th>
+								<th>birth_date</th>
+								<th>tel</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="managerList" items="${managerList}">
+								<tr>
+									<td>${managerList.userName}</td>
+									<td>${managerList.nickname}</td>
+									<td>${managerList.email}</td>
+									<td>${managerList.birthDate}</td>
+									<td>${managerList.tel}</td>
+									<td><a href="/admin/updateUser/${managerList.userName}">수정</a></td>
+									<td><a href="/admin/deleteManager/${managerList.id}">삭제</a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>
+		
+		
+		
+		
+		

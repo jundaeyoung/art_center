@@ -12,6 +12,7 @@ public class TicketCheckDto {
 	private Integer id;
 	private Integer userId;
 	private String birthDate;
+	private String tel;
 	
 
 	private Integer showId;

@@ -14,7 +14,7 @@ import com.bclass.arts_center.service.TicketService;
 
 @Controller
 @RequestMapping("/ticketing")
-public class TicektingController {
+public class AdminTicektingController {
 
 	@Autowired
 	private TicketService ticketService;

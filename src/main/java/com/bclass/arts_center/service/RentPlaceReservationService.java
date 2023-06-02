@@ -27,7 +27,6 @@ public class RentPlaceReservationService {
 	};
 	
 	
-	//작성자 편용림 : 대관 예약 승인 요청
 	
 	@Transactional
 	public int updateRentPlaceReservation(Integer id) {

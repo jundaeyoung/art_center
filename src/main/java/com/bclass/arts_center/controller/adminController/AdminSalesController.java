@@ -1,6 +1,5 @@
 package com.bclass.arts_center.controller.adminController;
 
-import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -13,18 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.RentSalesDto;
-import com.bclass.arts_center.dto.TicketingDto;
 import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
 import com.bclass.arts_center.service.AdminSaleService;
-import com.bclass.arts_center.service.TicketService;
 
 @Controller
-@RequestMapping("/sales")
-public class SalesController {
+@RequestMapping("/admin/sales")
+public class AdminSalesController {
 
-	@Autowired
-	private TicketService ticketService;
-	
 	@Autowired
 	private AdminSaleService adminSaleService;
 	
@@ -73,13 +67,12 @@ public class SalesController {
 	}
 	
 	@PostMapping("/showSalesDay")
-	public String ShowSalesDay(@RequestParam("startDate") String startDate,
-            @RequestParam("endDate") String endDate,Model model){
-		System.out.println(startDate);
-		System.out.println(endDate);
-		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleByStartDateAndEndDate(startDate, endDate);
-		System.out.println(showSalesList);
-		
+	public String ShowSalesDay(RequestManagerShowSaleDto requestManagerShowSaleDto,Model model){
+		String str = requestManagerShowSaleDto.getStartDate();
+		String[] split = str.split(" ~ ");
+		requestManagerShowSaleDto.setStartDate(split[0] + " 00:00:00");
+		requestManagerShowSaleDto.setEndDate(split[1] + " 00:00:00");
+		List<RequestManagerShowSaleDto> showSalesList = adminSaleService.readShowSaleByStartDateAndEndDate(requestManagerShowSaleDto.getStartDate(), requestManagerShowSaleDto.getEndDate());
 		int totalShowPrice = 0;
 		for (RequestManagerShowSaleDto dto : showSalesList) {
 	        String ShowPriceString = Integer.toString(dto.getTotalshowSales());
@@ -89,7 +82,6 @@ public class SalesController {
 	    }
 		DecimalFormat decimalFormat = new DecimalFormat("#,###"); // 쉼표 포함한 형식 지정
 		String formattedTotalRentPrice = decimalFormat.format(totalShowPrice);
-		
 		model.addAttribute("showSalesList", showSalesList);
 		model.addAttribute("totalShowPrice", formattedTotalRentPrice);
 		return "/admin/showSales";
@@ -105,9 +97,12 @@ public class SalesController {
 		}
 	
 	@PostMapping("/rentSalesDay")
-	public String rentSalesDay(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate, Model model) {
-		
-		List<RentSalesDto> rentSaleslist = adminSaleService.readRentalSlesByStartDateAndEndDate(startDate, endDate);
+	public String rentSalesDay(RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
+		String str = requestManagerShowSaleDto.getStartDate();
+		String[] split = str.split(" ~ ");
+		requestManagerShowSaleDto.setStartDate(split[0] + " 00:00:00");
+		requestManagerShowSaleDto.setEndDate(split[1] + " 00:00:00");
+		List<RentSalesDto> rentSaleslist = adminSaleService.readRentalSlesByStartDateAndEndDate(requestManagerShowSaleDto.getStartDate(), requestManagerShowSaleDto.getEndDate());
 		
 		int totalRentPrice = 0;
 	    for (RentSalesDto rentSalesDto : rentSaleslist) {

@@ -28,10 +28,7 @@ public class AnnouncementCotroller {
 
 	@Autowired
 	private AnnouncementService announcementService;
-	
-	@Autowired
-	private HttpSession session;
-	
+
 	@GetMapping("")
 	public String notice(Model model, @RequestParam(defaultValue = "select") String crud) {
 		String searchText = "";
@@ -40,59 +37,13 @@ public class AnnouncementCotroller {
 		model.addAttribute("announcements", announcements);
 		model.addAttribute("searchText", searchText);
 		return "/announcement/notice";
-		
 	}
+
 	@PostMapping("/search")
 	public String notice2(Model model, String searchText) {
-		//System.out.println(searchText);
 		List<Announcement> announcements = announcementService.readAnnouncementBySearchText(searchText);
 		model.addAttribute("announcements", announcements);
 		model.addAttribute("crud", "select");
 		return "/announcement/notice";
 	}
-	
-	@PostMapping("/write")
-	public String write(Model model, Announcement announcement) {
-		 User principal = (User)session.getAttribute(Define.PRINCIPAL);
-		 
-		 announcement.setUserId(principal.getId());
-		
-		 announcementService.createAnnouncement(announcement);
-		return "redirect:/announcement";
-	}
-	
-	@GetMapping("detail")
-	public String detailAnnouncement(Model model, Integer id) {
-		//System.out.println("디테일입니다.");
-		Announcement announcement = announcementService.readAnnouncementById(id);
-		//System.out.println(announcement);
-		model.addAttribute("announcement", announcement);
-		model.addAttribute("id", id);
-		return "/announcement/detail";
-	}
-
-	// 수정
-	@PostMapping("/update")
-	public String updateAnnouncement(Announcement announcement, Integer id) {
-		announcement.setId(id);
-		int result = announcementService.updateAnnouncement(announcement);
-		//System.out.println(result);
-		return "redirect:/announcement";
-	}
-	
-	//삭제
-	@GetMapping("/delete")
-	public String deleteAnnouncement(Integer id) {
-		int result = announcementService.deleteAnnouncementByUserId(id);
-		
-		return "redirect:/announcement";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

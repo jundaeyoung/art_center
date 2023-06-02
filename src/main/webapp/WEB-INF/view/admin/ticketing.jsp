@@ -25,9 +25,9 @@
                         <th>닉네임</th>
                         <th>전화번호</th>
                         <th>EMail</th>
+                        <th>공연제목</th>
                         <th>공연날짜</th>
                         <th>공연시간</th>
-                        <th>공연제목</th>
                         <th>성인요금</th>
                         <th>청소년요금</th>
                         <th>성인인원수</th>
@@ -53,9 +53,9 @@
                            <th>${ticketList.nickname}</th>
                            <th>${ticketList.tel}</th>
                            <th>${ticketList.email}</th>
+                           <th>${ticketList.title}</th>
                            <th>${ticketList.showDate}</th>
                            <th>${ticketList.showTime}</th>
-                           <th>${ticketList.title}</th>
                            <th>${ticketList.adultRate}</th>
                            <th>${ticketList.youthRate}</th>
                            <th>${ticketList.adultCount}</th>
@@ -73,3 +73,7 @@
       </div>
 
 <%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>
+
+
+
+

@@ -17,8 +17,8 @@ import com.bclass.arts_center.service.AnnouncementService;
 import com.bclass.arts_center.utils.Define;
 
 @Controller
-@RequestMapping("/Announcement")
-public class AnnouncementController {
+@RequestMapping("/admin/announcement")
+public class AdminAnnouncementController {
 
 	@Autowired
 	private AnnouncementService announcementService;
@@ -27,18 +27,14 @@ public class AnnouncementController {
 	private HttpSession session;
 	
 	@GetMapping("")
-	public String AnnouncementList (Model model) {
-		
-		List<Announcement> announcements = announcementService.readAnnouncement();
-		
-		model.addAttribute("announcements", announcements);
-		
+	public String announcementList (Model model) {
+		List<Announcement> announcementsList = announcementService.readAnnouncement();
+		model.addAttribute("announcements", announcementsList);
 		return "admin/announcementList";
 	}
 	
 	@GetMapping("/board")
 	public String writeBoard() {
-		System.out.println("111111111111");
 		return "admin/announcementWrite";
 	}
 	
@@ -55,20 +51,19 @@ public class AnnouncementController {
 		 User principal = (User)session.getAttribute(Define.PRINCIPAL);
 		 announcement.setUserId(principal.getId());
 		 announcementService.createAnnouncement(announcement);
-		return "redirect:/Announcement";
+		return "redirect:/admin/announcement";
 	}
 	
 	@PostMapping("/update")
 	public String updateAnnouncement(Announcement announcement) {
-		int result = announcementService.updateAnnouncement(announcement);
-		return "redirect:/Announcement";
+		announcementService.updateAnnouncement(announcement);
+		return "redirect:/admin/announcement";
 	}
 	@GetMapping("/delete")
 	public String deleteAnnouncement(Integer id) {
-		System.out.println("11111111111");
-		int result = announcementService.deleteAnnouncementByUserId(id);
+		announcementService.deleteAnnouncementByUserId(id);
 		
-		return "redirect:/Announcement";
+		return "redirect:/admin/announcement";
 	}
 	
 }

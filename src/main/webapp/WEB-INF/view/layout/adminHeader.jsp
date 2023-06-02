@@ -38,17 +38,17 @@
 						<a class="nav-link" href="/admin/userList"> 유저목록보기 </a>
 						<a class="nav-link" href="/admin/managerList"> 매니저목록보기 </a>
 						<div class="sb-sidenav-menu-heading">공지사항</div>
-						<a class="nav-link" href="/Announcement"> 공지사항 보기 </a>
+						<a class="nav-link" href="/admin/announcement"> 공지사항 보기 </a>
 						<div class="sb-sidenav-menu-heading">Question</div>
 						<a class="nav-link" href="/admin/questionAll"> Question 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">공연</div>
 						<a class="nav-link" href="/ticketing/">예매 목록</a>
 						<a class="nav-link" href="/admin/show">공연 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">대관</div>
-						<a class="nav-link" href="/rentPlace"> 대관 목록 보기 </a>
+						<a class="nav-link" href="/admin/rentPlace"> 대관 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">매출</div>
-						<a class="nav-link" href="/sales/show"> 공연 매출 보기 </a>
-						<a class="nav-link" href="/sales/rent"> 대관 매출 보기 </a>
+						<a class="nav-link" href="/admin/sales/show"> 공연 매출 보기 </a>
+						<a class="nav-link" href="/admin/sales/rent"> 대관 매출 보기 </a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">Static Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>

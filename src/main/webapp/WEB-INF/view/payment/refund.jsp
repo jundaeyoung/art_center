@@ -12,9 +12,6 @@
 		<h3>취소 금액 : </h3><p>${kakaoRefundResponse.canceledAmount.total}</p>
 		<h3>결제 수단 : </h3><p>${kakaoRefundResponse.paymentMethodType}</p>
 		
-	
-	
-	
 	</div>
 
 

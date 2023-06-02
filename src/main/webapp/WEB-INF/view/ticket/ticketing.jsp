@@ -99,3 +99,4 @@
 <!-- <script type="text/javascript" src="/js/reservationCalendar2.js"></script> -->
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+

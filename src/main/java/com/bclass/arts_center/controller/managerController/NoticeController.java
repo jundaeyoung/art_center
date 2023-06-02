@@ -13,16 +13,14 @@ import com.bclass.arts_center.service.NoticeService;
 @RequestMapping("/managerNotice")
 public class NoticeController {
 
-	
 	@Autowired
 	private NoticeService noticeService;
-	
+
 	@GetMapping("/notice")
 	public String notice() {
-		
 		return "/manager/managerNotice";
 	}
-	
+
 	@GetMapping("/update/{id}")
 	public String updateNotice(@PathVariable Integer id) {
 		noticeService.updateNotice(id);

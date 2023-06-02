@@ -50,9 +50,9 @@ public class SignUpShowController {
 	 */
 	@GetMapping("/signUpShow")
 	public String signUpShow(Model model) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<Hole> holeList = holeService.readHoleAll();
 		List<Category> categoryList = categoryService.readCategoryAll();
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			model.addAttribute("principal", null);
 		} else {
@@ -78,13 +78,6 @@ public class SignUpShowController {
 	public String signUpShowProc(RequestSignUpShowDto requestSignUpShowDto) {
 		MultipartFile file = requestSignUpShowDto.getFile();
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		if (principal == null) {
-			throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
-		}
-		if (principal.getRoleId() != 2) {
-			throw new CustomRestfullException("매니저 계정으로 로그인 해주세요.", HttpStatus.BAD_REQUEST);
-		}
-		// adminId 계속 변경해줘야함
 		Integer adminId = 3;
 		String notice = principal.getNickname() + "님이 공연등록을 신청하였습니다.";
 		if (file.isEmpty() == false) {
@@ -119,5 +112,4 @@ public class SignUpShowController {
 		return "redirect:/rental";
 	}
 
-	
 }
