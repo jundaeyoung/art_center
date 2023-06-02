@@ -9,7 +9,7 @@
 <div class="review__header"></div>
 
 <div class="menu">
-	<div>
+	<div class="home-menu">
 		<span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
 		</span>
 	</div>

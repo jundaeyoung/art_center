@@ -177,7 +177,7 @@
 							<c:when test="${myRegistrationInfoDto.showStatus == 0}">
 								<div class="show__btn">
 									<div class="show__schedule">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+										<a href="/manager/schedule">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule">
 										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
@@ -187,7 +187,7 @@
 							<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 0}">
 								<div class="show__btn">
 									<div class="show__schedule__btn">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+										<a href="/manager/schedule">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule__btn">
 										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
@@ -202,7 +202,7 @@
 						
 								<div class="show__btn">
 									<div class="show__schedule">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+										<a href="/manager/schedule">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule">
 										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>

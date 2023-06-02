@@ -181,7 +181,7 @@
 				<div id='user-calendar-container'>
 					<div id='userCalendar' style="width: 700px; height: 600px;"></div>
 					<div class="main-map">
-						<h2>찾아오는 길</h2>
+						<h2>찾아오시는 길</h2>
 						<div id='map'
 							style="width: 700px; height: 520px; margin-right: 30px;"></div>
 					</div>
@@ -430,7 +430,7 @@ $(document).ready(function() {
 			let calendar = new FullCalendar.Calendar(calendarEl, {
 				initialView : 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 				headerToolbar : { // 헤더에 표시할 툴 바
-					start : 'prev next today',
+					start : 'prev next',
 					center : 'title',
 					end : 'dayGridMonth'
 				},
@@ -620,13 +620,16 @@ $(document).ready(function() {
 				
 			let map = new kakao.maps.Map(container, options);
 
-			
-		});
+			let markerPosition  = new kakao.maps.LatLng(35.159573, 129.060249); 
 
-			
+			let marker = new kakao.maps.Marker({
+			    position: markerPosition
+
+			});
+			    marker.setMap(map);
+		});
 		</script>
-		<script type="text/javascript"
-			src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
+		<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
 	</c:otherwise>
 </c:choose>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

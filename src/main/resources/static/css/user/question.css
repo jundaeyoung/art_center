@@ -6,7 +6,7 @@
 .menu button{
 	width: 280px;
 	height: 95px;
-	font-size: 20px;
+	font-size: 18px;
 	background-color: #fff;
 	border-style: none;
 }
@@ -31,10 +31,14 @@
 
 .menu {
 	height: 100px;
-	border: 1px solid #ccc;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	border-bottom: 1px solid #ccc;
+}
+
+.home-menu {
+	border-left: 1px solid #ccc;
 }
 
 .menu div {
@@ -184,6 +188,7 @@
 	align-items: center;
 }
 
+
 .delete button {
 	border-style: none;
 	background-color: #fff;
@@ -250,6 +255,10 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.question_content {
+	width: 1400px;
 }
 
 .hide {

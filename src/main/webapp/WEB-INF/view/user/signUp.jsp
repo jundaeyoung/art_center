@@ -45,12 +45,11 @@
 							</div>
 						</c:when>
 						<c:otherwise>
-							<div id="imail">
+							<div id="ipw">
 								<p>아이디 :</p>
 								<i class="material-icons">person_outline</i> <input type="text"
 									placeholder="아이디를 입력하세요" name="userName" id="userName"
 									class="info"><br>
-								<button id="overlappedID" type="button">중복확인</button>
 								<br> <span id="olmessage"></span>
 							</div>
 							<span class="error--messege" id="error--userName"
