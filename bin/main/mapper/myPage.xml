@@ -75,5 +75,16 @@
 		ON h.location_id = l.id
 		WHERE t.id = #{id}
 	</select>
+	
+	<select id="selectMyShowCount" resultType="Integer">
+		SELECT count(*)
+		FROM show_tb AS s
+		LEFT JOIN rent_place_reservation_tb AS r
+		ON s.id = r.show_id
+		LEFT JOIN manager_payment_tb AS mp
+		ON r.id = mp.rent_id
+		WHERE s.organizer_id = #{organizerId}
+		ORDER BY s.start_date desc
+	</select>
 
 </mapper>

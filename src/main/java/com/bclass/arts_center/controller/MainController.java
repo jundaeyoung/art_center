@@ -42,9 +42,15 @@ public class MainController {
 		List<Announcement> selectAnnouncement = mainService.selectAnnouncement();
 		model.addAttribute("selectAnnouncement", selectAnnouncement);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+
 		if (principal == null) {
+			List<RequestShowDto> lists = scheduleService.selectByShow();
+			model.addAttribute("lists", lists);
 			model.addAttribute("principal", null);
-		} else {
+		} else if (principal.getRoleId() == 1) {
+			List<RequestShowDto> lists = scheduleService.selectByShow();
+			model.addAttribute("lists", lists);
+		}else {
 			List<Notice> noticeList = noticeService.readNotice(principal.getId());
 			List<RequestShowDto> showList = scheduleService.selectByMyShow(principal.getId());
 			model.addAttribute("lists", showList);

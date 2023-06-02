@@ -25,45 +25,44 @@
 
 
 <div class="container">
-   <div class="signInContainer">
-      <div class="loginContainer">
-         <div class="login--title">
-            <img alt="" src="/images/background/logo.png" class="loginLogo">
-         </div>
-         <br>
-         <form action="/user/signUp" method="post">
-            <div class="content">
-               <c:choose>
-                  <c:when test="${userInfo.id != null}">
-                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="userName"
-                           name="userName" value="${userInfo.id}">
-                     </div>
-                     <div class="form-group">
-                        <input type="hidden" class="form-control" id="password"
-                           name="password" value="${userInfo.id}">
-                     </div>
-                  </c:when>
-                  <c:otherwise>
-                     <div id="imail">
-                        <p>아이디 :</p>
-                        <i class="material-icons">person_outline</i> <input type="text"
-                           placeholder="아이디를 입력하세요" name="userName" id="userName"
-                           class="info"><br>
-                        <button id="overlappedID" type="button">중복확인</button>
-                        <br> <span id="olmessage"></span>
-                     </div>
-                     <span class="error--messege" id="error--userName"
-                        th:if="${valid_userName}">${valid_userName}</span>
-                     <br>
-                     <div id="ipw">
-                        <p>비밀번호 :</p>
-                        <i class="material-icons">lock_outline</i> <input
-                           type="password" placeholder="비밀번호를 입력하세요" name="password"
-                           id="password" class="info"> <br>
-                     </div>
-                  </c:otherwise>
-               </c:choose>
+	<div class="signInContainer">
+		<div class="loginContainer">
+			<div class="login--title">
+				<img alt="" src="/images/background/logo.png" class="loginLogo">
+			</div>
+			<br>
+			<form action="/user/signUp" method="post">
+				<div class="content">
+					<c:choose>
+						<c:when test="${userInfo.id != null}">
+							<div class="form-group">
+								<input type="hidden" class="form-control" id="userName"
+									name="userName" value="${userInfo.id}">
+							</div>
+							<div class="form-group">
+								<input type="hidden" class="form-control" id="password"
+									name="password" value="${userInfo.id}">
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div id="ipw">
+								<p>아이디 :</p>
+								<i class="material-icons">person_outline</i> <input type="text"
+									placeholder="아이디를 입력하세요" name="userName" id="userName"
+									class="info"><br>
+								<br> <span id="olmessage"></span>
+							</div>
+							<span class="error--messege" id="error--userName"
+								th:if="${valid_userName}">${valid_userName}</span>
+							<br>
+							<div id="ipw">
+								<p>비밀번호 :</p>
+								<i class="material-icons">lock_outline</i> <input
+									type="password" placeholder="비밀번호를 입력하세요" name="password"
+									id="password" class="info"> <br>
+							</div>
+						</c:otherwise>
+					</c:choose>
 
                <span class="error--messege" th:if="${valid_password}">${valid_password}</span>
                <br>

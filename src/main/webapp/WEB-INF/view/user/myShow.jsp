@@ -1,14 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 
 <style>
-
-#btn{
-  border: 0;
-  background-color: transparent;
-  font-size: 16px;
+#btn {
+	border: 0;
+	background-color: transparent;
+	font-size: 16px;
 }
 
 .container {
@@ -46,12 +44,12 @@
 	width: 150px;
 	height: 30px;
 	text-align: center;
-	
 }
 
 user__type {
 	border-spacing: 0;
 }
+
 .user__type {
 	display: flex;
 	justify-content: center;
@@ -73,8 +71,9 @@ user__type {
 	height: 60px;
 	text-align: center;
 }
+
 .user__ticket:nth-of-type(3) {
-	border-left:1px solid #ebebeb;
+	border-left: 1px solid #ebebeb;
 	border-top: 1px solid #ebebeb;
 	border-bottom: 1px solid #ebebeb;
 	width: 400px;
@@ -110,10 +109,8 @@ user__type {
 	width: 100%;
 }
 
-
-
-<style>
-.container {
+<
+style>.container {
 	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
@@ -245,47 +242,47 @@ user__type {
 <div class="container">
 	<div class="info">
 		<c:choose>
-		<c:when test="${principal.getRoleId()==1}">
-		<div class="user_reservation_list">
-			<table class="user__type">
-				<tr>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicket/${principal.id}'">티켓예매내역</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicketReview'">관람평</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" value="아카데미" onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-		</c:when>
-		<c:when test="${principal != null && principal.getRoleId()==2}">
-		<div class="user_reservation_list">
-			<table class="user__type">
-				<tr>
-					<td class="user__ticket">
- 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}'">공연 대관 내역</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/rentRefund'">환불내역</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" value="아카데미" onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-		</c:when>
-	</c:choose>
+			<c:when test="${principal.getRoleId()==1}">
+				<div class="user_reservation_list">
+					<table class="user__type">
+						<tr>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicket/${principal.id}'">티켓예매내역</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicketReview'">관람평</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" value="아카데미" onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</c:when>
+			<c:when test="${principal != null && principal.getRoleId()==2}">
+				<div class="user_reservation_list">
+					<table class="user__type">
+						<tr>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}'">공연 대관 내역</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/rentRefund'">환불내역</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn" name="info__category" value="아카데미" onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</c:when>
+		</c:choose>
 	</div>
 </div>
 
@@ -331,7 +328,7 @@ user__type {
 							<c:when test="${myRegistrationInfoDto.showStatus == 0}">
 								<div class="show__btn">
 									<div class="show__schedule">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+										<a href="/manager/schedule">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule">
 										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
@@ -341,7 +338,7 @@ user__type {
 							<c:when test="${myRegistrationInfoDto.rentPlaceStatus == 0}">
 								<div class="show__btn">
 									<div class="show__schedule__btn">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+										<a href="/manager/schedule">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule__btn">
 										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
@@ -356,27 +353,27 @@ user__type {
 
 								<div class="show__btn">
 									<div class="show__schedule__btn">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
+										<a href="/manager/schedule">공연일정&nbsp;(달력)</a>
 									</div>
 									<div class="show__schedule__btn">
 										<a href="/myPage/showDetail/${myRegistrationInfoDto.id}">예약 정보</a>
 									</div>
 									<div class="show__schedule__btn">
-									<form action="/kakao/refund/${myRegistrationInfoDto.getMPaymentId()}" method="post">
-										<div>
-											<input type="hidden" name="id" value="${myRegistrationInfoDto.id}">
-											<button type="submit" class="btn__a" id="btn">
-												<img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;&nbsp;환불요청
-											</button>
-										</div>
-									</form>
+										<form action="/kakao/refund/${myRegistrationInfoDto.getMPaymentId()}" method="post">
+											<div>
+												<input type="hidden" name="id" value="${myRegistrationInfoDto.id}">
+												<button type="submit" class="btn__a" id="btn">
+													<img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;&nbsp;환불요청
+												</button>
+											</div>
+										</form>
 									</div>
 
 
 								</div>
 							</c:when>
-						<c:otherwise>
-						</c:otherwise>
+							<c:otherwise>
+							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>

@@ -10,7 +10,7 @@
 <div class="question__header"></div>
 
 <div class="menu">
-	<div>
+	<div class="home-menu">
 		<span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
 		</span>
 	</div>
@@ -96,7 +96,7 @@
 <div class="question">
 	<c:forEach var="questionList" items="${questionList}">
 		<div class="question__content">
-			<div>
+			<div class="question_content">
 				<div class="show__content">
 					<div class="question__category">
 						<h2>${questionList.questionType}</h2>

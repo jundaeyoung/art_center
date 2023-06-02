@@ -36,7 +36,7 @@
 		<section id="faq">
 			<c:forEach var="faqList" items="${faqList}">
 				<div class="panel-question">
-					<div class="panel-heading" id="faq-title">${faqList.title}<img src="/images/down.png" class="panel-img"></div>
+					<div class="panel-heading" id="faq-title" >${faqList.title}<img src="/images/down.png" class="panel-img"></div>
 					<div class="panel-body" id="thisone">
 						<p>${faqList.content}</p>
 					</div>

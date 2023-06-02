@@ -10,6 +10,11 @@ import com.bclass.arts_center.dto.MyTiketDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.TicketingDto;
 
+/**
+ * 
+ * @author 손주이
+ *
+ */
 @Mapper
 public interface TicketRepository {
 
@@ -45,7 +50,10 @@ public interface TicketRepository {
 	
 	public TicketCheckDto selectTicketIdbyId(Integer id);
 
-	
+	/**
+	 * @author 김미정
+	 * @param showDatetimeId
+	 */
 	public Integer countTicketing(Integer showDatetimeId);
 	
 	
