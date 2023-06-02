@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.MyTicketDtailDto;
@@ -39,10 +40,10 @@ public class MyPageController {
 
 	@Autowired
 	private MyPageService myPageService;
-	
+
 	@Autowired
 	private TicketService ticketService;
-	
+
 	@Autowired
 	private ReviewService reviewService;
 
@@ -65,9 +66,36 @@ public class MyPageController {
 	 * @return myShow
 	 */
 	@GetMapping("/myShow/{organizerId}")
-	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
-		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId);
+	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId, @RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range) {
+		
+		
+		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId, begin, range);
+		Integer showCount = myPageService.selectMyShowCount();
+		System.out.println("들어오나"+myShowList);
+		System.out.println(showCount);
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		System.out.println(myShowList);
+		Double count = Math.ceil(showCount);
+		Integer page = (int) Math.ceil(count / 5);
+		Integer startPage = currentPage - 2;
+		
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 4;
+		if (endPage > page) {
+			endPage = page;
+		}
+	
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("myShowList", myShowList);
+		model.addAttribute("organizerId", organizerId);
+		model.addAttribute("principal", principal);
+		
 		return "/user/myShow";
 	}
 
@@ -125,7 +153,7 @@ public class MyPageController {
 
 		return "/user/myTicketDetail";
 	}
-	
+
 	// 작성자 편용림 : 봤던 공연 목록
 	@GetMapping("/myTicketReview")
 	public String myTicketReview(Model model) {
@@ -134,17 +162,17 @@ public class MyPageController {
 		model.addAttribute("myTicketList", myTicketList);
 		return "/user/myTicketReview";
 	}
-	
+
 	// 작성자 편용림 : 봤던 공연 리뷰 작성
 	@PostMapping("/myReviewWrite")
 	public String myReviewWrite(Integer showId, Review review) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		review.setUserId(principal.getId());
 		reviewService.saveReview(review);
-		
+
 		return "/user/myTicketReview";
 	}
-	
+
 	// 작성자 편용림 : 봤던 공연 리뷰 타입
 	@GetMapping("/myReviewShowType")
 	public String myReviewShowType(String showType, Model model) {
@@ -155,16 +183,16 @@ public class MyPageController {
 		List<MyTiketDto> myTicketList = reviewService.readMyReviewByShowType(myTiketDto);
 		model.addAttribute("myTicketList", myTicketList);
 		return "/user/myTicketReview";
-	
+
 	}
-	
+
 	@GetMapping("/rentRefund")
 	public String rentRefund(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyRegistrationInfoDto> myrentList = myPageService.readMyRentRefund(principal.getId());
-		
+
 		model.addAttribute("myrentList", myrentList);
-		
+
 		return "/user/rentRefund";
 	}
 

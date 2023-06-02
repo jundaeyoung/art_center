@@ -41,6 +41,7 @@ public class MyRegistrationInfoDto {
 	private String mPaymentId;
 	
 	
+	
 	public String getMPaymentId() {
         return mPaymentId;
     }
@@ -48,5 +49,5 @@ public class MyRegistrationInfoDto {
     public void setMPaymentId(String mPaymentId) {
         this.mPaymentId = mPaymentId;
     }
-	
+    
 }

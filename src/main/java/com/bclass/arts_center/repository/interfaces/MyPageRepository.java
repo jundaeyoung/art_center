@@ -3,11 +3,13 @@ package com.bclass.arts_center.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.MyTicketDtailDto;
 import com.bclass.arts_center.dto.TicketCheckDto;
 import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
+import com.beust.jcommander.Parameter;
 
 /**
  * 
@@ -19,7 +21,7 @@ import com.bclass.arts_center.dto.request.RequestSignUpShowDto;
 public interface MyPageRepository {
 
 	// manager 공연 등록 내역 불러오기
-	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId);
+	public List<MyRegistrationInfoDto> selectMyShow(@Param("organizerId") Integer organizerId, @Param("begin") Integer begin, @Param("range") Integer range);
 	
 	// manager 공연 등록 detail
 	public List<MyRegistrationInfoDto> selectMyShowDetail(Integer id);
@@ -31,4 +33,7 @@ public interface MyPageRepository {
 	public MyTicketDtailDto selectMyTicketDetail(Integer id);
 	
 	public List<MyRegistrationInfoDto> selectMyRentRefund(Integer id);
+	
+	// 공연,대관 목록 count
+	public Integer selectMyShowCount();
 }

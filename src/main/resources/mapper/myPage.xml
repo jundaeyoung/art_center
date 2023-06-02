@@ -13,7 +13,8 @@
         LEFT JOIN manager_payment_tb AS mp
         ON r.id = mp.rent_id
 		WHERE s.organizer_id = #{organizerId} AND r.rent_place_status != 2
-        ORDER BY mp.m_payment_id asc, s.start_date desc;
+        ORDER BY mp.m_payment_id asc, s.start_date desc
+        limit #{begin}, #{range}
 	</select>
 	
 	<!-- 편용림 : 환불 내역 -->
@@ -77,14 +78,13 @@
 	</select>
 	
 	<select id="selectMyShowCount" resultType="Integer">
-		SELECT count(*)
-		FROM show_tb AS s
-		LEFT JOIN rent_place_reservation_tb AS r
-		ON s.id = r.show_id
-		LEFT JOIN manager_payment_tb AS mp
-		ON r.id = mp.rent_id
-		WHERE s.organizer_id = #{organizerId}
-		ORDER BY s.start_date desc
+		SELECT count(*) as count
+        FROM rent_place_reservation_tb AS r
+        JOIN show_tb AS s
+        ON r.show_id = s.id
+        LEFT JOIN manager_payment_tb AS mp
+        ON r.id = mp.rent_id
+		WHERE s.organizer_id = #{organizerId} AND r.rent_place_status != 2
 	</select>
 
 </mapper>

@@ -381,5 +381,8 @@ style>.container {
 		</c:forEach>
 	</div>
 </div>
-
+<script>
+console.log(${principal.id});
+console.log(${principal.userName});
+</script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
