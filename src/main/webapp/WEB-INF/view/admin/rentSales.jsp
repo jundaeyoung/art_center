@@ -88,7 +88,7 @@
 
 					    for (var i = 0; i < response.length; i++) {
 					      labels.push(response[i].title);
-					      var value = parseInt(response[i].totalshowSales);
+					      var value = parseInt(response[i].totalPrice);
 					      data.push(value);
 					    }
 
