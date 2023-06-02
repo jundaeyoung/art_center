@@ -2,28 +2,40 @@
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="/js/admin/userJoinPerDay.js">
-	
-</script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/admin/userJoinPerDay.js"></script>
 <div id="layoutSidenav_content">
 	<main>
-		<div id="top_x_div" style="width: 800px; height: 600px;"></div>
-		<!-- <div id="donutchart" style="width: 900px; height: 500px;"></div> -->
+	<div class="row">
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        일일 가입자 수
+                                    </div>
+                                    <div class="card-body"><canvas id="myAreaChart" width="80%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        총 공연 매출
+                                    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="80%" height="40"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
 		<div class="container-fluid px-4">
-			<h1 class="mt-4">Tables</h1>
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-				<li class="breadcrumb-item active">Tables</li>
+				<li class="breadcrumb-item"><a href="index.html">tables</a></li>
+				<li class="breadcrumb-item active">유저 목록</li>
 			</ol>
 			<div class="card mb-4">
-				<div class="card-body">
-					DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank"
-						href="https://datatables.net/">official DataTables documentation</a> .
-				</div>
 			</div>
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fas fa-table me-1"></i> DataTable Example
+					<i class="fas fa-table me-1"></i> 유저 상세보기
 				</div>
 				<div class="card-body">
 					<table id="datatablesSimple">
@@ -63,4 +75,7 @@
 				</div>
 			</div>
 		</div>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+		  <script src="/js/chart-bar-demo.js"></script>
+        <script src="/js/chart-area-demo.js"></script>
 		<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>

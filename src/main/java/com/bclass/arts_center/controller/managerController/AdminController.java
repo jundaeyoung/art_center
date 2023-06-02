@@ -45,10 +45,12 @@ public class AdminController {
 	private NoticeService noticeService;
 	
 	// 메인화면
-	@GetMapping("")
-	public String Admin() {
-		return "admin/board";
-	}
+		@GetMapping("")
+		public String Admin(Model model) {
+			List<User> userList = userService.readUser();
+			model.addAttribute("userList", userList);
+			return "admin/userList";
+		}
 	
 	// 작성자 :  편용림 관리자 페이지 로그아웃
 	@GetMapping("/logout")
