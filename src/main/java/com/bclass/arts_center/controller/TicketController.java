@@ -53,7 +53,6 @@ public class TicketController {
 
 	@GetMapping("/ticketing/{showId}")
 	public String ticketingPage(@PathVariable("showId") Integer showId, Model model) {
-//		로그인 인증 필요
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
 		String userBirth = principal.getBirthDate();
@@ -108,7 +107,6 @@ public class TicketController {
 
 	@PostMapping("/ticketing")
 	public String ticketProc(TicketingDto ticketingDto, Integer showDatetimeId) {
-//		로그인 했다는 인증 필요
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		String userBirth = principal.getBirthDate();
 		String replaceuserBirth = userBirth.replaceAll("-", "");
@@ -118,8 +116,6 @@ public class TicketController {
 
 		ticketingDto.setUserId(principal.getId());
 
-//		쇼타입아이디 가져와서 1일때만 좌석선택ㄱㄱ
-//		2랑 3일때는 setSeatId 억지로 해줘야
 		Integer count = ticketService.countTicketing(ticketingDto.getShowDatetimeId());
 
 		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
@@ -148,17 +144,13 @@ public class TicketController {
 	public String ticketCheck(TicketingDto ticketingDto, Model model) throws WriterException, IOException {
 		TicketCheckDto ticketid = ticketService.readTicketId();
 
-		// qr 코드 만들어줌
-		String savePath = "C:\\spring_upload\\arts_center\\upload\\"; // 파일 경로
-		// 파일 경로가 없으면 생성하기
+		String savePath = "C:\\spring_upload\\arts_center\\upload\\"; 
 		File file = new File(savePath);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-		// 링크로 할 URL주소
 		String showUrl = "https://github.com/jundaeyoung/art_center";
 
-		// 링크 생성값
 		String codeurl = new String(showUrl.getBytes("UTF-8"), "ISO-8859-1");
 
 		// QRCode 색상값
@@ -173,14 +165,12 @@ public class TicketController {
 		MatrixToImageConfig matrixToImageConfig = new MatrixToImageConfig(qrcodeColor, backgroundColor);
 		BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig);
 
-		// 파일 이름에 저장한 날짜를 포함해주기 위해 date생성
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
 		String fileName = sd.format(new Date());
-
-		// 파일 경로, 파일 이름 , 파일 확장자에 맡는 파일 생성
+		
 		File temp = new File(savePath + fileName + ticketid.getId() + ".png");
 		String path = fileName + ticketid.getId();
-		// ImageIO를 사용하여 파일쓰기
+		
 		ImageIO.write(bufferedImage, "png", temp);
 
 		ticketService.updateQrCode(ticketid.getId(), path);

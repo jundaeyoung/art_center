@@ -13,6 +13,8 @@
             on s.id = sd.show_id
             join hole_tb as h
             on h.id= s.hole_id
-			where s.organizer_id=#{id} AND s.show_status=1;
+            join rent_place_reservation_tb as r
+			on r.hole_id=h.id
+			where s.organizer_id=#{id} AND s.show_status=1 AND r.rent_place_status=1
 	</select>
 </mapper>

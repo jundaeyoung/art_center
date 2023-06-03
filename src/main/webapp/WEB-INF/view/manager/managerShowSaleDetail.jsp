@@ -56,15 +56,13 @@
 	<fmt:formatNumber value="${adultRate}" pattern="#,##0" var="formattedAdultRate" />
 	<fmt:parseNumber var="youthRate" type="number" value="${showList.youthRate}" />
 	<fmt:formatNumber value="${youthRate}" pattern="#,##0" var="formattedYouthRate" />
-	<fmt:parseNumber var="infantRate" type="number" value="${showList.infantRate}" />
 	<c:set var="totalAdultPrice" value="${adultRate * showList.adultCount}" />
 	<c:set var="totalYouthPrice" value="${youthRate * showList.youthCount}" />
 
 	<fmt:formatNumber value="${totalAdultPrice}" pattern="#,##0" var="A__price" />
 	<fmt:formatNumber value="${totalYouthPrice}" pattern="#,##0" var="Y__price" />
-	<fmt:formatNumber value="${totalInfantPrice}" pattern="#,##0" var="I__price" />
 
-	<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice+totalInfantPrice}" />
+	<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice}" />
 	<fmt:formatNumber value="${totalPrice}" pattern="#,##0" var="T__price" />
 
 </c:forEach>
@@ -89,7 +87,7 @@
 						</div>
 					</div>
 					<div class="total" style="display: flex; justify-content: center;">
-						<h3>매출 : ${sum}</h3>
+						<h3>매출 : ${T__price}</h3>
 					</div>
 
 				</c:otherwise>

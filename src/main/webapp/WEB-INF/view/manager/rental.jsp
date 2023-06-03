@@ -6,7 +6,7 @@
 </style>
 <div class="rental--content">
 	<div class="rental-title">
-		<p>${show.title}&nbsp&nbsp대관신청&nbsp&nbsp바로가기</p>
+		<p>${show.title}&nbsp;&nbsp;대관신청&nbsp;&nbsp;바로가기</p>
 	</div>
 	<div class="link--content">
 		<c:choose>

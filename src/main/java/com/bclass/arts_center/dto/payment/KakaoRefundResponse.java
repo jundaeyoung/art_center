@@ -35,4 +35,5 @@ public class KakaoRefundResponse {
 	private LocalDateTime approvedAt; // 결제 승인 시각
 	private LocalDateTime canceledAt; // 결제 취소 시각
 	private String payload; // 취소 요청 시 전달한 값
+	private String rentPrice; // 취소 요청 시 전달한 값
 }

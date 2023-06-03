@@ -33,15 +33,12 @@
 					</c:when>
 					<c:when test="${principal != null && principal.getRoleId()==2}">
 						<div class="user--btn">
-							<form>
-								<button class="open-area" style="font-size: 20px;">알림</button>
-							</form>
 							<form action="/myPage/info" method="get">
 								<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 							</form>
-							<form action="#" method="get">
-								<button type="submit" class="logout--btn">
-									<a href="/user/logout" style="font-size: 20px;">로그아웃</a>
+							<form action="/user/logout" method="get">
+								<button type="submit" class="logout--btn"style="font-size: 20px;">
+									로그아웃
 								</button>
 							</form>
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

@@ -50,12 +50,6 @@ public class QuestionCotroller {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -66,6 +60,14 @@ public class QuestionCotroller {
 		} else {
 			model.addAttribute("questionList", questionList);
 		}
+		
+		
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("searchText", searchText);
 		return "/question/question";
 	}
@@ -91,12 +93,6 @@ public class QuestionCotroller {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -107,6 +103,12 @@ public class QuestionCotroller {
 		} else {
 			model.addAttribute("questionList", questionList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("category", category);
 		return "/question/question";
 	}
@@ -154,7 +156,6 @@ public class QuestionCotroller {
 	 */
 	@PostMapping("/insert")
 	public String writeQuestion(Question question) {
-		//System.out.println(question.getQuestionTypeId());
 		if (question.getTitle() == null || question.getTitle().isEmpty()) {
 			throw new CustomRestfullException("제목을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}

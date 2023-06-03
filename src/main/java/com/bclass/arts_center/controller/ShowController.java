@@ -1,6 +1,5 @@
 package com.bclass.arts_center.controller;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -54,12 +53,6 @@ public class ShowController {
 			endPage = page;
 		}
 
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -70,6 +63,12 @@ public class ShowController {
 		} else {
 			model.addAttribute("showList", showList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/show/show";
 	}
@@ -95,12 +94,6 @@ public class ShowController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -111,6 +104,12 @@ public class ShowController {
 		} else {
 			model.addAttribute("showList", showList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/show/show";
 	}
@@ -136,12 +135,6 @@ public class ShowController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -152,6 +145,12 @@ public class ShowController {
 		} else {
 			model.addAttribute("showList", showList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/show/show";
 	}
@@ -177,12 +176,6 @@ public class ShowController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -193,6 +186,12 @@ public class ShowController {
 		} else {
 			model.addAttribute("showList", showList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/show/show";
 	}
@@ -208,7 +207,6 @@ public class ShowController {
 
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
 		List<RequestShowDto> reviewList = showService.readReviewByShowId(showId);
-		DecimalFormat df = new DecimalFormat("###,###");
 		String adultRate = showInfo.get(0).getAdultRate().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 		String youthRate = showInfo.get(0).getYouthRate().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 		if (reviewList == null || reviewList.isEmpty()) {

@@ -3,7 +3,7 @@
  */
 
  // 좌석선택
- $(document).ready(function(){
+ /*$(document).ready(function(){
 	 
 	 $(":checkbox").change(function(){
 		 let count = $("person").val();
@@ -22,4 +22,4 @@
 		 $(":checkbox").removeAttr("disabled");
 	 });
 	 
- });
+ });*/

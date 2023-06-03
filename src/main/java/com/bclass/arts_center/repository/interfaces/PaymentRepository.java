@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.bclass.arts_center.dto.payment.AdminKeyDto;
+import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
 import com.bclass.arts_center.dto.payment.RequestPaymentInfoDto;
 import com.bclass.arts_center.repository.model.ManagerPayment;
 import com.bclass.arts_center.repository.model.Payment;
@@ -32,5 +33,8 @@ public interface PaymentRepository {
 	public RequestPaymentInfoDto selectRentalPaymentInfo(@Param("tid") String tid);
 
 	public int updateManagerCancelStatus(@Param("canceledAt") LocalDateTime canceledAt, @Param("tid") String tid);
+	
+	public KakaoRefundResponse refundCheck(@Param("tid") String tid);
+
 
 }

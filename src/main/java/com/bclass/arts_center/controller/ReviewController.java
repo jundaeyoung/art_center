@@ -47,12 +47,6 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -64,6 +58,12 @@ public class ReviewController {
 			
 			model.addAttribute("reviewList", reviewList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/user/review";
 	}
@@ -90,12 +90,6 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -106,6 +100,12 @@ public class ReviewController {
 		} else {
 			model.addAttribute("reviewList", reviewList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/user/review";
 	}
@@ -132,12 +132,6 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -148,6 +142,12 @@ public class ReviewController {
 		} else {
 			model.addAttribute("reviewList", reviewList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/user/review";
 	}
@@ -173,12 +173,6 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -189,6 +183,12 @@ public class ReviewController {
 		} else {
 			model.addAttribute("reviewList", reviewList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/user/review";
 	}
@@ -213,13 +213,6 @@ public class ReviewController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
-		model.addAttribute("showName", showName);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -230,6 +223,13 @@ public class ReviewController {
 		} else {
 			model.addAttribute("reviewList", reviewList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
+		model.addAttribute("principal", principal);
+		model.addAttribute("showName", showName);
 		return "/user/review";
 	}
 }

@@ -4,7 +4,7 @@
 
 
 <style>
-.main div div {
+.main div div{
 	display: flex;
 	align-items: center;
 }
@@ -14,22 +14,21 @@
 
 	<div>
 
-		<h1>예매 취소</h1>
+		<h1>환불 정보</h1>
 		<div>
-			<h3>취소 내역 :</h3>
+			<h3>취소 내역 : </h3>
 			<p>${kakaoRefundResponse.itemName}</p>
 		</div>
 		<div>
-			<h3>취소 일시 :</h3>
+			<h3>취소 일시 : </h3>
 			<p>${kakaoRefundResponse.canceledAt}</p>
 		</div>
 		<div>
-			<h3>취소 금액 :</h3>
-			<p>${kakaoRefundResponse.canceledAmount.total}</p>
-
+			<h3>취소 금액 : </h3>
+			<p>${kakaoRefundResponse.rentPrice}</p>
 		</div>
 		<div>
-			<h3>결제 수단 :</h3>
+			<h3>결제 수단 : </h3>
 			<p>${kakaoRefundResponse.paymentMethodType}</p>
 		</div>
 	</div>
@@ -45,3 +44,5 @@
 
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+

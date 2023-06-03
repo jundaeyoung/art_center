@@ -34,17 +34,4 @@ public class PaymentController {
 		return "/payment/payment";
 	}
 
-//	@PostMapping("/payment")
-//	public String paymentSuccess() {
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//
-//		return "redirect:/payment/success";
-//	}
 }

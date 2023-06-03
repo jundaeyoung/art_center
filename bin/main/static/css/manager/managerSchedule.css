@@ -10,6 +10,9 @@
 .title .user--btn {
 	margin-top: 23px;
 }
+.user--btn form button{
+	margin-top: 18px;
+}
 
 .showView {
 	margin-left: 0;

@@ -60,7 +60,6 @@ public class AuthController {
 		ResponseEntity<OAuthTokenKakao> responseToken = restTemplate.exchange("https://kauth.kakao.com/oauth/token",
 				HttpMethod.POST, kakaoReqEntity, OAuthTokenKakao.class);
 		
-//		ObjectMapper objectMapper = new ObjectMapper();
 		
 		ResponseEntity<KakaoDto> userInfo = requestKakaoUserInfo(responseToken.getBody().getAccessToken());
 		
@@ -96,8 +95,6 @@ public class AuthController {
 				HttpMethod.GET,
 				profileReqEntity,
 				KakaoDto.class);
-		
-//		ObjectMapper objectMapper = new ObjectMapper();
 		
 		return response;
 	};
@@ -147,7 +144,6 @@ public class AuthController {
 		ResponseEntity<OAuthTokenGoogle> responseToken = restTemplate.exchange("https://oauth2.googleapis.com/token",
 				HttpMethod.POST, kakaoReqEntity, OAuthTokenGoogle.class);
 		
-//		ObjectMapper objectMapper = new ObjectMapper();
 		
 		ResponseEntity<GoogleDto> userInfo = RequestGoogleUserInfo(responseToken.getBody().getAccess_token());
 		
@@ -189,9 +185,6 @@ public class AuthController {
 				HttpMethod.GET,
 				profileReqEntity,
 				GoogleDto.class);
-		
-//		ObjectMapper objectMapper = new ObjectMapper();
-		
 		
 		return response;
 	}
@@ -252,7 +245,6 @@ public class AuthController {
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		HttpEntity<String> profileReqEntity = new HttpEntity<>(headers);
-		// https://kapi.kakao.com/v2/user/me
 		ResponseEntity<NaverDto> response = restTemplate.exchange("https://openapi.naver.com/v1/nid/me",
 				HttpMethod.GET,
 				profileReqEntity,

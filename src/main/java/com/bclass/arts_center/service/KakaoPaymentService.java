@@ -223,7 +223,6 @@ public class KakaoPaymentService {
 	public KakaoRefundResponse kakaoRefund2(String tid) {
 
 		RequestPaymentInfoDto requestPaymentInfoDto = paymentRepository.selectRentalPaymentInfo(tid);
-		System.out.println("aaaa" + requestPaymentInfoDto);
 
 		String rentPrice = requestPaymentInfoDto.getRentPrice();
 		rentPrice = rentPrice.replace(",", ""); // 콤마(,) 제거

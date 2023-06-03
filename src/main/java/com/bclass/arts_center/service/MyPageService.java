@@ -24,9 +24,19 @@ public class MyPageService {
 	 * @return myShowList
 	 */
 	@Transactional
-	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId) {
-		List<MyRegistrationInfoDto> myShowList = myPageRepository.selectMyShow(organizerId);
+	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId, Integer begin, Integer range) {
+		List<MyRegistrationInfoDto> myShowList = myPageRepository.selectMyShow(organizerId, begin, range);
 		return myShowList;
+	}
+	
+	/**
+	 * @author 김미정
+	 * @return showCount
+	 */
+	@Transactional
+	public Integer selectMyShowCount(Integer organizerId) {
+		Integer showCount = myPageRepository.selectMyShowCount(organizerId);
+		return showCount;
 	}
 
 	/**

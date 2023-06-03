@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.MyRegistrationInfoDto;
 import com.bclass.arts_center.dto.MyTicketDtailDto;
@@ -64,10 +65,31 @@ public class MyPageController {
 	 * @param organizerId
 	 * @return myShow
 	 */
-	@GetMapping("/myShow/{organizerId}")
-	public String selectMyShow(Model model, @PathVariable("organizerId") Integer organizerId) {
-		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId);
+	@GetMapping("/myShow/{organizerId}/{currentPage}/{begin}/{range}")
+	public String selectMyShow(@PathVariable("organizerId") Integer organizerId, @PathVariable("currentPage") Integer currentPage,
+			@PathVariable("begin") Integer begin, @PathVariable("range") Integer range,Model model) {
+		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId, begin, range);
+		Integer showCount = myPageService.selectMyShowCount(organizerId);
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		Double count = Math.ceil(showCount);
+		Integer page = (int) Math.ceil(count / 5);
+		Integer startPage = currentPage - 2;
+		
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 4;
+		if (endPage >= page) {
+			endPage = page;
+		}
+	
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("myShowList", myShowList);
+		model.addAttribute("organizerId", organizerId);
+		model.addAttribute("principal", principal);
 		return "/user/myShow";
 	}
 
@@ -162,7 +184,6 @@ public class MyPageController {
 	public String rentRefund(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyRegistrationInfoDto> myrentList = myPageService.readMyRentRefund(principal.getId());
-		
 		model.addAttribute("myrentList", myrentList);
 		
 		return "/user/rentRefund";

@@ -2,7 +2,7 @@
  * 
  */
 
-let index = {
+/*let index = {
 
 	init: function() {
 
@@ -64,4 +64,4 @@ let index = {
 	}
 };
 
-index.init();
+index.init();*/

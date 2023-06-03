@@ -132,10 +132,9 @@
 	            ],	
 	            eventClick:function(event) {
 	            	// 모달 창 열기
-	                var modal = document.getElementById('myModal');
+	                let modal = document.getElementById('myModal');
 	                modal.style.display = 'block';
 	                let id = event.event.id;
-	                console.log(id);
 	                $.ajax({
 							url: '/api/scheduleDetail/'+ id,
 							type: "GET",
@@ -152,7 +151,7 @@
 								}
 		                });
 	                // 모달 창 닫기 버튼 클릭 핸들러
-	                var closeBtn = modal.querySelector('.close');
+	                let closeBtn = modal.querySelector('.close');
 	                closeBtn.addEventListener('click', function() {
 	                  // 모달 창 닫기
 	                  modal.style.display = 'none';

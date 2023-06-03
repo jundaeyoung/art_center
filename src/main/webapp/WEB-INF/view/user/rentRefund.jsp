@@ -3,11 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style>
-
-#btn{
-  border: 0;
-  background-color: transparent;
-  font-size: 16px;
+#btn {
+	border: 0;
+	background-color: transparent;
+	font-size: 16px;
 }
 
 .rental__img {
@@ -19,10 +18,10 @@
 	background-position: bottom;
 }
 
-
 user__type {
 	border-spacing: 0;
 }
+
 .user__type {
 	display: flex;
 	justify-content: center;
@@ -44,8 +43,9 @@ user__type {
 	height: 60px;
 	text-align: center;
 }
+
 .user__ticket:nth-of-type(3) {
-	border-left:1px solid #ebebeb;
+	border-left: 1px solid #ebebeb;
 	border-top: 1px solid #ebebeb;
 	border-bottom: 1px solid #ebebeb;
 	width: 400px;
@@ -106,7 +106,7 @@ user__type {
 	margin-top: 20px;
 }
 
-.dd {
+.content-myshow {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -116,7 +116,6 @@ user__type {
 }
 
 .myShow {
-	padding-top: 70px;
 	margin: 10px;
 	border: 1px solid #ccc;
 	border-radius: 20px;
@@ -196,6 +195,7 @@ user__type {
 
 .show__btn {
 	display: flex;
+	justify-content: space-between;
 	margin-top: 10px;
 }
 
@@ -214,57 +214,78 @@ user__type {
 <div class="container">
 	<div class="info">
 		<c:choose>
-		<c:when test="${principal.getRoleId()==1}">
-		<div class="user_reservation_list">
-			<table class="user__type">
-				<tr>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicket/${principal.id}'">티켓예매내역</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myTicketReview'">관람평</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" value="아카데미" onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-		</c:when>
-		<c:when test="${principal != null && principal.getRoleId()==2}">
-		<div class="user_reservation_list">
-			<table class="user__type">
-				<tr>
-					<td class="user__ticket">
- 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}'">공연 대관 내역</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/rentRefund'">환불내역</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
-					</td>
-					<td class="user__ticket">
-						<button type="submit" class="user-type-btn" name="info__category" value="아카데미" onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-		</c:when>
-	</c:choose>
+			<c:when test="${principal.getRoleId()==1}">
+				<div class="user_reservation_list">
+					<table class="user__type">
+						<tr>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category"
+									onclick="location.href='/myPage/myTicket/${principal.id}'">티켓예매내역</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category"
+									onclick="location.href='/myPage/myTicketReview'">관람평</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category"
+									onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category" value="아카데미"
+									onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</c:when>
+			<c:when test="${principal != null && principal.getRoleId()==2}">
+				<div class="user_reservation_list">
+					<table class="user__type">
+						<tr>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category"
+									onclick="location.href='/myPage/myShow/${principal.id}/1/0/5'">공연
+									대관 내역</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category"
+									onclick="location.href='/myPage/rentRefund'">환불내역</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category"
+									onclick="location.href='/user/update?userName=${principal.userName}'">회원수정</button>
+							</td>
+							<td class="user__ticket">
+								<button type="submit" class="user-type-btn"
+									name="info__category" value="아카데미"
+									onclick="location.href='/user/delete?userName=${principal.userName}'">회원탈퇴</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</c:when>
+		</c:choose>
 	</div>
 </div>
 
 <div class="my_show_content">
-	<div class="dd">
+	<div class="content-myshow">
 		<c:forEach var="myrentList" items="${myrentList}">
 			<div class="myShow">
+				<div class="show__approve">
+					<h3 style="font-weight: bold;">환불완료</h3>
+				</div>
 				<div class="show__info__list">
 					<div>
-						<a href="/myPage/showDetail/${myrentList.id}"><img alt="" src="/images/upload/${myrentList.imgRoute}" class="show__img"></a>
+						<a href="/myPage/showDetail/${myrentList.id}"><img alt=""
+							src="/images/upload/${myrentList.imgRoute}" class="show__img"></a>
 					</div>
 
 					<div>
@@ -279,23 +300,26 @@ user__type {
 								<p>${myrentList.admissionAge}</p>
 							</div>
 						</div>
-								<div class="show__btn">
-									<div class="show__schedule__btn">
-										<a href="/manager/schedule/${principal.id}">공연일정&nbsp;(달력)</a>
-									</div>
-									<div class="show__schedule__btn">
-										<a href="/myPage/showDetail/${myrentList.id}">예약 정보</a>
-									</div>
-									<div class="show__schedule__btn">
-										<div>
-											<button type="submit" class="btn__a" id="btn">
-												<img alt="" src="/images/kakao/payment_icon_yellow_medium.png" class="kakao__img"> &nbsp;&nbsp;환불완료
-											</button>
-										</div>
-									</div>
-
-
+						<div class="show__btn">
+							<div class="show__schedule__btn">
+								<a href="/manager/schedule">공연일정&nbsp;(달력)</a>
+							</div>
+							<div class="show__schedule__btn">
+							<form action="">
+								<a href="/kakao/refund/${myrentList.getMPaymentId()}">환불 정보</a>
+								</form>
+							</div>
+							<div class="show__schedule__btn">
+								<div>
+									<button type="submit" class="btn__a" id="btn">
+										<img alt="" src="/images/kakao/payment_icon_yellow_medium.png"
+											class="kakao__img"> &nbsp;&nbsp;환불완료
+									</button>
 								</div>
+							</div>
+
+
+						</div>
 
 					</div>
 				</div>

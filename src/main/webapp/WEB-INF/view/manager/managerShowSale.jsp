@@ -93,37 +93,30 @@
 					<fmt:formatNumber value="${adultRate}" pattern="#,##0" var="formattedAdultRate" />
 					<fmt:parseNumber var="youthRate" type="number" value="${showList.youthRate}" />
 					<fmt:formatNumber value="${youthRate}" pattern="#,##0" var="formattedYouthRate" />
-					<fmt:parseNumber var="infantRate" type="number" value="${showList.infantRate}" />
-					<fmt:formatNumber value="${infantRate}" pattern="#,##0" var="formattedInfantRate" />
 					<c:set var="totalAdultPrice" value="${adultRate * showList.adultCount}" />
-					<c:set var="totalYouthPrice" value="${adultRate * showList.youthCount}" />
-					<c:set var="totalInfantPrice" value="${adultRate * showList.infantCount}" />
+					<c:set var="totalYouthPrice" value="${youthRate * showList.youthCount}" />
 
 					<fmt:formatNumber value="${totalAdultPrice}" pattern="#,##0" var="A__price" />
 					<fmt:formatNumber value="${totalYouthPrice}" pattern="#,##0" var="Y__price" />
-					<fmt:formatNumber value="${totalInfantPrice}" pattern="#,##0" var="I__price" />
 
-					<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice+totalInfantPrice}" />
+					<c:set var="totalPrice" value="${totalAdultPrice+totalYouthPrice}" />
 					<fmt:formatNumber value="${totalPrice}" pattern="#,##0" var="T__price" />
 
 
 					<div class="money__content">
 						<h1>매출</h1>
 						<div id="money">
-							<div style="width: 300px;">
+							<div style="width: 250px;">
 								<p>성인요금 : ${formattedAdultRate}</p>
 								<p>청소년 요금 : ${formattedYouthRate}</p>
-								<p>유아 요금 : ${formattedInfantRate}</p>
 							</div>
 							<div style="border: none; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; width: 150px;">
 								<p>인원 : ${showList.adultCount}</p>
 								<p>인원 : ${showList.youthCount}</p>
-								<p>인원 : ${showList.infantCount}</p>
 							</div>
-							<div style="width: 200px;">
+							<div style="width: 250px;">
 								<p>합계 : ${A__price}</p>
 								<p>합계 : ${Y__price}</p>
-								<p>합계 : ${I__price}</p>
 							</div>
 						</div>
 						<h3>총 합계 : ${T__price}</h3>

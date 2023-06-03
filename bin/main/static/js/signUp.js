@@ -28,7 +28,8 @@ $(document)
                            data: formData,
                            datatype: "json",
                            success: function(
-                              res) {
+                              data) {
+								  let res = data.data;
                               if (res == 1) {
                                  $(
                                     "#error--userName")
@@ -130,7 +131,8 @@ $(document)
                            data: formData,
                            datatype: "json",
                            success: function(
-                              res) {
+                              data) {
+							let res = data.data;
                               if (formData.length <= 1) {
                                  $(
                                     "#error--nickname")
@@ -252,7 +254,8 @@ $(document)
                            data: formData,
                            datatype: "json",
                            success: function(
-                              res) {
+                              data) {
+								 let res = data.data;
                               if ((formData.length == 11) == false) {
                                  telCheck = false;
                                  $(
@@ -393,7 +396,8 @@ $("#checkEmail")
                data: {
                   "userEmail": userEmail
                },
-               success: function(res) {
+               success: function(data) {
+				   let res = data.data;
                   emailCheck = false;
                   if (res['check']) {
                      if ('check') {
@@ -411,9 +415,9 @@ $("#checkEmail")
                                  "userEmail": userEmail
                               },
                               success: function(
-                                 res) {
-                                 console
-                                    .log(res);
+                                 data) {
+                                 let res = data.data;
+                                 console.log(res);
                                  $(
                                     "#checkEmailNumber")
                                     .click(

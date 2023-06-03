@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bclass.arts_center.controller.adminController.MessageApiController;
+import com.bclass.arts_center.dto.payment.Amount;
 import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoReadyResponse;
 import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
+import com.bclass.arts_center.dto.payment.RequestPaymentInfoDto;
 import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.repository.model.ManagerPayment;
 import com.bclass.arts_center.repository.model.Payment;
@@ -110,10 +112,8 @@ public class KakaoPaymentController {
 			managerPayment.setMPaymentId(kakaoApprove.getTid());
 			managerPayment.setPaymentOption(kakaoApprove.getPaymentMethodType());
 			managerPayment.setPaymentDate(kakaoApprove.getApprovedAt());
-			// 여기에 렌트 예약한 id 받을 예정
 			Integer rentId = (Integer) session.getAttribute("rentId");
 			managerPayment.setRentId(rentId);
-			// 렌트 아이디 받아가지고 status 업데이트
 			rentPlaceReservationService.updateRentPlaceReservation(rentId);
 			paymentService.createManagerPayment(managerPayment);
 		}
@@ -134,12 +134,26 @@ public class KakaoPaymentController {
 		return "/payment/fail";
 	}
 
-	@PostMapping("/refund/{tid}")
-	public String refund(@PathVariable(name = "tid", required = false) String tid, Model model,
+	@GetMapping("/refund/{tid}")
+	public String refundCheck(@PathVariable(name = "tid", required = false) String tid, Model model,
 			@RequestParam(name = "id", required = false) Integer id) {
 
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
+		if (principal.getRoleId() == 1) {
+		} else if (principal.getRoleId() == 2) {
+			KakaoRefundResponse result = paymentService.refundCheck(tid);
+			model.addAttribute("kakaoRefundResponse", result);
+		}
+
+		return "/payment/refundCheck";
+	}
+	@PostMapping("/refund/{tid}")
+	public String refund(@PathVariable(name = "tid", required = false) String tid, Model model,
+			@RequestParam(name = "id", required = false) Integer id) {
+		
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		
 		KakaoRefundResponse kakaoRefundResponse = null;
 		if (principal.getRoleId() == 1) {
 			kakaoRefundResponse = kakaoPaymentService.kakaoRefund(principal.getId(), tid);
@@ -147,11 +161,10 @@ public class KakaoPaymentController {
 		} else if (principal.getRoleId() == 2) {
 			kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
 			paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
-
 			rentPlaceReservationService.updateRentByStatus(id);
 		}
 		model.addAttribute("kakaoRefundResponse", kakaoRefundResponse);
-
+		
 		return "/payment/refund";
 	}
 
