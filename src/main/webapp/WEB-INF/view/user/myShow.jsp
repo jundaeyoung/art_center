@@ -287,8 +287,7 @@ style>.container {
 							<td class="user__ticket">
 								<button type="submit" class="user-type-btn"
 									name="info__category"
-									onclick="location.href='/myPage/myShow/${principal.id}'">공연
-									대관 내역</button>
+									onclick="location.href='/myPage/myShow/${principal.id}?currentPage=1&begin=0&range=5'">공연 대관 내역</button>
 							</td>
 							<td class="user__ticket">
 								<button type="submit" class="user-type-btn"
