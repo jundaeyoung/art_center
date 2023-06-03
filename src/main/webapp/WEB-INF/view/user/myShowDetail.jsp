@@ -144,7 +144,7 @@
 		<p>문의사항 : ${detailList.get(0).tel}</p>
 	</div>
 	<div class="myShow__btn__div">
-	<button onclick="location.href='/myPage/myShow/${principal.id}'" class="myShow__btn">목록</button>
+	<button onclick="location.href='/myPage/myShow/${principal.id}?currentPage=1&begin=0&range=5'" class="myShow__btn">목록</button>
 	</div>
 </div>
 

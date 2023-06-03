@@ -44,7 +44,7 @@
 		JOIN
 		location_tb AS l
 		ON h.location_id = l.id
-		WHERE s.id = #{id}
+		WHERE r.id = #{id}
 	</select>
 
 	<select id="selectMyTicket"
