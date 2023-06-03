@@ -3,20 +3,27 @@
 .menu {
 	display: flex;
 }
-.menu button{
+
+.menu button {
 	width: 280px;
 	height: 95px;
 	font-size: 18px;
 	background-color: #fff;
 	border-style: none;
 }
-.menu button:hover{
+
+.menu button:hover {
 	background-color: #F6F6F6;
 }
+
+.show--togle .material-symbols-outlined{
+	margin-left: 0;
+}
+
 .question__header {
 	display: flex;
 	justify-content: center;
-	margin-top:100px;
+	margin-top: 100px;
 	padding: 300px;
 	background-image: url('/images/background/question.png');
 	background-position: 50% 20%;
@@ -150,8 +157,10 @@
 }
 
 .search .textbox {
-	width: 900px;
+	width: 950px;
 	height: 40px;
+	margin-left:150px;
+	margin-right:50px;
 	font-size: 25px;
 	border: 2px solid #ccc;
 }
@@ -187,7 +196,6 @@
 	margin-right: 20px;
 	align-items: center;
 }
-
 
 .delete button {
 	border-style: none;
@@ -226,9 +234,11 @@
 	margin-left: 100px;
 	display: flex;
 }
-.show span{
+
+.show span {
 	margin-left: -400px;
 }
+
 .question__category {
 	width: 150px;
 	height: 50px;
@@ -246,7 +256,7 @@
 
 .answer {
 	display: flex;
-	margin-left: -400px;
+	margin-left: 10px;
 }
 
 .answer_status {
@@ -266,7 +276,7 @@
 
 .hide {
 	margin-top: 20px;
-	width:1400px;
+	width: 1400px;
 	background-color: #FAFAFA;
 	overflow-y: auto;
 	height: auto;

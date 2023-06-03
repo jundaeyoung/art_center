@@ -49,10 +49,8 @@
 						<c:set var="apiType" value="${principal.apiId}" />
 						<c:if test="${fn:contains(apiType, 'kakao')}">
 							<div class="user--btn">
-								<button type="submit" class="logout--btn">
 									<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://localhost:8080/kakaologout&response_type=code" style="font-size: 20px;">로그아웃</a>
-								</button>
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
 							</div>
 
@@ -60,19 +58,15 @@
 						</c:if>
 						<c:if test="${fn:contains(apiType, 'naver')}">
 							<div class="user--btn">
-								<button type="submit" class="logout--btn">
 									<a href="#" onclick="naverLogout(); return false;" class="apilogout" style="font-size: 20px;">로그아웃</a>
-								</button>
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
 							</div>
 						</c:if>
 						<c:if test="${fn:contains(apiType, 'google')}">
 							<div class="user--btn">
-								<button type="submit" class="logout--btn">
 									<a href="#" onclick="googleLogout(); return false" class="apilogout" style="font-size: 20px;">로그아웃</a>
-								</button>
-								&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
 							</div>
 						</c:if>
@@ -96,7 +90,7 @@
 			<c:choose>
 				<c:when test="${principal != null && principal.getRoleId()==2}">
 					<nav>
-						<div id="nav">
+						<div id="nav" >
 							<ul class="main">
 								<li><a href="#"> 공연 </a>
 									<ul class="sub">

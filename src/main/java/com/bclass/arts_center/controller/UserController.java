@@ -1,7 +1,9 @@
 package com.bclass.arts_center.controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bclass.arts_center.dto.NaverDto.Response;
 import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
 import com.bclass.arts_center.dto.UpdateUserDto;
@@ -35,8 +38,6 @@ import com.bclass.arts_center.utils.Define;
 @RequestMapping("/user")
 public class UserController {
 
-
-
 	@Autowired
 	private UserService userService;
 
@@ -52,10 +53,10 @@ public class UserController {
 	// 회원가입 페이지
 	@GetMapping("/signUp")
 	public String signUp() {
-		
+
 		return "/user/signUpchoice";
 	}
-	
+
 	@GetMapping("/signUpchoice")
 	public String signUpchoice(Integer roleId, Model model) {
 		model.addAttribute("roleId", roleId);
@@ -116,10 +117,8 @@ public class UserController {
 
 	// 회원가입 처리
 	@PostMapping("/signUp")
-	public String signUpProc(@Valid SignUpFormDto signUpFormDto, BindingResult errors, Model model) {
+	public String signUpProc(@Valid SignUpFormDto signUpFormDto,HttpServletResponse response, BindingResult errors, Model model) {
 
-		System.out.println(signUpFormDto.toString());
-		
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {
@@ -137,7 +136,7 @@ public class UserController {
 		}
 
 		if (errors.hasErrors()) {
-			
+
 			Map<String, String> validatorResult = userService.validateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
@@ -145,8 +144,27 @@ public class UserController {
 
 			return "/user/signUp";
 		}
-		userService.createUser(signUpFormDto);
-		return "redirect:/";
+		if (signUpFormDto.getRoleId() == null) {
+			signUpFormDto.setRoleId(1);
+		}
+		Integer result = userService.createUser(signUpFormDto);
+		if (result == 1) {
+			try {
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter w = response.getWriter();
+				String msg = "대관 신청이 완료되었습니다.";
+				w.write("<script>alert('" + msg + "');</script>");
+				w.flush();
+				w.close();
+				return "redirect:/user/login";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			throw new CustomRestfullException("회원가입에 실패하였습니다.", HttpStatus.BAD_REQUEST);
+		}
+		System.out.println(result);
+		return "redirect:/user/login";
 	}
 
 	// 개인정보 수정
@@ -192,20 +210,16 @@ public class UserController {
 		return "/user/findPw";
 	}
 
-
-	
 	@GetMapping("/findId")
 	public String findId() {
-		
+
 		return "user/findId";
 	}
-	
+
 	@PostMapping("findId")
 	public String findId(User user) {
 		userService.selectUserName(user);
 		return "user/findId";
 	}
-	
 
-	
 }

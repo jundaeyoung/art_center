@@ -33,19 +33,19 @@ public interface UserRepository {
 	public User selectUserByUsername(String userName);
 
 	// 아이디 중복체크
-	public int selectUserCountByUserName(String userName);
+	public Integer selectUserCountByUserName(String userName);
 
 	// 회원가입
-	public int insertUser(SignUpFormDto signUpFormDto);
+	public Integer insertUser(SignUpFormDto signUpFormDto);
 
 	// 회원가입(api)
-	public int insertUserByApiid(SignUpFormDto signUpFormDto);
+	public Integer insertUserByApiid(SignUpFormDto signUpFormDto);
 
 	// 회원정보 수정
-	public int updateUserByUsername(UpdateUserDto updateUserDto);
+	public Integer updateUserByUsername(UpdateUserDto updateUserDto);
 
 	// 회원탈퇴
-	public int deleteUserById(SignInFormDto signInFormDto);
+	public Integer deleteUserById(SignInFormDto signInFormDto);
 
 	// 유저 리스트 정보
 	public List<User> selectUserList();
@@ -57,10 +57,10 @@ public interface UserRepository {
 	public List<User> selectTeacherList();
 
 	// 관리자 유저 수정
-	public int updateUserById(User user);
+	public Integer updateUserById(User user);
 
 	// 관리자 유저 삭제
-	public int deleteById(String id);
+	public Integer deleteById(String id);
 
 	/*
 	 * email 찾기 전대영

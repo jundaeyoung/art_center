@@ -348,7 +348,7 @@ content ul {
 	display: flex;
 	width: 2750px;
 	justify-content: center;
-	margin-left: -800px;
+	margin-left: -630px;
 }
 
 .footer div {
@@ -527,6 +527,13 @@ content ul {
 }
 .user--btn form{
 	margin-top:0;
+}
+.user--btn a {
+	margin-top: 23px;
+	margin-top:0;
+	background-color: white;
+	font-weight: 400;
+	color: #303030;
 }
 
 .showView {

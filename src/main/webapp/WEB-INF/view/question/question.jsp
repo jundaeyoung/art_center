@@ -69,7 +69,7 @@
 </div>
 <div class="answer__write" id="answer__write">
 	<form action="/quest/insert" method="post">
-		<div class="form-group bg-white" style="width: 1000px; margin-bottom: 50px;">
+		<div class="form-group bg-white" style="width: 1000px; margin-bottom: 50px; margin-left: 100px;">
 			<div class="question__type">
 				<div>
 					<input type="text" placeholder="제목" name="title" style="width: 400px; font-size: 20px; height: 30px; margin-bottom: 10px;">
@@ -83,7 +83,7 @@
 			</div>
 			<textarea class="form-control summernote" rows="5" id="content" name="content" placeholder="내용"></textarea>
 		</div>
-		<button type="submit" class="submit" style="margin-left: 30px;">작&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성</button>
+		<button type="submit" class="submit" style="margin-left: 130px;">작&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp성</button>
 	</form>
 </div>
 <div class="search" id="hide__search__box">
@@ -147,7 +147,7 @@
 								</c:when>
 							</c:choose>
 						</div>
-						<div class="show" id="show_${questionList.id}">
+						<div class="show--togle" id="show_${questionList.id}">
 							<span class="material-symbols-outlined">expand_more</span>
 						</div>
 					</div>
@@ -228,3 +228,4 @@
 
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+

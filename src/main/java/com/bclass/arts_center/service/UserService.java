@@ -39,7 +39,7 @@ public class UserService {
 
 	// 회원가입
 	@Transactional
-	public void createUser(SignUpFormDto signUpFormDto) {
+	public Integer createUser(SignUpFormDto signUpFormDto) {
 
 		String rawPwd = signUpFormDto.getPassword();
 		String hashPwd = passwordEncoder.encode(rawPwd);
@@ -55,8 +55,9 @@ public class UserService {
 		if (selectNickName != null) {
 			throw new CustomRestfullException("중복된 닉네임이 있습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		int result = userRepository.insertUser(signUpFormDto);
+		Integer result = userRepository.insertUser(signUpFormDto);
 
+		return result;
 	}
 
 	// 로그인

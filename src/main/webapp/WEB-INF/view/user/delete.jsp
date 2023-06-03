@@ -29,7 +29,7 @@
 				<span class="error--messege" th:if="${valid_password}">${valid_password}</span>
 				</c:otherwise>
 			</c:choose>
-			<input type="submit" value="회원탈퇴" class="login" style="margin-left: -100px;margin-bottom: 300px;">
+			<input type="submit" value="회원탈퇴" class="login" style="margin-left: -100px;margin-top:100px;margin-bottom: 300px;">
 		</form>
 			</div>
 			</div>
