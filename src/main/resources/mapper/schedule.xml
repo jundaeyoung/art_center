@@ -5,41 +5,43 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
 
-	<!-- 김미정 캘린더 카테고리 별 데이터 불러오기 -->
 	<select id="selectShowScheduleByCategory"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id as id,s.title as title, h.name as holeName, r.start_date
-			as startDate, r.end_date as endDate, img_route as imgRoute
-			from rent_place_reservation_tb as r
-			join hole_tb
-			as h
-			on r.hole_id=h.id
-			join show_Tb as s
-			on s.id = r.show_id
-			where s.show_type_id = #{showTypeId} AND s.show_status=1 AND r.rent_place_status=1
+		SELECT s.id AS id,s.title AS title, h.name AS holeName, r.start_date AS startDate, r.end_date AS endDate,  img_route AS imgRoute
+		FROM rent_place_reservation_tb AS r
+		JOIN hole_tb AS h
+		ON r.hole_id=h.id
+		JOIN show_Tb AS s
+		ON s.id = r.show_id
+		WHERE s.show_type_id = #{showTypeId} 
+		AND s.show_status=1 AND
+		r.rent_place_status=1
 	</select>
 
-	<!-- 김미정 전체 데이터 불러오기 -->
+
 	<select id="selectShowSchedule"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id as id,s.title as title, h.name as holeName, r.start_date
-			as startDate, r.end_date as endDate, img_route as imgRoute
-			from rent_place_reservation_tb as r
-			join hole_tb
-			as h
-			on r.hole_id=h.id
-			join show_Tb as s
-			on s.id = r.show_id
-			where s.show_status=1 AND r.rent_place_status=1
+		SELECT s.id as id,s.title AS title, h.name AS holeName, r.start_date AS startDate,
+		r.end_date AS endDate, img_route AS imgRoute
+		FROM rent_place_reservation_tb AS r
+		JOIN hole_tb AS h
+		ON r.hole_id=h.id
+		JOIN show_Tb AS s
+		ON s.id = r.show_id
+		WHERE s.show_status=1 
+		AND r.rent_place_status=1
 	</select>
 
-	<!-- 김미정 -->
-	<select id="selectShowDetailByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-		select s.id as id,s.title as title, h.name as holeName,
-		s.start_date as startDate,s.img_route as imgRoute, s.end_date as endDate
-		from show_tb as s
-		inner join hole_tb as h
-		on s.hole_id = h.id
-		where s.id = #{id};
+
+	<select id="selectShowDetailByShowId"
+		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id AS id,s.title AS title, h.name AS holeName,
+		s.start_date AS startDate,s.img_route AS imgRoute, s.end_date AS endDate
+		FROM show_tb AS s
+		INNER JOIN hole_tb AS h
+		ON s.hole_id = h.id
+		WHERE s.id = #{id};
 	</select>
 </mapper>
+
+

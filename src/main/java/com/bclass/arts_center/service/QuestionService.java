@@ -20,6 +20,7 @@ public class QuestionService {
 	@Transactional
 	public List<RequestQuestionDto> readQuestionByType(String category, Integer begin, Integer range) {
 		List<RequestQuestionDto> questionList = questionRepository.selectQuestionByType(category, begin, range);
+		
 		return questionList;
 	}
 
@@ -27,6 +28,7 @@ public class QuestionService {
 	@Transactional
 	public Integer readQuestionCount(String category) {
 		Integer questionCount = questionRepository.selectQuestionCount(category);
+		
 		return questionCount;
 	}
 
@@ -35,16 +37,16 @@ public class QuestionService {
 	public List<RequestQuestionDto> readQuestionBySearchText(String searchText, Integer begin, Integer range) {
 		searchText = "%" + searchText + "%";
 		List<RequestQuestionDto> questionList = questionRepository.selectQuestionBySearchText(searchText,begin,range);
+		
 		return questionList;
 	}
 	
-	/**
-	 * 작성자 : 전대영 quetion 검색한값으로 select count
-	 */
+
 	@Transactional
 	public Integer readQuestionBySearchTextCount(String searchText) {
 		String search = "%" + searchText + "%";
 		Integer searchCount = questionRepository.selectQuestionBySearchTextCount(search);
+		
 		return searchCount;
 	}
 	
@@ -52,6 +54,7 @@ public class QuestionService {
 	@Transactional
 	public Integer createQeustion(Question question) {
 		int createResult = questionRepository.insert(question);
+		
 		return createResult;
 	}
 	
@@ -59,8 +62,7 @@ public class QuestionService {
 	@Transactional
 	public Integer deleteQuestion(Integer id) {
 		int deleteResult = questionRepository.deleteById(id);
-		System.out.println(id);
-		System.out.println(deleteResult);
+		
 		return deleteResult;
 	}
 	
@@ -68,6 +70,7 @@ public class QuestionService {
 	@Transactional
 	public List<RequestQuestionDto> readQuestionAll() {
 		List<RequestQuestionDto> questionList = questionRepository.selectQuestionAll();
+		
 		return questionList;
 	}
 	
@@ -75,6 +78,7 @@ public class QuestionService {
 	@Transactional
 	public RequestQuestionDto readQuestionByQuestionId(Integer questionId) {
 		RequestQuestionDto question = questionRepository.selectQuestionByQuestionId(questionId);
+		
 		return question;
 	}
 	
@@ -82,6 +86,7 @@ public class QuestionService {
 	@Transactional
 	public Integer deleteQuestionByQuestionId(Integer questionId) {
 		Integer result = questionRepository.deleteQuestionByQuestionId(questionId);
+		
 		return result;
 	}
 }

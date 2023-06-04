@@ -14,11 +14,6 @@ import com.bclass.arts_center.repository.interfaces.PaymentRepository;
 import com.bclass.arts_center.repository.model.ManagerPayment;
 import com.bclass.arts_center.repository.model.Payment;
 
-/**
- * 
- * @author 손주이
- *
- */
 @Service
 public class PaymentService {
 
@@ -35,7 +30,6 @@ public class PaymentService {
 		}
 	}
 
-	// 작성자 : 편용림 대관 결제
 
 	@Transactional
 	public void createManagerPayment(ManagerPayment payment) {
@@ -45,9 +39,9 @@ public class PaymentService {
 		if (result != 1) {
 			throw new CustomRestfullException("결제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
 	}
 
+	
 	@Transactional
 	public void updateCancelStatus(LocalDateTime canceledAt, String tid) {
 
@@ -57,6 +51,7 @@ public class PaymentService {
 		}
 	}
 
+	
 	@Transactional
 	public void updateManagerCancelStatus(LocalDateTime canceledAt, String tid) {
 
@@ -65,10 +60,12 @@ public class PaymentService {
 			throw new CustomRestfullException("결제 취소 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	
 	@Transactional
 	public KakaoRefundResponse refundCheck(String tid) {
 		KakaoRefundResponse result = paymentRepository.refundCheck(tid);
+		
 		return result;
 	}
-
 }

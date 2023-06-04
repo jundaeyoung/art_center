@@ -136,6 +136,7 @@ public class KakaoPaymentService {
 				HttpMethod.POST, kakaoRequestEntity, KakaoReadyResponse.class);
 
 		this.tid = response.getBody().getTid();
+		
 		return response.getBody();
 	}
 

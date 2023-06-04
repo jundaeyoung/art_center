@@ -97,16 +97,17 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-
+		  console.log("Ddd");
 	  $(".show--introduction--button").on("click", function() {
 		  $(".show--introduction--content").empty();
-		  var content = `<h2>작품소개</h2>
-		  				<p>${content}</p>`;
+		  console.log("Ddd");
+		  let content = `<h2>작품소개</h2>
+						<p>${showInfo[0].content}</p>`;
 		  $(".show--introduction--content").append(content);
 	  });
 	  $(".show--price--button").on("click", function() {
 		  $(".show--introduction--content").empty();
-		  var content = `<h2>가격정보</h2>
+		  let content = `<h2>가격정보</h2>
 		  		<p>- 성인 : ${adultRate} 원 </p>
 				<p>- 청소년 : ${youthRate} 원 </p>
 				<p>- 장애인 복지카드 소지자 (1급~3급/중증) 본인 및 동반 1인 50% (현장결제시)</p>
@@ -120,16 +121,17 @@ $(document).ready(function() {
 	        	type: 'get',
 	        	url: '/apiShow/showView/${showId}',
 	      	    contentType: 'application/json; charset=utf-8',
-	      }).done(function(response) {
+	      }).done(function(data) {
+	    	  let response = data.data;
 		  $(".show--introduction--content").empty();
-		  if(${reviewListSize} < 1){
+		  if(response.length < 1){
 			  var content = `<p>등록된 리뷰가 없습니다.</p>`;
 	  			$(".show--introduction--content").append(content);
 		  }else{
-		  	  var content = `<h2>리뷰</h2>`;
+		  	  let content = `<h2>리뷰</h2>`;
 		  	  $(".show--introduction--content").append(content);
 		  		for(let i = 0; i< response.length; i++) {
- 		  			var content = `<div>
+ 		  			let content = `<div>
 		  						   <p>작성일 : `+response[i].reviewCreationDate+`</p>
 		  						   <p>내용 : `+ response[i].content+`</p>
 		  						   <p>평점 : `+ response[i].rating +`</p>
@@ -143,11 +145,7 @@ $(document).ready(function() {
 });
 </script>
 
-<script type="text/javascript" src="/js/movePage.js">
-
-</script>
-
-
+<script type="text/javascript" src="/js/movePage.js"></script>
 
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -2,75 +2,72 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
-
-
-
 <mapper namespace="com.bclass.arts_center.repository.interfaces.UserRepository">
 
-	<!-- 회원가입 -->
 	<insert id="insertUser">
 		INSERT INTO user_tb (user_name, password, nickname, email, birth_date, tel, api_id, role_id)
 		VALUES (#{userName}, #{password}, #{nickname}, #{email}, #{birthDate}, #{tel}, #{apiId}, #{roleId})
 	</insert>
 
-	<!-- 비밀번호 암호화, 중복 아이디 확인 -->
+
 	<select id="selectUserByUsername" resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_tb
 		WHERE user_name = #{userName}
 	</select>
 
 
-	<!-- 닉네임으로 유저정보 조회 -->
 	<select id="selectUserBynickname" resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_tb
 		WHERE nickname = #{nickname}
 	</select>
 
 	<select id="selectUserById" resultType="com.bclass.arts_center.repository.model.User">
-		SELECT * from user_tb where id = #{id}
+		SELECT * from user_tb 
+		WHERE id = #{id}
 	</select>
 
-	<!-- admin 찾는거 -->
 	<select id="selectUserList" resultType="com.bclass.arts_center.repository.model.User">
-		select id, user_name, nickname, email, birth_date, tel, role_id, api_id from user_tb where role_id = 1;
+		SELECT id, user_name, nickname, email, birth_date, tel, role_id, api_id 
+		FROM user_tb 
+		WHERE role_id = 1;
 	</select>
 
 	<select id="selectManagerList" resultType="com.bclass.arts_center.repository.model.User">
-		select id, user_name, nickname, email, birth_date, tel, role_id, api_id from user_tb where role_id = 2;
+		SELECT id, user_name, nickname, email, birth_date, tel, role_id, api_id 
+		FROM user_tb 
+		WHERE role_id = 2;
 	</select>
 
 	<select id="selectTeacherList" resultType="com.bclass.arts_center.repository.model.User">
-		select id, user_name, nickname, email, birth_date, tel, role_id, api_id from user_tb where role_id = 4;
+		SELECT id, user_name, nickname, email, birth_date, tel, role_id, api_id 
+		FROM user_tb 
+		WHERE role_id = 4;
 	</select>
 
-	<!-- api 아이디 있는지 확인 -->
 	<select id="selectUserByApiId" resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_TB WHERE api_id = #{apiId};
 	</select>
 
-
-	<!-- 로그인 -->
 	<select id="selectUserByUsernameAndPassword" resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * FROM user_tb
 		WHERE user_name = #{userName}
 		AND password=#{password}
 	</select>
 
-	<!-- 수정 -->
 	<update id="updateUserByUsername">
 		UPDATE user_tb 
-		SET password = #{password}, nickname = #{nickname}, email = #{email}, tel = #{tel} WHERE user_name = #{userName}
+		SET password = #{password}, nickname = #{nickname}, email = #{email}, tel = #{tel} 
+		WHERE user_name = #{userName}
 	</update>
 
-	<!-- 편용림 -->
-	<!-- admin 회원 삭제 -->
 	<delete id="deleteUserById">
-		DELETE FROM user_tb WHERE user_name = #{id}
+		DELETE FROM user_tb 
+		WHERE user_name = #{id}
 	</delete>
 
 	<delete id="deleteById">
-		DELETE FROM user_tb WHERE id = #{id}
+		DELETE FROM user_tb 
+		WHERE id = #{id}
 	</delete>
 
 	<update id="updateUserById">
@@ -85,32 +82,36 @@
 	</select>
 
 	<update id="updateUserPassword">
-		update user_tb
-		set password=#{pw}
+		UPDATE user_tb
+		SET password=#{pw}
 		where user_name=#{id};
 	</update>
 
 	<select id="findUserByUserName" resultType="Integer">
-		SELECT count(*) FROM user_tb
+		SELECT count(*) 
+		FROM user_tb
 		WHERE user_name = #{userName}
 	</select>
 
 	<select id="findUserByNickname" resultType="Integer">
-		SELECT count(*) FROM user_tb
+		SELECT count(*) 
+		FROM user_tb
 		WHERE nickname = #{nickname}
 	</select>
 
 	<select id="findUserByTel" resultType="Integer">
-		SELECT count(*) FROM user_tb
+		SELECT count(*) 
+		FROM user_tb
 		WHERE tel = #{tel}
 	</select>
 	
-	<!-- 작성자 : 편용림 아이디 찾기 -->
 	<select id="findUserByEmailAndTel">
-	SELECT * from user_tb where email = #{email} AND TEL = #{tel}
+		SELECT * 
+		FROM user_tb 
+		WHERE email = #{email} 
+		AND TEL = #{tel}
 	</select>
 
-	<!-- author 손주이 -->
 	<select id="selectJoinUserByDate" resultType="com.bclass.arts_center.dto.RequestUserCountDto">
 		SELECT count(*) AS join_user_per_date, date_format(created_at, '%Y-%m-%d') AS created_date
 		FROM user_tb

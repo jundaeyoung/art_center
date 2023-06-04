@@ -18,7 +18,7 @@ public class RentalService {
 	
 	
 	@Transactional
-	public List<RequestHoleDto> selectByLocation(Integer id) {
+	public List<RequestHoleDto> readHoleByLocation(Integer id) {
 		List<RequestHoleDto> holeList = rentalRepository.selectByLocation(id);
 		
 		return holeList;
@@ -26,7 +26,7 @@ public class RentalService {
 	
 	
 	@Transactional
-	public List<RequestHoleDto> selectTimeByLocationId(Integer locationId) {
+	public List<RequestHoleDto> readTimeByLocationId(Integer locationId) {
 		List<RequestHoleDto> timeList = rentalRepository.selectTimeByLocationId(locationId);
 		
 		return timeList;

@@ -16,18 +16,16 @@ public class MainService {
 	@Autowired
 	private MainRepository mainRepository;
 
-	/*
-	 * 전대영 main에서 공연정보 불러오기
-	 */
 	@Transactional
 	public List<Show> readShowDto() {
 		List<Show> selectShows = mainRepository.selectShowDto();
+		
 		return selectShows;
 	}
 	
 	public List<Announcement> selectAnnouncement(){
 		List<Announcement> selectAnnouncement = mainRepository.selectAnnouncement();
-		return selectAnnouncement;
 		
+		return selectAnnouncement;
 	}
 }

@@ -6,24 +6,27 @@
 <mapper namespace="com.bclass.arts_center.repository.interfaces.RentPlaceReservationRepository">
 
 	<select id="selectRentPlaceReservationList" resultType="com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto">
-		SELECT r.id, u.nickname, u.tel, r.start_date, r.end_date, r.start_time,
-		r.end_time, h.name, l.location, l.location_info, r.rent_place_status
-		from rent_place_reservation_tb AS r
+		SELECT r.id, u.nickname, u.tel, r.start_date, r.end_date, r.start_time, r.end_time, h.name, l.location, l.location_info, r.rent_place_status
+		FROM rent_place_reservation_tb AS r
 		JOIN hole_tb AS h
-		on r.hole_id = h.id
+		ON r.hole_id = h.id
 		JOIN location_tb AS l
-		on r.location_id = l.id
+		ON r.location_id = l.id
 		LEFT JOIN user_tb AS u
-		on u.id = r.user_id
-		ORDER BY r.rent_place_status ASC, r.id DESC;
+		ON u.id = r.user_id
+		ORDER BY r.rent_place_status ASC, r.id DESC
 	</select>
 	
 	<update id="updateRentPlaceReservation">
-	UPDATE rent_place_reservation_tb SET rent_place_status = 1 WHERE id = #{id};
+		UPDATE rent_place_reservation_tb 
+		SET rent_place_status = 1 
+		WHERE id = #{id};
 	</update>
 	
 	<update id="updateRentById">
-	UPDATE rent_place_reservation_tb  SET rent_place_status = 2 where id = #{id}
+		UPDATE rent_place_reservation_tb  
+		SET rent_place_status = 2 
+		WHERE id = #{id}
 	</update>
 </mapper>
 

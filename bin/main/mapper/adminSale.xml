@@ -20,7 +20,7 @@
 		ON r.user_id = u.id
 		WHERE r.rent_place_status = 1
 		GROUP BY s.title
-		ORDER BY r.start_date ASC, r.end_date ASC;
+		ORDER BY r.start_date ASC, r.end_date ASC
 	</select>
 
 	<select id="selectShowSaleGrape"
@@ -35,7 +35,7 @@
 		ON t.show_datetime_id = sd.id
 		WHERE t.payment_status = 1
 		GROUP BY s.title
-		ORDER BY totalshowSales DESC;
+		ORDER BY totalshowSales DESC
 	</select>
 
 	<select id="selectRentSaleList"
@@ -52,7 +52,7 @@
 		JOIN user_tb AS u   
 		ON r.user_id = u.id
 		WHERE r.rent_place_status = 1
-		ORDER BY r.start_date ASC, r.end_date ASC;
+		ORDER BY r.start_date ASC, r.end_date ASC
 	</select>
 
 
@@ -68,7 +68,7 @@
 		ON t.show_datetime_id = sd.id
 		WHERE t.payment_status = 1
 		GROUP BY s.title
-		ORDER BY s.start_date ASC;
+		ORDER BY s.start_date ASC
 	</select>
 
 	<select id="selectShowSaleByStartDateAndEndDate" 
@@ -82,7 +82,7 @@
 		WHERE t.payment_status = 1
 		AND  s.start_date >= #{startDate} AND s.end_date &lt;= #{endDate}
 		GROUP BY s.title
-		ORDER BY s.start_date ASC;
+		ORDER BY s.start_date ASC
 	</select>
 	
 	<select id="selectShowSaleSearchByTitle" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
@@ -97,7 +97,7 @@
 		WHERE t.payment_status = 1
 		AND s.title LIKE CONCAT('%', #{searchTitle}, '%')
 		GROUP BY s.title
-		ORDER BY s.start_date ASC;
+		ORDER BY s.start_date ASC
 	</select>
 	
 	<select id="selectRentSaleByStartDateAndEndDate"
@@ -115,7 +115,7 @@
 		ON r.user_id = u.id
 		WHERE r.rent_place_status = 1
 		AND  r.start_date >= #{startDate} AND r.end_date &lt;= #{endDate}
-		ORDER BY r.start_date ASC, r.end_date ASC;
+		ORDER BY r.start_date ASC, r.end_date ASC
 	</select>
 	
 	<select id="selectRentSaleBySearchTitle"
@@ -133,7 +133,7 @@
 		ON r.user_id = u.id
 		WHERE r.rent_place_status = 1
 		AND h.name LIKE CONCAT('%', #{searchTitle}, '%')
-		ORDER BY r.start_date ASC, r.end_date ASC;
+		ORDER BY r.start_date ASC, r.end_date ASC
 	</select>
 </mapper>
 

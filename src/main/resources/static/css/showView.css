@@ -160,13 +160,12 @@ select option {
 
 .show--introduction--button {
 	border-style: none;
-	background-color: #FAFAFA;
-	height: 40px;
+	background-color: #fff;
 }
 
 .show--price--button {
 	border-style: none;
-	background-color: #FAFAFA;
+	background-color: #fff;
 }
 
 .show--introduction--content div {
@@ -185,7 +184,7 @@ select option {
 
 .show--review--button {
 	border-style: none;
-	background-color: #fafafa;
+	background-color: #fff;
 }
 
 .show--introduction button {

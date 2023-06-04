@@ -66,63 +66,49 @@ public class ShowService {
 		return showList;
 	}
 
-	/**
-	 * 작성자 : 전대영 show 관람평 낮은순으로 select
-	 */
+
 	@Transactional
 	public List<RequestShowDto> readShowByRowestRated(Integer begin, Integer range) {
 		List<RequestShowDto> showList = showRepository.selectShowByRowestRated(begin, range);
 		return showList;
 	}
 
-	/**
-	 * 작성자 : 전대영 show Count
-	 */
+
 	@Transactional
 	public Integer readShowByCount() {
 		Integer showNewestCount = showRepository.selectShowCount();
 		return showNewestCount;
 	}
 
-	/**
-	 * 작성자 : 전대영 show 카테고리별 select
-	 */
+
 	@Transactional
 	public List<RequestShowDto> readShowBycategory(String category, Integer begin, Integer range) {
 		List<RequestShowDto> showList = showRepository.selectShowByCategory(category, begin, range);
 		return showList;
 	}
 
-	/**
-	 * 작성자 : 전대영 show 카테고리별 Count
-	 */
+	
 	@Transactional
 	public Integer readShowBycategoryCount(String category) {
 		Integer showNewestCount = showRepository.selectShowByCategoryCount(category);
 		return showNewestCount;
 	}
 
-	/**
-	 * 작성자 : 전대영 manager 계정에서 show insert
-	 */
+
 	@Transactional
 	public Integer createShow(RequestSignUpShowDto requestSignUpShowDto) {
 		Integer showNewestCount = showRepository.insertShow(requestSignUpShowDto);
 		return showNewestCount;
 	}
 
-	/**
-	 * 작성자 : 전대영 manager 계정에서 showDateTime insert
-	 */
+
 	@Transactional
 	public Integer createShowDateTime(RequestRentPlaceDto requestRentPlaceDto) {
 		Integer showNewestCount = showRepository.insertShowDateTime(requestRentPlaceDto);
 		return showNewestCount;
 	}
 
-	/**
-	 * 작성자 : 전대영 show insert된거 최근 하나만 가져오기
-	 */
+
 	@Transactional
 	public RequestShowDto readShowByNewestOne(Integer userId) {
 		RequestShowDto show = showRepository.selectShowByNewestOne(userId);
@@ -136,27 +122,21 @@ public class ShowService {
 		return show;
 	}
 
-	/**
-	 * 작성자 : 전대영 show id 로 리뷰찾기
-	 */
+
 	@Transactional
 	public List<RequestShowDto> readReviewByShowId(Integer userId) {
 		List<RequestShowDto> show = showRepository.selectReviewByShowId(userId);
 		return show;
 	}
 
-	/*
-	 * 손주이 : showId와 일치하는 공연정보
-	 */
+
 	@Transactional
 	public List<ShowViewDto> readShowInfoByShowId(Integer id) {
 		List<ShowViewDto> ShowInfoList = showRepository.selectShowInfoByShowId(id);
 		return ShowInfoList;
 	}
 
-	/*
-	 * 작성자 : 손주이 showId와 일치하는 show 상연날짜 select
-	 */
+
 	@Transactional
 	public List<ShowViewDto> readShowDateByShowId(Integer showId) {
 		List<ShowViewDto> showTimeList = showRepository.selectShowDateByShowId(showId);

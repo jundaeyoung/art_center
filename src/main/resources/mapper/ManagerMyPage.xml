@@ -5,25 +5,19 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.ManagerMyPageRepository">
 
-	<!-- 김미정: 공연,대관예약 정보 불러오기 -->	
 	<select id="selectMyShow"
 		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
-		select *, r.id AS rentId
-		from show_tb as s
-		left join
-		rent_place_reservation_tb as r
-		on s.id = r.show_id
-		where s.organizer_id
-		= #{organizerId}
-		group by s.id
-		order by s.start_date desc
+		SELECT *, r.id AS rentId
+		FROM show_tb AS s
+		LEFT JOIN rent_place_reservation_tb AS r
+		ON s.id = r.show_id
+		WHERE s.organizer_id = #{organizerId}
+		GROUP BY s.id
+		ORDER BY s.start_date DESC
 	</select>
 
-	<!-- 김미정 : 공연,대관예약 detail정보 불러오기 -->
 	<select id="selectMyShowDetail"
 		resultType="com.bclass.arts_center.dto.MyRegistrationInfoDto">
-		<!-- select * from show_tb as s left join rent_place_reservation_tb as 
-			r on s.id = r.show_id where s.id = #{id}; -->
 		SELECT *
 		FROM show_tb AS s
 		JOIN rent_place_reservation_tb AS r
@@ -36,3 +30,4 @@
 
 	</select>
 </mapper>
+

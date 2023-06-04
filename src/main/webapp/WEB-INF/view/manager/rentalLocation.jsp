@@ -26,7 +26,7 @@
 				</div>
 
 				<div class="rental__location">
-					<label>대관 장소 : ${location}</label>
+					<label>대관 장소 : ${locationLists[0].location}</label>
 				</div>
 
 				<div class="rental__date">

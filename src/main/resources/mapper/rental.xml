@@ -5,11 +5,10 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.RentalRepository">
 
-<!-- 작성자 : 편용림 대관 예약 정보 조회 (id) -->
 	<select id="selectRentPlaceReservationById"
 		resultType="com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto">
 		SELECT r.*, h.name, l.location, u.nickname, u.birth_date, s.youth_rate, s.adult_rate, s.title
-		from rent_place_reservation_tb AS r
+		FROM rent_place_reservation_tb AS r
 		JOIN hole_tb AS h
 		ON r.hole_id = h.id
 		JOIN location_tb AS l
@@ -18,40 +17,33 @@
 		ON r.user_id = u.id
 		JOIN show_tb AS s
 		ON r.show_id = s.id
-		WHERE r.id = #{id};
+		WHERE r.id = #{id}
 	</select>
 
 
 	<select id="selectByLocation"
 		resultType="com.bclass.arts_center.dto.request.RequestHoleDto">
-		SELECT l.id, l.location, h.name, h.price, MIN(h.id) AS
-		hole_id
+		SELECT l.id, l.location, h.name, h.price, MIN(h.id) AS hole_id
 		FROM hole_tb AS h
-		JOIN location_tb AS l ON h.location_id = l.id
-		AND l.id = #{id}
-		GROUP BY l.id, l.location, h.name, h.price;
-
-
+		JOIN location_tb AS l 
+		ON h.location_id = l.id AND l.id = #{id}
+		GROUP BY l.id, l.location, h.name, h.price
 	</select>
 
 	<select id="selectTimeByLocationId"
 		resultType="com.bclass.arts_center.dto.request.RequestHoleDto">
-		select t.id, t.start_time, t.end_time
-		from time_tb as t
-		join
-		hole_tb as h
-		on h.time_id = t.id
-		where h.location_id = #{locationId}
-		group by time_id;
+		SELECT t.id, t.start_time, t.end_time
+		FROM time_tb AS t
+		JOIN hole_tb AS h
+		ON h.time_id = t.id
+		WHERE h.location_id = #{locationId}
+		GROUP BY time_id
 	</select>
 
 
 	<insert id="insertRental">
-		INSERT INTO
-		rent_place_reservation_tb(start_date,end_date,start_time,end_time,rent_price,user_id,hole_id,location_id,show_id)
-		VALUES(
-		#{startDate},#{endDate},#{startTime},#{endTime},#{rentPrice},#{userId},#{holeId},#{locationId},#{showId}
-		);
+		INSERT INTO rent_place_reservation_tb(start_date,end_date,start_time,end_time,rent_price,user_id,hole_id,location_id,show_id)
+		VALUES(#{startDate},#{endDate},#{startTime},#{endTime},#{rentPrice},#{userId},#{holeId},#{locationId},#{showId})
 	</insert>
 	
 	<select id="selectRentPlaceReservationByDateAndLocation"
@@ -60,7 +52,7 @@
 		FROM rent_place_reservation_tb AS r
 		WHERE (r.start_date BETWEEN #{startDate} AND #{endDate}
 		OR r.end_date BETWEEN #{startDate} AND #{endDate})
-        AND hole_id= #{holeId};
+        AND hole_id= #{holeId}
 	</select>
 
 

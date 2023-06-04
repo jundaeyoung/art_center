@@ -15,24 +15,27 @@ public class FaqService {
 	@Autowired
 	private FaqRepository faqRepository;
 
+	
 	@Transactional
 	public List<Faq> readFaqCategory() {
-		
 		List<Faq> faqCategoryList = faqRepository.selectFaqCategory();
+		
 		return faqCategoryList;
 	}
 
+	
 	@Transactional
 	public List<Faq> readFaqAll() {
-		
 		List<Faq> faqList = faqRepository.selectFaqAll();
+		
 		return faqList;
 	}
 	
+	
 	@Transactional
 	public List<Faq> readByCategoryId(Integer categoryId){
-		
 		List<Faq> faqList = faqRepository.selectFaqByCategoryId(categoryId);
+		
 		return faqList;
 	}
 }

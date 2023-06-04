@@ -7,48 +7,59 @@
 
 	<select id="selectManagerShowSale" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
-		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
+		COUNT(case when t.age_group_id=2 then 1 end) AS youthCount, COUNT(case when t.age_group_id=3 then 1 end) AS adultCount
 		FROM show_tb AS s
-		Join user_tb AS u ON u.id = s.organizer_id
-		join show_datetime_tb AS sd ON
-		sd.show_id = s.id
-		left Join ticketing_tb AS t ON t.show_datetime_id = sd.id
-		left JOIN age_group_tb AS a ON t.age_group_id = a.id
-		left join payment_tb as p
-        on p.ticketing_id = t.id
-		where s.organizer_id = #{userId} AND t.payment_status=1 AND p.cancel_status=0
-		group by s.id;
+		JOIN user_tb AS u 
+		ON u.id = s.organizer_id
+		JOIN show_datetime_tb AS sd 
+		ON sd.show_id = s.id
+		LEFT JOIN ticketing_tb AS t 
+		ON t.show_datetime_id = sd.id
+		LEFT JOIN age_group_tb AS a 
+		ON t.age_group_id = a.id
+		LEFT JOIN payment_tb AS p
+        ON p.ticketing_id = t.id
+		WHERE s.organizer_id = #{userId} AND t.payment_status=1 AND p.cancel_status=0
+		GROUP BY s.id
 	</select>
 
 	<select id="selectManagerShowSaleByStartDateAndEndDate" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
-		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
+		COUNT(case when t.age_group_id=2 then 1 end) AS youthCount, COUNT(case when t.age_group_id=3 then 1 end) AS adultCount
 		FROM show_tb AS s
-		Join user_tb AS u ON u.id = s.organizer_id
-		join show_datetime_tb AS sd ON
-		sd.show_id = s.id
-		left Join ticketing_tb AS t ON t.show_datetime_id = sd.id
-		left JOIN age_group_tb AS a ON t.age_group_id = a.id
-		left join payment_tb as p
-        on p.ticketing_id = t.id
-		where s.organizer_id = #{userId} AND t.payment_status=1 AND p.cancel_status=0
-		AND p.payment_date BETWEEN #{startDate} and #{endDate}
-		group by s.id;
+		JOIN user_tb AS u 
+		ON u.id = s.organizer_id
+		JOIN show_datetime_tb AS sd 
+		ON sd.show_id = s.id
+		LEFT JOIN ticketing_tb AS t ON t.show_datetime_id = sd.id
+		LEFT JOIN age_group_tb AS a ON t.age_group_id = a.id
+		LEFT JOIN payment_tb AS p
+        ON p.ticketing_id = t.id
+		WHERE s.organizer_id = #{userId} AND t.payment_status=1 AND p.cancel_status=0
+		AND p.payment_date BETWEEN #{startDate} AND #{endDate}
+		GROUP BY s.id
 	</select>
 
 
 	<select id="selectManagerShowBySearchTitle" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
-		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
+		COUNT(case when t.age_group_id=2 then 1 end) AS youthCount, COUNT(case when t.age_group_id=3 then 1 end) AS adultCount
 		FROM show_tb AS s
-		Join user_tb AS u ON u.id = s.organizer_id
-		join show_datetime_tb AS sd ON
-		sd.show_id = s.id
-		left Join ticketing_tb AS t ON t.show_datetime_id = sd.id
-		left JOIN age_group_tb AS a ON t.age_group_id = a.id
-		right join payment_tb as p
-        on p.ticketing_id = t.id
-		where s.organizer_id =#{userId} AND s.title like #{title} group by s.id AND t.payment_status=1 AND p.cancel_status=0
+		JOIN user_tb AS u 
+		ON u.id = s.organizer_id
+		JOIN show_datetime_tb AS sd 
+		ON sd.show_id = s.id
+		LEFT JOIN ticketing_tb AS t 
+		ON t.show_datetime_id = sd.id
+		LEFT JOIN age_group_tb AS a 
+		ON t.age_group_id = a.id
+		RIGHT join payment_tb as p
+        ON p.ticketing_id = t.id
+		WHERE s.organizer_id =#{userId} 
+		AND s.title LIKE #{title} 
+		GROUP BY s.id 
+		AND t.payment_status=1 
+		AND p.cancel_status=0
 	</select>
 	
 </mapper>

@@ -7,28 +7,28 @@
 
 
 	<select id="selectAnswer"  resultType="com.bclass.arts_center.repository.model.Answer">
-		select * from answer_tb
-		where question_id=#{questionId}
+		SELECT * 
+		FROM answer_tb
+		WHERE question_id=#{questionId}
 	</select>
 
-	<!-- 작성자 : 전대영 answerInsert -->
+
 	<insert id="insertAnswer">
-		insert into answer_tb (content, user_id, question_id)
-		values(#{content},#{userId},#{questionId});
+		INSERT INTO answer_tb (content, user_id, question_id)
+		VALUES(#{content},#{userId},#{questionId})
 	</insert>
 
 
-	<!-- 작성자 : 전대영 answerInsert -->
 	<update id="updateQuestionStatus">
-		update question_tb set answer_status = 1
-		where id =#{questionId}
+		UPDATE question_tb 
+		SET answer_status = 1
+		WHERE id =#{questionId}
 	</update>
 	
 	
-	<!-- 작성자 : 전대영 answerInsert -->
 	<update id="updateAnswer">
-		update answer_tb set content = #{content}
-		where question_id =#{questionId}
+		UPDATE answer_tb SET content = #{content}
+		WHERE question_id =#{questionId}
 	</update>
 
 </mapper>

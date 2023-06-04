@@ -6,13 +6,10 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.CategoryRepository">
 
-	<!-- 작성자 : 전대영 category 전체 select-->
 	<select id="selectCategoryAll"
 		resultType="com.bclass.arts_center.repository.model.Category">
-		select * from category_tb;
+		SELECT * FROM category_tb;
 	</select>
-
-	
 </mapper>
 
 

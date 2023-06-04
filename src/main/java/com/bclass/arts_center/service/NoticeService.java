@@ -43,7 +43,7 @@ public class NoticeService {
 	@Transactional
 	public Integer updateNotice(Integer id){
 		Integer updateNotice = noticeRepository.updateManagerNotice(id);
-		return updateNotice;
 		
+		return updateNotice;
 	}
 }

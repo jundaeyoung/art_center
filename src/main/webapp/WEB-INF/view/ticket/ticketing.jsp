@@ -13,7 +13,6 @@
 
 
 <div class="main">
-
    <form action="/ticket/ticketing" method="post">
       <div class="reservation">
          <div class="reservation--calendar">

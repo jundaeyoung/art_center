@@ -81,7 +81,6 @@ public class ShowApiController {
 	@GetMapping("/showView/{showId}")
 	public ResponseDto<List<RequestShowDto>> showView(@PathVariable Integer showId) {
 		List<RequestShowDto> reviewList = showService.readReviewByShowId(showId);
-		
 		return new ResponseDto<List<RequestShowDto>>(200, HttpStatus.OK.toString(), reviewList);
 	}
 }

@@ -24,7 +24,6 @@
 		ORDER BY s.id DESC
 	</select>
 	
-	<!-- 작성자 : 전대영 show 최신순 -->
 	<select id="selectShowByNewest" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
 		FROM show_tb AS s
@@ -46,7 +45,6 @@
 		LIMIT #{begin}, #{range}
 	</select>
 
-	<!-- 작성자 : 전대영 show 평점 높은순 -->
 	<select id="selectShowByHighesRated" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
 		FROM show_tb AS s
@@ -68,7 +66,6 @@
 		LIMIT #{begin}, #{range}
 	</select>
 
-	<!-- 작성자 : 전대영 show 평점 낮은순 -->
 	<select id="selectShowByRowestRated" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
 		FROM show_tb AS s
@@ -90,7 +87,6 @@
 		LIMIT #{begin},	#{range}
 	</select>
 	
-	<!-- 작성자 : 전대영 show 카운터 -->
 	<select id="selectShowCount" resultType="Integer">
 		SELECT count(*) AS count
 		FROM (
@@ -126,7 +122,6 @@
 		LIMIT #{begin},	#{range}
 	</select>
 
-	<!-- 작성자 : 전대영 show 카테고리 -->
 	<select id="selectShowByNewestOne" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT *
 		FROM show_tb
@@ -135,14 +130,12 @@
 		LIMIT 1
 	</select>
 
-	<!-- 작성자 : 전대영 show 아이디로 찾기 -->
 	<select id="selectShowByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT *
 		FROM show_tb
 		WHERE id = #{showId}
 	</select>
 
-	<!-- 작성자 : 전대영 show 아이디로 리뷰찾기 -->
 	<select id="selectReviewByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT r.*
 		FROM show_tb AS s
@@ -151,7 +144,6 @@
 		WHERE s.id = #{showId};
 	</select>
 
-	<!-- 작성자 : 전대영 show 카운터 -->
 	<select id="selectShowByCategoryCount" resultType="Integer">
 		SELECT count(*) AS count
 		FROM (
@@ -180,7 +172,6 @@
 	</insert>
 
 
-	<!-- 작성자 손주이 : show 정보 상세 -->
 	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
 		SELECT *, sdt.id as show_datetime_id
 		FROM show_tb AS s
@@ -196,7 +187,6 @@
 	</select>
 
 
-	<!-- 작성자 편용림 : admin 쪽 정보 상세 -->
 	<select id="selectShowInfoAdmin" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT s.id, s.organizer_id AS user_id, s.title, s.content, s.admission_age, c.show_type, s.show_status
 		FROM show_tb AS s
@@ -205,12 +195,10 @@
 		ORDER BY s.show_status ASC, s.id DESC
 	</select>
 
-	<!-- 작성자 편용림 : 공연 예약 승인 여부 -->
-	<update id="updateShowById">
+	<update id="updateShowStatusById">
 		UPDATE show_tb SET show_status = 1 WHERE id = #{id}
 	</update>
 
-	<!-- 작성자 전대영 : 공연 holeId update -->
 	<update id="updateShowHoleById">
 		UPDATE show_tb SET hole_id = #{holeId} WHERE id = #{id}
 	</update>

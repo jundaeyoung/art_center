@@ -19,20 +19,23 @@ public class RentPlaceReservationService {
 	@Transactional
 	public List<RequestRentPlaceReservationDto> readRentPlaceReservationList(){
 		List<RequestRentPlaceReservationDto> rentPlaceReservationList = placeReservationRepository.selectRentPlaceReservationList();
+		
 		return rentPlaceReservationList;
 	};
 	
 	
 	@Transactional
-	public int updateRentPlaceReservation(Integer id) {
-		int resultRowCount = placeReservationRepository.updateRentPlaceReservation(id);
+	public Integer updateRentPlaceReservation(Integer id) {
+		Integer resultRowCount = placeReservationRepository.updateRentPlaceReservation(id);
+		
 		return resultRowCount;
 	}
 	
 	
 	@Transactional
-	public int updateRentByStatus(Integer id) {
-		int resultRowCount = placeReservationRepository.updateRentById(id);
+	public Integer updateRentByStatus(Integer id) {
+		Integer resultRowCount = placeReservationRepository.updateRentById(id);
+		
 		return resultRowCount;
 	}
 }

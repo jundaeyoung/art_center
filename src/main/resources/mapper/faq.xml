@@ -6,12 +6,13 @@
 
 	
 	<select id="selectFaqCategory" resultType="com.bclass.arts_center.repository.model.Faq">
-		SELECT * FROM faq_category_tb
+		SELECT * 
+		FROM faq_category_tb
 	</select>
 
-
 	<select id="selectFaqAll" resultType="com.bclass.arts_center.repository.model.Faq">
-		SELECT * FROM faq_tb
+		SELECT * 
+		FROM faq_tb
 	</select>
 	
 	<select id="selectFaqByCategoryId" resultType="com.bclass.arts_center.repository.model.Faq">

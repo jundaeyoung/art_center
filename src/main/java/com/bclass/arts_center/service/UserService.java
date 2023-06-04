@@ -35,7 +35,6 @@ public class UserService {
 	
 	@Transactional
 	public Integer createUser(SignUpFormDto signUpFormDto) {
-
 		String rawPwd = signUpFormDto.getPassword();
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		signUpFormDto.setPassword(hashPwd);
@@ -74,7 +73,7 @@ public class UserService {
 		return userEntity;
 	}
 
-	
+	@Transactional
 	public User readUserByApiId(String apiId) {
 		User userEntity = userRepository.selectUserByApiId(apiId);
 		return userEntity;
@@ -89,8 +88,8 @@ public class UserService {
 
 	
 	@Transactional
-	public int readUserCountByUserName(String userName) {
-		int result = userRepository.selectUserCountByUserName(userName);
+	public Integer readUserCountByUserName(String userName) {
+		Integer result = userRepository.selectUserCountByUserName(userName);
 		return result;
 	}
 
@@ -100,18 +99,17 @@ public class UserService {
 		String rawPwd = updateUserDto.getPassword();
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		updateUserDto.setPassword(hashPwd);
-		int result = userRepository.updateUserByUsername(updateUserDto);
+		Integer result = userRepository.updateUserByUsername(updateUserDto);
 		return result;
 	}
 
 	
 	@Transactional
-	public int deleteUser(SignInFormDto signInFormDto) {
-
+	public Integer deleteUser(SignInFormDto signInFormDto) {
 		User userEntity = userRepository.selectUserByUsername(signInFormDto.getUserName());
 
 		if (userEntity.getApiId() != null) {
-			int result = userRepository.deleteUserById(signInFormDto);
+			Integer result = userRepository.deleteUserById(signInFormDto);
 			return result;
 		} else {
 
@@ -120,7 +118,7 @@ public class UserService {
 			if (isPwdMatched == false) {
 				throw new CustomRestfullException("비밀번호가 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
-				int result = userRepository.deleteUserById(signInFormDto);
+				Integer result = userRepository.deleteUserById(signInFormDto);
 				return result;
 			}
 		}
@@ -143,14 +141,14 @@ public class UserService {
 	
 	@Transactional
 	public int updateUserById(User user) {
-		int result = userRepository.updateUserById(user);
+		Integer result = userRepository.updateUserById(user);
 		return result;
 	}
 
 	
 	@Transactional
 	public int deleteUserById(String id) {
-		int result = userRepository.deleteById(id);
+		Integer result = userRepository.deleteById(id);
 		return result;
 	}
 
@@ -221,6 +219,5 @@ public class UserService {
 		
 		return userList;
 	}
-
 }
 

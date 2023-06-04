@@ -6,10 +6,10 @@
 <mapper
 	namespace="com.bclass.arts_center.repository.interfaces.HoleRepository">
 
-	<!-- 작성자 : 전대영 hole 전체 select-->
 	<select id="selectHoleAll"
 		resultType="com.bclass.arts_center.repository.model.Hole">
-		select * from hole_tb;
+		SELECT *
+	    FROM hole_tb;
 	</select>
 
 	

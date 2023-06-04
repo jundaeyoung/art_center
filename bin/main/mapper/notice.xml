@@ -4,27 +4,27 @@
 
 <mapper namespace="com.bclass.arts_center.repository.interfaces.NoticeRepository">
 
-	<!-- 작성자 : 전대영 amdin 알림 insert -->
 	<insert id="insertAdminNotice">
-		insert into adminNotice_tb(notice,user_id,admin_id)
-		values(#{notice},#{userId},#{adminId});
+		INSERT INTO adminNotice_tb(notice,user_id,admin_id)
+		VALUES(#{notice},#{userId},#{adminId})
 	</insert>
 	
-	<!-- 작성자 : 전대영 manager 알림 insert -->
 	<insert id="insertManaegerNotice">
-		insert into managerNotice_tb(notice,user_id,admin_id)
-		values(#{notice},#{userId},#{adminId});
+		INSERT INTO managerNotice_tb(notice,user_id,admin_id)
+		VALUES(#{notice},#{userId},#{adminId})
 	</insert>
 
 	<!-- 작성자: 전대영 admin 알림 select -->
 	<select id="selectManagerNotice" resultType="com.bclass.arts_center.repository.model.Notice">
-		select * from managerNotice_tb
-		where user_id=#{userId} AND status=0;
+		SELECT * FROM managerNotice_tb
+		WHERE user_id = #{userId} 
+		AND status = 0
 	</select>
 
 	<update id="updateManagerNotice">
-		update managerNotice_tb set
-		status=1 where id =#{id};
+		UPDATE managerNotice_tb SET
+		status = 1 
+		WHERE id = #{id}
 	</update>
 </mapper>
 

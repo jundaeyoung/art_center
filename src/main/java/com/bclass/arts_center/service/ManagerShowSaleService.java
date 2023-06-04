@@ -44,6 +44,5 @@ public class ManagerShowSaleService {
 		
 		return showSaleList;
 	}
-	
-	
 }
+

@@ -62,8 +62,9 @@ public class RentalController {
 	@Transactional
 	public String rentalLocation(Model model, @PathVariable("id") Integer id, @PathVariable("showId") Integer showId) {
 		RequestShowDto show = showService.readShowByShowId(showId);
-		List<RequestHoleDto> locationList = rentalService.selectByLocation(id);
-		List<RequestHoleDto> timeList = rentalService.selectTimeByLocationId(id);
+		List<RequestHoleDto> locationList = rentalService.readHoleByLocation(id);
+		List<RequestHoleDto> timeList = rentalService.readTimeByLocationId(id);
+		System.out.println(locationList);
 		if (show == null) {
 			model.addAttribute("show", null);
 		} else {
@@ -79,10 +80,11 @@ public class RentalController {
 
 	@PostMapping("/location")
 	public String rentalLocationPost(Model model, @RequestParam("id") Integer id) {
-		List<RequestHoleDto> locationList = rentalService.selectByLocation(id);
-		List<RequestHoleDto> timeList = rentalService.selectTimeByLocationId(id);
+		List<RequestHoleDto> locationList = rentalService.readHoleByLocation(id);
+		List<RequestHoleDto> timeList = rentalService.readTimeByLocationId(id);
 		model.addAttribute("timeList", timeList);
 		model.addAttribute("locationLists", locationList);
+		System.out.println(locationList);
 		
 		return "/manager/rentalLocation";
 	}

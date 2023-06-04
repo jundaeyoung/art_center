@@ -6,7 +6,7 @@
 <mapper namespace="com.bclass.arts_center.repository.interfaces.MainRepository">
 
 	<select id="selectShowDto" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
-	SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
 		FROM show_tb AS s
 		LEFT JOIN review_tb AS r
 		ON r.show_id = s.id
@@ -18,7 +18,7 @@
 		ON h.id = s.hole_id
 		JOIN location_tb as l
 		ON l.id = h.location_id
-		left JOIN rent_place_reservation_tb AS rp
+		LEFT JOIN rent_place_reservation_tb AS rp
 		ON s.id = rp.show_id
 		WHERE s.show_status = 1 
 		<![CDATA[
@@ -26,7 +26,7 @@
 		]]>
         AND rp.rent_place_status=1
 		GROUP BY s.title
-		ORDER BY round(avg(r.rating), 1) DESC,s.id desc;
+		ORDER BY round(avg(r.rating), 1) DESC,s.id DESC
 	</select>
 
 	<select id="selectAnnouncement" resultType="com.bclass.arts_center.repository.model.Announcement">

@@ -16,28 +16,32 @@ public class AnswerService {
 	
 	@Transactional
 	public Answer readAnswerById(Integer quetionId) {
-		Answer result =  answerRepository.selectAnswer(quetionId);
+		Answer result = answerRepository.selectAnswer(quetionId);
+		
 		return result;
 	}
 	
 	
 	@Transactional
 	public Integer createAnswerById(String content,Integer userId, Integer quetionId) {
-		Integer result =  answerRepository.insertAnswer(content,userId, quetionId);
+		Integer result = answerRepository.insertAnswer(content,userId, quetionId);
+		
 		return result;
 	}
 	
 	
 	@Transactional
 	public Integer updateQuestionStatus(Integer quetionId) {
-		Integer result =  answerRepository.updateQuestionStatus(quetionId);
+		Integer result = answerRepository.updateQuestionStatus(quetionId);
+		
 		return result;
 	}
 	
 	
 	@Transactional
 	public Integer updateAnswer(String content,Integer questionId) {
-		Integer result =  answerRepository.updateAnswer(content,questionId);
+		Integer result = answerRepository.updateAnswer(content,questionId);
+		
 		return result;
 	}
 }

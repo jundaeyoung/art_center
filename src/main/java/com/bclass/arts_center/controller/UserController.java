@@ -27,7 +27,6 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
 
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -38,13 +37,11 @@ public class UserController {
 	@Autowired
 	private HttpSession session;
 
-	
 	@GetMapping("/login")
 	public String login() {
-		
+
 		return "/user/signIn";
 	}
-
 
 	@GetMapping("/signUp")
 	public String signUp() {
@@ -52,14 +49,12 @@ public class UserController {
 		return "/user/signUpchoice";
 	}
 
-
 	@GetMapping("/signUpchoice")
 	public String signUpchoice(Integer roleId, Model model) {
 		model.addAttribute("roleId", roleId);
-		
+
 		return "/user/signUp";
 	}
-
 
 	@GetMapping("/update")
 	public String update(Model model, String userName) {
@@ -72,7 +67,6 @@ public class UserController {
 
 	}
 
-
 	@GetMapping("/delete")
 	public String delete(Model model, String userName) {
 		SignInFormDto dto = new SignInFormDto();
@@ -82,7 +76,6 @@ public class UserController {
 
 		return "/user/delete";
 	}
-
 
 	@PostMapping("/loginProc")
 	public String loginProc(SignInFormDto signInFormDto) {
@@ -102,17 +95,16 @@ public class UserController {
 		}
 	}
 
-	
 	@GetMapping("/logout")
 	public String logout() {
 		session.invalidate();
-		
+
 		return "redirect:/";
 	}
 
-	
 	@PostMapping("/signUp")
-	public String signUpProc(@Valid SignUpFormDto signUpFormDto,HttpServletResponse response, BindingResult errors, Model model) {
+	public String signUpProc(@Valid SignUpFormDto signUpFormDto, HttpServletResponse response, BindingResult errors,
+			Model model) {
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {
@@ -140,23 +132,11 @@ public class UserController {
 		}
 		Integer result = userService.createUser(signUpFormDto);
 		if (result == 1) {
-			try {
-				response.setContentType("text/html; charset=utf-8");
-				PrintWriter w = response.getWriter();
-				String msg = "대관 신청이 완료되었습니다.";
-				w.write("<script>alert('" + msg + "');</script>");
-				w.flush();
-				w.close();
-				return "redirect:/user/login";
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			return "redirect:/user/login";
 		} else {
 			throw new CustomRestfullException("회원가입에 실패하였습니다.", HttpStatus.BAD_REQUEST);
 		}
-		return "redirect:/user/login";
 	}
-
 
 	@PostMapping("/update")
 	public String update(@Valid UpdateUserDto updateUserDto, BindingResult errors, Model model) {
@@ -167,13 +147,11 @@ public class UserController {
 				model.addAttribute(key, validatorResult.get(key));
 			}
 			return "/user/update";
-
 		}
 		userService.updateUser(updateUserDto);
 
 		return "redirect:/";
 	}
-
 
 	@PostMapping("/deleteProc")
 	public String delete(SignInFormDto signInFormDto) {
@@ -186,27 +164,23 @@ public class UserController {
 		return "redirect:/";
 	}
 
-
 	@GetMapping("/findPw")
 	public String findPw() {
-		
+
 		return "/user/findPw";
 	}
 
-	
 	@GetMapping("/findId")
 	public String findId() {
 
 		return "user/findId";
 	}
 
-	
 	@PostMapping("findId")
 	public String findId(User user) {
 		userService.selectUserNameByEmailAndTel(user);
-		
+
 		return "user/findId";
 	}
 
 }
-
