@@ -1,14 +1,12 @@
 package com.bclass.arts_center.handler;
 
-import org.springframework.web.bind.annotation.ExceptionHandler; 
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.bclass.arts_center.handler.exception.AdminLoginException;
-import com.bclass.arts_center.handler.exception.AdminLoginInterceptor;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
 import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.handler.exception.ManagerLoginException;
-import com.bclass.arts_center.handler.exception.ManagerLoginInterceptor;
 
 @RestControllerAdvice
 public class MyRestfullExceptionHandler {
