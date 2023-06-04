@@ -70,7 +70,7 @@
 	margin-right: 20px;
 }
 
-.payment-ii {
+.payment-order {
 	width: 1300px;
 }
 
@@ -108,7 +108,7 @@
 			</div>
 		</div>
 
-		<div class="payment-ii">
+		<div class="payment-order">
 			<div class="order">
 				<h2>주문 정보</h2>
 			</div>

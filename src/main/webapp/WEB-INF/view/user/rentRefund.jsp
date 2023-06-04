@@ -116,11 +116,10 @@ user__type {
 }
 
 .myShow {
-	padding-top: 70px;
 	margin: 10px;
 	border: 1px solid #ccc;
 	border-radius: 20px;
-	height: 250px;
+	height: 230px;
 	width: 800px;
 }
 
@@ -209,6 +208,10 @@ user__type {
 	justify-content: center;
 	align-items: center;
 }
+
+.show__info__list {
+	margin-top: 40px;
+}
 </style>
 <div class="rental__img"></div>
 <div class="container">
@@ -239,7 +242,7 @@ user__type {
 			<table class="user__type">
 				<tr>
 					<td class="user__ticket">
- 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}'">공연 대관 내역</button>
+ 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/myShow/${principal.id}?currentPage=1&begin=0&range=5'">공연 대관 내역</button>
 					</td>
 					<td class="user__ticket">
 						<button type="submit" class="user-type-btn" name="info__category" onclick="location.href='/myPage/rentRefund'">환불내역</button>
