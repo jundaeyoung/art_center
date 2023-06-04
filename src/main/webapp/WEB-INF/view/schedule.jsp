@@ -11,7 +11,6 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/schedule.css">
 
-
 <div class="show-content">
 	<div class="show-title">
 		<h2>
@@ -247,3 +246,7 @@
 		
 </script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+
+
+

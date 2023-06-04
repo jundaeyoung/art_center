@@ -53,14 +53,6 @@
 						<textarea id="content" name="content"
 							style="resize: none; height: 100px; width: 420px;"></textarea>
 					</div>
-					<!-- <div>
-						<label for="start_date">시작일 : </label><input type="date"
-							id="start_date" name="startDate" style="width: 220px;">
-					</div>
-					<div>
-						<label for="end_date">마감일 : </label><input type="date"
-							id="end_date" name="endDate" style="width: 220px;">
-					</div> -->
 
 				</div>
 				<div style="height: 500px; display: flex; flex-direction: column">
@@ -81,9 +73,6 @@
 						<label for="youth_rate">청소년요금 : </label><input type="text"
 							id="youth_rate" name="youthRate">
 					</div>
-					<!-- <div>
-						<label for="infant_rate">유아요금 : </label><input type="text" id="infant_rate" name="infantRate">
-					</div> -->
 					<div>
 						<label for="showTypeId">카테고리 : </label><select name="showTypeId"
 							id="showTypeId">

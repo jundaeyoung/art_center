@@ -2,107 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<style>
-.container {
-	box-sizing: border-box;
-	margin-top: 10px;
-	margin-bottom: 50px;
-	width: 100%;
-	height: 100%;
-}
+<link rel="stylesheet" href="/css/myPage.css">
 
-.rental__img {
-	display: flex;
-	justify-content: center;
-	padding: 300px;
-	margin-top: 100px;
-	background-image: url('/images/myPage.png');
-	background-position: bottom;
-}
 
-.userName {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.user__info {
-	display: flex;
-	border: 1px solid #ccc;
-	height: 200px;
-}
-
-.user {
-	margin: 10px;
-	border: 1px solid #ccc;
-	width: 150px;
-	height: 30px;
-	text-align: center;
-	
-}
-
-user__type {
-	border-spacing: 0;
-}
-.user__type {
-	display: flex;
-	justify-content: center;
-	margin: 10px 0 10px 0;
-	width: 100%;
-}
-
-.user__ticket:nth-of-type(1) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.user__ticket:nth-of-type(2) {
-	border-top: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-.user__ticket:nth-of-type(3) {
-	border-left:1px solid #ebebeb;
-	border-top: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.user__ticket:nth-of-type(4) {
-	border: 1px solid #ebebeb;
-	width: 400px;
-	height: 60px;
-	text-align: center;
-}
-
-.user-type-btn {
-	border: 0;
-	outline: 0;
-	background: none;
-	font-size: 16px;
-	color: gray;
-}
-
-.user-type-btn:hover {
-	color: black;
-	font-weight: bold;
-}
-
-.info {
-	width: 100%;
-}
-
-.user_reservation_list {
-	width: 100%;
-}
-
-</style>
 <div class="rental__img"></div>
 <div class="container">
 	<div class="userName">
@@ -154,3 +56,6 @@ user__type {
 	</div>
 </div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+
+

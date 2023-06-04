@@ -2,90 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-
-<style type="text/css">
-.show_content {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.dfdf {
-	width: 1200px;
-}
-.dd {
-	display: flex;
-}
-
-.show__detail {
-	display: flex;
-	width: 1200px;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
-}
+<link rel="stylesheet" href="/css/manager/managerMyShow.css">
 
 
-.show__img {
-	width: 150px;
-	height: 150px;
-	border-radius: 10px;
-	margin-top: 20px;
-	border: 1px solid #eee;
-	margin-bottom: 20px;
-}
-
-.show__status {
-	border: 1px solid gray;
-	width: 80px;
-	height: 30px;
-	margin-right: 20px;
-}
-
-.show__status p {
-	margin: 5px;
-	text-align: center;
-}
-
-.show__sn {
-	display: flex;
-	align-items: center;
-}
-
-.show__all__info {
-	margin-left: 20px;
-	display: flex;
-	flex-direction: column;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.rent__title {
-	border-bottom: 1px solid #ccc;
-}
-
-.rent__info {
-	width: 1200px;
-	border-bottom: 1px solid black;
-}
-
-.myShow__btn__div {
-	margin: 30px;
-}
-.myShow__btn {
-	padding: 10px 100px; 
-	background-color: white;
-	border: 1px solid gray;
-}
-
-.reservation__date {
-	margin-left: 150px;
-}
-.show_date {
-	color: gray;
-	font-weight: bold;
-}
-</style>
 <div class="reservation__date">
 <p class="show_date">[신청일] ${detailList.get(0).reservationDate}</p>
 </div>

@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <style>
 #ticket--title {
 	border-bottom: 1px solid #ccc;
@@ -108,6 +112,10 @@
 }
 </style>
 
+<c:set var="todayDate" value="<%=new java.util.Date()%>" />
+<fmt:formatDate value="${todayDate}" pattern="yyyy-MM-dd" />
+
+
 
 <div class="container">
 	<div class="userName" id="ticket--title">
@@ -126,12 +134,16 @@
 							<a href="/show/showView/${myTicketList.showId}"><p>${myTicketList.title}</p>
 							</a>
 							<c:choose>
-								<c:when test="${myTicketList.paymentStatus == 0}">
+								<c:when test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
 									<h2>(결제대기)</h2>
 								</c:when>
 								<c:when
 									test="${myTicketList.cancelStatus == 0 && myTicketList.paymentStatus == 1}">
 									<h2>(결제완료)</h2>
+								</c:when>
+								<c:when
+									test="${myTicketList.showDate <= todayDate && myTicketList.paymentStatus == 0}">
+									<h2>(결제불가)</h2>
 								</c:when>
 								<c:when test="${myTicketList.cancelStatus == 1}">
 									<h2>(취소완료)</h2>
@@ -168,7 +180,7 @@
 			</div>
 			<div class="btn">
 				<c:choose>
-					<c:when test="${myTicketList.paymentStatus == 0}">
+					<c:when test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
 						<form action="/kakao/ready" method="get">
 							<input type="hidden" name="ticketingId"
 								value="${myTicketList.id}">
@@ -182,6 +194,8 @@
 							method="post">
 							<c:choose>
 								<c:when test="${myTicketList.cancelStatus == 1}">
+								</c:when>
+								<c:when test="${myTicketList.showDate <= todayDate}">
 								</c:when>
 								<c:otherwise>
 									<button type="submit">예매 취소</button>

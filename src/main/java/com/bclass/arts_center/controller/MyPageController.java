@@ -86,7 +86,7 @@ public class MyPageController {
 		List<MyRegistrationInfoDto> detailList = myPageService.readMyShowDetail(id);
 		model.addAttribute("detailList", detailList);
 		
-		return "/user/myShowDetail";
+		return "/manager/myShowDetail";
 	}
 
 
@@ -130,9 +130,11 @@ public class MyPageController {
 	
 
 	@PostMapping("/myReviewWrite")
-	public String myReviewWrite(Integer showId, Review review) {
+	public String myReviewWrite(Integer showId, Review review, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		review.setUserId(principal.getId());
+		List<MyTiketDto> myTicketList = ticketService.readMyTicketByUserId(principal.getId());
+		model.addAttribute("myTicketList", myTicketList);
 		reviewService.saveReview(review);
 		
 		return "/user/myTicketReview";

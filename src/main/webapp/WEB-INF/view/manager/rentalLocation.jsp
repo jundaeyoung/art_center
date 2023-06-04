@@ -71,3 +71,4 @@
 
 <script type="text/javascript" src="/js/manager/rentalLocation.js"></script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+

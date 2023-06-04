@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script type="text/javascript" src="/js/daterangepicker.js"></script>
+<script type="text/javascript" src="/js/dateRangePicker.js"></script>
 
 
 

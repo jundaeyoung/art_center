@@ -186,7 +186,7 @@
         ON r.show_id = s.id
 		WHERE t.user_id = #{userId}
 		AND t.payment_status = 1
-		AND sd.show_date > NOW()
+		AND sd.show_date <![CDATA[<]]> curdate()
 		ORDER BY r.content ASC, show_date DESC
 	</select>	
 </mapper>
