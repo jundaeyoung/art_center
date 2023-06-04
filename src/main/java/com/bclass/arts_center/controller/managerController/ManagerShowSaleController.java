@@ -42,7 +42,7 @@ public class ManagerShowSaleController {
 			@RequestParam(required = false) Integer range, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
-		List<RequestManagerShowSaleDto> selectCount = managerShowSaleService.readAndCount(requestManagerShowSaleDto);
+		List<RequestManagerShowSaleDto> selectCount = managerShowSaleService.readManagerShowSale(requestManagerShowSaleDto);
 		DecimalFormat df = new DecimalFormat("###,###");
 		if (selectCount == null) {
 			model.addAttribute("showList", null);
@@ -78,7 +78,7 @@ public class ManagerShowSaleController {
 		requestManagerShowSaleDto.setStartDate(split[0] + " 00:00:00");
 		requestManagerShowSaleDto.setEndDate(split[1] + " 00:00:00");
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
-				.readManagerShowSaleByDate(requestManagerShowSaleDto);
+				.readManagerShowSaleByStartDateAndEndDate(requestManagerShowSaleDto);
 		DecimalFormat df = new DecimalFormat("###,###");
 		if (showSaleList == null) {
 			model.addAttribute("showList", null);
@@ -109,7 +109,7 @@ public class ManagerShowSaleController {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
-				.readManagerShowBySearch(requestManagerShowSaleDto);
+				.readManagerShowBySearchTitle(requestManagerShowSaleDto);
 		DecimalFormat df = new DecimalFormat("###,###");
 		if (showSaleList == null) {
 			model.addAttribute("showList", null);

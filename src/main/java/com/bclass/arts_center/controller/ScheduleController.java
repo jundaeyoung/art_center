@@ -19,24 +19,21 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleService scheduleService;
 	
-	/**
-	 * 김미정 : schedule 페이지 데이터 불러오기 
-	 */
+
 	@GetMapping("/schedule")
-	public String selectByShow(Model model) {
-		List<RequestShowDto> lists = scheduleService.selectByShow();
-		model.addAttribute("lists", lists);
+	public String selectShowSchedule(Model model) {
+		List<RequestShowDto> showList = scheduleService.readShowSchedule();
+		model.addAttribute("lists", showList);
+		
 		return "/schedule";
 	}
 	
-	
-	/**
-	 * 김미정 : 공연장 위치 카테고리 별 데이터 불러오기
-	 */
+
 	@GetMapping("/schedule/category/{id}")
-	public String selectByCategory(Model model, @PathVariable("id") Integer showTypeId) {
-		List<RequestShowDto> categoryLists = scheduleService.selecctByCategory(showTypeId);
-		model.addAttribute("categoryLists", categoryLists);
+	public String selectShowScheduleByCategory(Model model, @PathVariable("id") Integer showTypeId) {
+		List<RequestShowDto> showListByCategory = scheduleService.readShowScheduleByCategory(showTypeId);
+		model.addAttribute("categoryLists", showListByCategory);
+		
 		return "/schedule";
 	}
 	

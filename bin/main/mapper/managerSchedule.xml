@@ -4,8 +4,7 @@
 
 <mapper namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
 
-	<!-- 작성자 : 전대영 내 공연보기 -->
-	<select id="selectByMySchedule" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+	<select id="selectMyShowSchedule" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 			select s.id as id, s.title as title, h.name as holeName, sd.show_date
 			as startDate ,sd.show_time as start_time, img_route as imgRoute 
             from show_datetime_tb as sd

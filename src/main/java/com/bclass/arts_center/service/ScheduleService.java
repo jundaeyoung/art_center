@@ -15,41 +15,37 @@ public class ScheduleService {
 	@Autowired
 	private ScheduleRepository scheduleRepository;
 
-	/**
-	 * 김미정 : 카테고리 별 데이터 불러오기
-	 */
-	@Transactional
-	public List<RequestShowDto> selecctByCategory(Integer showTypeId) {
-		List<RequestShowDto> list = scheduleRepository.selectByCategory(showTypeId);
-		return list;
 
+	@Transactional
+	public List<RequestShowDto> readShowScheduleByCategory(Integer showTypeId) {
+		List<RequestShowDto> showList = scheduleRepository.selectShowScheduleByCategory(showTypeId);
+		
+		return showList;
 	}
 
-	/**
-	 * 김미정 : 전체 calendar 데이터 불러오기
-	 */
+
 	@Transactional
-	public List<RequestShowDto> selectByShow() {
-		List<RequestShowDto> list = scheduleRepository.selectByShow();
-		return list;
+	public List<RequestShowDto> readShowSchedule() {
+		List<RequestShowDto> showList = scheduleRepository.selectShowSchedule();
+		
+		return showList;
 	}
 
-	/**
-	 * 김미정 : calendar detail 정보 불러오기
-	 */
+
 	@Transactional
-	public RequestShowDto selectByShowDetail(Integer id) {
-		RequestShowDto list = scheduleRepository.selectByShowDetail(id);
+	public RequestShowDto readByShowDetail(Integer id) {
+		RequestShowDto list = scheduleRepository.selectShowDetailByShowId(id);
+		
 		return list;
 	}
 
-	/**
-	 * 전대영 : 내 스케줄 데이터 불러오기
-	 */
+
 	@Transactional
-	public List<RequestShowDto> selectByMyShow(Integer id) {
-		List<RequestShowDto> list = scheduleRepository.selectByMySchedule(id);
+	public List<RequestShowDto> readMyShowSchedule(Integer id) {
+		List<RequestShowDto> list = scheduleRepository.selectMyShowSchedule(id);
+		
 		return list;
 	}
 
 }
+

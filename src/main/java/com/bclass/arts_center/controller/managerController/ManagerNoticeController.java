@@ -19,20 +19,23 @@ public class ManagerNoticeController {
 
 	@Autowired
 	private HttpSession session;
+	
 	@Autowired
 	private NoticeService noticeService;
 
 	
 	@GetMapping("/notice")
 	public String notice() {
+		
 		return "/manager/managerNotice";
 	}
 
 	
 	@GetMapping("/update/{id}")
 	public String updateNotice(@PathVariable Integer id) {
-		noticeService.updateNotice(id);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		noticeService.updateNotice(id);
+		
 		return "redirect:/myPage/myShow/"+principal.getId()+"/1/0/5";
 	}
 }

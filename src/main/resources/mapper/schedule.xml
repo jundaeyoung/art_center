@@ -6,7 +6,7 @@
 	namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
 
 	<!-- 김미정 캘린더 카테고리 별 데이터 불러오기 -->
-	<select id="selectByCategory"
+	<select id="selectShowScheduleByCategory"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select s.id as id,s.title as title, h.name as holeName, r.start_date
 			as startDate, r.end_date as endDate, img_route as imgRoute
@@ -20,7 +20,7 @@
 	</select>
 
 	<!-- 김미정 전체 데이터 불러오기 -->
-	<select id="selectByShow"
+	<select id="selectShowSchedule"
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select s.id as id,s.title as title, h.name as holeName, r.start_date
 			as startDate, r.end_date as endDate, img_route as imgRoute
@@ -34,7 +34,7 @@
 	</select>
 
 	<!-- 김미정 -->
-	<select id="selectByShowDetail" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+	<select id="selectShowDetailByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		select s.id as id,s.title as title, h.name as holeName,
 		s.start_date as startDate,s.img_route as imgRoute, s.end_date as endDate
 		from show_tb as s

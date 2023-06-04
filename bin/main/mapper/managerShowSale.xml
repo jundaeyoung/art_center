@@ -5,7 +5,7 @@
 
 <mapper namespace="com.bclass.arts_center.repository.interfaces.ManagerShowSaleRepository">
 
-	<select id="selectAndCount" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+	<select id="selectManagerShowSale" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
 		FROM show_tb AS s
@@ -20,7 +20,7 @@
 		group by s.id;
 	</select>
 
-	<select id="selectManagerShowSaleByDate" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+	<select id="selectManagerShowSaleByStartDateAndEndDate" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
 		FROM show_tb AS s
@@ -37,7 +37,7 @@
 	</select>
 
 
-	<select id="selectManagerShowBySearch" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+	<select id="selectManagerShowBySearchTitle" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
 		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case when t.age_group_id=3 then 1 end) as adultCount
 		FROM show_tb AS s

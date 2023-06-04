@@ -17,41 +17,35 @@ public class ManagerShowSaleService {
 	@Autowired
 	private ManagerShowSaleRepository managerShowSaleRepository;
 
-	/*
-	 * 전대영 : 매니저 공연 매출 보기 
-	 */
+
 	@Transactional
-	public List<RequestManagerShowSaleDto> readAndCount(RequestManagerShowSaleDto requestManagerShowSaleDto) {
+	public List<RequestManagerShowSaleDto> readManagerShowSale(RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
-				.selectAndCount(requestManagerShowSaleDto);
+				.selectManagerShowSale(requestManagerShowSaleDto);
+		
 		return showSaleList;
 	}
-	/*
-	 * 전대영 : 매니저 공연 매출 날짜별로 보기 
-	 */
+
+	
 	@Transactional
-	public List<RequestManagerShowSaleDto> readManagerShowSaleByDate(RequestManagerShowSaleDto requestManagerShowSaleDto) {
+	public List<RequestManagerShowSaleDto> readManagerShowSaleByStartDateAndEndDate(RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
-				.selectManagerShowSaleByDate(requestManagerShowSaleDto);
+				.selectManagerShowSaleByStartDateAndEndDate(requestManagerShowSaleDto);
 		
 		return showSaleList;
 	}
 	
-	/*
-	 * 전대영 : 매니저 공연 매출 검색하여 보기 
-	 */
+
 	@Transactional
-	public List<RequestManagerShowSaleDto> readManagerShowBySearch(RequestManagerShowSaleDto requestManagerShowSaleDto) {
+	public List<RequestManagerShowSaleDto> readManagerShowBySearchTitle(RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		requestManagerShowSaleDto.setTitle("%"+requestManagerShowSaleDto.getTitle()+"%");
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
-				.selectManagerShowBySearch(requestManagerShowSaleDto);
+				.selectManagerShowBySearchTitle(requestManagerShowSaleDto);
 		
 		return showSaleList;
 	}
 	
-	/*
-	 * 전대영 : 매니저 공연 detail 매출 보기 
-	 */
+
 	@Transactional
 	public List<RequestManagerShowSaleDto> readManagerShowDetailByShowId(Integer showId,Integer userId) {
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository

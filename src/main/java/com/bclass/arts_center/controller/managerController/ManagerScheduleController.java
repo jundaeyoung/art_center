@@ -21,16 +21,15 @@ public class ManagerScheduleController {
 
 	@Autowired
 	private ScheduleService scheduleService;
+	
 	@Autowired
 	private HttpSession session;
 
-	/**
-	 * 작성자 : 전대영 managerSchedule 페이지 데이터 불러오기
-	 */
+	
 	@GetMapping("")
-	public String selectByShow(Model model) {
+	public String selectMyShowSchedule(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		List<RequestShowDto> showList = scheduleService.selectByMyShow(principal.getId());
+		List<RequestShowDto> showList = scheduleService.readMyShowSchedule(principal.getId());
 		if (showList.isEmpty() || showList == null) {
 			model.addAttribute("lists", null);
 		} else {

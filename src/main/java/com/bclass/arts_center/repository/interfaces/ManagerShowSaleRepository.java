@@ -11,26 +11,14 @@ import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
 public interface ManagerShowSaleRepository {
 	
 	
-	
-	/*
-	 * 전대영 : 매니저 공연 매출 보기 
-	 */
-	public List<RequestManagerShowSaleDto> selectAndCount(RequestManagerShowSaleDto requestManagerShowSaleDto);
-	
-	/*
-	 * 전대영 : 매니저 공연 달력별로 매출 보기
-	 */
-	public List<RequestManagerShowSaleDto> selectManagerShowSaleByDate(RequestManagerShowSaleDto requestManagerShowSaleDto);
-	
-	/*
-	 * 전대영 : 매니저 공연 검색하여 매출 보기
-	 */
-	public List<RequestManagerShowSaleDto> selectManagerShowBySearch(RequestManagerShowSaleDto requestManagerShowSaleDto);
-	
-	/*
-	 * 전대영 : 매니저 공연 검색하여 매출 보기
-	 */
-	public List<RequestManagerShowSaleDto> selectManagerShowDetailByShowId(@Param("showId") Integer showId, @Param("userId")Integer userId);
+	public List<RequestManagerShowSaleDto> selectManagerShowSale(RequestManagerShowSaleDto requestManagerShowSaleDto);
 	
 
+	public List<RequestManagerShowSaleDto> selectManagerShowSaleByStartDateAndEndDate(RequestManagerShowSaleDto requestManagerShowSaleDto);
+	
+
+	public List<RequestManagerShowSaleDto> selectManagerShowBySearchTitle(RequestManagerShowSaleDto requestManagerShowSaleDto);
+	
+
+	public List<RequestManagerShowSaleDto> selectManagerShowDetailByShowId(@Param("showId") Integer showId, @Param("userId")Integer userId);
 }

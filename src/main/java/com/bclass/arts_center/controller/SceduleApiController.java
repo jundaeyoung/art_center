@@ -21,7 +21,7 @@ public class SceduleApiController {
 	 */
 	@GetMapping("/api/scheduleDetail/{id}")
 	public ResponseDto<RequestShowDto> selectByShowDetail(@PathVariable Integer id) {
-		RequestShowDto selectByShowDetail = scheduleService.selectByShowDetail(id);
+		RequestShowDto selectByShowDetail = scheduleService.readByShowDetail(id);
 		
 		return new ResponseDto<RequestShowDto>(200, HttpStatus.OK.toString(), selectByShowDetail);
 	}

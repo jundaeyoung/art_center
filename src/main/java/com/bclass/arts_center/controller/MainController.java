@@ -44,15 +44,15 @@ public class MainController {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
 		if (principal == null) {
-			List<RequestShowDto> lists = scheduleService.selectByShow();
+			List<RequestShowDto> lists = scheduleService.readShowSchedule();
 			model.addAttribute("lists", lists);
 			model.addAttribute("principal", null);
 		} else if (principal.getRoleId() == 1) {
-			List<RequestShowDto> lists = scheduleService.selectByShow();
+			List<RequestShowDto> lists = scheduleService.readShowSchedule();
 			model.addAttribute("lists", lists);
 		}else {
 			List<Notice> noticeList = noticeService.readNotice(principal.getId());
-			List<RequestShowDto> showList = scheduleService.selectByMyShow(principal.getId());
+			List<RequestShowDto> showList = scheduleService.readMyShowSchedule(principal.getId());
 			model.addAttribute("lists", showList);
 			if (noticeList == null || noticeList.size() == 0) {
 				model.addAttribute("noticeList", null);

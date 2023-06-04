@@ -15,36 +15,31 @@ public class NoticeService {
 	@Autowired
 	private NoticeRepository noticeRepository;
 
-	/*
-	 * 전대영 : notice insert
-	 */
+
 	@Transactional
 	public Integer createAdminNotice(String notice,Integer userId, Integer adminId) {
-		Integer insertnotice = noticeRepository.insertAdminNotice(notice,userId, adminId);
-		return insertnotice;
+		Integer result = noticeRepository.insertAdminNotice(notice,userId, adminId);
+		
+		return result;
 	}
 	
-	/*
-	 * 전대영 : notice insert
-	 */
+
 	@Transactional
 	public Integer createManagerNotice(String notice,Integer userId, Integer adminId) {
-		Integer insertnotice = noticeRepository.insertManaegerNotice(notice,userId, adminId);
-		return insertnotice;
+		Integer result = noticeRepository.insertManaegerNotice(notice,userId, adminId);
+		
+		return result;
 	}
-	/*
-	 * 전대영 : notice select
-	 */
+	
+	
 	@Transactional
 	public List<Notice> readNotice(Integer userId){
 		List<Notice> noticeList = noticeRepository.selectManagerNotice(userId);
-		return noticeList;
 		
+		return noticeList;
 	}
 	
-	/*
-	 * 전대영 : notice delete
-	 */
+	
 	@Transactional
 	public Integer updateNotice(Integer id){
 		Integer updateNotice = noticeRepository.updateManagerNotice(id);

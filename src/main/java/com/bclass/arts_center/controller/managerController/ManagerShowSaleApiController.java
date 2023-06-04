@@ -24,33 +24,37 @@ public class ManagerShowSaleApiController {
 
 	@Autowired
 	private ManagerShowSaleService managerShowSaleService;
+	
 	@Autowired
 	private HttpSession session;
 
+	
 	@GetMapping("/manager/showSale")
 	public ResponseDto<List<RequestManagerShowSaleDto>> managerShowSale(
 		RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
-		List<RequestManagerShowSaleDto> selectList = managerShowSaleService.readAndCount(requestManagerShowSaleDto);
+		List<RequestManagerShowSaleDto> selectList = managerShowSaleService.readManagerShowSale(requestManagerShowSaleDto);
+		
 		return new ResponseDto<List<RequestManagerShowSaleDto>>(200, HttpStatus.OK.toString(), selectList);
 	}
 
-	/*
-	 * 전대영 : 날짜별로 매출 보기
-	 */
+
 	@GetMapping("/manager/showSaleByDate/{startDate}")
-	public ResponseDto<List<RequestManagerShowSaleDto>> selectShowSaleByDate(
+	public ResponseDto<List<RequestManagerShowSaleDto>> selectShowSaleByStartDateAndEndDate(
 			@PathVariable("startDate") String startDate, RequestManagerShowSaleDto requestManagerShowSaleDto,
 			Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		
 		String str = requestManagerShowSaleDto.getStartDate();
 		String[] split = str.split(" ~ ");
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		requestManagerShowSaleDto.setStartDate(split[0] + " 00:00:00");
 		requestManagerShowSaleDto.setEndDate(split[1] + " 00:00:00");
+		
 		List<RequestManagerShowSaleDto> selectList = managerShowSaleService
-				.readManagerShowSaleByDate(requestManagerShowSaleDto);
+				.readManagerShowSaleByStartDateAndEndDate(requestManagerShowSaleDto);
+		
 		return new ResponseDto<List<RequestManagerShowSaleDto>>(200, HttpStatus.OK.toString(), selectList);
 	}
 
@@ -66,7 +70,9 @@ public class ManagerShowSaleApiController {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> selectList = managerShowSaleService
-				.readManagerShowBySearch(requestManagerShowSaleDto);
+				.readManagerShowBySearchTitle(requestManagerShowSaleDto);
+		
 		return new ResponseDto<List<RequestManagerShowSaleDto>>(200, HttpStatus.OK.toString(), selectList);
 	}
 }
+
