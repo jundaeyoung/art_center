@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class RequestManagerRentSaleDto {
-
 	private String startDate;
 	private String startTime;
 	private String endDate;

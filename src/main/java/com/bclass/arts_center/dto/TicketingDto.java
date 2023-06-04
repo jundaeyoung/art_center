@@ -6,14 +6,8 @@ import java.sql.Timestamp;
 
 import lombok.Data;
 
-/**
- * 
- * @author 손주이, 전대영
- *
- */
 @Data
 public class TicketingDto {
-
 	private Integer id;
 	private Integer showId;
 	private String title;

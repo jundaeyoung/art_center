@@ -27,10 +27,6 @@ import com.bclass.arts_center.service.ReviewService;
 import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
 
-/**
- * 
- * @김미정 : 나의 정보 페이지
- */
 @Controller
 @RequestMapping("/myPage")
 public class MyPageController {
@@ -47,29 +43,19 @@ public class MyPageController {
 	@Autowired
 	private ReviewService reviewService;
 
-	/**
-	 * @author 김미정
-	 * @param model
-	 * @return myPage
-	 */
+
 	@GetMapping("/info")
 	public String myPage(Model model) {
+		
 		return "/user/myPage";
 	}
 
-	/**
-	 * 공연 대관 내역 보기
-	 * 
-	 * @author 김미정
-	 * @param model
-	 * @param organizerId
-	 * @return myShow
-	 */
+
 	@GetMapping("/myShow/{organizerId}/{currentPage}/{begin}/{range}")
 	public String selectMyShow(@PathVariable("organizerId") Integer organizerId, @PathVariable("currentPage") Integer currentPage,
 			@PathVariable("begin") Integer begin, @PathVariable("range") Integer range,Model model) {
-		List<MyRegistrationInfoDto> myShowList = myPageService.selectMyShow(organizerId, begin, range);
-		Integer showCount = myPageService.selectMyShowCount(organizerId);
+		List<MyRegistrationInfoDto> myShowList = myPageService.readMyShow(organizerId, begin, range);
+		Integer showCount = myPageService.readMyShowCount(organizerId);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 5);
@@ -82,7 +68,6 @@ public class MyPageController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-	
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
@@ -90,51 +75,36 @@ public class MyPageController {
 		model.addAttribute("myShowList", myShowList);
 		model.addAttribute("organizerId", organizerId);
 		model.addAttribute("principal", principal);
+		
 		return "/user/myShow";
 	}
 
-	/**
-	 * 공연, 대관 예약 상세보기
-	 * 
-	 * @author 김미정
-	 * @param model
-	 * @param id
-	 * @return myShowDetail
-	 */
+
 	@GetMapping("/showDetail/{id}")
 	public String selectMyShowDetail(Model model, @PathVariable Integer id) {
 
-		List<MyRegistrationInfoDto> detailList = myPageService.selectMyShowDetail(id);
+		List<MyRegistrationInfoDto> detailList = myPageService.readMyShowDetail(id);
 		model.addAttribute("detailList", detailList);
+		
 		return "/user/myShowDetail";
 	}
 
-	/**
-	 * @author 손주이
-	 * @param model
-	 * @param userId
-	 * @return myTicketList
-	 */
+
 	@GetMapping("/myTicket/{userId}")
 	public String selectMyTicket(Model model, @PathVariable Integer userId) {
-		List<MyTicketDtailDto> myTicketList = myPageService.readMyTicketList(userId);
+		List<MyTicketDtailDto> myTicketList = myPageService.readMyTicket(userId);
 		if (myTicketList == null) {
 			model.addAttribute("myTicketList", null);
 		} else {
 			model.addAttribute("myTicketList", myTicketList);
 		}
+		
 		return "/user/myTicketList";
 	}
 
-	/**
-	 * @author 손주이
-	 * @param id
-	 * @param model
-	 * @return myTicketDetail
-	 */
+
 	@GetMapping("/myTicketDetail/{id}")
 	public String ticketDetail(@PathVariable Integer id, Model model) {
-
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		model.addAttribute("userName", principal.getNickname());
 
@@ -148,16 +118,17 @@ public class MyPageController {
 		return "/user/myTicketDetail";
 	}
 	
-	// 작성자 편용림 : 봤던 공연 목록
+
 	@GetMapping("/myTicketReview")
 	public String myTicketReview(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyTiketDto> myTicketList = ticketService.readMyTicketByUserId(principal.getId());
 		model.addAttribute("myTicketList", myTicketList);
+		
 		return "/user/myTicketReview";
 	}
 	
-	// 작성자 편용림 : 봤던 공연 리뷰 작성
+
 	@PostMapping("/myReviewWrite")
 	public String myReviewWrite(Integer showId, Review review) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -167,7 +138,7 @@ public class MyPageController {
 		return "/user/myTicketReview";
 	}
 	
-	// 작성자 편용림 : 봤던 공연 리뷰 타입
+
 	@GetMapping("/myReviewShowType")
 	public String myReviewShowType(String showType, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -176,6 +147,7 @@ public class MyPageController {
 		myTiketDto.setShowType(showType);
 		List<MyTiketDto> myTicketList = reviewService.readMyReviewByShowType(myTiketDto);
 		model.addAttribute("myTicketList", myTicketList);
+		
 		return "/user/myTicketReview";
 	
 	}
@@ -190,3 +162,5 @@ public class MyPageController {
 	}
 
 }
+
+

@@ -26,16 +26,17 @@ public class MainController {
 
 	@Autowired
 	private MainService mainService;
+	
 	@Autowired
 	private NoticeService noticeService;
+	
 	@Autowired
 	private ScheduleService scheduleService;
+	
 	@Autowired
 	private HttpSession session;
 
-	/*
-	 * 전대영 main에서 공연정보 불러오기
-	 */
+	
 	@GetMapping("/")
 	public String main(Model model) {
 		List<Show> showsList = mainService.readShowDto();

@@ -45,13 +45,5 @@ public class ManagerShowSaleService {
 		return showSaleList;
 	}
 	
-
-	@Transactional
-	public List<RequestManagerShowSaleDto> readManagerShowDetailByShowId(Integer showId,Integer userId) {
-		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleRepository
-				.selectManagerShowDetailByShowId(showId,userId);
-		return showSaleList;
-	}
-	
 	
 }

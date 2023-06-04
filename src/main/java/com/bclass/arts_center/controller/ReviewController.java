@@ -26,14 +26,12 @@ public class ReviewController {
 	@Autowired
 	private HttpSession session;
 
-	/**
-	 * @author 전대영 관람평 최신순 페이지 들어가기
-	 */
+
 	@GetMapping("/newestReview")
 	public String newestReview(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-
 		List<RequestReviewDto> reviewList = reviewService.readReviewByNewest(begin, range);
+		
 		String message = "최신순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Integer reviewCount = reviewService.readReviewByCount();
@@ -62,16 +60,12 @@ public class ReviewController {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
+		
 		return "/user/review";
 	}
 	
 	
-	/**
-	 * @author 전대영 관람평 평점 높은순 페이지 들어가기
-	 */
 	@GetMapping("/highestRatedReview")
 	public String highestRatedReview(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
@@ -104,16 +98,12 @@ public class ReviewController {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
+		
 		return "/user/review";
 	}
 	
 	
-	/**
-	 * @author 전대영 관람평 평점 낮은순 페이지 들어가기
-	 */
 	@GetMapping("/rowestRatedReview")
 	public String rowestRatedReview(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
@@ -146,15 +136,12 @@ public class ReviewController {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
+		
 		return "/user/review";
 	}
 	
-	/**
-	 * @author 전대영 리뷰 카테고리별 페이지 들어가기
-	 */
+
 	@GetMapping("/categoryReview")
 	public String categoryReview(@RequestParam(required=false)String category ,@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
@@ -184,18 +171,15 @@ public class ReviewController {
 			model.addAttribute("reviewList", reviewList);
 		}
 		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
+		
 		return "/user/review";
 	}
 	
-	/*
-	 * 전대영 : review에서 show검색해서show별로 리뷰 보기
-	 */
+
 	@GetMapping("/search")
 	public String searchReview(@RequestParam(required=false)String showName ,@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
@@ -227,9 +211,8 @@ public class ReviewController {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("showName", showName);
+		
 		return "/user/review";
 	}
 }

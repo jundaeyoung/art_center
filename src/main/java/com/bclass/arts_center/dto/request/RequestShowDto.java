@@ -5,9 +5,6 @@ import java.sql.Time;
 
 import lombok.Data;
 
-/**
- * @author 전대영
- */
 @Data
 public class RequestShowDto {
 	private Integer id; 

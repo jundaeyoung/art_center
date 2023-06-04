@@ -15,7 +15,6 @@ public class AdminSaleService {
 	
 	@Autowired
 	private AdminSalesRepository adminSalesRepository;
-
 	
 	
 	@Transactional

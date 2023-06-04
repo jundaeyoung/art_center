@@ -69,7 +69,7 @@
 <div>
 	<div class="show">
 		<c:forEach var="showList" items="${showList}">
-			<a href="/manager/showSaleDetailByShowId/${showList.showId}/${principal.getId()}">
+			<a href="/show/showView/${showList.showId}">
 				<div class="review__content" style="margin-left: -30px;">
 					<div>
 						<img src="/images/${showList.imgRoute}" width="230" height="300">

@@ -4,12 +4,6 @@ import java.sql.Date;
 
 import lombok.Data;
 
-/**
- * 
- * @author 전대영
- * @author 김미정
- *
- */
 @Data
 public class Show {
 

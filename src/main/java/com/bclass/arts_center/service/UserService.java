@@ -209,7 +209,7 @@ public class UserService {
 	}
 
 	@Transactional
-	public User selectUserName(User user) {
+	public User selectUserNameByEmailAndTel(User user) {
 		User findUser = userRepository.findUserByEmailAndTel(user);
 
 		return findUser;

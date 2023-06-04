@@ -5,11 +5,6 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.Data;
 
-/**
- * 
- * @author 손주이
- *
- */
 @Data
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class KakaoReadyResponse {

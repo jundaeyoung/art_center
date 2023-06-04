@@ -17,7 +17,7 @@
    <form action="/ticket/ticketing" method="post">
       <div class="reservation">
          <div class="reservation--calendar">
-            <p style="font-size: 30px; width: 300px;">${title}</p>
+            <p style="font-size: 30px; width: 300px;">${showInfoList[0].title}</p>
             <input type="hidden" id="hiddenShowId" name="showId"
                value="${showId}">
             <div>
@@ -47,7 +47,7 @@
                </table>
             </div>
          </div>
-         <input type="hidden" name="showTypeId" value="${showTypeId}">
+         <input type="hidden" name="showTypeId" value="${showInfoList[0].showTypeId}">
          <c:choose>
             <c:when test="${showInformation==1}">
                <div class="reservation--Time">

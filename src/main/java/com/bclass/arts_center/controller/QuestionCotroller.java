@@ -50,6 +50,7 @@ public class QuestionCotroller {
 		if (endPage >= page) {
 			endPage = page;
 		}
+		
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -60,23 +61,17 @@ public class QuestionCotroller {
 		} else {
 			model.addAttribute("questionList", questionList);
 		}
-		
-		
 		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("searchText", searchText);
 		return "/question/question";
 	}
 
-	/*
-	 * 작성자 : 전대영 question type 별로 select하기
-	 */
+
 	@GetMapping("/info")
-	public String infoQeustion(@RequestParam(required = false) String category,
+	public String qeustionInfo(@RequestParam(required = false) String category,
 			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
 			@RequestParam(required = false) Integer range, Model model) {
 
@@ -107,15 +102,11 @@ public class QuestionCotroller {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("category", category);
 		return "/question/question";
 	}
 
-	/*
-	 * 작성자 : 전대영 question 검색한 값으로 select 하기
-	 */
+
 	@GetMapping("/search")
 	public String serachQuestion(String searchText, Integer currentPage, Integer begin, Integer range, Model model) {
 		List<RequestQuestionDto> questionList = questionService.readQuestionBySearchText(searchText, begin, range);
@@ -131,13 +122,6 @@ public class QuestionCotroller {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
-		model.addAttribute("searchText", searchText);
 		if (principal == null) {
 			model.addAttribute("userInfo", null);
 		} else {
@@ -148,12 +132,15 @@ public class QuestionCotroller {
 		} else {
 			model.addAttribute("questionList", questionList);
 		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("searchText", searchText);
 		return "/question/question";
 	}
 
-	/*
-	 * 작성자 : 전대영 question insert하기
-	 */
+
 	@PostMapping("/insert")
 	public String writeQuestion(Question question) {
 		if (question.getTitle() == null || question.getTitle().isEmpty()) {
@@ -169,6 +156,7 @@ public class QuestionCotroller {
 		return "redirect:/quest/";
 	}
 
+	
 	@GetMapping("/delete")
 	public String deleteQuestion(Integer id) {
 		questionService.deleteQuestion(id);
@@ -176,3 +164,5 @@ public class QuestionCotroller {
 	}
 
 }
+
+

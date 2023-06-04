@@ -5,11 +5,6 @@ import org.springframework.http.HttpStatus;
 import lombok.Getter;
 
 
-/**
- * 
- * @author 편용림
- *
- */
 @Getter
 public class CustomRestfullException extends RuntimeException {
 	

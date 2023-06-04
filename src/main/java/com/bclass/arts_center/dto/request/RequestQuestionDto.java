@@ -4,8 +4,7 @@ import lombok.Data;
 
 @Data
 public class RequestQuestionDto {
-
-	private Integer id; // question id
+	private Integer id;
 	private Integer userId;
 	private String userName;
 	private String role;

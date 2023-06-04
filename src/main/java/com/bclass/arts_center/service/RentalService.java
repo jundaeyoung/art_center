@@ -10,45 +10,43 @@ import com.bclass.arts_center.dto.request.RequestHoleDto;
 import com.bclass.arts_center.dto.request.RequestRentPlaceDto;
 import com.bclass.arts_center.repository.interfaces.RentalRepository;
 
-/**
- * 
- * @author 김미정
- *
- */
 @Service
 public class RentalService {
 
 	@Autowired
 	private RentalRepository rentalRepository;
 	
+	
 	@Transactional
 	public List<RequestHoleDto> selectByLocation(Integer id) {
-		List<RequestHoleDto> list = rentalRepository.selectByLocation(id);
-		return list;
+		List<RequestHoleDto> holeList = rentalRepository.selectByLocation(id);
+		
+		return holeList;
 	}
 	
+	
 	@Transactional
-	public List<RequestHoleDto> selectByTime(Integer id) {
-		List<RequestHoleDto> list = rentalRepository.selectByTime(id);
-		return list;
+	public List<RequestHoleDto> selectTimeByLocationId(Integer locationId) {
+		List<RequestHoleDto> timeList = rentalRepository.selectTimeByLocationId(locationId);
+		
+		return timeList;
 	}
-	/**
-	 * 김미정 : manager 계정에서 rental insert
-	 */
+
+	
 	@Transactional
 	public Integer insertRental(RequestRentPlaceDto requestRentPlaceDto) {
-		int count = rentalRepository.insertRental(requestRentPlaceDto);
+		Integer count = rentalRepository.insertRental(requestRentPlaceDto);
+		
 		return count;
 	}
-	/*
-	 * 전대영 : 대관 예약 가능 시간 구하기
-	 */
+	
+	
 	@Transactional
-	public List<RequestRentPlaceDto> selectByDateAndLocation(RequestRentPlaceDto requestRentPlaceDto) {
-		List<RequestRentPlaceDto> rendPlaceList = rentalRepository.selectByDateAndLocation(requestRentPlaceDto);
+	public List<RequestRentPlaceDto> readRentPlaceReservationByDateAndLocation(RequestRentPlaceDto requestRentPlaceDto) {
+		List<RequestRentPlaceDto> rendPlaceList = rentalRepository.selectRentPlaceReservationByDateAndLocation(requestRentPlaceDto);
+		
 		return rendPlaceList;
 	}
-	
-	
-	
 }
+
+

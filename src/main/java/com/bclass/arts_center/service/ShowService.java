@@ -18,59 +18,51 @@ public class ShowService {
 	@Autowired
 	private ShowRepository showRepository;
 
-	/**
-	 * 
-	 * 작성자 : 편용림 admin 예약 승낙한 순서대로 조회
-	 */
 
 	@Transactional
 	public List<RequestShowDto> readShowList() {
 		List<RequestShowDto> showList = showRepository.selectShowInfoAdmin();
+		
 		return showList;
 	}
 
-	/*
-	 * 작성자 : 편용림 admin status 업데이트
-	 */
+
 	@Transactional
-	public int updateShow(Integer id) {
-		int result = showRepository.updateShowById(id);
+	public Integer updateShowStatusById(Integer id) {
+		Integer result = showRepository.updateShowStatusById(id);
+		
 		return result;
 	}
 
-	/*
-	 * 작성자 : 전대영 show hole update
-	 */
+
 	@Transactional
-	public int updateShowHole(Integer id, Integer holeId) {
-		int result = showRepository.updateShowHole(id, holeId);
+	public Integer updateShowHoleById(Integer id, Integer holeId) {
+		Integer result = showRepository.updateShowHoleById(id, holeId);
+		
 		return result;
 	}
 
-	/**
-	 * 작성자 : 전대영 show 최신순으로 select
-	 */
+
 	@Transactional
 	public List<RequestShowDto> readShowByNewest(Integer begin, Integer range) {
 		List<RequestShowDto> showList = showRepository.selectShowByNewest(begin, range);
+		
 		return showList;
 	}
 
-	/**
-	 * 작성자 : 전대영 show 최신순으로 count
-	 */
+
 	@Transactional
-	public List<RequestShowDto> readShowByNewestCount() {
-		List<RequestShowDto> showList = showRepository.selectShowByNewestCount();
-		return showList;
+	public Integer readShowByNewestCount() {
+		Integer showCount = showRepository.selectShowByNewestCount();
+		
+		return showCount;
 	}
 
-	/**
-	 * 작성자 : 전대영 show 관람평 높은순으로 select
-	 */
+
 	@Transactional
 	public List<RequestShowDto> readShowByHighesRated(Integer begin, Integer range) {
 		List<RequestShowDto> showList = showRepository.selectShowByHighesRated(begin, range);
+		
 		return showList;
 	}
 
@@ -137,9 +129,7 @@ public class ShowService {
 		return show;
 	}
 
-	/**
-	 * 작성자 : 전대영 show id 로 하나만 찾기
-	 */
+	
 	@Transactional
 	public RequestShowDto readShowByShowId(Integer userId) {
 		RequestShowDto show = showRepository.selectShowByShowId(userId);

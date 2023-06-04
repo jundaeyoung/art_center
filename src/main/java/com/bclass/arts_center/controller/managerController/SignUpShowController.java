@@ -36,18 +36,20 @@ public class SignUpShowController {
 
 	@Autowired
 	private HoleService holeService;
+	
 	@Autowired
 	private CategoryService categoryService;
+	
 	@Autowired
 	private ShowService showService;
+	
 	@Autowired
 	private HttpSession session;
+	
 	@Autowired
 	private NoticeService noticeService;
 
-	/*
-	 * 작성자 : 전대영 show 등록 화면 들어가기
-	 */
+
 	@GetMapping("/signUpShow")
 	public String signUpShow(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -71,9 +73,7 @@ public class SignUpShowController {
 		return "/manager/signUpShow";
 	}
 
-	/*
-	 * 작성자 : 전대영 show 등록
-	 */
+	
 	@PostMapping("/sign-up")
 	public String signUpShowProc(RequestSignUpShowDto requestSignUpShowDto) {
 		MultipartFile file = requestSignUpShowDto.getFile();
@@ -102,10 +102,10 @@ public class SignUpShowController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			String str = requestSignUpShowDto.getStartDate();
-			String[] split = str.split("~");
-			requestSignUpShowDto.setStartDate(split[0]);
-			requestSignUpShowDto.setEndDate(split[1]);
+			String date = requestSignUpShowDto.getStartDate();
+			String[] startDateAndEndDate = date.split("~");
+			requestSignUpShowDto.setStartDate(startDateAndEndDate[0]);
+			requestSignUpShowDto.setEndDate(startDateAndEndDate[1]);
 			noticeService.createAdminNotice(notice, principal.getId(), adminId);
 			showService.createShow(requestSignUpShowDto);
 		}

@@ -8,7 +8,6 @@ import com.bclass.arts_center.repository.model.Answer;
 @Mapper
 public interface AnswerRepository {
 
-	
 	public Answer selectAnswer(Integer questionId);
 	
 	public Integer insertAnswer(@Param("content")String content,@Param("userId") Integer userId, @Param("questionId") Integer questionId);

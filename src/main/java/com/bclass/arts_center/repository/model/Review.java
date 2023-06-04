@@ -1,11 +1,7 @@
 package com.bclass.arts_center.repository.model;
 
 import lombok.Data;
-/**
- * 
- * @author 전대영 
- *
- */
+
 @Data
 public class Review {
 

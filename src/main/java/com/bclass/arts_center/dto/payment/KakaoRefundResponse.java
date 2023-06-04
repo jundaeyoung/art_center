@@ -7,12 +7,6 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import lombok.Data;
 
-/**
- * 결제 취소 ㄹ시 응담
- * 
- * @author 손쥥
- *
- */
 @Data
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class KakaoRefundResponse {

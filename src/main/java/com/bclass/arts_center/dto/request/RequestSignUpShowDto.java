@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class RequestSignUpShowDto {
-
 	private Integer id;
 	private String imgRoute;
 	private String title;

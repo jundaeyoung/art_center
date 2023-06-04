@@ -34,17 +34,13 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-/**
- * 
- * @author 손주이
- *
- */
 @Controller
 @RequestMapping("/ticket")
 public class TicketController {
 
 	@Autowired
 	private TicketService ticketService;
+	
 	@Autowired
 	private ShowService showService;
 
@@ -54,32 +50,32 @@ public class TicketController {
 	@GetMapping("/ticketing/{showId}")
 	public String ticketingPage(@PathVariable("showId") Integer showId, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-
 		String userBirth = principal.getBirthDate();
 		String replaceuserBirth = userBirth.replaceAll("-", "");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date now = new Date();
 		String nowDate = sdf.format(now);
 
-		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
-		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
-
-		int userAge = startMonth2 - startMonth1;
+		Integer startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
+		Integer startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
+		Integer userAge = startMonth2 - startMonth1;
+		
 		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
 		TicketCheckDto ticketId = ticketService.readTicketId();
-		List<TicketingDto> showInfo = ticketService.readShowInfoForTicketing(showId);
-		List<ShowViewDto> showInformation = showService.readShowInfoByShowId(showId);
-		if (showInformation.get(0).getAdmissionAge().equals("19세 이상")) {
+		List<TicketingDto> showInfoList = ticketService.readShowInfoForTicketing(showId);
+		List<ShowViewDto> showInformationList = showService.readShowInfoByShowId(showId);
+		
+		if (showInformationList.get(0).getAdmissionAge().equals("19세 이상")) {
 			if (userAge <= 20) {
 				throw new CustomRestfullException("19세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
 			}
 		}
-		if (showInformation.get(0).getAdmissionAge().equals("18세 이상")) {
+		if (showInformationList.get(0).getAdmissionAge().equals("18세 이상")) {
 			if (userAge <= 19) {
 				throw new CustomRestfullException("18세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
 			}
 		}
-		if (showInformation.get(0).getAdmissionAge().equals("12세 이상")) {
+		if (showInformationList.get(0).getAdmissionAge().equals("12세 이상")) {
 			if (userAge <= 13) {
 				throw new CustomRestfullException("12세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
 			}
@@ -91,16 +87,15 @@ public class TicketController {
 			model.addAttribute("showDateList", showDateList);
 		}
 		model.addAttribute("showId", showId);
-		if (showInfo == null || showInfo.isEmpty()) {
+		if (showInfoList == null || showInfoList.isEmpty()) {
 			model.addAttribute("showInfo", null);
 		} else {
-			model.addAttribute("title", showInfo.get(0).getTitle());
-			model.addAttribute("showTypeId", showInfo.get(0).getShowTypeId());
+			model.addAttribute("showInfoList", showInfoList);
 		}
-		if (showInformation == null || showInformation.isEmpty()) {
+		if (showInformationList == null || showInformationList.isEmpty()) {
 			model.addAttribute("showInformation", null);
 		} else {
-			model.addAttribute("showInformation", showInformation.get(0).getLocationId());
+			model.addAttribute("showInformation", showInformationList.get(0).getLocationId());
 		}
 		return "/ticket/ticketing";
 	}
@@ -120,8 +115,8 @@ public class TicketController {
 
 		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
 		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
-
 		int userAge = startMonth2 - startMonth1;
+		
 		if (userAge < 20) {
 			ticketingDto.setAgeGroupId(2);
 		} else if (userAge >= 20) {
@@ -134,6 +129,7 @@ public class TicketController {
 		if (ticketingDto.getShowTypeId() != 1) {
 			ticketingDto.setSeatId(1);
 		}
+		
 		ticketService.waitTicket(ticketingDto);
 		ticketService.selectSeat(ticketingDto.getSeatId(), ticketingDto.getShowDatetimeId());
 		return "redirect:/ticket/ticketCheck";
@@ -143,14 +139,13 @@ public class TicketController {
 	@GetMapping("/ticketCheck")
 	public String ticketCheck(TicketingDto ticketingDto, Model model) throws WriterException, IOException {
 		TicketCheckDto ticketid = ticketService.readTicketId();
-
 		String savePath = "C:\\spring_upload\\arts_center\\upload\\"; 
 		File file = new File(savePath);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
+		
 		String showUrl = "https://github.com/jundaeyoung/art_center";
-
 		String codeurl = new String(showUrl.getBytes("UTF-8"), "ISO-8859-1");
 
 		// QRCode 색상값
@@ -158,7 +153,6 @@ public class TicketController {
 		// QRCode 배경색상값
 		int backgroundColor = 0xefe3d3;
 
-		// QRCode 생성
 		QRCodeWriter qrCodeWriter = new QRCodeWriter();
 		BitMatrix bitMatrix = qrCodeWriter.encode(codeurl, BarcodeFormat.QR_CODE, 350, 350); // 200,200은 width, height
 
@@ -183,7 +177,8 @@ public class TicketController {
 		} else {
 			model.addAttribute("ticketListInfo", ticketListInfo);
 		}
+		
 		return "/ticket/ticketCheck";
 	}
-
 }
+

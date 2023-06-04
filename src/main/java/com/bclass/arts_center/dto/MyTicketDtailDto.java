@@ -8,7 +8,6 @@ import lombok.Data;
 
 @Data
 public class MyTicketDtailDto {
-
 	private String paymentId;
 	private String paymentOption;
 	private String paymentDate;

@@ -24,7 +24,6 @@ import com.bclass.arts_center.utils.Define;
 
 @Controller
 @RequestMapping("/manager")
-
 public class ManagerShowSaleController {
 
 	@Autowired
@@ -33,124 +32,69 @@ public class ManagerShowSaleController {
 	@Autowired
 	private HttpSession session;
 
-	/*
-	 * 전대영 : 판매 매출 보기
-	 */
+
 	@GetMapping("/showSale")
-	public String managerShowSale(RequestManagerShowSaleDto requestManagerShowSaleDto,
+	public String selectManagerShowSale(RequestManagerShowSaleDto requestManagerShowSaleDto,
 			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
 			@RequestParam(required = false) Integer range, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		
 		requestManagerShowSaleDto.setUserId(principal.getId());
-		List<RequestManagerShowSaleDto> selectCount = managerShowSaleService.readManagerShowSale(requestManagerShowSaleDto);
-		DecimalFormat df = new DecimalFormat("###,###");
-		if (selectCount == null) {
+		List<RequestManagerShowSaleDto> managerShowSaleList = managerShowSaleService.readManagerShowSale(requestManagerShowSaleDto);
+		
+		if (managerShowSaleList == null) {
 			model.addAttribute("showList", null);
 		} else {
-			int sum = 0;
-			for (int i = 0; i < selectCount.size(); i++) {
-				if (selectCount.get(i).getAdultCount() != 0) {
-					String str = selectCount.get(i).getAdultRate();
-					String newStr = str.replaceAll(",", "");
-					sum += Integer.parseInt(newStr) * selectCount.get(i).getAdultCount();
-				}
-			}
-			df.format(sum);
-			model.addAttribute("showList", selectCount);
-			model.addAttribute("showListSize", selectCount.size());
-			model.addAttribute("sum", df.format(sum));
+			model.addAttribute("showList", managerShowSaleList);
+			model.addAttribute("showListSize", managerShowSaleList.size());
 		}
 		return "/manager/managerShowSale";
 	}
 
-	/*
-	 * 전대영 : 날짜별로 매출 보기
-	 */
+	
 	@PostMapping("/showSaleByDate")
 	public String selectShowSaleByDate(RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null || principal.getRoleId() != 2) {
 			throw new LoginException("매니저 아이디로 로그인을 해주세요.", HttpStatus.BAD_REQUEST);
 		}
-		String str = requestManagerShowSaleDto.getStartDate();
-		String[] split = str.split(" ~ ");
+		
+		String date = requestManagerShowSaleDto.getStartDate();
+		String[] startDateAndEndDate = date.split(" ~ ");
 		requestManagerShowSaleDto.setUserId(principal.getId());
-		requestManagerShowSaleDto.setStartDate(split[0] + " 00:00:00");
-		requestManagerShowSaleDto.setEndDate(split[1] + " 00:00:00");
-		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
+		requestManagerShowSaleDto.setStartDate(startDateAndEndDate[0] + " 00:00:00");
+		requestManagerShowSaleDto.setEndDate(startDateAndEndDate[1] + " 00:00:00");
+		
+		List<RequestManagerShowSaleDto> managerShowSaleList = managerShowSaleService
 				.readManagerShowSaleByStartDateAndEndDate(requestManagerShowSaleDto);
-		DecimalFormat df = new DecimalFormat("###,###");
-		if (showSaleList == null) {
+		
+		if (managerShowSaleList == null) {
 			model.addAttribute("showList", null);
 		} else {
-			int sum = 0;
-			for (int i = 0; i < showSaleList.size(); i++) {
-				if (showSaleList.get(i).getAdultCount() != 0) {
-					String string = showSaleList.get(i).getAdultRate();
-					String newStr = string.replaceAll(",", "");
-					sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
-				}
-			}
-			df.format(sum);
-			model.addAttribute("showList", showSaleList);
+			model.addAttribute("showList", managerShowSaleList);
 			model.addAttribute("startDate", requestManagerShowSaleDto.getStartDate().substring(0, 10));
 			model.addAttribute("endDate", requestManagerShowSaleDto.getEndDate().substring(0, 10));
-			model.addAttribute("sum", df.format(sum));
 		}
 		return "/manager/managerShowSaleByDate";
 	}
 
-	/*
-	 * 전대영 : 판매 상품 검색하기
-	 */
+
 	@PostMapping("/showSaleBySearch")
 	public String selectShowSaleBySearch(String title, RequestManagerShowSaleDto requestManagerShowSaleDto,
 			Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
+		
 		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService
 				.readManagerShowBySearchTitle(requestManagerShowSaleDto);
-		DecimalFormat df = new DecimalFormat("###,###");
+		
 		if (showSaleList == null) {
 			model.addAttribute("showList", null);
 		} else {
-			int sum = 0;
-			for (int i = 0; i < showSaleList.size(); i++) {
-				if (showSaleList.get(i).getAdultCount() != 0) {
-					String string = showSaleList.get(i).getAdultRate();
-					String newStr = string.replaceAll(",", "");
-					sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
-				}
-			}
-			df.format(sum);
 			model.addAttribute("title", title);
 			model.addAttribute("showList", showSaleList);
-			model.addAttribute("sum", df.format(sum));
 		}
 		return "/manager/managerShowSaleBySearch";
 	}
-
-	@GetMapping("/showSaleDetailByShowId/{showId}/{userId}")
-	public String selectShowSaleDetailByShowId(@PathVariable(value = "showId", required = false) Integer showId,
-			@PathVariable(value = "userId", required = false) Integer userId, Model model) {
-		List<RequestManagerShowSaleDto> showSaleList = managerShowSaleService.readManagerShowDetailByShowId(showId,
-				userId);
-		DecimalFormat df = new DecimalFormat("###,###");
-		int sum = 0;
-		for (int i = 0; i < showSaleList.size(); i++) {
-			if (showSaleList.get(i).getAdultCount() != 0) {
-				String string = showSaleList.get(i).getAdultRate();
-				String newStr = string.replaceAll(",", "");
-				sum += Integer.parseInt(newStr) * showSaleList.get(i).getAdultCount();
-			}
-		}
-		df.format(sum);
-		if (showSaleList == null || showSaleList.isEmpty()) {
-			model.addAttribute("showList", null);
-		} else {
-			model.addAttribute("showList", showSaleList);
-			model.addAttribute("sum", df.format(sum));
-		}
-		return "/manager/managerShowSaleDetail";
-	}
+	
 }

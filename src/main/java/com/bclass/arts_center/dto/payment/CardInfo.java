@@ -1,11 +1,7 @@
 package com.bclass.arts_center.dto.payment;
 
 import lombok.Data;
-/**
- * 결제 상세 정보, 결제수단이 카드일 경우만 포함
- * @author 손주이
- *
- */
+
 @Data
 public class CardInfo {
 	

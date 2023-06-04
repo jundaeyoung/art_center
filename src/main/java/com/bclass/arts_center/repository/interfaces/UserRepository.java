@@ -11,60 +11,35 @@ import com.bclass.arts_center.dto.SignUpFormDto;
 import com.bclass.arts_center.dto.UpdateUserDto;
 import com.bclass.arts_center.repository.model.User;
 
-/**
- * 
- * @author 편용림
- *
- */
 
 @Mapper
 public interface UserRepository {
 
-	// 로그인, 로그아웃
 	public User selectUserByUsernameAndPassword(SignInFormDto signInFormDto);
 
-	// 소셜로 회원가입 한지 확인
 	public User selectUserByApiId(String apiId);
 
-	// 닉네임 중복 확인
 	public User selectUserBynickname(String nickname);
 
-	// 아이디 확인
 	public User selectUserByUsername(String userName);
 
-	// 아이디 중복체크
 	public Integer selectUserCountByUserName(String userName);
 
-	// 회원가입
 	public Integer insertUser(SignUpFormDto signUpFormDto);
 
-	// 회원가입(api)
 	public Integer insertUserByApiid(SignUpFormDto signUpFormDto);
 
-	// 회원정보 수정
 	public Integer updateUserByUsername(UpdateUserDto updateUserDto);
 
-	// 회원탈퇴
 	public Integer deleteUserById(SignInFormDto signInFormDto);
 
-	// 유저 리스트 정보
 	public List<User> selectUserList();
 
-	// 매니저 리스트 정보
 	public List<User> selectManagerList();
 
-	// 강사 리스트 정보
-	public List<User> selectTeacherList();
-
-	// 관리자 유저 수정
 	public Integer updateUserById(User user);
 
-	// 관리자 유저 삭제
 	public Integer deleteById(String id);
-
-	/*
-	 * email 찾기 전대영
-	 */
 
 	public User findUserByUserId(String userEmail);
 
@@ -78,10 +53,5 @@ public interface UserRepository {
 
 	public User findUserByEmailAndTel(User user);
 
-	/**
-	 * @author 손주이
-	 * @return 하루 가입자 수
-	 */
 	public List<RequestUserCountDto> selectJoinUserByDate();
-
 }

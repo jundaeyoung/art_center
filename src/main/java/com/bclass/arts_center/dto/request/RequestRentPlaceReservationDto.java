@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class RequestRentPlaceReservationDto {
-	
 	private Integer id;
 	private String nickname;
 	private String startTime;

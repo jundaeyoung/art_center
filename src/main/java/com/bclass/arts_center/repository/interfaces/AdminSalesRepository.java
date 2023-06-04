@@ -8,11 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
 import com.bclass.arts_center.dto.request.RequestManagerRentSaleDto;
 
-/**
- * 
- * @author 편용림
- *
- */
 
 @Mapper
 public interface AdminSalesRepository {

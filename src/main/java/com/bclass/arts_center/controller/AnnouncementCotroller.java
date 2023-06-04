@@ -17,11 +17,6 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.AnnouncementService;
 import com.bclass.arts_center.utils.Define;
 
-/**
- * 
- * @author 편용림
- *
- */
 @Controller
 @RequestMapping("/announcement")
 public class AnnouncementCotroller {
@@ -30,20 +25,22 @@ public class AnnouncementCotroller {
 	private AnnouncementService announcementService;
 
 	@GetMapping("")
-	public String notice(Model model, @RequestParam(defaultValue = "select") String crud) {
+	public String notice(@RequestParam(defaultValue = "select") String crud, Model model) {
 		String searchText = "";
-		List<Announcement> announcements = announcementService.readAnnouncementBySearchText(searchText);
+		List<Announcement> announcementList = announcementService.readAnnouncementBySearchText(searchText);
 		model.addAttribute("crud", crud);
-		model.addAttribute("announcements", announcements);
+		model.addAttribute("announcements", announcementList);
 		model.addAttribute("searchText", searchText);
+
 		return "/announcement/notice";
 	}
 
 	@PostMapping("/search")
-	public String notice2(Model model, String searchText) {
-		List<Announcement> announcements = announcementService.readAnnouncementBySearchText(searchText);
-		model.addAttribute("announcements", announcements);
+	public String noticePost(String searchText, Model model) {
+		List<Announcement> announcementList = announcementService.readAnnouncementBySearchText(searchText);
+		model.addAttribute("announcements", announcementList);
 		model.addAttribute("crud", "select");
+		
 		return "/announcement/notice";
 	}
 }

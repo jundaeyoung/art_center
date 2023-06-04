@@ -34,7 +34,7 @@
 
 	</select>
 
-	<select id="selectByTime"
+	<select id="selectTimeByLocationId"
 		resultType="com.bclass.arts_center.dto.request.RequestHoleDto">
 		select t.id, t.start_time, t.end_time
 		from time_tb as t
@@ -54,7 +54,7 @@
 		);
 	</insert>
 	
-	<select id="selectByDateAndLocation"
+	<select id="selectRentPlaceReservationByDateAndLocation"
 		resultType="com.bclass.arts_center.dto.request.RequestRentPlaceDto">
 		SELECT *
 		FROM rent_place_reservation_tb AS r

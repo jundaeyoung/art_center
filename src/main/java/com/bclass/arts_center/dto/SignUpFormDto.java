@@ -3,17 +3,10 @@ package com.bclass.arts_center.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
 import lombok.Data;
-/**
- * 
- * @author 편용림
- *
- */
+
 @Data
 public class SignUpFormDto {
-	
-	
 	private Integer id;
 	private String userName;
 	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")

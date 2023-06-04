@@ -12,7 +12,7 @@ public interface FaqRepository {
 	public List<Faq> selectFaqCategory();
 
 	public List<Faq> selectFaqAll();
-
+	
 	public List<Faq> selectFaqByCategoryId(Integer categoryId);
 
 }

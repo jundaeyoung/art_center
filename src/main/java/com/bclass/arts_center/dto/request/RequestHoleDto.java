@@ -2,14 +2,8 @@ package com.bclass.arts_center.dto.request;
 
 import lombok.Data;
 
-/**
- * 
- * @author 김미정
- *
- */
 @Data
 public class RequestHoleDto {
-
 	private Integer id;
 	private String name;
 	private String price;

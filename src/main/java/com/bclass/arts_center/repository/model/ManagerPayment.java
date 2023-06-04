@@ -4,12 +4,6 @@ import java.time.LocalDateTime;
 
 import lombok.Data;
 
-/**
- * 
- * @author 편용림
- *
- */
-
 @Data
 public class ManagerPayment {
 

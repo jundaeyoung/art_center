@@ -5,11 +5,6 @@ import java.sql.Timestamp;
 
 import lombok.Data;
 
-/**
- * 
- * @author 김미정
- *
- */
 @Data
 public class RentPlaceReservation {
 

@@ -5,12 +5,8 @@ import java.sql.Time;
 
 import lombok.Data;
 
-/*
- * @author 손주이
- */
 @Data
 public class ShowViewDto {
-
 	private Integer showId;
 	private Integer showTimeId;
 	private String title;

@@ -19,11 +19,13 @@ public class PaymentController {
 
 	@Autowired
 	private HttpSession session;
+	
 	@Autowired
 	private TicketService ticketService;
 
+	
 	@GetMapping("/payment/{ticketingId}")
-	public String payTicket(@PathVariable int ticketingId,Model model) {
+	public String payTicket(@PathVariable Integer ticketingId,Model model) {
 		TicketCheckDto ticket = ticketService.checkTicketForPay(ticketingId);
 		session.setAttribute("ticketingId", ticketingId);
 		if(ticket==null) {
@@ -31,6 +33,7 @@ public class PaymentController {
 		}else {
 			model.addAttribute("ticket", ticket);
 		}
+		
 		return "/payment/payment";
 	}
 

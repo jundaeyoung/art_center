@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class ResponseManagerShowSaleDto {
-	
 	private String startDate;
 	private String endDate;
 	private Integer userId;

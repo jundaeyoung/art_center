@@ -16,9 +16,6 @@ public class SceduleApiController {
 	@Autowired
 	private ScheduleService scheduleService;
 
-	/**
-	 * 김미정 : calendar show detail 정보 불러오기
-	 */
 	@GetMapping("/api/scheduleDetail/{id}")
 	public ResponseDto<RequestShowDto> selectByShowDetail(@PathVariable Integer id) {
 		RequestShowDto selectByShowDetail = scheduleService.readByShowDetail(id);

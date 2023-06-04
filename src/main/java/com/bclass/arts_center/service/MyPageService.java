@@ -18,64 +18,51 @@ public class MyPageService {
 	@Autowired
 	private MyPageRepository myPageRepository;
 
-	/**
-	 * @author 김미정
-	 * @param organizerId
-	 * @return myShowList
-	 */
+
 	@Transactional
-	public List<MyRegistrationInfoDto> selectMyShow(Integer organizerId, Integer begin, Integer range) {
+	public List<MyRegistrationInfoDto> readMyShow(Integer organizerId, Integer begin, Integer range) {
 		List<MyRegistrationInfoDto> myShowList = myPageRepository.selectMyShow(organizerId, begin, range);
+		
 		return myShowList;
 	}
 	
-	/**
-	 * @author 김미정
-	 * @return showCount
-	 */
+
 	@Transactional
-	public Integer selectMyShowCount(Integer organizerId) {
+	public Integer readMyShowCount(Integer organizerId) {
 		Integer showCount = myPageRepository.selectMyShowCount(organizerId);
+		
 		return showCount;
 	}
 
-	/**
-	 * @author 김미정
-	 * @param id
-	 * @return detailList
-	 */
+
 	@Transactional
-	public List<MyRegistrationInfoDto> selectMyShowDetail(Integer id) {
+	public List<MyRegistrationInfoDto> readMyShowDetail(Integer id) {
 		List<MyRegistrationInfoDto> detailList = myPageRepository.selectMyShowDetail(id);
+		
 		return detailList;
 	}
 
-	/**
-	 * @author 손주이
-	 * @param userId
-	 * @return ticketList
-	 */
-	@Transactional
-	public List<MyTicketDtailDto> readMyTicketList(Integer userId) {
 
+	@Transactional
+	public List<MyTicketDtailDto> readMyTicket(Integer userId) {
 		List<MyTicketDtailDto> ticketList = myPageRepository.selectMyTicket(userId);
+		
 		return ticketList;
 	}
 
 	
-	/**
-	 * @author 손주이
-	 * @param id
-	 * @return ticketDetail
-	 */
+	@Transactional
 	public MyTicketDtailDto readMyTicketDetail(Integer id) {
-
 		MyTicketDtailDto ticketDetail = myPageRepository.selectMyTicketDetail(id);
+		
 		return ticketDetail;
 	}
 	
+	
+	@Transactional
 	public List<MyRegistrationInfoDto> readMyRentRefund(Integer id){
 		List<MyRegistrationInfoDto> rentList = myPageRepository.selectMyRentRefund(id);
+		
 		return rentList;
 	}
 

@@ -29,11 +29,6 @@ import com.bclass.arts_center.repository.interfaces.TicketRepository;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.utils.Define;
 
-/**
- * 
- * @author 손주이
- *
- */
 @Service
 public class KakaoPaymentService {
 
@@ -60,11 +55,6 @@ public class KakaoPaymentService {
 		this.ADMIN_KEY = paymentRepository.selectAdminKey();
 	}
 
-	/**
-	 * 결제 대기
-	 * 
-	 * @return response.getBody()
-	 */
 	@Transactional
 	public KakaoReadyResponse kakaoReady(Integer ticketingId) {
 
@@ -111,6 +101,7 @@ public class KakaoPaymentService {
 		return response.getBody();
 	}
 
+	
 	@Transactional
 	public KakaoReadyResponse kakaoReady2(Integer rentId) {
 
@@ -148,12 +139,7 @@ public class KakaoPaymentService {
 		return response.getBody();
 	}
 
-	/**
-	 * 결제 요청
-	 * 
-	 * @param pgToken
-	 * @return response.getBody()
-	 */
+
 	@Transactional
 	public KakaoApprovalResponse kakaoApprove(String pgToken) {
 
@@ -179,16 +165,11 @@ public class KakaoPaymentService {
 		return response.getBody();
 	}
 
-	/**
-	 * 환불 요청
-	 * 
-	 * @return response.getBody()
-	 */
+
 	@Transactional
 	public KakaoRefundResponse kakaoRefund(Integer userId, String tid) {
 
 		RequestPaymentInfoDto requestPayment = paymentRepository.selectPaymentInfo(userId, tid);
-		// System.out.println("rr" + requestPayment);
 
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -214,11 +195,6 @@ public class KakaoPaymentService {
 		return response.getBody();
 	}
 
-	/**
-	 * 대관 환불 요청
-	 * 
-	 * @return response.getBody()
-	 */
 	@Transactional
 	public KakaoRefundResponse kakaoRefund2(String tid) {
 
@@ -247,5 +223,4 @@ public class KakaoPaymentService {
 
 		return response.getBody();
 	}
-
 }

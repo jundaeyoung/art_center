@@ -27,13 +27,7 @@ import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
 
-/**
- * 
- * @author 편용림
- *
- *         유저 Controller
- *
- */
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -44,39 +38,41 @@ public class UserController {
 	@Autowired
 	private HttpSession session;
 
-	// 로그인 페이지
+	
 	@GetMapping("/login")
 	public String login() {
+		
 		return "/user/signIn";
 	}
 
-	// 회원가입 페이지
+
 	@GetMapping("/signUp")
 	public String signUp() {
 
 		return "/user/signUpchoice";
 	}
 
+
 	@GetMapping("/signUpchoice")
 	public String signUpchoice(Integer roleId, Model model) {
 		model.addAttribute("roleId", roleId);
+		
 		return "/user/signUp";
 	}
 
-	// 개인정보 수정 페이지
+
 	@GetMapping("/update")
 	public String update(Model model, String userName) {
 		SignInFormDto dto = new SignInFormDto();
 		dto.setUserName(userName);
 		User user = userService.readUserByUserName(dto.getUserName());
-
 		model.addAttribute("user", user);
 
 		return "/user/update";
 
 	}
 
-	// 회원탈퇴 페이지
+
 	@GetMapping("/delete")
 	public String delete(Model model, String userName) {
 		SignInFormDto dto = new SignInFormDto();
@@ -87,10 +83,9 @@ public class UserController {
 		return "/user/delete";
 	}
 
-	// 로그인 처리
+
 	@PostMapping("/loginProc")
 	public String loginProc(SignInFormDto signInFormDto) {
-
 		if (signInFormDto.getUserName() == null || signInFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("username을 입력하세요", HttpStatus.BAD_REQUEST);
 		}
@@ -98,7 +93,6 @@ public class UserController {
 			throw new CustomRestfullException("password를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		User principal = userService.readUser(signInFormDto);
-
 		session.setAttribute(Define.PRINCIPAL, principal);
 
 		if (principal.getRoleId() == 3) {
@@ -108,17 +102,17 @@ public class UserController {
 		}
 	}
 
-	// 로그아웃 처리
+	
 	@GetMapping("/logout")
 	public String logout() {
 		session.invalidate();
+		
 		return "redirect:/";
 	}
 
-	// 회원가입 처리
+	
 	@PostMapping("/signUp")
 	public String signUpProc(@Valid SignUpFormDto signUpFormDto,HttpServletResponse response, BindingResult errors, Model model) {
-
 		if (signUpFormDto.getUserName() == null || signUpFormDto.getUserName().isEmpty()) {
 			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.BAD_REQUEST);
 		} else if (signUpFormDto.getPassword() == null || signUpFormDto.getPassword().isEmpty()) {
@@ -134,14 +128,11 @@ public class UserController {
 		} else if (signUpFormDto.getBirthDate() == null) {
 			throw new CustomRestfullException("생년월일을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
-
 		if (errors.hasErrors()) {
-
 			Map<String, String> validatorResult = userService.userValidateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
-
 			return "/user/signUp";
 		}
 		if (signUpFormDto.getRoleId() == null) {
@@ -166,14 +157,11 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 
-	// 개인정보 수정
+
 	@PostMapping("/update")
 	public String update(@Valid UpdateUserDto updateUserDto, BindingResult errors, Model model) {
-
 		if (errors.hasErrors()) {
-
 			model.addAttribute("user", updateUserDto);
-
 			Map<String, String> validatorResult = userService.userValidateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
@@ -186,39 +174,39 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	// 회원탈퇴
+
 	@PostMapping("/deleteProc")
 	public String delete(SignInFormDto signInFormDto) {
-
 		if (signInFormDto.getPassword() == null || signInFormDto.getPassword().isEmpty()) {
 			throw new CustomRestfullException("password를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
-
 		userService.deleteUser(signInFormDto);
-
 		session.invalidate();
 
 		return "redirect:/";
 	}
 
-	/*
-	 * 작성자 : 전대영 비밀번호 찾기
-	 */
+
 	@GetMapping("/findPw")
 	public String findPw() {
+		
 		return "/user/findPw";
 	}
 
+	
 	@GetMapping("/findId")
 	public String findId() {
 
 		return "user/findId";
 	}
 
+	
 	@PostMapping("findId")
 	public String findId(User user) {
-		userService.selectUserName(user);
+		userService.selectUserNameByEmailAndTel(user);
+		
 		return "user/findId";
 	}
 
 }
+

@@ -9,7 +9,6 @@ import com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto;
 @Mapper
 public interface RentPlaceReservationRepository {
 
-	// 작성자 : 편용림 대관승인 리스트 조회
 	public List<RequestRentPlaceReservationDto> selectRentPlaceReservationList();
 
 	public int updateRentPlaceReservation(Integer id);

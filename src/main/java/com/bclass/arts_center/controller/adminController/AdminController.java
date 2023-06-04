@@ -137,7 +137,7 @@ public class AdminController {
 	@GetMapping("/updateShow/{id}/{userId}")
 	public String updateShow(@PathVariable Integer id, @PathVariable Integer userId) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		showService.updateShow(id);
+		showService.updateShowStatusById(id);
 		String notice = "공연등록이 수락되었습니다.결제해주세요";
 		noticeService.createManagerNotice(notice, userId, principal.getId());
 		

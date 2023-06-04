@@ -11,11 +11,6 @@ import com.bclass.arts_center.dto.payment.RequestPaymentInfoDto;
 import com.bclass.arts_center.repository.model.ManagerPayment;
 import com.bclass.arts_center.repository.model.Payment;
 
-/**
- * 
- * @author 손주이
- *
- */
 @Mapper
 public interface PaymentRepository {
 
@@ -23,7 +18,6 @@ public interface PaymentRepository {
 
 	public int insertPayment(Payment payment);
 
-	// 작성자 : 편용림 대관 결제
 	public int insertManagerPayment(ManagerPayment managerPayment);
 
 	public RequestPaymentInfoDto selectPaymentInfo(@Param("userId") Integer userId, @Param("tid") String tid);
@@ -35,6 +29,4 @@ public interface PaymentRepository {
 	public int updateManagerCancelStatus(@Param("canceledAt") LocalDateTime canceledAt, @Param("tid") String tid);
 	
 	public KakaoRefundResponse refundCheck(@Param("tid") String tid);
-
-
 }

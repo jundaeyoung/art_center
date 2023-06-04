@@ -6,11 +6,6 @@ import com.bclass.arts_center.utils.TimestampUtil;
 
 import lombok.Data;
 
-/**
- * 
- * @author 전대영
- *
- */
 @Data
 public class User {
 	private Integer id;

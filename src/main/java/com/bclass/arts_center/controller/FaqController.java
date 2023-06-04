@@ -21,13 +21,13 @@ public class FaqController {
 
 	@GetMapping("/faq")
 	public String faq(Model model) {
-
-		List<Faq> faqCategoryList = faqService.selectFaqCategory();
-		List<Faq> faqList = faqService.selectAll();
-		if (faqCategoryList == null || faqCategoryList.isEmpty()) {
+		List<Faq> faqListByCategory = faqService.readFaqCategory();
+		List<Faq> faqList = faqService.readFaqAll();
+		
+		if (faqListByCategory == null || faqListByCategory.isEmpty()) {
 			model.addAttribute("faqCategoryList", null);
 		} else {
-			model.addAttribute("faqCategoryList", faqCategoryList);
+			model.addAttribute("faqCategoryList", faqListByCategory);
 		}
 		if (faqList == null || faqList.isEmpty()) {
 			model.addAttribute("faqList", null);
@@ -39,3 +39,4 @@ public class FaqController {
 	}
 
 }
+

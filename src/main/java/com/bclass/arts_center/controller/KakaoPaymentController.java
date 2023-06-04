@@ -29,11 +29,6 @@ import com.bclass.arts_center.service.RentPlaceReservationService;
 import com.bclass.arts_center.service.TicketService;
 import com.bclass.arts_center.utils.Define;
 
-/**
- * 
- * @author 손주이
- *
- */
 @Controller
 @RequestMapping("/kakao")
 public class KakaoPaymentController {
@@ -56,6 +51,7 @@ public class KakaoPaymentController {
 	@Autowired
 	private MessageApiController messageApiController;
 
+	
 	@GetMapping("/ready")
 	public String readyToKakaoPay(Integer ticketingId, Integer rentId, RedirectAttributes redirectAttributes) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -79,6 +75,7 @@ public class KakaoPaymentController {
 		return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
 	}
 
+	
 	@GetMapping("/success")
 	public String success(Integer ticketingId, @RequestParam(name = "pg_token", required = false) String pgToken,
 			Model model) {
@@ -121,6 +118,7 @@ public class KakaoPaymentController {
 		return "/payment/success";
 	}
 
+	
 	@GetMapping("/cancel")
 	public String cancel() {
 
@@ -128,12 +126,14 @@ public class KakaoPaymentController {
 
 	}
 
+	
 	@GetMapping("/fail")
 	public String fail() {
 
 		return "/payment/fail";
 	}
 
+	
 	@GetMapping("/refund/{tid}")
 	public String refundCheck(@PathVariable(name = "tid", required = false) String tid, Model model,
 			@RequestParam(name = "id", required = false) Integer id) {
@@ -148,6 +148,8 @@ public class KakaoPaymentController {
 
 		return "/payment/refundCheck";
 	}
+	
+	
 	@PostMapping("/refund/{tid}")
 	public String refund(@PathVariable(name = "tid", required = false) String tid, Model model,
 			@RequestParam(name = "id", required = false) Integer id) {
@@ -169,3 +171,4 @@ public class KakaoPaymentController {
 	}
 
 }
+

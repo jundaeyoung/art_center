@@ -13,12 +13,12 @@
 			<div class="show--content">
 				<div class="show--info">
 					<div class="show--title">
-						<h1>${title}</h1>
+						<h1>${showInfo[0].title}</h1>
 					</div>
 
 					<div class="show--period">
 						<p class="list">기간</p>
-						<p>: ${startDate}&nbsp;~&nbsp;${endDate}</p>
+						<p>: ${showInfo[0].startDate}&nbsp;~&nbsp;${showInfo[0].endDate}</p>
 					</div>
 					<div class="show--times">
 						<p class="list">상연 정보 보기</p>
@@ -33,27 +33,27 @@
 					</div>
 					<div>
 						<p class="list">장소</p>
-						<p>: ${location}&nbsp;${name}</p>
+						<p>: ${showInfo[0].location}&nbsp;${showInfo[0].name}</p>
 					</div>
 					<div>
 						<p class="list">입장 연령</p>
-						<p>: ${admissionAge}</p>
+						<p>: ${showInfo[0].admissionAge}</p>
 
 					</div>
 					<div>
 						<p class="list">주최</p>
-						<p>: ${nickname}</p>
+						<p>: ${showInfo[0].nickname}</p>
 					</div>
 					<div>
 						<p class="list">문의</p>
-						<p>: ${tel}</p>
+						<p>: ${showInfo[0].tel}</p>
 					</div>
 				</div>
 
 
 				<div class="side--container">
 					<div class="show--img">
-						<img alt="" src="/images/upload/${imgRoute}">
+						<img alt="" src="/images/upload/${showInfo[0].imgRoute}">
 					</div>
 					<c:choose>
 						<c:when test="${locationId==1}">
@@ -88,10 +88,10 @@
 
 		<div class="show--introduction--content">
 			<h2>작품소개</h2>
-			<p>${content}</p>
+			<p>${showInfo[0].content}</p>
 		</div>
 	</div>
-	<input type="hidden" name="show_type_id" value="${showTypeId}">
+	<input type="hidden" name="show_type_id" value="${showInfo[0].showTypeId}">
 </div>
 
 

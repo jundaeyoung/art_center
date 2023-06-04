@@ -30,18 +30,14 @@ public class ShowController {
 	@Autowired
 	private HttpSession session;
 
-	/**
-	 * @author 전대영 show 최신순 페이지 들어가기
-	 */
 	@GetMapping("/newestShow")
 	public String newestShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-
 		List<RequestShowDto> showList = showService.readShowByNewest(begin, range);
-		List<RequestShowDto> showListCount = showService.readShowByNewestCount();
+		
+		Integer showCount = showService.readShowByNewestCount();
 		String message = "최신순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		Integer showCount = showListCount.size();
 		Double count = Math.ceil(showCount);
 		Integer page = (int) Math.ceil(count / 3);
 		Integer startPage = currentPage - 2;
@@ -64,18 +60,14 @@ public class ShowController {
 			model.addAttribute("showList", showList);
 		}
 		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/show/show";
 	}
 
-	/**
-	 * @author 전대영 show 평점 높은순 페이지 들어가기
-	 */
+
 	@GetMapping("/highesRatedShow")
 	public String highesRatedShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
@@ -108,15 +100,11 @@ public class ShowController {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
 		return "/show/show";
 	}
 
-	/**
-	 * @author 전대영 show 평점 낮은순 페이지 들어가기
-	 */
+
 	@GetMapping("/rowestRatedShow")
 	public String rowestRatedShow(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
@@ -149,15 +137,12 @@ public class ShowController {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
+		
 		return "/show/show";
 	}
 
-	/**
-	 * @author 전대영 show 카테고리 별 페이지 들어가기
-	 */
+
 	@GetMapping("/categoryShow")
 	public String categoryShow(@RequestParam(required = false) String category,
 			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
@@ -190,25 +175,20 @@ public class ShowController {
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		model.addAttribute("page", page);
-		model.addAttribute("principal", principal);
 		model.addAttribute("message", message);
+		
 		return "/show/show";
 	}
 
-	/**
-	 * @author 손주이
-	 * @param showId
-	 * @param model
-	 * @return 각 show 별 상세
-	 */
+
 	@GetMapping("/showView/{showId}")
 	public String showView(@PathVariable Integer showId, Model model) {
-
 		List<ShowViewDto> showInfo = showService.readShowInfoByShowId(showId);
 		List<RequestShowDto> reviewList = showService.readReviewByShowId(showId);
+		
 		String adultRate = showInfo.get(0).getAdultRate().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 		String youthRate = showInfo.get(0).getYouthRate().replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+		
 		if (reviewList == null || reviewList.isEmpty()) {
 			model.addAttribute("reviewList", null);
 		} else {
@@ -218,25 +198,12 @@ public class ShowController {
 			throw new CustomRestfullException("현재 상영중이 아닌 공연입니다", HttpStatus.BAD_REQUEST);
 		} else {
 			model.addAttribute("showInfo", showInfo);
-			model.addAttribute("title", showInfo.get(0).getTitle());
-			model.addAttribute("locationId", showInfo.get(0).getLocationId());
-			model.addAttribute("showTypeId", showInfo.get(0).getShowTypeId());
-			model.addAttribute("content", showInfo.get(0).getContent());
-			model.addAttribute("imgRoute", showInfo.get(0).getImgRoute());
-			model.addAttribute("startDate", showInfo.get(0).getStartDate());
-			model.addAttribute("endDate", showInfo.get(0).getEndDate());
-			model.addAttribute("admissionAge", showInfo.get(0).getAdmissionAge());
-			model.addAttribute("location", showInfo.get(0).getLocation());
-			model.addAttribute("name", showInfo.get(0).getName());
-			model.addAttribute("content", showInfo.get(0).getContent());
-			model.addAttribute("nickname", showInfo.get(0).getNickname());
-			model.addAttribute("tel", showInfo.get(0).getTel());
 			model.addAttribute("adultRate",adultRate);
 			model.addAttribute("youthRate",youthRate);
 		}
-		model.addAttribute("reviewListSize", reviewList.size());
-
 		return "/show/showView";
 	}
 
 }
+
+

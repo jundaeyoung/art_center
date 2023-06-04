@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 public class MyRegistrationInfoDto {
-
 	private Integer id;
 	private String imgRoute;
 	private String title;

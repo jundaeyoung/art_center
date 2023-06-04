@@ -20,13 +20,15 @@ public class FaqApiController {
 
 	@GetMapping("/api/faq")
 	public ResponseDto<List<Faq>> selectAllFaq() {
-		List<Faq> faqAllList = faqService.selectAll();
+		List<Faq> faqAllList = faqService.readFaqAll();
+		
 		return new ResponseDto<List<Faq>>(200, HttpStatus.OK.toString(), faqAllList);
 	}
 
 	@GetMapping("/api/selectFaq/{categoryId}")
 	public ResponseDto<List<Faq>> selectFaq(@PathVariable Integer categoryId) {
-		List<Faq> faqList = faqService.selectByCategoryId(categoryId);
+		List<Faq> faqList = faqService.readByCategoryId(categoryId);
+		
 		return new ResponseDto<List<Faq>>(200, HttpStatus.OK.toString(), faqList);
 	}
 

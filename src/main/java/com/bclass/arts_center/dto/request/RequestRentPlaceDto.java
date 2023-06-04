@@ -4,14 +4,8 @@ import java.sql.Time;
 
 import lombok.Data;
 
-/**
- * 
- * @author 김미정
- *
- */
 @Data
 public class RequestRentPlaceDto {
-
 	private Integer id;
 	private String startDate;
 	private String endDate;

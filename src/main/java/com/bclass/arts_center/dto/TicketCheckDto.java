@@ -8,7 +8,6 @@ import lombok.Data;
 
 @Data
 public class TicketCheckDto {
-
 	private Integer id;
 	private Integer userId;
 	private String birthDate;

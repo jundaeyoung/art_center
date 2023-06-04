@@ -44,10 +44,7 @@ public class RentalController {
 	@Autowired
 	private HttpSession session;
 
-	/**
-	 * 김미정
-	 */
-	// 대관신청 바로가기 페이지
+
 	@GetMapping("")
 	public String rentalPage(RequestSignUpShowDto requestSignUpShowDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -60,50 +57,45 @@ public class RentalController {
 		return "/manager/rental";
 	}
 
-	/**
-	 * 김미정
-	 */
-	// 대관 신청 페이지
+
 	@GetMapping("/location/{id}/{showId}")
 	@Transactional
 	public String rentalLocation(Model model, @PathVariable("id") Integer id, @PathVariable("showId") Integer showId) {
 		RequestShowDto show = showService.readShowByShowId(showId);
-		List<RequestHoleDto> locationLists = rentalService.selectByLocation(id);
-		List<RequestHoleDto> timeList = rentalService.selectByTime(id);
+		List<RequestHoleDto> locationList = rentalService.selectByLocation(id);
+		List<RequestHoleDto> timeList = rentalService.selectTimeByLocationId(id);
 		if (show == null) {
 			model.addAttribute("show", null);
 		} else {
 			model.addAttribute("show", show);
 		}
-		model.addAttribute("locationLists", locationLists);
+		model.addAttribute("locationLists", locationList);
 		model.addAttribute("timeList", timeList);
 		model.addAttribute("locationId", id);
+		
 		return "/manager/rentalLocation";
 	}
 
-	/**
-	 * 김미정
-	 */
+
 	@PostMapping("/location")
 	public String rentalLocationPost(Model model, @RequestParam("id") Integer id) {
-		List<RequestHoleDto> locationLists = rentalService.selectByLocation(id);
-		List<RequestHoleDto> timeList = rentalService.selectByTime(id);
+		List<RequestHoleDto> locationList = rentalService.selectByLocation(id);
+		List<RequestHoleDto> timeList = rentalService.selectTimeByLocationId(id);
 		model.addAttribute("timeList", timeList);
-		model.addAttribute("locationLists", locationLists);
+		model.addAttribute("locationLists", locationList);
+		
 		return "/manager/rentalLocation";
 	}
 
-	/**
-	 * 김미정
-	 */
-	// 대관 신청 insert
+
 	@PostMapping("/reservation")
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, HttpServletResponse response, Model model) {
-		System.out.println(requestRentPlaceDto);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		
 		if (requestRentPlaceDto.getStartTime() == null || requestRentPlaceDto.getEndTime() == null) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		}
+		
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
 
@@ -112,35 +104,39 @@ public class RentalController {
 		} else if (endTime.compareTo(startTime) < 0) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		}
+		
 		requestRentPlaceDto.setUserId(principal.getId());
-		String str = requestRentPlaceDto.getStartDate();
-		String[] split = str.split("~");
-		requestRentPlaceDto.setStartDate(split[0]);
-		requestRentPlaceDto.setEndDate(split[1]);
-
-		requestRentPlaceDto.setStartDate(split[0].replaceAll(" ", ""));
-		requestRentPlaceDto.setEndDate(split[1].replaceAll(" ", ""));
+		
+		String date = requestRentPlaceDto.getStartDate();
+		String[] startDateAndEndDate = date.split("~");
+		requestRentPlaceDto.setStartDate(startDateAndEndDate[0].replaceAll(" ", ""));
+		requestRentPlaceDto.setEndDate(startDateAndEndDate[1].replaceAll(" ", ""));
 
 		model.addAttribute("dto", requestRentPlaceDto);
 
 		rentalService.insertRental(requestRentPlaceDto);
-		showService.updateShowHole(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
+		showService.updateShowHoleById(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
 
 		String dtoStartDate = requestRentPlaceDto.getStartDate().replaceAll("-", "");
+		
 		String startDate = dtoStartDate.replaceAll(" ", "");
-		int startYear = Integer.parseInt(startDate.substring(0, 4));
-		int startMonth = Integer.parseInt(startDate.substring(4, 6));
-		int startDay = Integer.parseInt(startDate.substring(6, 8));
-		String dtoEndDate = requestRentPlaceDto.getEndDate().replaceAll("-", "");
-		String endDate = dtoEndDate.replaceAll(" ", "");
-		int endYear = Integer.parseInt(endDate.substring(0, 4));
-		int endMonth = Integer.parseInt(endDate.substring(4, 6));
-		int endDay = Integer.parseInt(endDate.substring(6, 8));
-
+		
+		Integer startYear = Integer.parseInt(startDate.substring(0, 4));
+		Integer startMonth = Integer.parseInt(startDate.substring(4, 6));
+		Integer startDay = Integer.parseInt(startDate.substring(6, 8));
 		Calendar startCal = Calendar.getInstance();
 		startCal.set(startYear, startMonth - 1, startDay);
+		
+		
+		String dtoEndDate = requestRentPlaceDto.getEndDate().replaceAll("-", "");
+		String endDate = dtoEndDate.replaceAll(" ", "");
+		Integer endYear = Integer.parseInt(endDate.substring(0, 4));
+		Integer endMonth = Integer.parseInt(endDate.substring(4, 6));
+		Integer endDay = Integer.parseInt(endDate.substring(6, 8));
 		Calendar endCal = Calendar.getInstance();
 		endCal.set(endYear, endMonth - 1, endDay);
+
+		
 		while (true) {
 			if (getDateByInteger(startCal.getTime()) <= getDateByInteger(endCal.getTime())) {
 				requestRentPlaceDto.setStartDate(getDateByString(startCal.getTime()));
@@ -165,14 +161,18 @@ public class RentalController {
 		return "/main";
 	}
 
-	public static int getDateByInteger(Date date) {
+	
+	public static Integer getDateByInteger(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		
 		return Integer.parseInt(sdf.format(date));
 	}
 
+	
 	public static String getDateByString(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
 		return sdf.format(date);
 	}
-
 }
+
