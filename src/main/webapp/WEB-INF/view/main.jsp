@@ -163,7 +163,7 @@
       <c:otherwise>
          <div class="show-content">
             <div class="modal" id="myModal">
-               <div class="modal-content" style="margin: 0;">
+               <div class="modal-content" style="margin-top: -500px;">
                   <span class="close" id="close" onclick="close()">&times;</span> <input
                      type="hidden" class="showId" id="showId" name="showId">
                   <h3 class="modal-title" id="title"></h3>
