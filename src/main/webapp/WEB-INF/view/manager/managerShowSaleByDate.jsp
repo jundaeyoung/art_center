@@ -4,8 +4,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script type="text/javascript" src="/js/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -24,7 +23,7 @@
 	<div class="signUpShow__info">
 		<form action="/manager/showSaleByDate" method="post">
 			<div style="display: flex; width: 600px; flex-direction: row; justify-content: center;">
-				<div style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
+				<div style="display: flex; flex-direction: row; justify-content: flex-start;">
 					<div class="date">
 						<label for="content">기간선택 : </label> <input type="text" id="startDate" name="startDate" style="width: 300px;" />
 					</div>
@@ -41,7 +40,7 @@
 	<div class="signUpShow__info">
 		<form action="/manager/showSaleBySearch" method="post">
 			<div style="display: flex; width: 500px; flex-direction: row; justify-content: center; margin-left: -30px;">
-				<div style="height:; display: flex; flex-direction: row; justify-content: flex-start;">
+				<div style="display: flex; flex-direction: row; justify-content: flex-start;">
 					<div class="date">
 						<label for="title">제 목 : </label> <input type="text" id="title" name="title" style="width: 300px;" />
 					</div>
@@ -64,7 +63,9 @@
 		<h3></h3>
 	</div>
 </div>
-<div id="columnchart_material" style="width: 600px; height: 800px; margin-left: 150px;"></div>
+<div class="card-body" style="margin-top: 50px;">
+<canvas id="myBarChart" width= "80%" height="40"></canvas>
+</div>
 <div>
 	<div class="show">
 		<c:forEach var="showList" items="${showList}">
@@ -130,3 +131,5 @@
 <script type="text/javascript" src="/js/manager/managerShowSaleByDate.js"></script>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
+

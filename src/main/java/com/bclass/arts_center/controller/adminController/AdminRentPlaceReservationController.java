@@ -19,13 +19,11 @@ public class AdminRentPlaceReservationController {
 	@Autowired
 	private RentPlaceReservationService placeReservationService;
 	
-	// 작성자 : 편용림 대관 예매관리 페이지
 	
 	@GetMapping("")
-	public String RentPlace(Model model) {
-	
-		List<RequestRentPlaceReservationDto> rentPlaces = placeReservationService.readRentPlaceReservation();
-		model.addAttribute("rentPlaces", rentPlaces);
+	public String selectRentPlaceList(Model model) {
+		List<RequestRentPlaceReservationDto> rentPlaceList = placeReservationService.readRentPlaceReservationList();
+		model.addAttribute("rentPlaces", rentPlaceList);
 		
 		return "admin/rentPlaceReservationList";
 	}

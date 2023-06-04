@@ -47,8 +47,8 @@
 						<div class="sb-sidenav-menu-heading">대관</div>
 						<a class="nav-link" href="/admin/rentPlace"> 대관 목록 보기 </a>
 						<div class="sb-sidenav-menu-heading">매출</div>
-						<a class="nav-link" href="/admin/sales/show"> 공연 매출 보기 </a>
-						<a class="nav-link" href="/admin/sales/rent"> 대관 매출 보기 </a>
+						<a class="nav-link" href="/admin/sales/selectShowSalList"> 공연 매출 보기 </a>
+						<a class="nav-link" href="/admin/sales/selectRentSaleList"> 대관 매출 보기 </a>
 						<div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">Static Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>

@@ -24,7 +24,7 @@ public class ShowService {
 	 */
 
 	@Transactional
-	public List<RequestShowDto> readShow() {
+	public List<RequestShowDto> readShowList() {
 		List<RequestShowDto> showList = showRepository.selectShowInfoAdmin();
 		return showList;
 	}

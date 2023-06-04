@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.AdminSalesRepository">
+
+	 <select id="selectRentSaleGrape"
+		resultType="com.bclass.arts_center.dto.request.RequestManagerRentSaleDto">
+		SELECT s.title, l.location, h.name, u.nickname,
+		SUM(replace(r.rent_price,',','')) AS totalPrice
+		FROM rent_place_reservation_tb AS r
+		JOIN location_tb AS l
+		ON r.location_id = l.id
+		JOIN hole_tb AS h
+		ON r.hole_id = h.id
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		WHERE r.rent_place_status = 1
+		GROUP BY s.title
+		ORDER BY r.start_date ASC, r.end_date ASC;
+	</select>
+
+	<select id="selectShowSaleGrape"
+		resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+		SELECT s.id, s.title,s.adult_rate,s.youth_rate,
+		COUNT(case when t.age_group_id=2 then 1 end) * replace(s.youth_rate,',','') +
+		COUNT(case when t.age_group_id=3 then 1 end) * replace(s.adult_rate,',','') as totalshowSales
+		FROM ticketing_tb AS t 
+		JOIN show_tb AS s
+		ON t.show_id = s.id
+		JOIN show_datetime_tb AS sd
+		ON t.show_datetime_id = sd.id
+		WHERE t.payment_status = 1
+		GROUP BY s.title
+		ORDER BY totalshowSales DESC;
+	</select>
+
+	<select id="selectRentSaleList"
+		resultType="com.bclass.arts_center.dto.request.RequestManagerRentSaleDto">
+		SELECT r.start_date, r.start_time, r.end_date, r.end_time,
+		s.title, l.location, h.name, u.nickname, r.rent_price
+		FROM rent_place_reservation_tb AS r
+		JOIN location_tb AS l
+		ON r.location_id = l.id
+		JOIN hole_tb AS h
+		ON r.hole_id = h.id
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u   
+		ON r.user_id = u.id
+		WHERE r.rent_place_status = 1
+		ORDER BY r.start_date ASC, r.end_date ASC;
+	</select>
+
+
+	<select id="selectShowSaleList"
+		resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+		SELECT s.start_date, s.end_date, s.id, s.title, s.adult_rate, s.youth_rate,
+		count(case when t.age_group_id=2 then 1 end) * replace(s.youth_rate,',','') +
+		count(case when t.age_group_id=3 then 1 end) * replace(s.adult_rate,',','') AS totalshowSales
+		FROM ticketing_tb AS t
+		JOIN show_tb AS s
+		ON t.show_id = s.id
+		JOIN show_datetime_tb AS sd
+		ON t.show_datetime_id = sd.id
+		WHERE t.payment_status = 1
+		GROUP BY s.title
+		ORDER BY s.start_date ASC;
+	</select>
+
+	<select id="selectShowSaleByStartDateAndEndDate" 
+	resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+		SELECT s.start_date, s.end_date, s.id, s.title, s.adult_rate, s.youth_rate,
+		COUNT(CASE WHEN t.age_group_id = 2 THEN 1 END) * REPLACE(s.youth_rate, ',', '') +
+		COUNT(CASE WHEN t.age_group_id = 3 THEN 1 END) * REPLACE(s.adult_rate, ',', '') AS totalshowSales
+		FROM ticketing_tb AS t
+		JOIN show_tb AS s ON t.show_id = s.id
+		JOIN show_datetime_tb AS sd ON t.show_datetime_id = sd.id
+		WHERE t.payment_status = 1
+		AND  s.start_date >= #{startDate} AND s.end_date &lt;= #{endDate}
+		GROUP BY s.title
+		ORDER BY s.start_date ASC;
+	</select>
+	
+	<select id="selectShowSaleSearchByTitle" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+		SELECT s.start_date, s.end_date, s.id, s.title, s.adult_rate, s.youth_rate,
+		COUNT(case when t.age_group_id=2 then 1 end) * replace(s.youth_rate,',','') +
+		COUNT(case when t.age_group_id=3 then 1 end) * replace(s.adult_rate,',','') as totalshowSales
+		FROM ticketing_tb AS t
+		JOIN show_tb AS s
+		ON t.show_id = s.id
+		JOIN show_datetime_tb AS sd
+		ON t.show_datetime_id = sd.id
+		WHERE t.payment_status = 1
+		AND s.title LIKE CONCAT('%', #{searchTitle}, '%')
+		GROUP BY s.title
+		ORDER BY s.start_date ASC;
+	</select>
+	
+	<select id="selectRentSaleByStartDateAndEndDate"
+		resultType="com.bclass.arts_center.dto.request.RequestManagerRentSaleDto">
+		SELECT r.start_date, r.start_time, r.end_date, r.end_time,
+		s.title, l.location, h.name, u.nickname, r.rent_price
+		FROM rent_place_reservation_tb AS r
+		JOIN location_tb AS l
+		ON r.location_id = l.id
+		JOIN hole_tb AS h
+		ON r.hole_id = h.id
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		WHERE r.rent_place_status = 1
+		AND  r.start_date >= #{startDate} AND r.end_date &lt;= #{endDate}
+		ORDER BY r.start_date ASC, r.end_date ASC;
+	</select>
+	
+	<select id="selectRentSaleBySearchTitle"
+		resultType="com.bclass.arts_center.dto.request.RequestManagerRentSaleDto">
+		SELECT r.start_date, r.start_time, r.end_date, r.end_time,
+		s.title, l.location, h.name, u.nickname, r.rent_price
+		FROM rent_place_reservation_tb AS r
+		JOIN location_tb AS l
+		ON r.location_id = l.id
+		JOIN hole_tb AS h
+		ON r.hole_id = h.id
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		WHERE r.rent_place_status = 1
+		AND h.name LIKE CONCAT('%', #{searchTitle}, '%')
+		ORDER BY r.start_date ASC, r.end_date ASC;
+	</select>
+</mapper>
+

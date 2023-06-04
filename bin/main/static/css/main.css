@@ -4,16 +4,33 @@
  */
 @charset "UTF-8";
 
+@font-face {
+	font-family: 'SDSamliphopangche_Outline';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap')
+	;
+
 body {
 	background-color: #fff;
 	width: 100%;
+	font-family: 'Noto Sans KR', sans-serif;
 }
-.user--btn form{
-	margin-top:18px;
+
+.user--btn form {
+	margin-top: 18px;
 }
+
 .body--content--main {
 	background-color: #fff;
 }
+
 .showView {
 	margin-left: 0;
 	border: none;
@@ -22,6 +39,7 @@ body {
 	background-color: #DBE4EB;
 	cursor: pointer;
 }
+
 .slide_wrapper {
 	position: relative;
 	width: 450px;
@@ -153,7 +171,8 @@ li {
 	justify-content: center;
 	align-items: center;
 }
-.user--btn p{
+
+.user--btn p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -215,6 +234,7 @@ content ul {
 }
 
 .content {
+	/* font-family: 'SDSamliphopangche_Outline'; */
 	margin-left: 300px;
 }
 
@@ -446,7 +466,7 @@ content ul {
 	text-shadow: 1px 1px 2px #A7A7B0;
 	color: #45454A;
 	font-weight: bold;
-	margin-left:20px;
+	margin-left: 20px;
 }
 
 .hidden {
@@ -469,12 +489,11 @@ content ul {
 	display: flex;
 	justify-content: space-between;
 	width: 1480px;
-	
 }
+
 .notice__title h2 {
 	font-size: 20px;
 }
-
 
 .notice__content {
 	border-top: 2px solid #000;
@@ -482,7 +501,7 @@ content ul {
 	border-right: 2px solid #000;
 	width: 1480px;
 	height: 70px;
-	}
+}
 
 .notice__content:last-child {
 	border-bottom: 2px solid #000;
@@ -490,16 +509,17 @@ content ul {
 
 .date {
 	color: gray;
-	
 }
-.apilogout{
+
+.apilogout {
 	margin-top: -20px;
 	font-weight: lighter;
 	background-color: #FAFAFA;
 	color: black;
 }
+
 #columnchart_material svg g:nth-child(n+5) text {
-	font-size: 14px!important;
+	font-size: 14px !important;
 }
 
 #user-calendar-container {
@@ -525,12 +545,14 @@ content ul {
 .title .user--btn {
 	margin-top: 23px;
 }
-.user--btn form{
-	margin-top:0;
+
+.user--btn form {
+	margin-top: 0;
 }
+
 .user--btn a {
 	margin-top: 23px;
-	margin-top:0;
+	margin-top: 0;
 	background-color: white;
 	font-weight: 400;
 	color: #303030;
@@ -544,6 +566,7 @@ content ul {
 	background-color: #DBE4EB;
 	cursor: pointer;
 }
+
 .show-content {
 	position: relative;
 	max-width: 1280px;
@@ -553,20 +576,25 @@ content ul {
 }
 
 .fc-event-time {
-	font-size: 17px!important;
+	font-size: 17px !important;
 }
-.fc-event-title-container{
-	font-size: 17px!important;
+
+.fc-event-title-container {
+	font-size: 17px !important;
 }
-.modal-content{
-	z-index:1!important;
+
+.modal-content {
+	z-index: 1 !important;
 }
-#myModal{
-	z-index:9999!important;
+
+#myModal {
+	z-index: 9999 !important;
 }
-.fc-daygrid-day-frame fc-scrollgrid-sync-inner{
-	z-index:0!important;
+
+.fc-daygrid-day-frame fc-scrollgrid-sync-inner {
+	z-index: 0 !important;
 }
+
 .show-title {
 	position: relative;
 	font-size: 30px;
@@ -596,12 +624,15 @@ content ul {
 	font-size: 16px;
 	color: gray;
 }
+
 .fc-scrollgrid-section fc-scrollgrid-section-body {
-	z-index:100!important;
-	}
-.fc td{
-	padding: 0!important;
+	z-index: 100 !important;
 }
+
+.fc td {
+	padding: 0 !important;
+}
+
 .show-type-btn:hover {
 	color: black;
 	font-weight: bold;
@@ -691,9 +722,9 @@ button:hover {
 	color: black;
 }
 
-.fc .fc-button-group>.fc-button:focus, .fc .fc-button-group>.fc-button:active, .fc .fc-button-group>.fc-button.fc-button-active {
+.fc .fc-button-group>.fc-button:focus, .fc .fc-button-group>.fc-button:active,
+	.fc .fc-button-group>.fc-button.fc-button-active {
 	background-color: #f5de98;
 	border: 1px solid #ccc;
 	color: black;
 }
-

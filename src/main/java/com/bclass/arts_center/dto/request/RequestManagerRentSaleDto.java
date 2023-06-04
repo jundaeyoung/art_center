@@ -1,9 +1,9 @@
-package com.bclass.arts_center.dto;
+package com.bclass.arts_center.dto.request;
 
 import lombok.Data;
 
 @Data
-public class RentSalesDto {
+public class RequestManagerRentSaleDto {
 
 	private String startDate;
 	private String startTime;

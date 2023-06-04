@@ -33,11 +33,11 @@
 			<div class="card mb-4"></div>
 			<div class="card mb-4">
 				<div class="card-header">
-					<form action="/admin/sales/showSalesDay" method="post">
+					<form action="/admin/sales/selectShowSaleListByStartDateAndEndDate" method="post">
 						<label for="startDate">기간선택:</label> <input type="text" id="startDate" name="startDate" style="width: 200px; margin-bottom: 10px;" />
 						<button type="submit">검색</button>
 					</form>
-					<form action="/admin/sales/showSalesTitle" method="post">
+					<form action="/admin/sales/selectShowSaleSearchByTitle" method="post">
 						<label for="searchTitle">공연 제목:</label> <input type="text" id="searchTitle" name="searchTitle" />
 						<button type="submit">검색</button>
 					</form>
@@ -68,7 +68,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<p>총매출 : ${totalShowPrice}원</p>
+					<p>총매출 : ${totalShowPrice} 원</p>
 				</div>
 			</div>
 		</div>

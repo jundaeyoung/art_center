@@ -137,7 +137,7 @@ public class UserController {
 
 		if (errors.hasErrors()) {
 
-			Map<String, String> validatorResult = userService.validateHandling(errors);
+			Map<String, String> validatorResult = userService.userValidateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}
@@ -163,7 +163,6 @@ public class UserController {
 		} else {
 			throw new CustomRestfullException("회원가입에 실패하였습니다.", HttpStatus.BAD_REQUEST);
 		}
-		System.out.println(result);
 		return "redirect:/user/login";
 	}
 
@@ -175,7 +174,7 @@ public class UserController {
 
 			model.addAttribute("user", updateUserDto);
 
-			Map<String, String> validatorResult = userService.validateHandling(errors);
+			Map<String, String> validatorResult = userService.userValidateHandling(errors);
 			for (String key : validatorResult.keySet()) {
 				model.addAttribute(key, validatorResult.get(key));
 			}

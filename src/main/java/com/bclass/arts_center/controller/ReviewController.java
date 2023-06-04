@@ -77,7 +77,7 @@ public class ReviewController {
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 		
 		List<RequestReviewDto> reviewList = reviewService.readReviewByHighesRated(begin, range);
-		String message = "평점높은순";
+		String message = "평점 높은순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Integer reviewCount = reviewService.readReviewByCount();
 		Double count = Math.ceil(reviewCount);
@@ -119,7 +119,7 @@ public class ReviewController {
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 		
 		List<RequestReviewDto> reviewList = reviewService.readReviewByRowestRated(begin, range);
-		String message = "평점낮은순";
+		String message = "평점 낮은순";
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Integer reviewCount = reviewService.readReviewByCount();
 		Double count = Math.ceil(reviewCount);

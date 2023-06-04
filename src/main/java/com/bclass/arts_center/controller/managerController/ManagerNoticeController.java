@@ -22,11 +22,13 @@ public class ManagerNoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
+	
 	@GetMapping("/notice")
 	public String notice() {
 		return "/manager/managerNotice";
 	}
 
+	
 	@GetMapping("/update/{id}")
 	public String updateNotice(@PathVariable Integer id) {
 		noticeService.updateNotice(id);

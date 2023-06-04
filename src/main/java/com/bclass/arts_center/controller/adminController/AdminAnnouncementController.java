@@ -26,22 +26,27 @@ public class AdminAnnouncementController {
 	@Autowired
 	private HttpSession session;
 	
+	
 	@GetMapping("")
-	public String announcementList (Model model) {
-		List<Announcement> announcementsList = announcementService.readAnnouncement();
-		model.addAttribute("announcements", announcementsList);
+	public String selectAnnouncementList (Model model) {
+		List<Announcement> announcementList = announcementService.readAnnouncement();
+		model.addAttribute("announcements", announcementList);
+		
 		return "admin/announcementList";
 	}
+	
 	
 	@GetMapping("/board")
 	public String writeBoard() {
 		return "admin/announcementWrite";
 	}
 	
+	
 	@GetMapping("/detail")
-	public String detailannouncement(Integer id, Model model) {
+	public String detailAnnouncement(Integer id, Model model) {
 		Announcement announcement = announcementService.readAnnouncementById(id);
 		model.addAttribute("announcement", announcement);
+		
 		return "admin/announcementUpdate";
 	}
 	
@@ -51,14 +56,19 @@ public class AdminAnnouncementController {
 		 User principal = (User)session.getAttribute(Define.PRINCIPAL);
 		 announcement.setUserId(principal.getId());
 		 announcementService.createAnnouncement(announcement);
+		 
 		return "redirect:/admin/announcement";
 	}
+	
 	
 	@PostMapping("/update")
 	public String updateAnnouncement(Announcement announcement) {
 		announcementService.updateAnnouncement(announcement);
+		
 		return "redirect:/admin/announcement";
 	}
+	
+	
 	@GetMapping("/delete")
 	public String deleteAnnouncement(Integer id) {
 		announcementService.deleteAnnouncementByUserId(id);
@@ -67,3 +77,4 @@ public class AdminAnnouncementController {
 	}
 	
 }
+

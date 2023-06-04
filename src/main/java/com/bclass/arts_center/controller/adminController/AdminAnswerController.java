@@ -25,15 +25,18 @@ public class AdminAnswerController {
 
 	@Autowired
 	private AnswerService answerService;
+	
 	@Autowired
 	private QuestionService questionService;
+	
 	@Autowired
 	private HttpSession session;
+	
 
 	@GetMapping("/select/{quetionId}")
-	public String selectAnswers(@PathVariable Integer quetionId, Model model) {
+	public String selectAnswer(@PathVariable Integer quetionId, Model model) {
 		RequestQuestionDto question = questionService.readQuestionByQuestionId(quetionId);
-		Answer answer = answerService.selectAnswerById(quetionId);
+		Answer answer = answerService.readAnswerById(quetionId);
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		model.addAttribute("principal", principal);
 		if (answer == null) {
@@ -46,9 +49,11 @@ public class AdminAnswerController {
 		} else {
 			model.addAttribute("questionList", question);
 		}
+		
 		return "/admin/adminAnswerWrite";
 	}
 
+	
 	@PostMapping("/create")
 	public String createAnswer(String content, Integer userId, Integer questionId, Model model) {
 		answerService.createAnswerById(content, userId, questionId);
@@ -59,9 +64,11 @@ public class AdminAnswerController {
 		} else {
 			model.addAttribute("questionList", questionList);
 		}
+		
 		return "/admin/adminQuestion";
 	}
 
+	
 	@GetMapping("/update/{questionId}")
 	public String updateAnswer(String content, @PathVariable Integer questionId, Model model) {
 		answerService.updateAnswer(content, questionId);
@@ -71,6 +78,8 @@ public class AdminAnswerController {
 		} else {
 			model.addAttribute("questionList", questionList);
 		}
+		
 		return "/admin/adminQuestion";
 	}
 }
+

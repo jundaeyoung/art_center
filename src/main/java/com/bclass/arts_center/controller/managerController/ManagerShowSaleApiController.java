@@ -29,7 +29,7 @@ public class ManagerShowSaleApiController {
 
 	@GetMapping("/manager/showSale")
 	public ResponseDto<List<RequestManagerShowSaleDto>> managerShowSale(
-			RequestManagerShowSaleDto requestManagerShowSaleDto) {
+		RequestManagerShowSaleDto requestManagerShowSaleDto) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> selectList = managerShowSaleService.readAndCount(requestManagerShowSaleDto);
@@ -57,6 +57,12 @@ public class ManagerShowSaleApiController {
 	@GetMapping("/manager/showSaleBySearch/{title}")
 	public ResponseDto<List<RequestManagerShowSaleDto>> selectShowSaleBySearch(@PathVariable("title") String title,
 			RequestManagerShowSaleDto requestManagerShowSaleDto, Model model) {
+		
+		if (title.equals("none")) {
+			title = "";
+			requestManagerShowSaleDto.setTitle(title);
+			}
+		
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		requestManagerShowSaleDto.setUserId(principal.getId());
 		List<RequestManagerShowSaleDto> selectList = managerShowSaleService

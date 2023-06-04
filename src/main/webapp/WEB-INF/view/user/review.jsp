@@ -5,34 +5,40 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <link rel="stylesheet" href="/css/user/review.css">
 <script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/review.js"></script>
 
 <div class="review__header"></div>
 
 <div class="menu">
-	<div class="home-menu">
+	<div>
 		<span class="material-symbols-outlined"> <a href="/"><button>home</button></a>
 		</span>
 	</div>
-	<div class="lowest__rated">
-		<a href="/review/categoryReview?category=공연&currentPage=1&begin=0&range=3"><button>공연</button></a>
-	</div>
-	<div class="lowest__rated">
-		<a href="/review/categoryReview?category=전시회&currentPage=1&begin=0&range=3"><button>전시회</button> </a>
-	</div>
-	<div class="lowest__rated">
-		<a href="/review/categoryReview?category=아카데미&currentPage=1&begin=0&range=3"><button>아카데미</button> </a>
-	</div>
 	<div class="newest">
-		<a href="/review/newestReview?currentPage=1&begin=0&range=3"><button>최신순</button></a>
+		<a><button id="show" class="s">공연</button></a>
 	</div>
 	<div class="highes__rated">
-		<a href="/review/highestRatedReview?currentPage=1&begin=0&range=3"><button>평점 높은순</button> </a>
+		<a><button id="exhibition">전시회</button> </a>
 	</div>
 	<div class="lowest__rated">
-		<a href="/review/rowestRatedReview?currentPage=1&begin=0&range=3"><button>평점 낮은순</button> </a>
+		<a><button id="academy" >아카데미</button> </a>
 	</div>
-
+	<div class="newest">
+		<a><button id="newest" >최신순</button></a>
+	</div>
+	<div class="highes__rated">
+		<a><button id="highes__rated" >평점 높은순</button></a>
+	</div>
+	<div class="lowest__rated" style="border-style: none;">
+		<a><button id="lowest__rated" >평점 낮은순</button></a>
+	</div>
 </div>
+
+
+<script type="text/javascript">
+
+	</script>
+
 <div class="review__title">
 	<span class="material-symbols-outlined"> square </span>
 	<div>
@@ -84,14 +90,14 @@
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage==null}">
+				<c:when test="${currentPage==page || currentPage >= 2}">
 				</c:when>
 				<c:otherwise>
 					<a href="/review/newestReview?currentPage=${page}&type=${type}&begin=${3*(page-1)}&range=3"><p>></p></a>
 				</c:otherwise>
 			</c:choose>
 		</c:when>
-		<c:when test="${message eq '평점높은순'}">
+		<c:when test="${message eq '평점 높은순'}">
 			<c:choose>
 				<c:when test="${currentPage==1 || currentPage==null}">
 				</c:when>
@@ -159,19 +165,19 @@
 				</c:otherwise>
 			</c:choose>
 			<c:choose>
-				<c:when test="${currentPage==page || currentPage<=1}">
+				<c:when test="${currentPage==page || currentPage >= 2}">
 				</c:when>
 				<c:otherwise>
 					<a href="/review/categoryReview?category=${message}&currentPage=${page}&type=${type}&begin=${3*(page-1)}&range=3"><p>></p></a>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>
-
 	</c:choose>
 
 
 </div>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+
 
 

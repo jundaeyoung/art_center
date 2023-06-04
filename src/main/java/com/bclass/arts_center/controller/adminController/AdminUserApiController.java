@@ -18,8 +18,8 @@ public class AdminUserApiController {
 	private UserService userService;
 
 	@GetMapping("/api/admin/userjoinPerDate")
-	public ResponseDto<List<RequestUserCountDto>> readUserByDate() {
-		List<RequestUserCountDto> joinDateUserList = userService.readJoinUserByDate();
+	public ResponseDto<List<RequestUserCountDto>> selectUserByStartDateAndEnddate() {
+		List<RequestUserCountDto> joinDateUserList = userService.readJoinUserByStartDateAndEndDate();
 		return new ResponseDto<List<RequestUserCountDto>>(200,HttpStatus.OK.toString(),joinDateUserList);
 	}
 }

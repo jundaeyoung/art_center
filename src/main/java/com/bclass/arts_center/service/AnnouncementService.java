@@ -10,11 +10,6 @@ import com.bclass.arts_center.repository.interfaces.AnnouncementRepository;
 import com.bclass.arts_center.repository.model.Announcement;
 
 
-/**
- * 
- * @author 편용림
- *
- */
 
 @Service
 public class AnnouncementService {
@@ -23,55 +18,53 @@ public class AnnouncementService {
 	private AnnouncementRepository announcementRepository;
 	
 	
-	// 전체 찾기
 	@Transactional
 	public List<Announcement> readAnnouncement(){
+		List<Announcement> announcementList = announcementRepository.selectAnnouncement();
 		
-		return announcementRepository.selectAnnouncement();
-		
+		return announcementList;
 	}
 	
-	// 하나 찾기 (디테일)
 	
 	@Transactional
 	public Announcement readAnnouncementById(Integer id) {
-		
 		Announcement announcement = announcementRepository.selectAnnouncementById(id);
 		
 		return announcement;
 	}
 	
 	
-	// 글작성
 	@Transactional
-	public int createAnnouncement(Announcement announcement) {
+	public Integer createAnnouncement(Announcement announcement) {
+		Integer result = announcementRepository.insertAnnouncement(announcement);
 		
-		int result = announcementRepository.insertAnnouncement(announcement);
 		return result;
 	}
 	
-	//글수정
+	
 	@Transactional
-	public int updateAnnouncement(Announcement announcement) {
-		int resultRowCount = announcementRepository.updateByIdAndUserId(announcement);
+	public Integer updateAnnouncement(Announcement announcement) {
+		Integer resultRowCount = announcementRepository.updateByIdAndUserId(announcement);
 		
 		return resultRowCount;
 		
+	}
+
+	
+	@Transactional
+	public Integer deleteAnnouncementByUserId(Integer id) {
+		Integer resultRowCount = announcementRepository.deleteAnnouncementByUserId(id);
+		
+		return resultRowCount;
 	}
 	
-	//글삭제
-	@Transactional
-	public int deleteAnnouncementByUserId(Integer id) {
-		int resultRowCount = announcementRepository.deleteAnnouncementByUserId(id);
-		
-		return resultRowCount;
-	}
 	
 	@Transactional
 	public List<Announcement> readAnnouncementBySearchText(String searchText){
 		searchText = "%" + searchText + "%";
-		List<Announcement> announcements = announcementRepository.selectAnnouncementBySearchText(searchText);
-		return announcements;
+		List<Announcement> announcementList = announcementRepository.selectAnnouncementBySearchText(searchText);
+		
+		return announcementList;
 	}
 	
 	

@@ -19,4 +19,5 @@ public class RequestReviewDto {
 	private String userName;
 	private String reviewCreationDate;
 	private String showType;
+	private Integer count;
 }

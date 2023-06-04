@@ -22,11 +22,6 @@ import com.bclass.arts_center.repository.model.User;
 
 import lombok.AllArgsConstructor;
 
-/**
- * @author 편용림
- *
- */
-
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -37,7 +32,7 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	// 회원가입
+	
 	@Transactional
 	public Integer createUser(SignUpFormDto signUpFormDto) {
 
@@ -60,7 +55,7 @@ public class UserService {
 		return result;
 	}
 
-	// 로그인
+	
 	@Transactional
 	public User readUser(SignInFormDto signInFormDto) {
 
@@ -79,27 +74,27 @@ public class UserService {
 		return userEntity;
 	}
 
-	// api id로 유저정보 조회
+	
 	public User readUserByApiId(String apiId) {
 		User userEntity = userRepository.selectUserByApiId(apiId);
 		return userEntity;
 	}
 
-	// 내 정보
+	
 	@Transactional
 	public User readUserByUserName(String userName) {
 		User user = userRepository.selectUserByUsername(userName);
 		return user;
 	}
 
-	// 아이디 중복체크
+	
 	@Transactional
 	public int readUserCountByUserName(String userName) {
 		int result = userRepository.selectUserCountByUserName(userName);
 		return result;
 	}
 
-	// 회원정보 수정
+	
 	@Transactional
 	public int updateUser(UpdateUserDto updateUserDto) {
 		String rawPwd = updateUserDto.getPassword();
@@ -109,7 +104,7 @@ public class UserService {
 		return result;
 	}
 
-	// 회원 탈퇴
+	
 	@Transactional
 	public int deleteUser(SignInFormDto signInFormDto) {
 
@@ -131,46 +126,37 @@ public class UserService {
 		}
 	}
 
-	// 편용림
-	// 유저 목록
+	
 	@Transactional
-	public List<User> readUser() {
+	public List<User> readUserList() {
 		List<User> users = userRepository.selectUserList();
 		return users;
 	}
+	
 
-	// 매니저 목록
 	@Transactional
-	public List<User> readManager() {
+	public List<User> readManagerList() {
 		List<User> managers = userRepository.selectManagerList();
 		return managers;
 	}
 
-	// 강사 목록
-	public List<User> readTeacher() {
-		List<User> teachers = userRepository.selectTeacherList();
-		return teachers;
-	}
-
-	// 관리자 유저 수정
+	
 	@Transactional
 	public int updateUserById(User user) {
-
 		int result = userRepository.updateUserById(user);
 		return result;
 	}
 
-	// 삭제
+	
 	@Transactional
 	public int deleteUserById(String id) {
-
 		int result = userRepository.deleteById(id);
 		return result;
 	}
 
-	// 편용림 : valid 검사
+	
 	@Transactional(readOnly = true)
-	public Map<String, String> validateHandling(Errors errors) {
+	public Map<String, String> userValidateHandling(Errors errors) {
 		Map<String, String> validatorResult = new HashMap<>();
 
 		for (FieldError error : errors.getFieldErrors()) {
@@ -180,10 +166,8 @@ public class UserService {
 		return validatorResult;
 	}
 
-	/*
-	 * 전대영 : email 비번 찾기
-	 */
-	public boolean userEmailCheck(String userEmail, String userName) {
+	@Transactional
+	public boolean findUserNameByEmail(String userEmail, String userName) {
 
 		User user = userRepository.findUserByUserId(userEmail);
 		if (user != null && user.getUserName().equals(userName)) {
@@ -193,10 +177,8 @@ public class UserService {
 		}
 	}
 
-	/*
-	 * 전대영 : email 중복검사
-	 */
-	public boolean emailCheck(String userEmail) {
+	@Transactional
+	public boolean emailCheckByEmail(String userEmail) {
 		if (userEmail.length() < 5 || userEmail.isBlank()) {
 			return false;
 		}
@@ -228,20 +210,17 @@ public class UserService {
 
 	@Transactional
 	public User selectUserName(User user) {
+		User findUser = userRepository.findUserByEmailAndTel(user);
 
-		User users = userRepository.findUserByEmailAndTel(user);
-
-		return users;
+		return findUser;
 	}
 
-	/**
-	 * @author 손주이
-	 * @return dateList
-	 */
-	public List<RequestUserCountDto> readJoinUserByDate() {
-
-		List<RequestUserCountDto> dateList = userRepository.selectJoinUserByDate();
-		return dateList;
+	
+	public List<RequestUserCountDto> readJoinUserByStartDateAndEndDate() {
+		List<RequestUserCountDto> userList = userRepository.selectJoinUserByDate();
+		
+		return userList;
 	}
 
 }
+

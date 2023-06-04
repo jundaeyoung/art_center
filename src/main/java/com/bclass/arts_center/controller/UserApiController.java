@@ -56,7 +56,7 @@ public class UserApiController {
 	@GetMapping("/findPw")
 	public ResponseDto<Map<String, Boolean>> findPassword(String userEmail, String userName) {
 		Map<String, Boolean> json = new HashMap<>();
-		boolean findPasswordCheck = userService.userEmailCheck(userEmail, userName);
+		boolean findPasswordCheck = userService.findUserNameByEmail(userEmail, userName);
 		json.put("check", findPasswordCheck);
 		return new ResponseDto<Map<String, Boolean>>(200, HttpStatus.OK.toString(),json);
 	}
@@ -75,7 +75,7 @@ public class UserApiController {
 	@GetMapping("/findEmail")
 	public ResponseDto<Map<String, Boolean>> findEmail(String userEmail) {
 		Map<String, Boolean> json = new HashMap<>();
-		boolean findEmailCheck = userService.emailCheck(userEmail);
+		boolean findEmailCheck = userService.emailCheckByEmail(userEmail);
 		json.put("check", findEmailCheck);
 		return new ResponseDto<Map<String,Boolean>>(200,HttpStatus.OK.toString(),json);
 	}

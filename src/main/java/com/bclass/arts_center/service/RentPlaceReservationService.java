@@ -16,29 +16,22 @@ public class RentPlaceReservationService {
 	private RentPlaceReservationRepository placeReservationRepository;
 	
 	
-	// 작성자 편용림 : 대관 예약 리스트 조회
-	
 	@Transactional
-	public List<RequestRentPlaceReservationDto> readRentPlaceReservation(){
-		
-		List<RequestRentPlaceReservationDto> rentPlaceReservations = placeReservationRepository.selectRentPlaceReservationList();
-		
-		return rentPlaceReservations;
+	public List<RequestRentPlaceReservationDto> readRentPlaceReservationList(){
+		List<RequestRentPlaceReservationDto> rentPlaceReservationList = placeReservationRepository.selectRentPlaceReservationList();
+		return rentPlaceReservationList;
 	};
-	
 	
 	
 	@Transactional
 	public int updateRentPlaceReservation(Integer id) {
-		
 		int resultRowCount = placeReservationRepository.updateRentPlaceReservation(id);
-		
 		return resultRowCount;
 	}
 	
+	
 	@Transactional
 	public int updateRentByStatus(Integer id) {
-		
 		int resultRowCount = placeReservationRepository.updateRentById(id);
 		return resultRowCount;
 	}

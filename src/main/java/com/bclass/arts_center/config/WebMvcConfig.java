@@ -14,11 +14,6 @@ import com.bclass.arts_center.handler.LoginInterceptor;
 import com.bclass.arts_center.handler.exception.AdminLoginInterceptor;
 import com.bclass.arts_center.handler.exception.ManagerLoginInterceptor;
 
-/**
- * 
- * @author 편용림
- *
- */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
@@ -31,7 +26,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Autowired
 	private AdminLoginInterceptor adminLoginInterceptor;
 
-	// 추후에 추가할 예정
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor).addPathPatterns("/auth/**");
@@ -45,9 +39,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(adminLoginInterceptor).addPathPatterns("/admin/**");
 	}
 
-	/*
-	 * 작성자 : 전대영 이미지 경로 바꿔줌
-	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //		registry.addResourceHandler("/images/upload/**")

@@ -16,28 +16,21 @@ public class QuestionService {
 	@Autowired
 	private QuestionRepository questionRepository;
 
-	/**
-	 * 작성자 : 전대영 quetion select
-	 */
+	
 	@Transactional
 	public List<RequestQuestionDto> readQuestionByType(String category, Integer begin, Integer range) {
 		List<RequestQuestionDto> questionList = questionRepository.selectQuestionByType(category, begin, range);
 		return questionList;
 	}
 
-
-	/*
-	 * 작성자 : 전대영 question Count
-	 */
+	
 	@Transactional
 	public Integer readQuestionCount(String category) {
 		Integer questionCount = questionRepository.selectQuestionCount(category);
 		return questionCount;
 	}
 
-	/**
-	 * 작성자 : 전대영 quetion 검색한값으로 select
-	 */
+	
 	@Transactional
 	public List<RequestQuestionDto> readQuestionBySearchText(String searchText, Integer begin, Integer range) {
 		searchText = "%" + searchText + "%";
@@ -55,17 +48,14 @@ public class QuestionService {
 		return searchCount;
 	}
 	
-	/*
-	 * 전대영 : 질문 적기
-	 */
+	
 	@Transactional
 	public Integer createQeustion(Question question) {
 		int createResult = questionRepository.insert(question);
 		return createResult;
 	}
-	/*
-	 * 전대영 : 질문 삭제하기
-	 */
+	
+	
 	@Transactional
 	public Integer deleteQuestion(Integer id) {
 		int deleteResult = questionRepository.deleteById(id);
@@ -75,27 +65,20 @@ public class QuestionService {
 	}
 	
 	
-	/**
-	 * 작성자 : 전대영 quetion All select
-	 */
 	@Transactional
 	public List<RequestQuestionDto> readQuestionAll() {
 		List<RequestQuestionDto> questionList = questionRepository.selectQuestionAll();
 		return questionList;
 	}
 	
-	/**
-	 * 작성자 : 전대영 quetion 하나씩 select
-	 */
+	
 	@Transactional
 	public RequestQuestionDto readQuestionByQuestionId(Integer questionId) {
 		RequestQuestionDto question = questionRepository.selectQuestionByQuestionId(questionId);
 		return question;
 	}
 	
-	/**
-	 * 작성자 : 전대영 quetion 하나씩 delete
-	 */
+	
 	@Transactional
 	public Integer deleteQuestionByQuestionId(Integer questionId) {
 		Integer result = questionRepository.deleteQuestionByQuestionId(questionId);

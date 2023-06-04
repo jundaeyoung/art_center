@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bclass.arts_center.dto.RentSalesDto;
 import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
+import com.bclass.arts_center.dto.request.RequestManagerRentSaleDto;
 import com.bclass.arts_center.repository.interfaces.AdminSalesRepository;
 
 @Service
@@ -16,65 +16,67 @@ public class AdminSaleService {
 	@Autowired
 	private AdminSalesRepository adminSalesRepository;
 
-	@Transactional
-	public List<RentSalesDto> readRentSale(){
-		
-		List<RentSalesDto> rentSalesDtolist = adminSalesRepository.selectRentSalesDtoList();
-		
-		return rentSalesDtolist;
-	};
+	
 	
 	@Transactional
-	public List<RentSalesDto> readRentSaleGrape(){
-		
-		List<RentSalesDto> rentSaleGrape = adminSalesRepository.selectRentSaleGrape();
+	public List<RequestManagerRentSaleDto> readRentSaleGrape(){
+		List<RequestManagerRentSaleDto> rentSaleGrape = adminSalesRepository.selectRentSaleGrape();
 		
 		return rentSaleGrape;
 	}
 	
+	
 	@Transactional
 	public List<RequestManagerShowSaleDto> readShowSaleGrape(){
 		
-		List<RequestManagerShowSaleDto> showSaleGrape = adminSalesRepository.selectShowSalesGrape();
+		List<RequestManagerShowSaleDto> showSaleGrape = adminSalesRepository.selectShowSaleGrape();
 		
 		return showSaleGrape;
 		
 	}
 	
+	
+	@Transactional
+	public List<RequestManagerRentSaleDto> readRentSaleList(){
+		List<RequestManagerRentSaleDto> rentSaleList = adminSalesRepository.selectRentSaleList();
+		
+		return rentSaleList;
+	}
+	
+	
 	@Transactional
 	public List<RequestManagerShowSaleDto> readShowSaleList(){
+		List<RequestManagerShowSaleDto> showsaleList = adminSalesRepository.selectShowSaleList();
 		
-		List<RequestManagerShowSaleDto> showsalesList = adminSalesRepository.selectShowSales();
-		
-		return showsalesList;
+		return showsaleList;
 	}
+	
 	
 	@Transactional
 	public List<RequestManagerShowSaleDto> readShowSaleByStartDateAndEndDate(String startDate, String endDate){
+		List<RequestManagerShowSaleDto> showsaleList = adminSalesRepository.selectShowSaleByStartDateAndEndDate(startDate, endDate);
 		
-		List<RequestManagerShowSaleDto> showsalesList = adminSalesRepository.selectShowSalesBystartDateAndEndDate(startDate, endDate);
-		
-		return showsalesList;
+		return showsaleList;
 	}
 	
-	public List<RequestManagerShowSaleDto> readShowSaleBySearch(String searchTitle){
+	@Transactional
+	public List<RequestManagerShowSaleDto> readShowSaleSearchBySearch(String searchTitle){
+		List<RequestManagerShowSaleDto> showSaleList = adminSalesRepository.selectShowSaleSearchByTitle(searchTitle);
 		
-		List<RequestManagerShowSaleDto> showSalesList = adminSalesRepository.selectShowSalesBysearchTitle(searchTitle);
-		
-		return showSalesList;
+		return showSaleList;
 	}
 	
-	public List<RentSalesDto> readRentalSlesByStartDateAndEndDate(String startDate, String endDate){
+	@Transactional
+	public List<RequestManagerRentSaleDto> readRentalSaleByStartDateAndEndDate(String startDate, String endDate){
+		List<RequestManagerRentSaleDto> rentalSlaeList = adminSalesRepository.selectRentSaleByStartDateAndEndDate(startDate, endDate);
 		
-		List<RentSalesDto> rentalSlaesList = adminSalesRepository.selectRentSalesBystartDateAndEndDate(startDate, endDate);
-		
-		return rentalSlaesList;
+		return rentalSlaeList;
 	}
 	
-	public List<RentSalesDto> readRentalSalesBySearch(String searchTitle){
+	@Transactional
+	public List<RequestManagerRentSaleDto> readRentalSaleBySearch(String searchTitle){
+		List<RequestManagerRentSaleDto> rentalSaleList = adminSalesRepository.selectRentSaleBySearchTitle(searchTitle);
 		
-		List<RentSalesDto> rentalSalesList = adminSalesRepository.selectRentSalesBysearchTitle(searchTitle);
-		
-		return rentalSalesList;
+		return rentalSaleList;
 	}
 }

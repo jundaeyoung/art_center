@@ -74,9 +74,11 @@
 		left JOIN age_group_tb AS a ON
 		t.age_group_id = a.id
 		Join user_tb AS u ON u.id = t.user_id
+        where t.payment_status = 1
 		group by
 		s.id,
-		sd.show_date,sd.show_time,u.nickname;
+		sd.show_date,sd.show_time,u.nickname
+		order by t.id desc
 	</select>
 
 

@@ -15,7 +15,7 @@ public class AnswerService {
 	
 	
 	@Transactional
-	public Answer selectAnswerById(Integer quetionId) {
+	public Answer readAnswerById(Integer quetionId) {
 		Answer result =  answerRepository.selectAnswer(quetionId);
 		return result;
 	}
@@ -27,11 +27,13 @@ public class AnswerService {
 		return result;
 	}
 	
+	
 	@Transactional
 	public Integer updateQuestionStatus(Integer quetionId) {
 		Integer result =  answerRepository.updateQuestionStatus(quetionId);
 		return result;
 	}
+	
 	
 	@Transactional
 	public Integer updateAnswer(String content,Integer questionId) {
