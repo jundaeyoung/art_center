@@ -10,6 +10,7 @@
 
 <div id="layoutSidenav_content">
 	<main>
+	<div class="fouc">
 		<div class="row">
 			<div class="col-xl-6">
 				<div class="card mb-4">
@@ -76,7 +77,7 @@
 				</div>
 			</div>
 		</div>
-
+</div>
 		<script type="text/javascript" src="/js/dateRangePicker.js"></script>
 
 

@@ -8,6 +8,7 @@
 
 <div id="layoutSidenav_content">
 	<main>
+	<div class="fouc">
 		<div class="row">
 			<div class="col-xl-6">
 				<div class="card mb-4">
@@ -40,7 +41,7 @@
 					<i class="fas fa-table me-1"></i> User
 				</div>
 				<div class="card-body">
-					<table id="datatablesSimple">
+					<table id="datatablesSimple" class="hidden">
 						<thead>
 							<tr>
 								<th>user_name</th>
@@ -68,6 +69,7 @@
 					</table>
 				</div>
 			</div>
+		</div>
 		</div>
 <%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>
 		

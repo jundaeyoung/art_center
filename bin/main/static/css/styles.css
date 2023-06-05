@@ -10,6 +10,28 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ @keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#datatablesSimple {
+  animation: fade-in 0.5s ease-in-out forwards;
+}
+.fouc {
+  visibility: hidden;
+  opacity: 0;
+}
+.fouc.show {
+  visibility: visible;
+  opacity: 1;
+  animation: fade-in 0.5s ease-in-out;
+}
+ 
 .btn {
 	background-color: #fff;
 	border-style: none;

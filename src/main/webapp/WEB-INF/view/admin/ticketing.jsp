@@ -8,6 +8,7 @@
 
 <div id="layoutSidenav_content">
 	<main>
+	<div class="fouc">
 		<div class="container-fluid px-4">
 			<h1 class="mt-4">예매 목록 보기</h1>
 			<div class="card mb-4">
@@ -79,6 +80,7 @@
 					</table>
 				</div>
 			</div>
+		</div>
 		</div>
 
 		<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>

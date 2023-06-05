@@ -14,6 +14,7 @@
 
 <div id="layoutSidenav_content">
 	<main>
+	<div class="fouc">
 		<h1 class="mt-4">공연 매출 보기</h1>
 		<div class="card-body">유저들이 티켓팅한 목록입니다.</div>
 		<div class="row">
@@ -72,7 +73,7 @@
 				</div>
 			</div>
 		</div>
-
+</div>
 
 
 		<%@ include file="/WEB-INF/view/layout/adminFooter.jsp"%>
