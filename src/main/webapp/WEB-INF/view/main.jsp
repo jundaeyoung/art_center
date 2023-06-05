@@ -1,26 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
-<script type="text/javascript"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
-<script
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-	crossorigin="anonymous"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<c:choose>
+	<c:when test="${principal==null || principal.roleId==1}">
+		<link rel="stylesheet" href="/css/main.css">
+	</c:when>
+	<c:otherwise>
+		<link rel="stylesheet" href="/css/manager/managerMain.css">
+	</c:otherwise>
+
+</c:choose>
+
 
 
 
@@ -37,41 +36,27 @@
 										<div class="info">
 											<p
 												style="margin-top: 180px; margin-left: -330px; background-color: #fff; border: 1px solid #fff; border-radius: 20px; font-size: 20px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</p>
-											<h2
-												style="margin-top: -20px; margin-left: -330px; font-size: 35px; font-weight: 200;">🔔️
-												${showList.location}</h2>
-											<h1
-												style="margin-top: 30px; margin-left: -330px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
+											<h2 style="margin-top: -20px; margin-left: -330px; font-size: 35px; font-weight: 200; margin-bottom: 20px;">🔔️ ${showList.location}</h2>
+											<h1 style="display: flex; align-items: center; margin-bottom: 50px; margin-left: -330px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
 											<c:choose>
 												<c:when test="${showList.rating==null}">
-													<h3
-														style="margin-top: 30px; margin-left: -330px; font-size: 27px; font-weight: 100; height: 60px;">평점이
-														아직 등록되지 않았습니다.</h3>
+													<h3 style="margin-top: 30px; margin-left: -330px; font-size: 27px; font-weight: 100; height: 60px;">평점이 아직 등록되지 않았습니다.</h3>
 												</c:when>
 												<c:otherwise>
-													<h3
-														style="margin-top: 30px; margin-left: -150px; font-size: 27px; font-weight: 100; height: 60px;">평점
-														: ${showList.rating}</h3>
+													<h3 style="margin-top: 30px; margin-left: -150px; font-size: 27px; font-weight: 100; height: 60px;">평점 : ${showList.rating}</h3>
 												</c:otherwise>
 											</c:choose>
-											<h4
-												style="margin-top: -20px; margin-left: -330px; font-size: 25px; font-weight: 100;">기간
-												:
-												${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
+											<h4 style="margin-top: -20px; margin-left: -330px; font-size: 25px; font-weight: 100;">기간 : ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>
 										</div>
 										<c:choose>
 											<c:when test="${showList.imgRoute.length()>=30}">
 												<div>
-													<a href="/show/showView/${showList.id}"><img
-														src="/images/upload/${showList.imgRoute}" width="480"
-														height="600"></a>
+													<a href="/show/showView/${showList.id}"><img src="/images/upload/${showList.imgRoute}" width="480" height="600"></a>
 												</div>
 											</c:when>
 											<c:otherwise>
 												<div>
-													<a href="/show/showView/${showList.id}"><img
-														src="/images/${showList.imgRoute}" width="480"
-														height="600"></a>
+													<a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}" width="480" height="600"></a>
 												</div>
 											</c:otherwise>
 										</c:choose>
@@ -86,13 +71,10 @@
 								<c:forEach var="showList" items="${showsList}">
 									<c:choose>
 										<c:when test="${showList.imgRoute.length()>=30}">
-											<li><a href="/show/showView/${showList.id}"><img
-													src="/images/upload/${showList.imgRoute}" width="150"
-													height="200"></a></li>
+											<li><a href="/show/showView/${showList.id}"><img src="/images/upload/${showList.imgRoute}" width="150" height="200"></a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="/show/showView/${showList.id}"><img
-													src="/images/${showList.imgRoute}" width="150" height="200"></a></li>
+											<li><a href="/show/showView/${showList.id}"><img src="/images/${showList.imgRoute}" width="150" height="200"></a></li>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
@@ -120,14 +102,11 @@
 						<div class="close-area" style="color: black">X</div>
 					</div>
 					<c:forEach var="noticeList" items="${noticeList}">
-						<div class="content"
-							style="display: flex; justify-content: space-between;">
+						<div class="content" style="display: flex; justify-content: space-between;">
 							<div class="msg">${noticeList.notice}</div>
-							<form action="/managerNotice/update/${noticeList.id}"
-								method="get">
+							<form action="/managerNotice/update/${noticeList.id}" method="get">
 								<div class="close-area">
-									<button type="submit" class="close-area"
-										style="border: 1px solid gray; border-radius: 10px; background-color: #eee;">확인</button>
+									<button type="submit" class="close-area" style="border: 1px solid gray; border-radius: 10px; background-color: #eee;">확인</button>
 								</div>
 							</form>
 						</div>
@@ -143,27 +122,20 @@
 			<div class="show-content">
 				<div class="modal" id="myModal">
 					<div class="modal-content">
-						<span class="close" id="close" onclick="close()">&times;</span> <input
-							type="hidden" class="showId" id="showId" name="showId">
+						<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="showId" id="showId" name="showId">
 						<h3 class="modal-title" id="title"></h3>
-						<span class="showDate" id="showDate"></span>
-						 <span
-							class="showTime" id="showTime"></span>
+						<span class="showDate" id="showDate"></span> <span class="showTime" id="showTime"></span>
 						<p class="holeName" id="holeName"></p>
 						<p class="imgRoute" id="imgRoute">
 							<img alt="" id="images" width="210" , height="280">
 						</p>
-						<button class="showView" id="showView" onclick="showView()"
-							style="text-align: center;">자세히보기</button>
+						<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
 					</div>
 				</div>
 
-				<div id='calendar-container'
-					style="display: flex; width: 1500px; justify-content: space-between; align-items: center; margin-left: -100px;">
-					<div id='calendar'
-						style="width: 800px; height: 500px; margin-top: 0;"></div>
-					<div class="card-body"
-						style="width: 750px; height: 625px; margin-left: 50px; margin-top: 30px;">
+				<div id='calendar-container' style="display: flex; width: 1500px; justify-content: space-between; align-items: center; margin-left: -100px;">
+					<div id='calendar' style="width: 800px; height: 500px; margin-top: 0;"></div>
+					<div class="card-body" style="width: 750px; height: 625px; margin-left: 50px; margin-top: 30px;">
 						<canvas id="myBarChart" width="750px;" height="625px;"></canvas>
 					</div>
 				</div>
@@ -173,17 +145,14 @@
 			<div class="show-content">
 				<div class="modal" id="myModal">
 					<div class="modal-content" style="margin: 0;">
-						<span class="close" id="close" onclick="close()">&times;</span> <input
-							type="hidden" class="showId" id="showId" name="showId">
+						<span class="close" id="close" onclick="close()">&times;</span> <input type="hidden" class="showId" id="showId" name="showId">
 						<h3 class="modal-title" id="title"></h3>
-						<span class="showDate" id="showDate"></span> <span
-							class="showTime" id="showTime"></span>
+						<span class="showDate" id="showDate"></span> <span class="showTime" id="showTime"></span>
 						<p class="holeName" id="holeName"></p>
 						<p class="imgRoute" id="imgRoute">
 							<img alt="" id="images" width="210" , height="280">
 						</p>
-						<button class="showView" id="showView" onclick="showView()"
-							style="text-align: center;">자세히보기</button>
+						<button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
 					</div>
 				</div>
 
@@ -191,8 +160,7 @@
 					<div id='userCalendar' style="width: 700px; height: 600px;"></div>
 					<div class="main-map">
 						<h2>찾아오시는 길</h2>
-						<div id='map'
-							style="width: 700px; height: 520px; margin-right: 30px;"></div>
+						<div id='map' style="width: 700px; height: 520px; margin-right: 30px;"></div>
 					</div>
 				</div>
 			</div>
@@ -213,12 +181,10 @@
 			</h1>
 		</div>
 		<div class="no_content">
-			<a href="/announcement"> <c:forEach var="selectAnnouncement"
-					items="${selectAnnouncement}">
+			<a href="/announcement"> <c:forEach var="selectAnnouncement" items="${selectAnnouncement}">
 					<div class="notice__content">
 						<ul style="padding: 0 20px;">
-							<li class="item"><span style="font-size: 30px;">${selectAnnouncement.title}</span>
-							</li>
+							<li class="item"><span style="font-size: 30px;">${selectAnnouncement.title}</span></li>
 						</ul>
 					</div>
 				</c:forEach>
@@ -671,8 +637,7 @@
              marker.setMap(map);
       });
       </script>
-		<script type="text/javascript"
-			src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
+		<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a629c7c8013b10fbb2593c6f394603a"></script>
 	</c:otherwise>
 </c:choose>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

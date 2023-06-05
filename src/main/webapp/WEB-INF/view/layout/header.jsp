@@ -38,20 +38,18 @@
 								<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 							</form>
 							<form action="/user/logout" method="get">
-								<button type="submit" class="logout--btn"style="font-size: 20px;">
-									로그아웃
-								</button>
+								<button type="submit" class="logout--btn" style="font-size: 20px;">로그아웃</button>
 							</form>
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-							<p style="font-size: 20px; margin-top: 20px;">${principal.nickname}매니저 님 반갑습니다</p>
+							<p style="font-size: 20px; margin-top: 20px;">${principal.nickname}매니저님 반갑습니다</p>
 						</div>
 					</c:when>
 					<c:when test="${principal.apiId != null}">
 						<c:set var="apiType" value="${principal.apiId}" />
 						<c:if test="${fn:contains(apiType, 'kakao')}">
 							<div class="user--btn">
-									<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://localhost:8080/kakaologout&response_type=code" style="font-size: 20px;">로그아웃</a>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://localhost:8080/kakaologout&response_type=code"
+									style="font-size: 20px;">로그아웃</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
 							</div>
 
@@ -59,15 +57,13 @@
 						</c:if>
 						<c:if test="${fn:contains(apiType, 'naver')}">
 							<div class="user--btn">
-									<a href="#" onclick="naverLogout(); return false;" class="apilogout" style="font-size: 20px;">로그아웃</a>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="#" onclick="naverLogout(); return false;" class="apilogout" style="font-size: 20px;">로그아웃</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
 							</div>
 						</c:if>
 						<c:if test="${fn:contains(apiType, 'google')}">
 							<div class="user--btn">
-									<a href="#" onclick="googleLogout(); return false" class="apilogout" style="font-size: 20px;">로그아웃</a>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="#" onclick="googleLogout(); return false" class="apilogout" style="font-size: 20px;">로그아웃</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
 							</div>
 						</c:if>
@@ -77,10 +73,8 @@
 							<form action="/myPage/info" method="get">
 								<button type="submit" class="logout--btn" style="font-size: 20px;">내정보</button>
 							</form>
-							<form action="#" method="get">
-								<button type="submit" class="logout--btn">
-									<a href="/user/logout" style="font-size: 20px;">로그아웃</a>
-								</button>
+							<form action="/user/logout" method="get">
+								<button type="submit" class="logout--btn" style="font-size: 20px;margin-left: 15px;">로그아웃</button>
 							</form>
 							&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 							<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
@@ -91,7 +85,7 @@
 			<c:choose>
 				<c:when test="${principal != null && principal.getRoleId()==2}">
 					<nav>
-						<div id="nav" >
+						<div id="nav">
 							<ul class="main">
 								<li><a href="#"> 공연 </a>
 									<ul class="sub">
@@ -180,6 +174,3 @@
 			<iframe width=0 height=0 name="hiddenframe" src="https://mail.google.com/mail/u/0/?logout&hl=en"></iframe>
 		</div>
 		<script type="text/javascript" src="/js/header.js"></script>
-		
-		
-		

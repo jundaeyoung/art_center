@@ -18,6 +18,8 @@ $(function() {
 					"7월", "8월", "9월", "10월", "11월", "12월"],
 				"firstDay": 0,
 			},
+			"startDate": moment().format('YYYY-MM-DD'),
+			"endDate": moment().add(14, 'days'),
 			"drops": "down",
 			"minDate": $("#startDate").val(),
 			"maxDate": $("#endDate").val()
@@ -56,14 +58,14 @@ function calculatePrice() {
 		let dateTime = document.getElementById("dateTime").value;
 		let date = dateTime;
 		date = date.split(" ~ ");
-		
+
 		var date_arr = date[0].split("-");
 
-		var stDate = new Date(date_arr[0], date_arr[1]-1, date_arr[2]);
+		var stDate = new Date(date_arr[0], date_arr[1] - 1, date_arr[2]);
 
 		var endDate_arr = date[1].split("-");
-		var endDate = new Date(endDate_arr[0], endDate_arr[1]-1, endDate_arr[2]);
-		
+		var endDate = new Date(endDate_arr[0], endDate_arr[1] - 1, endDate_arr[2]);
+
 		let startTime = document.getElementById("timeSelect").value;
 		let startTime2 = startTime
 		startTime2 = startTime2.replaceAll(":00", "");
