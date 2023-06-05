@@ -59,7 +59,7 @@
 		<c:choose>
 			<c:when test="${principal.getRoleId()==1}">
 				<div id=show__write>
-					<button type="submit">질문하기</button>
+					<button type="submit" class="question__btn">질문하기</button>
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -225,6 +225,7 @@
 
 
 <script type="text/javascript" src="/js/question.js"></script>
+<script type="text/javascript" src="/js/questionCategory.js"></script>
 
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
