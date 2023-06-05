@@ -18,9 +18,9 @@ $(function() {
 					"7월", "8월", "9월", "10월", "11월", "12월"],
 				"firstDay": 0,
 			},
-			"drops": "down",
-			"minDate": $("#startDate").val(),
-			"maxDate": $("#endDate").val()
+			"startDate": $("#startDate").val(),
+			"endDate": $("#endDate").val(),
+			"drops": "down"
 		},
 		function(start, end, label) {
 			let startDate = start.format('YYYY-MM-DD').replaceAll(/-/g, "");

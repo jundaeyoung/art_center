@@ -7,14 +7,15 @@
 	display: flex;
 }
 
-.menu button{
-	width: 200px;
+.menu button {
+	width: 210px;
 	height: 95px;
 	font-size: 20px;
 	background-color: #fff;
 	border-style: none;
 }
-.menu button:hover{
+
+.menu button:hover {
 	background-color: #F6F6F6;
 }
 
@@ -27,13 +28,12 @@
 	background-position: bottom;
 }
 
-
 .menu {
 	height: 100px;
-	border: 1px solid #ccc;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	border: 1px solid #ccc;
 }
 
 .menu div {

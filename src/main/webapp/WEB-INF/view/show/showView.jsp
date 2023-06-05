@@ -26,7 +26,7 @@
 						<div class="show--time">
 							<select>
 								<c:forEach var="showInfo" items="${showInfo}">
-									<option>${showInfo.showDate}&nbsp;${showInfo.showTime}</option>
+									<option>${showInfo.formatDate()}&nbsp;${showInfo.formatTime()}</option>
 								</c:forEach>
 							</select>
 						</div>

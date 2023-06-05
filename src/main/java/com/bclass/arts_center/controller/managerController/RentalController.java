@@ -44,7 +44,6 @@ public class RentalController {
 	@Autowired
 	private HttpSession session;
 
-
 	@GetMapping("")
 	public String rentalPage(RequestSignUpShowDto requestSignUpShowDto, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -57,14 +56,13 @@ public class RentalController {
 		return "/manager/rental";
 	}
 
-
 	@GetMapping("/location/{id}/{showId}")
 	@Transactional
 	public String rentalLocation(Model model, @PathVariable("id") Integer id, @PathVariable("showId") Integer showId) {
 		RequestShowDto show = showService.readShowByShowId(showId);
 		List<RequestHoleDto> locationList = rentalService.readHoleByLocation(id);
 		List<RequestHoleDto> timeList = rentalService.readTimeByLocationId(id);
-		System.out.println(locationList);
+		System.out.println("timeList" + show);
 		if (show == null) {
 			model.addAttribute("show", null);
 		} else {
@@ -73,10 +71,10 @@ public class RentalController {
 		model.addAttribute("locationLists", locationList);
 		model.addAttribute("timeList", timeList);
 		model.addAttribute("locationId", id);
-		
+		model.addAttribute("show", show);
+
 		return "/manager/rentalLocation";
 	}
-
 
 	@PostMapping("/location")
 	public String rentalLocationPost(Model model, @RequestParam("id") Integer id) {
@@ -85,19 +83,21 @@ public class RentalController {
 		model.addAttribute("timeList", timeList);
 		model.addAttribute("locationLists", locationList);
 		System.out.println(locationList);
-		
+
 		return "/manager/rentalLocation";
 	}
-
 
 	@PostMapping("/reservation")
 	public String insertRental(RequestRentPlaceDto requestRentPlaceDto, HttpServletResponse response, Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		
+
+		if (requestRentPlaceDto.getStartDate() == null) {
+			throw new CustomRestfullException("날짜 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
+		}
 		if (requestRentPlaceDto.getStartTime() == null || requestRentPlaceDto.getEndTime() == null) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		}
-		
+
 		Time startTime = requestRentPlaceDto.getStartTime();
 		Time endTime = requestRentPlaceDto.getEndTime();
 
@@ -106,9 +106,9 @@ public class RentalController {
 		} else if (endTime.compareTo(startTime) < 0) {
 			throw new CustomRestfullException("시간 선택을 다시 해주세요", HttpStatus.BAD_REQUEST);
 		}
-		
+
 		requestRentPlaceDto.setUserId(principal.getId());
-		
+
 		String date = requestRentPlaceDto.getStartDate();
 		String[] startDateAndEndDate = date.split("~");
 		requestRentPlaceDto.setStartDate(startDateAndEndDate[0].replaceAll(" ", ""));
@@ -120,16 +120,15 @@ public class RentalController {
 		showService.updateShowHoleById(requestRentPlaceDto.getShowId(), requestRentPlaceDto.getHoleId());
 
 		String dtoStartDate = requestRentPlaceDto.getStartDate().replaceAll("-", "");
-		
+
 		String startDate = dtoStartDate.replaceAll(" ", "");
-		
+
 		Integer startYear = Integer.parseInt(startDate.substring(0, 4));
 		Integer startMonth = Integer.parseInt(startDate.substring(4, 6));
 		Integer startDay = Integer.parseInt(startDate.substring(6, 8));
 		Calendar startCal = Calendar.getInstance();
 		startCal.set(startYear, startMonth - 1, startDay);
-		
-		
+
 		String dtoEndDate = requestRentPlaceDto.getEndDate().replaceAll("-", "");
 		String endDate = dtoEndDate.replaceAll(" ", "");
 		Integer endYear = Integer.parseInt(endDate.substring(0, 4));
@@ -138,7 +137,6 @@ public class RentalController {
 		Calendar endCal = Calendar.getInstance();
 		endCal.set(endYear, endMonth - 1, endDay);
 
-		
 		while (true) {
 			if (getDateByInteger(startCal.getTime()) <= getDateByInteger(endCal.getTime())) {
 				requestRentPlaceDto.setStartDate(getDateByString(startCal.getTime()));
@@ -163,18 +161,15 @@ public class RentalController {
 		return "/main";
 	}
 
-	
 	public static Integer getDateByInteger(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		
+
 		return Integer.parseInt(sdf.format(date));
 	}
 
-	
 	public static String getDateByString(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		return sdf.format(date);
 	}
 }
-

@@ -35,8 +35,9 @@
 	height: 100px;
 }
 
-.faq-type ul li:hover{
+.faq-type ul li:hover {
 	background-color: #F6F6F6;
+	cursor: pointer;
 }
 
 .faq-type ul li form {
@@ -77,6 +78,9 @@
 	background: none;
 	font-size: 16px;
 	align-items: center;
+	font-size: 20px;
+	width: 150px;
+	height: 100px;
 }
 
 .faq--container {
@@ -98,7 +102,6 @@
 	font-size: 30px;
 	font-weight: 300px;
 	margin: 30px 0 30px 30px;
-	
 }
 
 .panel-body {

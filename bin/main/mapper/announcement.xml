@@ -2,44 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="com.bclass.arts_center.repository.interfaces.AnnouncementRepository">
+<mapper namespace="com.bclass.arts_center.repository.interfaces.AnnouncementRepository">
 
 	<insert id="insertAnnouncement">
 		INSERT INTO announcement_tb(title, content ,user_id)
 		VALUES(#{title}, #{content}, #{userId})
 	</insert>
 
-	<select id="selectAnnouncement"
-		resultType="com.bclass.arts_center.repository.model.Announcement">
+	<select id="selectAnnouncement" resultType="com.bclass.arts_center.repository.model.Announcement">
 		SELECT id, title, content, user_id, DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date
 		FROM announcement_tb
 		ORDER BY id DESC
 	</select>
 
-	<select id="selectAnnouncementById"
-		resultType="com.bclass.arts_center.repository.model.Announcement">
-		SELECT id, title, content, user_id, DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date 
-		FROM announcement_tb 
+	<select id="selectAnnouncementById" resultType="com.bclass.arts_center.repository.model.Announcement">
+		SELECT id, title, content, user_id, DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date
+		FROM announcement_tb
 		WHERE id = #{id}
 	</select>
 
-	<select id="selectAnnouncementBySearchText"
-		resultType="com.bclass.arts_center.repository.model.Announcement">
-		SELECT * 
+	<select id="selectAnnouncementBySearchText" resultType="com.bclass.arts_center.repository.model.Announcement">
+		SELECT *
 		FROM announcement_tb
 		WHERE title
-		LIKE #{searchText} 
+		LIKE #{searchText}
 		OR content LIKE #{searchText}
+		ORDER BY id DESC
 	</select>
 
 	<update id="updateByIdAndUserId">
-		UPDATE announcement_tb 
+		UPDATE announcement_tb
 		SET title = #{title}, content = #{content} WHERE id = #{id}
 	</update>
 
 	<delete id="deleteAnnouncementByUserId">
-		DELETE FROM announcement_tb 
+		DELETE FROM announcement_tb
 		WHERE id = #{id}
 	</delete>
 

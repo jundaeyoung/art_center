@@ -3,6 +3,8 @@ package com.bclass.arts_center.dto;
 import java.sql.Date;
 import java.sql.Time;
 
+import com.bclass.arts_center.utils.TimestampUtil;
+
 import lombok.Data;
 
 @Data
@@ -29,9 +31,16 @@ public class ShowViewDto {
 //	주최자
 	private String nickname;
 	private String tel;
-	
+
 	private String adultRate;
 	private String youthRate;
 	private String infantRate;
 
+	public String formatDate() {
+		return TimestampUtil.dateToString(showDate);
+	}
+
+	public String formatTime() {
+		return TimestampUtil.timeToString(showTime);
+	}
 }

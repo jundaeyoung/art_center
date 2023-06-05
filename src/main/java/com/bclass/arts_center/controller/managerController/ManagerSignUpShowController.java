@@ -1,9 +1,6 @@
 package com.bclass.arts_center.controller.managerController;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,27 +25,25 @@ import com.bclass.arts_center.service.HoleService;
 import com.bclass.arts_center.service.NoticeService;
 import com.bclass.arts_center.service.ShowService;
 import com.bclass.arts_center.utils.Define;
-import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/manager")
-public class SignUpShowController {
+public class ManagerSignUpShowController {
 
 	@Autowired
 	private HoleService holeService;
-	
+
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@Autowired
 	private ShowService showService;
-	
+
 	@Autowired
 	private HttpSession session;
-	
+
 	@Autowired
 	private NoticeService noticeService;
-
 
 	@GetMapping("/signUpShow")
 	public String signUpShow(Model model) {
@@ -73,9 +68,24 @@ public class SignUpShowController {
 		return "/manager/signUpShow";
 	}
 
-	
 	@PostMapping("/sign-up")
 	public String signUpShowProc(RequestSignUpShowDto requestSignUpShowDto) {
+		if (requestSignUpShowDto.getFile() == null || requestSignUpShowDto.getFile().isEmpty()) {
+			throw new CustomRestfullException("이미지를 업로드해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if (requestSignUpShowDto.getTitle() == null || requestSignUpShowDto.getTitle().isEmpty()) {
+			throw new CustomRestfullException("제목을 입력해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if (requestSignUpShowDto.getContent() == null || requestSignUpShowDto.getContent().isEmpty()) {
+			throw new CustomRestfullException("내용을 입력해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if (requestSignUpShowDto.getAdultRate() == null || requestSignUpShowDto.getAdultRate().isEmpty()) {
+			throw new CustomRestfullException("성인 요금을 입력해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		if (requestSignUpShowDto.getYouthRate() == null || requestSignUpShowDto.getYouthRate().isEmpty()) {
+			throw new CustomRestfullException("청소년 요금을 입력해주세요.", HttpStatus.BAD_REQUEST);
+		}
+
 		MultipartFile file = requestSignUpShowDto.getFile();
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		Integer adminId = 3;

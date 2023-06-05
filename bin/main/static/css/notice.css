@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+.question__header {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	padding: 300px;
+	background-image: url('/images/background/announcement.png');
+	background-position: 60% 40%;
+}
+
+.question__title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 50px 50px 50px;
+}
+
+.question__title div {
+	margin-top:-30px;
+	display: flex;
+	align-items: center;
+}
+
+.question__title h2 {
+	font-size: 25px;
+	font-weight: 200;
+	margin-top: -20px;
+	margin-left: 50px;
+	margin-bottom: -20px;
+}
+
+.question__title span {
+	color: red;
+	margin-top: -90px;
+	background-color: red;
+}
+
+.question__title div div {
+	display: flex;
+	align-items: center;
+}
+
+.question__title div div h2 {
+	font-size: 50px;
+	font-weight: 320;
+	margin-top: -20px;
+	margin-left: 70px;
+}
+
+.search {
+	height: 100px;
+	margin: 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+.search form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search .textbox {
+	width: 900px;
+	height: 40px;
+	font-size: 25px;
+	margin-left:50px;
+	border: 2px solid #ccc;
+}
+
+.search .submit {
+	width: 250px;
+	height: 44px;
+	margin-left: 60px;
+	border: 2px solid #ccc;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.submit {
+	width: 100px;
+	height: 50px;
+	background-color: #FBFBFB;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+
+.question__content {
+	display: flex;
+	margin: 0 50px 50px 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+.show__content {
+	width: 1300px;
+	margin-bottom: 20px;
+	margin: -50px 50px 0 50px;
+}
+
+.show {
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 30px;
+	font-weight: 300px;
+	margin: 30px 0 30px 30px;
+}
+
+.question__content_show {
+	padding: 30px;
+	display: none;
+	height: 200px;
+	width: 1340px;
+	margin-left: -50px;
+	background-color: #eee;
+	margin-top: 30px;
+	font-size: 25px;
+	align-items: center;
+}
+
+.active .question__content_show {
+	display: block;
+}
+
+.panel-img {
+	height: 30px;
+	width: 30px;
+}

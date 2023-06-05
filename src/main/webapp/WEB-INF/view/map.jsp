@@ -16,7 +16,7 @@
 					<strong>건물명</strong> <span>아마데우스 - Art Center</span>
 				</div>
 			</div>
-			<div class="map__btn">
+			<div class="map__btn" onclick="goMap()" style="cursor: pointer;">
 				<a href="https://map.kakao.com/link/to/아마데우스, 35.159573, 129.060249">아마데우스
 					찾아오기</a>
 			</div>

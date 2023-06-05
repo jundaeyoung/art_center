@@ -1,6 +1,5 @@
 package com.bclass.arts_center.controller.managerController;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,13 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bclass.arts_center.dto.request.RequestManagerShowSaleDto;
-import com.bclass.arts_center.dto.response.ResponseManagerShowSaleDto;
 import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.ManagerShowSaleService;

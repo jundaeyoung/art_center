@@ -40,7 +40,7 @@ public class TicketController {
 
 	@Autowired
 	private TicketService ticketService;
-	
+
 	@Autowired
 	private ShowService showService;
 
@@ -59,12 +59,12 @@ public class TicketController {
 		Integer startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
 		Integer startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
 		Integer userAge = startMonth2 - startMonth1;
-		
+
 		List<TicketingDto> showDateList = ticketService.readShowDate(showId);
 		TicketCheckDto ticketId = ticketService.readTicketId();
 		List<TicketingDto> showInfoList = ticketService.readShowInfoForTicketing(showId);
 		List<ShowViewDto> showInformationList = showService.readShowInfoByShowId(showId);
-		
+
 		if (showInformationList.get(0).getAdmissionAge().equals("19세 이상")) {
 			if (userAge <= 20) {
 				throw new CustomRestfullException("19세 미만은 관람하실 수 없습니다.", HttpStatus.BAD_REQUEST);
@@ -102,6 +102,9 @@ public class TicketController {
 
 	@PostMapping("/ticketing")
 	public String ticketProc(TicketingDto ticketingDto, Integer showDatetimeId) {
+		if (ticketingDto.getShowTime() == null) {
+			throw new CustomRestfullException("관람 시간을 선택해주세요.", HttpStatus.BAD_REQUEST);
+		}
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		String userBirth = principal.getBirthDate();
 		String replaceuserBirth = userBirth.replaceAll("-", "");
@@ -116,7 +119,7 @@ public class TicketController {
 		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
 		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
 		int userAge = startMonth2 - startMonth1;
-		
+
 		if (userAge < 20) {
 			ticketingDto.setAgeGroupId(2);
 		} else if (userAge >= 20) {
@@ -129,7 +132,7 @@ public class TicketController {
 		if (ticketingDto.getShowTypeId() != 1) {
 			ticketingDto.setSeatId(1);
 		}
-		
+
 		ticketService.waitTicket(ticketingDto);
 		ticketService.selectSeat(ticketingDto.getSeatId(), ticketingDto.getShowDatetimeId());
 		return "redirect:/ticket/ticketCheck";
@@ -139,12 +142,12 @@ public class TicketController {
 	@GetMapping("/ticketCheck")
 	public String ticketCheck(TicketingDto ticketingDto, Model model) throws WriterException, IOException {
 		TicketCheckDto ticketid = ticketService.readTicketId();
-		String savePath = "C:\\spring_upload\\arts_center\\upload\\"; 
+		String savePath = "C:\\spring_upload\\arts_center\\upload\\";
 		File file = new File(savePath);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-		
+
 		String showUrl = "https://github.com/jundaeyoung/art_center";
 		String codeurl = new String(showUrl.getBytes("UTF-8"), "ISO-8859-1");
 
@@ -161,10 +164,10 @@ public class TicketController {
 
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
 		String fileName = sd.format(new Date());
-		
+
 		File temp = new File(savePath + fileName + ticketid.getId() + ".png");
 		String path = fileName + ticketid.getId();
-		
+
 		ImageIO.write(bufferedImage, "png", temp);
 
 		ticketService.updateQrCode(ticketid.getId(), path);
@@ -177,8 +180,7 @@ public class TicketController {
 		} else {
 			model.addAttribute("ticketListInfo", ticketListInfo);
 		}
-		
+
 		return "/ticket/ticketCheck";
 	}
 }
-

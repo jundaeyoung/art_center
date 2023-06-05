@@ -4,7 +4,7 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<link rel="stylesheet" href="/css/announcement.css">
+<link rel="stylesheet" href="/css/notice.css">
 
 
 <script type="text/javascript" src="/js/main.js"></script>
@@ -47,12 +47,10 @@
 				<div>
 					<div class="show__content">
 						<div class="show">
-							<h2>${announcements.title}</h2>
+							${announcements.title}<img src="/images/down.png" class="panel-img">
 						</div>
 						<div class="question__content_show">
-							<div class="show">
-								<h2>${announcements.content}</h2>
-							</div>
+								<p>${announcements.content}</p>
 						</div>
 					</div>
 				</div>
@@ -61,7 +59,7 @@
 	</div>
 </c:if>
 
-
+<script type="text/javascript" src="/js/noticeToggle.js"></script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 
 
