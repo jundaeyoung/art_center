@@ -42,7 +42,7 @@ $(document).ready(function () {
         yAxes: [{
           ticks: {
             min: 0,
-            max: 10,
+            stepSize : 1,
             maxTicksLimit: 5
           },
           gridLines: {

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"></script>
+<script type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://www.gstatic.com/charts/loader.js"></script>
@@ -19,8 +21,6 @@
 	</c:otherwise>
 
 </c:choose>
-
-
 
 
 <div class="main--content--div" style="height: 100%">
@@ -316,7 +316,7 @@
                      + (parseInt(date.date.month) + 1) + '월';
             },
 /*             initialDate: '2023-05-04', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.) 나중엔 해제해야함 */ 
-			navLinks: true,
+         navLinks: true,
             selectable : true, // 달력 일자 드래그 설정가능
             droppable : true,
             // editable : true,
@@ -325,56 +325,56 @@
             locale : 'ko', // 한국어 설정
              events: [
                 <c:forEach items="${lists}" var="list">
-                 <c:choose>
-                 <c:when test="${list.holeName == '1관'}">
-                      <c:set var="backgroundColor" value="#FFE3D5" />
-                        <c:set var="borderColor" value="#FFE3D5" />
-                  </c:when>
-                  <c:when test="${list.holeName == '2관'}">
-                      <c:set var="backgroundColor" value="#8DC6ED" />
-                      <c:set var="borderColor" value="#8DC6ED" />
-                  </c:when>
-                  <c:when test="${list.holeName == '3관'}">
-                      <c:set var="backgroundColor" value="#EAFCD4" />
-                      <c:set var="borderColor" value="#EAFCD4" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실A'}">
-                      <c:set var="backgroundColor" value="#FFF3D9" />
-                      <c:set var="borderColor" value="#FFF3D9" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실b'}">
-                      <c:set var="backgroundColor" value="#DAE5FB" />
-                      <c:set var="borderColor" value="#DAE5FB" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실c'}">
-                      <c:set var="backgroundColor" value="#895DAE" />
-                      <c:set var="borderColor" value="#895DAE" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실d'}">
-                      <c:set var="backgroundColor" value="#FFA17E" />
-                      <c:set var="borderColor" value="#FFA17E" />
-                  </c:when>
-                  <c:when test="${list.holeName == '인문실'}">
-                      <c:set var="backgroundColor" value="#5CE390" />
-                      <c:set var="borderColor" value="#5CE390" />
-                  </c:when>
-                  <c:when test="${list.holeName == '과학실'}">
-                      <c:set var="backgroundColor" value="#94F7ED" />
-                      <c:set var="borderColor" value="#94F7ED" />
-                  </c:when>
-                  <c:when test="${list.holeName == '미술실'}">
-                      <c:set var="backgroundColor" value="#F4F4FE" />
-                      <c:set var="borderColor" value="#F4F4FE" />
-                  </c:when>
-                  <c:when test="${list.holeName == '어린이'}">
-                      <c:set var="backgroundColor" value="#DCF19A" />
-                      <c:set var="borderColor" value="#DCF19A" />
-                  </c:when>
-                  <c:otherwise>
-                      <c:set var="backgroundColor" value="" />
-                      <c:set var="borderColor" value="" />
-                  </c:otherwise>
-              </c:choose>
+              <c:choose>
+               <c:when test="${list.holeName == '오페라극장'}">
+                   <c:set var="backgroundColor" value="#FFE3D5" />
+                   <c:set var="borderColor" value="#FFE3D5" />
+               </c:when>
+               <c:when test="${list.holeName == '콘서트홀'}">
+                   <c:set var="backgroundColor" value="#8DC6ED" />
+                   <c:set var="borderColor" value="#8DC6ED" />
+               </c:when>
+               <c:when test="${list.holeName == '리사이틀홀'}">
+                   <c:set var="backgroundColor" value="#EAFCD4" />
+                   <c:set var="borderColor" value="#EAFCD4" />
+               </c:when>
+               <c:when test="${list.holeName == '반고흐관'}">
+                   <c:set var="backgroundColor" value="#FFF3D9" />
+                   <c:set var="borderColor" value="#FFF3D9" />
+               </c:when>
+               <c:when test="${list.holeName == '빈센트관'}">
+                   <c:set var="backgroundColor" value="#DAE5FB" />
+                   <c:set var="borderColor" value="#DAE5FB" />
+               </c:when>
+               <c:when test="${list.holeName == '다빈치관'}">
+                   <c:set var="backgroundColor" value="#895DAE" />
+                   <c:set var="borderColor" value="#895DAE" />
+               </c:when>
+               <c:when test="${list.holeName == '피카소관'}">
+                   <c:set var="backgroundColor" value="#FFA17E" />
+                   <c:set var="borderColor" value="#FFA17E" />
+               </c:when>
+               <c:when test="${list.holeName == '인문실'}">
+                   <c:set var="backgroundColor" value="#5CE390" />
+                   <c:set var="borderColor" value="#5CE390" />
+               </c:when>
+               <c:when test="${list.holeName == '과학실'}">
+                   <c:set var="backgroundColor" value="#94F7ED" />
+                   <c:set var="borderColor" value="#94F7ED" />
+               </c:when>
+               <c:when test="${list.holeName == '미술실'}">
+                   <c:set var="backgroundColor" value="#F4F4FE" />
+                   <c:set var="borderColor" value="#F4F4FE" />
+               </c:when>
+               <c:when test="${list.holeName == '어린이'}">
+                   <c:set var="backgroundColor" value="#DCF19A" />
+                   <c:set var="borderColor" value="#DCF19A" />
+               </c:when>
+               <c:otherwise>
+                   <c:set var="backgroundColor" value="" />
+                   <c:set var="borderColor" value="" />
+               </c:otherwise>
+           </c:choose>
               
               {
                  id: '${list.id}',
@@ -399,7 +399,7 @@
                      contentType: 'application/json; charset=utf-8',
                      dataType: 'json',
                      success: function(data) {
-							let event = data.data;
+                     let event = data.data;
                            $("#id").val(event.id),
                            $("#title").text(event.title);
                            $("#showDate").text(event.startDate);
@@ -452,57 +452,57 @@
             locale : 'ko', // 한국어 설정
              events: [
                 <c:forEach items="${lists}" var="list">
-                 <c:choose>
-                  <c:when test="${list.holeName == '1관'}">
-                      <c:set var="backgroundColor" value="#FFE3D5" />
-                      <c:set var="borderColor" value="#FFE3D5" />
-                  </c:when>
-                  <c:when test="${list.holeName == '2관'}">
-                      <c:set var="backgroundColor" value="#8DC6ED" />
-                      <c:set var="borderColor" value="#8DC6ED" />
-                  </c:when>
-                  <c:when test="${list.holeName == '3관'}">
-                      <c:set var="backgroundColor" value="#EAFCD4" />
-                      <c:set var="borderColor" value="#EAFCD4" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실A'}">
-                      <c:set var="backgroundColor" value="#FFF3D9" />
-                      <c:set var="borderColor" value="#FFF3D9" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실b'}">
-                      <c:set var="backgroundColor" value="#DAE5FB" />
-                      <c:set var="borderColor" value="#DAE5FB" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실c'}">
-                      <c:set var="backgroundColor" value="#895DAE" />
-                      <c:set var="borderColor" value="#895DAE" />
-                  </c:when>
-                  <c:when test="${list.holeName == '전시실d'}">
-                      <c:set var="backgroundColor" value="#FFA17E" />
-                      <c:set var="borderColor" value="#FFA17E" />
-                  </c:when>
-                  <c:when test="${list.holeName == '인문실'}">
-                      <c:set var="backgroundColor" value="#5CE390" />
-                      <c:set var="borderColor" value="#5CE390" />
-                  </c:when>
-                  <c:when test="${list.holeName == '과학실'}">
-                      <c:set var="backgroundColor" value="#94F7ED" />
-                      <c:set var="borderColor" value="#94F7ED" />
-                  </c:when>
-                  <c:when test="${list.holeName == '미술실'}">
-                      <c:set var="backgroundColor" value="#F4F4FE" />
-                      <c:set var="borderColor" value="#F4F4FE" />
-                  </c:when>
-                  <c:when test="${list.holeName == '어린이'}">
-                      <c:set var="backgroundColor" value="#DCF19A" />
-                      <c:set var="borderColor" value="#DCF19A" />
-                  </c:when>
-                  <c:otherwise>
-                      <c:set var="backgroundColor" value="" />
-                      <c:set var="borderColor" value="" />
-                  </c:otherwise>
-              </c:choose>
-              
+              <c:choose>
+              <c:when test="${list.holeName == '오페라극장'}">
+                   <c:set var="backgroundColor" value="#FFE3D5" />
+                     <c:set var="borderColor" value="#FFE3D5" />
+               </c:when>
+               <c:when test="${list.holeName == '콘서트홀'}">
+                   <c:set var="backgroundColor" value="#8DC6ED" />
+                   <c:set var="borderColor" value="#8DC6ED" />
+               </c:when>
+               <c:when test="${list.holeName == '리사이트홀'}">
+                   <c:set var="backgroundColor" value="#EAFCD4" />
+                   <c:set var="borderColor" value="#EAFCD4" />
+               </c:when>
+               <c:when test="${list.holeName == '반고흐관'}">
+                   <c:set var="backgroundColor" value="#FFF3D9" />
+                   <c:set var="borderColor" value="#FFF3D9" />
+               </c:when>
+               <c:when test="${list.holeName == '빈센트관'}">
+                   <c:set var="backgroundColor" value="#DAE5FB" />
+                   <c:set var="borderColor" value="#DAE5FB" />
+               </c:when>
+               <c:when test="${list.holeName == '다빈치관'}">
+                   <c:set var="backgroundColor" value="#895DAE" />
+                   <c:set var="borderColor" value="#895DAE" />
+               </c:when>
+               <c:when test="${list.holeName == '피카소관'}">
+                   <c:set var="backgroundColor" value="#FFA17E" />
+                   <c:set var="borderColor" value="#FFA17E" />
+               </c:when>
+               <c:when test="${list.holeName == '인문실'}">
+                   <c:set var="backgroundColor" value="#5CE390" />
+                   <c:set var="borderColor" value="#5CE390" />
+               </c:when>
+               <c:when test="${list.holeName == '과학실'}">
+                   <c:set var="backgroundColor" value="#94F7ED" />
+                   <c:set var="borderColor" value="#94F7ED" />
+               </c:when>
+               <c:when test="${list.holeName == '미술실'}">
+                   <c:set var="backgroundColor" value="#F4F4FE" />
+                   <c:set var="borderColor" value="#F4F4FE" />
+               </c:when>
+               <c:when test="${list.holeName == '어린이'}">
+                   <c:set var="backgroundColor" value="#DCF19A" />
+                   <c:set var="borderColor" value="#DCF19A" />
+               </c:when>
+               <c:otherwise>
+                   <c:set var="backgroundColor" value="" />
+                   <c:set var="borderColor" value="" />
+               </c:otherwise>
+           </c:choose>
+           
               {
                  id: '${list.id}',
                   title: '${list.holeName} ${list.title}',
@@ -516,58 +516,57 @@
               },
                   </c:forEach>
                     
-                   <c:forEach items="${categoryLists}" var="categoryList">
-                   <c:choose>
-                  <c:when test="${categoryList.holeName == '1층'}">
-                      <c:set var="backgroundColor" value="#FFE3D5" />
-                      <c:set var="borderColor" value="#FFE3D5" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '2층'}">
-                      <c:set var="backgroundColor" value="#8DC6ED" />
-                      <c:set var="borderColor" value="#8DC6ED" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '3층'}">
-                      <c:set var="backgroundColor" value="#EAFCD4" />
-                      <c:set var="borderColor" value="#EAFCD4" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '전시실A'}">
-                      <c:set var="backgroundColor" value="#FFF3D9" />
-                      <c:set var="borderColor" value="#FFF3D9" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '전시실b'}">
-                      <c:set var="backgroundColor" value="#DAE5FB" />
-                      <c:set var="borderColor" value="#DAE5FB" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '전시실c'}">
-                      <c:set var="backgroundColor" value="#895DAE" />
-                      <c:set var="borderColor" value="#895DAE" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '전시실d'}">
-                      <c:set var="backgroundColor" value="#FFA17E" />
-                      <c:set var="borderColor" value="#FFA17E" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '인문실'}">
-                      <c:set var="backgroundColor" value="#5CE390" />
-                      <c:set var="borderColor" value="#5CE390" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '과학실'}">
-                      <c:set var="backgroundColor" value="#94F7ED" />
-                      <c:set var="borderColor" value="#94F7ED" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '미술실'}">
-                      <c:set var="backgroundColor" value="#F4F4FE" />
-                      <c:set var="borderColor" value="#F4F4FE" />
-                  </c:when>
-                  <c:when test="${categoryList.holeName == '어린이'}">
-                      <c:set var="backgroundColor" value="#DCF19A" />
-                      <c:set var="borderColor" value="#DCF19A" />
-                  </c:when>
-                  <c:otherwise>
-                      <c:set var="backgroundColor" value="" />
-                      <c:set var="borderColor" value="" />
-                  </c:otherwise>
-              </c:choose>
-              
+              <c:forEach items="${categoryLists}" var="categoryList">
+              <c:choose>
+               <c:when test="${categoryList.holeName == '오페라극장'}">
+                   <c:set var="backgroundColor" value="#FFE3D5" />
+                   <c:set var="borderColor" value="#FFE3D5" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '콘서트홀'}">
+                   <c:set var="backgroundColor" value="#8DC6ED" />
+                   <c:set var="borderColor" value="#8DC6ED" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '리사이트홀'}">
+                   <c:set var="backgroundColor" value="#EAFCD4" />
+                   <c:set var="borderColor" value="#EAFCD4" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '반고흐관'}">
+                   <c:set var="backgroundColor" value="#FFF3D9" />
+                   <c:set var="borderColor" value="#FFF3D9" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '빈센트관'}">
+                   <c:set var="backgroundColor" value="#DAE5FB" />
+                   <c:set var="borderColor" value="#DAE5FB" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '다빈치관'}">
+                   <c:set var="backgroundColor" value="#895DAE" />
+                   <c:set var="borderColor" value="#895DAE" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '피카소관'}">
+                   <c:set var="backgroundColor" value="#FFA17E" />
+                   <c:set var="borderColor" value="#FFA17E" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '인문실'}">
+                   <c:set var="backgroundColor" value="#5CE390" />
+                   <c:set var="borderColor" value="#5CE390" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '과학실'}">
+                   <c:set var="backgroundColor" value="#94F7ED" />
+                   <c:set var="borderColor" value="#94F7ED" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '미술실'}">
+                   <c:set var="backgroundColor" value="#F4F4FE" />
+                   <c:set var="borderColor" value="#F4F4FE" />
+               </c:when>
+               <c:when test="${categoryList.holeName == '어린이'}">
+                   <c:set var="backgroundColor" value="#DCF19A" />
+                   <c:set var="borderColor" value="#DCF19A" />
+               </c:when>
+               <c:otherwise>
+                   <c:set var="backgroundColor" value="" />
+                   <c:set var="borderColor" value="" />
+               </c:otherwise>
+           </c:choose>
               {
                  id: '${categoryList.id}',
                   title: '${categoryList.holeName} ${categoryList.title}',
@@ -590,7 +589,7 @@
                      contentType: 'application/json; charset=utf-8',
                      dataType: 'json',
                      success: function(data) {
-						   let event = data.data;
+                     let event = data.data;
                            $("#id").val(event.id),
                            $("#title").text(event.title);
                            $("#startDate.startDate").text(event.startDate);
@@ -641,5 +640,4 @@
 	</c:otherwise>
 </c:choose>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
-
 

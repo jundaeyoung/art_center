@@ -89,14 +89,13 @@
 							<ul class="main">
 								<li><a href="#"> 공연 </a>
 									<ul class="sub">
-										<li><a href="/schedule">전체 공연 일정(달력)</a></li>
-										<li><a href="/manager/schedule">나의 공연 일정(달력)</a></li>
 										<li><a href="/manager/showSale?currentPage=1&begin=0&range=5">나의 공연 매출</a></li>
 										<li><a href="/manager/signUpShow">공연 등록</a></li>
 									</ul></li>
-								<li><a href="#"> 대관 </a>
+								<li><a href="#"> 일정 </a>
 									<ul class="sub">
-										<li><a href="/rental">대관 신청</a></li>
+										<li><a href="/schedule">전체 공연 일정(달력)</a></li>
+										<li><a href="/manager/schedule">나의 공연 일정(달력)</a></li>
 									</ul></li>
 								<li><a href="#"> 고객센터</a>
 									<ul class="sub">
