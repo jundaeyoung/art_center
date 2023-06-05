@@ -59,8 +59,8 @@
 	<select id="selectShowSaleList"
 		resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.start_date, s.end_date, s.id, s.title, s.adult_rate, s.youth_rate,
-		count(case when t.age_group_id=2 then 1 end) * replace(s.youth_rate,',','') +
-		count(case when t.age_group_id=3 then 1 end) * replace(s.adult_rate,',','') AS totalshowSales
+		count(case when t.age_group_id=1 then 1 end) * replace(s.youth_rate,',','') +
+		count(case when t.age_group_id=2 then 1 end) * replace(s.adult_rate,',','') AS totalshowSales
 		FROM ticketing_tb AS t
 		JOIN show_tb AS s
 		ON t.show_id = s.id
@@ -74,8 +74,8 @@
 	<select id="selectShowSaleByStartDateAndEndDate" 
 	resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.start_date, s.end_date, s.id, s.title, s.adult_rate, s.youth_rate,
-		COUNT(CASE WHEN t.age_group_id = 2 THEN 1 END) * REPLACE(s.youth_rate, ',', '') +
-		COUNT(CASE WHEN t.age_group_id = 3 THEN 1 END) * REPLACE(s.adult_rate, ',', '') AS totalshowSales
+		COUNT(CASE WHEN t.age_group_id = 1 THEN 1 END) * REPLACE(s.youth_rate, ',', '') +
+		COUNT(CASE WHEN t.age_group_id = 2 THEN 1 END) * REPLACE(s.adult_rate, ',', '') AS totalshowSales
 		FROM ticketing_tb AS t
 		JOIN show_tb AS s ON t.show_id = s.id
 		JOIN show_datetime_tb AS sd ON t.show_datetime_id = sd.id
@@ -87,8 +87,8 @@
 	
 	<select id="selectShowSaleSearchByTitle" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.start_date, s.end_date, s.id, s.title, s.adult_rate, s.youth_rate,
-		COUNT(case when t.age_group_id=2 then 1 end) * replace(s.youth_rate,',','') +
-		COUNT(case when t.age_group_id=3 then 1 end) * replace(s.adult_rate,',','') as totalshowSales
+		COUNT(case when t.age_group_id=1 then 1 end) * replace(s.youth_rate,',','') +
+		COUNT(case when t.age_group_id=2 then 1 end) * replace(s.adult_rate,',','') as totalshowSales
 		FROM ticketing_tb AS t
 		JOIN show_tb AS s
 		ON t.show_id = s.id

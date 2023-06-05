@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
@@ -112,9 +112,9 @@
 }
 </style>
 
-<c:set var="todayDate" value="<%=new java.util.Date()%>" />
-<fmt:formatDate value="${todayDate}" pattern="yyyy-MM-dd" />
 
+<c:set var="todayDate" value="<%=new java.util.Date()%>"/>
+<fmt:formatDate value="${todayDate}" pattern="yyyy-MM-dd" />
 
 
 <div class="container">
@@ -134,7 +134,8 @@
 							<a href="/show/showView/${myTicketList.showId}"><p>${myTicketList.title}</p>
 							</a>
 							<c:choose>
-								<c:when test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
+								<c:when
+									test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
 									<h2>(결제대기)</h2>
 								</c:when>
 								<c:when
@@ -180,7 +181,8 @@
 			</div>
 			<div class="btn">
 				<c:choose>
-					<c:when test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
+					<c:when
+						test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
 						<form action="/kakao/ready" method="get">
 							<input type="hidden" name="ticketingId"
 								value="${myTicketList.id}">

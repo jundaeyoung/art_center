@@ -7,7 +7,7 @@
 
 	<select id="selectManagerShowSale" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
-		COUNT(case when t.age_group_id=2 then 1 end) AS youthCount, COUNT(case when t.age_group_id=3 then 1 end) AS adultCount
+		COUNT(case when t.age_group_id=1 then 1 end) AS youthCount, COUNT(case when t.age_group_id=2 then 1 end) AS adultCount
 		FROM show_tb AS s
 		JOIN user_tb AS u 
 		ON u.id = s.organizer_id
@@ -25,7 +25,7 @@
 
 	<select id="selectManagerShowSaleByStartDateAndEndDate" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
-		COUNT(case when t.age_group_id=2 then 1 end) AS youthCount, COUNT(case when t.age_group_id=3 then 1 end) AS adultCount
+		COUNT(case when t.age_group_id=1 then 1 end) AS youthCount, COUNT(case when t.age_group_id=2 then 1 end) AS adultCount
 		FROM show_tb AS s
 		JOIN user_tb AS u 
 		ON u.id = s.organizer_id
@@ -43,7 +43,7 @@
 
 	<select id="selectManagerShowBySearchTitle" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
 		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
-		COUNT(case when t.age_group_id=2 then 1 end) AS youthCount, COUNT(case when t.age_group_id=3 then 1 end) AS adultCount
+		COUNT(case when t.age_group_id=1 then 1 end) AS youthCount, COUNT(case when t.age_group_id=2 then 1 end) AS adultCount
 		FROM show_tb AS s
 		JOIN user_tb AS u 
 		ON u.id = s.organizer_id
@@ -57,9 +57,9 @@
         ON p.ticketing_id = t.id
 		WHERE s.organizer_id =#{userId} 
 		AND s.title LIKE #{title} 
-		GROUP BY s.id 
 		AND t.payment_status=1 
 		AND p.cancel_status=0
+		GROUP BY s.id 
 	</select>
 	
 </mapper>

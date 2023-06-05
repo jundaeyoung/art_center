@@ -103,8 +103,6 @@ public class TicketController {
 	@PostMapping("/ticketing")
 	public String ticketProc(TicketingDto ticketingDto, Integer showDatetimeId) {
 	
-		System.out.println("Dddd");
-		
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		String userBirth = principal.getBirthDate();
 		String replaceuserBirth = userBirth.replaceAll("-", "");
@@ -116,9 +114,9 @@ public class TicketController {
 
 		Integer count = ticketService.countTicketing(ticketingDto.getShowDatetimeId());
 
-		Integer startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
-		Integer startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
-		Integer userAge = startMonth2 - startMonth1;
+		Integer userBirthYear = Integer.parseInt(replaceuserBirth.substring(0, 4));
+		Integer nowYear = Integer.parseInt(nowDate.substring(0, 4));
+		Integer userAge = nowYear-userBirthYear;
 
 		if (showDatetimeId == null) {
 			throw new CustomRestfullException("관람시간을 선택해주세요.", HttpStatus.BAD_REQUEST);

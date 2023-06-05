@@ -40,7 +40,7 @@
 							</div>
 							<div class="ticket--price">
 								<c:choose>
-									<c:when test="${ticketListInfo.ageGroupId==3}">
+									<c:when test="${ticketListInfo.ageGroupId==2}">
 										<h2>[성인]&nbsp;&nbsp;&nbsp;&nbsp;${ticketListInfo.adultRate}</h2>
 									</c:when>
 									<c:otherwise>
