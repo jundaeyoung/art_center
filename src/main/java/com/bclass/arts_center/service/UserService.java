@@ -32,7 +32,6 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
 	@Transactional
 	public Integer createUser(SignUpFormDto signUpFormDto) {
 		String rawPwd = signUpFormDto.getPassword();
@@ -54,7 +53,6 @@ public class UserService {
 		return result;
 	}
 
-	
 	@Transactional
 	public User readUser(SignInFormDto signInFormDto) {
 
@@ -74,28 +72,38 @@ public class UserService {
 	}
 
 	@Transactional
+	public User checkPassword(UpdateUserDto updateUserDto) {
+
+		User userEntity = userRepository.selectUserByUsername(updateUserDto.getUserName());
+
+		boolean isPwdMatched = passwordEncoder.matches(updateUserDto.getPassword(), userEntity.getPassword());
+
+		if (isPwdMatched == false) {
+			throw new CustomRestfullException("비밀번호가 틀렸습니다", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return userEntity;
+	}
+
+	@Transactional
 	public User readUserByApiId(String apiId) {
 		User userEntity = userRepository.selectUserByApiId(apiId);
 		return userEntity;
 	}
 
-	
 	@Transactional
 	public User readUserByUserName(String userName) {
 		User user = userRepository.selectUserByUsername(userName);
 		return user;
 	}
 
-	
 	@Transactional
 	public Integer readUserCountByUserName(String userName) {
 		Integer result = userRepository.selectUserCountByUserName(userName);
 		return result;
 	}
 
-	
 	@Transactional
-	public int updateUser(UpdateUserDto updateUserDto) {
+	public Integer updateUser(UpdateUserDto updateUserDto) {
 		String rawPwd = updateUserDto.getPassword();
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		updateUserDto.setPassword(hashPwd);
@@ -103,13 +111,11 @@ public class UserService {
 		return result;
 	}
 
-	
 	@Transactional
 	public Integer deleteUser(SignInFormDto signInFormDto) {
 		User userEntity = userRepository.selectUserByUsername(signInFormDto.getUserName());
-
 		if (userEntity.getApiId() != null) {
-			Integer result = userRepository.deleteUserById(signInFormDto);
+			Integer result = userRepository.deleteByApiId(signInFormDto.getUserName());
 			return result;
 		} else {
 
@@ -124,13 +130,11 @@ public class UserService {
 		}
 	}
 
-	
 	@Transactional
 	public List<User> readUserList() {
 		List<User> users = userRepository.selectUserList();
 		return users;
 	}
-	
 
 	@Transactional
 	public List<User> readManagerList() {
@@ -138,21 +142,18 @@ public class UserService {
 		return managers;
 	}
 
-	
 	@Transactional
 	public int updateUserById(User user) {
 		Integer result = userRepository.updateUserById(user);
 		return result;
 	}
 
-	
 	@Transactional
 	public int deleteUserById(String id) {
-		Integer result = userRepository.deleteById(id);
+		Integer result = userRepository.deleteByApiId(id);
 		return result;
 	}
 
-	
 	@Transactional(readOnly = true)
 	public Map<String, String> userValidateHandling(Errors errors) {
 		Map<String, String> validatorResult = new HashMap<>();
@@ -213,11 +214,9 @@ public class UserService {
 		return findUser;
 	}
 
-	
 	public List<RequestUserCountDto> readJoinUserByStartDateAndEndDate() {
 		List<RequestUserCountDto> userList = userRepository.selectJoinUserByDate();
-		
+
 		return userList;
 	}
 }
-

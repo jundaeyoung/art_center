@@ -20,7 +20,9 @@ $(function() {
 			},
 			"startDate": $("#startDate").val(),
 			"endDate": $("#endDate").val(),
-			"drops": "down"
+			"drops": "down",
+			"minDate": $("#startDate").val(),
+			"maxDate": $("#endDate").val()
 		},
 		function(start, end, label) {
 			let startDate = start.format('YYYY-MM-DD').replaceAll(/-/g, "");

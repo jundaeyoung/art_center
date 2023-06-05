@@ -102,9 +102,9 @@ public class TicketController {
 
 	@PostMapping("/ticketing")
 	public String ticketProc(TicketingDto ticketingDto, Integer showDatetimeId) {
-		if (ticketingDto.getShowTime() == null) {
-			throw new CustomRestfullException("관람 시간을 선택해주세요.", HttpStatus.BAD_REQUEST);
-		}
+	
+		System.out.println("Dddd");
+		
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		String userBirth = principal.getBirthDate();
 		String replaceuserBirth = userBirth.replaceAll("-", "");
@@ -116,14 +116,17 @@ public class TicketController {
 
 		Integer count = ticketService.countTicketing(ticketingDto.getShowDatetimeId());
 
-		int startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
-		int startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
-		int userAge = startMonth2 - startMonth1;
+		Integer startMonth1 = Integer.parseInt(replaceuserBirth.substring(0, 4));
+		Integer startMonth2 = Integer.parseInt(nowDate.substring(0, 4));
+		Integer userAge = startMonth2 - startMonth1;
 
+		if (showDatetimeId == null) {
+			throw new CustomRestfullException("관람시간을 선택해주세요.", HttpStatus.BAD_REQUEST);
+		}
 		if (userAge < 20) {
-			ticketingDto.setAgeGroupId(2);
+			ticketingDto.setAgeGroupId(1);
 		} else if (userAge >= 20) {
-			ticketingDto.setAgeGroupId(3);
+			ticketingDto.setAgeGroupId(2);
 		}
 		ticketingDto.setUserId(principal.getId());
 		if (ticketingDto.getShowTypeId() == 3 && count >= 30) {
@@ -132,7 +135,6 @@ public class TicketController {
 		if (ticketingDto.getShowTypeId() != 1) {
 			ticketingDto.setSeatId(1);
 		}
-
 		ticketService.waitTicket(ticketingDto);
 		ticketService.selectSeat(ticketingDto.getSeatId(), ticketingDto.getShowDatetimeId());
 		return "redirect:/ticket/ticketCheck";

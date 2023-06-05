@@ -1,7 +1,3 @@
-/**
- * @author 손주이
- */
-
 $(document).ready(function() {
 	buildCalendar();
 }); // 웹 페이지가 로드되면 buildCalendar 실행

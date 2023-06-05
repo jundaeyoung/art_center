@@ -39,7 +39,7 @@ public interface UserRepository {
 
 	public Integer updateUserById(User user);
 
-	public Integer deleteById(String id);
+	public Integer deleteByApiId(String userName);
 
 	public User findUserByUserId(String userEmail);
 

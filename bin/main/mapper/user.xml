@@ -62,12 +62,12 @@
 
 	<delete id="deleteUserById">
 		DELETE FROM user_tb 
-		WHERE user_name = #{id}
+		WHERE user_name = #{userName}
 	</delete>
 
-	<delete id="deleteById">
+	<delete id="deleteByApiId">
 		DELETE FROM user_tb 
-		WHERE id = #{id}
+		WHERE user_name = #{userName}
 	</delete>
 
 	<update id="updateUserById">

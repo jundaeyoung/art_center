@@ -144,7 +144,14 @@ public class UserController {
 			}
 			return "/user/update";
 		}
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		updateUserDto.setUserName(principal.getUserName());
+		userService.checkPassword(updateUserDto);
 		userService.updateUser(updateUserDto);
+		principal.setNickname(updateUserDto.getNickname());
+		principal.setEmail(updateUserDto.getEmail());
+		principal.setTel(updateUserDto.getTel());
+		session.setAttribute(Define.PRINCIPAL, principal);
 
 		return "redirect:/";
 	}
