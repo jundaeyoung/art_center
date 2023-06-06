@@ -28,13 +28,13 @@
 				<i class="material-icons">person_outline</i> <span class="glyphicon glyphicon-eye-open"></span> <input type="text" class="info" id = "userName" placeholder="가입시 등록한 아이디를 입력하세요.">
 			</div>
 		</form>
-		<button type="button" class="login" id="checkEmail" style="width: 605px;">OK</button>
+		<button type="button" class="login" id="checkEmail" style="width: 605px;">비밀번호 찾기</button>
 		<div class="selectIdAndPw" style="font-size: 20px; margin-left: 340px;">
 			<a href="/user/login">로그인</a>
 			<p>|</p>
 			<a href="/user/signUp">회원가입</a>
 			<p>|</p>
-			<a>아이디 찾기</a>
+			<a href="/user/findId">아이디 찾기</a>
 		</div>
 		<div class="logobox">
 

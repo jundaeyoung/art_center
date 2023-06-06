@@ -118,7 +118,8 @@
 												<li><a href="/user/findPw">비밀번호 찾기</a></li>
 											</c:when>
 											<c:otherwise>
-												<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
+												<li><a href="/user/update?userName=${principal.userName}">회원정보 수정</a></li>
+												<li><a href="/user/updatePassword">비밀번호 수정</a></li>
 												<li><a href="/user/delete?userName=${principal.userName}">회원탈퇴 </a></li>
 											</c:otherwise>
 										</c:choose>
@@ -161,6 +162,7 @@
 											</c:when>
 											<c:otherwise>
 												<li><a href="/user/update?userName=${principal.userName}">회원정보 수정 </a></li>
+												<li><a href="/user/updatePassword">비밀번호 수정 </a></li>
 												<li><a href="/user/delete?userName=${principal.userName}">회원탈퇴 </a></li>
 											</c:otherwise>
 										</c:choose>

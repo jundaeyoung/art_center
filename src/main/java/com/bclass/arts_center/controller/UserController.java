@@ -19,6 +19,7 @@ import com.bclass.arts_center.dto.SignInFormDto;
 import com.bclass.arts_center.dto.SignUpFormDto;
 import com.bclass.arts_center.dto.UpdateUserDto;
 import com.bclass.arts_center.handler.exception.CustomRestfullException;
+import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
@@ -54,13 +55,30 @@ public class UserController {
 
 	@GetMapping("/update")
 	public String update(Model model, String userName) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new LoginException("로그인을 해주세요.", HttpStatus.BAD_REQUEST);
+		}
 		SignInFormDto dto = new SignInFormDto();
 		dto.setUserName(userName);
 		User user = userService.readUserByUserName(dto.getUserName());
 		model.addAttribute("user", user);
 
 		return "/user/update";
+	}
 
+	@GetMapping("/updatePassword")
+	public String updatePassword(Model model, String password) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new LoginException("로그인을 해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		SignInFormDto dto = new SignInFormDto();
+		dto.setUserName(password);
+		User user = userService.readUserByUserName(dto.getUserName());
+		model.addAttribute("user", user);
+
+		return "/user/updatePassword";
 	}
 
 	@GetMapping("/delete")
@@ -136,6 +154,10 @@ public class UserController {
 
 	@PostMapping("/update")
 	public String update(@Valid UpdateUserDto updateUserDto, BindingResult errors, Model model) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new LoginException("로그인을 해주세요.", HttpStatus.BAD_REQUEST);
+		}
 		if (errors.hasErrors()) {
 			model.addAttribute("user", updateUserDto);
 			Map<String, String> validatorResult = userService.userValidateHandling(errors);
@@ -144,7 +166,6 @@ public class UserController {
 			}
 			return "/user/update";
 		}
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		updateUserDto.setUserName(principal.getUserName());
 		userService.checkPassword(updateUserDto);
 		userService.updateUser(updateUserDto);
@@ -153,6 +174,26 @@ public class UserController {
 		principal.setTel(updateUserDto.getTel());
 		session.setAttribute(Define.PRINCIPAL, principal);
 
+		return "redirect:/";
+	}
+
+	@PostMapping("/updatePassword")
+	public String updatePassword(UpdateUserDto updateUserDto, Model model) {
+		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new LoginException("로그인을 해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		updateUserDto.setUserName(principal.getUserName());
+		userService.checkPassword(updateUserDto);
+		if (!updateUserDto.getNewPassword().equals(updateUserDto.getNewPasswordCheck())) {
+			throw new CustomRestfullException("변경할 비밀번호가 일치하지않습니다.다시 입력해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		userService.checkPassword(updateUserDto);
+		updateUserDto.setNickname(principal.getNickname());
+		updateUserDto.setEmail(principal.getEmail());
+		updateUserDto.setTel(principal.getTel());
+		updateUserDto.setPassword(updateUserDto.getNewPassword());
+		userService.updateUser(updateUserDto);
 		return "redirect:/";
 	}
 

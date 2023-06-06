@@ -118,6 +118,7 @@
 		ORDER BY r.start_date ASC, r.end_date ASC
 	</select>
 	
+	
 	<select id="selectRentSaleBySearchTitle"
 		resultType="com.bclass.arts_center.dto.request.RequestManagerRentSaleDto">
 		SELECT r.start_date, r.start_time, r.end_date, r.end_time,

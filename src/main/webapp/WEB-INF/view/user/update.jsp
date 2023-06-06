@@ -28,23 +28,7 @@
 			</div>
 			<br>
 			<form action="/user/update" method="post">
-				<br> <input type="hidden" class="form-control" id="userName"
-					name="userName" value="${user.userName}">
-				<c:choose>
-					<c:when test="${user.apiId != null}">
-						<input type="hidden" name="password" id="password"
-							value="${user.password}">
-					</c:when>
-					<c:otherwise>
-						<div id="ipw">
-							<p>비밀번호 :</p>
-							<i class="material-icons">lock_outline</i> <input type="password"
-								placeholder="비밀번호를 입력하세요" name="password" id="password"
-								class="infoPw"> <br>
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<span class="error--messege" th:if="${valid_password}">${valid_password}</span>
+
 				<br>
 				<div id="ipw">
 					<p>닉네임 :</p>
@@ -69,10 +53,40 @@
 						class="info" value="${user.tel}"><br>
 				</div>
 				<span class="error--messege" th:if="${valid_tel}">${valid_tel}</span>
+				<br> <input type="hidden" class="form-control" id="userName"
+					name="userName" value="${user.userName}">
+
+				<c:choose>
+					<c:when test="${user.apiId != null}">
+						<input type="hidden" name="password" id="password"
+							value="${user.password}">
+					</c:when>
+					<c:otherwise>
+						<h3
+							style="margin-top: 100px; margin-left: 180px; font-size: 25px;">현재
+							비밀번호를 입력해주세요.</h3>
+						<div id="ipw">
+							<p style="margin-left: -10px;">비밀번호 :</p>
+							<i class="material-icons">lock_outline</i> <input type="password"
+								placeholder="비밀번호를 입력하세요" name="password" id="password"
+								class="infoPw"> <br>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<span class="error--messege" th:if="${valid_password}">${valid_password}</span>
 				<br> <input type="hidden" value="${userInfo.id}" id="apiId"
 					name="apiId"> <input type="submit" value="정보수정"
 					class="login">
 			</form>
+			<c:choose>
+				<c:when test="${user.apiId != null}">
+				</c:when>
+				<c:otherwise>
+					<form action="/user/updatePassword">
+						<input type="submit" class="login" value="비밀번호 변경하기">
+					</form>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </div>

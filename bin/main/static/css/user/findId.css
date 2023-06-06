@@ -3,18 +3,24 @@
 */
 @charset "UTF-8";
 
+.olmessagef {
+	color: red;
+	font-style: Italic;
+}
 
-.olmessagef {color: red; font-style: Italic;}
-.olmessaget {color: blue; font-style: Italic;}
+.olmessaget {
+	color: blue;
+	font-style: Italic;
+}
 
-#overlappedID{
+#overlappedID {
 	width: 100px;
-    height: 50px;
-    background-color: rgb(255, 80, 90);
-    border-style: none;
-    color: white;
-    font-size: 15px;
-    border-radius: 5px;
+	height: 50px;
+	background-color: rgb(255, 80, 90);
+	border-style: none;
+	color: white;
+	font-size: 15px;
+	border-radius: 5px;
 }
 
 input.info {
@@ -95,28 +101,33 @@ i {
 	justify-content: center;
 	align-items: center;
 }
-#imail i{
+
+#imail i {
 	margin-left: 460px;
 }
-#ipw i{
+
+#ipw i {
 	margin-left: 560px;
 }
-#ipw button{
+
+#ipw button {
 	width: 100px;
 	height: 50px;
 	background-color: rgb(255, 80, 90);
 	border-style: none;
-	color:white;
+	color: white;
 	font-size: 15px;
 	border-radius: 5px;
 }
 
-.email button{
+.email button {
 	margin-left: 50px;
 }
-#overlappedID{
+
+#overlappedID {
 	margin-left: 10px;
 }
+
 #email {
 	display: flex;
 	justify-content: center;
@@ -213,37 +224,44 @@ a:hover {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	margin-left:400px;
+	margin-left: 400px;
 	width: 1000px;
 }
-.content div{
+
+.content div {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: flex
 }
-.content div p{
+
+.content div p {
 	width: 100px;
 }
-.content div input{
+
+.content div input {
 	width: 500px;
 }
-.content div select{
+
+.content div select {
 	width: 500px;
 }
 
 input, select {
 	font-size: 20px;
 }
-#year{
+
+#year {
 	width: 150px;
 	margin-left: -14px;
 }
+
 #month {
 	height: 56px;
 	width: 150px;
 }
-#day{
+
+#day {
 	width: 150px;
 }
 
@@ -253,38 +271,83 @@ input, select {
 	font-size: 30px;
 }
 
-
-
-.signUpContainer{
+.signUpContainer {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	height: 800px;
 }
-.signUp{
+
+.signUp {
 	background-color: rgb(255, 80, 90);
-    color: white;
-    height: 50px;
+	color: white;
+	height: 50px;
 	width: 150px;
-    border-radius: 5px;
-    border: 0;
-    font-size: 18px;
-    padding-top: 25px;
-    text-align: center;
-  }
-  .choiceContainer{
-	  margin-left: 150px;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  flex-direction: column;
-	  border: 1px solid #ccc;
-	  border-radius: 10px;
-	  width: 400px;
-	  height: 400px;
-	  padding: 50px;
-  }
-  #signUpicon{
-	  height: 200px;
-	  margin-bottom: 40px;
-  }
+	border-radius: 5px;
+	border: 0;
+	font-size: 18px;
+	padding-top: 25px;
+	text-align: center;
+}
+
+.choiceContainer {
+	margin-left: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	width: 400px;
+	height: 400px;
+	padding: 50px;
+}
+
+
+.kakaoLogo img {
+	height: 50px;
+	border-radius: 5px;
+}
+
+.naverLogo img {
+	width: 50px;
+	border-radius: 5px;
+}
+
+.googleLogo img {
+	width: 50px;
+}
+
+.logobox {
+	margin-left: 330px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 20px;
+}
+
+.logobox img {
+	margin: 7px;
+	width: 80px;
+	height: 80px;
+}
+
+#userName, #password {
+	height: 60px;
+	width: 600px;
+	font-size: 20px;
+}
+.selectIdAndPw {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: row;
+	margin-left: 250px;
+	width:500px;
+	font-size: 20px;
+}
+
+.selectIdAndPw p {
+	display: flex;
+	margin: 0px 10px;
+}
