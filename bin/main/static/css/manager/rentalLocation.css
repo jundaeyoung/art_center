@@ -1,4 +1,23 @@
 @charset "UTF-8";
+
+.button--box{
+	margin-left: -120px;
+	display: flex;
+	padding-bottom: 100px;
+}
+.button{
+	background-color: rgb(255, 80, 90);
+	color: white;
+	border-radius: 5px;
+	border: 0;
+	padding: 15px 60px;
+	margin-top: 30px;
+	margin-left: 35px;
+	height: 70px;
+	font-family: 'NanumSquare';
+	font-size: 20px;
+}
+
 .content_all {
 	display: flex;
 }

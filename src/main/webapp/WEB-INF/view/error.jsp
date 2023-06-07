@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-		<div style="display: flex; justify-content: center; align-items: center; margin-top: 300px;">
+		<div style="display: flex; justify-content: center; align-items: center; margin-top: 150px;">
 			<img alt="" src="/images/errorPage.png" width="1500">
 		</div>
 		<div style="display: flex; flex-direction: row; width: 430px; justify-content: space-between;margin-top: -150px;">

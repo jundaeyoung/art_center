@@ -2,7 +2,8 @@
    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/success.css">
-
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:formatNumber value="${kakaoApprove.amount.total}" pattern="#,##0" var="formattedAdultRate" />
 
 <div class="main">
    <div class="payment-content">
@@ -32,7 +33,7 @@
          </div>
 
          <div class="payment">
-            <p>결제 금액 : ${kakaoApprove.amount.total}</p>
+            <p>결제 금액 : ${formattedAdultRate}원</p>
          </div>
 
          <div class="payment-method">

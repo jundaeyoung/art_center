@@ -56,11 +56,11 @@
 					</select> <input type="hidden" id="locationId" name="locationId" value="${locationId}"> <input type="hidden" id="locationId" name="showId" value="${show.id}">
 				</div>
 				<div class="rental__ok">
-					<input type="submit" class="rental__btn" value="신청하기" style="font-size: 20px; margin-right: 50px;">
+					<input type="submit" class="rental__btn" value="신청하기" style="font-size: 20px; margin-right: 50px; background-color:  rgb(255, 80, 90); color: white;">
 				</div>
 			</form>
 			<div class="back" style="margin-left: 200px; margin-top: -80px;">
-				<button class="back__btn" onclick="location.href='/rental'" style="font-size: 20px;">취소하기</button>
+				<button class="back__btn" onclick="location.href='/rental'" style="font-size: 20px; background-color: #ccc; color: white;">취소하기</button>
 			</div>
 		</div>
 	</div>

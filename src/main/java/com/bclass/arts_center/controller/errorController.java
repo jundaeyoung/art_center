@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class errorController implements ErrorController {
-	private String ERROR_TEMPLATES_PATH = "/errors/";
+	private String ERROR_TEMPLATES_PATH = "/error";
 
 	@GetMapping("/error")
 	public String handleError(HttpServletRequest request) {
@@ -18,18 +18,18 @@ public class errorController implements ErrorController {
 		if (status != null) {
 			int statusCode = Integer.valueOf(status.toString());
 			if (statusCode == HttpStatus.NOT_FOUND.value()) {
-				return "/error";
+				return ERROR_TEMPLATES_PATH;
 			}
 			if (statusCode == HttpStatus.FORBIDDEN.value()) {
-				return "/error";
+				return ERROR_TEMPLATES_PATH;
 			}
 			if (statusCode == HttpStatus.BAD_REQUEST.value()) {
-				return "/error";
+				return ERROR_TEMPLATES_PATH;
 			}
 			if (statusCode == HttpStatus.BAD_GATEWAY.value()) {
-				return "/error";
+				return ERROR_TEMPLATES_PATH;
 			}
-			return "/error";
+			return ERROR_TEMPLATES_PATH;
 		}
 		return ERROR_TEMPLATES_PATH;
 	}

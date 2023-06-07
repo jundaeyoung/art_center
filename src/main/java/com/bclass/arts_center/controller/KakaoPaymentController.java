@@ -1,5 +1,7 @@
 package com.bclass.arts_center.controller;
 
+import java.text.DecimalFormat;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,7 +85,6 @@ public class KakaoPaymentController {
 
 		KakaoApprovalResponse kakaoApprove = kakaoPaymentService.kakaoApprove(pgToken);
 		model.addAttribute("kakaoApprove", kakaoApprove);
-
 		if (principal.getRoleId() == 1) {
 
 			Payment payment = new Payment();

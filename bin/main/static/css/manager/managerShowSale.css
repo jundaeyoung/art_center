@@ -1,214 +1,216 @@
 @charset "UTF-8";
 
 .show__header {
-	display: flex;
-	justify-content: center;
-	margin-top: 100px;
-	padding: 300px;
-	background-image: url('/images/background/signUpShow.png');
-	background-position: center;
+   display: flex;
+   justify-content: center;
+   margin-top: 100px;
+   padding: 300px;
+   background-image: url('/images/background/signUpShow.png');
+   background-position: center;
 }
 
 .show__header h1 {
-	font-size: 70px;
-	color: black;
-	font-weight: 600;
-	margin-top: 70px;
+   font-size: 70px;
+   color: black;
+   font-weight: 600;
+   margin-top: 70px;
 }
 
 .signUpShow__content {
-	height: 100px;
-	display: flex;
-	flex-direction: row;
-	text-align: center;
-	align-items: center;
-	justify-content: center;
-	margin: 60px 0;
+   height: 100px;
+   display: flex;
+   flex-direction: row;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   margin: 60px 0;
 }
 
 .signUpShow__content div {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
 }
 
 .signUpShow__info div {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	width: 600px;
-	margin-bottom: 10px;
-	font-size: 30px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   width: 600px;
+   margin-bottom: 10px;
+   font-size: 30px;
 }
 
 .signUpShow__info label {
-	width: 200px;
+   width: 200px;
 }
 
 .btn__sub button {
-	border: 1px solid #ccc;
-	margin-left: 60px;
-	background-color: white;
-	width: 150px;
-	height: 80px;
-	border-radius: 10px;
-	font-size: 25px;
+   border: 1px solid #ccc;
+   margin-left: 60px;
+   background-color: white;
+   width: 150px;
+   height: 80px;
+   border-radius: 10px;
+   font-size: 25px;
 }
 .signUpShow__info{
-	margin-right: 150px;
-	
+   margin-right: 150px;
+   
 }
 .signUpShow__info input {
-	height: 30px;
-	width: 200px;
-	font-size: 25px;
+   height: 30px;
+   width: 200px;
+   font-size: 25px;
 }
 
 .table-condensed {
-	height: 400px;
+   height: 400px;
 }
 /* 캘린더뒷배경 */
 .calendar-table {
-	width: 800px;
-	height: 800px;
+   width: 800px;
+   height: 800px;
 }
 
-.calendar-table table {
-	height: 750px !important;
-}
 
 .in-range available {
-	font-size: 200px;
+   font-size: 200px;
 }
 
 .calendar-time {
-	width: 400px;
-	height: 850px;
+   width: 400px;
+   height: 450px;
 }
 
 .opensright {
-	top: 550px !important;
-	left: auto !important;
-	margin-left: -100px !important;
+   top: 550px !important;
+   left: auto !important;
+   margin-left: -50px !important;
 }
 
 .daterangepicker .calendar-table {
-	border: 1px solid black;
+   border: 1px solid black;
 }
 
 .daterangepicker .drp-calendar {
-	max-width: 860px !important;
+   max-width: 460px !important;
+   max-height: 460px !important;
 }
 
 .daterangepicker .drp-calendar.right .calendar-table {
-	margin-left: 30px !important;
+   margin-left: 30px !important;
+}
+.calendar-table{
+   width: 400px!important;
+   height: 400px!important;
 }
 /* Month 글자 크기 */
 .month {
-	font-size: 20px !important;
+   font-size: 20px !important;
 }
 
 .table-condensed td {
-	font-size: 17px !important;
+   font-size: 17px !important;
 }
 
 .review__content {
-	display: flex;
-	justify-content: flex-start;
-	margin: 50px;
-	padding-bottom: 50px;
-	border-bottom: 1px solid #ccc;
+   display: flex;
+   justify-content: flex-start;
+   margin: 50px;
+   padding-bottom: 50px;
+   border-bottom: 1px solid #ccc;
 }
 
 .show__content {
-	margin-left: 100px;
-	width: 300px;
+   margin-left: 100px;
+   width: 300px;
 }
 
 .money__content {
-	display: flex;
-	flex-direction: column;
-	margin-left: -20px;
+   display: flex;
+   flex-direction: column;
+   margin-left: -20px;
 }
 
 .show__content {
-	height: 200px;
-	width: 400px;
+   height: 200px;
+   width: 400px;
 }
 
 .show__content div {
-	display: felx;
-	border: 1px solid #ccc;
+   display: felx;
+   border: 1px solid #ccc;
 }
 
 .show__content div p {
-	display: flex;
-	justify-content: space-between;
-	margin: 30px 20px;
-	align-items: center;
-	font-size: 22px;
+   display: flex;
+   justify-content: space-between;
+   margin: 30px 20px;
+   align-items: center;
+   font-size: 22px;
 }
 
 .show__content h1 {
-	font-weight: 500;
+   font-weight: 500;
 }
 
 .money__content h1 {
-	font-weight: 500;
-	margin-left: 100px;
+   font-weight: 500;
+   margin-left: 100px;
 }
 
 .money__content h3 {
-	display: flex;
-	justify-content: flex-end;
-	font-weight: 400;
-	font-size: 30px;
+   display: flex;
+   justify-content: flex-end;
+   font-weight: 400;
+   font-size: 30px;
 }
 
 #money {
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
-	margin-left: 100px;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   margin-left: 100px;
 }
 
 #money div {
-	border: 1px solid #ccc;
+   border: 1px solid #ccc;
 }
 
 #money div p {
-	display: flex;
-	justify-content: space-between;
-	margin: 30px 20px;
-	align-items: center;
-	font-size: 22px;
+   display: flex;
+   justify-content: space-between;
+   margin: 30px 20px;
+   align-items: center;
+   font-size: 22px;
 }
 
 .sum {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	width: 1400px;
-	color: black;
-	font-size: 40px;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	text-align: center;
-	padding: 1rem;
-	height: 150px;
+   border-top: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+   width: 1400px;
+   color: black;
+   font-size: 40px;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   text-align: center;
+   padding: 1rem;
+   height: 150px;
 }
 
 .sum h3 {
-	font-weight: 400;
+   font-weight: 400;
 }
 #columnchart_material svg g:nth-child(n+5) text {
-	font-size: 15px!important;
+   font-size: 15px!important;
 }
 #columnchart_material{
-	margin-top:50px!important;
-	margin-bottom:50px!important;
-	width: 1300px!important;
-	
+   margin-top:50px!important;
+   margin-bottom:50px!important;
+   width: 1300px!important;
+   
 }

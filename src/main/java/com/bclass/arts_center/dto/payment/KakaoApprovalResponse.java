@@ -25,5 +25,6 @@ public class KakaoApprovalResponse {
 	private LocalDateTime createdAt; // 결제 준비 요청 시각
 	private LocalDateTime approvedAt; // 결제 승인 시각
 	private String payload; // 결제 승인 요청에 대해 저장한 값, 요청 시 전달된 내용
+	private String fomatAmount;
 
 }

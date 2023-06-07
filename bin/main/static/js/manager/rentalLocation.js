@@ -58,14 +58,14 @@ function calculatePrice() {
 		let dateTime = document.getElementById("dateTime").value;
 		let date = dateTime;
 		date = date.split(" ~ ");
-		
+
 		var date_arr = date[0].split("-");
 
-		var stDate = new Date(date_arr[0], date_arr[1]-1, date_arr[2]);
+		var stDate = new Date(date_arr[0], date_arr[1] - 1, date_arr[2]);
 
 		var endDate_arr = date[1].split("-");
-		var endDate = new Date(endDate_arr[0], endDate_arr[1]-1, endDate_arr[2]);
-		
+		var endDate = new Date(endDate_arr[0], endDate_arr[1] - 1, endDate_arr[2]);
+
 		let startTime = document.getElementById("timeSelect").value;
 		let startTime2 = startTime
 		startTime2 = startTime2.replaceAll(":00", "");
@@ -105,13 +105,13 @@ function calculatePrice() {
 				$("#timeSelect option[value*='" + response[i].startTime + "']").attr("disabled", false);
 				$("#endTime option[value*='" + response[i].endTime + "']").attr("disabled", false);
 			}
-		});
-		for (let i = 0; i < response.length; i++) {
-			for (let j = parseInt(response[i].startTime); j <= parseInt(response[i].endTime); j++) {
-				$("#timeSelect option[value*='" + j + ":00:00" + "']").attr("disabled", true);
-				$("#endTime option[value*='" + j + ":00:00" + "']").attr("disabled", true);
+			for (let i = 0; i < response.length; i++) {
+				for (let j = parseInt(response[i].startTime); j <= parseInt(response[i].endTime); j++) {
+					$("#timeSelect option[value*='" + j + ":00:00" + "']").attr("disabled", true);
+					$("#endTime option[value*='" + j + ":00:00" + "']").attr("disabled", true);
+				}
 			}
-		}
+		});
 
 		$("#endTime").on("click", function() {
 			let startDate = $("#timeSelect option:selected").val();
@@ -119,7 +119,12 @@ function calculatePrice() {
 				console.log(i);
 				$("#endTime option[value*='" + i + ":00:00" + "']").attr("disabled", true);
 			}
-
+			for (let i = 0; i < response.length; i++) {
+				for (let j = parseInt(response[i].startTime); j <= parseInt(response[i].endTime); j++) {
+					$("#timeSelect option[value*='" + j + ":00:00" + "']").attr("disabled", true);
+					$("#endTime option[value*='" + j + ":00:00" + "']").attr("disabled", true);
+				}
+			}
 		});
 
 	}).fail(function(error) {

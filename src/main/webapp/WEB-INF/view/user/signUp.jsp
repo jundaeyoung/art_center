@@ -90,7 +90,7 @@
                   <input type="text" placeholder="이메일 인증번호를 입력하세요" name="text"
                      id="emailCheck" class="info"><br>
                   <button type="button" id="checkEmailNumber"
-                     style="margin-left: 10px;">이메일 인증</button>
+                     style="margin-left: 10px;">인증 확인</button>
                </div>
                <span class="error--messege" th:if="${valid_email}">${valid_email}</span>
                <br>

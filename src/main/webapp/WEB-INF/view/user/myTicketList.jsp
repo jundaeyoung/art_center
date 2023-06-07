@@ -103,7 +103,7 @@
 }
 
 .btn {
-	width: 1100px;
+	width: 1180px;
 	justify-content: flex-end;
 	align-items: flex-start;
 	display: flex;
@@ -187,7 +187,7 @@
 							<input type="hidden" name="ticketingId"
 								value="${myTicketList.id}">
 							<button type="submit" class="kakao--btn">
-								<img alt="" src="/images/kakao/payment_icon_yellow_small.png">
+								<img alt="" src="/images/kakao/payment_icon_yellow_small.png" class="kakao">
 							</button>
 						</form>
 					</c:when>

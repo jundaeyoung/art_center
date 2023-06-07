@@ -69,8 +69,9 @@
    display: flex;
    text-decoration: none;
    justify-content: center;
-   color: black;
-   border: 1px solid #C2CDFF;
+   color: white;
+   border: 1px solid #ff505a;
+   background-color: #ff505a;
    width: 200px;
    height: 40px;
    border-radius: 5px;

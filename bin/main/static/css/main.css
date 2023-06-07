@@ -486,7 +486,7 @@ content ul {
 
 .main_notice_title {
 	text-align: center;
-	border-top: 1px solid black;
+	border-top: 1px solid #ccc;
 	padding-top: 15px;
 	font-size: 20px;
 	width: 70px;
@@ -503,15 +503,15 @@ content ul {
 }
 
 .notice__content {
-	border-top: 2px solid #000;
-	border-left: 2px solid #000;
-	border-right: 2px solid #000;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 	width: 1480px;
 	height: 70px;
 }
 
 .notice__content:last-child {
-	border-bottom: 2px solid #000;
+	border-bottom: 1px solid #ccc;
 }
 
 .date {

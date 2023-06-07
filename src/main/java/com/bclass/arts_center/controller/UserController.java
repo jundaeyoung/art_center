@@ -230,7 +230,6 @@ public class UserController {
 			throw new CustomRestfullException("휴대폰 번호를 입력하세요", HttpStatus.BAD_REQUEST);
 		}
 		
-		System.out.println(user.toString());
 		User userName = userService.selectUserNameByEmailAndTel(user);
 		
 		if (userName == null) {

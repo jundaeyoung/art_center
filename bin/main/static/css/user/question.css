@@ -178,7 +178,6 @@
 	height: 50px;
 	background-color: #FBFBFB;
 	border: 1px solid #ccc;
-	border-radius: 10px;
 }
 
 .submit {
@@ -186,7 +185,6 @@
 	height: 50px;
 	background-color: #FBFBFB;
 	border: 1px solid #ccc;
-	border-radius: 10px;
 }
 
 .answer_status {
