@@ -5,13 +5,18 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto;
+import com.bclass.arts_center.repository.model.Show;
 
 @Mapper
 public interface RentPlaceReservationRepository {
 
 	public List<RequestRentPlaceReservationDto> selectRentPlaceReservationList();
 
-	public int updateRentPlaceReservation(Integer id);
+	public Integer updateRentPlaceReservation(Integer id);
 
-	public int updateRentById(Integer id);
+	public Integer updateRentById(Integer id);
+	
+	public Show selectShowIdByRentRefund(Integer id);
+	
+	public Integer deleteShowTime(Show showId);
 }

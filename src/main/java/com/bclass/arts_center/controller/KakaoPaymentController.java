@@ -1,6 +1,6 @@
 package com.bclass.arts_center.controller;
 
-import java.text.DecimalFormat;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,14 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bclass.arts_center.controller.adminController.MessageApiController;
-import com.bclass.arts_center.dto.payment.Amount;
 import com.bclass.arts_center.dto.payment.KakaoApprovalResponse;
 import com.bclass.arts_center.dto.payment.KakaoReadyResponse;
 import com.bclass.arts_center.dto.payment.KakaoRefundResponse;
-import com.bclass.arts_center.dto.payment.RequestPaymentInfoDto;
 import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.repository.model.ManagerPayment;
 import com.bclass.arts_center.repository.model.Payment;
+import com.bclass.arts_center.repository.model.Show;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.KakaoPaymentService;
 import com.bclass.arts_center.service.PaymentService;
@@ -53,7 +52,6 @@ public class KakaoPaymentController {
 	@Autowired
 	private MessageApiController messageApiController;
 
-	
 	@GetMapping("/ready")
 	public String readyToKakaoPay(Integer ticketingId, Integer rentId, RedirectAttributes redirectAttributes) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
@@ -77,7 +75,6 @@ public class KakaoPaymentController {
 		return "redirect:" + kakaoReadyResponse.getNextRedirectPcUrl();
 	}
 
-	
 	@GetMapping("/success")
 	public String success(Integer ticketingId, @RequestParam(name = "pg_token", required = false) String pgToken,
 			Model model) {
@@ -119,7 +116,6 @@ public class KakaoPaymentController {
 		return "/payment/success";
 	}
 
-	
 	@GetMapping("/cancel")
 	public String cancel() {
 
@@ -127,14 +123,12 @@ public class KakaoPaymentController {
 
 	}
 
-	
 	@GetMapping("/fail")
 	public String fail() {
 
 		return "/payment/fail";
 	}
 
-	
 	@GetMapping("/refund/{tid}")
 	public String refundCheck(@PathVariable(name = "tid", required = false) String tid, Model model,
 			@RequestParam(name = "id", required = false) Integer id) {
@@ -149,14 +143,13 @@ public class KakaoPaymentController {
 
 		return "/payment/refundCheck";
 	}
-	
-	
+
 	@PostMapping("/refund/{tid}")
 	public String refund(@PathVariable(name = "tid", required = false) String tid, Model model,
 			@RequestParam(name = "id", required = false) Integer id) {
-		
+
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
-		
+
 		KakaoRefundResponse kakaoRefundResponse = null;
 		if (principal.getRoleId() == 1) {
 			kakaoRefundResponse = kakaoPaymentService.kakaoRefund(principal.getId(), tid);
@@ -165,11 +158,15 @@ public class KakaoPaymentController {
 			kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
 			paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
 			rentPlaceReservationService.updateRentByStatus(id);
+			System.out.println(id);
+			Show showId = rentPlaceReservationService.readShowIdByRentRefund(id);
+			System.out.println(showId);
+			Integer result = rentPlaceReservationService.deleteShowTime(showId);
+			System.out.println(result);
 		}
 		model.addAttribute("kakaoRefundResponse", kakaoRefundResponse);
-		
+
 		return "/payment/refund";
 	}
 
 }
-

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto;
 import com.bclass.arts_center.repository.interfaces.RentPlaceReservationRepository;
+import com.bclass.arts_center.repository.model.Show;
 
 @Service
 public class RentPlaceReservationService {
@@ -38,4 +39,22 @@ public class RentPlaceReservationService {
 		
 		return resultRowCount;
 	}
+	
+	
+	@Transactional
+	public Show readShowIdByRentRefund(Integer id) {
+		Show showId = placeReservationRepository.selectShowIdByRentRefund(id);
+		
+		return showId;
+	}
+	
+	
+	
+	@Transactional
+	public Integer deleteShowTime(Show showId) {
+		Integer resultRowCount = placeReservationRepository.deleteShowTime(showId);
+		
+		return resultRowCount;
+	}
+	
 }

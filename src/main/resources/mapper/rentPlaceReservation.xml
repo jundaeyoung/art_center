@@ -23,11 +23,21 @@
 		WHERE id = #{id};
 	</update>
 	
+	<select id="selectShowIdByRentRefund" resultType="com.bclass.arts_center.repository.model.Show">
+		SELECT show_id FROM rent_place_reservation_tb
+        WHERE id=#{id}
+	</select>
+	
 	<update id="updateRentById">
 		UPDATE rent_place_reservation_tb  
 		SET rent_place_status = 2 
 		WHERE id = #{id}
 	</update>
+	
+	<delete id="deleteShowTime">
+		DELETE show_datetime_tb  
+		WHERE id = #{showId}
+	</delete>
 </mapper>
 
 

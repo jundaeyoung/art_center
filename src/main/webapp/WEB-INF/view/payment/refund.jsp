@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet" href="/css/refund.css">
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" href="/css/refund.css">
 <fmt:formatNumber value="${kakaoRefundResponse.canceledAmount.total}" pattern="#,##0" var="formattedAdultRate" />
 
 
