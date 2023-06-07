@@ -154,7 +154,7 @@
         ON r.show_id = s.id
 		WHERE t.user_id = #{userId}
 		AND t.payment_status = 1
-		AND sd.show_date > now()
+		AND now() > sd.show_date  
 		AND c.show_type = #{showType}
 		ORDER BY r.content ASC, show_date DESC
 	</select>
