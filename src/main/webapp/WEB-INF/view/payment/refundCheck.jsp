@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/refundCheck.css">
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:formatNumber value="${kakaoRefundResponse.rentPrice}" pattern="#,##0" var="formattedAdultRate" />
 
 
 
@@ -20,7 +22,7 @@
 		</div>
 		<div>
 			<h3>취소 금액 : </h3>
-			<p>${kakaoRefundResponse.rentPrice}</p>
+			<p>${formattedAdultRate}</p>
 		</div>
 		<div>
 			<h3>결제 수단 : </h3>

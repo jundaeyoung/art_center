@@ -9,13 +9,13 @@
 		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
 		SELECT s.id as id, s.title AS title, h.name AS holeName, sd.show_date
 		AS startDate ,sd.show_time AS start_time, img_route AS imgRoute
-		FROM show_datetime_tb AS sd
+        FROM rent_place_reservation_tb AS r
+        JOIN hole_tb AS h
+		ON h.id= r.hole_id
 		JOIN show_tb AS s
-		ON s.id = sd.show_id
-		JOIN hole_tb AS h
-		ON h.id= s.hole_id
-		JOIN rent_place_reservation_tb AS r
-		ON r.hole_id=h.id
+		ON s.id = r.show_id
+        JOIN show_datetime_tb AS sd
+		ON sd.hole_id=h.id
 		WHERE s.organizer_id=#{id} AND s.show_status=1 AND r.rent_place_status=1
 	</select>
 </mapper>

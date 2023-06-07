@@ -2,6 +2,9 @@
    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/refund.css">
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:formatNumber value="${kakaoRefundResponse.canceledAmount.total}" pattern="#,##0" var="formattedAdultRate" />
+
 
 <div class="refund-main">
    <div class="refund-content">
@@ -29,7 +32,7 @@
          </div>
 
          <div class="refund-amount">
-            <p>취소 금액 : ${kakaoRefundResponse.canceledAmount.total}</p>
+            <p>취소 금액 : ${formattedAdultRate}원</p>
          </div>
 
          <div class="refund-method">
