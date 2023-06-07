@@ -23,6 +23,7 @@ import com.bclass.arts_center.handler.exception.LoginException;
 import com.bclass.arts_center.repository.model.User;
 import com.bclass.arts_center.service.UserService;
 import com.bclass.arts_center.utils.Define;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 @Controller
 @RequestMapping("/user")
@@ -221,9 +222,21 @@ public class UserController {
 	}
 
 	@PostMapping("findId")
-	public String findId(User user) {
-		userService.selectUserNameByEmailAndTel(user);
-
+	public String findId(User user, Model model) {
+		if (user.getEmail() == null || user.getEmail().isEmpty()) {
+			throw new CustomRestfullException("email을 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		if (user.getTel() == null || user.getTel().isEmpty()) {
+			throw new CustomRestfullException("휴대폰 번호를 입력하세요", HttpStatus.BAD_REQUEST);
+		}
+		
+		System.out.println(user.toString());
+		User userName = userService.selectUserNameByEmailAndTel(user);
+		
+		if (userName == null) {
+			throw new CustomRestfullException("찾으시는 정보가 없습니다. 다시 한번 확인해주세요.", HttpStatus.BAD_REQUEST);
+		}
+		model.addAttribute("userName", userName);
 		return "user/findId";
 	}
 
