@@ -5,189 +5,188 @@
 
 <mapper namespace="com.bclass.arts_center.repository.interfaces.TicketRepository">
 
-	<select id="selectShowInfoForTicketingByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT *
-		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
-		ON s.id = sd.show_id
-		WHERE sd.show_id = #{showId}
-	</select>
+   <select id="selectShowInfoForTicketingByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT *
+      FROM show_tb AS s
+      JOIN show_datetime_tb AS sd
+      ON s.id = sd.show_id
+      WHERE sd.show_id = #{showId}
+   </select>
 
-	<select id="selectShowDateByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT s.id, sd.show_date
-		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
-		ON s.id = sd.show_id
-		WHERE sd.show_id = #{showId}
-		GROUP BY show_date
-	</select>
+   <select id="selectShowDateByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT s.id, sd.show_date
+      FROM show_tb AS s
+      JOIN show_datetime_tb AS sd
+      ON s.id = sd.show_id
+      WHERE sd.show_id = #{showId}
+      GROUP BY show_date
+   </select>
 
-	<select id="selectShowTimeByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT sd.id, sd.show_time
-		FROM show_tb AS s
-		JOIN show_datetime_tb AS sd
-		ON s.id = sd.show_id
-		WHERE sd.show_id = #{showId}
-		AND sd.show_date = #{showDate}
-		GROUP BY show_time
-		ORDER BY show_time ASC
-	</select>
+   <select id="selectShowTimeByShowId" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT sd.id, sd.show_time
+      FROM show_tb AS s
+      JOIN show_datetime_tb AS sd
+      ON s.id = sd.show_id
+      WHERE sd.show_id = #{showId}
+      AND sd.show_date = #{showDate}
+      GROUP BY show_time
+      ORDER BY show_time ASC
+   </select>
 
-	<select id="selectSeatInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT *
-		FROM seat_tb AS st
-		JOIN hole_tb AS h
-		ON h.id = st.hole_id
-		JOIN show_tb AS sw
-		ON sw.hole_id = h.id
-		JOIN show_datetime_tb AS sd
-		ON sd.show_id = sw.id
-		WHERE sw.id = #{showId} AND sd.id = #{showDatetimeId}
-	</select>
+   <select id="selectSeatInfo" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT *
+      FROM seat_tb AS st
+      JOIN hole_tb AS h
+      ON h.id = st.hole_id
+      JOIN show_tb AS sw
+      ON sw.hole_id = h.id
+      JOIN show_datetime_tb AS sd
+      ON sd.show_id = sw.id
+      WHERE sw.id = #{showId} AND sd.id = #{showDatetimeId}
+   </select>
 
-	<select id="selectOccupiedSeat" resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT *
-		FROM seat_occupied_tb
-		WHERE show_datetime_id = #{showDatetimeId}
-	</select>
+   <select id="selectOccupiedSeat" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT *
+      FROM seat_occupied_tb
+      WHERE show_datetime_id = #{showDatetimeId}
+   </select>
 
-	<select id="selectTicketingAll" resultType="com.bclass.arts_center.dto.TicketingDto">
-		SELECT
-		t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,
-		count(case when t.age_group_id=2 then 1 end) as youthCount, count(case
-		when
-		t.age_group_id=3 then 1 end) as adultCount
-		FROM show_tb AS s
-		join
-		show_datetime_tb
-		AS sd ON
-		sd.show_id = s.id
-		left Join ticketing_tb AS t
-		ON t.show_datetime_id = sd.id
-		left JOIN age_group_tb AS a ON
-		t.age_group_id = a.id
-		Join user_tb AS u ON u.id = t.user_id
+   <select id="selectTicketingAll" resultType="com.bclass.arts_center.dto.TicketingDto">
+      SELECT
+      t.ticketing_date,u.nickname,u.tel,u.email,sd.show_date,sd.show_time,s.title,s.adult_rate,s.youth_rate,
+      count(case when t.age_group_id=2 then 1 end) as youthCount, count(case
+      when
+      t.age_group_id=3 then 1 end) as adultCount
+      FROM show_tb AS s
+      join
+      show_datetime_tb
+      AS sd ON
+      sd.show_id = s.id
+      left Join ticketing_tb AS t
+      ON t.show_datetime_id = sd.id
+      left JOIN age_group_tb AS a ON
+      t.age_group_id = a.id
+      Join user_tb AS u ON u.id = t.user_id
         where t.payment_status = 1
-		group by s.id,
-		sd.show_date,sd.show_time,u.nickname
-		order by t.id desc
-	</select>
+      group by s.id,
+      sd.show_date,sd.show_time,u.nickname
+      order by t.id desc
+   </select>
 
 
-	<insert id="insertTicket">
-		INSERT INTO ticketing_tb (user_id, show_id, seat_id, age_group_id,
-		show_datetime_id)
-		VALUES (#{userId}, #{showId}, #{seatId}, #{ageGroupId}, #{showDatetimeId})
-	</insert>
+   <insert id="insertTicket">
+      INSERT INTO ticketing_tb (user_id, show_id, seat_id, age_group_id,
+      show_datetime_id)
+      VALUES (#{userId}, #{showId}, #{seatId}, #{ageGroupId}, #{showDatetimeId})
+   </insert>
 
 
-	<insert id="insertSeat">
-		INSERT INTO seat_occupied_tb (seat_id, show_datetime_id)
-		VALUES (#{seatId}, #{showDatetimeId})
-	</insert>
+   <insert id="insertSeat">
+      INSERT INTO seat_occupied_tb (seat_id, show_datetime_id)
+      VALUES (#{seatId}, #{showDatetimeId})
+   </insert>
 
 
-	<select id="selectTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
-		SELECT * FROM ticketing_tb as t
-		JOIN show_tb as s
-		ON t.show_id = s.id
-		LEFT JOIN seat_tb as se
-		ON t.seat_id = se.seat_id
-		JOIN hole_tb as h
-		ON h.id = s.hole_id
-		JOIN show_datetime_tb as sd
-		ON t.show_datetime_id = sd.id
-		WHERE user_id = #{userId} AND payment_status = 0
-		ORDER BY ticketing_date DESC
-	</select>
+   <select id="selectTicket" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+      SELECT * FROM ticketing_tb as t
+      JOIN show_tb as s
+      ON t.show_id = s.id
+      LEFT JOIN seat_tb as se
+      ON t.seat_id = se.seat_id
+      JOIN hole_tb as h
+      ON h.id = s.hole_id
+      JOIN show_datetime_tb as sd
+      ON t.show_datetime_id = sd.id
+      WHERE user_id = #{userId} AND payment_status = 0
+      ORDER BY ticketing_date DESC
+   </select>
 
 
-	<select id="selectTicketForPay" resultType="com.bclass.arts_center.dto.TicketCheckDto">
-		SELECT * FROM ticketing_tb as t
-		JOIN show_tb as s
-		ON t.show_id = s.id
-		LEFT JOIN seat_tb as se
-		ON t.seat_id = se.seat_id
-		JOIN hole_tb as h
-		ON h.id = s.hole_id
-		JOIN show_datetime_tb AS sd
-		ON t.show_datetime_id = sd.id
-		JOIN user_tb AS u
-		ON t.user_id = u.id
-		WHERE t.id = #{ticketingId}
-	</select>
+   <select id="selectTicketForPay" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+      SELECT * FROM ticketing_tb as t
+      JOIN show_tb as s
+      ON t.show_id = s.id
+      LEFT JOIN seat_tb as se
+      ON t.seat_id = se.seat_id
+      JOIN hole_tb as h
+      ON h.id = s.hole_id
+      JOIN show_datetime_tb AS sd
+      ON t.show_datetime_id = sd.id
+      JOIN user_tb AS u
+      ON t.user_id = u.id
+      WHERE t.id = #{ticketingId}
+   </select>
 
-	<update id="updateTicketing">
-		UPDATE ticketing_tb
-		SET payment_status = 1
-		WHERE user_id = #{userId} AND payment_status = 0 AND id = #{ticketingId}
-	</update>
+   <update id="updateTicketing">
+      UPDATE ticketing_tb
+      SET payment_status = 1
+      WHERE user_id = #{userId} AND payment_status = 0 AND id = #{ticketingId}
+   </update>
 
-	<update id="updateQrCode">
-		UPDATE ticketing_tb
-		SET qr_code = #{path}
-		WHERE id=#{id}
-	</update>
-
-
-	<select id="selectTicketId" resultType="com.bclass.arts_center.dto.TicketCheckDto">
-		SELECT * 
-		FROM ticketing_tb
-		ORDER BY id DESC
-		LIMIT 1
-	</select>
-	<select id="selectTicketIdbyId" resultType="com.bclass.arts_center.dto.TicketCheckDto">
-		SELECT * 
-		FROM ticketing_tb AS t
-		JOIN show_tb AS s
-		ON t.show_id = s.id
-		JOIN user_tb AS u
-		ON t.user_id = u.id
-		JOIN seat_tb AS seat
-		ON seat.seat_id = t.seat_id
-		JOIN show_datetime_tb AS sd
-		ON sd.id = t.show_datetime_id
-		JOIN hole_tb AS h
-		ON h.id = s.hole_id
-		WHERE t.id = #{id}
-	</select>
+   <update id="updateQrCode">
+      UPDATE ticketing_tb
+      SET qr_code = #{path}
+      WHERE id=#{id}
+   </update>
 
 
-	<select id="countTicketing" resultType="Integer">
-		SELECT COUNT(*) AS count, s.show_type_id AS showTypeId 
-		FROM show_tb AS s
-		JOIN ticketing_tb AS t
-		ON t.show_id = s.id
-		JOIN show_datetime_tb AS sd
-		ON sd.id = t.show_datetime_id
-		WHERE sd.id=#{showDatetimeId}
-	</select>
+   <select id="selectTicketId" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+      SELECT * 
+      FROM ticketing_tb
+      ORDER BY id DESC
+      LIMIT 1
+   </select>
+   <select id="selectTicketIdbyId" resultType="com.bclass.arts_center.dto.TicketCheckDto">
+      SELECT * 
+      FROM ticketing_tb AS t
+      JOIN show_tb AS s
+      ON t.show_id = s.id
+      JOIN user_tb AS u
+      ON t.user_id = u.id
+      JOIN seat_tb AS seat
+      ON seat.seat_id = t.seat_id
+      JOIN show_datetime_tb AS sd
+      ON sd.id = t.show_datetime_id
+      JOIN hole_tb AS h
+      ON h.id = s.hole_id
+      WHERE t.id = #{id}
+   </select>
 
 
-	<select id="selectMyTiketDto" resultType="com.bclass.arts_center.dto.MyTiketDto">
-		SELECT t.user_id, s.img_route, s.title, s.content,l.location, h.name, se.seat_name, sd.show_date,
-		sd.show_time, c.show_type, r.content AS reviewContent, t.show_id, r.rating
-		FROM ticketing_tb AS t
-		JOIN payment_tb AS p
-		ON t.id = p.ticketing_id
-		JOIN show_tb AS s
-		ON t.show_id = s.id
-		JOIN show_datetime_tb AS sd
-		ON sd.id = t.show_datetime_id
-		JOIN seat_tb AS se
-		ON t.seat_id = se.seat_id
-		JOIN hole_tb AS h
-		ON h.id = se.hole_id
-		JOIN location_tb AS l
-		ON l.id = h.location_id
-		JOIN category_tb AS c
-		ON c.id = s.show_type_id
+   <select id="countTicketing" resultType="Integer">
+      SELECT COUNT(*) AS count, s.show_type_id AS showTypeId 
+      FROM show_tb AS s
+      JOIN ticketing_tb AS t
+      ON t.show_id = s.id
+      JOIN show_datetime_tb AS sd
+      ON sd.id = t.show_datetime_id
+      WHERE sd.id=#{showDatetimeId}
+   </select>
+
+
+   <select id="selectMyTiketDto" resultType="com.bclass.arts_center.dto.MyTiketDto">
+      SELECT t.user_id, s.img_route, s.title, s.content,l.location, h.name, se.seat_name, sd.show_date,
+      sd.show_time, c.show_type, r.content AS reviewContent, t.show_id, r.rating
+      FROM ticketing_tb AS t
+      JOIN payment_tb AS p
+      ON t.id = p.ticketing_id
+      JOIN show_tb AS s
+      ON t.show_id = s.id
+      JOIN show_datetime_tb AS sd
+      ON sd.id = t.show_datetime_id
+      JOIN seat_tb AS se
+      ON t.seat_id = se.seat_id
+      JOIN hole_tb AS h
+      ON h.id = se.hole_id
+      JOIN location_tb AS l
+      ON l.id = h.location_id
+      JOIN category_tb AS c
+      ON c.id = s.show_type_id
         LEFT JOIN review_tb AS r
         ON r.show_id = s.id
-		WHERE t.user_id = #{userId}
-		AND t.payment_status = 1
-		AND sd.show_date <![CDATA[<]]> curdate()
-		ORDER BY r.content ASC, show_date DESC
-	</select>	
+      WHERE t.user_id = #{userId}
+      AND t.payment_status = 1
+      AND curdate() >= sd.show_date 
+      ORDER BY r.content ASC, show_date DESC
+   </select>   
 </mapper>
-

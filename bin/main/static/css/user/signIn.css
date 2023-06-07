@@ -168,9 +168,13 @@ a:hover {
 }
 
 #userName, #password {
+	margin-left: 20px;
 	height: 60px;
-	width: 600px;
+	width: 540px;
 	font-size: 20px	;
+}
+#password{
+	margin-left: 8px;
 }
 #userEmail{
 	height: 60px;
@@ -179,6 +183,7 @@ a:hover {
 }
 
 .login {
+	margin-top: 50px;
 	width: 610px;
 	height:80px;
 	font-size: 35px;

@@ -147,7 +147,7 @@ public class UserController {
 		}
 		Integer result = userService.createUser(signUpFormDto);
 		if (result == 1) {
-			return "redirect:/user/login";
+			throw new LoginException("회원가입에 성공하였습니다.", HttpStatus.OK);
 		} else {
 			throw new CustomRestfullException("회원가입에 실패하였습니다.", HttpStatus.BAD_REQUEST);
 		}

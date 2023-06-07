@@ -47,7 +47,7 @@
 													<h3 style="margin-top: 30px; margin-left: -330px; font-size: 27px; font-weight: 100; height: 60px;">평점이 아직 등록되지 않았습니다.</h3>
 												</c:when>
 												<c:otherwise>
-													<h3 style="margin-top: 30px; margin-left: -150px; font-size: 27px; font-weight: 100; height: 60px;">평점 : ${showList.rating}</h3>
+													<h3 style="margin-top: 30px; margin-left: -335px; font-size: 27px; font-weight: 100; height: 60px;">⭐평점 : ${showList.rating}</h3>
 												</c:otherwise>
 											</c:choose>
 											<h4 style="margin-top: -20px; margin-left: -330px; font-size: 25px; font-weight: 100;">기간 : ${showList.startDate}&nbsp&nbsp&nbsp~&nbsp&nbsp&nbsp${showList.endDate}</h4>

@@ -18,9 +18,15 @@
 		<br>
 		<form action="/user/loginProc" method="post">
 			<div id="imail">
+			<label>
+				아이디 :					
+			</label>
 				<i class="material-icons">person_outline</i> <input type="text" placeholder="아이디를 입력하세요" name="userName" id="userName" class="info"><br>
 			</div>
 			<div id="ipw">
+			<label>
+				비밀번호 : 
+			</label>
 				<i class="material-icons">lock_outline</i> <input type="password" placeholder="비밀번호를 입력하세요" name="password" id="password" class="info"><br>
 			</div>
 			<input type="submit" value="로그인" class="login">

@@ -50,20 +50,20 @@
 <div class="search" id="hide__search__box">
 	<form action="/review/search" method="get">
 		<input type="text" class="textbox" name="showName"> <input type="hidden" name="currentPage" value="1"> <input type="hidden" name="begin" value="0"> <input type="hidden"
-			name="range" value="5"> <input type="submit" class="submit" value="검&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp색">
+			name="range" value="5"> <input type="submit" class="submit" value="검&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;색">
 	</form>
 </div>
 <div class="review">
 	<c:forEach var="reviewList" items="${reviewList}">
 		<div class="review__content">
 			<div>
-				<a href="/show/showView/${reviewList.showId}"><img src="/images/${reviewList.imgRoute}" width="230" height="300"></a>
+				<a href="/show/showView/${reviewList.showId}"><img src="/images/upload/${reviewList.imgRoute}" width="230" height="300"></a>
 			</div>
 			<div class="show__content">
-				<h2>${reviewList.title}&nbsp&nbsp&nbsp&nbsp(${reviewList.showType})</h2>
+				<h2>${reviewList.title}&nbsp;&nbsp;&nbsp;&nbsp;(${reviewList.showType})</h2>
 				<p>${reviewList.reviewContent}</p>
 				<div class="review__content__info">
-					<h4 class="review__content__username">${reviewList.userName}&nbsp&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp${reviewList.reviewCreationDate}</h4>
+					<h4 class="review__content__username">${reviewList.userName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${reviewList.reviewCreationDate}</h4>
 				</div>
 				<h3>평점 : ${reviewList.rating}</h3>
 			</div>

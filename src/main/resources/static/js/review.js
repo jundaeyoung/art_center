@@ -22,7 +22,7 @@ $("#show").on("click", function() {
 		for (let i = 0; i < response.data.length; i++) {
 			let reviewContent = `<div class="review__content">
 		<div>
-			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/`+response.data[i].imgRoute+`" width="230" height="300"></a>
+			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/upload/`+response.data[i].imgRoute+`" width="230" height="300"></a>
 		</div>
 		<div class="show__content">
 			<h2>`+response.data[i].title+`&nbsp&nbsp&nbsp&nbsp(`+response.data[i].showType+`)</h2>
@@ -86,7 +86,7 @@ $("#exhibition").on("click", function() {
 		for (let i = 0; i < response.data.length; i++) {
 			let reviewContent = `<div class="review__content">
 		<div>
-			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/`+response.data[i].imgRoute+`" width="230" height="300"></a>
+			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/upload/`+response.data[i].imgRoute+`" width="230" height="300"></a>
 		</div>
 		<div class="show__content">
 			<h2>`+response.data[i].title+`&nbsp&nbsp&nbsp&nbsp(`+response.data[i].showType+`)</h2>
@@ -153,7 +153,7 @@ $("#exhibition").on("click", function() {
 		for (let i = 0; i < response.data.length; i++) {
 			let reviewContent = `<div class="review__content">
 		<div>
-			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/`+response.data[i].imgRoute+`" width="230" height="300"></a>
+			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/upload/`+response.data[i].imgRoute+`" width="230" height="300"></a>
 		</div>
 		<div class="show__content">
 			<h2>`+response.data[i].title+`&nbsp&nbsp&nbsp&nbsp(`+response.data[i].showType+`)</h2>
@@ -218,7 +218,7 @@ $("#exhibition").on("click", function() {
 		for (let i = 0; i < response.data.length; i++) {
 			let reviewContent = `<div class="review__content">
 		<div>
-			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/`+response.data[i].imgRoute+`" width="230" height="300"></a>
+			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/upload/`+response.data[i].imgRoute+`" width="230" height="300"></a>
 		</div>
 		<div class="show__content">
 			<h2>`+response.data[i].title+`&nbsp&nbsp&nbsp&nbsp(`+response.data[i].showType+`)</h2>
@@ -281,7 +281,7 @@ $("#exhibition").on("click", function() {
 		for (let i = 0; i < response.data.length; i++) {
 			let reviewContent = `<div class="review__content">
 		<div>
-			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/`+response.data[i].imgRoute+`" width="230" height="300"></a>
+			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/upload/`+response.data[i].imgRoute+`" width="230" height="300"></a>
 		</div>
 		<div class="show__content">
 			<h2>`+response.data[i].title+`&nbsp&nbsp&nbsp&nbsp(`+response.data[i].showType+`)</h2>
@@ -348,7 +348,7 @@ $("#exhibition").on("click", function() {
 		for (let i = 0; i < response.data.length; i++) {
 			let reviewContent = `<div class="review__content">
 		<div>
-			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/`+response.data[i].imgRoute+`" width="230" height="300"></a>
+			<a href="/show/showView/`+ response.data[i].showId +`"><img src="/images/upload/`+response.data[i].imgRoute+`" width="230" height="300"></a>
 		</div>
 		<div class="show__content">
 			<h2>`+response.data[i].title+`&nbsp&nbsp&nbsp&nbsp(`+response.data[i].showType+`)</h2>

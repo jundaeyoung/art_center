@@ -29,7 +29,7 @@ $("#show").on("click", function() {
 
             let showContent = '<div class="review__content">' +
                 '<div>' +
-                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
+                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/upload/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
                 '</div>' +
                 '<div class="show__content">' +
                 '<h2>' + response.data[i].title + '&nbsp;(' + response.data[i].showType + ')</h2>' +
@@ -98,7 +98,7 @@ $("#exhibition").on("click", function() {
 
             let showContent = '<div class="review__content">' +
                 '<div>' +
-                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
+                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/upload/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
                 '</div>' +
                 '<div class="show__content">' +
                 '<h2>' + response.data[i].title + '&nbsp;(' + response.data[i].showType + ')</h2>' +
@@ -165,7 +165,7 @@ $("#academy").on("click", function() {
 
             let showContent = '<div class="review__content">' +
                 '<div>' +
-                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
+                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/upload/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
                 '</div>' +
                 '<div class="show__content">' +
                 '<h2>' + response.data[i].title + '&nbsp;(' + response.data[i].showType + ')</h2>' +
@@ -232,7 +232,7 @@ $("#newest").on("click", function() {
 
             let showContent = '<div class="review__content">' +
                 '<div>' +
-                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
+                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/upload/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
                 '</div>' +
                 '<div class="show__content">' +
                 '<h2>' + response.data[i].title + '&nbsp;(' + response.data[i].showType + ')</h2>' +
@@ -299,7 +299,7 @@ $("#highes__rated").on("click", function() {
 
             let showContent = '<div class="review__content">' +
                 '<div>' +
-                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
+                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/upload/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
                 '</div>' +
                 '<div class="show__content">' +
                 '<h2>' + response.data[i].title + '&nbsp;(' + response.data[i].showType + ')</h2>' +
@@ -366,7 +366,7 @@ $("#lowest__rated").on("click", function() {
 
             let showContent = '<div class="review__content">' +
                 '<div>' +
-                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
+                '<a href="/show/showView/' + response.data[i].id + '"><img src="/images/upload/' + response.data[i].imgRoute + '" width="230" height="300"></a>' +
                 '</div>' +
                 '<div class="show__content">' +
                 '<h2>' + response.data[i].title + '&nbsp;(' + response.data[i].showType + ')</h2>' +
