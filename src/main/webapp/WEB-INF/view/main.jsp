@@ -12,6 +12,10 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+
+
+
 <c:choose>
 	<c:when test="${principal==null || principal.roleId==1}">
 		<link rel="stylesheet" href="/css/main.css">

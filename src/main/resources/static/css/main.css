@@ -10,11 +10,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
 
 
-
 body {
 	background-color: #fff;
 	width: 100%;
-	font-family: 'Noto Sans KR', sans-serif;
+	/* font-family: 'Noto Sans KR', sans-serif; */
+	font-family: 'NanumSquare';
 }
 
 .user--btn form {
@@ -272,6 +272,9 @@ content ul {
 	align-items: flex-start;
 	text-align: left;
 }
+.info p{
+	color: black;
+}
 
 .info h1 {
 	width: 550px;
@@ -342,8 +345,9 @@ content ul {
 	height: 700px;
 	border: 1px solid #f7ede4;
 	margin: 50px;
-	background-color: #f7ede4;
+	background-color: #2b354e;
 	margin-left: -500px;
+	color: #f0f0f0;
 }
 
 .slide_wrapper {
@@ -355,6 +359,9 @@ content ul {
 .slide_wrapper_box {
 	margin-left: 210px;
 	width: 300px;
+}
+.slide_wrapper_box button{
+	background-color: #f0f0f0;
 }
 
 .footer {
@@ -724,4 +731,8 @@ button:hover {
 	background-color: #f5de98;
 	border: 1px solid #ccc;
 	color: black;
+}
+.fc-toolbar-chunk button{
+	background-color: #2b354e!important;
+	color: #f0f0f0!important;
 }
