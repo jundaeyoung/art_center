@@ -31,9 +31,10 @@
 				<img alt="" src="/images/background/logo.png" class="loginLogo">
 			</div>
 			<br>
+			<c:choose>
+			<c:when test="${userName == null}">
 			<form action="/user/findId" method="post">
 				<div class="content">
-
 					<span class="error--messege" th:if="${valid_password}">${valid_password}</span>
 					<br>
 					<div id="ipw" class="email">
@@ -61,6 +62,10 @@
 					<input type="submit" value="아이디찾기" class="login" onclick="save()">
 				</div>
 			</form>
+			</c:when>
+			</c:choose>
+			<c:choose>
+			<c:when test="${userName == null}">
 			<div class="selectIdAndPw"
 				style="font-size: 20px; margin-left: 540px;">
 				<a href="/user/login">로그인</a>
@@ -92,9 +97,14 @@
 						<img alt="" src="/images/kakaoLogo-removebg-preview.png">
 					</a>
 				</div>
-
+				</c:when>
+				<c:when test="${userName != null}">
+				<div style="margin-left: 70px; margin-top: 30px;">귀하의 아이디는 ${userName.userName}입니다</div>
+				</c:when>
+				</c:choose>
 			</div>
 		</div>
+	
 	</div>
 </div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

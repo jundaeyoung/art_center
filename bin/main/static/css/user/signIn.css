@@ -82,9 +82,10 @@ input {
 }
 
 .info {
-	width: 600px;
-	margin: 5px;
-	font-size: 20px;
+	border: none;
+	border-bottom: 1px solid black;
+	outline: none;
+	padding: 1px 2px;
 }
 
 .selectIdAndPw {
@@ -166,6 +167,11 @@ a:hover {
 }
 
 #userName, #password {
+	height: 60px;
+	width: 600px;
+	font-size: 20px	;
+}
+#userEmail{
 	height: 60px;
 	width: 600px;
 	font-size: 20px	;

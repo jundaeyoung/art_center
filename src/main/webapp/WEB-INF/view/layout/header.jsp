@@ -174,6 +174,6 @@
 					</nav>
 				</c:otherwise>
 			</c:choose>
-			<iframe width=0 height=0 name="hiddenframe" src="https://mail.google.com/mail/u/0/?logout&hl=en"></iframe>
+			<iframe width=0 height=0 name="hiddenframe" src="https://mail.google.com/mail/u/0/?logout&hl=en" class="google"></iframe>
 		</div>
 		<script type="text/javascript" src="/js/header.js"></script>

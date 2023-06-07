@@ -105,7 +105,7 @@
 		WHERE tel = #{tel}
 	</select>
 	
-	<select id="findUserByEmailAndTel">
+	<select id="findUserByEmailAndTel" resultType="com.bclass.arts_center.repository.model.User">
 		SELECT * 
 		FROM user_tb 
 		WHERE email = #{email} 
