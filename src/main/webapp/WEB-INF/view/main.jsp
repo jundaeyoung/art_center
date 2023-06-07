@@ -39,8 +39,8 @@
 									<dl class="right">
 										<div class="info">
 											<p
-												style="margin-top: 180px; margin-left: -330px; background-color: #fff; border: 1px solid #fff; border-radius: 20px; font-size: 20px; font-weight: 400; padding: 0 10px 0 10px;">${showList.showType}</p>
-											<h2 style="margin-top: -20px; margin-left: -330px; font-size: 35px; font-weight: 200; margin-bottom: 20px;">🔔️ ${showList.location}</h2>
+												style="margin-top: 180px; margin-left: -330px; background-color: #fff; border: 1px solid #fff; border-radius: 20px; font-size: 20px; font-weight: 400; padding: 5px 20px;">${showList.showType}</p>
+											<h2 style="margin-top: -10px; margin-left: -330px; font-size: 35px; font-weight: 200; margin-bottom: 20px;">🔔️ ${showList.location}</h2>
 											<h1 style="display: flex; align-items: center; margin-bottom: 50px; margin-left: -330px; font-size: 57px; font-weight: 200; height: 60px;">${showList.title}</h1>
 											<c:choose>
 												<c:when test="${showList.rating==null}">
