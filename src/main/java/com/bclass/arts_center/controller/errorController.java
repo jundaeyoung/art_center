@@ -20,8 +20,13 @@ public class errorController implements ErrorController {
 			if (statusCode == HttpStatus.NOT_FOUND.value()) {
 				return "/error";
 			}
-
 			if (statusCode == HttpStatus.FORBIDDEN.value()) {
+				return "/error";
+			}
+			if (statusCode == HttpStatus.BAD_REQUEST.value()) {
+				return "/error";
+			}
+			if (statusCode == HttpStatus.BAD_GATEWAY.value()) {
 				return "/error";
 			}
 			return "/error";

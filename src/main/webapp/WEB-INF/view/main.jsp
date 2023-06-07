@@ -486,8 +486,8 @@
                    <c:set var="borderColor" value="#FFA17E" />
                </c:when>
                <c:when test="${list.holeName == '인문실'}">
-                   <c:set var="backgroundColor" value="#5CE390" />
-                   <c:set var="borderColor" value="#5CE390" />
+                   <c:set var="backgroundColor" value="#E6E6FA" />
+                   <c:set var="borderColor" value="#E6E6FA" />
                </c:when>
                <c:when test="${list.holeName == '과학실'}">
                    <c:set var="backgroundColor" value="#94F7ED" />
@@ -551,8 +551,8 @@
                    <c:set var="borderColor" value="#FFA17E" />
                </c:when>
                <c:when test="${categoryList.holeName == '인문실'}">
-                   <c:set var="backgroundColor" value="#5CE390" />
-                   <c:set var="borderColor" value="#5CE390" />
+                   <c:set var="backgroundColor" value="#E6E6FA" />
+                   <c:set var="borderColor" value="#E6E6FA" />
                </c:when>
                <c:when test="${categoryList.holeName == '과학실'}">
                    <c:set var="backgroundColor" value="#94F7ED" />
