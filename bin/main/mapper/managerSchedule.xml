@@ -15,7 +15,7 @@
 		JOIN show_tb AS s
 		ON s.id = r.show_id
         JOIN show_datetime_tb AS sd
-		ON sd.hole_id=h.id
+		ON sd.show_id=s.id
 		WHERE s.organizer_id=#{id} AND s.show_status=1 AND r.rent_place_status=1
 	</select>
 </mapper>

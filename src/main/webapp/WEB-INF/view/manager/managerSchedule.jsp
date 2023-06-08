@@ -25,7 +25,7 @@
          <span class="showDate" id="showDate"></span> <span class="showTime" id="showTime"></span>
          <p class="holeName" id="holeName"></p>
          <p class="imgRoute" id="imgRoute">
-            <img alt="" id="images" width="210" , height="280">
+            <img alt="" id="images" width="210"height="280">
          </p>
             <button class="showView" id="showView" onclick="showView()" style="text-align: center;">자세히보기</button>
       </div>
@@ -56,8 +56,6 @@
                return date.date.year + '년 '
                      + (parseInt(date.date.month) + 1) + '월';
             },
-/*             initialDate: '2023-05-04', // 초기 날짜 설정 (설정하지 않으면 오늘 날짜가 보인다.) 나중엔 해제해야함
- */            navLinks: true,
             selectable : true, // 달력 일자 드래그 설정가능
             droppable : true,
             // editable : true,
