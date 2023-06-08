@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="/css/payment.css">
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <div class="main">
@@ -29,12 +30,17 @@
 							<h2>날짜 : ${ticket.showDate}&nbsp;&nbsp;&nbsp;&nbsp;시간 : ${ticket.showTime}</h2>
 						</div>
 						<div class="ticket--price">
+							<fmt:parseNumber var="adultRate" type="number" value="${ticket.adultRate}" />
+							<fmt:formatNumber value="${adultRate}" pattern="#,##0" var="formattedAdultRate" />
+							<fmt:parseNumber var="youthRate" type="number" value="${ticket.youthRate}" />
+							<fmt:formatNumber value="${youthRate}" pattern="#,##0" var="formattedYouthRate" />
+
 							<c:choose>
 								<c:when test="${ticket.ageGroupId==2}">
-									<h2>[성인]&nbsp;&nbsp;&nbsp;&nbsp;${ticket.adultRate}</h2>
+									<h2>[성인]&nbsp;&nbsp;&nbsp;&nbsp;${formattedAdultRate}</h2>
 								</c:when>
 								<c:otherwise>
-									<h2>[청소년]&nbsp;&nbsp;&nbsp;&nbsp;${ticket.youthRate}</h2>
+									<h2>[청소년]&nbsp;&nbsp;&nbsp;&nbsp;${formattedYouthRate}</h2>
 								</c:otherwise>
 							</c:choose>
 						</div>
