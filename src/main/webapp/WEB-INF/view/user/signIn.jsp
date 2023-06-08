@@ -41,7 +41,7 @@
 			<div class="logobox">
 		
 		<div class="naverLogo">
-			<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=q3WIWBEaLw_SUTxgY8kb&state=randomtext&redirect_uri=http://localhost:8080/auth/naver/callback"> <img alt=""
+			<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=q3WIWBEaLw_SUTxgY8kb&state=randomtext&redirect_uri=http://192.168.0.85:8080/auth/naver/callback"> <img alt=""
 				src="/images/btn_naver.png" class="naverLogo"></a>
 		</div>
 
@@ -52,7 +52,7 @@
 		&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email"><img alt="" src="/images/btn_google_light_normal_ios.png"></a>
 		</div>
 		<div class="kakaoLogo">
-			<a href="https://kauth.kakao.com/oauth/authorize?client_id=2b8daa8c6238674fc9d677d8c51dd08f&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code"> <img alt=""
+			<a href="https://kauth.kakao.com/oauth/authorize?client_id=2b8daa8c6238674fc9d677d8c51dd08f&redirect_uri=http://192.168.0.85:8080/auth/kakao/callback&response_type=code"> <img alt=""
 						src="/images/kakaoLogo-removebg-preview.png">
 					</a>
 				</div>

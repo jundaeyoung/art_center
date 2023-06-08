@@ -34,8 +34,8 @@
 				</div>
 				<div class="choiceContainer">
 				<img alt="" src="/images/user-icon-biz.png" id="signUpicon">
-					<a href="/user/signUpchoice?roleId=2" class="signUp" style="color: #fff;">사업자</a><br>
-					<h3>사업자 및 기타 단체</h3>
+					<a href="/user/signUpchoice?roleId=2" class="signUp" style="color: #fff;">매니저</a><br>
+					<h3>공연 주최자</h3>
 				</div>
 				</div>
 				

@@ -48,7 +48,7 @@
 		FROM rent_place_reservation_tb AS r
 		WHERE (r.start_date BETWEEN #{startDate} AND #{endDate}
 		OR r.end_date BETWEEN #{startDate} AND #{endDate})
-		AND hole_id= #{holeId} AND r.rent_place_status == 1
+		AND hole_id= #{holeId} AND r.rent_place_status = 1
 	</select>
 
 

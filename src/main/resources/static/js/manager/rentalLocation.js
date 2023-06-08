@@ -1,6 +1,3 @@
-/**
- * 작성자 : 김미정
- */
 $(function() {
 	$('#dateTime').daterangepicker(
 		{

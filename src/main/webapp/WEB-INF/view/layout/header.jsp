@@ -50,7 +50,7 @@
 						<c:set var="apiType" value="${principal.apiId}" />
 						<c:if test="${fn:contains(apiType, 'kakao')}">
 							<div class="user--btn">
-								<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://localhost:8080/kakaologout&response_type=code"
+								<a href="https://kauth.kakao.com/oauth/logout?client_id=2b8daa8c6238674fc9d677d8c51dd08f&logout_redirect_uri=http://192.168.0.85:8080//kakaologout&response_type=code"
 									style="font-size: 20px;">로그아웃</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<p style="font-size: 20px; margin-top: 20px;">반갑습니다. ${principal.nickname} 님</p>
 							</div>
