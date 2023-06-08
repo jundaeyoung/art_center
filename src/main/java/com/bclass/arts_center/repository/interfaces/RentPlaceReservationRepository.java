@@ -16,7 +16,7 @@ public interface RentPlaceReservationRepository {
 
 	public Integer updateRentById(Integer id);
 	
-	public Show selectShowIdByRentRefund(Integer id);
-	
-	public Integer deleteShowTime(Show showId);
+	public Integer selectShowIdByRentRefund(Integer id);
+	   
+	public Integer deleteShowTime(Integer showId);
 }

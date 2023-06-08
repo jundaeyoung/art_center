@@ -127,8 +127,8 @@
 	
 	
 	<insert id="insertReview">
-		INSERT INTO review_tb(content, rating, user_id, show_id)
-        VALUES(#{content}, #{rating}, #{userId}, #{showId})
+		INSERT INTO review_tb(content, rating, user_id, show_id, ticketing_id)
+        VALUES(#{content}, #{rating}, #{userId}, #{showId},#{ticketingId})
 	</insert>
 	
 	

@@ -123,7 +123,6 @@ public class MyPageController {
 	public String myTicketReview(Model model) {
 		User principal = (User) session.getAttribute(Define.PRINCIPAL);
 		List<MyTiketDto> myTicketList = ticketService.readMyTicketByUserId(principal.getId());
-		System.out.println(myTicketList);
 		model.addAttribute("myTicketList", myTicketList);
 		
 		return "/user/myTicketReview";
@@ -138,7 +137,7 @@ public class MyPageController {
 		model.addAttribute("myTicketList", myTicketList);
 		reviewService.saveReview(review);
 		
-		return "/user/myTicketReview";
+		return "redirect:/myPage/myTicketReview";
 	}
 	
 

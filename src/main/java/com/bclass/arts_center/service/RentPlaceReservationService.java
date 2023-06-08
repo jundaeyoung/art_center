@@ -42,19 +42,18 @@ public class RentPlaceReservationService {
 	
 	
 	@Transactional
-	public Show readShowIdByRentRefund(Integer id) {
-		Show showId = placeReservationRepository.selectShowIdByRentRefund(id);
-		
-		return showId;
-	}
-	
-	
-	
-	@Transactional
-	public Integer deleteShowTime(Show showId) {
-		Integer resultRowCount = placeReservationRepository.deleteShowTime(showId);
-		
-		return resultRowCount;
-	}
-	
+	   public Integer readShowIdByRentRefund(Integer id) {
+	      Integer showId = placeReservationRepository.selectShowIdByRentRefund(id);
+	      
+	      return showId;
+	   }
+	   
+	   
+	   
+	   @Transactional
+	   public Integer deleteShowTime(Integer showId) {
+	      Integer resultRowCount = placeReservationRepository.deleteShowTime(showId);
+	      
+	      return resultRowCount;
+	   }
 }

@@ -145,28 +145,27 @@ public class KakaoPaymentController {
 	}
 
 	@PostMapping("/refund/{tid}")
-	public String refund(@PathVariable(name = "tid", required = false) String tid, Model model,
-			@RequestParam(name = "id", required = false) Integer id) {
+	   public String refund(@PathVariable(name = "tid", required = false) String tid, Model model,
+	         @RequestParam(name = "id", required = false) Integer id) {
 
-		User principal = (User) session.getAttribute(Define.PRINCIPAL);
+	      User principal = (User) session.getAttribute(Define.PRINCIPAL);
 
-		KakaoRefundResponse kakaoRefundResponse = null;
-		if (principal.getRoleId() == 1) {
-			kakaoRefundResponse = kakaoPaymentService.kakaoRefund(principal.getId(), tid);
-			paymentService.updateCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
-		} else if (principal.getRoleId() == 2) {
-			kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
-			paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
-			rentPlaceReservationService.updateRentByStatus(id);
-			System.out.println(id);
-			Show showId = rentPlaceReservationService.readShowIdByRentRefund(id);
-			System.out.println(showId);
-			Integer result = rentPlaceReservationService.deleteShowTime(showId);
-			System.out.println(result);
-		}
-		model.addAttribute("kakaoRefundResponse", kakaoRefundResponse);
+	      KakaoRefundResponse kakaoRefundResponse = null;
+	      if (principal.getRoleId() == 1) {
+	         kakaoRefundResponse = kakaoPaymentService.kakaoRefund(principal.getId(), tid);
+	         paymentService.updateCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
+	      } else if (principal.getRoleId() == 2) {
+	         kakaoRefundResponse = kakaoPaymentService.kakaoRefund2(tid);
+	         paymentService.updateManagerCancelStatus(kakaoRefundResponse.getCanceledAt(), tid);
+	         rentPlaceReservationService.updateRentByStatus(id);
+	         Integer showId = rentPlaceReservationService.readShowIdByRentRefund(id);
+	         System.out.println(showId);
+	         Integer result = rentPlaceReservationService.deleteShowTime(showId);
+	         System.out.println(result);
+	      }
+	      model.addAttribute("kakaoRefundResponse", kakaoRefundResponse);
 
-		return "/payment/refund";
-	}
+	      return "/payment/refund";
+	   }
 
 }

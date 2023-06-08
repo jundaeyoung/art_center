@@ -11,4 +11,5 @@ public class Review {
 	private Integer rating;
 	private Integer userId;
 	private Integer showId;
+	private Integer ticketingId;
 }

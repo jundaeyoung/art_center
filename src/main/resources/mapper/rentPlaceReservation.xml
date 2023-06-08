@@ -6,7 +6,8 @@
 <mapper namespace="com.bclass.arts_center.repository.interfaces.RentPlaceReservationRepository">
 
 	<select id="selectRentPlaceReservationList" resultType="com.bclass.arts_center.dto.request.RequestRentPlaceReservationDto">
-		SELECT r.id, u.nickname, u.tel, r.start_date, r.end_date, r.start_time, r.end_time, h.name, l.location, l.location_info, r.rent_place_status
+		SELECT r.id, u.nickname, u.tel, r.start_date, r.end_date, r.start_time, r.end_time, h.name, l.location, l.location_info,
+		r.rent_place_status
 		FROM rent_place_reservation_tb AS r
 		JOIN hole_tb AS h
 		ON r.hole_id = h.id
@@ -14,29 +15,30 @@
 		ON r.location_id = l.id
 		LEFT JOIN user_tb AS u
 		ON u.id = r.user_id
-		ORDER BY r.rent_place_status ASC, r.id DESC
+		ORDER BY
+		r.rent_place_status ASC, r.id DESC
 	</select>
-	
+
 	<update id="updateRentPlaceReservation">
-		UPDATE rent_place_reservation_tb 
-		SET rent_place_status = 1 
+		UPDATE rent_place_reservation_tb
+		SET rent_place_status = 1
 		WHERE id = #{id};
 	</update>
-	
-	<select id="selectShowIdByRentRefund" resultType="com.bclass.arts_center.repository.model.Show">
+
+	<select id="selectShowIdByRentRefund" resultType="Integer">
 		SELECT show_id FROM rent_place_reservation_tb
-        WHERE id=#{id}
+		WHERE id=#{id}
 	</select>
-	
+
 	<update id="updateRentById">
-		UPDATE rent_place_reservation_tb  
-		SET rent_place_status = 2 
+		UPDATE rent_place_reservation_tb
+		SET rent_place_status = 2
 		WHERE id = #{id}
 	</update>
-	
+
 	<delete id="deleteShowTime">
-		DELETE show_datetime_tb  
-		WHERE id = #{showId}
+		DELETE FROM show_datetime_tb
+		WHERE show_id = #{showId}
 	</delete>
 </mapper>
 

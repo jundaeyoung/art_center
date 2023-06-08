@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class MyTiketDto {
+	private Integer ticketId;
 	private Integer userId;
 	private String imgRoute;
 	private String title;

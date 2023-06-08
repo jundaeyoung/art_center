@@ -93,7 +93,7 @@
 
 				<div class="review__content" style="margin-left: -30px;">
 					<div>
-						<img src="/images/${showList.imgRoute}" width="230" height="300">
+						<img src="/images/upload/${showList.imgRoute}" width="230" height="300">
 					</div>
 					<div class="show__content">
 						<h1>공연 정보</h1>
