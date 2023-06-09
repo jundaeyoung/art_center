@@ -33,10 +33,7 @@ public class RentalApiController {
 		
 		requestHoleDto.setStartDate(startDateAndEndDate[0].replaceAll(" ", ""));
 		requestHoleDto.setEndDate(startDateAndEndDate[1].replaceAll(" ", ""));
-		System.out.println(requestHoleDto.getStartDate());
-		System.out.println(requestHoleDto.getEndDate());
 		List<RequestRentPlaceDto> holeList = rentalService.readRentPlaceReservationByDateAndLocation(requestHoleDto);
-			System.out.println(holeList+"DDDDDDDDDDDDDDDDDD");
 		return new ResponseDto<List<RequestRentPlaceDto>>(200, HttpStatus.OK.toString(), holeList);
 	}
 

@@ -88,9 +88,9 @@ public class KakaoPaymentService {
 			params.add("total_amount", ticketCheckDto.getYouthRate().replace(",", ""));
 		}
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://192.168.0.85:8080/kakao/success");
-		params.add("cancel_url", "http://192.168.0.85:8080/kakao/cancel");
-		params.add("fail_url", "http://192.168.0.85:8080/kakao/fail");
+		params.add("approval_url", "http://localhost:8080/kakao/success");
+		params.add("cancel_url", "http://localhost:8080/kakao/cancel");
+		params.add("fail_url", "http://localhost:8080/kakao/fail");
 
 		HttpEntity<MultiValueMap<String, String>> kakaoRequestEntity = new HttpEntity<>(params, headers);
 
@@ -126,9 +126,9 @@ public class KakaoPaymentService {
 		params.add("quantity", "1");
 		params.add("total_amount", rentPrice);
 		params.add("tax_free_amount", "0");
-		params.add("approval_url", "http://192.168.0.85:8080/kakao/success");
-		params.add("cancel_url", "http://192.168.0.85:8080/kakao/cancel");
-		params.add("fail_url", "http://192.168.0.85:8080/kakao/fail");
+		params.add("approval_url", "http://localhost:8080/kakao/success");
+		params.add("cancel_url", "http://localhost:8080/kakao/cancel");
+		params.add("fail_url", "http://localhost:8080/kakao/fail");
 
 		HttpEntity<MultiValueMap<String, String>> kakaoRequestEntity = new HttpEntity<>(params, headers);
 

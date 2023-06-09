@@ -11,7 +11,7 @@
                    var data = [];
 
                    for (var i = 0; i < response.length; i++) {
-                     labels.push(response[i].title);
+                     labels.push(response[i].name);
                      var value = parseInt(response[i].totalPrice);
                      data.push(value);
                    }

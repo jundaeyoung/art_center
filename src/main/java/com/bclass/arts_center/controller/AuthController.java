@@ -44,7 +44,7 @@ public class AuthController {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code"); // 고정
 		params.add("client_id", "2b8daa8c6238674fc9d677d8c51dd08f"); // REST API키
-		params.add("redirect_uri", "http://192.168.0.85:8080/auth/kakao/callback");
+		params.add("redirect_uri", "http://localhost:8080/auth/kakao/callback");
 		params.add("code", code);
 
 		HttpEntity<MultiValueMap<String, String>> kakaoReqEntity = new HttpEntity<>(params, headers);
@@ -120,7 +120,7 @@ public class AuthController {
 																												// API키
 		params.add("client_secret", "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");
 		params.add("code", code);
-		params.add("redirect_uri", "http://192.168.0.85:8080/google/callback");
+		params.add("redirect_uri", "http://localhost:8080/google/callback");
 		params.add("grant_type", "authorization_code"); // 고정
 
 		HttpEntity<MultiValueMap<String, String>> kakaoReqEntity = new HttpEntity<>(params, headers);
@@ -173,7 +173,7 @@ public class AuthController {
 		params.add("grant_type", "authorization_code"); // 고정
 		params.add("client_id", "q3WIWBEaLw_SUTxgY8kb"); // REST API키
 		params.add("client_secret", "NjalKNjvE5");
-		params.add("redirect_uri", "http://192.168.0.85:8080/auth/naver/callback");
+		params.add("redirect_uri", "http://localhost:8080/auth/naver/callback");
 		params.add("code", code);
 
 		HttpEntity<MultiValueMap<String, String>> naverReqEntity = new HttpEntity<>(params, headers);

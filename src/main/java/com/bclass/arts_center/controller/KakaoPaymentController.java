@@ -93,7 +93,7 @@ public class KakaoPaymentController {
 			payment.setTicketingId(sessionTicketingId);
 			// 문자 보내기
 			try {
-//				messageApiController.sendMessage(sessionTicketingId);
+				messageApiController.sendMessage(sessionTicketingId);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

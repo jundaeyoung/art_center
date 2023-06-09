@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -113,9 +112,10 @@
 </style>
 
 
-<c:set var="todayDate" value="<%=new java.util.Date()%>"/>
-<fmt:formatDate value="${todayDate}" pattern="yyyy-MM-dd" />
-
+<div style="margin-left: -5000px;">
+	<c:set var="todayDate" value="<%=new java.util.Date()%>" />
+	<fmt:formatDate value="${todayDate}" pattern="yyyy-MM-dd" />
+</div>
 
 <div class="container">
 	<div class="userName" id="ticket--title">
@@ -126,24 +126,19 @@
 			<div class="ticket--content">
 				<div class="myTicket">
 					<div class="ticketing--img">
-						<img alt="" src="/images/upload/${myTicketList.imgRoute}"
-							width="300" height="400">
+						<img alt="" src="/images/upload/${myTicketList.imgRoute}" width="300" height="400">
 					</div>
 					<div class="ticket--info">
 						<div class="ticket--title">
-							<a href="/show/showView/${myTicketList.showId}"><p>${myTicketList.title}</p>
-							</a>
+							<a href="/show/showView/${myTicketList.showId}"><p>${myTicketList.title}</p> </a>
 							<c:choose>
-								<c:when
-									test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
+								<c:when test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
 									<h2>(결제대기)</h2>
 								</c:when>
-								<c:when
-									test="${myTicketList.cancelStatus == 0 && myTicketList.paymentStatus == 1}">
+								<c:when test="${myTicketList.cancelStatus == 0 && myTicketList.paymentStatus == 1}">
 									<h2>(결제완료)</h2>
 								</c:when>
-								<c:when
-									test="${myTicketList.showDate <= todayDate && myTicketList.paymentStatus == 0}">
+								<c:when test="${myTicketList.showDate <= todayDate && myTicketList.paymentStatus == 0}">
 									<h2>(결제불가)</h2>
 								</c:when>
 								<c:when test="${myTicketList.cancelStatus == 1}">
@@ -155,45 +150,35 @@
 							<h2>${myTicketList.name}&nbsp&nbsp&nbsp${myTicketList.seatName}</h2>
 						</div>
 						<div class="ticket--date">
-							<h2>날짜 : ${myTicketList.showDate}&nbsp;&nbsp;&nbsp;&nbsp;시간
-								: ${myTicketList.showTime}</h2>
+							<h2>날짜 : ${myTicketList.showDate}&nbsp;&nbsp;&nbsp;&nbsp;시간 : ${myTicketList.showTime}</h2>
 						</div>
 						<div class="ticketing--date">
-							<a href="/myPage/myTicketDetail/${myTicketList.id}"
-								class="ticketingId">
+							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId">
 								<h2>예매일&nbsp&nbsp:&nbsp&nbsp</h2>
-							</a> <a href="/myPage/myTicketDetail/${myTicketList.id}"
-								class="ticketingId"> </a>
+							</a> <a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
 							<h2>${myTicketList.ticketingDate}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
-							<a href="/myPage/myTicketDetail/${myTicketList.id}"
-								class="ticketingId"> </a>
+							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
 							<h2>예매 번호&nbsp&nbsp:&nbsp&nbsp</h2>
-							<a href="/myPage/myTicketDetail/${myTicketList.id}"
-								class="ticketingId"> </a>
+							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
 							<h2>${myTicketList.id}</h2>
-							<a href="/myPage/myTicketDetail/${myTicketList.id}"
-								class="ticketingId"> </a>
+							<a href="/myPage/myTicketDetail/${myTicketList.id}" class="ticketingId"> </a>
 						</div>
 					</div>
-					<img alt="" src="/images/upload/${myTicketList.qrCode}.png"
-						class="bacode">
+					<img alt="" src="/images/upload/${myTicketList.qrCode}.png" class="bacode">
 				</div>
 			</div>
 			<div class="btn">
 				<c:choose>
-					<c:when
-						test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
+					<c:when test="${myTicketList.paymentStatus == 0 && myTicketList.showDate >= todayDate}">
 						<form action="/kakao/ready" method="get">
-							<input type="hidden" name="ticketingId"
-								value="${myTicketList.id}">
+							<input type="hidden" name="ticketingId" value="${myTicketList.id}">
 							<button type="submit" class="kakao--btn">
 								<img alt="" src="/images/kakao/payment_icon_yellow_small.png" class="kakao">
 							</button>
 						</form>
 					</c:when>
 					<c:when test="${myTicketList.paymentStatus == 1}">
-						<form action="/kakao/refund/${myTicketList.paymentId}"
-							method="post">
+						<form action="/kakao/refund/${myTicketList.paymentId}" method="post">
 							<c:choose>
 								<c:when test="${myTicketList.cancelStatus == 1}">
 								</c:when>
@@ -211,6 +196,8 @@
 		</c:forEach>
 	</div>
 </div>
+
+
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 

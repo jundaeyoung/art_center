@@ -59,7 +59,7 @@
 						id="newPasswordCheck" class="infoPw" value=""><br>
 				</div>
 				<br> <input type="hidden" value="${userInfo.id}" id="apiId"
-					name="apiId"> <input type="submit" value="정보수정"
+					name="apiId"> <input type="submit" value="비밀번호 수정"
 					class="login">
 			</form>
 		</div>
