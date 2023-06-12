@@ -2,12 +2,15 @@ package com.bclass.arts_center.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class DummyController {
-	@GetMapping("/")
-	public String main() {
+@RequestMapping("")
+public class MapController {
+
+	@GetMapping("/map")
+	public String map() {
 		
-		return "/dummy";
+		return "map";
 	}
 }

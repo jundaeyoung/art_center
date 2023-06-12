@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.QuestionRepository">
+
+	<select id="selectQuestionByType" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
+		SELECT q.id ,u.id as userId,u.user_name,r.role,
+		q.title,q.content,q.answer_status,qc.question_type,a.content AS answer 
+		FROM question_tb AS q 
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb as r
+		ON u.role_id = r.id
+        LEFT join answer_tb AS a
+        ON a.question_id = q.id
+		WHERE
+		qc.question_type = #{category}
+		ORDER BY q.id DESC
+		LIMIT #{begin},
+		#{range}
+	</select>
+
+
+	<select id="selectQuestionCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM question_tb
+		WHERE question_type_id = (
+		SELECT id
+		FROM
+		question_category_tb
+		WHERE question_type = #{category} )
+	</select>
+
+
+	<select id="selectQuestionBySearchText" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
+		SELECT q.id ,u.id as userId,u.user_name,r.role, q.title,q.content,q.answer_status,qc.question_type,a.content AS answer from question_tb as q 
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb AS r
+		ON u.role_id = r.id
+        LEFT JOIN answer_tb AS a
+        ON a.question_id = q.id
+		WHERE q.title
+		LIKE #{searchText} OR q.content LIKE #{searchText}
+		ORDER BY
+		q.id DESC
+		LIMIT #{begin}, #{range}
+	</select>
+
+
+	<select id="selectQuestionBySearchTextCount" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM question_tb
+		WHERE title
+		LIKE #{searchText} OR content LIKE #{searchText}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO question_tb(title, content, user_id, question_type_id)
+		VALUES (#{title},#{content},#{userId},#{questionTypeId})
+	</insert>
+
+	<delete id="deleteById">
+		DELETE FROM question_tb
+		WHERE id=#{id}
+	</delete>
+
+
+	<select id="selectQuestionAll" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
+		SELECT q.id ,u.id as userId,u.user_name,r.role, q.title,q.content,q.answer_status,qc.question_type,a.content AS answer 
+		FROM question_tb AS q 
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb AS r
+		ON u.role_id = r.id
+        LEFT JOIN answer_tb AS a
+        ON a.question_id = q.id
+		ORDER BY q.id DESC
+	</select>
+
+	<select id="selectQuestionByQuestionId" resultType="com.bclass.arts_center.dto.request.RequestQuestionDto">
+		SELECT q.id ,u.id as userId,u.user_name,r.role, q.title,q.content,q.answer_status,qc.question_type,a.content AS answer 
+		FROM question_tb AS q 
+		JOIN question_category_tb AS qc
+		ON q.question_type_id = qc.id
+		JOIN user_tb AS u
+		ON u.id = q.user_id
+		JOIN role_tb AS r
+		ON u.role_id = r.id
+        LEFT JOIN answer_tb AS a
+       	ON a.question_id = q.id
+		WHERE q.id=#{questionId}
+		ORDER BY q.id DESC
+	</select>
+
+
+	<delete id="deleteQuestionByQuestionId">
+		DELETE FROM question_tb
+		WHERE id=#{questionId}
+	</delete>
+</mapper>
+
+

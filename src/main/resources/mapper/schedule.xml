@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.ScheduleRepository">
+
+	<select id="selectShowScheduleByCategory"
+		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id AS id,s.title AS title, h.name AS holeName, r.start_date AS startDate, r.end_date AS endDate,  img_route AS imgRoute
+		FROM rent_place_reservation_tb AS r
+		JOIN hole_tb AS h
+		ON r.hole_id=h.id
+		JOIN show_Tb AS s
+		ON s.id = r.show_id
+		WHERE s.show_type_id = #{showTypeId} 
+		AND s.show_status=1 AND
+		r.rent_place_status=1
+	</select>
+
+
+	<select id="selectShowSchedule"
+		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id as id,s.title AS title, h.name AS holeName, r.start_date AS startDate,
+		r.end_date AS endDate, img_route AS imgRoute
+		FROM rent_place_reservation_tb AS r
+		JOIN hole_tb AS h
+		ON r.hole_id=h.id
+		JOIN show_Tb AS s
+		ON s.id = r.show_id
+		WHERE s.show_status=1 
+		AND r.rent_place_status=1
+	</select>
+
+
+	<select id="selectShowDetailByShowId"
+		resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id AS id,s.title AS title, h.name AS holeName,
+		s.start_date AS startDate,s.img_route AS imgRoute, s.end_date AS endDate
+		FROM show_tb AS s
+		INNER JOIN hole_tb AS h
+		ON s.hole_id = h.id
+		WHERE s.id = #{id};
+	</select>
+</mapper>
+
+

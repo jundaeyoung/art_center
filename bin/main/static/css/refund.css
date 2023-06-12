@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.refund-main {
+   height: 600px;
+}
+.refund-content {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   
+}
+
+.info {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-top: 3px solid #6F77A7;
+   width: 1300px;
+   border-bottom: 1px solid #ccc;
+   text-align: center;
+   height: 250px;
+}
+
+.btn-class {
+   display: flex;
+}
+
+.refund-btn {
+   display: flex;
+   text-decoration: none;
+   justify-content: center;
+   color: black;
+   border: 1px solid #C2CDFF;
+   width: 350px;
+   height: 40px;
+   border-radius: 5px;
+   text-align: center;
+   align-items: center;
+   font-size: 17px;
+   margin-bottom: 30px;
+}
+
+.refund-order {
+   width: 1300px;
+}
+
+.refund-date {
+   border-top: 2px solid black;
+}
+
+.refund-amount {
+   border-top: 1px solid #ccc;
+}
+
+.refund-method {
+   border-top: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+}

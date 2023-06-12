@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.ManagerShowSaleRepository">
+
+	<select id="selectManagerShowSale" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
+		COUNT(case when t.age_group_id=1 then 1 end) AS youthCount, COUNT(case when t.age_group_id=2 then 1 end) AS adultCount
+		FROM show_tb AS s
+		JOIN user_tb AS u 
+		ON u.id = s.organizer_id
+		JOIN show_datetime_tb AS sd 
+		ON sd.show_id = s.id
+		LEFT JOIN ticketing_tb AS t 
+		ON t.show_datetime_id = sd.id
+		LEFT JOIN age_group_tb AS a 
+		ON t.age_group_id = a.id
+		LEFT JOIN payment_tb AS p
+        ON p.ticketing_id = t.id
+		WHERE s.organizer_id = #{userId} AND t.payment_status=1 AND p.cancel_status=0
+		GROUP BY s.id
+	</select>
+
+	<select id="selectManagerShowSaleByStartDateAndEndDate" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
+		COUNT(case when t.age_group_id=1 then 1 end) AS youthCount, COUNT(case when t.age_group_id=2 then 1 end) AS adultCount
+		FROM show_tb AS s
+		JOIN user_tb AS u 
+		ON u.id = s.organizer_id
+		JOIN show_datetime_tb AS sd 
+		ON sd.show_id = s.id
+		LEFT JOIN ticketing_tb AS t ON t.show_datetime_id = sd.id
+		LEFT JOIN age_group_tb AS a ON t.age_group_id = a.id
+		LEFT JOIN payment_tb AS p
+        ON p.ticketing_id = t.id
+		WHERE s.organizer_id = #{userId} AND t.payment_status=1 AND p.cancel_status=0
+		AND p.payment_date BETWEEN #{startDate} AND #{endDate}
+		GROUP BY s.id
+	</select>
+
+
+	<select id="selectManagerShowBySearchTitle" resultType="com.bclass.arts_center.dto.request.RequestManagerShowSaleDto">
+		SELECT s.id as show_id ,s.img_route,s.title,s.show_status,s.start_date,s.end_date,s.adult_rate,s.youth_rate,
+		COUNT(case when t.age_group_id=1 then 1 end) AS youthCount, COUNT(case when t.age_group_id=2 then 1 end) AS adultCount
+		FROM show_tb AS s
+		JOIN user_tb AS u 
+		ON u.id = s.organizer_id
+		JOIN show_datetime_tb AS sd 
+		ON sd.show_id = s.id
+		LEFT JOIN ticketing_tb AS t 
+		ON t.show_datetime_id = sd.id
+		LEFT JOIN age_group_tb AS a 
+		ON t.age_group_id = a.id
+		RIGHT join payment_tb as p
+        ON p.ticketing_id = t.id
+		WHERE s.organizer_id =#{userId} 
+		AND s.title LIKE #{title} 
+		AND t.payment_status=1 
+		AND p.cancel_status=0
+		GROUP BY s.id 
+	</select>
+	
+</mapper>
+

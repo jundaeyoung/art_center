@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.AnswerRepository">
+
+
+	<select id="selectAnswer"  resultType="com.bclass.arts_center.repository.model.Answer">
+		SELECT * 
+		FROM answer_tb
+		WHERE question_id=#{questionId}
+	</select>
+
+
+	<insert id="insertAnswer">
+		INSERT INTO answer_tb (content, user_id, question_id)
+		VALUES(#{content},#{userId},#{questionId})
+	</insert>
+
+
+	<update id="updateQuestionStatus">
+		UPDATE question_tb 
+		SET answer_status = 1
+		WHERE id =#{questionId}
+	</update>
+	
+	
+	<update id="updateAnswer">
+		UPDATE answer_tb SET content = #{content}
+		WHERE question_id =#{questionId}
+	</update>
+
+</mapper>
+
+
+
+

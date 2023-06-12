@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper
+	namespace="com.bclass.arts_center.repository.interfaces.ReviewRepository">
+
+	<select id="selectReviewByNewest"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		SELECT s.id AS showId,sc.show_type,u.id AS userId,r.review_creation_date ,r.id AS reviewId, r.rating, s.title,
+		s.content,s.img_route, r.content
+		AS reviewContent, u.user_name 
+		FROM review_tb AS r
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		join category_tb AS sc
+		ON s.show_type_id = sc.id 
+		ORDER BY r.id DESC
+		LIMIT #{begin}, #{range}
+	</select>
+
+
+	<select id="selectReviewByHighesRated"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		SELECT s.id as showId,sc.show_type,u.id as userId ,r.id AS
+		reviewId, r.rating, s.title, s.content,s.img_route,r.review_creation_date ,r.content AS reviewContent, u.user_name 
+		FROM review_tb AS r
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		ORDER BY r.rating DESC,
+		r.review_creation_date DESC
+		LIMIT #{begin}, #{range}
+	</select>
+
+
+	<select id="selectReviewByRowestRated"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		SELECT  s.id as showId,u.id as userId ,r.id AS reviewId, r.rating,sc.show_type, s.title,
+		s.content,s.img_route,r.review_creation_date ,r.content AS reviewContent, u.user_name 
+		FROM review_tb AS r
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		ORDER BY r.rating ASC ,
+		r.review_creation_date DESC
+		LIMIT #{begin}, #{range};
+	</select>
+
+
+	<select id="selectReviewCount" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM review_tb AS r
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		ORDER BY r.id DESC
+	</select>
+
+
+	<select id="selectReviewByCategory"
+		resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		SELECT s.id as showId,u.id as userId ,r.id AS reviewId,sc.show_type, r.rating, s.title,
+		s.content,s.img_route,r.review_creation_date ,r.content AS reviewContent, u.user_name 
+		FROM review_tb AS r
+		JOIN show_tb AS s 
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN category_tb AS sc 
+		ON s.show_type_id = sc.id
+		WHERE sc.show_type=#{category}
+		ORDER BY r.rating DESC, 
+		r.review_creation_date DESC
+		LIMIT #{begin}, #{range}
+	</select>
+
+	<select id="selectReviewByCategoryCount"
+		resultType="Integer">
+		SELECT COUNT(*) AS count 
+		FROM review_tb AS r
+		JOIN show_tb AS s
+		ON s.id = r.show_id
+		JOIN category_tb AS c
+		ON s.show_type_id= c.id
+		WHERE c.show_type= #{category}
+	</select>
+
+
+	<select id="selectReviewByShow" resultType="com.bclass.arts_center.dto.request.RequestReviewDto">
+		SELECT s.id AS showId,u.id AS userId ,r.id AS reviewId,sc.show_type, r.rating, s.title,
+		s.content,s.img_route,r.review_creation_date ,r.content AS reviewContent, u.user_name 
+		FROM review_tb AS r
+		JOIN show_tb AS s
+		ON r.show_id = s.id
+		JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		WHERE s.title LIKE #{showName} 
+		ORDER BY r.rating DESC , r.review_creation_date DESC
+		LIMIT #{begin}, #{range}
+	</select>
+	
+	<select id="selectReviewCountByShow"
+		resultType="Integer">
+		SELECT COUNT(*) AS count 
+		FROM review_tb AS r
+		JOIN show_tb AS s
+		ON s.id = r.show_id
+		JOIN category_tb AS c
+		ON s.show_type_id= c.id
+		WHERE c.show_type= #{category}
+	</select>
+	
+	
+	<insert id="insertReview">
+		INSERT INTO review_tb(content, rating, user_id, show_id, ticketing_id)
+        VALUES(#{content}, #{rating}, #{userId}, #{showId},#{ticketingId})
+	</insert>
+	
+	
+	<select id="selectMyTiketDtoByShowType" resultType="com.bclass.arts_center.dto.MyTiketDto">
+		SELECT t.user_id, s.img_route, s.title, s.content,l.location, h.name, se.seat_name, sd.show_date,
+		sd.show_time, c.show_type, r.content AS reviewContent, t.show_id, r.rating
+		FROM ticketing_tb AS t
+		JOIN payment_tb AS p
+		ON t.id = p.ticketing_id
+		JOIN show_tb AS s
+		ON t.show_id = s.id
+		JOIN show_datetime_tb AS sd
+		ON sd.id = t.show_datetime_id
+		JOIN seat_tb AS se
+		ON t.seat_id = se.seat_id
+		JOIN hole_tb AS h
+		ON h.id = se.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN category_tb AS c
+		ON c.id = s.show_type_id
+        LEFT JOIN review_tb AS r
+        ON r.show_id = s.id
+		WHERE t.user_id = #{userId}
+		AND t.payment_status = 1
+		AND now() > sd.show_date  
+		AND c.show_type = #{showType}
+		ORDER BY r.content ASC, show_date DESC
+	</select>
+	
+	
+	
+</mapper>
+
+

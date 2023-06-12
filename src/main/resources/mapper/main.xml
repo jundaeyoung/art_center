@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.MainRepository">
+
+	<select id="selectShowDto" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN hole_tb AS h
+		ON h.id = s.hole_id
+		JOIN location_tb as l
+		ON l.id = h.location_id
+		LEFT JOIN rent_place_reservation_tb AS rp
+		ON s.id = rp.show_id
+		WHERE s.show_status = 1 
+		<![CDATA[
+		AND rp.start_date <= curdate() <= rp.end_date
+		]]>
+        AND rp.rent_place_status=1
+		GROUP BY s.title
+		ORDER BY round(avg(r.rating), 1) DESC,s.id DESC
+	</select>
+
+	<select id="selectAnnouncement" resultType="com.bclass.arts_center.repository.model.Announcement">
+		SELECT id, title, content, user_id, DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date
+		FROM announcement_tb
+		ORDER BY id DESC
+		LIMIT 5
+	</select>
+	
+</mapper>
+

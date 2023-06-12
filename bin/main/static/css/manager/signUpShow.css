@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+
+.show__title {
+	display: flex;
+	justify-content: flex-start;
+	width: 1500px;
+	margin: 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+.show__title div {
+	display: flex;
+	align-items: center;
+}
+
+.show__title h1 {
+	font-size: 50px;
+	font-weight: 320;
+	margin-top: -20px;
+	margin-left: 40px;
+}
+
+.show__title span {
+	color: red;
+	background-color: red;
+	margin-top: -70px;
+}
+.show__header {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+	padding: 300px;
+	background-image: url('/images/background/signUpShow.png');
+	background-position: center;
+}
+
+.show__header h1 {
+	font-size: 70px;
+	color: black;
+	font-weight: 600;
+	margin-top: 70px;
+}
+
+.signUpShow__content {
+	height: 300px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin: 200px 0;
+}
+
+.signUpShow__content div {
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+.signUpShow__info div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 600px;
+	margin-bottom: 10px;
+	font-size: 30px;
+}
+
+.signUpShow__content input, textarea {
+	width: 420px;
+	height: 30px;
+	font-size: 25px;
+}
+
+.signUpShow__content select {
+	width: 220px;
+	height: 40px;
+	font-size: 25px;
+}
+
+.btn__sub button {
+	border: 1px solid #ccc;
+	margin-left: 460px;
+	background-color: white;
+	width: 150px;
+	height: 80px;
+	border-radius: 10px;
+	font-size: 25px;
+}
+
+.filebox .upload-name {
+	display: inline-block;
+	height: 40px;
+	padding: 0 10px;
+	vertical-align: middle;
+	border: 1px solid #dddddd;
+	width: 65%;
+	color: #999999;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #fff;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	height: 25px;
+	margin-left: 10px;
+	font-size: 19px;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	border: 0;
+}
+
+.table-condensed {
+	height: 400px;
+}
+/* 캘린더뒷배경 */
+.calendar-table {
+	width: 400px;
+	height: 450px;
+}
+.calendar-table table{
+	height: 450px!important;
+}
+
+.in-range available {
+	font-size: 200px;
+}
+
+.calendar-time {
+	width: 400px;
+	height: 450px;
+}
+.opensright{
+	top: 700px!important;
+	left:400px!important;
+	margin-left: -100px!important;
+}
+.daterangepicker .calendar-table {
+	border: 1px solid black;
+}
+
+.daterangepicker .drp-calendar {
+	max-width: 460px !important;
+}
+
+.daterangepicker .drp-calendar.right .calendar-table {
+	margin-left: 30px !important;
+}
+/* Month 글자 크기 */
+.month {
+	font-size: 20px !important;
+}
+
+.table-condensed td {
+	font-size: 17px !important;
+}

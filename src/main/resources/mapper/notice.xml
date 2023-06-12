@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.NoticeRepository">
+
+	<insert id="insertAdminNotice">
+		INSERT INTO adminNotice_tb(notice,user_id,admin_id)
+		VALUES(#{notice},#{userId},#{adminId})
+	</insert>
+	
+	<insert id="insertManaegerNotice">
+		INSERT INTO managerNotice_tb(notice,user_id,admin_id)
+		VALUES(#{notice},#{userId},#{adminId})
+	</insert>
+
+	<!-- 작성자: 전대영 admin 알림 select -->
+	<select id="selectManagerNotice" resultType="com.bclass.arts_center.repository.model.Notice">
+		SELECT * FROM managerNotice_tb
+		WHERE user_id = #{userId} 
+		AND status = 0
+	</select>
+
+	<update id="updateManagerNotice">
+		UPDATE managerNotice_tb SET
+		status = 1 
+		WHERE id = #{id}
+	</update>
+</mapper>
+
+

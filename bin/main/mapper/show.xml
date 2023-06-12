@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.bclass.arts_center.repository.interfaces.ShowRepository">
+
+	<select id="selectShowByNewestCount" resultType="Integer">
+		SELECT count(*)
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN hole_tb AS h
+		ON h.id = s.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1
+		ORDER BY s.id DESC
+	</select>
+	
+	<select id="selectShowByNewest" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN hole_tb AS h
+		ON h.id = s.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1
+		GROUP BY s.title
+		ORDER BY s.id DESC
+		LIMIT #{begin}, #{range}
+	</select>
+
+	<select id="selectShowByHighesRated" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN hole_tb AS h
+		ON h.id = s.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND rating != 'NULL'
+		GROUP BY s.title
+		ORDER BY round(avg(r.rating), 1) DESC
+		LIMIT #{begin}, #{range}
+	</select>
+
+	<select id="selectShowByRowestRated" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN hole_tb AS h
+		ON h.id = s.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND rating != 'NULL'
+		GROUP BY s.title
+		ORDER BY round(avg(r.rating), 1) ASC
+		LIMIT #{begin},	#{range}
+	</select>
+	
+	<select id="selectShowCount" resultType="Integer">
+		SELECT count(*) AS count
+		FROM (
+		SELECT s.id
+		FROM show_tb AS s
+		JOIN review_tb AS r
+		ON r.show_id = s.id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND rating != 'NULL'
+		GROUP BY s.title) AS c
+	</select>
+
+	<!-- 작성자 : 전대영 show 카테고리 -->
+	<select id="selectShowByCategory" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id, s.title, round(avg(r.rating), 1) AS rating, s.content, sc.show_type, s.img_route, s.title, s.start_date, s.end_date, l.location
+		FROM show_tb AS s
+		LEFT JOIN review_tb AS r
+		ON r.show_id = s.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		JOIN hole_tb AS h
+		ON h.id = s.hole_id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE s.show_status = 1 AND rent_place_status = 1 AND sc.show_type = #{category}
+		GROUP BY s.title
+		ORDER BY s.id DESC
+		LIMIT #{begin},	#{range}
+	</select>
+
+	<select id="selectShowByNewestOne" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT *
+		FROM show_tb
+		WHERE organizer_id = #{userId}
+		ORDER BY id DESC
+		LIMIT 1
+	</select>
+
+	<select id="selectShowByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT *
+		FROM show_tb
+		WHERE id = #{showId}
+	</select>
+
+	<select id="selectReviewByShowId" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT r.*
+		FROM show_tb AS s
+		JOIN review_tb AS r
+		ON r.show_id = s.id
+		WHERE s.id = #{showId};
+	</select>
+
+	<select id="selectShowByCategoryCount" resultType="Integer">
+		SELECT count(*) AS count
+		FROM (
+		SELECT s.id
+		FROM review_tb AS r
+		RIGHT JOIN show_tb AS s
+		ON r.show_id = s.id
+		LEFT JOIN user_tb AS u
+		ON r.user_id = u.id
+		LEFT JOIN category_tb AS sc
+		ON s.show_type_id = sc.id
+		JOIN rent_place_reservation_tb as rp
+        ON s.id = rp.show_id
+		WHERE rent_place_status = 1 AND sc.show_type = #{category} AND s.show_status = 1
+		GROUP BY s.title) AS c
+	</select>
+
+	<insert id="insertShow">
+		INSERT INTO show_tb(img_route, title, content, start_date, end_date, admission_age, adult_rate, youth_rate, organizer_id, show_type_id, hole_id)
+		VALUES (#{imgRoute}, #{title}, #{content}, #{startDate}, #{endDate}, #{admissionAge}, #{adultRate}, #{youthRate}, #{organizerId}, #{showTypeId}, #{holeId})
+	</insert>
+
+	<insert id="insertShowDateTime">
+		INSERT INTO show_datetime_tb(show_date, show_time, show_id, hole_id)
+		VALUES (#{startDate}, #{startTime}, #{showId}, #{holeId})
+	</insert>
+
+
+	<select id="selectShowInfoByShowId" resultType="com.bclass.arts_center.dto.ShowViewDto">
+		SELECT *, sdt.id as show_datetime_id
+		FROM show_tb AS s
+		JOIN show_datetime_tb AS sdt
+		ON s.id = sdt.show_id
+		JOIN hole_tb AS h
+		ON s.hole_id = h.id
+		JOIN location_tb AS l
+		ON l.id = h.location_id
+		JOIN user_tb AS u
+		ON u.id = s.organizer_id
+		WHERE sdt.show_id = #{showId}
+	</select>
+
+
+	<select id="selectShowInfoAdmin" resultType="com.bclass.arts_center.dto.request.RequestShowDto">
+		SELECT s.id, s.organizer_id AS user_id, s.title, s.content, s.admission_age, c.show_type, s.show_status
+		FROM show_tb AS s
+		JOIN category_tb AS c
+		ON s.show_type_id = c.id
+		ORDER BY s.show_status ASC, s.id DESC
+	</select>
+
+	<update id="updateShowStatusById">
+		UPDATE show_tb SET show_status = 1 WHERE id = #{id}
+	</update>
+
+	<update id="updateShowHoleById">
+		UPDATE show_tb SET hole_id = #{holeId} WHERE id = #{id}
+	</update>
+
+</mapper>
+
+

@@ -1,0 +1,190 @@
+/*
+작성자 편용림
+*/
+@charset "UTF-8";
+
+
+body {
+	width: 1500px;
+	margin: 0 auto;
+}
+.loginLogo {
+	height: 200px;
+	width: 200px;
+}
+.signInContainer {
+	margin-top: 150px;
+	margin-bottom: 350px;
+	margin-left: 350px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 700px;
+	width: 800px;
+}
+
+.loginContainer {
+	line-height: 20px;
+	display: flex;
+	justify-content: start;
+	align-items: flex-start;
+	flex-direction: column;
+	margin: 100px;
+	margin-left: 100px;
+}
+
+.login {
+	background-color: rgb(255, 80, 90);
+	color: white;
+	border-radius: 5px;
+	border: 0;
+	padding: 15px 175px;
+	margin-top: 30px;
+	margin-left: 5px;
+	height: 70px;
+}
+
+#signup {
+	background-color: white;
+	color: #C0C0C0;
+	border: 0;
+	font-size: 17px;
+}
+
+p {
+	text-align: center;
+}
+
+i {
+	color: lightgray;
+	position: absolute;
+	margin-left: 530px;
+}
+
+#imail {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.material-icons{
+	font-size: 30px;
+}
+#ipw {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+input {
+	border: 1px solid lightgray;
+	border-radius: 3px;
+	height: 50px;
+}
+
+.info {
+	border: none;
+	border-bottom: 1px solid black;
+	outline: none;
+	padding: 1px 2px;
+}
+
+.selectIdAndPw {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: row;
+	margin-left: 250px;
+	width:500px;
+	font-size: 20px;
+}
+
+.selectIdAndPw p {
+	display: flex;
+	margin: 0px 10px;
+}
+
+a:link {
+	color: black;
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+
+.login--title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin-left: 210px;
+	margin-bottom: 50px;
+}
+
+.login--title h2 {
+	font-size: 30px;
+}
+
+.line {
+	margin: 20px;
+	border-left: 1px solid #ccc;
+	height: 660px;
+}
+
+.kakaoLogo img {
+	height: 50px;
+	border-radius: 5px;
+}
+
+.naverLogo img {
+	width: 50px;
+	border-radius: 5px;
+}
+
+.googleLogo img {
+	width: 50px;
+}
+
+.logobox {
+	margin-left: 330px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	margin-top: 20px;
+}
+
+.logobox img {
+	margin: 7px;
+	width: 80px;
+	height: 80px;
+}
+
+#userName, #password {
+	margin-left: 20px;
+	height: 60px;
+	width: 540px;
+	font-size: 20px	;
+}
+#password{
+	margin-left: 8px;
+}
+#userEmail{
+	height: 60px;
+	width: 600px;
+	font-size: 20px	;
+}
+
+.login {
+	margin-top: 50px;
+	width: 610px;
+	height:80px;
+	font-size: 35px;
+}
