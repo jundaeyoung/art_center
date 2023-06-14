@@ -120,8 +120,40 @@
   <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/48cbde90-b4fb-4672-9f1a-ef4fa7eba586"></td>
 </tr>
 </table>
+<br>
 
-
+#### MANAGER
+- 매니져 메인 화면
+- 나의 공연일정 확인
+- 나의 공연매출 확인
+- 공연,대관 신청
+<table>
+<tr>
+  <td>메인페이지</td>
+  <td>나의 공연일정</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/d99cfbd8-86e2-45d7-b53f-91a49eb1c6a2"></td>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/1e44d937-b80c-4b6f-9d4b-3be24e10211b"></td>
+</tr>
+<tr>
+ <td>공연,대관 등록</td>
+  <td>나의 공연매출</td>
+</tr>
+<tr>
+ <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/a64aa034-bf03-4d72-b7b0-2dd964b336c3"></td>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/e5455b79-985a-4729-a5f8-dd449b1f3e70"></td>
+</tr>
+ <tr>
+ <td>공연 예약 목록</td>
+  <td>환불 목록</td>
+</tr>
+<tr>
+ <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/30738478-6721-4f60-899b-ef774b89accb"></td>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/f102c574-6e92-45c7-8233-c6e93e0b5c5f"></td>
+</tr>
+<br>
+</table>
 
 
 
