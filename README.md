@@ -16,6 +16,12 @@
  
 ## 📚기술스택
 <div align=center> 
+  <img src="https://img.shields.io/badge/kakao API-FFCD00?style=for-the-badge&logo=kakao&logoColor=white">
+  <img src="https://img.shields.io/badge/Google API-4285F4?style=for-the-badge&logo=google&logoColor=white">
+  <img src="https://img.shields.io/badge/naver API-03C75A?style=for-the-badge&logo=naver&logoColor=white">
+ <img src="https://img.shields.io/badge/nurigo-EF8D1D?style=for-the-badge&logo=&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/H2 Database-F6F722?style=for-the-badge&logo=&logoColor=white">
   <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
   <img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
@@ -36,7 +42,8 @@
   <br>
 
   <img src="https://img.shields.io/badge/sourcetree-0052CC?style=for-the-badge&logo=sourcetree&logoColor=white"> 
-  <img src="https://img.shields.io/badge/jira-0052CC?style=for-the-badge&logo=jirasoftware&logoColor=white"> 
+  <img src="https://img.shields.io/badge/jira-0052CC?style=for-the-badge&logo=jirasoftware&logoColor=white">
+ <img src="https://img.shields.io/badge/JSP-492559?style=for-the-badge&logo=&logoColor=white">
   <br>
 </div>
 
