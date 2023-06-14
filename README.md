@@ -77,7 +77,7 @@
 </tr>
 <tr>
   <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/537969bc-9f92-48b4-bc89-b363d4ce04c7"></td>
-  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/90f62da0-a85a-4b2f-add9-da0414ab17c7"></td>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/9cf1f84c-d3e9-4873-849f-c4ff81334439"></td>
 </tr>
 <tr>
   <td>일반 회원가입</td>
