@@ -154,7 +154,32 @@
 </tr>
 <br>
 </table>
+<br>
 
+#### Admin
+-공연 신청 승인
+- 가입자 수 확인
+- 공연,대관 매출 확인
+- 공지사항 작성
+  
+<table>
+<tr>
+  <td>Dashboard</td>
+  <td>공연 수락</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/9ef2c809-99de-43e8-9b07-388752615be4"></td>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/97a318a1-8dcb-4a06-959b-f43b9b7471dd"></td>
+</tr>
+<tr>
+ <td>공연 매출</td>
+  <td>공지사항 작성</td>
+</tr>
+<tr>
+ <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/9c532742-ac71-4036-b302-e1ebf6f79823"></td>
+  <td><img src="https://github.com/jundaeyoung/art_center/assets/124986563/b59fa9d5-ee83-4eb9-a631-fa74cc714481"></td>
+</tr>
+</table>
 
 
 
